@@ -1,0 +1,138 @@
+function Convert-ToWslPath {
+    param(
+        [string]$WindowsPath
+    )
+
+    # UNC paths (\\server\share) are not supported
+    if (-not $WindowsPath -or $WindowsPath.Length -lt 3 -or $WindowsPath[1] -ne ':') {
+        return $null
+    }
+
+    $drive = $WindowsPath.Substring(0, 1).ToLower()
+    $rest = $WindowsPath.Substring(2).Replace('\', '/')
+    return "/mnt/$drive$rest"
+}
+
+function Convert-ToBashLiteral {
+    param(
+        [string]$Value
+    )
+
+    if ($null -eq $Value) {
+        return "''"
+    }
+
+    return "'" + ($Value -replace "'", "'\\''") + "'"
+}
+
+function Convert-ToBashArg {
+    param(
+        [string]$Value
+    )
+
+    if ($null -eq $Value) {
+        return "''"
+    }
+
+    # *, ?, [] are passed unquoted to allow bash glob expansion (e.g. ls *.txt)
+    if ($Value -match '^[A-Za-z0-9_./:@%+=,\-\*\?\[\]]+$') {
+        return $Value
+    }
+
+    return Convert-ToBashLiteral $Value
+}
+
+function Get-BashCdPrefix {
+    $pwdWin = (Get-Location).ProviderPath
+    $pwdWsl = Convert-ToWslPath $pwdWin
+
+    if (-not $pwdWsl) {
+        return ''
+    }
+
+    return "cd $(Convert-ToBashLiteral $pwdWsl) 2>/dev/null || true; "
+}
+
+function Invoke-BashCommand {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$BaseCommand,
+        [string[]]$CmdArgs,
+        [string[]]$PipeLines
+    )
+
+    $cmdPrefix = Get-BashCdPrefix
+
+    if (-not $CmdArgs -or $CmdArgs.Count -eq 0) {
+        $bashCmd = "$cmdPrefix$BaseCommand"
+    }
+    else {
+        $argText = ($CmdArgs | ForEach-Object { Convert-ToBashArg $_ }) -join ' '
+        $bashCmd = "$cmdPrefix$BaseCommand $argText"
+    }
+
+    if ($PipeLines -and $PipeLines.Count -gt 0) {
+        ($PipeLines -join "`n") | bash -lc $bashCmd
+    }
+    else {
+        bash -lc $bashCmd
+    }
+
+    if ($LASTEXITCODE -ne 0) {
+        $ex = [System.Management.Automation.ErrorRecord]::new(
+            [System.Exception]::new("bash exited with code $LASTEXITCODE"),
+            'BashNonZeroExit', 'FromStdErr', $null)
+        $PSCmdlet.WriteError($ex)
+    }
+}
+
+function b {
+    [CmdletBinding()]
+    param(
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [string[]]$Command
+    )
+
+    if (-not $Command -or $Command.Count -eq 0) {
+        bash
+        return
+    }
+
+    $cmdPrefix = Get-BashCdPrefix
+
+    if ($Command.Count -eq 1) {
+        # Single arg: pass as raw command string (e.g. b "ls -la | head")
+        bash -lc "$cmdPrefix$($Command[0])"
+    }
+    else {
+        # Multiple args: quote each individually (e.g. b ls -la /tmp)
+        $cmd = ($Command | ForEach-Object { Convert-ToBashArg $_ }) -join ' '
+        bash -lc "$cmdPrefix$cmd"
+    }
+
+    if ($LASTEXITCODE -ne 0) {
+        $ex = [System.Management.Automation.ErrorRecord]::new(
+            [System.Exception]::new("bash exited with code $LASTEXITCODE"),
+            'BashNonZeroExit', 'FromStdErr', $null)
+        $PSCmdlet.WriteError($ex)
+    }
+}
+
+Set-Alias -Name bashc -Value b
+
+$bashCommands = @(
+    'ls', 'cat', 'grep', 'find', 'head', 'tail', 'wc', 'sort', 'uniq', 'cut',
+    'tr', 'sed', 'awk', 'cp', 'mv', 'rm', 'mkdir', 'rmdir', 'touch', 'pwd', 'which'
+)
+
+foreach ($name in $bashCommands) {
+    $functionName = "__bash_$name"
+    $wrapper = @"
+begin { `$__pipe = [System.Collections.Generic.List[string]]::new() }
+process { if (`$_ -ne `$null) { `$__pipe.Add([string]`$_) } }
+end { Invoke-BashCommand '$name' `$args `$__pipe.ToArray() }
+"@
+    Set-Item -Path "Function:$functionName" -Value ([ScriptBlock]::Create($wrapper)) -Force
+    Set-Alias -Name $name -Value $functionName -Scope Global -Option AllScope -Force
+}

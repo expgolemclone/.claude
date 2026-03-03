@@ -1,0 +1,55 @@
+{
+  "installMethod": "native",
+  "autoUpdates": false,
+  "theme": "dark-daltonized",
+  "clientDataCache": {
+    "data": {},
+    "timestamp": 1772080199301
+  },
+  "userID": "ec3a72bab69f85ae1742459db49b7b63c04eb8cf9976b328969d65c978a1b34c",
+  "lastReleaseNotesSeen": "2.1.59",
+  "projects": {
+    "C:/Users/0000250059": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 1,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": []
+    }
+  },
+  "changelogLastFetched": 1772080096539,
+  "cachedExtraUsageDisabledReason": "org_level_disabled",
+  "toolUsage": {
+    "Write": {
+      "usageCount": 1,
+      "lastUsedAt": 1772080104250
+    },
+    "Bash": {
+      "usageCount": 1,
+      "lastUsedAt": 1772080194971
+    }
+  },
+  "firstStartTime": "2026-02-26T04:29:09.791Z",
+  "opusProMigrationComplete": true,
+  "sonnet1m45MigrationComplete": true,
+  "cachedChromeExtensionInstalled": true,
+  "oauthAccount": {
+    "accountUuid": "17f555d7-39a1-4154-92e3-bc6b1b967649",
+    "emailAddress": "mitsutofujita5000@gmail.com",
+    "organizationUuid": "c764b3c0-9a4e-4e5f-9ec4-b7d34db8e81b",
+    "hasExtraUsageEnabled": false,
+    "billingType": "stripe_subscription",
+    "accountCreatedAt": "2026-02-18T21:14:51.934002Z",
+    "subscriptionCreatedAt": "2026-02-18T21:18:22.758696Z",
+    "displayName": "user"
+  },
+  "hasShownOpus46Notice": {
+    "c764b3c0-9a4e-4e5f-9ec4-b7d34db8e81b": true
+  },
+  "autoUpdatesProtectedForNative": true
+}

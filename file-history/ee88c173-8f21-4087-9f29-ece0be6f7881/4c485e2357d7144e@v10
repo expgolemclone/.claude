@@ -1,0 +1,35 @@
+# CP932 �ϊ��s�\�t�@�C���ꗗ
+
+pre-commit hook (`pre_commit_encoding.py`) �ɂ�� CP932+CRLF �ϊ���
+�G���R�[�h�G���[�ƂȂ�t�@�C���̒������ʁB
+
+## U+0600 (�t�@�C���j��) �\ 4��  [�C���ς�]
+
+`���d�\�t�g�E�F�A` �́u�A�v(`U+30A2`, UTF-8: `e3 82 a2`) ��
+`U+0600` (�A���r�A�ꐔ���L��, UTF-8: `d8 80`) �ɉ����Ă����B
+
+UTF-8 �Ƃ��Ă͕��@��L���Ȃ��߃f�R�[�h�͐������邪�A�����Ƃ��ĈӖ����ʂ�Ȃ��B
+
+| �t�@�C�� | �ʒu | �C�����e |
+|---|---|---|
+| `netsrc/opsControl/OpsCtlColor/My Project/AssemblyInfo.vb` | pos 314 | U+0600 �� �A �ɏC�� |
+| `src/tool/AddinReg/My Project/AssemblyInfo.vb` | pos 311 | U+0600 �� �A �ɏC�� |
+| `src/tool/ctrltool/My Project/AssemblyInfo.vb` | pos 311 | U+0600 �� �A �ɏC�� |
+| `src/tool/grareptool/My Project/AssemblyInfo.vb` | pos 313 | U+0600 �� �A �ɏC�� |
+
+### �C�����@
+
+U+0600 (`d8 80`) �� `�A` (`U+30A2`, `e3 82 a2`) �Ɏ蓮�ŏC�������B
+
+## U+2715 (CP932 �ɑ��݂��Ȃ�����) �\ 1��  [�C���ς�]
+
+�R�����g���ňӐ}�I�Ɏg��ꂽ U+2715 (��Z�L��/�o�c��)�B
+�j���ł͂Ȃ����ACP932 �Ƀ}�b�s���O���Ȃ��B
+
+| �t�@�C�� | �ʒu | �C�����e |
+|---|---|---|
+| `netsrc/scrControl/OpsScrSysMnt/UctlFuda.vb` | pos 23793 | U+2715 �� U+00D7 �ɏC�� |
+
+### �C�����@
+
+U+2715 �� CP932 �ɑ��݂����֕��� `�~` (`U+00D7`, CP932: `817E`) �ɒu�������B

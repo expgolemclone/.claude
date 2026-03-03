@@ -1,0 +1,9 @@
+## Python Rules
+- PEP 8 準拠（インデント4スペース、行長79文字目安）
+- 関数・変数は snake_case、クラスは PascalCase
+- 型ヒントを関数のパラメータと戻り値に付与する
+- 文字列フォーマットは f-string を使用（.format() や % は避ける）
+- パス操作は os.path より pathlib.Path を優先
+- リスト内包表記を map/filter より優先（単純な変換の場合）
+- docstring は Google スタイルで記述
+- import 順序: 標準ライブラリ → サードパーティ → ローカル（間に空行）

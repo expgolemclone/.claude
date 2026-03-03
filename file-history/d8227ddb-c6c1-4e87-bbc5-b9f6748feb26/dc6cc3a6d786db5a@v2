@@ -1,0 +1,109 @@
+"""pre-commit hook: detect encoding changes in staged source files.
+
+Compares the encoding of each staged file against the HEAD version in git.
+If the encoding changed (e.g. cp932 -> utf-8), reports a violation and
+exits with code 1 to block the commit.
+"""
+
+import os
+import subprocess
+import sys
+
+
+SOURCE_EXTS = {".c", ".h", ".cpp", ".hpp"}
+
+
+def detect_encoding(data: bytes) -> str | None:
+    """Detect encoding by trying cp932 then utf-8."""
+    for enc in ("cp932", "utf-8"):
+        try:
+            data.decode(enc)
+            return enc
+        except (UnicodeDecodeError, ValueError):
+            continue
+    return None
+
+
+def is_binary(data: bytes) -> bool:
+    return b"\x00" in data[:512]
+
+
+def get_git_head_content(rel_path: str) -> bytes | None:
+    """Get file content from git HEAD."""
+    try:
+        result = subprocess.run(
+            ["git", "show", f"HEAD:{rel_path}"],
+            capture_output=True,
+        )
+        if result.returncode == 0:
+            return result.stdout
+    except Exception:
+        pass
+    return None
+
+
+def staged_files() -> list[str]:
+    """Return staged source files via git diff --cached."""
+    result = subprocess.run(
+        ["git", "diff", "--cached", "--name-only", "--diff-filter=ACMR", "-z"],
+        capture_output=True,
+    )
+    if result.returncode != 0:
+        return []
+    raw = result.stdout
+    if not raw:
+        return []
+    return [p for p in raw.decode("utf-8").split("\0") if p]
+
+
+def main() -> int:
+    files = staged_files()
+    if not files:
+        print("  no staged files.")
+        return 0
+
+    violations: list[tuple[str, str, str]] = []
+
+    for filepath in files:
+        ext = os.path.splitext(filepath)[1].lower()
+        if ext not in SOURCE_EXTS:
+            continue
+
+        if not os.path.isfile(filepath):
+            continue
+
+        try:
+            with open(filepath, "rb") as f:
+                current_data = f.read()
+        except OSError:
+            continue
+
+        if not current_data or is_binary(current_data):
+            continue
+
+        original_data = get_git_head_content(filepath)
+        if original_data is None:
+            continue  # New file, not in git yet
+
+        orig_enc = detect_encoding(original_data)
+        curr_enc = detect_encoding(current_data)
+
+        if orig_enc and curr_enc and orig_enc != curr_enc:
+            violations.append((filepath, orig_enc, curr_enc))
+
+    if not violations:
+        print("  no encoding violations found.")
+        return 0
+
+    print(f"\nENCODING: {len(violations)} violation(s):\n")
+    for filepath, orig_enc, curr_enc in violations:
+        print(f"  {filepath}:")
+        print(f"    HEAD: {orig_enc} -> staged: {curr_enc}")
+        print(f"    元のエンコーディング({orig_enc})に戻してください。")
+        print()
+
+    return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

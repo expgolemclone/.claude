@@ -1,0 +1,215 @@
+2026-02-25T02:42:16.007Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T02:42:16.007Z [DEBUG] MDM settings load completed in 16ms
+2026-02-25T02:42:16.019Z [DEBUG] [init] configureGlobalMTLS starting
+2026-02-25T02:42:16.019Z [DEBUG] [init] configureGlobalMTLS complete
+2026-02-25T02:42:16.019Z [DEBUG] [init] configureGlobalAgents starting
+2026-02-25T02:42:16.019Z [DEBUG] [init] configureGlobalAgents complete
+2026-02-25T02:42:16.059Z [DEBUG] Using bash path: "C:\msys64\usr\bin\bash.exe"
+2026-02-25T02:42:16.070Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-02-25T02:42:16.071Z [DEBUG] [ToolSearch:optimistic] mode=tst-auto, ENABLE_TOOL_SEARCH=undefined, result=true
+2026-02-25T02:42:16.072Z [DEBUG] [STARTUP] Running setup()...
+2026-02-25T02:42:16.076Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\0000250059\.claude\skills, project=[]
+2026-02-25T02:42:16.076Z [DEBUG] Error log sink initialized
+2026-02-25T02:42:16.084Z [DEBUG] [STARTUP] setup() completed in 12ms
+2026-02-25T02:42:16.084Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-02-25T02:42:16.085Z [DEBUG] Git remote URL: null
+2026-02-25T02:42:16.085Z [DEBUG] No git remote URL found
+2026-02-25T02:42:16.123Z [DEBUG] Loaded 0 unique skills (0 unconditional, 0 conditional, managed: 0, user: 0, project: 0, additional: 0, legacy commands: 0)
+2026-02-25T02:42:16.127Z [DEBUG] [Claude in Chrome] Found chrome profiles: Default
+2026-02-25T02:42:16.127Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2026-02-25T02:42:16.128Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2026-02-25T02:42:16.128Z [DEBUG] Total plugin skills loaded: 0
+2026-02-25T02:42:16.128Z [DEBUG] Total plugin commands loaded: 0
+2026-02-25T02:42:16.128Z [DEBUG] Registered 0 hooks from 0 plugins
+2026-02-25T02:42:16.128Z [DEBUG] Total plugin agents loaded: 0
+2026-02-25T02:42:16.137Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills, 3 bundled skills
+2026-02-25T02:42:16.137Z [DEBUG] [STARTUP] Commands and agents loaded in 53ms
+2026-02-25T02:42:16.145Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-02-25T02:42:16.148Z [DEBUG] [keybindings] KeybindingSetup initialized with 103 bindings, 0 warnings
+2026-02-25T02:42:16.175Z [DEBUG] [Claude in Chrome] Extension fcoeoabgfenejglbffodgkkbkcdhcgfn found in chrome Default
+2026-02-25T02:42:16.175Z [DEBUG] [keybindings] Watching for changes to C:\Users\0000250059\.claude\keybindings.json
+2026-02-25T02:42:16.581Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.21376.1771987336581
+2026-02-25T02:42:16.581Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T02:42:16.586Z [DEBUG] Temp file written successfully, size: 27339 bytes
+2026-02-25T02:42:16.586Z [DEBUG] Applied original permissions to temp file
+2026-02-25T02:42:16.586Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.21376.1771987336581 to C:\Users\0000250059\.claude.json
+2026-02-25T02:42:16.587Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T02:42:17.237Z [DEBUG] Grove: Using fresh cached config
+2026-02-25T02:42:17.245Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-02-25T02:42:17.245Z [DEBUG] [Perfetto] initializePerfettoTracing called, env value: undefined
+2026-02-25T02:42:17.245Z [DEBUG] [3P telemetry] isTelemetryEnabled=false (CLAUDE_CODE_ENABLE_TELEMETRY=undefined)
+2026-02-25T02:42:17.707Z [DEBUG] [STARTUP] showSetupScreens() completed in 1562ms
+2026-02-25T02:42:17.707Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-02-25T02:42:17.707Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-02-25T02:42:17.707Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-02-25T02:42:17.708Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-25T02:42:17.708Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-25T02:42:17.708Z [DEBUG] Passes: Using fresh cached eligibility data
+2026-02-25T02:42:17.709Z [DEBUG] Total LSP servers loaded: 0
+2026-02-25T02:42:17.709Z [DEBUG] [STARTUP] MCP configs loaded in 1639ms
+2026-02-25T02:42:17.735Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-02-25T02:42:17.735Z [DEBUG] LSP manager initialized with 0 servers
+2026-02-25T02:42:17.735Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-25T02:42:17.737Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-02-25T02:42:17.737Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T02:42:17.737Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-02-25T02:42:17.737Z [DEBUG] installed_plugins.json doesn't exist, returning empty V2 object
+2026-02-25T02:42:17.737Z [DEBUG] Initialized versioned plugins system with 0 plugins
+2026-02-25T02:42:17.737Z [DEBUG] LSP server manager initialized successfully
+2026-02-25T02:42:17.737Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-02-25T02:42:17.739Z [DEBUG] [Reconnection] computeInitialTeamContext: No teammate context set (not a teammate)
+2026-02-25T02:42:17.742Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.21376.1771987337742
+2026-02-25T02:42:17.742Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T02:42:17.745Z [DEBUG] Temp file written successfully, size: 27339 bytes
+2026-02-25T02:42:17.745Z [DEBUG] Applied original permissions to temp file
+2026-02-25T02:42:17.745Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.21376.1771987337742 to C:\Users\0000250059\.claude.json
+2026-02-25T02:42:17.747Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T02:42:17.767Z [DEBUG] [keybindings] KeybindingSetup initialized with 103 bindings, 0 warnings
+2026-02-25T02:42:17.790Z [DEBUG] [REPL:mount] REPL mounted, disabled=false
+2026-02-25T02:42:17.791Z [DEBUG] Official marketplace auto-install skipped: already_attempted
+2026-02-25T02:42:17.792Z [DEBUG] performStartupChecks called
+2026-02-25T02:42:17.793Z [DEBUG] Starting background plugin installations
+2026-02-25T02:42:17.793Z [DEBUG] performBackgroundPluginInstallations called
+2026-02-25T02:42:17.796Z [DEBUG] Loaded 6 CLAUDE.md/rules files:
+  [User] C:\Users\0000250059\.claude\rules\git.md (131 chars)
+  [User] C:\Users\0000250059\.claude\rules\md.md (248 chars)
+  [User] C:\Users\0000250059\.claude\rules\mmd.md (29 chars)
+  [User] C:\Users\0000250059\.claude\rules\ps1.md (61 chars)
+  [User] C:\Users\0000250059\.claude\rules\py.md (373 chars)
+  [User] C:\Users\0000250059\.claude\rules\rs.md (37 chars)
+2026-02-25T02:42:17.826Z [DEBUG] Watching for changes in setting files C:\Users\0000250059\.claude\settings.json, C:\Users\0000250059\.claude\settings.local.json...
+2026-02-25T02:42:17.832Z [DEBUG] [FileIndex] getProjectFiles called, respectGitignore=true
+2026-02-25T02:42:17.832Z [DEBUG] [FileIndex] getFilesUsingGit called
+2026-02-25T02:42:17.960Z [DEBUG] [FileIndex] not a git repo, returning null
+2026-02-25T02:42:17.961Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-02-25T02:42:17.961Z [DEBUG] [claudeai-mcp] Gate returned: true
+2026-02-25T02:42:17.961Z [DEBUG] [claudeai-mcp] Fetching from https://api.anthropic.com/v1/mcp_servers?limit=1000
+2026-02-25T02:42:17.962Z [DEBUG] [FileIndex] git ls-files returned null, falling back to ripgrep
+2026-02-25T02:42:18.017Z [DEBUG] AutoUpdaterWrapper: Installation type: native
+2026-02-25T02:42:18.019Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2026-02-25T02:42:18.024Z [DEBUG] Security messages are fresh (<1h old), skipping fetch
+2026-02-25T02:42:18.027Z [DEBUG] Org fast mode: disabled (extra_usage_disabled)
+2026-02-25T02:42:18.030Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2026-02-25T02:42:18.042Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:18.061Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:18.255Z [DEBUG] [claudeai-mcp] Fetched 3 servers
+2026-02-25T02:42:18.256Z [DEBUG] MCP server "claude.ai Gmail": Initializing claude.ai proxy transport for server mcpsrv_01DokMh3ugP8kfyEKSwZdFXK
+2026-02-25T02:42:18.257Z [DEBUG] MCP server "claude.ai Gmail": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01DokMh3ugP8kfyEKSwZdFXK
+2026-02-25T02:42:18.257Z [DEBUG] MCP server "claude.ai Gmail": claude.ai proxy transport created successfully
+2026-02-25T02:42:18.259Z [DEBUG] MCP server "claude.ai Gmail": Starting connection with timeout of 30000ms
+2026-02-25T02:42:18.260Z [DEBUG] MCP server "claude.ai Notion": Initializing claude.ai proxy transport for server mcpsrv_01NrtxBarc1ExyHkwvxZuZVm
+2026-02-25T02:42:18.260Z [DEBUG] MCP server "claude.ai Notion": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01NrtxBarc1ExyHkwvxZuZVm
+2026-02-25T02:42:18.260Z [DEBUG] MCP server "claude.ai Notion": claude.ai proxy transport created successfully
+2026-02-25T02:42:18.261Z [DEBUG] MCP server "claude.ai Notion": Starting connection with timeout of 30000ms
+2026-02-25T02:42:18.261Z [DEBUG] MCP server "claude.ai Google Calendar": Initializing claude.ai proxy transport for server mcpsrv_019yCVR7ND6sBtQPjDBreYMJ
+2026-02-25T02:42:18.262Z [DEBUG] MCP server "claude.ai Google Calendar": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_019yCVR7ND6sBtQPjDBreYMJ
+2026-02-25T02:42:18.262Z [DEBUG] MCP server "claude.ai Google Calendar": claude.ai proxy transport created successfully
+2026-02-25T02:42:18.263Z [DEBUG] MCP server "claude.ai Google Calendar": Starting connection with timeout of 30000ms
+2026-02-25T02:42:18.264Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:18.268Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:18.595Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:18.599Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:18.738Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=C:\Users\0000250059\.local\bin\claude.exe)
+2026-02-25T02:42:18.892Z [DEBUG] MCP server "claude.ai Gmail": claude.ai proxy connection failed after 636ms: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYU1vP6CVbzvajMxYcXPq"}
+2026-02-25T02:42:18.892Z [ERROR] MCP server "claude.ai Gmail" Error: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYU1vP6CVbzvajMxYcXPq"}
+2026-02-25T02:42:18.893Z [DEBUG] MCP server "claude.ai Gmail": Authentication required for claude.ai proxy server
+2026-02-25T02:42:18.895Z [DEBUG] Checking for native installer update to version 2.1.53
+2026-02-25T02:42:18.896Z [DEBUG] MCP server "claude.ai Google Calendar": claude.ai proxy connection failed after 635ms: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYU1vP6CUQciUTFBv2fZw"}
+2026-02-25T02:42:18.896Z [ERROR] MCP server "claude.ai Google Calendar" Error: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYU1vP6CUQciUTFBv2fZw"}
+2026-02-25T02:42:18.896Z [DEBUG] MCP server "claude.ai Google Calendar": Authentication required for claude.ai proxy server
+2026-02-25T02:42:18.898Z [DEBUG] Found 2.1.53 at C:\Users\0000250059\.local\bin\claude.exe, skipping install
+2026-02-25T02:42:18.901Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:18.924Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:18.929Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:18.934Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:18.938Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:18.942Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:19.372Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:19.388Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:19.505Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:19.521Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:19.792Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:19.797Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:19.852Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:19.856Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:20.072Z [DEBUG] MCP server "claude.ai Notion": Successfully connected to claudeai-proxy server in 1812ms
+2026-02-25T02:42:20.073Z [DEBUG] MCP server "claude.ai Notion": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":true,"hasResourceSubscribe":false,"serverVersion":{"name":"Notion MCP","icons":[{"src":"https://mcp.notion.com/notion-logo-block-main.svg","mimeType":"image/svg+xml"}],"version":"1.2.0","websiteUrl":"https://developers.notion.com/docs/mcp","description":"Notion's official MCP server lets you use your Notion workspace as a system of record for knowledge work and software development. Search questions about the codebase and business, fetch links to pages such as tech specs and PRDs, and track tasks with your team."}}
+2026-02-25T02:42:20.073Z [DEBUG] [MCP] Server "claude.ai Notion" connected with subscribe=false
+2026-02-25T02:42:20.144Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:20.154Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:20.322Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:20.331Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:20.502Z [DEBUG] rg error (signal=undefined, code=ERR_CHILD_PROCESS_STDIO_MAXBUFFER, stderr: rg: .\Application Data: アクセスが拒否されました。 (os error 5)
+rg: .\Cookies: アクセスが拒否されました。 (os error 5)
+rg: .\Local Settings: アクセスが拒否されました。 (os error 5)
+rg: .\My Documents: アクセスが拒否されました。 (os error 5)
+rg: .\NetHood: アクセスが拒否されました。 (os error 5)
+rg: .\PrintHood: アクセスが拒否されました。 (os error 5)
+rg: .\Recent: アクセスが拒否されました。 (os error 5)
+rg: .\SendTo: アクセスが拒否されました。 (os error 5)
+rg: .\Templates: アクセスが拒否されました。 (os error 5)
+rg: .\スタート メニュー: アクセスが拒否されました。 (os error 5)
+rg: .\Documents\My Music: アクセスが拒否されました。 (os error 5)
+rg: .\Documents\My Pictures: アクセスが拒否されました。 (os error 5)
+rg: .\Documents\My Videos: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Application Data: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\History: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temporary Internet Files: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Roaming\Microsoft\Windows\Start Menu\プログラム: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\zfzpod3o: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\WinSAT: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\vw2z0zz1: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\utbl0kkg: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\oseh1che: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\msdtadmin: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\lhaxv4hh: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\k0teywc2: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\iqhjpseb: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\hpspdoba: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\hcgn1ygc: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\fzte3kjr: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\5fmxiwq3: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\4loidrmz: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\2gyacd4y: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Temp\2f3pfa3a: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\ElevatedDiagnostics: アクセスが拒否されました。 (os error 5)
+rg: .\AppData\Local\Microsoft\Windows\Temporary Internet Files: アクセスが拒否されました。 (os error 5)
+), 196755 results
+2026-02-25T02:42:20.502Z [ERROR] RangeError: RangeError: stdout maxBuffer length exceeded
+    at unknown
+    at onData (node:child_process:153:110)
+    at emit (node:events:95:22)
+    at addChunk (internal:streams/readable:264:47)
+    at readableAddChunkPushByteMode (internal:streams/readable:242:18)
+    at handleArrayBufferViewResult (internal:streams/native-readable:89:16)
+    at <anonymous> (internal:streams/native-readable:53:68)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T02:42:22.810Z [DEBUG] [FileIndex] ripgrep: 196755 files in 4848ms
+2026-02-25T02:42:23.160Z [DEBUG] [FileIndex] cache refresh completed in 5328ms (rust index)
+2026-02-25T02:42:23.183Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:23.377Z [DEBUG] /resume: loading sessions for cwd=C:\Users\0000250059, worktrees=[]
+2026-02-25T02:42:23.379Z [DEBUG] /resume: found 3 session files on disk
+2026-02-25T02:42:28.786Z [DEBUG] [useDeferredValue] Messages deferred by 2 (0→2)
+2026-02-25T02:42:28.796Z [DEBUG] Full reset (shrink->below): prevHeight=41, nextHeight=19, viewport=30
+2026-02-25T02:42:28.802Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:28.805Z [DEBUG] AutoUpdaterWrapper: Installation type: native
+2026-02-25T02:42:28.808Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.21376.1771987348808
+2026-02-25T02:42:28.808Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T02:42:28.812Z [DEBUG] Temp file written successfully, size: 27339 bytes
+2026-02-25T02:42:28.812Z [DEBUG] Applied original permissions to temp file
+2026-02-25T02:42:28.812Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.21376.1771987348808 to C:\Users\0000250059\.claude.json
+2026-02-25T02:42:28.813Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T02:42:28.829Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.21376.1771987348829
+2026-02-25T02:42:28.829Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T02:42:28.833Z [DEBUG] Temp file written successfully, size: 27339 bytes
+2026-02-25T02:42:28.833Z [DEBUG] Applied original permissions to temp file
+2026-02-25T02:42:28.833Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.21376.1771987348829 to C:\Users\0000250059\.claude.json
+2026-02-25T02:42:28.834Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T02:42:28.848Z [DEBUG] [useDeferredValue] Messages deferred by 2 (0→2)
+2026-02-25T02:42:28.854Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:28.859Z [DEBUG] [useDeferredValue] Messages deferred by 2 (0→2)
+2026-02-25T02:42:28.860Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:28.864Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:42:29.616Z [DEBUG] Checking for native installer update to version 2.1.53
+2026-02-25T02:42:29.624Z [DEBUG] Found 2.1.53 at C:\Users\0000250059\.local\bin\claude.exe, skipping install
+2026-02-25T02:42:29.631Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable

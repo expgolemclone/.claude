@@ -1,0 +1,134 @@
+# coding: cp932
+"""pre-commit hook: 全追跡ファイルを denylist パターンでスキャンする."""
+
+import os
+import re
+import subprocess
+import sys
+
+
+def load_denylist(path: str) -> list[tuple[str, re.Pattern]]:
+    """denylist ファイルからパターンを読み込む.
+
+    Returns:
+        [(raw_pattern, compiled_regex), ...]
+    """
+    if not os.path.isfile(path):
+        raise RuntimeError(f"denylist file not found: {path}")
+
+    patterns = []
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            patterns.append((line, re.compile(line)))
+    return patterns
+
+
+def tracked_files() -> list[str]:
+    """git ls-files で全追跡ファイルを返す."""
+    result = subprocess.run(
+        ["git", "ls-files", "-z"],
+        capture_output=True,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"git ls-files failed: {result.stderr.decode()}")
+    raw = result.stdout
+    if not raw:
+        return []
+    return [p for p in raw.decode("utf-8").split("\0") if p]
+
+
+def is_binary(data: bytes) -> bool:
+    """先頭 512 byte に null byte があればバイナリ."""
+    return b"\x00" in data[:512]
+
+
+def scan_file(
+    filepath: str,
+    combined: re.Pattern,
+    patterns: list[tuple[str, re.Pattern]],
+) -> list[tuple[int, str, str]]:
+    """ファイルをスキャンして違反を返す.
+
+    Returns:
+        [(line_number, line_content, pattern_str), ...]
+    """
+    try:
+        data = open(filepath, "rb").read()
+    except OSError:
+        return []
+
+    if not data or is_binary(data):
+        return []
+
+    # デコード: cp932 → utf-8 → latin-1 フォールバック
+    text = None
+    for enc in ("cp932", "utf-8"):
+        try:
+            text = data.decode(enc)
+            break
+        except (UnicodeDecodeError, ValueError):
+            continue
+    if text is None:
+        text = data.decode("latin-1")
+
+    violations = []
+    for lineno, line in enumerate(text.splitlines(), start=1):
+        if not combined.search(line):
+            continue
+        for raw, pat in patterns:
+            if pat.search(line):
+                violations.append((lineno, line.rstrip(), raw))
+
+    return violations
+
+
+def main() -> int:
+    hooks_dir = os.path.dirname(os.path.abspath(__file__))
+    denylist_path = os.path.join(hooks_dir, ".denylist")
+
+    patterns = load_denylist(denylist_path)
+    if not patterns:
+        print("  denylist is empty, skipping.")
+        return 0
+
+    # combined pattern で高速プリスクリーン
+    combined_raw = "|".join(f"(?:{raw})" for raw, _ in patterns)
+    combined = re.compile(combined_raw)
+
+    files = tracked_files()
+    if not files:
+        print("  no tracked files.")
+        return 0
+
+    # ファイル別に違反を集約
+    all_violations: dict[str, list[tuple[int, str, str]]] = {}
+    for f in files:
+        if not os.path.isfile(f):
+            continue
+        hits = scan_file(f, combined, patterns)
+        if hits:
+            all_violations[f] = hits
+
+    if not all_violations:
+        print("  no denylist violations found.")
+        return 0
+
+    # レポート
+    total = sum(len(v) for v in all_violations.values())
+    print(f"\nDENYLIST: {total} violation(s) in {len(all_violations)} file(s):\n")
+    for filepath, hits in sorted(all_violations.items()):
+        print(f"  {filepath}:")
+        for lineno, line, pat in hits:
+            # 行が長すぎる場合は切り詰め
+            display = line if len(line) <= 120 else line[:117] + "..."
+            print(f"    L{lineno}: [{pat}] {display}")
+        print()
+
+    return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

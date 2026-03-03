@@ -1,0 +1,1916 @@
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/:
+合計 36
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 08:45 .
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:42 ..
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 23 14:07 __pycache__
+-rw-r--r-- 1 0000250059 Domain Users 3803  2月 23 10:38 generate_powershell_open.py
+-rw-r--r-- 1 0000250059 Domain Users 3332  2月 25 08:45 install-watchdog.ps1
+-rw-r--r-- 1 0000250059 Domain Users 4729  2月 23 10:38 test_generate_powershell_open.py
+-rw-r--r-- 1 0000250059 Domain Users 1375  2月 25 08:45 uninstall-watchdog.ps1
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 08:45 watchdog-rs
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/__pycache__:
+合計 24
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 23 14:07 .
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 08:45 ..
+-rw-r--r-- 1 0000250059 Domain Users 5608  2月 23 14:07 generate_powershell_open.cpython-312.pyc
+-rw-r--r-- 1 0000250059 Domain Users 7869  2月 23 14:07 test_generate_powershell_open.cpython-312.pyc
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs:
+合計 25
+drwxr-xr-x 1 0000250059 Domain Users     0  2月 25 08:45 .
+drwxr-xr-x 1 0000250059 Domain Users     0  2月 25 08:45 ..
+drwxr-xr-x 1 0000250059 Domain Users     0  2月 23 10:38 .cargo
+-rw-r--r-- 1 0000250059 Domain Users 13620  2月 25 08:45 Cargo.lock
+-rw-r--r-- 1 0000250059 Domain Users   233  2月 24 14:24 Cargo.toml
+drwxr-xr-x 1 0000250059 Domain Users     0  2月 23 10:38 src
+drwxr-xr-x 1 0000250059 Domain Users     0  2月 24 14:31 target
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/.cargo:
+合計 5
+drwxr-xr-x 1 0000250059 Domain Users  0  2月 23 10:38 .
+drwxr-xr-x 1 0000250059 Domain Users  0  2月 25 08:45 ..
+-rw-r--r-- 1 0000250059 Domain Users 56  2月 23 10:38 config.toml
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/src:
+合計 24
+drwxr-xr-x 1 0000250059 Domain Users     0  2月 23 10:38 .
+drwxr-xr-x 1 0000250059 Domain Users     0  2月 25 08:45 ..
+-rwxr-xr-x 1 0000250059 Domain Users 19292  2月 23 10:38 main.rs
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target:
+合計 13
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 24 14:31 .
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 08:45 ..
+-rw-r--r-- 1 0000250059 Domain Users 1118  2月 25 13:15 .rustc_info.json
+-rw-r--r-- 1 0000250059 Domain Users  177  2月 24 14:29 CACHEDIR.TAG
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 24 14:29 debug
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug:
+合計 196
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:31 ..
+-rw-r--r-- 1 0000250059 Domain Users 0  2月 24 14:29 .cargo-lock
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 .fingerprint
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:01 build
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 deps
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 examples
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 incremental
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint:
+合計 464
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 ..
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 autocfg-043b97bbbc0391af
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 autocfg-0d9fab24a14ca87a
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 chrono-07b7f29390a68d3f
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 chrono-53e3126c91d2f57c
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 chrono-ab6b42bf1d9ac461
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 crossbeam-deque-076a317659a056d9
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 crossbeam-deque-b556b8f3f745eedb
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 crossbeam-deque-b8e72f2e558caed0
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 crossbeam-epoch-043cd9cff795861b
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 crossbeam-epoch-87c31df609b96aaa
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 crossbeam-epoch-8bb8a7118f0b7767
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 crossbeam-utils-1335da8885eac18c
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 crossbeam-utils-71d49628269bacbd
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 crossbeam-utils-8b9e001a42276d7a
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 crossbeam-utils-a73dd784c1039e35
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 crossbeam-utils-ac7789a279f6cd76
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 crossbeam-utils-c3bf4311ccab4b5b
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 crossbeam-utils-d160c3ba17953aa6
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 either-10caa30d5ce2345e
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 either-d9369f1c353f438f
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 either-dc5b1ab921a1a0bc
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:01 espanso-watchdog-04ceae908c49c7f4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 espanso-watchdog-4787a9c49cac1a40
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 espanso-watchdog-9d3aeff344719cf4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:31 espanso-watchdog-a6481b7eb1f6885e
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:32 espanso-watchdog-bf33cb46b030457a
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 libc-1dc5d3c41f5ac71c
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 libc-424e59d8e68cc63f
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 libc-430d60eb6732fc14
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 libc-5442c43fbc7654eb
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 libc-7856334343e23022
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 libc-958927f72f6a6b39
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 libc-c41f6d4cae8de485
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 memchr-2260353b65fd5280
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 memchr-716ac2addfc12d2e
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 memchr-960c5d90d64c9d9b
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ntapi-159d441360099317
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ntapi-3e6a3b7c6ab4bce6
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ntapi-5c79872a3f1df3e9
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ntapi-632883f0acb98c7b
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ntapi-64e307fb30a9bfab
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ntapi-c721a352df2d2e82
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ntapi-ef3b4c4945e87088
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 num-traits-0ad58132b33b0286
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 num-traits-1af9e8dd5d372322
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 num-traits-1e672cf77a1f513e
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 num-traits-31e1cd6893e6d7fc
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 num-traits-80e2c9d85f28636d
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 num-traits-8bfa07e4280166b3
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 num-traits-d7d3172c1680e1e7
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 proc-macro2-3e96f007b51f699a
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 proc-macro2-7efe65f547c60b58
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 proc-macro2-ad6f519ef7b6b3cc
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 proc-macro2-b2be499f55f57320
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 proc-macro2-cb6f0d76bb0a4dec
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 proc-macro2-ff37e2eafc2e297d
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 quote-292acd97b951ab58
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 quote-5948fb59393563a4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 quote-5d1f055e95b77b69
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 quote-72614111386c79be
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 quote-834e246e7a82c5ef
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 quote-a83b3bfefd9ab6bf
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 rayon-0c5dffd77e30418b
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:03 rayon-3aedba67e2049a0b
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 rayon-6d799c8bb494bfd3
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 rayon-core-0f22833bb5b139d5
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 rayon-core-17f3e4bf83a111f9
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 rayon-core-32c667aac1a8950f
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 rayon-core-86a83f949bb67546
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 rayon-core-8a9576f6f9be7a55
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 rayon-core-ddb2a171fa9b862f
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 rayon-core-f8181b5762c0b02d
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 syn-159085cd25bd27f6
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 syn-4b37487ccb8078dd
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 syn-a0a5f2266a16a576
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:31 sysinfo-13a31d6fa7843d4c
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 sysinfo-63e8d1260ae1c5bd
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 sysinfo-d735e5e6a32df56e
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 unicode-ident-36e3cd8601dbfd38
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 unicode-ident-c9d946d454f0f0db
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 winapi-12d0d649382ef0ee
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 winapi-1aaaa6be3ad11f88
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 winapi-23527d493050f05f
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 winapi-698022ff79964755
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 winapi-89b65c7ec0d7fc91
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 winapi-e3b53b8f3a0b970d
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 winapi-ff3d0ded9e2ae943
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 winapi-x86_64-pc-windows-gnu-b265e26d633345ff
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 winapi-x86_64-pc-windows-gnu-e6d29b77d11c42d7
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 winapi-x86_64-pc-windows-gnu-ef723a66c7a1b8ec
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 winapi-x86_64-pc-windows-gnu-f837e4b567180d53
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows_x86_64_gnu-12c08aebfddae6a3
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 windows_x86_64_gnu-299bc4919bfe63f7
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 windows_x86_64_gnu-707c7fbcca555307
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 windows_x86_64_gnu-8f79355599587e88
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows_x86_64_msvc-2e78ae9ecc66abcc
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows_x86_64_msvc-38540bf3181b7a31
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows_x86_64_msvc-3b036064a14243f2
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 windows-27a5d3fd535e9f93
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows-3a00f526e04f29ae
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:31 windows-5183d7e4adda450b
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 windows-core-0b792dabaafb8c40
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows-core-3069671db1e5df0a
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 windows-core-7f6cfb27d4118218
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 windows-implement-36283041d24819c8
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 windows-implement-e3a485e0d18cc49c
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows-implement-f560e6c60858a766
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 windows-interface-64db2c21c9ebf166
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 windows-interface-9ce9ee742482410e
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows-interface-a4ed755cb8d43a17
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows-link-869be46fb8ef3198
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows-link-a2622e52308cdcaa
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 windows-link-ecc2c57152393b79
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows-result-c7bba79d495adf45
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 windows-result-eb2f2aa33a91cc1c
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows-result-f3aba2c0f0e2c4aa
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 windows-targets-014af9b8633c56ac
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows-targets-18c85beda21aff6a
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows-targets-38ea4c82a3dea452
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/autocfg-043b97bbbc0391af:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:29 dep-lib-autocfg
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:29 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-autocfg
+-rw-r--r-- 1 0000250059 Domain Users 350  2月 24 14:30 lib-autocfg.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/autocfg-0d9fab24a14ca87a:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-autocfg
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-autocfg
+-rw-r--r-- 1 0000250059 Domain Users 349  2月 25 13:14 lib-autocfg.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/chrono-07b7f29390a68d3f:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-chrono
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-chrono
+-rw-r--r-- 1 0000250059 Domain Users 989  2月 24 14:30 lib-chrono.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/chrono-53e3126c91d2f57c:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-chrono
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:15 lib-chrono
+-rw-r--r-- 1 0000250059 Domain Users 987  2月 25 13:15 lib-chrono.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/chrono-ab6b42bf1d9ac461:
+合計 53
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users   48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users 1580  2月 25 13:02 output-lib-chrono
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/crossbeam-deque-076a317659a056d9:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-crossbeam_deque
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-crossbeam_deque
+-rw-r--r-- 1 0000250059 Domain Users 538  2月 24 14:30 lib-crossbeam_deque.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/crossbeam-deque-b556b8f3f745eedb:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-crossbeam_deque
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-crossbeam_deque
+-rw-r--r-- 1 0000250059 Domain Users 539  2月 25 13:02 lib-crossbeam_deque.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/crossbeam-deque-b8e72f2e558caed0:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-crossbeam_deque
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-crossbeam_deque
+-rw-r--r-- 1 0000250059 Domain Users 537  2月 25 13:14 lib-crossbeam_deque.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/crossbeam-epoch-043cd9cff795861b:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-crossbeam_epoch
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-crossbeam_epoch
+-rw-r--r-- 1 0000250059 Domain Users 519  2月 24 14:30 lib-crossbeam_epoch.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/crossbeam-epoch-87c31df609b96aaa:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-crossbeam_epoch
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-crossbeam_epoch
+-rw-r--r-- 1 0000250059 Domain Users 521  2月 25 13:02 lib-crossbeam_epoch.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/crossbeam-epoch-8bb8a7118f0b7767:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-crossbeam_epoch
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-crossbeam_epoch
+-rw-r--r-- 1 0000250059 Domain Users 518  2月 25 13:14 lib-crossbeam_epoch.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/crossbeam-utils-1335da8885eac18c:
+合計 54
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 343  2月 24 14:30 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/crossbeam-utils-71d49628269bacbd:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 442  2月 24 14:30 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:29 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:29 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/crossbeam-utils-8b9e001a42276d7a:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-crossbeam_utils
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-crossbeam_utils
+-rw-r--r-- 1 0000250059 Domain Users 497  2月 25 13:14 lib-crossbeam_utils.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/crossbeam-utils-a73dd784c1039e35:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-crossbeam_utils
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-crossbeam_utils
+-rw-r--r-- 1 0000250059 Domain Users 498  2月 25 13:02 lib-crossbeam_utils.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/crossbeam-utils-ac7789a279f6cd76:
+合計 54
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 341  2月 25 13:14 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/crossbeam-utils-c3bf4311ccab4b5b:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 441  2月 25 13:14 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/crossbeam-utils-d160c3ba17953aa6:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-crossbeam_utils
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-crossbeam_utils
+-rw-r--r-- 1 0000250059 Domain Users 498  2月 24 14:30 lib-crossbeam_utils.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/either-10caa30d5ce2345e:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-either
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-either
+-rw-r--r-- 1 0000250059 Domain Users 394  2月 25 13:02 lib-either.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/either-d9369f1c353f438f:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:29 dep-lib-either
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:29 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-either
+-rw-r--r-- 1 0000250059 Domain Users 393  2月 24 14:30 lib-either.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/either-dc5b1ab921a1a0bc:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-either
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-either
+-rw-r--r-- 1 0000250059 Domain Users 392  2月 25 13:14 lib-either.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/espanso-watchdog-04ceae908c49c7f4:
+合計 48
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:01 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/espanso-watchdog-4787a9c49cac1a40:
+合計 48
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/espanso-watchdog-9d3aeff344719cf4:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:15 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:15 bin-EspansoWatchdog
+-rw-r--r-- 1 0000250059 Domain Users 485  2月 25 13:15 bin-EspansoWatchdog.json
+-rw-r--r-- 1 0000250059 Domain Users  31  2月 25 13:15 dep-bin-EspansoWatchdog
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:15 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/espanso-watchdog-a6481b7eb1f6885e:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:31 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:31 bin-EspansoWatchdog
+-rw-r--r-- 1 0000250059 Domain Users 483  2月 24 14:31 bin-EspansoWatchdog.json
+-rw-r--r-- 1 0000250059 Domain Users  31  2月 24 14:31 dep-bin-EspansoWatchdog
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:31 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/espanso-watchdog-bf33cb46b030457a:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:32 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  31  2月 24 14:32 dep-test-bin-EspansoWatchdog
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:32 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:32 test-bin-EspansoWatchdog
+-rw-r--r-- 1 0000250059 Domain Users 487  2月 24 14:32 test-bin-EspansoWatchdog.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/libc-1dc5d3c41f5ac71c:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-libc
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-libc
+-rw-r--r-- 1 0000250059 Domain Users 570  2月 25 13:02 lib-libc.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/libc-424e59d8e68cc63f:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-libc
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-libc
+-rw-r--r-- 1 0000250059 Domain Users 571  2月 24 14:30 lib-libc.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/libc-430d60eb6732fc14:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-libc
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-libc
+-rw-r--r-- 1 0000250059 Domain Users 569  2月 25 13:14 lib-libc.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/libc-5442c43fbc7654eb:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 522  2月 24 14:30 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:29 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:29 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/libc-7856334343e23022:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 521  2月 25 13:14 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/libc-958927f72f6a6b39:
+合計 53
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 719  2月 25 13:14 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/libc-c41f6d4cae8de485:
+合計 53
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 719  2月 24 14:30 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/memchr-2260353b65fd5280:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-memchr
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-memchr
+-rw-r--r-- 1 0000250059 Domain Users 480  2月 25 13:02 lib-memchr.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/memchr-716ac2addfc12d2e:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-memchr
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-memchr
+-rw-r--r-- 1 0000250059 Domain Users 478  2月 25 13:14 lib-memchr.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/memchr-960c5d90d64c9d9b:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:29 dep-lib-memchr
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:29 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-memchr
+-rw-r--r-- 1 0000250059 Domain Users 479  2月 24 14:30 lib-memchr.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/ntapi-159d441360099317:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 457  2月 25 13:14 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/ntapi-3e6a3b7c6ab4bce6:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-ntapi
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-ntapi
+-rw-r--r-- 1 0000250059 Domain Users 563  2月 25 13:02 lib-ntapi.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/ntapi-5c79872a3f1df3e9:
+合計 50
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 256  2月 24 14:30 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/ntapi-632883f0acb98c7b:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 458  2月 24 14:30 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:29 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:29 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/ntapi-64e307fb30a9bfab:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-ntapi
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:15 lib-ntapi
+-rw-r--r-- 1 0000250059 Domain Users 562  2月 25 13:15 lib-ntapi.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/ntapi-c721a352df2d2e82:
+合計 50
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 256  2月 25 13:14 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/ntapi-ef3b4c4945e87088:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-ntapi
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-ntapi
+-rw-r--r-- 1 0000250059 Domain Users 563  2月 24 14:30 lib-ntapi.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/num-traits-0ad58132b33b0286:
+合計 54
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 333  2月 24 14:30 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/num-traits-1af9e8dd5d372322:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-num_traits
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-num_traits
+-rw-r--r-- 1 0000250059 Domain Users 465  2月 24 14:30 lib-num_traits.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/num-traits-1e672cf77a1f513e:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 471  2月 25 13:14 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/num-traits-31e1cd6893e6d7fc:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 473  2月 24 14:30 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/num-traits-80e2c9d85f28636d:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-num_traits
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-num_traits
+-rw-r--r-- 1 0000250059 Domain Users 465  2月 25 13:14 lib-num_traits.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/num-traits-8bfa07e4280166b3:
+合計 54
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 332  2月 25 13:14 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/num-traits-d7d3172c1680e1e7:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-num_traits
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-num_traits
+-rw-r--r-- 1 0000250059 Domain Users 466  2月 25 13:02 lib-num_traits.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/proc-macro2-3e96f007b51f699a:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 461  2月 24 14:30 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:29 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:29 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/proc-macro2-7efe65f547c60b58:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-proc_macro2
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-proc_macro2
+-rw-r--r-- 1 0000250059 Domain Users 578  2月 24 14:30 lib-proc_macro2.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/proc-macro2-ad6f519ef7b6b3cc:
+合計 57
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 489  2月 24 14:30 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/proc-macro2-b2be499f55f57320:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-proc_macro2
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-proc_macro2
+-rw-r--r-- 1 0000250059 Domain Users 574  2月 25 13:14 lib-proc_macro2.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/proc-macro2-cb6f0d76bb0a4dec:
+合計 57
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 488  2月 25 13:14 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/proc-macro2-ff37e2eafc2e297d:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 460  2月 25 13:14 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/quote-292acd97b951ab58:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-quote
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-quote
+-rw-r--r-- 1 0000250059 Domain Users 531  2月 24 14:30 lib-quote.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/quote-5948fb59393563a4:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 422  2月 24 14:30 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:29 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:29 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/quote-5d1f055e95b77b69:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-quote
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-quote
+-rw-r--r-- 1 0000250059 Domain Users 530  2月 25 13:14 lib-quote.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/quote-72614111386c79be:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 421  2月 25 13:14 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/quote-834e246e7a82c5ef:
+合計 50
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 328  2月 25 13:14 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/quote-a83b3bfefd9ab6bf:
+合計 50
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 329  2月 24 14:30 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/rayon-0c5dffd77e30418b:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-rayon
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:15 lib-rayon
+-rw-r--r-- 1 0000250059 Domain Users 483  2月 25 13:15 lib-rayon.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/rayon-3aedba67e2049a0b:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:03 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-rayon
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:03 lib-rayon
+-rw-r--r-- 1 0000250059 Domain Users 484  2月 25 13:03 lib-rayon.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/rayon-6d799c8bb494bfd3:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-rayon
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-rayon
+-rw-r--r-- 1 0000250059 Domain Users 481  2月 24 14:30 lib-rayon.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/rayon-core-0f22833bb5b139d5:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 390  2月 24 14:30 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:29 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:29 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/rayon-core-17f3e4bf83a111f9:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 389  2月 25 13:14 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/rayon-core-32c667aac1a8950f:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-rayon_core
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-rayon_core
+-rw-r--r-- 1 0000250059 Domain Users 574  2月 25 13:14 lib-rayon_core.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/rayon-core-86a83f949bb67546:
+合計 54
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 333  2月 25 13:14 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/rayon-core-8a9576f6f9be7a55:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-rayon_core
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-rayon_core
+-rw-r--r-- 1 0000250059 Domain Users 578  2月 25 13:02 lib-rayon_core.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/rayon-core-ddb2a171fa9b862f:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-rayon_core
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-rayon_core
+-rw-r--r-- 1 0000250059 Domain Users 576  2月 24 14:30 lib-rayon_core.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/rayon-core-f8181b5762c0b02d:
+合計 54
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 334  2月 24 14:30 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/syn-159085cd25bd27f6:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-syn
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-syn
+-rw-r--r-- 1 0000250059 Domain Users 763  2月 24 14:30 lib-syn.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/syn-4b37487ccb8078dd:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-syn
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:15 lib-syn
+-rw-r--r-- 1 0000250059 Domain Users 760  2月 25 13:15 lib-syn.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/syn-a0a5f2266a16a576:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-syn
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-syn
+-rw-r--r-- 1 0000250059 Domain Users 764  2月 25 13:02 lib-syn.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/sysinfo-13a31d6fa7843d4c:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:31 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:31 dep-lib-sysinfo
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:31 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:31 lib-sysinfo
+-rw-r--r-- 1 0000250059 Domain Users 969  2月 24 14:31 lib-sysinfo.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/sysinfo-63e8d1260ae1c5bd:
+合計 48
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/sysinfo-d735e5e6a32df56e:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:15 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:15 dep-lib-sysinfo
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:15 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:15 lib-sysinfo
+-rw-r--r-- 1 0000250059 Domain Users 967  2月 25 13:15 lib-sysinfo.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/unicode-ident-36e3cd8601dbfd38:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-unicode_ident
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-unicode_ident
+-rw-r--r-- 1 0000250059 Domain Users 361  2月 25 13:14 lib-unicode_ident.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/unicode-ident-c9d946d454f0f0db:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:29 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:29 dep-lib-unicode_ident
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:29 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:29 lib-unicode_ident
+-rw-r--r-- 1 0000250059 Domain Users 362  2月 24 14:29 lib-unicode_ident.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/winapi-12d0d649382ef0ee:
+合計 63
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users   14  2月 24 14:30 dep-lib-winapi
+-rw-r--r-- 1 0000250059 Domain Users   48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users   16  2月 24 14:30 lib-winapi
+-rw-r--r-- 1 0000250059 Domain Users 6268  2月 24 14:30 lib-winapi.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/winapi-1aaaa6be3ad11f88:
+合計 63
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users   16  2月 25 13:14 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 6137  2月 25 13:14 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users   14  2月 25 13:14 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users   48  2月 25 13:14 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/winapi-23527d493050f05f:
+合計 63
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users   14  2月 25 13:14 dep-lib-winapi
+-rw-r--r-- 1 0000250059 Domain Users   48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users   16  2月 25 13:14 lib-winapi
+-rw-r--r-- 1 0000250059 Domain Users 6186  2月 25 13:14 lib-winapi.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/winapi-698022ff79964755:
+合計 63
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users   14  2月 25 13:02 dep-lib-winapi
+-rw-r--r-- 1 0000250059 Domain Users   48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users   16  2月 25 13:02 lib-winapi
+-rw-r--r-- 1 0000250059 Domain Users 6270  2月 25 13:02 lib-winapi.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/winapi-89b65c7ec0d7fc91:
+合計 53
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 467  2月 24 14:30 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/winapi-e3b53b8f3a0b970d:
+合計 63
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users   16  2月 24 14:30 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 6138  2月 24 14:30 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users   14  2月 24 14:29 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users   48  2月 24 14:29 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/winapi-ff3d0ded9e2ae943:
+合計 53
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 467  2月 25 13:14 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/winapi-x86_64-pc-windows-gnu-b265e26d633345ff:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-winapi_x86_64_pc_windows_gnu
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-winapi_x86_64_pc_windows_gnu
+-rw-r--r-- 1 0000250059 Domain Users 464  2月 24 14:30 lib-winapi_x86_64_pc_windows_gnu.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/winapi-x86_64-pc-windows-gnu-e6d29b77d11c42d7:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 392  2月 24 14:30 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:29 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:29 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/winapi-x86_64-pc-windows-gnu-ef723a66c7a1b8ec:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-winapi_x86_64_pc_windows_gnu
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-winapi_x86_64_pc_windows_gnu
+-rw-r--r-- 1 0000250059 Domain Users 465  2月 25 13:02 lib-winapi_x86_64_pc_windows_gnu.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/winapi-x86_64-pc-windows-gnu-f837e4b567180d53:
+合計 54
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 302  2月 24 14:30 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows_x86_64_gnu-12c08aebfddae6a3:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-windows_x86_64_gnu
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-windows_x86_64_gnu
+-rw-r--r-- 1 0000250059 Domain Users 442  2月 25 13:02 lib-windows_x86_64_gnu.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows_x86_64_gnu-299bc4919bfe63f7:
+合計 54
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 258  2月 24 14:30 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows_x86_64_gnu-707c7fbcca555307:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 382  2月 24 14:30 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:29 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:29 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows_x86_64_gnu-8f79355599587e88:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-windows_x86_64_gnu
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-windows_x86_64_gnu
+-rw-r--r-- 1 0000250059 Domain Users 441  2月 24 14:30 lib-windows_x86_64_gnu.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows_x86_64_msvc-2e78ae9ecc66abcc:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-windows_x86_64_msvc
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-windows_x86_64_msvc
+-rw-r--r-- 1 0000250059 Domain Users 443  2月 25 13:14 lib-windows_x86_64_msvc.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows_x86_64_msvc-38540bf3181b7a31:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 382  2月 25 13:14 build-script-build-script-build.json
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows_x86_64_msvc-3b036064a14243f2:
+合計 54
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 run-build-script-build-script-build
+-rw-r--r-- 1 0000250059 Domain Users 256  2月 25 13:14 run-build-script-build-script-build.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-27a5d3fd535e9f93:
+合計 79
+drwxr-xr-x 1 0000250059 Domain Users     0  2月 25 13:15 .
+drwxr-xr-x 1 0000250059 Domain Users     0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users    14  2月 25 13:15 dep-lib-windows
+-rw-r--r-- 1 0000250059 Domain Users    48  2月 25 13:15 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users    16  2月 25 13:15 lib-windows
+-rw-r--r-- 1 0000250059 Domain Users 21828  2月 25 13:15 lib-windows.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-3a00f526e04f29ae:
+合計 48
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-5183d7e4adda450b:
+合計 79
+drwxr-xr-x 1 0000250059 Domain Users     0  2月 24 14:31 .
+drwxr-xr-x 1 0000250059 Domain Users     0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users    14  2月 24 14:30 dep-lib-windows
+-rw-r--r-- 1 0000250059 Domain Users    48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users    16  2月 24 14:31 lib-windows
+-rw-r--r-- 1 0000250059 Domain Users 21829  2月 24 14:31 lib-windows.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-core-0b792dabaafb8c40:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-windows_core
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-windows_core
+-rw-r--r-- 1 0000250059 Domain Users 675  2月 24 14:30 lib-windows_core.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-core-3069671db1e5df0a:
+合計 48
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-core-7f6cfb27d4118218:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:15 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:15 dep-lib-windows_core
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:15 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:15 lib-windows_core
+-rw-r--r-- 1 0000250059 Domain Users 672  2月 25 13:15 lib-windows_core.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-implement-36283041d24819c8:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-windows_implement
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-windows_implement
+-rw-r--r-- 1 0000250059 Domain Users 545  2月 24 14:30 lib-windows_implement.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-implement-e3a485e0d18cc49c:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:15 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:15 dep-lib-windows_implement
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:15 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:15 lib-windows_implement
+-rw-r--r-- 1 0000250059 Domain Users 542  2月 25 13:15 lib-windows_implement.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-implement-f560e6c60858a766:
+合計 48
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-interface-64db2c21c9ebf166:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-windows_interface
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-windows_interface
+-rw-r--r-- 1 0000250059 Domain Users 544  2月 24 14:30 lib-windows_interface.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-interface-9ce9ee742482410e:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:15 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:15 dep-lib-windows_interface
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:15 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:15 lib-windows_interface
+-rw-r--r-- 1 0000250059 Domain Users 541  2月 25 13:15 lib-windows_interface.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-interface-a4ed755cb8d43a17:
+合計 48
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-link-869be46fb8ef3198:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-windows_link
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-windows_link
+-rw-r--r-- 1 0000250059 Domain Users 361  2月 25 13:02 lib-windows_link.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-link-a2622e52308cdcaa:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-windows_link
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-windows_link
+-rw-r--r-- 1 0000250059 Domain Users 359  2月 25 13:14 lib-windows_link.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-link-ecc2c57152393b79:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:29 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:29 dep-lib-windows_link
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:29 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:29 lib-windows_link
+-rw-r--r-- 1 0000250059 Domain Users 360  2月 24 14:29 lib-windows_link.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-result-c7bba79d495adf45:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-windows_result
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-windows_result
+-rw-r--r-- 1 0000250059 Domain Users 471  2月 25 13:14 lib-windows_result.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-result-eb2f2aa33a91cc1c:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-windows_result
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-windows_result
+-rw-r--r-- 1 0000250059 Domain Users 473  2月 24 14:30 lib-windows_result.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-result-f3aba2c0f0e2c4aa:
+合計 59
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-windows_result
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-windows_result
+-rw-r--r-- 1 0000250059 Domain Users 473  2月 25 13:02 lib-windows_result.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-targets-014af9b8633c56ac:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 24 14:30 dep-lib-windows_targets
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 24 14:30 lib-windows_targets
+-rw-r--r-- 1 0000250059 Domain Users 435  2月 24 14:30 lib-windows_targets.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-targets-18c85beda21aff6a:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:02 dep-lib-windows_targets
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:02 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:02 lib-windows_targets
+-rw-r--r-- 1 0000250059 Domain Users 437  2月 25 13:02 lib-windows_targets.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/.fingerprint/windows-targets-38ea4c82a3dea452:
+合計 56
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 ..
+-rw-r--r-- 1 0000250059 Domain Users  14  2月 25 13:14 dep-lib-windows_targets
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+-rw-r--r-- 1 0000250059 Domain Users  16  2月 25 13:14 lib-windows_targets
+-rw-r--r-- 1 0000250059 Domain Users 435  2月 25 13:14 lib-windows_targets.json
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build:
+合計 168
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:01 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 ..
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 crossbeam-utils-1335da8885eac18c
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 crossbeam-utils-71d49628269bacbd
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 crossbeam-utils-ac7789a279f6cd76
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 crossbeam-utils-c3bf4311ccab4b5b
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 libc-5442c43fbc7654eb
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 libc-7856334343e23022
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 libc-958927f72f6a6b39
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 libc-c41f6d4cae8de485
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 ntapi-159d441360099317
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ntapi-5c79872a3f1df3e9
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ntapi-632883f0acb98c7b
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ntapi-c721a352df2d2e82
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 num-traits-0ad58132b33b0286
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 num-traits-1e672cf77a1f513e
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 num-traits-31e1cd6893e6d7fc
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 num-traits-8bfa07e4280166b3
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 proc-macro2-3e96f007b51f699a
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 proc-macro2-ad6f519ef7b6b3cc
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 proc-macro2-cb6f0d76bb0a4dec
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 proc-macro2-ff37e2eafc2e297d
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 quote-5948fb59393563a4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 quote-72614111386c79be
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 quote-834e246e7a82c5ef
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 quote-a83b3bfefd9ab6bf
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 rayon-core-0f22833bb5b139d5
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 rayon-core-17f3e4bf83a111f9
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 rayon-core-86a83f949bb67546
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 rayon-core-f8181b5762c0b02d
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 winapi-1aaaa6be3ad11f88
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 winapi-89b65c7ec0d7fc91
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 winapi-e3b53b8f3a0b970d
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 winapi-ff3d0ded9e2ae943
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 winapi-x86_64-pc-windows-gnu-e6d29b77d11c42d7
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 winapi-x86_64-pc-windows-gnu-f837e4b567180d53
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 windows_x86_64_gnu-299bc4919bfe63f7
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 windows_x86_64_gnu-707c7fbcca555307
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 windows_x86_64_msvc-38540bf3181b7a31
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 windows_x86_64_msvc-3b036064a14243f2
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/crossbeam-utils-1335da8885eac18c:
+合計 19
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:29 out
+-rw-r--r-- 1 0000250059 Domain Users 109  2月 24 14:30 output
+-rw-r--r-- 1 0000250059 Domain Users 119  2月 24 14:30 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 24 14:30 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/crossbeam-utils-1335da8885eac18c/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/crossbeam-utils-71d49628269bacbd:
+合計 4212
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users    1337  2月 24 14:29 build_script_build-71d49628269bacbd.d
+-rwxr-xr-x 2 0000250059 Domain Users 2142618  2月 24 14:30 build_script_build-71d49628269bacbd.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2142618  2月 24 14:30 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/crossbeam-utils-ac7789a279f6cd76:
+合計 19
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 out
+-rw-r--r-- 1 0000250059 Domain Users 109  2月 25 13:14 output
+-rw-r--r-- 1 0000250059 Domain Users 119  2月 25 13:14 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 25 13:02 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/crossbeam-utils-ac7789a279f6cd76/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:01 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/crossbeam-utils-c3bf4311ccab4b5b:
+合計 4212
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:14 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users    1337  2月 25 13:14 build_script_build-c3bf4311ccab4b5b.d
+-rwxr-xr-x 2 0000250059 Domain Users 2142600  2月 25 13:14 build_script_build-c3bf4311ccab4b5b.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2142600  2月 25 13:14 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/libc-5442c43fbc7654eb:
+合計 4316
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     578  2月 24 14:29 build_script_build-5442c43fbc7654eb.d
+-rwxr-xr-x 2 0000250059 Domain Users 2197515  2月 24 14:30 build_script_build-5442c43fbc7654eb.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2197515  2月 24 14:30 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/libc-7856334343e23022:
+合計 4316
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:14 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     578  2月 25 13:14 build_script_build-7856334343e23022.d
+-rwxr-xr-x 2 0000250059 Domain Users 2197534  2月 25 13:14 build_script_build-7856334343e23022.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2197534  2月 25 13:14 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/libc-958927f72f6a6b39:
+合計 22
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users   48  2月 25 13:14 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:01 out
+-rw-r--r-- 1 0000250059 Domain Users 1297  2月 25 13:14 output
+-rw-r--r-- 1 0000250059 Domain Users  108  2月 25 13:14 root-output
+-rw-r--r-- 1 0000250059 Domain Users    0  2月 25 13:02 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/libc-958927f72f6a6b39/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:01 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/libc-c41f6d4cae8de485:
+合計 22
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users   48  2月 24 14:30 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 24 14:29 out
+-rw-r--r-- 1 0000250059 Domain Users 1297  2月 24 14:30 output
+-rw-r--r-- 1 0000250059 Domain Users  108  2月 24 14:30 root-output
+-rw-r--r-- 1 0000250059 Domain Users    0  2月 24 14:30 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/libc-c41f6d4cae8de485/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/ntapi-159d441360099317:
+合計 4108
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:14 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     577  2月 25 13:14 build_script_build-159d441360099317.d
+-rwxr-xr-x 2 0000250059 Domain Users 2090011  2月 25 13:14 build_script_build-159d441360099317.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2090011  2月 25 13:14 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/ntapi-5c79872a3f1df3e9:
+合計 19
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:29 out
+-rw-r--r-- 1 0000250059 Domain Users  34  2月 24 14:30 output
+-rw-r--r-- 1 0000250059 Domain Users 109  2月 24 14:30 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 24 14:30 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/ntapi-5c79872a3f1df3e9/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/ntapi-632883f0acb98c7b:
+合計 4108
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     577  2月 24 14:29 build_script_build-632883f0acb98c7b.d
+-rwxr-xr-x 2 0000250059 Domain Users 2089993  2月 24 14:30 build_script_build-632883f0acb98c7b.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2089993  2月 24 14:30 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/ntapi-c721a352df2d2e82:
+合計 18
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 out
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 25 13:14 output
+-rw-r--r-- 1 0000250059 Domain Users 109  2月 25 13:14 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 25 13:02 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/ntapi-c721a352df2d2e82/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:01 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/num-traits-0ad58132b33b0286:
+合計 23
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 out
+-rw-r--r-- 1 0000250059 Domain Users 103  2月 24 14:30 output
+-rw-r--r-- 1 0000250059 Domain Users 114  2月 24 14:30 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 24 14:30 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/num-traits-0ad58132b33b0286/out:
+合計 8
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/num-traits-1e672cf77a1f513e:
+合計 4516
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:14 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     605  2月 25 13:14 build_script_build-1e672cf77a1f513e.d
+-rwxr-xr-x 2 0000250059 Domain Users 2298596  2月 25 13:14 build_script_build-1e672cf77a1f513e.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2298596  2月 25 13:14 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/num-traits-31e1cd6893e6d7fc:
+合計 4516
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     605  2月 24 14:30 build_script_build-31e1cd6893e6d7fc.d
+-rwxr-xr-x 2 0000250059 Domain Users 2298615  2月 24 14:30 build_script_build-31e1cd6893e6d7fc.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2298615  2月 24 14:30 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/num-traits-8bfa07e4280166b3:
+合計 23
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 out
+-rw-r--r-- 1 0000250059 Domain Users  73  2月 25 13:14 output
+-rw-r--r-- 1 0000250059 Domain Users 114  2月 25 13:14 root-output
+-rw-r--r-- 1 0000250059 Domain Users 980  2月 25 13:14 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/num-traits-8bfa07e4280166b3/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:01 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/proc-macro2-3e96f007b51f699a:
+合計 4236
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     613  2月 24 14:29 build_script_build-3e96f007b51f699a.d
+-rwxr-xr-x 2 0000250059 Domain Users 2155296  2月 24 14:30 build_script_build-3e96f007b51f699a.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2155296  2月 24 14:30 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/proc-macro2-ad6f519ef7b6b3cc:
+合計 22
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users   48  2月 24 14:30 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users    0  2月 24 14:30 out
+-rw-r--r-- 1 0000250059 Domain Users 1061  2月 24 14:30 output
+-rw-r--r-- 1 0000250059 Domain Users  115  2月 24 14:30 root-output
+-rw-r--r-- 1 0000250059 Domain Users    0  2月 24 14:30 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/proc-macro2-ad6f519ef7b6b3cc/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/proc-macro2-cb6f0d76bb0a4dec:
+合計 22
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:14 out
+-rw-r--r-- 1 0000250059 Domain Users 983  2月 25 13:14 output
+-rw-r--r-- 1 0000250059 Domain Users 115  2月 25 13:14 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 25 13:02 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/proc-macro2-cb6f0d76bb0a4dec/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:14 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/proc-macro2-ff37e2eafc2e297d:
+合計 4236
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:14 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     613  2月 25 13:14 build_script_build-ff37e2eafc2e297d.d
+-rwxr-xr-x 2 0000250059 Domain Users 2155408  2月 25 13:14 build_script_build-ff37e2eafc2e297d.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2155408  2月 25 13:14 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/quote-5948fb59393563a4:
+合計 4172
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     580  2月 24 14:29 build_script_build-5948fb59393563a4.d
+-rwxr-xr-x 2 0000250059 Domain Users 2125577  2月 24 14:30 build_script_build-5948fb59393563a4.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2125577  2月 24 14:30 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/quote-72614111386c79be:
+合計 4172
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:14 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     580  2月 25 13:14 build_script_build-72614111386c79be.d
+-rwxr-xr-x 2 0000250059 Domain Users 2125577  2月 25 13:14 build_script_build-72614111386c79be.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2125577  2月 25 13:14 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/quote-834e246e7a82c5ef:
+合計 19
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 out
+-rw-r--r-- 1 0000250059 Domain Users  83  2月 25 13:14 output
+-rw-r--r-- 1 0000250059 Domain Users 109  2月 25 13:14 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 25 13:02 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/quote-834e246e7a82c5ef/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:01 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/quote-a83b3bfefd9ab6bf:
+合計 19
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:29 out
+-rw-r--r-- 1 0000250059 Domain Users  83  2月 24 14:30 output
+-rw-r--r-- 1 0000250059 Domain Users 109  2月 24 14:30 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 24 14:30 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/quote-a83b3bfefd9ab6bf/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/rayon-core-0f22833bb5b139d5:
+合計 4092
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     605  2月 24 14:29 build_script_build-0f22833bb5b139d5.d
+-rwxr-xr-x 2 0000250059 Domain Users 2083848  2月 24 14:30 build_script_build-0f22833bb5b139d5.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2083848  2月 24 14:30 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/rayon-core-17f3e4bf83a111f9:
+合計 4092
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:14 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     605  2月 25 13:14 build_script_build-17f3e4bf83a111f9.d
+-rwxr-xr-x 2 0000250059 Domain Users 2083848  2月 25 13:14 build_script_build-17f3e4bf83a111f9.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2083848  2月 25 13:14 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/rayon-core-86a83f949bb67546:
+合計 19
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 out
+-rw-r--r-- 1 0000250059 Domain Users  32  2月 25 13:14 output
+-rw-r--r-- 1 0000250059 Domain Users 114  2月 25 13:14 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 25 13:02 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/rayon-core-86a83f949bb67546/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:01 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/rayon-core-f8181b5762c0b02d:
+合計 19
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:29 out
+-rw-r--r-- 1 0000250059 Domain Users  32  2月 24 14:30 output
+-rw-r--r-- 1 0000250059 Domain Users 114  2月 24 14:30 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 24 14:30 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/rayon-core-f8181b5762c0b02d/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/winapi-1aaaa6be3ad11f88:
+合計 4452
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:14 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     582  2月 25 13:14 build_script_build-1aaaa6be3ad11f88.d
+-rwxr-xr-x 2 0000250059 Domain Users 2268592  2月 25 13:14 build_script_build-1aaaa6be3ad11f88.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2268592  2月 25 13:14 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/winapi-89b65c7ec0d7fc91:
+合計 22
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:29 out
+-rw-r--r-- 1 0000250059 Domain Users 994  2月 24 14:30 output
+-rw-r--r-- 1 0000250059 Domain Users 110  2月 24 14:30 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 24 14:30 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/winapi-89b65c7ec0d7fc91/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/winapi-e3b53b8f3a0b970d:
+合計 4452
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     582  2月 24 14:29 build_script_build-e3b53b8f3a0b970d.d
+-rwxr-xr-x 2 0000250059 Domain Users 2268630  2月 24 14:30 build_script_build-e3b53b8f3a0b970d.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2268630  2月 24 14:30 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/winapi-ff3d0ded9e2ae943:
+合計 22
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 out
+-rw-r--r-- 1 0000250059 Domain Users 966  2月 25 13:14 output
+-rw-r--r-- 1 0000250059 Domain Users 110  2月 25 13:14 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 25 13:02 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/winapi-ff3d0ded9e2ae943/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:01 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/winapi-x86_64-pc-windows-gnu-e6d29b77d11c42d7:
+合計 4108
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     692  2月 24 14:29 build_script_build-e6d29b77d11c42d7.d
+-rwxr-xr-x 2 0000250059 Domain Users 2092801  2月 24 14:30 build_script_build-e6d29b77d11c42d7.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2092801  2月 24 14:30 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/winapi-x86_64-pc-windows-gnu-f837e4b567180d53:
+合計 19
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:29 out
+-rw-r--r-- 1 0000250059 Domain Users 198  2月 24 14:30 output
+-rw-r--r-- 1 0000250059 Domain Users 132  2月 24 14:30 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 24 14:30 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/winapi-x86_64-pc-windows-gnu-f837e4b567180d53/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/windows_x86_64_gnu-299bc4919bfe63f7:
+合計 19
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 24 14:30 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 24 14:29 out
+-rw-r--r-- 1 0000250059 Domain Users 134  2月 24 14:30 output
+-rw-r--r-- 1 0000250059 Domain Users 122  2月 24 14:30 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 24 14:30 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/windows_x86_64_gnu-299bc4919bfe63f7/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:30 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/windows_x86_64_gnu-707c7fbcca555307:
+合計 4108
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:30 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     645  2月 24 14:29 build_script_build-707c7fbcca555307.d
+-rwxr-xr-x 2 0000250059 Domain Users 2090477  2月 24 14:30 build_script_build-707c7fbcca555307.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2090477  2月 24 14:30 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/windows_x86_64_msvc-38540bf3181b7a31:
+合計 4108
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:14 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users     650  2月 25 13:14 build_script_build-38540bf3181b7a31.d
+-rwxr-xr-x 2 0000250059 Domain Users 2090477  2月 25 13:14 build_script_build-38540bf3181b7a31.exe
+-rwxr-xr-x 2 0000250059 Domain Users 2090477  2月 25 13:14 build-script-build.exe
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/windows_x86_64_msvc-3b036064a14243f2:
+合計 19
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:02 .
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 ..
+-rw-r--r-- 1 0000250059 Domain Users  48  2月 25 13:14 invoked.timestamp
+drwxr-xr-x 1 0000250059 Domain Users   0  2月 25 13:01 out
+-rw-r--r-- 1 0000250059 Domain Users 135  2月 25 13:14 output
+-rw-r--r-- 1 0000250059 Domain Users 123  2月 25 13:14 root-output
+-rw-r--r-- 1 0000250059 Domain Users   0  2月 25 13:02 stderr
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/build/windows_x86_64_msvc-3b036064a14243f2/out:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:01 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:02 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/deps:
+合計 273579
+drwxr-xr-x 1 0000250059 Domain Users        0  2月 25 13:15 .
+drwxr-xr-x 1 0000250059 Domain Users        0  2月 24 14:29 ..
+-rw-r--r-- 1 0000250059 Domain Users     1950  2月 24 14:29 autocfg-043b97bbbc0391af.d
+-rw-r--r-- 1 0000250059 Domain Users     1950  2月 25 13:14 autocfg-0d9fab24a14ca87a.d
+-rw-r--r-- 1 0000250059 Domain Users     9228  2月 24 14:30 chrono-07b7f29390a68d3f.d
+-rw-r--r-- 1 0000250059 Domain Users     9228  2月 25 13:14 chrono-53e3126c91d2f57c.d
+-rw-r--r-- 1 0000250059 Domain Users   223819  2月 25 13:02 chrono-ab6b42bf1d9ac461.chrono.30f86a68c9b961bf-cgu.0.rcgu.o
+-rw-r--r-- 1 0000250059 Domain Users   181529  2月 25 13:02 chrono-ab6b42bf1d9ac461.chrono.30f86a68c9b961bf-cgu.1.rcgu.o
+-rw-r--r-- 1 0000250059 Domain Users   204945  2月 25 13:02 chrono-ab6b42bf1d9ac461.chrono.30f86a68c9b961bf-cgu.2.rcgu.o
+-rw-r--r-- 1 0000250059 Domain Users   165302  2月 25 13:02 chrono-ab6b42bf1d9ac461.chrono.30f86a68c9b961bf-cgu.3.rcgu.o
+-rw-r--r-- 1 0000250059 Domain Users   198209  2月 25 13:02 chrono-ab6b42bf1d9ac461.chrono.30f86a68c9b961bf-cgu.4.rcgu.o
+-rw-r--r-- 1 0000250059 Domain Users   223599  2月 25 13:02 chrono-ab6b42bf1d9ac461.chrono.30f86a68c9b961bf-cgu.5.rcgu.o
+-rw-r--r-- 1 0000250059 Domain Users   200511  2月 25 13:02 chrono-ab6b42bf1d9ac461.chrono.30f86a68c9b961bf-cgu.6.rcgu.o
+-rw-r--r-- 1 0000250059 Domain Users   122306  2月 25 13:02 chrono-ab6b42bf1d9ac461.chrono.30f86a68c9b961bf-cgu.7.rcgu.o
+-rw-r--r-- 1 0000250059 Domain Users   110275  2月 25 13:02 chrono-ab6b42bf1d9ac461.chrono.30f86a68c9b961bf-cgu.8.rcgu.o
+-rw-r--r-- 1 0000250059 Domain Users    12335  2月 25 13:02 chrono-ab6b42bf1d9ac461.d
+-rw-r--r-- 1 0000250059 Domain Users      889  2月 24 14:30 crossbeam_deque-076a317659a056d9.d
+-rw-r--r-- 1 0000250059 Domain Users     1228  2月 25 13:02 crossbeam_deque-b556b8f3f745eedb.d
+-rw-r--r-- 1 0000250059 Domain Users      889  2月 25 13:14 crossbeam_deque-b8e72f2e558caed0.d
+-rw-r--r-- 1 0000250059 Domain Users     4277  2月 24 14:30 crossbeam_epoch-043cd9cff795861b.d
+-rw-r--r-- 1 0000250059 Domain Users     5742  2月 25 13:02 crossbeam_epoch-87c31df609b96aaa.d
+-rw-r--r-- 1 0000250059 Domain Users     4277  2月 25 13:14 crossbeam_epoch-8bb8a7118f0b7767.d
+-rw-r--r-- 1 0000250059 Domain Users     4764  2月 25 13:14 crossbeam_utils-8b9e001a42276d7a.d
+-rw-r--r-- 1 0000250059 Domain Users     6391  2月 25 13:02 crossbeam_utils-a73dd784c1039e35.d
+-rw-r--r-- 1 0000250059 Domain Users     4764  2月 24 14:30 crossbeam_utils-d160c3ba17953aa6.d
+-rw-r--r-- 1 0000250059 Domain Users     1574  2月 25 13:02 either-10caa30d5ce2345e.d
+-rw-r--r-- 1 0000250059 Domain Users     1151  2月 24 14:29 either-d9369f1c353f438f.d
+-rw-r--r-- 1 0000250059 Domain Users     1151  2月 25 13:14 either-dc5b1ab921a1a0bc.d
+-rw-r--r-- 1 0000250059 Domain Users      282  2月 25 13:15 EspansoWatchdog-9d3aeff344719cf4.d
+-rw-r--r-- 1 0000250059 Domain Users      282  2月 24 14:31 EspansoWatchdog-a6481b7eb1f6885e.d
+-rw-r--r-- 1 0000250059 Domain Users      282  2月 24 14:32 EspansoWatchdog-bf33cb46b030457a.d
+-rw-r--r-- 1 0000250059 Domain Users   473886  2月 24 14:30 libautocfg-043b97bbbc0391af.rlib
+-rw-r--r-- 1 0000250059 Domain Users    81121  2月 24 14:29 libautocfg-043b97bbbc0391af.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   472162  2月 25 13:14 libautocfg-0d9fab24a14ca87a.rlib
+-rw-r--r-- 1 0000250059 Domain Users    81121  2月 25 13:14 libautocfg-0d9fab24a14ca87a.rmeta
+-rw-r--r-- 1 0000250059 Domain Users     4062  2月 25 13:02 libc-1dc5d3c41f5ac71c.d
+-rw-r--r-- 1 0000250059 Domain Users     3019  2月 24 14:30 libc-424e59d8e68cc63f.d
+-rw-r--r-- 1 0000250059 Domain Users     3019  2月 25 13:14 libc-430d60eb6732fc14.d
+-rw-r--r-- 1 0000250059 Domain Users  1445913  2月 24 14:30 libchrono-07b7f29390a68d3f.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  1445388  2月 25 13:14 libchrono-53e3126c91d2f57c.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  1849948  2月 25 13:02 libchrono-ab6b42bf1d9ac461.rmeta
+-rw-r--r-- 1 0000250059 Domain Users    66785  2月 24 14:30 libcrossbeam_deque-076a317659a056d9.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   182760  2月 25 13:02 libcrossbeam_deque-b556b8f3f745eedb.rlib
+-rw-r--r-- 1 0000250059 Domain Users   181655  2月 25 13:02 libcrossbeam_deque-b556b8f3f745eedb.rmeta
+-rw-r--r-- 1 0000250059 Domain Users    66785  2月 25 13:14 libcrossbeam_deque-b8e72f2e558caed0.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   250029  2月 24 14:30 libcrossbeam_epoch-043cd9cff795861b.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   686136  2月 25 13:02 libcrossbeam_epoch-87c31df609b96aaa.rlib
+-rw-r--r-- 1 0000250059 Domain Users   325348  2月 25 13:02 libcrossbeam_epoch-87c31df609b96aaa.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   250029  2月 25 13:14 libcrossbeam_epoch-8bb8a7118f0b7767.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   289489  2月 25 13:14 libcrossbeam_utils-8b9e001a42276d7a.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  1278054  2月 25 13:02 libcrossbeam_utils-a73dd784c1039e35.rlib
+-rw-r--r-- 1 0000250059 Domain Users   781705  2月 25 13:02 libcrossbeam_utils-a73dd784c1039e35.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   289489  2月 24 14:30 libcrossbeam_utils-d160c3ba17953aa6.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   194402  2月 25 13:02 libeither-10caa30d5ce2345e.rlib
+-rw-r--r-- 1 0000250059 Domain Users   193354  2月 25 13:02 libeither-10caa30d5ce2345e.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   113530  2月 24 14:29 libeither-d9369f1c353f438f.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   113530  2月 25 13:14 libeither-dc5b1ab921a1a0bc.rmeta
+-rw-r--r-- 1 0000250059 Domain Users        0  2月 25 13:15 libEspansoWatchdog-9d3aeff344719cf4.rmeta
+-rw-r--r-- 1 0000250059 Domain Users        0  2月 24 14:31 libEspansoWatchdog-a6481b7eb1f6885e.rmeta
+-rw-r--r-- 1 0000250059 Domain Users        0  2月 24 14:32 libEspansoWatchdog-bf33cb46b030457a.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   184966  2月 25 13:02 liblibc-1dc5d3c41f5ac71c.rlib
+-rw-r--r-- 1 0000250059 Domain Users   183925  2月 25 13:02 liblibc-1dc5d3c41f5ac71c.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   172723  2月 24 14:30 liblibc-424e59d8e68cc63f.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   172723  2月 25 13:14 liblibc-430d60eb6732fc14.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  2097694  2月 25 13:02 libmemchr-2260353b65fd5280.rlib
+-rw-r--r-- 1 0000250059 Domain Users  1283002  2月 25 13:02 libmemchr-2260353b65fd5280.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   968143  2月 25 13:14 libmemchr-716ac2addfc12d2e.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   968143  2月 24 14:29 libmemchr-960c5d90d64c9d9b.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  5569964  2月 25 13:02 libntapi-3e6a3b7c6ab4bce6.rlib
+-rw-r--r-- 1 0000250059 Domain Users  5568918  2月 25 13:02 libntapi-3e6a3b7c6ab4bce6.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  4711493  2月 25 13:14 libntapi-64e307fb30a9bfab.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  4711515  2月 24 14:30 libntapi-ef3b4c4945e87088.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  1111086  2月 24 14:30 libnum_traits-1af9e8dd5d372322.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  1111152  2月 25 13:14 libnum_traits-80e2c9d85f28636d.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  1714296  2月 25 13:02 libnum_traits-d7d3172c1680e1e7.rlib
+-rw-r--r-- 1 0000250059 Domain Users  1602616  2月 25 13:02 libnum_traits-d7d3172c1680e1e7.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   898724  2月 24 14:30 libproc_macro2-7efe65f547c60b58.rlib
+-rw-r--r-- 1 0000250059 Domain Users   341276  2月 24 14:30 libproc_macro2-7efe65f547c60b58.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   894312  2月 25 13:14 libproc_macro2-b2be499f55f57320.rlib
+-rw-r--r-- 1 0000250059 Domain Users   336753  2月 25 13:14 libproc_macro2-b2be499f55f57320.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   407786  2月 24 14:30 libquote-292acd97b951ab58.rlib
+-rw-r--r-- 1 0000250059 Domain Users   270498  2月 24 14:30 libquote-292acd97b951ab58.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   407782  2月 25 13:14 libquote-5d1f055e95b77b69.rlib
+-rw-r--r-- 1 0000250059 Domain Users   270494  2月 25 13:14 libquote-5d1f055e95b77b69.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   337821  2月 25 13:14 librayon_core-32c667aac1a8950f.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  2352570  2月 25 13:02 librayon_core-8a9576f6f9be7a55.rlib
+-rw-r--r-- 1 0000250059 Domain Users   487597  2月 25 13:02 librayon_core-8a9576f6f9be7a55.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   337821  2月 24 14:30 librayon_core-ddb2a171fa9b862f.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  3011886  2月 25 13:14 librayon-0c5dffd77e30418b.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  4512354  2月 25 13:03 librayon-3aedba67e2049a0b.rlib
+-rw-r--r-- 1 0000250059 Domain Users  4033448  2月 25 13:02 librayon-3aedba67e2049a0b.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  3011886  2月 24 14:30 librayon-6d799c8bb494bfd3.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  6845732  2月 24 14:30 libsyn-159085cd25bd27f6.rlib
+-rw-r--r-- 1 0000250059 Domain Users  2791812  2月 24 14:30 libsyn-159085cd25bd27f6.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  6848586  2月 25 13:15 libsyn-4b37487ccb8078dd.rlib
+-rw-r--r-- 1 0000250059 Domain Users  2791792  2月 25 13:15 libsyn-4b37487ccb8078dd.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  6843178  2月 25 13:02 libsyn-a0a5f2266a16a576.rlib
+-rw-r--r-- 1 0000250059 Domain Users  2791792  2月 25 13:02 libsyn-a0a5f2266a16a576.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   710075  2月 24 14:31 libsysinfo-13a31d6fa7843d4c.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   710075  2月 25 13:15 libsysinfo-d735e5e6a32df56e.rmeta
+-rw-r--r-- 1 0000250059 Domain Users    48640  2月 25 13:14 libunicode_ident-36e3cd8601dbfd38.rlib
+-rw-r--r-- 1 0000250059 Domain Users    32554  2月 25 13:14 libunicode_ident-36e3cd8601dbfd38.rmeta
+-rw-r--r-- 1 0000250059 Domain Users    48640  2月 24 14:29 libunicode_ident-c9d946d454f0f0db.rlib
+-rw-r--r-- 1 0000250059 Domain Users    32554  2月 24 14:29 libunicode_ident-c9d946d454f0f0db.rmeta
+-rw-r--r-- 1 0000250059 Domain Users     1185  2月 24 14:30 libwinapi_x86_64_pc_windows_gnu-b265e26d633345ff.rmeta
+-rw-r--r-- 1 0000250059 Domain Users     2340  2月 25 13:02 libwinapi_x86_64_pc_windows_gnu-ef723a66c7a1b8ec.rlib
+-rw-r--r-- 1 0000250059 Domain Users     1185  2月 25 13:02 libwinapi_x86_64_pc_windows_gnu-ef723a66c7a1b8ec.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  5072434  2月 24 14:30 libwinapi-12d0d649382ef0ee.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  5072404  2月 25 13:14 libwinapi-23527d493050f05f.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  5789082  2月 25 13:02 libwinapi-698022ff79964755.rlib
+-rw-r--r-- 1 0000250059 Domain Users  5788033  2月 25 13:02 libwinapi-698022ff79964755.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  1130473  2月 24 14:30 libwindows_core-0b792dabaafb8c40.rmeta
+-rw-r--r-- 1 0000250059 Domain Users  1130473  2月 25 13:15 libwindows_core-7f6cfb27d4118218.rmeta
+-rw-r--r-- 1 0000250059 Domain Users     2820  2月 24 14:30 libwindows_implement-36283041d24819c8.dll.a
+-rw-r--r-- 1 0000250059 Domain Users     2812  2月 25 13:15 libwindows_implement-e3a485e0d18cc49c.dll.a
+-rw-r--r-- 1 0000250059 Domain Users     2820  2月 24 14:30 libwindows_interface-64db2c21c9ebf166.dll.a
+-rw-r--r-- 1 0000250059 Domain Users     2820  2月 25 13:15 libwindows_interface-9ce9ee742482410e.dll.a
+-rw-r--r-- 1 0000250059 Domain Users     5902  2月 25 13:02 libwindows_link-869be46fb8ef3198.rlib
+-rw-r--r-- 1 0000250059 Domain Users     4830  2月 25 13:02 libwindows_link-869be46fb8ef3198.rmeta
+-rw-r--r-- 1 0000250059 Domain Users     4830  2月 25 13:14 libwindows_link-a2622e52308cdcaa.rmeta
+-rw-r--r-- 1 0000250059 Domain Users     4830  2月 24 14:29 libwindows_link-ecc2c57152393b79.rmeta
+-rw-r--r-- 1 0000250059 Domain Users    54160  2月 25 13:14 libwindows_result-c7bba79d495adf45.rmeta
+-rw-r--r-- 1 0000250059 Domain Users    54160  2月 24 14:30 libwindows_result-eb2f2aa33a91cc1c.rmeta
+-rw-r--r-- 1 0000250059 Domain Users   242698  2月 25 13:02 libwindows_result-f3aba2c0f0e2c4aa.rlib
+-rw-r--r-- 1 0000250059 Domain Users    63939  2月 25 13:02 libwindows_result-f3aba2c0f0e2c4aa.rmeta
+-rw-r--r-- 1 0000250059 Domain Users     2277  2月 24 14:30 libwindows_targets-014af9b8633c56ac.rmeta
+-rw-r--r-- 1 0000250059 Domain Users     3382  2月 25 13:02 libwindows_targets-18c85beda21aff6a.rlib
+-rw-r--r-- 1 0000250059 Domain Users     2277  2月 25 13:02 libwindows_targets-18c85beda21aff6a.rmeta
+-rw-r--r-- 1 0000250059 Domain Users     2277  2月 25 13:14 libwindows_targets-38ea4c82a3dea452.rmeta
+-rw-r--r-- 1 0000250059 Domain Users     2264  2月 25 13:02 libwindows_x86_64_gnu-12c08aebfddae6a3.rlib
+-rw-r--r-- 1 0000250059 Domain Users     1149  2月 25 13:02 libwindows_x86_64_gnu-12c08aebfddae6a3.rmeta
+-rw-r--r-- 1 0000250059 Domain Users     1149  2月 24 14:30 libwindows_x86_64_gnu-8f79355599587e88.rmeta
+-rw-r--r-- 1 0000250059 Domain Users     1151  2月 25 13:14 libwindows_x86_64_msvc-2e78ae9ecc66abcc.rmeta
+-rw-r--r-- 1 0000250059 Domain Users 67642822  2月 25 13:15 libwindows-27a5d3fd535e9f93.rmeta
+-rw-r--r-- 1 0000250059 Domain Users 67642822  2月 24 14:30 libwindows-5183d7e4adda450b.rmeta
+-rw-r--r-- 1 0000250059 Domain Users    12210  2月 25 13:02 memchr-2260353b65fd5280.d
+-rw-r--r-- 1 0000250059 Domain Users     9134  2月 25 13:14 memchr-716ac2addfc12d2e.d
+-rw-r--r-- 1 0000250059 Domain Users     9134  2月 24 14:30 memchr-960c5d90d64c9d9b.d
+-rw-r--r-- 1 0000250059 Domain Users    14908  2月 25 13:02 ntapi-3e6a3b7c6ab4bce6.d
+-rw-r--r-- 1 0000250059 Domain Users    11160  2月 25 13:15 ntapi-64e307fb30a9bfab.d
+-rw-r--r-- 1 0000250059 Domain Users    11160  2月 24 14:30 ntapi-ef3b4c4945e87088.d
+-rw-r--r-- 1 0000250059 Domain Users     6329  2月 24 14:30 num_traits-1af9e8dd5d372322.d
+-rw-r--r-- 1 0000250059 Domain Users     6329  2月 25 13:14 num_traits-80e2c9d85f28636d.d
+-rw-r--r-- 1 0000250059 Domain Users     8474  2月 25 13:02 num_traits-d7d3172c1680e1e7.d
+-rw-r--r-- 1 0000250059 Domain Users     5249  2月 24 14:30 proc_macro2-7efe65f547c60b58.d
+-rw-r--r-- 1 0000250059 Domain Users     4215  2月 25 13:14 proc_macro2-b2be499f55f57320.d
+-rw-r--r-- 1 0000250059 Domain Users     3175  2月 24 14:30 quote-292acd97b951ab58.d
+-rw-r--r-- 1 0000250059 Domain Users     3175  2月 25 13:14 quote-5d1f055e95b77b69.d
+-rw-r--r-- 1 0000250059 Domain Users     8028  2月 25 13:14 rayon_core-32c667aac1a8950f.d
+-rw-r--r-- 1 0000250059 Domain Users    10738  2月 25 13:02 rayon_core-8a9576f6f9be7a55.d
+-rw-r--r-- 1 0000250059 Domain Users     8028  2月 24 14:30 rayon_core-ddb2a171fa9b862f.d
+-rw-r--r-- 1 0000250059 Domain Users    31690  2月 25 13:15 rayon-0c5dffd77e30418b.d
+-rw-r--r-- 1 0000250059 Domain Users    42261  2月 25 13:02 rayon-3aedba67e2049a0b.d
+-rw-r--r-- 1 0000250059 Domain Users    31690  2月 24 14:30 rayon-6d799c8bb494bfd3.d
+-rw-r--r-- 1 0000250059 Domain Users    19089  2月 24 14:30 syn-159085cd25bd27f6.d
+-rw-r--r-- 1 0000250059 Domain Users    19089  2月 25 13:14 syn-4b37487ccb8078dd.d
+-rw-r--r-- 1 0000250059 Domain Users    19089  2月 25 13:02 syn-a0a5f2266a16a576.d
+-rw-r--r-- 1 0000250059 Domain Users    10288  2月 24 14:31 sysinfo-13a31d6fa7843d4c.d
+-rw-r--r-- 1 0000250059 Domain Users    10288  2月 25 13:15 sysinfo-d735e5e6a32df56e.d
+-rw-r--r-- 1 0000250059 Domain Users     1218  2月 25 13:14 unicode_ident-36e3cd8601dbfd38.d
+-rw-r--r-- 1 0000250059 Domain Users     1218  2月 24 14:29 unicode_ident-c9d946d454f0f0db.d
+-rw-r--r-- 1 0000250059 Domain Users      629  2月 24 14:30 winapi_x86_64_pc_windows_gnu-b265e26d633345ff.d
+-rw-r--r-- 1 0000250059 Domain Users      886  2月 25 13:02 winapi_x86_64_pc_windows_gnu-ef723a66c7a1b8ec.d
+-rw-r--r-- 1 0000250059 Domain Users    12235  2月 24 14:30 winapi-12d0d649382ef0ee.d
+-rw-r--r-- 1 0000250059 Domain Users    12235  2月 25 13:14 winapi-23527d493050f05f.d
+-rw-r--r-- 1 0000250059 Domain Users    16341  2月 25 13:02 winapi-698022ff79964755.d
+-rw-r--r-- 1 0000250059 Domain Users    14306  2月 24 14:30 windows_core-0b792dabaafb8c40.d
+-rw-r--r-- 1 0000250059 Domain Users    14306  2月 25 13:15 windows_core-7f6cfb27d4118218.d
+-rw-r--r-- 1 0000250059 Domain Users      572  2月 24 14:30 windows_implement-36283041d24819c8.d
+-rwxr-xr-x 1 0000250059 Domain Users  5467735  2月 24 14:30 windows_implement-36283041d24819c8.dll
+-rw-r--r-- 1 0000250059 Domain Users      572  2月 25 13:15 windows_implement-e3a485e0d18cc49c.d
+-rwxr-xr-x 1 0000250059 Domain Users  5467181  2月 25 13:15 windows_implement-e3a485e0d18cc49c.dll
+-rw-r--r-- 1 0000250059 Domain Users      572  2月 24 14:30 windows_interface-64db2c21c9ebf166.d
+-rwxr-xr-x 1 0000250059 Domain Users  5559032  2月 24 14:30 windows_interface-64db2c21c9ebf166.dll
+-rw-r--r-- 1 0000250059 Domain Users      572  2月 25 13:15 windows_interface-9ce9ee742482410e.d
+-rwxr-xr-x 1 0000250059 Domain Users  5559032  2月 25 13:15 windows_interface-9ce9ee742482410e.dll
+-rw-r--r-- 1 0000250059 Domain Users     1211  2月 25 13:02 windows_link-869be46fb8ef3198.d
+-rw-r--r-- 1 0000250059 Domain Users      877  2月 25 13:14 windows_link-a2622e52308cdcaa.d
+-rw-r--r-- 1 0000250059 Domain Users      877  2月 24 14:29 windows_link-ecc2c57152393b79.d
+-rw-r--r-- 1 0000250059 Domain Users     2184  2月 25 13:14 windows_result-c7bba79d495adf45.d
+-rw-r--r-- 1 0000250059 Domain Users     2184  2月 24 14:30 windows_result-eb2f2aa33a91cc1c.d
+-rw-r--r-- 1 0000250059 Domain Users     2953  2月 25 13:02 windows_result-f3aba2c0f0e2c4aa.d
+-rw-r--r-- 1 0000250059 Domain Users      567  2月 24 14:30 windows_targets-014af9b8633c56ac.d
+-rw-r--r-- 1 0000250059 Domain Users      799  2月 25 13:02 windows_targets-18c85beda21aff6a.d
+-rw-r--r-- 1 0000250059 Domain Users      567  2月 25 13:14 windows_targets-38ea4c82a3dea452.d
+-rw-r--r-- 1 0000250059 Domain Users      820  2月 25 13:02 windows_x86_64_gnu-12c08aebfddae6a3.d
+-rw-r--r-- 1 0000250059 Domain Users      582  2月 24 14:30 windows_x86_64_gnu-8f79355599587e88.d
+-rw-r--r-- 1 0000250059 Domain Users      587  2月 25 13:14 windows_x86_64_msvc-2e78ae9ecc66abcc.d
+-rw-r--r-- 1 0000250059 Domain Users    16769  2月 25 13:15 windows-27a5d3fd535e9f93.d
+-rw-r--r-- 1 0000250059 Domain Users    16769  2月 24 14:30 windows-5183d7e4adda450b.d
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/examples:
+合計 4
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 ..
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/incremental:
+合計 20
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:29 ..
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:31 EspansoWatchdog-1pd3jq88klnr6
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:32 EspansoWatchdog-35v5forv4r0vm
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 EspansoWatchdog-3gf2ljzfj9rrx
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/incremental/EspansoWatchdog-1pd3jq88klnr6:
+合計 12
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:31 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 ..
+-rw-r--r-- 1 0000250059 Domain Users 0  2月 24 14:31 s-hg38pkbizc-03zmztn.lock
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:31 s-hg38pkbizc-03zmztn-ai2ig68uvnedmd6ryz584ncf8
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/incremental/EspansoWatchdog-1pd3jq88klnr6/s-hg38pkbizc-03zmztn-ai2ig68uvnedmd6ryz584ncf8:
+合計 2709
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:31 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:31 ..
+-rw-r--r-- 1 0000250059 Domain Users 1890971  2月 24 14:31 dep-graph.bin
+-rw-r--r-- 1 0000250059 Domain Users  868447  2月 24 14:31 query-cache.bin
+-rw-r--r-- 1 0000250059 Domain Users      50  2月 24 14:31 work-products.bin
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/incremental/EspansoWatchdog-35v5forv4r0vm:
+合計 12
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:32 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 ..
+-rw-r--r-- 1 0000250059 Domain Users 0  2月 24 14:32 s-hg38qwg1kx-0qx2knh.lock
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 24 14:32 s-hg38qwg1kx-0qx2knh-99qmmy8e88jta4hi9vmw7ovff
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/incremental/EspansoWatchdog-35v5forv4r0vm/s-hg38qwg1kx-0qx2knh-99qmmy8e88jta4hi9vmw7ovff:
+合計 2725
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:32 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 24 14:32 ..
+-rw-r--r-- 1 0000250059 Domain Users 1907890  2月 24 14:32 dep-graph.bin
+-rw-r--r-- 1 0000250059 Domain Users  871925  2月 24 14:32 query-cache.bin
+-rw-r--r-- 1 0000250059 Domain Users      50  2月 24 14:32 work-products.bin
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/incremental/EspansoWatchdog-3gf2ljzfj9rrx:
+合計 12
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 .
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 ..
+-rw-r--r-- 1 0000250059 Domain Users 0  2月 25 13:15 s-hg4abpu4l4-02rb0vt.lock
+drwxr-xr-x 1 0000250059 Domain Users 0  2月 25 13:15 s-hg4abpu4l4-02rb0vt-6aknpmkxsclw6kn05ed66jprp
+
+C:/Users/0000250059/AppData/Roaming/espanso/scripts/watchdog-rs/target/debug/incremental/EspansoWatchdog-3gf2ljzfj9rrx/s-hg4abpu4l4-02rb0vt-6aknpmkxsclw6kn05ed66jprp:
+合計 2709
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:15 .
+drwxr-xr-x 1 0000250059 Domain Users       0  2月 25 13:15 ..
+-rw-r--r-- 1 0000250059 Domain Users 1890971  2月 25 13:15 dep-graph.bin
+-rw-r--r-- 1 0000250059 Domain Users  868447  2月 25 13:15 query-cache.bin
+-rw-r--r-- 1 0000250059 Domain Users      50  2月 25 13:15 work-products.bin

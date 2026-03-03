@@ -1,0 +1,32 @@
+# qutebrowser に uBlock Origin フィルターリストを追加する計画
+
+## Context
+`c.content.blocking.method = "both"` は既に設定済み。しかしフィルターリスト (`c.content.blocking.adblock.lists`) が未指定のため、デフォルトの EasyList のみが適用されている。uBlock Origin のフィルターリストを追加し、広告ブロック精度を向上させる。
+
+## 対象ファイル
+- `C:\Users\0000250059\AppData\Roaming\qutebrowser\config\config.py`
+
+## 変更内容
+既存の `c.content.blocking.method = "both"` の直後に、以下のフィルターリスト設定を追加:
+
+```python
+c.content.blocking.adblock.lists = [
+    # デフォルト（EasyList）
+    "https://easylist.to/easylist/easylist.txt",
+    "https://easylist.to/easylist/easyprivacy.txt",
+    # uBlock Origin フィルター
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances-cookies.txt",
+    "https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/annoyances-others.txt",
+    # 日本語向け
+    "https://raw.githubusercontent.com/nickkoro02/280Blocker-ABP-subscription/master/280blocker_adblock.txt",
+]
+```
+
+## 検証手順
+1. qutebrowser を再起動（または `:config-source` で設定再読み込み）
+2. `:adblock-update` を実行してフィルターリストをダウンロード
+3. 広告の多いサイトにアクセスし、ブロックされていることを確認

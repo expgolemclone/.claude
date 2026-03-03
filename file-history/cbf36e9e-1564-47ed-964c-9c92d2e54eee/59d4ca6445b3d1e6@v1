@@ -1,0 +1,512 @@
+//$History: $
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+//
+// *****************************************************************************
+// *                Copyright Meidensha Corporation 2008                       *
+// *  ������Ж��d�ɂ͓��Ђɂ���Ē񋟂���Ȃ����u��ł̓��\�t�g�E�F�A�̎g�p   *
+// *  �ɑ΂��ӔC��S�������܂���B                                             *
+// *****************************************************************************
+//
+//      �v���O������:  NTPtest
+//      �^�X�N��    :  �Ȉ�NTP�T�[�o
+//      �H  ��      :  SX2380SP
+//      �V�X�e����  :  �n�o�r�T�O�O�O
+//      �o�[�W����  :  V01.00
+//      �쐬��      :  ���V�@���m
+//      �쐬�N����  :  2008�N  3�� 14��
+//      �C������    :  2018�N11��8�� SCC���
+//                     �E�l�C�e�B�u64bit�Ή�(�����L�[�FOPS5000_64bit)
+//
+//      �@�\�T�v    :
+//          �P�D���݂̂o�b�������r�m�s�o�����Ƃ��ĕԂ��B
+//          �Q�D�[�b�{�P�A�|�P�A�����M�����Ȃ���NTP�f�[�^�ɖ��ߍ��ށB
+//
+//      ���񎖍�    :
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+#include		<stdio.h>				//�W�����o��
+#include		<windows.h>				//
+#include		<time.h>				//
+#include		<sys/types.h>			//
+#include		<mmsystem.h>			//
+#include		<math.h>				//
+#include		<time.h>				//
+#include		<sys/types.h>			//
+#include		<sys/timeb.h>			//
+#include		<string.h>				//
+										//
+//�^�X�N���V���{��
+#define			EP_		printf
+#define			DP_		printf
+#define			RS_SUC	1				//
+#define			RS_ERR	200				//
+#define S_JAN1970		2208988800		//1970�N - 1900�N�̎���
+#define S_JST0900		32400			//���萢�E���Ɠ��{�W�����̍�������
+#define	S_MSG_PARAM		18				//�t���p�����[�^�ő吔
+#define S_OPS_PATH		"PATH_OPS"		//
+
+//�\���̒�`
+struct NTP_Packet{						//NTP�p�P�b�g
+  int		Control_Word;				//  �e��t���O
+										//    Bit31-30:Leap Indicator
+										//     (00:����,01:�[�b(+1),10:�[�b(-1),11:�eNTP�T�[�o�Ɣ񓯊�)
+										//    Bit29-27:Version Number(3:IPv4only,4:IPv4/v6/OSI)
+										//    Bit26-24:Mode
+										//     (0:�\��,1:�Ώ̃A�N�e�B�u,2:�Ώ̃p�b�V�u,3:�N���C�A���g,
+										//      4:�T�[�o,5:�u���[�h�L���X�g,6:NTP���䃁�b�Z�[�W�p�\��,
+										//      7:Private Use�p�\��)
+										//    Bit23-16:NTP�T�[�o�̊K�w(8bit�����Ȃ�����)
+										//    Bit15- 8:�|�[�����O�Ԋu
+										//      (8bit�����������A���̒l��2�ׂ̂��悪�|�[�����O�Ԋu)
+										//    Bit 7- 0:���x
+										//      (8bit�����������A���̒l��2�ׂ̂��悪���[�J�����v���x)
+  int		root_delay;					//  �o�H�x��(32bit�����t�Œ菬���_��
+										//      ���16bit�������A����16bit������)
+  int		root_dispersion;			//  �o�H���U(32bit�����t�Œ菬���_��
+										//      ���16bit�������A����16bit������)
+  int		reference_identifier;		//  �Q�Ƒ��uIP(IPv4��)
+  UINT		ref_sec ;					//  �T�[�o���e�T�[�o�Ɠ��������ۂ̐ώZ�b
+  UINT		ref_msec ;					//    ���@������
+  UINT		org_sec ;					//  �N���C�A���g���v�������ۂ̐ώZ�b
+										//    (�N���C�A���g���v������trn_sec�ɃZ�b�g�����l)
+  UINT		org_msec ;					//    ���@������
+										//    (�N���C�A���g���v������trn_msec�ɃZ�b�g�����l)
+  UINT		rec_sec ;					//  �T�[�o���v����M�����ۂ̐ώZ�b
+  UINT		rec_msec ;					//    ���@������
+  UINT		trn_sec;					//  �T�[�o���������M�����ۂ̐ώZ�b
+  UINT		trn_msec;					//    ���@������
+  };									//
+union U_rbuf{							//
+  struct NTP_Packet ntpdat ;			//
+  char              recv[1500] ;		//
+  } ;									//
+
+//�����֐��v���g�^�C�v�錾
+void main(void);						//  ���C���֐�
+int  f_ntp100(int *) ;					//  ��������
+int  f_ntp200(int *);					//  ����NTP�f�[�^�擾
+int  f_ntp210(union U_rbuf *,int,		//
+              struct sockaddr_in *) ;	//
+void fl_ntp024(UINT,UINT,time_t *,		//   NTP����msec���Z�o
+       double *,int *) ;				//
+int  F_sectounit(time_t *sec,			//  �ώZ�b�����v�f�ϊ�
+       SYSTEMTIME *tunit) ;				//
+
+//�^�X�N���R����
+  SOCKET	z_socket;					//NTP�T�[�o�Ƃ̓`���p�\�P�b�g
+  char		dayofweek[8][4] = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat","Dmy"} ;
+  int		z_ctr_i ;
+
+
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E        �O�D�O�E      ���C������                    �E      ��������              �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     NTP���ԊĎ��^�X�N�̃��C�����W���[���ł���B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *     (void) main() ;
+ *
+ *  ���̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �o�̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �Q�ƃf�[�^:
+ *     �Ȃ�
+ *
+ *  �߂�l:
+ *     �Ȃ�
+ *
+ *  �`�o�h:
+ *     �Ȃ�
+ *
+ *  ���񎖍�:
+ *     ���ɂȂ��B
+ *
+ *  ���l:
+ *     ���ɂȂ��B
+ ------------------------------------------------------------------------------------*/
+void main(){							//
+  int				rsts_i;				//���^�[���X�e�[�^�X
+  int				sdcp_i ;			//�`���\�P�b�g�L�q�q
+										//
+  rsts_i = f_ntp100(&sdcp_i);			//Winsock�̏��������s��
+  if(rsts_i == RS_SUC){					//
+    DP_("NTP�T�[�o�͋[�c�[��\n") ;
+    DP_("1.�����NTP�����𑗐M����T�[�o\n") ;
+    DP_("2.�[�b�i�{�P�j��NTP�����ɃZ�b�g���đ��M����T�[�o\n") ;
+    DP_("3.�[�b�i�|�P�j��NTP�����ɃZ�b�g���đ��M����T�[�o\n") ;
+    DP_("4.���ݓ����M�����Ȃ���NTP�����ɃZ�b�g���đ��M����T�[�o\n") ;
+    DP_("Input > ") ;
+    scanf("%d",&z_ctr_i) ;
+    DP_("�I������Ƃ��̓R���\�[���E�B���h�E����邩[Ctrl]+[C]����́B\n") ;
+    if ((z_ctr_i>0) && (z_ctr_i <5)){	//
+      rsts_i = f_ntp200(&sdcp_i) ;		//NTP�T�[�o����
+      }									//
+    }									//
+  WSACleanup();							//Winsock�̏I��
+}										//
+
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E      �P�O�O�@�E      ����������������������        �E      ���Q�������P�O�O      �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     Winsock�̏��������s���B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *     (int) f_ntp100(int *sdcp_i) ;
+ *
+ *  ���̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �o�̓f�[�^:
+ *     int *sdcp_i;					NTP�v����M�\�P�b�g
+ *
+ *  �Q�ƃf�[�^:
+ *     �Ȃ�
+ *
+ *  �߂�l:
+ *     RS_SUC�F����
+ *     RS_ERR�F���s
+ *
+ *  �`�o�h:
+ *     WSAStartup
+ *     getservbyname
+ *
+ *  ���񎖍�:
+ *     ���ɂȂ��B
+ *
+ *  ���l:
+ *     ���ɂȂ��B
+-------------------------------------------------------------------------------------*/
+int f_ntp100(int *sdcp_i)				//
+{										//
+  int					rsts_i;			//���^�[���X�e�[�^�X
+  WSADATA				wsaData;		//Winsock�̎������
+  struct   sockaddr_in  saddr ;			//�\�P�b�g�A�h���X�\����
+  struct   servent      *srv ;			//�T�[�r�X���|�|�[�g�ԍ��ϊ�
+										//
+  rsts_i = WSAStartup(MAKEWORD(1,1),	//Winsock�̏�����
+             &wsaData);					//
+  if(rsts_i != 0){						//Winsock�̏��������s�̏ꍇ
+    EP_("[ERR]Winsock���������s\n");	//
+    return RS_ERR;						//
+    }									//
+  (void)memset(&saddr,0,sizeof(saddr));	//
+  srv=getservbyname("ntp","udp");		//�T�[�r�X���|�[�g�ԍ��ϊ�
+  if (srv == NULL){						//�ϊ����s
+    EP_("[ERR]ntp/udp����`\n");		//
+    return RS_ERR;						//
+    }									//
+  else {								//�ϊ�����
+    saddr.sin_port = srv->s_port ;		//�擾�����|�[�g�ԍ��g�p
+    }									//
+  saddr.sin_family = AF_INET ;			//
+  saddr.sin_addr.s_addr = htonl(INADDR_ANY) ;
+  *sdcp_i= (int)socket(AF_INET,			//  �t�c�o�\�P�b�g�쐬                 // OPS5000_64bit mod
+                 SOCK_DGRAM,0);			//
+  if (*sdcp_i == INVALID_SOCKET){		//  �\�P�b�g�L�q�q�쐬���s
+    return RS_ERR ;						//
+    }									//
+  else {								//  �\�P�b�g�L�q�q�쐬����
+    rsts_i=bind(*sdcp_i,(LPSOCKADDR)&saddr,sizeof(saddr)) ;
+    if (rsts_i == SOCKET_ERROR){		//    �A�h���X�Ƃ̊֘A�t�����s
+      return RS_ERR ;					//
+      }									//
+    }									//
+  return RS_SUC;						//
+}										//
+
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E        �Q�D�O�E      �m�s�o�T�[�o����              �E      ���Q�������Q�O�O      �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     ntp/udp�|�[�g�̎�M�҂����s���A��M�f�[�^�Ɍ��݂o�b��������t�����A�ԑ�����B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *    (int) f_ntp200(int *sdcp_i) ;
+ *
+ *  ���̓f�[�^:
+ *     int *sdcp_i;					NTP�v����M�\�P�b�g
+ *
+ *  �o�̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �Q�ƃf�[�^:
+ *     �Ȃ�
+ *
+ *  �߂�l:
+ *     RS_SUC�F����
+ *     RS_ERR�F���s
+ *
+ *  �`�o�h:
+ *
+ *  ���񎖍�:
+ *     ���ɂȂ��B
+ *
+ *  ���l:
+ *     ���ɂȂ��B
+-------------------------------------------------------------------------------------*/
+int f_ntp200(int *sdcp_i)				//
+{										//
+  int					rsts_i;			//���^�[���X�e�[�^�X
+  int					addlen_i ;		//�\�P�b�g�A�h���X�T�C�Y
+  struct sockaddr_in 	rcvaddr ;		//�\�P�b�g�A�h���X�\����
+  int					rnum_i ;		//��M�f�[�^�o�C�g��
+  union U_rbuf			rbuf ;			//
+										//
+  while(1) {							//
+										//*********�v����M*************
+    memset(&rbuf,0,sizeof(union U_rbuf));
+    addlen_i = sizeof(rcvaddr);			//
+    rnum_i=recvfrom(*sdcp_i,			//�v����M
+            (char *)&rbuf,				//��M�o�b�t�@
+            (int)sizeof(rbuf),			//�o�b�t�@�T�C�Y
+            (int)(INT_PTR)NULL,			//// OPS5000_64bit mod
+            (struct sockaddr *)&rcvaddr,//���M���h�o�A�h���X�w��
+            &addlen_i) ;				//�A�h���X�T�C�Y
+										//*****���M�f�[�^�쐬�E���M*****
+    rsts_i = f_ntp210(					//
+                 &rbuf,rnum_i,&rcvaddr);//
+    }									//
+  return(rsts_i) ;						//
+}										//
+
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E        �Q�D�P�E      ���M�f�[�^�쐬�E���M����      �E      ���Q�������Q�P�O      �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     �v�����Ɍ��ݎ����𑗐M����B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *     (int) f_ntp210(union U_rbuf *rbuf,
+ *                    int rnum_i,struct sockaddr_in *raddr);
+ *
+ *  ���̓f�[�^:
+ *     union U_rbuf *rbuf ;			��M�f�[�^
+ *     int   rnum_i ;				��M�f�[�^�o�C�g�T�C�Y
+ *     struct sockaddr_in *raddr;	�v����IP�A�h���X���
+ *
+ *  �o�̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �߂�l:
+ *     RS_SUC�F����
+ *     RS_ERR�F���s
+ *
+ *  �`�o�h:
+ *     getservbyname
+ *
+-------------------------------------------------------------------------------------*/
+int f_ntp210(union U_rbuf *rbuf,int rnum_i,struct sockaddr_in *raddr)
+{										//
+  int					rsts_i ;		//���^�[���X�e�[�^�X
+  struct _timeb			tstruct;		//PC���ݓ���
+  double				cnv_d ;			//�Œ菬���_���ϊ��ꎞ�G���A
+  UINT					cnv_ui ;		//
+  SYSTEMTIME			st ;			//���M�����X�i�b�v�p
+  SYSTEMTIME			ct ;			//�N���C�A���g�v������
+  struct NTP_Packet		snd ;			//NTP�p�P�b�g
+  int					ssock_i ;		//
+  struct  sockaddr_in	sa;				//�ԑ��\�P�b�g�̃A�h���X���
+  double				orgmsec_d;		//���N�G�X�g���̕b���ȉ�����
+  int					orgmsec_i ;		//
+  time_t				orgsec_t;		//���N�G�X�g�����̕b������
+										//
+  ssock_i = (int)socket(PF_INET,		//UDP���[�h�Ń\�P�b�g�̍쐬                 // OPS5000_64bit mod
+                    SOCK_DGRAM,0);		//
+  if(ssock_i == INVALID_SOCKET){		//�\�P�b�g�쐬���s�̏ꍇ
+    EP_("[ERR]�\�P�b�g�쐬���s\n");		//
+    return RS_ERR;						//
+    }									//
+  sa.sin_family = AF_INET;				//�C���^�[�l�b�g�̏ꍇ
+  sa.sin_addr.s_addr = raddr->sin_addr.s_addr ;
+  sa.sin_port = raddr->sin_port;		//���M����|�[�g�ԍ�
+										//���M�f�[�^�쐬
+  memset(&snd,0,sizeof(struct NTP_Packet)) ;
+  switch(z_ctr_i){
+    case 2:
+      snd.Control_Word = htonl(0x5c0400fa);
+      break ;
+    case 3:
+      snd.Control_Word = htonl(0x9c0400fa);
+      break ;
+    case 4:
+      snd.Control_Word = htonl(0xdc0400fa);
+      break ;
+    default:
+      snd.Control_Word = htonl(0x1c0400fa);
+    }
+  snd.root_delay = 0;					//root�x��
+  snd.root_dispersion = 0;				//�덷
+  snd.reference_identifier = 0;			//������IP�A�h���X
+  snd.ref_sec = 0;						//�O�񓯊�����
+  snd.ref_msec = 0;						//
+  snd.org_sec = rbuf->ntpdat.trn_sec ;	//�v�������M����
+  snd.org_msec = rbuf->ntpdat.trn_msec;	//
+  _ftime(&tstruct) ;					//�v����M�����A���M����
+  snd.rec_sec = htonl((unsigned long)tstruct.time + S_JAN1970) ;                 // OPS5000_64bit mod
+  snd.trn_sec = htonl((unsigned long)tstruct.time + S_JAN1970) ;                 // OPS5000_64bit mod
+  cnv_d = tstruct.millitm / 1000.0 ;	//
+  cnv_d *= 4294967296.0 ;				//
+  cnv_ui = (UINT)cnv_d ;				//
+  snd.rec_msec = htonl(cnv_ui) ;		//
+  snd.trn_msec = htonl(cnv_ui) ;		//
+										//
+  rsts_i = sendto(ssock_i,				//�v������NTP�p�P�b�g�ԑ�
+             (const char *)&snd,		//
+             sizeof(struct NTP_Packet),	//
+             0,							//
+             (struct sockaddr *)&sa,	//
+             sizeof(struct sockaddr_in));
+                                        //
+  if(rsts_i == SOCKET_ERROR){			//�p�P�b�g���M���s�̏ꍇ
+    EP_("[ERR]�m�s�o�p�P�b�g�ԑ����s\n");
+    return RS_ERR;
+    }
+  tstruct.time += S_JST0900 ;			//GMT=>JST
+  rsts_i = F_sectounit(&tstruct.time,&st) ;
+  if (rsts_i == RS_ERR){
+    EP_("[ERR]�����v�f�ϊ����b�����̒l%lld\n",tstruct.time) ;                 // OPS5000_64bit mod
+    return RS_ERR ;
+    }
+  fl_ntp024(snd.org_sec,snd.org_msec,&orgsec_t,&orgmsec_d,&orgmsec_i) ;
+  rsts_i = F_sectounit(&orgsec_t,&ct) ;
+  if (rsts_i == RS_ERR){
+    EP_("[ERR]�����v�f�ϊ����b�����̒l%lld\n",orgsec_t) ;                     // OPS5000_64bit mod
+    return RS_ERR ;
+    }
+  DP_("Server:%4d/%2d/%2d[%s] %02d:%02d:%02d.%03d,[%d.%d.%d.%d]%4d/%2d/%2d %02d:%02d:%02d.%03d\n",
+         st.wYear,st.wMonth,st.wDay,dayofweek[st.wDayOfWeek],
+         st.wHour,st.wMinute,st.wSecond,tstruct.millitm,
+         sa.sin_addr.S_un.S_un_b.s_b1,sa.sin_addr.S_un.S_un_b.s_b2,
+         sa.sin_addr.S_un.S_un_b.s_b3,sa.sin_addr.S_un.S_un_b.s_b4,
+         ct.wYear,ct.wMonth,ct.wDay,
+         ct.wHour,ct.wMinute,ct.wSecond,orgmsec_i) ;
+  closesocket(ssock_i);					//�\�P�b�g�̏I��
+  return RS_SUC ;						//
+}										//
+
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E    �k�a�O�Q�S�E      �����ϊ�����                  �E      �����Q�������O�Q�S    �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     NTP�T�[�o����擾������������{�W�����ɕϊ�����B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *     (void) fl_ntp024(UINT sec_ui,
+ *                      UINT msec_ui,
+ *                      time_t *sec_t,
+ *                      double *msec_d,
+ *                      int *msec_i) ;
+ *
+ *  ���̓f�[�^:
+ *     UINT sec_ui ;					NTP����(�b�P��)
+ *     UINT msec_ui ;					NTP����(msec)
+ *
+ *  �o�̓f�[�^:
+ *     time_t *sec_t;					JST����(�b�P��)
+ *     double *msec_d;					msec(���������_��)
+ *     int    *msec_i ;					msec�~1000
+ *
+ *  �߂�l:
+ *     �Ȃ�
+ *
+ *  �`�o�h:
+ *     �Ȃ�
+ *
+-------------------------------------------------------------------------------------*/
+void fl_ntp024(UINT sec_ui,UINT msec_ui, time_t *sec_t,double *msec_d,int *msec_i)
+{										//
+  if (sec_ui){							//
+    *sec_t = ntohl(sec_ui) - S_JAN1970;	//��M����������1970/01/01 ����̕b���ɕϊ�
+    *sec_t += S_JST0900;				//���萢�E��(UTC)������{�W����(JST)�ɕϊ�
+    }									//
+  else {								//
+    *sec_t = 0 ;						//
+    }									//
+  *msec_d = ntohl(msec_ui);				//�b���ȉ��̎������擾
+  *msec_d /= 4294967296.0;				//
+  *msec_d *= 1000.0 ;					//
+  *msec_i = (int)(*msec_d) ;			//
+  return ;								//
+}										//
+
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E      �k�a�O�S�E      �ώZ�b�����v�f�ϊ�����        �E      F_sectounit           �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     1970�N1��1��0��0��0�b����̐ώZ�b���A�N���������b�i�j���j�ɕϊ�����B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *     (int)F_sectounit(time_t *sec,SYSTEMTIME *tu) ;
+ *
+ *  ���̓f�[�^:
+ *     time_t			*sec ;		�ώZ�b
+ *
+ *  �o�̓f�[�^:
+ *     SYSTEMTIME		*tu;		�����v�f�t�H�[�}�b�g
+ *
+ *  �Q�ƃf�[�^:
+ *     �Ȃ�
+ *
+ *  �߂�l:
+ *     RS_SUC�F����
+ *     RS_ERR�F���s
+ *
+ *  �`�o�h:
+ *     gmtime
+ *
+ *  ���񎖍�:
+ *     ���ɂȂ��B
+ *
+ *  ���l:
+ *     ���ɂȂ��B
+-------------------------------------------------------------------------------------*/
+int F_sectounit(time_t *sec, SYSTEMTIME *tu)
+{										//
+  struct	tm	*tmt ;					//�����v�f�ϊ�
+										//
+  if (*sec < 0) return(RS_ERR) ;		//�b�������Ȃ�΃p�����[�^�s��
+  if(*sec != 0){						//�b�������Ȃ�Εϊ�
+    tmt = gmtime(sec) ;					//���ݎ����������v�f�ɕϊ�
+    tu->wYear = (USHORT)(tmt->tm_year + 1900);	//�N�i����4���j���Z�b�g
+    tu->wMonth = (USHORT)(tmt->tm_mon + 1) ;	//�����Z�b�g
+    tu->wDay = (USHORT)tmt->tm_mday ;			//�����Z�b�g
+    tu->wDayOfWeek = (USHORT)tmt->tm_wday ;		//�j�����Z�b�g
+    tu->wHour = (USHORT)tmt->tm_hour ;			//�����Z�b�g
+    tu->wMinute = (USHORT)tmt->tm_min ;			//�����Z�b�g
+    tu->wSecond = (USHORT)tmt->tm_sec ;			//�b���Z�b�g
+    tu->wMilliseconds = 0 ;						//�~���b���Z�b�g
+    }									//
+  else {								//�b��0����0���Z�b�g
+    tu->wYear = 0 ;						//�N�i����4���j���Z�b�g
+    tu->wMonth = 0 ;					//�����Z�b�g
+    tu->wDay = 0 ;						//�����Z�b�g
+    tu->wDayOfWeek = 0 ;				//�j�����Z�b�g
+    tu->wHour = 0 ;						//�����Z�b�g
+    tu->wMinute = 0 ;					//�����Z�b�g
+    tu->wSecond = 0 ;					//�b���Z�b�g
+    tu->wMilliseconds = 0 ;				//�~���b���Z�b�g
+    }									//
+  return(RS_SUC) ;						//
+}										//

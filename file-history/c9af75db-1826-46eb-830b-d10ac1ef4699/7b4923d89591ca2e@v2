@@ -1,0 +1,14 @@
+# Fix: open_urls.ps1 encoding issue
+
+## Context
+PowerShell 5.1 reads .ps1 files using system locale encoding (Shift-JIS on Japanese Windows), not UTF-8. The Japanese characters in open_urls.ps1 corrupt surrounding ASCII characters (quotes), causing `&` in URLs to be parsed as PowerShell operators.
+
+## Fix
+Rewrite `open_urls.ps1` with ASCII-only content (no Japanese text). This is the most robust solution — no BOM dependency, no encoding ambiguity.
+
+## Files
+- `C:\Users\0000250059\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\startup\open_urls.ps1` — rewrite without Japanese
+- `C:\Users\0000250059\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\startup\open_urls.bat` — no change needed
+
+## Verification
+Run the .ps1 directly via `powershell -ExecutionPolicy Bypass -File open_urls.ps1` and confirm all 4 URLs open in Arc.

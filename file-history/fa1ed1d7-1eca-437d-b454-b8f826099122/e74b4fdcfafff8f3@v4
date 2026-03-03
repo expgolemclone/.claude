@@ -1,0 +1,31 @@
+[toolchain]
+required = "uv"
+prohibited = ["pyenv", "conda", "pipenv", "poetry"]
+
+[project_config]
+format = "pyproject.toml"  # PEP 621
+prohibited_formats = ["setup.py", "setup.cfg"]
+requires_python_upper_bound = true  # 例: ">=3.11,<3.13"
+wildcard_version = false
+
+[dependencies]
+upper_bound_required = true         # 例: "httpx>=0.27,<1"
+prefer_pure_python_or_rust = true   # C拡張は代替がない場合のみ
+c_extension_requires_wheel = true   # wheel未提供のPython/OS組み合わせはサポート外
+manual_requirements_txt = false     # 手書き禁止、uv pip compile で生成
+
+[lockfile]
+tool = "uv lock"
+commit_to_repo = true
+gitignore = false
+install_without_lock = false
+
+[venv]
+always_required = true
+system_python_install = false
+break_system_packages_in_ci = false
+break_system_packages_in_prod = false
+
+[prohibited]
+conda_pip_mixed = true
+dynamic_version_in_setup_py = true

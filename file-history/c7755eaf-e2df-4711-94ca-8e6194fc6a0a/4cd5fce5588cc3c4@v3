@@ -1,0 +1,868 @@
+//$History: $
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+//
+// *****************************************************************************
+// *                Copyright Meidensha Corporation 2008                       *
+// *  ������Ж��d�ɂ͓��Ђɂ���Ē񋟂���Ȃ����u��ł̓��\�t�g�E�F�A�̎g�p   *
+// *  �ɑ΂��ӔC��S�������܂���B                                             *
+// *****************************************************************************
+//
+//      �v���O������:  NTPcheck
+//      �^�X�N��    :  NTP�T�[�o����󋵃`�F�b�N�c�[��
+//      �H  ��      :  SX2380SP
+//      �V�X�e����  :  �n�o�r�T�O�O�O
+//      �o�[�W����  :  V01.00
+//      �쐬��      :  ���V�@���m
+//      �쐬�N����  :  2008�N  3�� 14��
+//      �C������    :  2018�N11��8�� SCC���
+//                     �E�l�C�e�B�u64bit�Ή�(�����L�[�FOPS5000_64bit)
+//
+//      �@�\�T�v    :
+//          �P�D�m�s�o�T�[�o�����M�����f�[�^��\������B
+//
+//      ���񎖍�    :
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+#include		<stdio.h>				//�W�����o��
+#include		<windows.h>				//
+#include		<time.h>				//
+#include		<sys/types.h>			//
+#include		<mmsystem.h>			//
+#include		<math.h>				//
+#include		<time.h>				//
+#include <sys/types.h>
+#include <sys/timeb.h>
+#include <string.h>
+
+
+//�^�X�N���V���{��
+#define			EP_		printf
+#define			DP_		printf
+#define			RS_SUC		1
+#define			RS_ERR		200
+#define S_TIMEOUT			1			//��M�҂��^�C���A�E�g  YU002
+#define S_SERVERNAME		"NTPSV"		//�m�s�o�T�[�o�̃z�X�g��
+#define S_JAN1970			2208988800	//1970�N - 1900�N�̎���
+#define S_JST0900			32400		//���萢�E���Ɠ��{�W�����̍�������
+
+//�����֐��v���g�^�C�v�錾
+void main(int , char**);				//  ���C���֐�
+int  f_ntp100(void) ;					//  ��������
+int  f_ntp200(struct T_TIME *);			//  ����NTP�f�[�^�擾
+void CALLBACK f_ntp300(UINT,UINT,DWORD,	//  ����NTP�f�[�^�擾
+                DWORD,DWORD);			//
+int  fl_ntp01(void);					//  �������������쐬����
+int  fl_ntp02(struct T_TIME *, long);	//  �m�s�o�T�[�o�����擾����
+unsigned long fl_ntp021(char *);		//  �h�o�A�h���X�擾����
+int  fl_ntp022(ULONG *,struct sockaddr_in *,struct NTP_Packet *);
+int  fl_ntp023(int *,struct sockaddr_in *,struct NTP_Packet *,long) ;
+void fl_ntp024(UINT,UINT,time_t *,double *,int *) ;
+void fl_ntp025(UINT,double *) ;			//
+void fl_ntp026(UINT,UINT *,UINT *,UINT *,UINT *,UINT *,UINT *,char *) ;
+
+int  F_sectounit(time_t *sec,			//  �ώZ�b�����v�f�ϊ�
+       struct T_TIME *tunit) ;			//
+
+//�\���̒�`
+struct NTP_Packet{						//NTP�p�P�b�g
+  int		Control_Word;				//  �e��t���O
+										//    Bit31-30:Leap Indicator
+										//     (00:����,01:�[�b(+1),10:�[�b(-1),11:�eNTP�T�[�o�Ɣ񓯊�)
+										//    Bit29-27:Version Number(3:IPv4only,4:IPv4/v6/OSI)
+										//    Bit26-24:Mode
+										//     (0:�\��,1:�Ώ̃A�N�e�B�u,2:�Ώ̃p�b�V�u,3:�N���C�A���g,
+										//      4:�T�[�o,5:�u���[�h�L���X�g,6:NTP���䃁�b�Z�[�W�p�\��,
+										//      7:Private Use�p�\��)
+										//    Bit23-16:NTP�T�[�o�̊K�w(8bit�����Ȃ�����)
+										//    Bit15- 8:�|�[�����O�Ԋu
+										//      (8bit�����������A���̒l��2�ׂ̂��悪�|�[�����O�Ԋu)
+										//    Bit 7- 0:���x
+										//      (8bit�����������A���̒l��2�ׂ̂��悪�|�[�����O�Ԋu)
+  int		root_delay;					//  �o�H�x��(32bit�����t�Œ菬���_��
+										//      ���16bit�������A����16bit������)
+  int		root_dispersion;			//  �o�H���U(32bit�����t�Œ菬���_��
+										//      ���16bit�������A����16bit������)
+  int		reference_identifier;		//  �Q�Ƒ��uIP(IPv4��)
+  UINT		ref_sec ;					//  �T�[�o���e�T�[�o�Ɠ��������ۂ̐ώZ�b
+  UINT		ref_msec ;					//    ���@������
+  UINT		org_sec ;					//  �N���C�A���g���v�������ۂ̐ώZ�b
+										//    (�N���C�A���g���v������trn_sec�ɃZ�b�g�����l)
+  UINT		org_msec ;					//    ���@������
+										//    (�N���C�A���g���v������trn_msec�ɃZ�b�g�����l)
+  UINT		rec_sec ;					//  �T�[�o���v����M�����ۂ̐ώZ�b
+  UINT		rec_msec ;					//    ���@������
+  UINT		trn_sec;					//  �T�[�o���������M�����ۂ̐ώZ�b
+  UINT		trn_msec;					//    ���@������
+  };									//
+
+ struct  T_TIME {						//�����v�f�\����
+ short		ct_year_s ;					//  �N�i����4���j
+ short		ct_mon_s ;					//  ��
+ short		ct_day_s ;					//  ��
+ short		ct_wday_s ;					//  �j��
+ short		ct_hour_s ;					//  ��
+ short		ct_min_s ;					//  ��
+ short		ct_sec_s ;					//  �b
+ short		ct_yobi_s ;					//  �\��
+ } ;									//
+
+//�^�X�N���R����
+  SOCKET	z_socket;					//NTP�T�[�o�Ƃ̓`���p�\�P�b�g
+  time_t	z_ntpsectime_t;				//NTP�T�[�o����擾�����������i�[
+  short		z_ntpmstime_s;				//NTP�T�[�o����擾���������̏�����
+  UINT		z_res_ui ;					//�}���`���f�B�A�^�C�}�ŏ�����\
+  int		z_times_i ;					//�J��Ԃ���
+  FILE		*zfp ;						//���O�t�@�C���p�f�B�X�N���v�^
+
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E        �O�D�O�E      ���C������                    �E      ��������              �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     NTP���ԊĎ��^�X�N�̃��C�����W���[���ł���B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *     (void) main() ;
+ *
+ *  ���̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �o�̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �Q�ƃf�[�^:
+ *     �Ȃ�
+ *
+ *  �߂�l:
+ *     �Ȃ�
+ *
+ *  �`�o�h:
+ *     �Ȃ�
+ *
+ *  ���񎖍�:
+ *     ���ɂȂ��B
+ *
+ *  ���l:
+ *     ���ɂȂ��B
+ ------------------------------------------------------------------------------------*/
+void main(int argc,char *argv[]){		//
+  UINT				 rsts_ui ;			//�߂�l
+  int				rsts_i;				//���^�[���X�e�[�^�X
+  struct T_TIME		timebuf;            //�����v�f
+  char				dmmy_c[4] ;			//
+  int				sec_i ;				//�N�_�b
+  int				times_i ;			//�J��Ԃ���
+  MMRESULT			mRsts ;				//���^�[���X�e�[�^�X
+										//
+  rsts_i = f_ntp100();					//Winsock�̏��������s��
+  if(rsts_i == RS_SUC){					//
+    sec_i = 20 ;						//�f�t�H���g�N�_�b
+    times_i = 0 ;						//�@�@�@�@�@��
+    if (argc < 2){						//�����Ȃ��Ȃ�20�b
+      }									//
+    else if (argc <3){					//
+      if((*argv[1] < 0) || (*argv[1] > 59)){
+        EP_("[ERR]���������͈͊O�ł��B20���̗p���܂��B\n") ;
+        }								//
+      else {							//
+        sscanf(argv[1],"%d",&sec_i) ;	//��P�������N�_�b�ɃZ�b�g
+        }								//
+      }									//
+    else{								//
+      if((*argv[1] < 0) || (*argv[1] > 59)){
+        EP_("[ERR]���������͈͊O�ł��B20���̗p���܂��B\n") ;
+        }								//
+      else {							//
+        sscanf(argv[1],"%d",&sec_i) ;	//��P�������N�_�b�ɃZ�b�g
+        }								//
+      if (isdigit(*argv[2])){			//
+        sscanf(argv[2],"%d",&times_i) ;	//��Q�������񐔂ɃZ�b�g
+        }								//
+      else {							//
+        EP_("[ERR]�����������l�ɕϊ��ł��܂���B0���̗p���܂�\n") ;
+        }								//
+      }									//
+    rsts_i = f_ntp200(&timebuf) ;		//����NTP�T�[�o�f�[�^�擾
+    if(timebuf.ct_sec_s >= sec_i){		//NTP�T�[�o�̎����x�[�X�ŋN�_�b���}����܂ő҂�
+      Sleep((sec_i+60-timebuf.ct_sec_s)*1000) ;
+      }									//
+    else {								//
+      Sleep((sec_i - timebuf.ct_sec_s)*1000) ;
+      }									//
+    mRsts = timeBeginPeriod(z_res_ui) ;	//�ŏ�����\�o�^
+    rsts_ui = timeSetEvent(             //�w��msec��NTP��M
+               (UINT)(60 * 1000),		//  �҂�msec
+               z_res_ui,				//  MM��ύŏ�����\
+               (LPTIMECALLBACK)f_ntp300,//  ����ޯ��֐�
+               (DWORD)(INT_PTR)NULL,	//  ����ޯ��֐��ւ̈���              // OPS5000_64bit mod
+               (UINT)TIME_PERIODIC) ;   //  �Ăяo������
+    if(rsts_ui == (UINT)(INT_PTR)NULL){	//�R�[���o�b�N�ݒ莸�s               // OPS5000_64bit mod
+      EP_("[ERR]�R�[���o�b�N�֐��̓o�^�Ɏ��s���܂����B\n") ;
+      }									//
+    else {								//����
+      do{								//
+        Sleep(60 * 100) ;				//  �R�[���o�b�N�̎�����1/10�ŌJ��Ԃ��񐔂��`�F�b�N
+        }while((times_i == 0)||(z_times_i < times_i)) ;
+      }									//
+    mRsts = timeKillEvent(rsts_ui) ;	//
+    mRsts = timeEndPeriod(z_res_ui) ;	//�ŏ�����\�o�^����
+    }									//
+  DP_("�I�����܂��B�����L�[�������Ă��������B\n") ;
+  WSACleanup();							//Winsock�̏I��
+  fflush(stdin) ;						//
+  gets_s(dmmy_c, sizeof(dmmy_c)) ;		//                                   // OPS5000_64bit mod
+}										//
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E      �P�O�O�@�E      ����������������������        �E      ���Q�������P�O�O      �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     Winsock�̏��������s���B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *     (int) f_ntp100(void) ;
+ *
+ *  ���̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �o�̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �Q�ƃf�[�^:
+ *     �Ȃ�
+ *
+ *  �߂�l:
+ *     RS_SUC�F����
+ *     RS_ERR�F���s
+ *
+ *  �`�o�h:
+ *     WSAStartup
+ *
+ *  ���񎖍�:
+ *     ���ɂȂ��B
+ *
+ *  ���l:
+ *     ���ɂȂ��B
+-------------------------------------------------------------------------------------*/
+int f_ntp100()							//
+{										//
+  int					rsts_i;			//���^�[���X�e�[�^�X
+  WSADATA				wsaData;		//Winsock�̎������
+  TIMECAPS				tc ;			//
+										//
+  DP_("�yNTPcheck�z\n") ;
+  DP_("NTP�T�[�o %s �ɐڑ����ANTP�������擾���܂��B(hosts�ɓo�^�v)\n",S_SERVERNAME) ;
+  DP_("����1�Ŏw�肳�ꂽ�b���}���邲�Ƃ�NTP�f�[�^���擾�E�\�����܂��B\n") ;
+  DP_("����1�����w��̏ꍇ�A20���w�肳�ꂽ���̂Ƃ��ď������܂��B\n") ;
+  DP_("����2�����w��܂���0�̏ꍇ�����������J��Ԃ��܂��B���l���w�肳�ꂽ�ꍇ�A�w�蕪�������J��Ԃ��܂��B\n") ;
+  DP_("[RAW]�Ə����ꂽ�s�́A��M�f�[�^��P���\�����Ă��܂��B\n") ;
+  DP_("[DATA]�Ə����ꂽ�s�́ANTP�p�P�b�g�f�[�^�\���̃����o�����Ӗ��ɂ��킹�ĕ\�����Ă��܂��B\n\n") ;
+
+  rsts_i = WSAStartup(MAKEWORD(1,1),	//Winsock�̏�����
+             &wsaData);					//
+  if(rsts_i != 0){						//Winsock�̏��������s�̏ꍇ
+    EP_("[ERR]Winsock���������s\n");	//                   ���b�Z�[�W
+    return RS_ERR;						//
+    }									//
+  timeGetDevCaps(&tc,sizeof(TIMECAPS));	//MM��ύŏ�����\�擾
+  z_res_ui = min(max(tc.wPeriodMin,1),tc.wPeriodMax) ;
+  z_times_i = 0 ;						//�J��Ԃ��񐔏�����
+  return RS_SUC;						//
+}										//
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E        �Q�D�O�E      �m�s�o�T�[�o�����擾����      �E      ���Q�������Q�O�O      �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     �m�s�o�T�[�o���玞���擾���s���B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *    (int) f_ntp200(struct T_TIME *timebuf) ;
+ *
+ *  ���̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �o�̓f�[�^:
+ *     struct T_TIME    *timebuf ;  �����v�f
+ *
+ *  �Q�ƃf�[�^:
+ *     �Ȃ�
+ *
+ *  �߂�l:
+ *     RS_SUC�F����
+ *     RS_ERR�F���s
+ *
+ *  �`�o�h:
+ *
+ *  ���񎖍�:
+ *     ���ɂȂ��B
+ *
+ *  ���l:
+ *     ���ɂȂ��B
+-------------------------------------------------------------------------------------*/
+int f_ntp200(struct T_TIME *timebuf)	//
+{										//
+  int				rsts_i;				//���^�[���X�e�[�^�X
+										//
+  rsts_i = fl_ntp01();					//�\�P�b�g�쐬����
+  if(rsts_i == RS_SUC){					//�\�P�b�g�쐬�����̏ꍇ
+    zfp = fopen("NTPchecklog.csv", "w");//�t�@�C�����������݃��[�h�ŃI�[�v��
+    if(NULL == zfp){					//�t�@�C���I�[�v�����s
+      EP_("[ERR]���O�t�@�C�����쐬�ł��܂���\n") ;
+      return RS_ERR ;					//
+      }									//
+										//���O�t�@�C���̐擪�s�ɒl�̈Ӗ���\��
+    fprintf(zfp,"��,PC����,,,,,,,S�ŐV��������,,,,,,,C�v�����M����,,,,,,,S�v����M����") ;
+    fprintf(zfp,",,,,,,,S�������M����,,,,,,,LeapID,Version,Mode,Layer,Span,���x,�x��,���U,�eS IP,,,,") ;
+    fprintf(zfp,"FLAG,,Delay,,Disp,,ID,,Ref�b,,Refm�b,,Org�b,,Orgm�b,,Rec�b,,Recm�b,,Trn�b,,Trnm�b,\n") ;
+    fclose(zfp) ;						//���O�t�@�C�������
+    rsts_i = fl_ntp02(timebuf,			//NTP�T�[�o�����擾����
+                S_TIMEOUT);				//
+    closesocket(z_socket);				//�\�P�b�g�̏I��
+    }									//
+  z_times_i++ ;							//�J��Ԃ��񐔃C���N�������g
+  return(rsts_i) ;						//
+}										//
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E        �R�D�O�E      �m�s�o�T�[�o�����擾����      �E      ���Q�������R�O�O      �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     �m�s�o�T�[�o���玞���擾���s���B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *     (void CALLBACK)f_ntp300(UINT uid,UINT umsg,DWORD dwData,DWORD dw1,DWORD dw2) ;
+ *
+ *  ���̓f�[�^:
+ *     DWORD   dwData ;
+ *
+ *  �o�̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �Q�ƃf�[�^:
+ *     �Ȃ�
+ *
+ *  �߂�l:
+ *     �Ȃ�
+ *
+ *  �`�o�h:
+ *
+ *  ���񎖍�:
+ *     ���ɂȂ��B
+ *
+ *  ���l:
+ *     ���ɂȂ��B
+-------------------------------------------------------------------------------------*/
+void CALLBACK f_ntp300(UINT uid,UINT umsg,DWORD dwData,DWORD dw1,DWORD dw2)
+{
+  struct T_TIME		timebuf;			//�����v�f
+  int				rsts_i;				//���^�[���X�e�[�^�X
+										//
+  rsts_i = fl_ntp01();					//�\�P�b�g�쐬����
+  if(rsts_i == RS_SUC){					//�\�P�b�g�쐬�����̏ꍇ
+    rsts_i = fl_ntp02(&timebuf,			//NTP�T�[�o�����擾����
+                S_TIMEOUT);				//
+    closesocket(z_socket);				//�\�P�b�g�̏I��
+    }									//
+  z_times_i++ ;							//�J��Ԃ��J�E���^�J�E���g�A�b�v
+  return ;								//
+}										//
+
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E      �k�a�O�P�E      �������������쐬����          �E      �����Q�������O�P      �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     socket�̍쐬���s���B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *     (int) fl_ntp01(void) ;
+ *
+ *  ���̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �o�̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �Q�ƃf�[�^:
+ *     �Ȃ�
+ *
+ *  �߂�l:
+ *     RS_SUC�F����
+ *     RS_ERR�F���s
+ *
+ *  �`�o�h:
+ *     socket
+ *     htons
+ *     bind
+ *     WSAGetLastError
+ *
+ *  ���񎖍�:
+ *     ���ɂȂ��B
+ *
+ *  ���l:
+ *     ���ɂȂ��B
+-------------------------------------------------------------------------------------*/
+int fl_ntp01()							//
+{										//
+  int					rsts_i;			//���^�[���X�e�[�^�X
+  struct  sockaddr_in	sa;				//�\�P�b�g�̃A�h���X
+  unsigned short		lp_us = 0;		//��M����|�[�g�ԍ�
+										//
+  z_socket = socket(PF_INET,			//UDP���[�h�Ń\�P�b�g�̍쐬
+                    SOCK_DGRAM,0);		//
+  if(z_socket == INVALID_SOCKET){		//�\�P�b�g�쐬���s�̏ꍇ
+    EP_("[ERR]�\�P�b�g�쐬���s\n");		//                   ���b�Z�[�W
+    return RS_ERR;						//
+    }									//
+  sa.sin_family       = AF_INET;		//�C���^�[�l�b�g�̏ꍇ
+  sa.sin_addr.s_addr  = INADDR_ANY;		//������IP�A�h���X���g���悤�ɂ���
+  sa.sin_port         = htons(lp_us);	//��M����|�[�g�ԍ�
+  memset(sa.sin_zero,0,sizeof(sa.sin_zero));
+										//
+  rsts_i = bind(z_socket,				//�o�C���h����
+            (const struct sockaddr *)&sa,
+            sizeof(sa));				//
+  if(rsts_i == SOCKET_ERROR){			//�o�C���h���s�̏ꍇ
+    EP_("[ERR]�o�C���h���s\n");			//              ���b�Z�[�W
+    closesocket(z_socket);				//�\�P�b�g�̏I��
+    return RS_ERR;						//
+    }									//
+  return RS_SUC;						//
+}										//
+
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E    �k�a�O�Q�P�E      IP�A�h���X�擾����            �E      �����Q�������O�Q�P    �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     �z�X�g������A32bit�����̂h�o�A�h���X���擾���s���B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *     (unsigned long) fl_ntp021(char *svname_cp) ;
+ *
+ *  ���̓f�[�^:
+ *     char     *svname_cp ;        �z�X�g��
+ *
+ *  �o�̓f�[�^:
+ *     �Ȃ�
+ *
+ *  �Q�ƃf�[�^:
+ *     �Ȃ�
+ *
+ *  �߂�l:
+ *     32bit������IP�A�h���X�F����
+ *     RS_ERR�F���s
+ *
+ *  �`�o�h:
+ *     gethostbyname
+ *
+ *  ���񎖍�:
+ *     ���ɂȂ��B
+ *
+ *  ���l:
+ *     ���ɂȂ��B
+-------------------------------------------------------------------------------------*/
+unsigned long fl_ntp021(char *svname_cp)//
+{										//
+  struct hostent *shent;				//�T�[�o�̏��A�h���X
+										//
+  shent = gethostbyname(svname_cp);		//�z�X�g������z�X�g�����擾
+  if(shent == NULL){					//�z�X�g���擾���s
+    return RS_ERR;						//
+    }									//
+										//�T�[�o����IP�A�h���X��Ԃ�
+  return *((unsigned long *)((shent->h_addr_list)[0]));
+}										//
+
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E      �k�a�O�S�E      �ώZ�b�����v�f�ϊ�����        �E      F_sectounit           �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     1970�N1��1��0��0��0�b����̐ώZ�b���A�N���������b�i�j���j�ɕϊ�����B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *     (int)F_sectounit(time_t *sec,struct T_TIME *tu) ;
+ *
+ *  ���̓f�[�^:
+ *     time_t			*sec ;		�ώZ�b
+ *
+ *  �o�̓f�[�^:
+ *     struct T_TIME	*tu;		�����v�f�t�H�[�}�b�g
+ *
+ *  �Q�ƃf�[�^:
+ *     �Ȃ�
+ *
+ *  �߂�l:
+ *     RS_SUC�F����
+ *     RS_ERR�F���s
+ *
+ *  �`�o�h:
+ *     gmtime
+ *
+ *  ���񎖍�:
+ *     ���ɂȂ��B
+ *
+ *  ���l:
+ *     ���ɂȂ��B
+-------------------------------------------------------------------------------------*/
+int F_sectounit(time_t *sec, struct T_TIME *tu)
+{										//
+  struct	tm	tmt_buf ;				//�����v�f�ϊ�
+										//
+  if (*sec < 0) return(RS_ERR) ;		//�b�������Ȃ�΃p�����[�^�s��
+  if(*sec != 0){						//�b�������Ȃ�Εϊ�
+    gmtime_s(&tmt_buf, sec) ;				//���ݎ����������v�f�ɕϊ�
+    tu->ct_year_s = tmt_buf.tm_year +1900;	//�N�i����4���j���Z�b�g
+    tu->ct_mon_s = tmt_buf.tm_mon +1 ;		//�����Z�b�g
+    tu->ct_day_s = tmt_buf.tm_mday ;		//�����Z�b�g
+    tu->ct_wday_s = tmt_buf.tm_wday ;		//�j�����Z�b�g
+    tu->ct_hour_s = tmt_buf.tm_hour ;		//�����Z�b�g
+    tu->ct_min_s = tmt_buf.tm_min ;		//�����Z�b�g
+    tu->ct_sec_s = tmt_buf.tm_sec ;		//�b���Z�b�g
+    }									//
+  else {								//�b���O�ŏ�L�������s����2036�N�ƂȂ�̂�0���Z�b�g
+    tu->ct_year_s = 0 ;					//�N�i����4���j���Z�b�g
+    tu->ct_mon_s = 0 ;					//�����Z�b�g
+    tu->ct_day_s = 0 ;					//�����Z�b�g
+    tu->ct_wday_s = 0 ;					//�j�����Z�b�g
+    tu->ct_hour_s = 0 ;					//�����Z�b�g
+    tu->ct_min_s = 0 ;					//�����Z�b�g
+    tu->ct_sec_s = 0 ;					//�b���Z�b�g
+    }									//
+  return(RS_SUC) ;						//
+}										//
+/*------------------------------------------------------------------------------------
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+�E�h�c          �E���@�@��                            �E�� �� ��                    �E
+�E      �k�a�O�Q�E      �m�s�o�T�[�o�����擾����      �E      �����Q�������O�Q      �E
+�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+ *
+ *  �@�@�\:
+ *     �m�s�o�T�[�o���玞���擾���s���B
+ *
+ *  �R�[�����O�V�[�P���X:
+ *    (int) fl_ntp02(struct T_TIME *timebuf, time_t timeout_t) ;
+ *
+ *  ���̓f�[�^:
+ *     long           timeout_l ; ������M�^�C���A�E�g����(�b)
+ *
+ *  �o�̓f�[�^:
+ *     struct T_TIME    *timebuf ;  �����v�f
+ *
+ *  �Q�ƃf�[�^:
+ *     �Ȃ�
+ *
+ *  �߂�l:
+ *     RS_SUC�F����
+ *     RS_ERR�F���s
+ *
+ *  �`�o�h:
+ *
+ *  ���񎖍�:
+ *     ���ɂȂ��B
+ *
+ *  ���l:
+ *     ���ɂȂ��B
+-------------------------------------------------------------------------------------*/
+int fl_ntp02(struct T_TIME *timebuf, long tout_l)
+{
+  unsigned long			saddr_ul ;		//32bit������IP�A�h���X
+  struct  sockaddr_in	ssaddr;			//�T�[�o�̃A�h���X�\����
+  struct NTP_Packet		NTP_Send;		//���M����NTP�p�P�b�g
+  struct NTP_Packet		NTP_Recv;		//��M����NTP�p�P�b�g
+  int					ssaddrsz_i;		//�T�[�o�̃A�h���X�̃T�C�Y
+  int					rsts_i;			//���^�[���X�e�[�^�X
+  double				mstime_d;		//NTP�����̕b���ȉ�����
+  time_t				ntptime_t;		//NTP�����̕b������
+  SYSTEMTIME			stime ;
+  UINT					lpid_ui ;
+  UINT					vn_ui ;
+  UINT					mode_ui ;
+  UINT					layer_ui ;
+  UINT					pspan_ui ;
+  UINT					cword_ui ;
+  int					rdelay_i ;
+  int					rdisp_i ;
+  union  U_IP {
+    int					rid_i ;
+    UCHAR				rid_uc[4] ;
+    } ip ;
+  int					mstime_i ;
+  double				sndmsec_d;		//���M�����̕b���ȉ�����
+  int					sndmsec_i ;
+  time_t				sndsec_t;		//���M�����̕b������
+  double				refmsec_d;		//�Q�Ǝ����̕b���ȉ�����
+  int					refmsec_i ;
+  time_t				refsec_t;		//�Q�Ǝ����̕b������
+  double				orgmsec_d;		//���N�G�X�g���̕b���ȉ�����
+  int					orgmsec_i ;
+  time_t				orgsec_t;		//���N�G�X�g�����̕b������
+  double				recmsec_d;		//�T�[�o����M�����̕b���ȉ�����
+  int					recmsec_i ;
+  time_t				recsec_t; 		//�T�[�o����M�����̕b������
+  double				rdelay_d ;		//���[�g�x��
+  double				rdisp_d ;		//���[�g���U
+  double				seido_d ;		//���x
+  struct T_TIME			snd ;
+  struct T_TIME			ref ;
+  struct T_TIME			org ;
+  struct T_TIME			rec ;
+  char					seido_c ;
+										//
+  saddr_ul = fl_ntp021(S_SERVERNAME);	//IP�A�h���X�擾����
+  if(saddr_ul == RS_ERR){				//IP�A�h���X�擾���s�̏ꍇ
+    EP_("[ERR]�h�o�A�h���X�擾���s\n");	//                   ���b�Z�[�W
+    return RS_ERR;						//
+    }									//
+										//
+  rsts_i = fl_ntp022(&saddr_ul,&ssaddr,&NTP_Send);
+
+  if (rsts_i != RS_SUC){
+    return RS_ERR ;
+    }
+
+  rsts_i = fl_ntp023(&ssaddrsz_i,&ssaddr,&NTP_Recv,tout_l) ;
+
+  fl_ntp024(NTP_Send.trn_sec,NTP_Send.trn_msec,&sndsec_t,&sndmsec_d,&sndmsec_i) ;
+  fl_ntp024(NTP_Recv.trn_sec,NTP_Recv.trn_msec,&ntptime_t,&mstime_d,&mstime_i) ;
+  fl_ntp024(NTP_Recv.ref_sec,NTP_Recv.ref_msec,&refsec_t,&refmsec_d,&refmsec_i) ;
+  fl_ntp024(NTP_Recv.org_sec,NTP_Recv.org_msec,&orgsec_t,&orgmsec_d,&orgmsec_i) ;
+  fl_ntp024(NTP_Recv.rec_sec,NTP_Recv.rec_msec,&recsec_t,&recmsec_d,&recmsec_i) ;
+
+  fl_ntp025(NTP_Recv.root_delay,&rdelay_d) ;
+  fl_ntp025(NTP_Recv.root_dispersion,&rdisp_d) ;
+
+  z_ntpmstime_s = (short)mstime_d;
+  fl_ntp026(NTP_Recv.Control_Word,&cword_ui,&lpid_ui,&vn_ui,&mode_ui,&layer_ui,&pspan_ui,&seido_c) ;
+  rdelay_i = ntohl(NTP_Recv.root_delay);
+  rdisp_i = ntohl(NTP_Recv.root_dispersion);
+  ip.rid_i = ntohl(NTP_Recv.reference_identifier);
+  seido_d = pow(2,seido_c) ;
+
+  z_ntpsectime_t = ntptime_t;
+  GetLocalTime(&stime) ;
+
+  rsts_i = F_sectounit(&z_ntpsectime_t, timebuf);                         //�b�������v�f�ϊ�����
+  if(rsts_i != RS_SUC){                                                    //�b�����ϊ������Ɏ��s�����ꍇ
+    EP_("[ERR]�b�������v�f�ϊ��������s\n");                               //                   ���b�Z�[�W
+    return RS_ERR;
+    }
+  else {
+    rsts_i = F_sectounit(&sndsec_t,&snd) ;
+    rsts_i = F_sectounit(&refsec_t,&ref) ;
+    rsts_i = F_sectounit(&orgsec_t,&org) ;
+    rsts_i = F_sectounit(&recsec_t,&rec) ;
+
+    DP_("[RAW] FLAG                     : 0x%08x,%d\n",NTP_Recv.Control_Word,NTP_Recv.Control_Word) ;
+    DP_("[RAW] RootDelay                : 0x%08x,%d\n",NTP_Recv.root_delay,NTP_Recv.root_delay) ;
+    DP_("[RAW] ClockDispersion          : 0x%08x,%d\n",NTP_Recv.root_dispersion,NTP_Recv.root_dispersion) ;
+    DP_("[RAW] ReferenceClockID         : 0x%08x,%d\n",NTP_Recv.reference_identifier,NTP_Recv.reference_identifier) ;
+    DP_("[RAW] ReferenceClockUpdateTime : 0x%08x,%d\n",NTP_Recv.ref_sec,NTP_Recv.ref_sec) ;
+    DP_("[RAW] ReferenceClockUpdateTime : 0x%08x,%d\n",NTP_Recv.ref_msec,NTP_Recv.ref_msec) ;
+    DP_("[RAW] OriginateTimeStamp       : 0x%08x,%d\n",NTP_Recv.org_sec,NTP_Recv.org_sec) ;
+    DP_("[RAW] OriginateTimeStamp       : 0x%08x,%d\n",NTP_Recv.org_msec,NTP_Recv.org_msec) ;
+    DP_("[RAW] ReceiveTimeStamp         : 0x%08x,%d\n",NTP_Recv.rec_sec,NTP_Recv.rec_sec) ;
+    DP_("[RAW] ReceiveTimeStamp         : 0x%08x,%d\n",NTP_Recv.rec_msec,NTP_Recv.rec_msec) ;
+    DP_("[RAW] TransmitTimeStamp        : 0x%08x,%d\n",NTP_Recv.trn_sec,NTP_Recv.trn_sec) ;
+    DP_("[RAW] TransmitTimeStamp        : 0x%08x,%d\n",NTP_Recv.trn_msec,NTP_Recv.trn_msec) ;
+    DP_("[DATA] LeapID:%d,Version:%d,Mode:%d,Layer:%d,Span:%d\n",lpid_ui,vn_ui,mode_ui,
+         layer_ui,pspan_ui) ;
+    DP_("[DATA] ���x:%f�b,���[�g�x��:%f�b,���[�g���U:%f�b\n",seido_d,rdelay_d,rdisp_d) ;
+    DP_("[DATA] �eNTP�T�[�o:%d.%d.%d.%d\n",ip.rid_uc[3],ip.rid_uc[2],ip.rid_uc[1],ip.rid_uc[0]) ;
+    DP_("[NTP-S�ŐV��������]%d�N%d��%d�� %2d��%2d��%2d�b%d\n",ref.ct_year_s,ref.ct_mon_s,ref.ct_day_s,
+         ref.ct_hour_s,ref.ct_min_s,ref.ct_sec_s,refmsec_i) ;
+    DP_("[NTP-C�v�����M����(�v��)]%d�N%d��%d�� %2d��%2d��%2d�b%d\n",snd.ct_year_s,snd.ct_mon_s,snd.ct_day_s,
+         snd.ct_hour_s,snd.ct_min_s,snd.ct_sec_s,sndmsec_i) ;
+    DP_("[NTP-C�v�����M����(����)]%d�N%d��%d�� %2d��%2d��%2d�b%d\n",org.ct_year_s,org.ct_mon_s,org.ct_day_s,
+         org.ct_hour_s,org.ct_min_s,org.ct_sec_s,orgmsec_i) ;
+    DP_("[NTP�T�[�o��M����]%d�N%d��%d�� %2d��%2d��%2d�b%d\n",rec.ct_year_s,rec.ct_mon_s,rec.ct_day_s,
+         rec.ct_hour_s,rec.ct_min_s,rec.ct_sec_s,recmsec_i) ;
+    DP_("[NTP�T�[�o���M����]%d�N%d��%d�� %2d��%2d��%2d�b%d\n",timebuf->ct_year_s,timebuf->ct_mon_s,timebuf->ct_day_s,
+         timebuf->ct_hour_s,timebuf->ct_min_s,timebuf->ct_sec_s,mstime_i) ;
+    DP_("[Win����]%d�N%d��%d�� %2d��%2d��%2d�b%d\n\n",stime.wYear,stime.wMonth,stime.wDay,
+         stime.wHour,stime.wMinute,stime.wSecond,stime.wMilliseconds) ;
+    if (lpid_ui)
+      DP_("!!!!!!!!!!!!!! Leap ID Wrong [%d] !!!!!!!!!!!!!!\n",lpid_ui) ;
+    }
+  zfp = fopen("NTPchecklog.csv", "a") ;  //�t�@�C����ǋL���[�h�ŃI�[�v��
+  if(NULL == zfp){                       //�t�@�C���I�[�v�����s
+    EP_("[ERR]���O�t�@�C�����쐬�ł��܂���\n") ;
+    return RS_ERR ;
+    }
+  fprintf(zfp,"%d, %d,%d,%d,%d,%d,%d,%d, %d,%d,%d,%d,%d,%d,%d, %d,%d,%d,%d,%d,%d,%d, %d,%d,%d,%d,%d,%d,%d, %d,%d,%d,%d,%d,%d,%d, %d,%d,%d,%d,%d,%f,%f,%f,%d,%d,%d,%d,%x,%d,%x,%d,%x,%d,%x,%d,%x,%d,%x,%d,%x,%d,%x,%d,%x,%d,%x,%d,%x,%d,%x,%d\n",
+    z_times_i,stime.wYear,stime.wMonth,stime.wDay,stime.wHour,stime.wMinute,stime.wSecond,stime.wMilliseconds,
+    ref.ct_year_s,ref.ct_mon_s,ref.ct_day_s,ref.ct_hour_s,ref.ct_min_s,ref.ct_sec_s,refmsec_i,
+    org.ct_year_s,org.ct_mon_s,org.ct_day_s,org.ct_hour_s,org.ct_min_s,org.ct_sec_s,orgmsec_i,
+    rec.ct_year_s,rec.ct_mon_s,rec.ct_day_s,rec.ct_hour_s,rec.ct_min_s,rec.ct_sec_s,recmsec_i,
+    timebuf->ct_year_s,timebuf->ct_mon_s,timebuf->ct_day_s,timebuf->ct_hour_s,timebuf->ct_min_s,timebuf->ct_sec_s,mstime_i,
+    lpid_ui,vn_ui,mode_ui,layer_ui,pspan_ui,seido_d,rdelay_d,rdisp_d,ip.rid_uc[3],ip.rid_uc[2],ip.rid_uc[1],ip.rid_uc[0],
+    NTP_Recv.Control_Word,NTP_Recv.Control_Word,NTP_Recv.root_delay,NTP_Recv.root_delay,NTP_Recv.root_dispersion,NTP_Recv.root_dispersion,NTP_Recv.reference_identifier,NTP_Recv.reference_identifier,NTP_Recv.ref_sec,NTP_Recv.ref_sec,NTP_Recv.ref_msec,NTP_Recv.ref_msec,
+    NTP_Recv.org_sec,NTP_Recv.org_sec,NTP_Recv.org_msec,NTP_Recv.org_msec,NTP_Recv.rec_sec,NTP_Recv.rec_sec,NTP_Recv.rec_msec,NTP_Recv.rec_msec,NTP_Recv.trn_sec,NTP_Recv.trn_sec,NTP_Recv.trn_msec,NTP_Recv.trn_msec) ;
+  fclose(zfp) ;
+  return RS_SUC;
+}
+
+int fl_ntp022(unsigned long *saddr_ul,struct sockaddr_in *ssaddr,struct NTP_Packet *NTP_Send)
+{										//
+  unsigned short		port_us = 123;	//�T�[�o�̃|�[�g�ԍ�
+  int					rsts_i ;		//
+  struct _timeb			tstruct;
+  double				cnv_d ;
+  UINT					cnv_ui ;
+
+  ssaddr->sin_family = AF_INET;			//�T�[�o�̃A�h���X�\���̂ɃT�[�o��IP�A�h���X�ƃ|�[�g�ԍ���ݒ�
+  ssaddr->sin_addr.s_addr = *saddr_ul;	//
+  ssaddr->sin_port = htons(port_us);	//
+  memset(ssaddr->sin_zero,0,sizeof(ssaddr->sin_zero));
+
+  NTP_Send->Control_Word = htonl(0x0B000000);              //NTP�p�P�b�g��SNTP�p�ɏ���������
+  NTP_Send->root_delay = 0;
+  NTP_Send->root_dispersion = 0;
+  NTP_Send->reference_identifier = 0;
+  NTP_Send->ref_sec = 0;
+  NTP_Send->ref_msec = 0;
+  NTP_Send->org_sec = 0;
+  NTP_Send->org_msec = 0;
+  NTP_Send->rec_sec = 0;
+  NTP_Send->rec_msec = 0;
+  NTP_Send->trn_sec = 0;
+  NTP_Send->trn_msec = 0;
+  _ftime(&tstruct) ;
+  NTP_Send->trn_sec = htonl((unsigned long)tstruct.time + S_JAN1970) ;        // OPS5000_64bit mod
+  cnv_d = tstruct.millitm / 1000.0 ;
+  cnv_d *= 4294967296.0 ;
+  cnv_ui = (UINT)cnv_d ;
+  NTP_Send->trn_msec = htonl(cnv_ui) ;
+  DP_("milliseconds = %d\n",tstruct.millitm) ;
+
+  rsts_i = sendto(z_socket,                                //NTP�T�[�o��NTP�p�P�b�g���M
+                  (const char *)NTP_Send,
+                  sizeof(struct NTP_Packet),
+                  0,
+                  (struct sockaddr *)ssaddr,
+                  sizeof(struct sockaddr_in));
+
+  if(rsts_i == SOCKET_ERROR){                              //�p�P�b�g���M���s�̏ꍇ
+    EP_("[ERR]�m�s�o�p�P�b�g���M���s\n");                  //                   ���b�Z�[�W
+    return RS_ERR;
+    }
+  return RS_SUC ;
+}
+
+
+int fl_ntp023(int *ssaddrsz_i,struct sockaddr_in *ssaddr,struct NTP_Packet *NTP_Recv,long tout_l)
+{
+  fd_set				rdps;			//��M�Ď�����f�B�X�N���v�^�W��
+  struct timeval		waittime;		//��M�҂��^�C���A�E�g����
+  int					rsts_i ;		//
+
+  waittime.tv_sec  = tout_l;                            //��M�҂��^�C���A�E�g��ݒ肷��
+  waittime.tv_usec = 0;
+
+  FD_ZERO(&rdps);                                          //�Ď�����f�B�X�N���v�^�W����������
+  FD_SET(z_socket,&rdps);                                  //�Ď�����f�B�X�N���v�^�W���Ƀ\�P�b�g��ǉ�
+
+  rsts_i = select(FD_SETSIZE,                              //NTP�T�[�o����̃p�P�b�g��M�҂�
+                  &rdps,
+                  NULL,
+                  NULL,
+                  &waittime);
+
+  if(rsts_i == SOCKET_ERROR){                              //��M�҂��G���[�̏ꍇ
+    EP_("[ERR]�p�P�b�g��M�҂����s\n");                    //                   ���b�Z�[�W
+    return RS_ERR;
+    }
+
+  if(rsts_i == 0){                                         //��M�҂��^�C���A�E�g�̏ꍇ
+    EP_("[ERR]�p�P�b�g��M�҂��^�C���A�E�g(%d�b)\n",tout_l);
+    return RS_ERR;
+    }
+
+  if(!FD_ISSET(z_socket,&rdps)){                           //��M�����p�P�b�g��NTP�p�P�b�g�ł͂Ȃ��ꍇ
+    EP_("[ERR]�m�s�o�p�P�b�g�ȊO����M���܂����B\n");      //                   ���b�Z�[�W
+    return RS_ERR;
+    }
+  *ssaddrsz_i = sizeof(struct sockaddr_in);
+
+  rsts_i = recvfrom(z_socket,                              //NTP�T�[�o����p�P�b�g��M���s��
+                    (char *)NTP_Recv,
+                    sizeof(struct NTP_Packet),
+                    0,
+                    (struct sockaddr *)ssaddr,
+                    ssaddrsz_i);
+
+  if(rsts_i == SOCKET_ERROR ){                              //��M�G���[�̏ꍇ
+    EP_("[ERR]�p�P�b�g��M���s\n");                         //                   ���b�Z�[�W
+    return RS_ERR;
+    }
+  return RS_SUC ;
+}
+void fl_ntp024(UINT sec_ui,UINT msec_ui, time_t *sec_t,double *msec_d,int *msec_i)
+{										//
+  if (sec_ui){							//
+    *sec_t = ntohl(sec_ui) - S_JAN1970;	//��M����������1970/01/01 ����̕b���ɕϊ�
+    *sec_t += S_JST0900;				//���萢�E��(UTC)������{�W����(JST)�ɕϊ�
+    }									//
+  else {								//
+    *sec_t = 0 ;						//
+    }									//
+  *msec_d = ntohl(msec_ui);				//�b���ȉ��̎������擾
+  *msec_d /= 4294967296.0;				//
+  *msec_d *= 1000.0 ;					//
+  *msec_i = (int)(*msec_d * 1000) ;	//
+  return ;								//
+}										//
+
+//�����t32bit�Œ菬���_����{���x���������_���ɕϊ�
+void fl_ntp025(UINT sec_ui,double *res_d)
+{										//
+  UINT			temp_ui ;				//
+  int			i ;						//
+										//
+  temp_ui = ntohl(sec_ui);				//�b���ȉ��̎������擾
+  *res_d = 0.0 ;						//
+  for (i=0 ; i<16 ; i++){				//
+    if((temp_ui >> i) & 0x1) *res_d += pow(2,i-16) ;
+    }									//
+  *res_d += (double)((temp_ui & 0xffff0000)>>16) ;
+}										//
+
+void fl_ntp026(UINT src_ui,UINT *cword_ui,UINT *lpid_ui,UINT *vn_ui,UINT *mode_ui,UINT *layer_ui,UINT *pspan_ui,char *seido_c)
+{
+  UINT					seido_ui ;
+
+  *cword_ui = ntohl(src_ui);
+  *lpid_ui = *cword_ui ;
+  *lpid_ui >>= 30 ;
+  *vn_ui = *cword_ui ;
+  *vn_ui >>= 27 ;
+  *vn_ui &= 0x7 ;
+  *mode_ui = *cword_ui ;
+  *mode_ui >>= 24 ;
+  *mode_ui &= 0x7 ;
+  *layer_ui = *cword_ui ;
+  *layer_ui >>= 16 ;
+  *layer_ui &= 0xff ;
+  *pspan_ui = *cword_ui ;
+  *pspan_ui >>= 8 ;
+  *pspan_ui &= 0xff ;
+  seido_ui = *cword_ui ;
+  seido_ui &= 0xff ;
+  *seido_c = (char)seido_ui ;
+}
+

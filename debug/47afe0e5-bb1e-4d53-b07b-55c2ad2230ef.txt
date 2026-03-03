@@ -1,0 +1,828 @@
+2026-02-25T00:59:58.973Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T00:59:58.974Z [DEBUG] MDM settings load completed in 17ms
+2026-02-25T00:59:58.985Z [DEBUG] [init] configureGlobalMTLS starting
+2026-02-25T00:59:58.985Z [DEBUG] [init] configureGlobalMTLS complete
+2026-02-25T00:59:58.985Z [DEBUG] [init] configureGlobalAgents starting
+2026-02-25T00:59:58.986Z [DEBUG] [init] configureGlobalAgents complete
+2026-02-25T00:59:59.018Z [DEBUG] Using bash path: "C:\msys64\usr\bin\bash.exe"
+2026-02-25T00:59:59.025Z [DEBUG] Applying permission update: Adding 4 allow rule(s) to destination 'userSettings': ["Bash","Bash(pwsh*)","Bash(pwsh -Command*)","Bash(pwsh -c*)"]
+2026-02-25T00:59:59.026Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-02-25T00:59:59.028Z [DEBUG] [ToolSearch:optimistic] mode=tst-auto, ENABLE_TOOL_SEARCH=undefined, result=true
+2026-02-25T00:59:59.028Z [DEBUG] [STARTUP] Running setup()...
+2026-02-25T00:59:59.032Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\0000250059\.claude\skills, project=[]
+2026-02-25T00:59:59.033Z [DEBUG] Error log sink initialized
+2026-02-25T00:59:59.040Z [DEBUG] [STARTUP] setup() completed in 12ms
+2026-02-25T00:59:59.040Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-02-25T00:59:59.082Z [DEBUG] [Claude in Chrome] Found chrome profiles: Default
+2026-02-25T00:59:59.082Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2026-02-25T00:59:59.082Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2026-02-25T00:59:59.082Z [DEBUG] Total plugin skills loaded: 0
+2026-02-25T00:59:59.082Z [DEBUG] Total plugin commands loaded: 0
+2026-02-25T00:59:59.082Z [DEBUG] Registered 0 hooks from 0 plugins
+2026-02-25T00:59:59.084Z [DEBUG] Total plugin agents loaded: 0
+2026-02-25T00:59:59.091Z [DEBUG] Loaded 0 unique skills (0 unconditional, 0 conditional, managed: 0, user: 0, project: 0, additional: 0, legacy commands: 0)
+2026-02-25T00:59:59.091Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills, 3 bundled skills
+2026-02-25T00:59:59.092Z [DEBUG] [STARTUP] Commands and agents loaded in 52ms
+2026-02-25T00:59:59.097Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-02-25T00:59:59.141Z [DEBUG] Grove: Using fresh cached config
+2026-02-25T00:59:59.147Z [DEBUG] [Perfetto] initializePerfettoTracing called, env value: undefined
+2026-02-25T00:59:59.147Z [DEBUG] [3P telemetry] isTelemetryEnabled=false (CLAUDE_CODE_ENABLE_TELEMETRY=undefined)
+2026-02-25T00:59:59.156Z [DEBUG] [keybindings] KeybindingSetup initialized with 103 bindings, 0 warnings
+2026-02-25T00:59:59.190Z [DEBUG] [Claude in Chrome] Extension fcoeoabgfenejglbffodgkkbkcdhcgfn found in chrome Default
+2026-02-25T00:59:59.192Z [DEBUG] Git remote URL: http://mmm.osshub.mss.local/on-premises/ops/ops5k_x64.git
+2026-02-25T00:59:59.192Z [DEBUG] Parsed repository: null from URL: http://mmm.osshub.mss.local/on-premises/ops/ops5k_x64.git
+2026-02-25T00:59:59.192Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-02-25T00:59:59.195Z [DEBUG] [keybindings] Watching for changes to C:\Users\0000250059\.claude\keybindings.json
+2026-02-25T00:59:59.196Z [DEBUG] Git remote URL: http://mmm.osshub.mss.local/on-premises/ops/ops5k_x64.git
+2026-02-25T00:59:59.196Z [DEBUG] Parsed repository: null from URL: http://mmm.osshub.mss.local/on-premises/ops/ops5k_x64.git
+2026-02-25T00:59:59.472Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981199472
+2026-02-25T00:59:59.472Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T00:59:59.477Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T00:59:59.477Z [DEBUG] Applied original permissions to temp file
+2026-02-25T00:59:59.477Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981199472 to C:\Users\0000250059\.claude.json
+2026-02-25T00:59:59.478Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T00:59:59.583Z [DEBUG] [STARTUP] showSetupScreens() completed in 486ms
+2026-02-25T00:59:59.583Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-02-25T00:59:59.583Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-02-25T00:59:59.583Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-02-25T00:59:59.583Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-25T00:59:59.583Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-25T00:59:59.583Z [DEBUG] Passes: Using fresh cached eligibility data
+2026-02-25T00:59:59.584Z [DEBUG] Total LSP servers loaded: 0
+2026-02-25T00:59:59.584Z [DEBUG] [STARTUP] MCP configs loaded in 558ms
+2026-02-25T00:59:59.593Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-02-25T00:59:59.593Z [DEBUG] LSP manager initialized with 0 servers
+2026-02-25T00:59:59.593Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-25T00:59:59.595Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-02-25T00:59:59.595Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T00:59:59.595Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-02-25T00:59:59.595Z [DEBUG] installed_plugins.json doesn't exist, returning empty V2 object
+2026-02-25T00:59:59.595Z [DEBUG] Initialized versioned plugins system with 0 plugins
+2026-02-25T00:59:59.595Z [DEBUG] LSP server manager initialized successfully
+2026-02-25T00:59:59.595Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-02-25T00:59:59.596Z [DEBUG] [Reconnection] computeInitialTeamContext: No teammate context set (not a teammate)
+2026-02-25T00:59:59.598Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981199598
+2026-02-25T00:59:59.598Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T00:59:59.603Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T00:59:59.603Z [DEBUG] Applied original permissions to temp file
+2026-02-25T00:59:59.603Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981199598 to C:\Users\0000250059\.claude.json
+2026-02-25T00:59:59.604Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T00:59:59.668Z [DEBUG] [keybindings] KeybindingSetup initialized with 103 bindings, 0 warnings
+2026-02-25T00:59:59.706Z [DEBUG] [REPL:mount] REPL mounted, disabled=false
+2026-02-25T00:59:59.709Z [DEBUG] Official marketplace auto-install skipped: already_attempted
+2026-02-25T00:59:59.711Z [DEBUG] performStartupChecks called
+2026-02-25T00:59:59.712Z [DEBUG] Starting background plugin installations
+2026-02-25T00:59:59.712Z [DEBUG] performBackgroundPluginInstallations called
+2026-02-25T00:59:59.772Z [DEBUG] No CLAUDE.md/rules files found
+2026-02-25T00:59:59.773Z [DEBUG] Watching for changes in setting files C:\Users\0000250059\.claude\settings.json...
+2026-02-25T00:59:59.774Z [DEBUG] [FileIndex] getProjectFiles called, respectGitignore=true
+2026-02-25T00:59:59.774Z [DEBUG] [FileIndex] getFilesUsingGit called
+2026-02-25T00:59:59.891Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-02-25T00:59:59.891Z [DEBUG] [claudeai-mcp] Gate returned: true
+2026-02-25T00:59:59.891Z [DEBUG] [claudeai-mcp] Fetching from https://api.anthropic.com/v1/mcp_servers?limit=1000
+2026-02-25T00:59:59.926Z [DEBUG] AutoUpdaterWrapper: Installation type: native
+2026-02-25T00:59:59.928Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2026-02-25T00:59:59.932Z [DEBUG] Security messages are fresh (<1h old), skipping fetch
+2026-02-25T00:59:59.935Z [DEBUG] Org fast mode: disabled (extra_usage_disabled)
+2026-02-25T00:59:59.939Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2026-02-25T00:59:59.950Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T00:59:59.969Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:00.072Z [DEBUG] [FileIndex] git ls-files (tracked) took 207ms
+2026-02-25T01:00:00.074Z [DEBUG] [FileIndex] git ls-files: 8170 tracked files in 300ms
+2026-02-25T01:00:00.100Z [DEBUG] [FileIndex] using git ls-files result (8170 files)
+2026-02-25T01:00:00.149Z [DEBUG] [FileIndex] cache refresh completed in 375ms (rust index)
+2026-02-25T01:00:00.190Z [DEBUG] [claudeai-mcp] Fetched 3 servers
+2026-02-25T01:00:00.192Z [DEBUG] MCP server "claude.ai Google Calendar": Initializing claude.ai proxy transport for server mcpsrv_019yCVR7ND6sBtQPjDBreYMJ
+2026-02-25T01:00:00.192Z [DEBUG] MCP server "claude.ai Google Calendar": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_019yCVR7ND6sBtQPjDBreYMJ
+2026-02-25T01:00:00.192Z [DEBUG] MCP server "claude.ai Google Calendar": claude.ai proxy transport created successfully
+2026-02-25T01:00:00.195Z [DEBUG] MCP server "claude.ai Google Calendar": Starting connection with timeout of 30000ms
+2026-02-25T01:00:00.195Z [DEBUG] MCP server "claude.ai Notion": Initializing claude.ai proxy transport for server mcpsrv_01NrtxBarc1ExyHkwvxZuZVm
+2026-02-25T01:00:00.195Z [DEBUG] MCP server "claude.ai Notion": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01NrtxBarc1ExyHkwvxZuZVm
+2026-02-25T01:00:00.195Z [DEBUG] MCP server "claude.ai Notion": claude.ai proxy transport created successfully
+2026-02-25T01:00:00.197Z [DEBUG] MCP server "claude.ai Notion": Starting connection with timeout of 30000ms
+2026-02-25T01:00:00.197Z [DEBUG] MCP server "claude.ai Gmail": Initializing claude.ai proxy transport for server mcpsrv_01DokMh3ugP8kfyEKSwZdFXK
+2026-02-25T01:00:00.197Z [DEBUG] MCP server "claude.ai Gmail": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01DokMh3ugP8kfyEKSwZdFXK
+2026-02-25T01:00:00.197Z [DEBUG] MCP server "claude.ai Gmail": claude.ai proxy transport created successfully
+2026-02-25T01:00:00.199Z [DEBUG] MCP server "claude.ai Gmail": Starting connection with timeout of 30000ms
+2026-02-25T01:00:00.203Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:00.209Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:00.372Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=C:\Users\0000250059\.local\bin\claude.exe)
+2026-02-25T01:00:00.393Z [DEBUG] [FileIndex] background untracked fetch: 1 files
+2026-02-25T01:00:00.414Z [DEBUG] [FileIndex] rebuilt Rust index with 8170 tracked + 1 untracked files
+2026-02-25T01:00:00.508Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:00.674Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:00.676Z [DEBUG] Checking for native installer update to version 2.1.53
+2026-02-25T01:00:00.678Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:00.681Z [DEBUG] Found 2.1.53 at C:\Users\0000250059\.local\bin\claude.exe, skipping install
+2026-02-25T01:00:00.683Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:00.701Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:00.731Z [DEBUG] MCP server "claude.ai Google Calendar": claude.ai proxy connection failed after 539ms: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYTt7uqWJDNDyk19Hcpu8"}
+2026-02-25T01:00:00.731Z [ERROR] MCP server "claude.ai Google Calendar" Error: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYTt7uqWJDNDyk19Hcpu8"}
+2026-02-25T01:00:00.731Z [DEBUG] MCP server "claude.ai Google Calendar": Authentication required for claude.ai proxy server
+2026-02-25T01:00:00.745Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:00.749Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:00.765Z [DEBUG] MCP server "claude.ai Gmail": claude.ai proxy connection failed after 568ms: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYTt7urFWipmU3ptYPEtC"}
+2026-02-25T01:00:00.765Z [ERROR] MCP server "claude.ai Gmail" Error: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYTt7urFWipmU3ptYPEtC"}
+2026-02-25T01:00:00.766Z [DEBUG] MCP server "claude.ai Gmail": Authentication required for claude.ai proxy server
+2026-02-25T01:00:00.779Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:00.782Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:00.896Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:01.002Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:01.117Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:01.268Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:01.451Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:01.603Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:01.733Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:01.736Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:01.982Z [DEBUG] MCP server "claude.ai Notion": Successfully connected to claudeai-proxy server in 1787ms
+2026-02-25T01:00:01.982Z [DEBUG] MCP server "claude.ai Notion": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":true,"hasResourceSubscribe":false,"serverVersion":{"name":"Notion MCP","icons":[{"src":"https://mcp.notion.com/notion-logo-block-main.svg","mimeType":"image/svg+xml"}],"version":"1.2.0","websiteUrl":"https://developers.notion.com/docs/mcp","description":"Notion's official MCP server lets you use your Notion workspace as a system of record for knowledge work and software development. Search questions about the codebase and business, fetch links to pages such as tech specs and PRDs, and track tasks with your team."}}
+2026-02-25T01:00:01.982Z [DEBUG] [MCP] Server "claude.ai Notion" connected with subscribe=false
+2026-02-25T01:00:02.737Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:03.587Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:03.592Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:06.963Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:08.208Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:09.596Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:10.287Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:10.642Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:10.978Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:11.215Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:11.296Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:11.540Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:11.743Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:13.271Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:13.724Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:15.240Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:16.566Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:18.081Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:18.608Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:20.110Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:20.363Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:21.026Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:21.111Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:22.637Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:24.545Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:27.643Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:34.079Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:35.573Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:37.087Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:38.287Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:38.856Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:39.375Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-02-25T01:00:39.375Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-02-25T01:00:39.375Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-02-25T01:00:39.375Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-02-25T01:00:39.376Z [DEBUG] Sending 1 skills via attachment (initial, 1 total sent)
+2026-02-25T01:00:39.376Z [WARN] [3P telemetry] Event dropped (no event logger initialized): user_prompt
+2026-02-25T01:00:39.377Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-02-25T01:00:39.377Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:39.377Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-02-25T01:00:39.378Z [DEBUG] FileHistory: Added snapshot for 93017b7a-8b2a-4d42-a536-2f34009be9ef, tracking 0 files
+2026-02-25T01:00:39.379Z [DEBUG] [useDeferredValue] Messages deferred by 2 (0→2)
+2026-02-25T01:00:39.384Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:39.384Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:39.393Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-02-25T01:00:39.416Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.53.c81; cc_entrypoint=cli; cch=00000;
+2026-02-25T01:00:39.416Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:39.416Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-25T01:00:39.416Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-25T01:00:39.417Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:39.417Z [DEBUG] Total plugin output styles loaded: 0
+2026-02-25T01:00:39.417Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-25T01:00:39.446Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:39.448Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:39.459Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:39.542Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981239542
+2026-02-25T01:00:39.542Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:39.546Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:39.546Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:39.546Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981239542 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:39.547Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:39.561Z [DEBUG] autocompact: tokens=103 threshold=167000 effectiveWindow=180000
+2026-02-25T01:00:39.564Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-25T01:00:39.564Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-25T01:00:39.564Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-25T01:00:39.567Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:40.013Z [DEBUG] Auto tool search enabled: 21016 tokens (threshold: 20000, 10% of context) [source: query]
+2026-02-25T01:00:40.018Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981240018
+2026-02-25T01:00:40.018Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:40.022Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:40.022Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:40.022Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981240018 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:40.023Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:40.041Z [DEBUG] Dynamic tool loading: 0/28 deferred tools included
+2026-02-25T01:00:40.041Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.53.2d9; cc_entrypoint=cli; cch=00000;
+2026-02-25T01:00:40.041Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:40.042Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-25T01:00:40.042Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-25T01:00:40.042Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:40.042Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-25T01:00:40.042Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:40.045Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:40.086Z [DEBUG] Stream started - received first chunk
+2026-02-25T01:00:41.496Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:41.856Z [DEBUG] Stream started - received first chunk
+2026-02-25T01:00:41.858Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:42.881Z [DEBUG] [useDeferredValue] Messages deferred by 1 (2→3)
+2026-02-25T01:00:42.883Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:42.892Z [DEBUG] [useDeferredValue] Messages deferred by 1 (2→3)
+2026-02-25T01:00:42.894Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:42.903Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:43.714Z [DEBUG] [useDeferredValue] Messages deferred by 1 (3→4)
+2026-02-25T01:00:43.719Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:43.732Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:43.734Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:43.807Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:43.812Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-02-25T01:00:43.813Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-02-25T01:00:43.813Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:43.813Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-02-25T01:00:43.845Z [DEBUG] [useDeferredValue] Messages deferred by 1 (4→5)
+2026-02-25T01:00:43.850Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:43.862Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:44.212Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-02-25T01:00:44.212Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-02-25T01:00:44.212Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:44.212Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-02-25T01:00:44.237Z [DEBUG] [useDeferredValue] Messages deferred by 1 (5→6)
+2026-02-25T01:00:44.242Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:44.249Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:44.542Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:44.546Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-02-25T01:00:44.547Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-02-25T01:00:44.547Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:44.547Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-02-25T01:00:44.572Z [DEBUG] [useDeferredValue] Messages deferred by 1 (6→7)
+2026-02-25T01:00:44.576Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:44.583Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:44.757Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981244757
+2026-02-25T01:00:44.758Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:44.762Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:44.762Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:44.762Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981244757 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:44.763Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:44.779Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-02-25T01:00:44.779Z [DEBUG] Found 5 hook matchers in settings
+2026-02-25T01:00:44.779Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-02-25T01:00:44.781Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:44.848Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981244848
+2026-02-25T01:00:44.848Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:44.852Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:44.852Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:44.852Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981244848 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:44.853Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:44.867Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-02-25T01:00:44.867Z [DEBUG] Found 5 hook matchers in settings
+2026-02-25T01:00:44.867Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-02-25T01:00:44.869Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:45.140Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-02-25T01:00:45.141Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-02-25T01:00:45.141Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:45.141Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-02-25T01:00:45.166Z [DEBUG] [useDeferredValue] Messages deferred by 7 (7→14)
+2026-02-25T01:00:45.170Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:45.177Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981245177
+2026-02-25T01:00:45.177Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:45.180Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:45.181Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:45.181Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981245177 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:45.183Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:45.201Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-02-25T01:00:45.201Z [DEBUG] Found 5 hook matchers in settings
+2026-02-25T01:00:45.201Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-02-25T01:00:45.208Z [DEBUG] [useDeferredValue] Messages deferred by 7 (7→14)
+2026-02-25T01:00:45.209Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:45.219Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:45.349Z [DEBUG] [useDeferredValue] Messages deferred by 3 (14→17)
+2026-02-25T01:00:45.353Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:45.356Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-02-25T01:00:45.357Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-02-25T01:00:45.357Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:45.357Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-02-25T01:00:45.382Z [DEBUG] [useDeferredValue] Messages deferred by 4 (14→18)
+2026-02-25T01:00:45.386Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:45.395Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:45.601Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:45.603Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-02-25T01:00:45.604Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-02-25T01:00:45.604Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:45.604Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-02-25T01:00:45.632Z [DEBUG] [useDeferredValue] Messages deferred by 1 (18→19)
+2026-02-25T01:00:45.638Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:45.647Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:45.789Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981245789
+2026-02-25T01:00:45.789Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:45.793Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:45.794Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:45.794Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981245789 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:45.795Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:45.812Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-02-25T01:00:45.812Z [DEBUG] Found 5 hook matchers in settings
+2026-02-25T01:00:45.812Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-02-25T01:00:45.814Z [DEBUG] [useDeferredValue] Messages deferred by 3 (19→22)
+2026-02-25T01:00:45.818Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:45.827Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:46.008Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981246008
+2026-02-25T01:00:46.008Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:46.012Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:46.012Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:46.012Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981246008 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:46.013Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:46.028Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-02-25T01:00:46.028Z [DEBUG] Found 5 hook matchers in settings
+2026-02-25T01:00:46.028Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-02-25T01:00:46.029Z [DEBUG] [useDeferredValue] Messages deferred by 3 (22→25)
+2026-02-25T01:00:46.033Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:46.042Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:46.332Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981246332
+2026-02-25T01:00:46.332Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:46.336Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:46.336Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:46.336Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981246332 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:46.337Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:46.361Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-02-25T01:00:46.361Z [DEBUG] Found 5 hook matchers in settings
+2026-02-25T01:00:46.361Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-02-25T01:00:46.362Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-02-25T01:00:46.362Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-02-25T01:00:46.362Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-02-25T01:00:46.362Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-02-25T01:00:46.363Z [DEBUG] autocompact: tokens=13836 threshold=167000 effectiveWindow=180000
+2026-02-25T01:00:46.364Z [DEBUG] Auto tool search enabled: 21016 tokens (threshold: 20000, 10% of context) [source: query]
+2026-02-25T01:00:46.371Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981246371
+2026-02-25T01:00:46.371Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:46.377Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:46.377Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:46.377Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981246371 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:46.378Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:46.398Z [DEBUG] Dynamic tool loading: 0/28 deferred tools included
+2026-02-25T01:00:46.399Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.53.2d9; cc_entrypoint=cli; cch=00000;
+2026-02-25T01:00:46.399Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:46.400Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-25T01:00:46.400Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-25T01:00:46.400Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:46.400Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-25T01:00:46.400Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:46.403Z [DEBUG] [useDeferredValue] Messages deferred by 3 (25→28)
+2026-02-25T01:00:46.409Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:46.421Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:48.408Z [DEBUG] Stream started - received first chunk
+2026-02-25T01:00:48.413Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:48.809Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:48.813Z [DEBUG] executePreToolHooks called for tool: Read
+2026-02-25T01:00:48.813Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-02-25T01:00:48.813Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:48.813Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-02-25T01:00:48.818Z [DEBUG] [useDeferredValue] Messages deferred by 1 (28→29)
+2026-02-25T01:00:48.825Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:48.831Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981248831
+2026-02-25T01:00:48.831Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:48.836Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:48.836Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:48.836Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981248831 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:48.837Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:48.859Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-02-25T01:00:48.859Z [DEBUG] Found 5 hook matchers in settings
+2026-02-25T01:00:48.859Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-02-25T01:00:48.860Z [DEBUG] [useDeferredValue] Messages deferred by 1 (28→29)
+2026-02-25T01:00:48.861Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:48.870Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:49.305Z [DEBUG] [useDeferredValue] Messages deferred by 3 (29→32)
+2026-02-25T01:00:49.310Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:49.314Z [DEBUG] [useDeferredValue] Messages deferred by 3 (29→32)
+2026-02-25T01:00:49.316Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:49.324Z [DEBUG] executePreToolHooks called for tool: Read
+2026-02-25T01:00:49.325Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-02-25T01:00:49.325Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:49.325Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-02-25T01:00:49.330Z [DEBUG] [useDeferredValue] Messages deferred by 4 (29→33)
+2026-02-25T01:00:49.335Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:49.343Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981249343
+2026-02-25T01:00:49.343Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:49.347Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:49.347Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:49.347Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981249343 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:49.348Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:49.371Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-02-25T01:00:49.371Z [DEBUG] Found 5 hook matchers in settings
+2026-02-25T01:00:49.371Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-02-25T01:00:49.372Z [DEBUG] [useDeferredValue] Messages deferred by 4 (29→33)
+2026-02-25T01:00:49.373Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:49.383Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:49.621Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-02-25T01:00:49.623Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-02-25T01:00:49.623Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:49.623Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-02-25T01:00:49.648Z [DEBUG] [useDeferredValue] Messages deferred by 4 (33→37)
+2026-02-25T01:00:49.656Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:49.665Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:49.827Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:49.830Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-02-25T01:00:49.831Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-02-25T01:00:49.831Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:49.831Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-02-25T01:00:49.862Z [DEBUG] [useDeferredValue] Messages deferred by 1 (37→38)
+2026-02-25T01:00:49.869Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:49.878Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:50.138Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:50.140Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-02-25T01:00:50.141Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-02-25T01:00:50.141Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:50.141Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-02-25T01:00:50.168Z [DEBUG] [useDeferredValue] Messages deferred by 1 (38→39)
+2026-02-25T01:00:50.175Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:50.186Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:50.369Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981250369
+2026-02-25T01:00:50.369Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:50.374Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:50.375Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:50.375Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981250369 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:50.376Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:50.393Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-02-25T01:00:50.393Z [DEBUG] Found 5 hook matchers in settings
+2026-02-25T01:00:50.394Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-02-25T01:00:50.396Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:50.464Z [DEBUG] [useDeferredValue] Messages deferred by 3 (39→42)
+2026-02-25T01:00:50.469Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:50.473Z [DEBUG] executePreToolHooks called for tool: Glob
+2026-02-25T01:00:50.474Z [DEBUG] Getting matching hook commands for PreToolUse with query: Glob
+2026-02-25T01:00:50.474Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:50.474Z [DEBUG] Matched 0 unique hooks for query "Glob" (0 before deduplication)
+2026-02-25T01:00:50.504Z [DEBUG] [useDeferredValue] Messages deferred by 4 (39→43)
+2026-02-25T01:00:50.509Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:50.517Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:50.569Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981250569
+2026-02-25T01:00:50.569Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:50.576Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:50.576Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:50.576Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981250569 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:50.577Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:50.596Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-02-25T01:00:50.596Z [DEBUG] Found 5 hook matchers in settings
+2026-02-25T01:00:50.596Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-02-25T01:00:50.598Z [DEBUG] [useDeferredValue] Messages deferred by 3 (43→46)
+2026-02-25T01:00:50.602Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:50.611Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:50.832Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981250832
+2026-02-25T01:00:50.832Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:50.835Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:50.836Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:50.836Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981250832 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:50.837Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:50.852Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-02-25T01:00:50.852Z [DEBUG] Found 5 hook matchers in settings
+2026-02-25T01:00:50.852Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-02-25T01:00:50.854Z [DEBUG] [useDeferredValue] Messages deferred by 3 (46→49)
+2026-02-25T01:00:50.858Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:50.866Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:51.207Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981251207
+2026-02-25T01:00:51.207Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:51.211Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:51.212Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:51.212Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981251207 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:51.213Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:51.229Z [DEBUG] Getting matching hook commands for PostToolUse with query: Glob
+2026-02-25T01:00:51.229Z [DEBUG] Found 5 hook matchers in settings
+2026-02-25T01:00:51.229Z [DEBUG] Matched 1 unique hooks for query "Glob" (1 before deduplication)
+2026-02-25T01:00:51.231Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-02-25T01:00:51.231Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-02-25T01:00:51.231Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-02-25T01:00:51.231Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-02-25T01:00:51.233Z [DEBUG] autocompact: tokens=15617 threshold=167000 effectiveWindow=180000
+2026-02-25T01:00:51.234Z [DEBUG] Auto tool search enabled: 21016 tokens (threshold: 20000, 10% of context) [source: query]
+2026-02-25T01:00:51.238Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981251238
+2026-02-25T01:00:51.238Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:51.243Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:51.243Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:51.243Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981251238 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:51.244Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:51.260Z [DEBUG] Dynamic tool loading: 0/28 deferred tools included
+2026-02-25T01:00:51.261Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.53.2d9; cc_entrypoint=cli; cch=00000;
+2026-02-25T01:00:51.261Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:51.261Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-25T01:00:51.261Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-25T01:00:51.261Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:51.261Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-25T01:00:51.262Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:51.271Z [DEBUG] [useDeferredValue] Messages deferred by 4 (49→53)
+2026-02-25T01:00:51.277Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:51.286Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:53.555Z [DEBUG] Stream started - received first chunk
+2026-02-25T01:00:53.560Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:53.959Z [DEBUG] executePreToolHooks called for tool: Read
+2026-02-25T01:00:53.960Z [DEBUG] Getting matching hook commands for PreToolUse with query: Read
+2026-02-25T01:00:53.960Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:00:53.960Z [DEBUG] Matched 0 unique hooks for query "Read" (0 before deduplication)
+2026-02-25T01:00:53.964Z [DEBUG] [useDeferredValue] Messages deferred by 1 (53→54)
+2026-02-25T01:00:53.967Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:53.974Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:53.981Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981253981
+2026-02-25T01:00:53.981Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:53.985Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:53.985Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:53.985Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981253981 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:53.987Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:54.012Z [DEBUG] Getting matching hook commands for PostToolUse with query: Read
+2026-02-25T01:00:54.012Z [DEBUG] Found 5 hook matchers in settings
+2026-02-25T01:00:54.012Z [DEBUG] Matched 1 unique hooks for query "Read" (1 before deduplication)
+2026-02-25T01:00:54.014Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-02-25T01:00:54.014Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-02-25T01:00:54.014Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-02-25T01:00:54.014Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-02-25T01:00:54.016Z [DEBUG] autocompact: tokens=19200 threshold=167000 effectiveWindow=180000
+2026-02-25T01:00:54.016Z [DEBUG] Auto tool search enabled: 21016 tokens (threshold: 20000, 10% of context) [source: query]
+2026-02-25T01:00:54.020Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981254020
+2026-02-25T01:00:54.020Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:00:54.024Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:00:54.024Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:00:54.024Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981254020 to C:\Users\0000250059\.claude.json
+2026-02-25T01:00:54.025Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:00:54.041Z [DEBUG] Dynamic tool loading: 0/28 deferred tools included
+2026-02-25T01:00:54.042Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.53.2d9; cc_entrypoint=cli; cch=00000;
+2026-02-25T01:00:54.042Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:54.042Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-25T01:00:54.042Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-25T01:00:54.042Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:54.042Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-25T01:00:54.042Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:54.044Z [DEBUG] [useDeferredValue] Messages deferred by 3 (54→57)
+2026-02-25T01:00:54.048Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:54.062Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:00:56.023Z [DEBUG] Stream started - received first chunk
+2026-02-25T01:00:56.026Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:01:07.381Z [DEBUG] [useDeferredValue] Messages deferred by 1 (57→58)
+2026-02-25T01:01:07.383Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:01:07.394Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-02-25T01:01:07.394Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:01:07.394Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-02-25T01:01:07.398Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981267398
+2026-02-25T01:01:07.398Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:01:07.401Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:01:07.402Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:01:07.402Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981267398 to C:\Users\0000250059\.claude.json
+2026-02-25T01:01:07.403Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:01:07.425Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.28096.1771981267425
+2026-02-25T01:01:07.425Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T01:01:07.429Z [DEBUG] Temp file written successfully, size: 25892 bytes
+2026-02-25T01:01:07.429Z [DEBUG] Applied original permissions to temp file
+2026-02-25T01:01:07.429Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.28096.1771981267425 to C:\Users\0000250059\.claude.json
+2026-02-25T01:01:07.430Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T01:01:07.446Z [DEBUG] [useDeferredValue] Messages deferred by 1 (57→58)
+2026-02-25T01:01:07.456Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:01:07.460Z [DEBUG] High write ratio: blit=0, write=1399 (100.0% writes), screen=49x107
+2026-02-25T01:01:07.462Z [DEBUG] [useDeferredValue] Messages deferred by 1 (57→58)
+2026-02-25T01:01:07.463Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:01:07.493Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:01:12.884Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:01:20.315Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:01:20.325Z [DEBUG] High write ratio: blit=0, write=1399 (100.0% writes), screen=49x107
+2026-02-25T01:01:30.253Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:01:30.262Z [DEBUG] High write ratio: blit=0, write=1399 (100.0% writes), screen=49x107
+2026-02-25T01:02:30.286Z [DEBUG] Getting matching hook commands for Notification with query: idle_prompt
+2026-02-25T01:02:30.286Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:02:30.286Z [DEBUG] Matched 0 unique hooks for query "idle_prompt" (0 before deduplication)
+2026-02-25T01:04:58.021Z [DEBUG] Detected change to C:\Users\0000250059\.claude\settings.json
+2026-02-25T01:04:58.022Z [DEBUG] Getting matching hook commands for ConfigChange with query: user_settings
+2026-02-25T01:04:58.022Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:04:58.022Z [DEBUG] Matched 0 unique hooks for query "user_settings" (0 before deduplication)
+2026-02-25T01:04:58.043Z [DEBUG] Settings changed from userSettings, updating app state
+2026-02-25T01:04:58.046Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:04:58.046Z [DEBUG] Replacing all deny rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:04:58.046Z [DEBUG] Replacing all ask rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:04:58.046Z [DEBUG] Replacing all allow rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:04:58.046Z [DEBUG] Replacing all deny rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:04:58.046Z [DEBUG] Replacing all ask rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:04:58.046Z [DEBUG] Replacing all allow rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:04:58.046Z [DEBUG] Replacing all deny rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:04:58.046Z [DEBUG] Replacing all ask rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:04:58.047Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 2 rule(s): ["Bash(pwsh:*)","Bash(bash:*)"]
+2026-02-25T01:04:58.051Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:04:58.055Z [DEBUG] High write ratio: blit=0, write=1399 (100.0% writes), screen=49x107
+2026-02-25T01:05:45.438Z [DEBUG] Detected change to C:\Users\0000250059\.claude\settings.json
+2026-02-25T01:05:45.441Z [DEBUG] Getting matching hook commands for ConfigChange with query: user_settings
+2026-02-25T01:05:45.441Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:05:45.441Z [DEBUG] Matched 0 unique hooks for query "user_settings" (0 before deduplication)
+2026-02-25T01:05:45.447Z [DEBUG] Settings changed from userSettings, updating app state
+2026-02-25T01:05:45.450Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:05:45.450Z [DEBUG] Replacing all deny rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:05:45.450Z [DEBUG] Replacing all ask rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:05:45.450Z [DEBUG] Replacing all allow rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:05:45.450Z [DEBUG] Replacing all deny rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:05:45.450Z [DEBUG] Replacing all ask rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:05:45.450Z [DEBUG] Replacing all allow rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:05:45.450Z [DEBUG] Replacing all deny rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:05:45.450Z [DEBUG] Replacing all ask rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:05:45.450Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 2 rule(s): ["Bash(pwsh:*)","Bash(bash:*)"]
+2026-02-25T01:05:45.457Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:05:45.461Z [DEBUG] High write ratio: blit=0, write=1399 (100.0% writes), screen=49x107
+2026-02-25T01:08:50.648Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:08:50.664Z [DEBUG] High write ratio: blit=0, write=1399 (100.0% writes), screen=49x107
+2026-02-25T01:08:58.883Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:08:58.889Z [DEBUG] High write ratio: blit=0, write=1315 (100.0% writes), screen=51x86
+2026-02-25T01:09:01.333Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:09:01.339Z [DEBUG] High write ratio: blit=774, write=1077 (58.2% writes), screen=51x86
+2026-02-25T01:09:01.350Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:09:01.358Z [DEBUG] High write ratio: blit=0, write=1455 (100.0% writes), screen=46x183
+2026-02-25T01:09:03.252Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:09:03.259Z [DEBUG] High write ratio: blit=0, write=1315 (100.0% writes), screen=51x86
+2026-02-25T01:14:36.040Z [DEBUG] Detected change to C:\Users\0000250059\.claude\settings.json
+2026-02-25T01:14:36.045Z [DEBUG] Getting matching hook commands for ConfigChange with query: user_settings
+2026-02-25T01:14:36.045Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:14:36.045Z [DEBUG] Matched 0 unique hooks for query "user_settings" (0 before deduplication)
+2026-02-25T01:14:36.062Z [DEBUG] Settings changed from userSettings, updating app state
+2026-02-25T01:14:36.068Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:14:36.068Z [DEBUG] Replacing all deny rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:14:36.068Z [DEBUG] Replacing all ask rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:14:36.068Z [DEBUG] Replacing all allow rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:14:36.068Z [DEBUG] Replacing all deny rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:14:36.068Z [DEBUG] Replacing all ask rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:14:36.068Z [DEBUG] Replacing all allow rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:14:36.068Z [DEBUG] Replacing all deny rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:14:36.068Z [DEBUG] Replacing all ask rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:14:36.068Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 1 rule(s): ["Bash(bash:*)"]
+2026-02-25T01:14:36.075Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:14:36.087Z [DEBUG] High write ratio: blit=0, write=1315 (100.0% writes), screen=51x86
+2026-02-25T01:15:54.080Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:15:54.095Z [DEBUG] High write ratio: blit=774, write=1077 (58.2% writes), screen=51x86
+2026-02-25T01:16:07.893Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:16:07.928Z [DEBUG] High write ratio: blit=774, write=1077 (58.2% writes), screen=51x86
+2026-02-25T01:16:19.654Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:16:19.663Z [DEBUG] High write ratio: blit=774, write=1077 (58.2% writes), screen=51x86
+2026-02-25T01:16:21.728Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:16:21.737Z [DEBUG] High write ratio: blit=774, write=1077 (58.2% writes), screen=51x86
+2026-02-25T01:16:21.767Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:16:21.775Z [DEBUG] High write ratio: blit=774, write=1077 (58.2% writes), screen=51x86
+2026-02-25T01:29:59.810Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T01:29:59.972Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:30:00.535Z [DEBUG] Checking for native installer update to version 2.1.53
+2026-02-25T01:30:00.550Z [DEBUG] Found 2.1.53 at C:\Users\0000250059\.local\bin\claude.exe, skipping install
+2026-02-25T01:30:00.554Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:50:23.586Z [DEBUG] Detected change to C:\Users\0000250059\.claude\settings.json
+2026-02-25T01:50:23.589Z [DEBUG] Getting matching hook commands for ConfigChange with query: user_settings
+2026-02-25T01:50:23.589Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:50:23.589Z [DEBUG] Matched 0 unique hooks for query "user_settings" (0 before deduplication)
+2026-02-25T01:50:23.610Z [DEBUG] Settings changed from userSettings, updating app state
+2026-02-25T01:50:23.614Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:50:23.614Z [DEBUG] Replacing all deny rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:50:23.614Z [DEBUG] Replacing all ask rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:50:23.614Z [DEBUG] Replacing all allow rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:50:23.614Z [DEBUG] Replacing all deny rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:50:23.614Z [DEBUG] Replacing all ask rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:50:23.614Z [DEBUG] Replacing all allow rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:50:23.614Z [DEBUG] Replacing all deny rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:50:23.614Z [DEBUG] Replacing all ask rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:50:23.614Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 1 rule(s): ["Bash(bash:*)"]
+2026-02-25T01:50:23.622Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:50:23.638Z [DEBUG] High write ratio: blit=0, write=1315 (100.0% writes), screen=51x86
+2026-02-25T01:52:35.850Z [DEBUG] Detected change to C:\Users\0000250059\.claude\settings.json
+2026-02-25T01:52:35.852Z [DEBUG] Getting matching hook commands for ConfigChange with query: user_settings
+2026-02-25T01:52:35.852Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:52:35.852Z [DEBUG] Matched 0 unique hooks for query "user_settings" (0 before deduplication)
+2026-02-25T01:52:35.864Z [DEBUG] Settings changed from userSettings, updating app state
+2026-02-25T01:52:35.869Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:52:35.869Z [DEBUG] Replacing all deny rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:52:35.869Z [DEBUG] Replacing all ask rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:52:35.869Z [DEBUG] Replacing all allow rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:52:35.869Z [DEBUG] Replacing all deny rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:52:35.869Z [DEBUG] Replacing all ask rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:52:35.869Z [DEBUG] Replacing all allow rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:52:35.869Z [DEBUG] Replacing all deny rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:52:35.869Z [DEBUG] Replacing all ask rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:52:35.869Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 1 rule(s): ["Bash(bash:*)"]
+2026-02-25T01:52:35.881Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:52:35.898Z [DEBUG] High write ratio: blit=0, write=1315 (100.0% writes), screen=51x86
+2026-02-25T01:54:39.139Z [DEBUG] Detected change to C:\Users\0000250059\.claude\settings.json
+2026-02-25T01:54:39.140Z [DEBUG] Getting matching hook commands for ConfigChange with query: user_settings
+2026-02-25T01:54:39.140Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:54:39.140Z [DEBUG] Matched 0 unique hooks for query "user_settings" (0 before deduplication)
+2026-02-25T01:54:39.157Z [DEBUG] Settings changed from userSettings, updating app state
+2026-02-25T01:54:39.162Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:54:39.162Z [DEBUG] Replacing all deny rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:54:39.162Z [DEBUG] Replacing all ask rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:54:39.162Z [DEBUG] Replacing all allow rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:54:39.162Z [DEBUG] Replacing all deny rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:54:39.162Z [DEBUG] Replacing all ask rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:54:39.162Z [DEBUG] Replacing all allow rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:54:39.162Z [DEBUG] Replacing all deny rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:54:39.162Z [DEBUG] Replacing all ask rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:54:39.169Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:54:39.183Z [DEBUG] High write ratio: blit=0, write=1315 (100.0% writes), screen=51x86
+2026-02-25T01:54:39.185Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:54:43.937Z [DEBUG] Detected change to C:\Users\0000250059\.claude\settings.json
+2026-02-25T01:54:43.938Z [DEBUG] Getting matching hook commands for ConfigChange with query: user_settings
+2026-02-25T01:54:43.938Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:54:43.938Z [DEBUG] Matched 0 unique hooks for query "user_settings" (0 before deduplication)
+2026-02-25T01:54:43.943Z [DEBUG] Settings changed from userSettings, updating app state
+2026-02-25T01:54:43.946Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:54:43.946Z [DEBUG] Replacing all deny rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:54:43.946Z [DEBUG] Replacing all ask rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:54:43.946Z [DEBUG] Replacing all allow rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:54:43.946Z [DEBUG] Replacing all deny rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:54:43.946Z [DEBUG] Replacing all ask rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:54:43.946Z [DEBUG] Replacing all allow rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:54:43.946Z [DEBUG] Replacing all deny rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:54:43.946Z [DEBUG] Replacing all ask rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:54:43.951Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:54:43.954Z [DEBUG] High write ratio: blit=0, write=1359 (100.0% writes), screen=51x86
+2026-02-25T01:54:58.557Z [DEBUG] Detected change to C:\Users\0000250059\.claude\settings.json
+2026-02-25T01:54:58.560Z [DEBUG] Getting matching hook commands for ConfigChange with query: user_settings
+2026-02-25T01:54:58.560Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:54:58.560Z [DEBUG] Matched 0 unique hooks for query "user_settings" (0 before deduplication)
+2026-02-25T01:54:58.567Z [DEBUG] Settings changed from userSettings, updating app state
+2026-02-25T01:54:58.571Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:54:58.571Z [DEBUG] Replacing all deny rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:54:58.571Z [DEBUG] Replacing all ask rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:54:58.571Z [DEBUG] Replacing all allow rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:54:58.571Z [DEBUG] Replacing all deny rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:54:58.571Z [DEBUG] Replacing all ask rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:54:58.571Z [DEBUG] Replacing all allow rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:54:58.571Z [DEBUG] Replacing all deny rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:54:58.571Z [DEBUG] Replacing all ask rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:54:58.575Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:54:58.580Z [DEBUG] High write ratio: blit=0, write=1359 (100.0% writes), screen=51x86
+2026-02-25T01:58:16.317Z [DEBUG] Detected change to C:\Users\0000250059\.claude\settings.json
+2026-02-25T01:58:16.318Z [DEBUG] Getting matching hook commands for ConfigChange with query: user_settings
+2026-02-25T01:58:16.318Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T01:58:16.319Z [DEBUG] Matched 0 unique hooks for query "user_settings" (0 before deduplication)
+2026-02-25T01:58:16.342Z [DEBUG] Settings changed from userSettings, updating app state
+2026-02-25T01:58:16.346Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:58:16.346Z [DEBUG] Replacing all deny rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:58:16.346Z [DEBUG] Replacing all ask rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T01:58:16.346Z [DEBUG] Replacing all allow rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:58:16.346Z [DEBUG] Replacing all deny rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:58:16.346Z [DEBUG] Replacing all ask rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T01:58:16.346Z [DEBUG] Replacing all allow rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:58:16.346Z [DEBUG] Replacing all deny rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:58:16.346Z [DEBUG] Replacing all ask rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T01:58:16.352Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T01:58:16.358Z [DEBUG] High write ratio: blit=0, write=1315 (100.0% writes), screen=51x86
+2026-02-25T01:59:59.820Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T01:59:59.982Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:00:00.917Z [DEBUG] Checking for native installer update to version 2.1.53
+2026-02-25T02:00:00.919Z [DEBUG] Found 2.1.53 at C:\Users\0000250059\.local\bin\claude.exe, skipping install
+2026-02-25T02:00:00.924Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:16:35.358Z [DEBUG] Detected change to C:\Users\0000250059\.claude\settings.json
+2026-02-25T02:16:35.360Z [DEBUG] Getting matching hook commands for ConfigChange with query: user_settings
+2026-02-25T02:16:35.360Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T02:16:35.360Z [DEBUG] Matched 0 unique hooks for query "user_settings" (0 before deduplication)
+2026-02-25T02:16:35.385Z [DEBUG] Settings changed from userSettings, updating app state
+2026-02-25T02:16:35.390Z [DEBUG] Replacing all allow rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T02:16:35.390Z [DEBUG] Replacing all deny rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T02:16:35.390Z [DEBUG] Replacing all ask rules for destination 'userSettings' with 0 rule(s): []
+2026-02-25T02:16:35.390Z [DEBUG] Replacing all allow rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T02:16:35.390Z [DEBUG] Replacing all deny rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T02:16:35.390Z [DEBUG] Replacing all ask rules for destination 'projectSettings' with 0 rule(s): []
+2026-02-25T02:16:35.390Z [DEBUG] Replacing all allow rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T02:16:35.390Z [DEBUG] Replacing all deny rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T02:16:35.390Z [DEBUG] Replacing all ask rules for destination 'localSettings' with 0 rule(s): []
+2026-02-25T02:16:35.398Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:16:35.404Z [DEBUG] High write ratio: blit=0, write=1315 (100.0% writes), screen=51x86
+2026-02-25T02:29:59.835Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T02:29:59.986Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:30:00.678Z [DEBUG] Checking for native installer update to version 2.1.53
+2026-02-25T02:30:00.681Z [DEBUG] Found 2.1.53 at C:\Users\0000250059\.local\bin\claude.exe, skipping install
+2026-02-25T02:30:00.685Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T02:59:59.839Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T02:59:59.956Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T03:00:00.112Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at a5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T03:00:00.114Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at a5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T03:00:00.153Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T03:00:04.971Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T03:00:04.977Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at f10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T03:00:04.977Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T03:29:59.830Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T03:29:59.954Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T03:30:00.040Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at a5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T03:30:00.040Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at a5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T03:30:00.049Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T03:30:04.956Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T03:30:04.956Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at f10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T03:30:04.956Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T03:54:48.196Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T03:54:48.231Z [DEBUG] High write ratio: blit=774, write=1077 (58.2% writes), screen=51x86
+2026-02-25T03:54:55.662Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T03:54:55.676Z [DEBUG] High write ratio: blit=0, write=1315 (100.0% writes), screen=51x86

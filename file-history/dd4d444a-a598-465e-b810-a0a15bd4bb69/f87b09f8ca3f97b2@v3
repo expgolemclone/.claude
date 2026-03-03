@@ -1,0 +1,40 @@
+# settings.json の #todo コメントを実態に合わせて書き直す
+
+## Context
+`.vscode/settings.json` の #todo コメント2箇所が、実際の強制の仕組みを正確に反映していない。
+- CP932 の強制: pre-commit フック (`pre_commit_encoding.py`) が担当
+- CRLF の強制: `.gitattributes` (`eol=crlf`) + pre-commit フック が担当
+- VS Code 設定はあくまで「デフォルト値」であり、強制する仕組みではない
+
+コメントを実態に合わせて修正する。
+
+## 変更対象
+`D:\refactoring\ops5k_x64\.vscode\settings.json`
+
+### 変更1: 12行目 (files.encoding のコメント)
+
+**Before:**
+```
+// デフォルトを Shift_JIS にしておく->#todo すべてのファイルをcp932, CRLFに強制する.
+```
+
+**After:**
+```
+// デフォルトを CP932 にしておく（CP932 への強制は pre-commit フックが担当）
+```
+
+### 変更2: 20行目 (files.eol のコメント)
+
+**Before:**
+```
+// Windows プロジェクトなので CRLF（\r\n）を#todo必須にする
+```
+
+**After:**
+```
+// Windows プロジェクトなので CRLF（\r\n）を必須にする（.gitattributes + pre-commit フックで強制）
+```
+
+## 検証
+- settings.json が有効な JSON であること（末尾カンマに注意）
+- コメントが仕組みの実態を正確に反映していること

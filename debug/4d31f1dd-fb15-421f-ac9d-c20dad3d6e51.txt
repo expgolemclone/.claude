@@ -1,0 +1,36 @@
+2026-02-25T02:41:00.709Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T02:41:00.709Z [DEBUG] MDM settings load completed in 16ms
+2026-02-25T02:41:00.761Z [DEBUG] [init] configureGlobalMTLS starting
+2026-02-25T02:41:00.761Z [DEBUG] [init] configureGlobalMTLS complete
+2026-02-25T02:41:00.761Z [DEBUG] [init] configureGlobalAgents starting
+2026-02-25T02:41:00.762Z [DEBUG] [init] configureGlobalAgents complete
+2026-02-25T02:41:00.797Z [DEBUG] Using bash path: "C:\msys64\usr\bin\bash.exe"
+2026-02-25T02:41:00.806Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-02-25T02:41:00.808Z [DEBUG] [ToolSearch:optimistic] mode=tst-auto, ENABLE_TOOL_SEARCH=undefined, result=true
+2026-02-25T02:41:00.808Z [DEBUG] [STARTUP] Running setup()...
+2026-02-25T02:41:00.812Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\0000250059\.claude\skills, project=[]
+2026-02-25T02:41:00.813Z [DEBUG] Error log sink initialized
+2026-02-25T02:41:00.833Z [DEBUG] [STARTUP] setup() completed in 25ms
+2026-02-25T02:41:00.833Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-02-25T02:41:00.833Z [DEBUG] Git remote URL: null
+2026-02-25T02:41:00.833Z [DEBUG] No git remote URL found
+2026-02-25T02:41:00.868Z [DEBUG] Loaded 0 unique skills (0 unconditional, 0 conditional, managed: 0, user: 0, project: 0, additional: 0, legacy commands: 0)
+2026-02-25T02:41:00.870Z [DEBUG] [Claude in Chrome] Found chrome profiles: Default
+2026-02-25T02:41:00.871Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2026-02-25T02:41:00.871Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2026-02-25T02:41:00.871Z [DEBUG] Total plugin skills loaded: 0
+2026-02-25T02:41:00.871Z [DEBUG] Total plugin commands loaded: 0
+2026-02-25T02:41:00.871Z [DEBUG] Registered 0 hooks from 0 plugins
+2026-02-25T02:41:00.871Z [DEBUG] Total plugin agents loaded: 0
+2026-02-25T02:41:00.881Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills, 3 bundled skills
+2026-02-25T02:41:00.882Z [DEBUG] [STARTUP] Commands and agents loaded in 49ms
+2026-02-25T02:41:00.887Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-02-25T02:41:00.889Z [DEBUG] [keybindings] KeybindingSetup initialized with 103 bindings, 0 warnings
+2026-02-25T02:41:00.906Z [DEBUG] [Claude in Chrome] Extension fcoeoabgfenejglbffodgkkbkcdhcgfn found in chrome Default
+2026-02-25T02:41:00.906Z [DEBUG] [keybindings] Watching for changes to C:\Users\0000250059\.claude\keybindings.json
+2026-02-25T02:41:01.425Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.19400.1771987261425
+2026-02-25T02:41:01.426Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T02:41:01.429Z [DEBUG] Temp file written successfully, size: 27339 bytes
+2026-02-25T02:41:01.430Z [DEBUG] Applied original permissions to temp file
+2026-02-25T02:41:01.430Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.19400.1771987261425 to C:\Users\0000250059\.claude.json
+2026-02-25T02:41:01.431Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically

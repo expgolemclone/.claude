@@ -1,0 +1,115 @@
+"""PostToolUse hook: detect encoding changes in source files.
+
+Compares the file's encoding after Edit/Write against the HEAD version in git.
+If the encoding changed (e.g. cp932 -> utf-8), outputs a warning to stdout
+which Claude will see as feedback.
+"""
+
+import json
+import os
+import subprocess
+import sys
+
+
+SOURCE_EXTS = {".c", ".h", ".cpp", ".hpp"}
+
+
+def detect_encoding(data: bytes) -> str | None:
+    """Detect encoding by trying cp932 then utf-8."""
+    for enc in ("cp932", "utf-8"):
+        try:
+            data.decode(enc)
+            return enc
+        except (UnicodeDecodeError, ValueError):
+            continue
+    return None
+
+
+def is_binary(data: bytes) -> bool:
+    return b"\x00" in data[:512]
+
+
+def get_git_head_content(rel_path: str, cwd: str) -> bytes | None:
+    """Get file content from git HEAD."""
+    try:
+        result = subprocess.run(
+            ["git", "show", f"HEAD:{rel_path}"],
+            capture_output=True,
+            cwd=cwd,
+        )
+        if result.returncode == 0:
+            return result.stdout
+    except Exception:
+        pass
+    return None
+
+
+def get_repo_root(cwd: str) -> str | None:
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"],
+            capture_output=True,
+            text=True,
+            cwd=cwd,
+        )
+        if result.returncode == 0:
+            return result.stdout.strip()
+    except Exception:
+        pass
+    return None
+
+
+def main() -> int:
+    input_data = json.load(sys.stdin)
+    tool_input = input_data.get("tool_input", {})
+    file_path = tool_input.get("file_path", "")
+    cwd = input_data.get("cwd", "")
+
+    if not file_path or not os.path.isfile(file_path):
+        return 0
+
+    # Only check source files
+    ext = os.path.splitext(file_path)[1].lower()
+    if ext not in SOURCE_EXTS:
+        return 0
+
+    # Read current file
+    try:
+        with open(file_path, "rb") as f:
+            current_data = f.read()
+    except OSError:
+        return 0
+
+    if not current_data or is_binary(current_data):
+        return 0
+
+    # Get repo root and relative path
+    repo_root = get_repo_root(cwd)
+    if not repo_root:
+        return 0
+
+    # Normalize to forward slashes for git
+    abs_path = os.path.abspath(file_path)
+    rel_path = os.path.relpath(abs_path, repo_root).replace("\\", "/")
+
+    # Get original from HEAD
+    original_data = get_git_head_content(rel_path, repo_root)
+    if original_data is None:
+        return 0  # New file, not in git yet
+
+    orig_enc = detect_encoding(original_data)
+    curr_enc = detect_encoding(current_data)
+
+    if orig_enc and curr_enc and orig_enc != curr_enc:
+        print(
+            f"WARNING: ENCODING CHANGED: {file_path}\n"
+            f"  Original(HEAD): {orig_enc} -> Current: {curr_enc}\n"
+            f"  文字コードが変更されています。元のエンコーディング({orig_enc})に戻してください。\n"
+            f"  このファイルを{orig_enc}で保存し直す必要があります。"
+        )
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

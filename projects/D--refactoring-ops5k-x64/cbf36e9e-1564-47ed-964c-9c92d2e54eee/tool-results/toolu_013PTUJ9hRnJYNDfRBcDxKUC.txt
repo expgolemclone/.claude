@@ -1,0 +1,346 @@
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:554:        tokh_cp=strtok(buf_cp, " ,\t\n");			//�v�f���̎��o��
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:558:        tokv_cp=strtok(NULL , " ,\t\n");			//�v�f�l�̎��o��
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:877:        tokh_cp=strtok(buf_cp, " ,\t\n");			//����ٔԍ��̎��o��
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:884:        tokt_cp=strtok(NULL, " ,\t\n");				//���߂̎��o��
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:889:            tokp_cp[cnti_ui]=strtok(NULL, " ,\t\n");//���Ұ�1���o��
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1044:        tokgrp_cp=strtok(buf_cp, " ,\t\n");			//�I����M��ٰ�ߔԍ��̎��o��
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1059:            toktcd_cp=strtok(NULL, " ,\t\n");
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1141:        tokbuf_cp=strtok(buf_cp, " ,\t\n");				//�@�\Ӽޭ�ٖ��̂̎��o��
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1150:        tokbuf_cp=strtok(NULL, " ,\t\n");				//�@�\Ӽޭ�ٔԍ��̎��o��
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1156:        tokbuf_cp=strtok(NULL, " ,\t\n");				//�����ޯ���ѱ�Ď��Ԃ̎��o��
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1162:        tokbuf_cp=strtok(NULL, " ,\t\n");				//�Ɩ���ԊĎ�����ꍇ���ް�̨���ޔԍ��ƋƖ�ID(TID)�̎��o��
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1179:            tokbuf_cp=strtok(NULL, " ,\t\n");
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1297:        tokh_cp=strtok(buf_cp, " ,\t\n");			//�v�f���̎��o��
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1300:        tokv_cp=strtok(NULL , " ,\t\n");			//�v�f�l�̎��o��
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1733:        tokg_cp=strtok(buf_cp, " ,\t\n");			//��ٰ�ߔԍ��̎��o��
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1745:        tokb_cp=strtok(NULL, " ,\t\n");
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1749:        tokb_cp=strtok(NULL, " ,\t\n");
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1753:        tokb_cp=strtok(NULL, " ,\t\n");
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1812:        tokb_cp=strtok(buf_cp, " ,\t\n");
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1816:        tokb_cp=strtok(NULL, " ,\t\n");
+D:\refactoring\ops5k_x64\src\NX_MW\opsnexus\init.c:1820:        tokb_cp=strtok(NULL, " ,\t\n");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:690:		p_c[0] = strtok(z_buf_c," ,") ;             //İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:693:		  if (p_c[i] != NULL) p_c[i+1] = strtok(NULL," ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:886:    p_c[0]=strtok(z_buf_c, " ,") ;                  //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:889:        p_c[i+1]=strtok(NULL, " ,") ;               //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:1912:    p_c[0]=strtok(z_buf_c, " ,") ;            //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:1915:        p_c[i+1]=strtok(NULL, " ,") ;         //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:2085:		p_c[0]=strtok(z_buf_c, " ,") ;                         //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:2088:			p_c[i+1]=strtok(NULL, " ,") ;                      //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:2090:		if (p_c[17] != NULL) p_c[18]=strtok(NULL,"") ;         //
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:2831:    p_c[0]=strtok(z_buf_c, " ,") ;                   //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:2834:        p_c[i+1]=strtok(NULL, " ,") ;                //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:2947:    p_c[0]=strtok(z_buf_c, " ,") ;                    //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:2950:        p_c[i+1]=strtok(NULL, " ,") ;                 //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3773:    p_c[0]=strtok(z_clntbuf_c, " ,") ;            //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3776:        p_c[i+1]=strtok(NULL, " ,") ;         //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3885:    p_c[0]=strtok(z_buf_c, " ,") ;              //İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3886:    if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3899:          p_c[2]=strtok(NULL, " ,") ;           //
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3900:          if (p_c[2] != NULL) p_c[3]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3901:          if (p_c[3] != NULL) p_c[4]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3902:          if (p_c[4] != NULL) p_c[5]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3903:          if (p_c[5] != NULL) p_c[6]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3904:          if (p_c[6] != NULL) p_c[7]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3905:          if (p_c[7] != NULL) p_c[8]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3906:          if (p_c[8] != NULL) p_c[9]=strtok(NULL, " ,") ; // MonoPrint mod
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3963:          p_c[2]=strtok(NULL, "") ;             //
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3978:          p_c[2]=strtok(NULL, "") ;             //
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3991:          p_c[2]=strtok(NULL, " ,") ;           //
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3992:          if (p_c[2] != NULL) p_c[3]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3993:          if (p_c[3] != NULL) p_c[4]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:3995:          if (p_c[4] != NULL) p_c[5]=strtok(NULL, " ,") ;          /* TOKAIKAMI mod */
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4096:      p_c[0]=strtok(z_buf_c, " ,") ;            //İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4099:          p_c[i+1]=strtok(NULL, " ,") ;         //���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4109:      p_c[0]=strtok(z_buf_c, " ,") ;            //İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4112:          p_c[i+1]=strtok(NULL, " ,") ;         //���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4122:      p_c[0]=strtok(z_buf_c, " ,") ;            //İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4125:          p_c[i+1]=strtok(NULL, " ,") ;         //���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4136:		p_c[0]=strtok(z_buf_c," ,");            //İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4139:				p_c[i+1] = strtok(NULL," ,");   //���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4206:    p_c[0]=strtok(z_buf_c, " ,") ;          //İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4209:        p_c[i+1]=strtok(NULL, " ,") ;       //���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4302:        p_c[0]=strtok(z_buf_c, " ,") ;              //      İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4304:          p_c[1]=strtok(NULL, " ,") ;               //
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4440:    p_c[0]=strtok(z_buf_c, " ,") ;             //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4441:    if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4442:    if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4513:    p_c[0]=strtok(z_buf_c, " ,") ;              //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4516:        p_c[i+1]=strtok(NULL, " ,") ;           //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4595:    p_c[0]=strtok(z_buf_c, " ,") ;              //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4598:        p_c[i+1]=strtok(NULL, " ,") ;           //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4991:    p_c[0]=strtok(z_buf_c, " ,") ;             //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4992:    if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4993:    if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:4994:    if (p_c[2] != NULL) p_c[3]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5067:        p_c[0]=strtok(z_buf_c, " ,") ;      //      İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5069:          p_c[1]=strtok(NULL, " ,") ;       //
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5154:    p_c[0]=strtok(z_buf_c, " ,") ;             //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5155:    if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5235:    p_c[0]=strtok(z_buf_c, " ,") ;                  //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5236:    if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5237:    if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5298:    p_c[0]=strtok(z_buf_c, " ,") ;                  //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5299:    if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5300:    if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5351:    p_c[0]=strtok(name_c, ".,") ;                   //  ���[�\�����̎擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5352:    p_c[1]=strtok(NULL, "") ;                       //  �g���q���擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5358:    p_c[0]=strtok(name_c, ".,") ;                   //  ���[�󎚖��̎擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5359:    p_c[1]=strtok(NULL, "") ;                       //  �g���q���擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5365:    p_c[0]=strtok(name_c, ".,") ;                   //  ���[�ۑ����̎擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5366:    p_c[1]=strtok(NULL, "") ;                       //  �g���q���擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5372:    p_c[0]=strtok(name_c, ".,") ;                   //  ���[��`���̎擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5373:    p_c[1]=strtok(NULL, "") ;                       //  �g���q���擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5379:    p_c[0]=strtok(name_c, ".,") ;                   //  ���[��`���̎擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5380:    p_c[1]=strtok(NULL, "") ;                       //  �g���q���擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5386:    p_c[0]=strtok(name_c, ".,") ;                   //  ���[��`���̎擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5387:    p_c[1]=strtok(NULL, "") ;                       //  �g���q���擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5393:    p_c[0]=strtok(name_c, ".,") ;                   //  ���[��`���̎擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5394:    p_c[1]=strtok(NULL, "") ;                       //  �g���q���擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5461:        p_c[0]=strtok(z_buf_c, " ,") ;      //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5464:            p_c[j+1]=strtok(NULL, " ,") ;   //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5559:        p0_c=strtok(buf_c, " ,");                   //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5560:        if (p0_c != NULL) p1_c=strtok(NULL, " ,");  //�p�����[�^�����̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5561:        if (p1_c != NULL) p2_c=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5634:		p_c[0]=strtok(z_buf_c," ,") ;          //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5637:				p_c[i+1] = strtok(NULL, " ,") ;//   ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5713:        p_c[0]=strtok(z_buf_c, " ,") ;              //      İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5715:          p_c[1]=strtok(NULL, " ,") ;               //
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5797:	p_c[0]=strtok(z_buf_c, " ,") ;                  //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5800:        p_c[i+1]=strtok(NULL, " ,") ;               //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5874:        p_c[0]=strtok(z_buf_c, " ,") ;      //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5877:            p_c[j+1]=strtok(NULL, " ,") ;   //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5958:        p_c[0]=strtok(z_buf_c, " ,") ;              //      İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:5960:          p_c[1]=strtok(NULL, " ,") ;               //
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6030:        p_c[0]=strtok(z_buf_c, " ,") ;                  //İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6031:        if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6129:        p_c[0]=strtok(z_buf_c, " ,") ;                  //İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6130:        if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6243:            p_c[0]=strtok(buf_c, " ,") ;                    //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6244:            if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6252:            p_c[0]=strtok(buf_c, " ,") ;                    //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6253:            if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6261:            p_c[0]=strtok(buf_c, " ,") ;                    //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6262:            if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6270:            p_c[0]=strtok(buf_c, " ,") ;                    //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6271:            if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6279:            p_c[0]=strtok(buf_c, " ,") ;                    //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6280:            if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6281:            if (p_c[0] != NULL) p_c[2]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6282:            if (p_c[0] != NULL) p_c[3]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6298:            p_c[0]=strtok(buf_c, " ,") ;                    //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6299:            if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6300:            if (p_c[0] != NULL) p_c[2]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6301:            if (p_c[0] != NULL) p_c[3]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6317:            p_c[0]=strtok(buf_c, " ,") ;                    //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6318:            if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6327:            p_c[0]=strtok(buf_c, " ,") ;                    //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6328:            if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6396:        p_c[0]=strtok(z_buf_c, " \t,") ;                  //İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6397:        if (p_c[0] != NULL) p_c[1]=strtok(NULL, "\t,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6492:        p_c[0]=strtok(z_buf_c, " \t,") ;                //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6495:            p_c[i+1]=strtok(NULL, "\t,") ;              //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6648:            p_c[0]=strtok(buf_c, " ,") ;                    //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6649:            if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6660:            p_c[0]=strtok(buf_c, " ,") ;                    //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6661:            if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6662:            if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6663:            if (p_c[2] != NULL) p_c[3]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6664:            if (p_c[3] != NULL) p_c[4]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6665:            if (p_c[4] != NULL) p_c[5]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6666:            if (p_c[5] != NULL) p_c[6]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6667:            if (p_c[6] != NULL) p_c[7]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6668:            if (p_c[7] != NULL) p_c[8]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6669:            if (p_c[8] != NULL) p_c[9]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6670:            if (p_c[9] != NULL) p_c[10]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6766:        p_c[0]=strtok(buf_c, " ,") ;                      //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6767:        if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");    //�z��C���f�b�N�X�i�ݔ�ID�j
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6768:        if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,");    //�Ď��敪
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6844:        p_c[0]=strtok(buf_c, " ,") ;                      //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6845:        if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");    //�z��C���f�b�N�X�i���No�j
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6846:        if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,");    //�Ď��敪
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6932:        p_c[0] = strtok(buf_c, " \t\n");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:6935:			p_c[i + 1] = strtok(NULL, " \t\n");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:7057:        p_c[0] = strtok(buf_c, " \t\n");                    // ��񖼂̎擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:7062:			p_c[i + 1] = strtok(NULL, " \t\n");
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:8924:  exe_c = strtok(tmp_c, " ,") ;         //���s���擾
+D:\refactoring\ops5k_x64\src\sys\aosysi\aosysi.c:8926:    wrk_c=strtok(NULL, " ,") ;          //
+D:\refactoring\ops5k_x64\src\sys\aoalm\aoalm.c:2919:            token_c[0]=strtok(buf_cp, " ,") ;           //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aoalm\aoalm.c:2922:                    token_c[j+1]=strtok(NULL, " ,") ;   //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aoalm\aoalm.c:2971:            token_c[0]=strtok(buf_cp, " ,") ;           //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aoalm\aoalm.c:2974:                    token_c[j+1]=strtok(NULL, " ,") ;   //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\sys\aomngr\aomngr.c:5200:        p_c[0]=strtok(buf_c, " ,") ;                //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\sys\aomngr\aomngr.c:5203:                p_c[i+1]=strtok(NULL, " ,") ;       //    ���Ұ������̎��o��
+D:\refactoring\ops5k_x64\src\trd\botrdls\botrdls.c:2636:		p_c[0]=strtok(buf_c, " ,");             
+D:\refactoring\ops5k_x64\src\trd\botrdls\botrdls.c:2640:				p_c[i+1]=strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\msg\coalm\coalm100.c:124:      p_c[ 0 ] = strtok ( buf_c , " ," ) ; /* İ�ݖ��ɕ�������쐬            */
+D:\refactoring\ops5k_x64\src\msg\coalm\coalm100.c:127:          p_c[ i+1 ] = strtok( NULL , " ," ) ; /* ���Ұ������̎��o��        */
+D:\refactoring\ops5k_x64\src\utly\lemmeq\lemmeq100.cpp:307:            token_c[0]=strtok(buf_c, " \n") ;           // ���ʎq
+D:\refactoring\ops5k_x64\src\utly\lemmeq\lemmeq100.cpp:308:			token_c[1]=strtok(NULL, " \n") ;            // �u���敶����
+D:\refactoring\ops5k_x64\src\ens\LEGRPH_DLL\Legrph.c:776:			FLensP_c[0] = strtok(buf_c, " ,\t\n");
+D:\refactoring\ops5k_x64\src\ens\LEGRPH_DLL\Legrph.c:781:					FLensP_c[i+1]=strtok(NULL, " ,\t\n");
+D:\refactoring\ops5k_x64\src\his\domdcl\mdcl160.c:127:    p_c[0]=strtok(buf_c, " ,") ;        /* �g�[�N�����ɕ�������쐬   */
+D:\refactoring\ops5k_x64\src\his\domdcl\mdcl160.c:130:        p_c[i+1] = strtok(NULL, " ,");  /*   �p�����[�^�������o��   */
+D:\refactoring\ops5k_x64\src\ens\LeGmsDraw_Dll\LeGmsDraw.c:3211:			FLensP_c[0] = strtok(buf_c, " ,\t\n");
+D:\refactoring\ops5k_x64\src\ens\LeGmsDraw_Dll\LeGmsDraw.c:3216:					FLensP_c[i+1]=strtok(NULL, " ,\t\n");
+D:\refactoring\ops5k_x64\src\tool\hstatst\hstatst_9000.c:1468://exe_c = strtok(tmp_c, " ,") ;                 /* ���s���擾                 */
+D:\refactoring\ops5k_x64\src\tool\hstatst\hstatst_9000.c:1470://  wrk_c=strtok(NULL, " ,") ;                  /*                            */
+D:\refactoring\ops5k_x64\src\tool\enq\enq.c:129:  func_c = strtok(argv[S_FUNC],":");
+D:\refactoring\ops5k_x64\src\tool\enq\enq.c:159:  }while ((func_c = strtok(NULL,":")) != NULL);
+D:\refactoring\ops5k_x64\src\tool\dll\ShQue\ShQue.c:191:		Token_p = strtok(FString_c, " ");				//�^�X�N���̂��擾����
+D:\refactoring\ops5k_x64\src\tool\dll\ShQue\ShQue.c:192:		Token_p = strtok(NULL, " ");
+D:\refactoring\ops5k_x64\src\tool\dll\ShQue\ShQue.c:194:		while((Token_p = strtok(NULL, " ")) != (int)NULL){
+D:\refactoring\ops5k_x64\src\tool\trdmov\trdmov.c:220:			y_t_cp[0] = strtok(y_buf_c, " ,\t\n");						//�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\tool\trdmov\trdmov.c:223:					y_t_cp[y_cnt_i + 1] = strtok(NULL, " ,\t\n");
+D:\refactoring\ops5k_x64\src\tool\trdmov\trdmov.c:409:			y_t_cp[0] = strtok(y_buf_c, " ,\t\n");						//�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\tool\trdmov\trdmov.c:412:					y_t_cp[y_cnt_i + 1] = strtok(NULL, " ,\t\n");
+D:\refactoring\ops5k_x64\src\tool\trdmov\trdmov.c:609:			y_t_cp[0] = strtok(y_buf_c, " ,\t\n");						//�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\tool\trdmov\trdmov.c:612:					y_t_cp[y_cnt_i + 1] = strtok(NULL, " ,\t\n");
+D:\refactoring\ops5k_x64\src\tool\dll\erlgdsp\erlgdsp.c:131:		Token_p = strtok(FString_c, " ");				//�^�X�N���̂��擾����
+D:\refactoring\ops5k_x64\src\tool\dll\erlgdsp\erlgdsp.c:132:		Token_p = strtok(NULL, " ");
+D:\refactoring\ops5k_x64\src\tool\dll\erlgdsp\erlgdsp.c:134:		while((Token_p = strtok(NULL, " ")) != (int)NULL){
+D:\refactoring\ops5k_x64\src\tool\dll\erlgdsp\erlgdsp.c:216:		Token_p = strtok(FString_c, " ");				//�^�X�N���̂��擾����
+D:\refactoring\ops5k_x64\src\tool\dll\erlgdsp\erlgdsp.c:217:		Token_p = strtok(NULL, " ");
+D:\refactoring\ops5k_x64\src\tool\dll\erlgdsp\erlgdsp.c:219:		while((Token_p = strtok(NULL, " ")) != (int)NULL){
+D:\refactoring\ops5k_x64\src\tool\TF_valinfset\TF_valinfset.c:123:    p_c[0]=strtok(buf_c, " \t,") ;					// �g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\tool\TF_valinfset\TF_valinfset.c:125:      if (p_c[i] != NULL) p_c[i+1]=strtok(NULL, "\t,");
+D:\refactoring\ops5k_x64\src\tool\TF_subjectset\TF_subjectset.c:97:    p_c[0]=strtok(buf_c, " \t,") ;					// �g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\tool\TF_subjectset\TF_subjectset.c:98:    if (p_c[0] != NULL) p_c[1]=strtok(NULL, "\t,");	//
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:138:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:139:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:161:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:162:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:184:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:185:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:207:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:208:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:232:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:233:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:258:                    char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:259:                    char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:285:                    char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:286:                    char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:311:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:312:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:334:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:335:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:357:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:358:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:380:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:381:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:403:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:404:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:426:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:427:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:449:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:450:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:472:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:473:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:495:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:496:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:518:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcom\fl_bnkc01.c:519:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:138:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:139:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:161:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:162:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:184:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:185:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:207:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:208:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:232:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:233:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:258:                    char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:259:                    char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:285:                    char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:286:                    char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:311:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:312:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:334:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:335:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:357:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:358:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:380:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:381:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:403:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:404:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:426:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:427:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:449:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:450:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:472:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:473:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:495:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:496:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:518:                char_p[0] = strtok(readbuf_c, " ,");
+D:\refactoring\ops5k_x64\src\his\dobnkcomt\fl_bnkc01.c:519:                char_p[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\tool\mssctl2\mssctl2_db_mscrn.c:66:	str_cp = strtok(buf_c, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl2\mssctl2_db_mscrn.c:73:	str_cp = strtok(NULL, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl2\mssctl2_db_itvnm.c:53:	str_cp = strtok(buf_c, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl2\mssctl2_db_itvnm.c:64:	str_cp = strtok(NULL, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl2\mssctl2.c:123:		str_cp = strtok(buf_c, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl2\mssctl2.c:130:			str_cp = strtok(NULL, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl\mssctl_db_mscrn.c:66:	str_cp = strtok(buf_c, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl\mssctl_db_mscrn.c:73:	str_cp = strtok(NULL, " ");
+D:\refactoring\ops5k_x64\src\tool\hstsav\hstsav.c:764:			bufptr_c = strtok(bufptr_c, "/");
+D:\refactoring\ops5k_x64\src\tool\hstsav\hstsav.c:775:			bufptr_c = strtok(NULL, "/");
+D:\refactoring\ops5k_x64\src\tool\hstsav\hstsav.c:785:			bufptr_c = strtok(NULL, "/");
+D:\refactoring\ops5k_x64\src\tool\hstsav\hstsav.c:796:		bufptr_c = strtok( bufptr_c, " " );
+D:\refactoring\ops5k_x64\src\tool\hstsav\hstsav.c:804:		bufptr_c = strtok( NULL, " " );
+D:\refactoring\ops5k_x64\src\tool\hstsav\hstsav.c:810:		bufptr_c = strtok( NULL, " " );
+D:\refactoring\ops5k_x64\src\tool\hstsav\hstsav.c:816:		bufptr_c = strtok( NULL, " " );
+D:\refactoring\ops5k_x64\src\tool\hstsav\hstsav.c:823:		bufptr_c = strtok( NULL, " " );
+D:\refactoring\ops5k_x64\src\tool\hstsav\hstsav.c:830:		bufptr_c = strtok( NULL, " " );
+D:\refactoring\ops5k_x64\src\tool\hstsav\hstsav.c:930:		bufptr_c = strtok( bufptr_c, " " );
+D:\refactoring\ops5k_x64\src\tool\hstsav\hstsav.c:942:		bufptr_c = strtok( NULL, " " );
+D:\refactoring\ops5k_x64\src\tool\mssctl\mssctl_db_itvnm.c:53:	str_cp = strtok(buf_c, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl\mssctl_db_itvnm.c:64:	str_cp = strtok(NULL, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl\mssctl_cmdsend.c:164:	str_cp = strtok(buf_c, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl\mssctl_cmdsend.c:181:		str_cp = strtok(NULL, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl\mssctl_cmdsend.c:209:	str_cp = strtok(buf_c, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl\mssctl_cmdsend.c:225:		str_cp = strtok(NULL, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl\mssctl_cmdsend.c:254:	str_cp = strtok(buf_c, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl\mssctl_cmdsend.c:276:		str_cp = strtok(NULL, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl\mssctl.c:123:		str_cp = strtok(buf_c, " ");
+D:\refactoring\ops5k_x64\src\tool\mssctl\mssctl.c:130:			str_cp = strtok(NULL, " ");
+D:\refactoring\ops5k_x64\src\his\dohstg\hstg120.c:101:    p_c[0]=strtok(z_buf_c, " ,") ;      /*  İ�ݖ��ɕ�������쐬      */
+D:\refactoring\ops5k_x64\src\his\dohstg\hstg120.c:104:        p_c[i+1]=strtok(NULL, " ,") ;   /*    ���Ұ������̎��o��    */
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_sub.c:1875:        subject_p = strtok( reply_p, "\n\r" );
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_sub.c:2393:        subject_p = strtok( reply_p, "\n\r" );
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv_ssl.c:308:      reply_c = strtok( replybuf_c, " " );
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv_ssl.c:309:      mcnt_c  = strtok( NULL, " " );    //
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv_ssl.c:311:      msize_c = strtok( NULL, " \n\r" );//
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv_ssl.c:371:        reply_c = strtok( replybuf_c, " " );
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv_ssl.c:372:        no_c    = strtok( NULL, " " );  //
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv_ssl.c:373:        msize_c = strtok( NULL, "\n\r" );
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv_ssl.c:953:        subject_p = strtok( reply_p, "\n\r" );
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv_ssl.c:1189:        subject_p = strtok( reply_p, "\n\r" );
+D:\refactoring\ops5k_x64\src\tool\hstmove\f_csvread.c:54:        p1_c = strtok(buf_c, ",,") ; 
+D:\refactoring\ops5k_x64\src\tool\hstmove\f_csvread.c:55:        if (p1_c != NULL) p2_c = strtok(NULL, ",,") ; 
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv.c:326:      reply_c = strtok( replybuf_c, " " );
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv.c:327:      mcnt_c  = strtok( NULL, " " );    //
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv.c:329:      msize_c = strtok( NULL, " \n\r" );//
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv.c:389:        reply_c = strtok( replybuf_c, " " );
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv.c:390:        no_c    = strtok( NULL, " " );  //
+D:\refactoring\ops5k_x64\src\mail\hoemls\hoe_rcv.c:391:        msize_c = strtok( NULL, "\n\r" );
+D:\refactoring\ops5k_x64\src\lnk\jorepfl\jorepfl.c:1118:    p_c[0]=strtok(buf_c, " ,\t\n") ;                    //�g�[�N�����ɕ�������쐬
+D:\refactoring\ops5k_x64\src\lnk\jorepfl\jorepfl.c:1120:    p_c[1]=strtok(NULL, " ,\t\n");
+D:\refactoring\ops5k_x64\src\lnk\jorepfl\jorepfl.c:1186:          p_c[i+1]=strtok(NULL, " ,") ;
+D:\refactoring\ops5k_x64\src\lnk\johubsts\johubsts.c:676:        p_c[0] = strtok(z_buf_c, " ,");                     // İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\lnk\johubsts\johubsts.c:678:            p_c[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\lnk\johubsts\johubsts.c:823:            p_c[0] = strtok(z_buf_c, " ,");                     // İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\lnk\johubsts\johubsts.c:825:                p_c[1] = strtok(NULL, " ,");
+D:\refactoring\ops5k_x64\src\lnk\I-NET\jorecs.c:2175:    p_c[0]=strtok(z_buf_c, " ,") ;              //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\lnk\I-NET\jorecs.c:2176:    if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,\n") ;
+D:\refactoring\ops5k_x64\src\lnk\I-NET\jorecs.c:2177:    if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,\n") ;
+D:\refactoring\ops5k_x64\src\lnk\I-NET\jorecs.c:2178:    if (p_c[2] != NULL) p_c[3]=strtok(NULL, " ,\n") ;
+D:\refactoring\ops5k_x64\src\lnk\I-NET\jorecs.c:2282:    p_c[0]=strtok(z_buf_c, " ,") ;              //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\lnk\I-NET\jorecs.c:2283:    if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,\n") ;
+D:\refactoring\ops5k_x64\src\lnk\I-NET\jorecs.c:2354:    p_c[0]=strtok(z_buf_c, " ,") ;              //  İ�ݖ��ɕ�������쐬
+D:\refactoring\ops5k_x64\src\lnk\I-NET\jorecs.c:2355:    if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,\n") ;
+D:\refactoring\ops5k_x64\src\tool\#retro\ops9kgra1st\graph.cpp:549:			p_cp[i] = strtok(str1, " ");
+D:\refactoring\ops5k_x64\src\tool\#retro\ops9kgra1st\graph.cpp:1045:			p_cp[i] = strtok(str1, " \t");
+D:\refactoring\ops5k_x64\src\lib\initdb\ini_GS_color.c:83:          p_c[cnt_s] = strtok(buf_c, " ,"); /*                                  */
+D:\refactoring\ops5k_x64\src\lib\initdb\ini_GS_color.c:86:          p_c[cnt_s] = strtok(NULL, " ,");  /*                                  */
+D:\refactoring\ops5k_x64\src\lib\initdb\ini_GS_hcpalt.c:83:          p_c[cnt_s] = strtok(buf_c, " ,"); /*                                  */
+D:\refactoring\ops5k_x64\src\lib\initdb\ini_GS_hcpalt.c:86:          p_c[cnt_s] = strtok(NULL, " ,");  /*                                  */

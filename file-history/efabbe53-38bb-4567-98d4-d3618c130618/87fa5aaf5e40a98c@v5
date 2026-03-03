@@ -1,0 +1,145 @@
+#!/usr/bin/env python3
+"""Bitwarden password filler for qutebrowser (Windows-compatible).
+
+Requires: Bitwarden CLI (bw), BW_SESSION environment variable.
+No dmenu/rofi/keyctl dependency.
+"""
+
+import json
+import os
+import subprocess
+import sys
+from urllib.parse import urlparse
+
+
+_commands = []
+
+
+def qute_command(command):
+    _commands.append(command)
+
+
+def flush_commands():
+    with open(os.environ["QUTE_FIFO"], "w") as fifo:
+        fifo.write("\n".join(_commands) + "\n")
+        fifo.flush()
+
+
+def message(msg):
+    qute_command(f"message-info '{msg}'")
+
+
+def error(msg):
+    qute_command(f"message-error '{msg}'")
+
+
+def fake_key_raw(text):
+    for ch in text:
+        seq = '" "' if ch == " " else rf"\{ch}"
+        qute_command(f"fake-key {seq}")
+
+
+def get_domain(url):
+    parsed = urlparse(url)
+    return parsed.hostname or ""
+
+
+def main():
+    url = os.environ.get("QUTE_URL", "")
+    if not url:
+        error("QUTE_URL not set")
+        return 1
+
+    # Prefer session file (always up-to-date) over env var (may be stale)
+    session_file = os.path.join(os.environ.get("APPDATA", ""), "bw_session")
+    if os.path.isfile(session_file):
+        session = open(session_file).read().strip()
+    else:
+        session = os.environ.get("BW_SESSION", "")
+    if not session:
+        error("BW_SESSION not set. Run: bw unlock")
+        return 1
+
+    domain = get_domain(url)
+    if not domain:
+        error(f"Could not parse domain from {url}")
+        return 1
+
+    # Search Bitwarden for matching items
+    def bw_search(search_type, value):
+        try:
+            return subprocess.run(
+                ["bw", "list", "items", "--nointeraction", "--session", session, search_type, value],
+                capture_output=True,
+                text=True,
+                timeout=30,
+            )
+        except FileNotFoundError:
+            error("bw command not found")
+            sys.exit(1)
+        except subprocess.TimeoutExpired:
+            error("bw command timed out")
+            sys.exit(1)
+
+    result = bw_search("--url", domain)
+
+    if result.returncode != 0:
+        stderr_msg = result.stderr.strip()
+        if "Vault is locked" in stderr_msg:
+            error("Vault is locked. Run: bw unlock")
+        else:
+            error(f"bw error: {stderr_msg[:80]}")
+        return 1
+
+    candidates = json.loads(result.stdout)
+
+    # Fallback: search by domain name if --url found nothing
+    if not candidates:
+        # Try base domain (e.g. "meidensha" from "portal.extra.meidensha.co.jp")
+        parts = domain.split(".")
+        search_parts = [p for p in parts if p not in ("www", "com", "co", "jp", "net", "org", "ac")]
+        for keyword in search_parts:
+            if len(keyword) < 4:
+                continue
+            result = bw_search("--search", keyword)
+            if result.returncode == 0:
+                found = json.loads(result.stdout)
+                # Filter to only login items
+                found = [c for c in found if c.get("type") == 1]
+                if found:
+                    candidates = found
+                    break
+
+    if not candidates:
+        error(f"No credentials found for {domain}")
+        return 1
+
+    # Use first match
+    selection = candidates[0]
+    login = selection.get("login", {})
+    username = login.get("username", "")
+    password = login.get("password", "")
+
+    if not username and not password:
+        error(f"No username/password for {selection.get('name', domain)}")
+        return 1
+
+    if len(candidates) > 1:
+        names = ", ".join(c.get("name", "?") for c in candidates[:3])
+        message(f"Using: {selection.get('name', '?')} (from {len(candidates)} matches: {names})")
+
+    # Type username, Tab, password
+    if username:
+        fake_key_raw(username)
+    qute_command("fake-key <Tab>")
+    if password:
+        fake_key_raw(password)
+
+    qute_command("mode-enter insert")
+    return 0
+
+
+if __name__ == "__main__":
+    ret = main()
+    flush_commands()
+    sys.exit(ret)

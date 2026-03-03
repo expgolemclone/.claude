@@ -1,0 +1,1154 @@
+2026-02-26T23:31:37.141Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:37.163Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:37.172Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:37.439Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:37.447Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:37.677Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148697677
+2026-02-26T23:31:37.677Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:37.682Z [DEBUG] Temp file written successfully, size: 4053 bytes
+2026-02-26T23:31:37.682Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:37.682Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148697677 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:37.683Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:37.701Z [DEBUG] Getting matching hook commands for SessionEnd with query: clear
+2026-02-26T23:31:37.701Z [DEBUG] Found 0 hook matchers in settings
+2026-02-26T23:31:37.701Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-02-26T23:31:37.702Z [DEBUG] Cleared all session hooks for session b2784a33-03ea-4647-93ec-37dfeb8805de
+2026-02-26T23:31:37.704Z [DEBUG] Getting matching hook commands for SessionStart with query: clear
+2026-02-26T23:31:37.704Z [DEBUG] Found 0 hook matchers in settings
+2026-02-26T23:31:37.704Z [DEBUG] Matched 0 unique hooks for query "clear" (0 before deduplication)
+2026-02-26T23:31:37.705Z [DEBUG] FileHistory: Added snapshot for d64ea4df-7a6c-4fcd-8783-9a302e2d82ea, tracking 0 files
+2026-02-26T23:31:37.708Z [DEBUG] [useDeferredValue] Messages deferred by 3 (0→3)
+2026-02-26T23:31:37.713Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148697713
+2026-02-26T23:31:37.714Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:37.718Z [DEBUG] Temp file written successfully, size: 4144 bytes
+2026-02-26T23:31:37.718Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:37.718Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148697713 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:37.720Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:37.758Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:37.758Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:37.781Z [DEBUG] [useDeferredValue] Messages deferred by 3 (0→3)
+2026-02-26T23:31:37.789Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:37.803Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148697803
+2026-02-26T23:31:37.803Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:37.807Z [DEBUG] Temp file written successfully, size: 4144 bytes
+2026-02-26T23:31:37.808Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:37.808Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148697803 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:37.809Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:37.821Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148697821
+2026-02-26T23:31:37.822Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:37.826Z [DEBUG] Temp file written successfully, size: 4144 bytes
+2026-02-26T23:31:37.826Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:37.826Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148697821 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:37.827Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:37.841Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148697841
+2026-02-26T23:31:37.841Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:37.845Z [DEBUG] Temp file written successfully, size: 4144 bytes
+2026-02-26T23:31:37.846Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:37.846Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148697841 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:37.847Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:37.860Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148697860
+2026-02-26T23:31:37.860Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:37.864Z [DEBUG] Temp file written successfully, size: 4144 bytes
+2026-02-26T23:31:37.865Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:37.865Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148697860 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:37.866Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:37.878Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-02-26T23:31:37.878Z [DEBUG] [claudeai-mcp] Gate returned: true
+2026-02-26T23:31:37.878Z [DEBUG] [claudeai-mcp] Fetching from https://api.anthropic.com/v1/mcp_servers?limit=1000
+2026-02-26T23:31:37.883Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148697883
+2026-02-26T23:31:37.883Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:37.888Z [DEBUG] Temp file written successfully, size: 4174 bytes
+2026-02-26T23:31:37.888Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:37.888Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148697883 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:37.889Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:37.890Z [DEBUG] AutoUpdaterWrapper: Installation type: native
+2026-02-26T23:31:37.908Z [DEBUG] git pull: cwd=C:\Users\0000250059\.claude\plugins\marketplaces\claude-plugins-official ref=default
+2026-02-26T23:31:37.943Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148697943
+2026-02-26T23:31:37.944Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:37.948Z [DEBUG] Temp file written successfully, size: 4174 bytes
+2026-02-26T23:31:37.948Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:37.948Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148697943 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:37.949Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:37.971Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148697971
+2026-02-26T23:31:37.971Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:37.975Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:37.976Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:37.976Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148697971 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:37.977Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:37.995Z [DEBUG] [useDeferredValue] Messages deferred by 3 (0→3)
+2026-02-26T23:31:38.008Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:38.026Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148698026
+2026-02-26T23:31:38.026Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:38.031Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:38.031Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:38.031Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148698026 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:38.032Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:38.045Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148698045
+2026-02-26T23:31:38.045Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:38.049Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:38.049Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:38.049Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148698045 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:38.050Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:38.066Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148698066
+2026-02-26T23:31:38.067Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:38.071Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:38.071Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:38.071Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148698066 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:38.072Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:38.084Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148698084
+2026-02-26T23:31:38.084Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:38.088Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:38.090Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:38.090Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148698084 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:38.091Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:38.130Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:38.529Z [DEBUG] [claudeai-mcp] Fetched 3 servers
+2026-02-26T23:31:38.535Z [DEBUG] MCP server "claude.ai Gmail": Initializing claude.ai proxy transport for server mcpsrv_01DokMh3ugP8kfyEKSwZdFXK
+2026-02-26T23:31:38.535Z [DEBUG] MCP server "claude.ai Gmail": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01DokMh3ugP8kfyEKSwZdFXK
+2026-02-26T23:31:38.536Z [DEBUG] MCP server "claude.ai Gmail": claude.ai proxy transport created successfully
+2026-02-26T23:31:38.539Z [DEBUG] MCP server "claude.ai Gmail": Starting connection with timeout of 30000ms
+2026-02-26T23:31:38.543Z [DEBUG] MCP server "claude.ai Google Calendar": Initializing claude.ai proxy transport for server mcpsrv_019yCVR7ND6sBtQPjDBreYMJ
+2026-02-26T23:31:38.543Z [DEBUG] MCP server "claude.ai Google Calendar": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_019yCVR7ND6sBtQPjDBreYMJ
+2026-02-26T23:31:38.543Z [DEBUG] MCP server "claude.ai Google Calendar": claude.ai proxy transport created successfully
+2026-02-26T23:31:38.544Z [DEBUG] MCP server "claude.ai Google Calendar": Starting connection with timeout of 30000ms
+2026-02-26T23:31:38.544Z [DEBUG] MCP server "claude.ai Notion": Initializing claude.ai proxy transport for server mcpsrv_01NrtxBarc1ExyHkwvxZuZVm
+2026-02-26T23:31:38.544Z [DEBUG] MCP server "claude.ai Notion": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01NrtxBarc1ExyHkwvxZuZVm
+2026-02-26T23:31:38.544Z [DEBUG] MCP server "claude.ai Notion": claude.ai proxy transport created successfully
+2026-02-26T23:31:38.545Z [DEBUG] MCP server "claude.ai Notion": Starting connection with timeout of 30000ms
+2026-02-26T23:31:38.548Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:38.556Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148698556
+2026-02-26T23:31:38.556Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:38.560Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:38.561Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:38.561Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148698556 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:38.562Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:38.580Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148698580
+2026-02-26T23:31:38.580Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:38.585Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:38.585Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:38.585Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148698580 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:38.586Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:38.603Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148698603
+2026-02-26T23:31:38.603Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:38.609Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:38.609Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:38.609Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148698603 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:38.610Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:38.625Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148698625
+2026-02-26T23:31:38.626Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:38.630Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:38.630Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:38.630Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148698625 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:38.631Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:39.719Z [DEBUG] MCP server "claude.ai Google Calendar": claude.ai proxy connection failed after 1176ms: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYXYzy8oNTwdnBLvCwrw9"}
+2026-02-26T23:31:39.720Z [ERROR] MCP server "claude.ai Google Calendar" Error: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYXYzy8oNTwdnBLvCwrw9"}
+2026-02-26T23:31:39.720Z [DEBUG] MCP server "claude.ai Google Calendar": Authentication required for claude.ai proxy server
+2026-02-26T23:31:39.752Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:39.759Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148699759
+2026-02-26T23:31:39.759Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:39.764Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:39.764Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:39.764Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148699759 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:39.765Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:39.778Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148699778
+2026-02-26T23:31:39.778Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:39.782Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:39.782Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:39.782Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148699778 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:39.783Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:39.796Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148699796
+2026-02-26T23:31:39.797Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:39.801Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:39.801Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:39.801Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148699796 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:39.802Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:39.815Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148699815
+2026-02-26T23:31:39.815Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:39.819Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:39.820Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:39.820Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148699815 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:39.822Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:39.833Z [DEBUG] MCP server "claude.ai Gmail": claude.ai proxy connection failed after 1298ms: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYXYzy84Y1Ai8AK4xMc3c"}
+2026-02-26T23:31:39.833Z [ERROR] MCP server "claude.ai Gmail" Error: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYXYzy84Y1Ai8AK4xMc3c"}
+2026-02-26T23:31:39.834Z [DEBUG] MCP server "claude.ai Gmail": Authentication required for claude.ai proxy server
+2026-02-26T23:31:39.863Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:39.869Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148699869
+2026-02-26T23:31:39.869Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:39.874Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:39.874Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:39.874Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148699869 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:39.875Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:39.892Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148699892
+2026-02-26T23:31:39.892Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:39.897Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:39.898Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:39.898Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148699892 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:39.899Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:39.914Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148699914
+2026-02-26T23:31:39.914Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:39.918Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:39.918Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:39.918Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148699914 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:39.920Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:39.936Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148699936
+2026-02-26T23:31:39.937Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:39.941Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:39.941Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:39.941Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148699936 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:39.942Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:40.132Z [DEBUG] Successfully refreshed marketplace: claude-plugins-official
+2026-02-26T23:31:40.132Z [DEBUG] Plugin autoupdate: checking installed plugins
+2026-02-26T23:31:40.932Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148700932
+2026-02-26T23:31:40.932Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:40.937Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:40.937Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:40.937Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148700932 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:40.938Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:40.951Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148700951
+2026-02-26T23:31:40.951Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:40.955Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:40.955Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:40.955Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148700951 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:40.956Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:40.971Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148700971
+2026-02-26T23:31:40.971Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:40.975Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:40.975Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:40.975Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148700971 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:40.976Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:40.993Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148700993
+2026-02-26T23:31:40.993Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:40.998Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:40.998Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:40.998Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148700993 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:40.999Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:41.012Z [DEBUG] MCP server "claude.ai Notion": Successfully connected to claudeai-proxy server in 2468ms
+2026-02-26T23:31:41.012Z [DEBUG] MCP server "claude.ai Notion": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":true,"hasResourceSubscribe":false,"serverVersion":{"name":"Notion MCP","icons":[{"src":"https://mcp.notion.com/notion-logo-block-main.svg","mimeType":"image/svg+xml"}],"version":"1.2.0","websiteUrl":"https://developers.notion.com/docs/mcp","description":"Notion's official MCP server lets you use your Notion workspace as a system of record for knowledge work and software development. Search questions about the codebase and business, fetch links to pages such as tech specs and PRDs, and track tasks with your team."}}
+2026-02-26T23:31:41.012Z [DEBUG] [MCP] Server "claude.ai Notion" connected with subscribe=false
+2026-02-26T23:31:41.099Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:41.110Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148701110
+2026-02-26T23:31:41.110Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:41.114Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:41.115Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:41.115Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148701110 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:41.116Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:41.129Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148701129
+2026-02-26T23:31:41.129Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:41.133Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:41.134Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:41.134Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148701129 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:41.135Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:41.148Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148701148
+2026-02-26T23:31:41.149Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:41.153Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:41.153Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:41.153Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148701148 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:41.154Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:41.168Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148701168
+2026-02-26T23:31:41.168Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:41.172Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:41.173Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:41.173Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148701168 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:41.174Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:42.040Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:42.047Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148702047
+2026-02-26T23:31:42.047Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:42.054Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:42.055Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:42.055Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148702047 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:42.056Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:42.068Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148702068
+2026-02-26T23:31:42.068Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:42.072Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:42.073Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:42.073Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148702068 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:42.074Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:42.087Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148702087
+2026-02-26T23:31:42.088Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:42.092Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:42.092Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:42.092Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148702087 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:42.093Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:42.109Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148702109
+2026-02-26T23:31:42.109Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:42.114Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:42.114Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:42.114Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148702109 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:42.115Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:42.278Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:42.288Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148702288
+2026-02-26T23:31:42.289Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:42.295Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:42.295Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:42.295Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148702288 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:42.296Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:42.313Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148702313
+2026-02-26T23:31:42.314Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:42.321Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:42.321Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:42.321Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148702313 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:42.322Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:42.339Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148702339
+2026-02-26T23:31:42.339Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:42.345Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:42.345Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:42.345Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148702339 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:42.346Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:42.363Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148702363
+2026-02-26T23:31:42.363Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:42.368Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:42.368Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:42.368Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148702363 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:42.369Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:42.457Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:42.472Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148702472
+2026-02-26T23:31:42.472Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:42.478Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:42.479Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:42.479Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148702472 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:42.480Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:42.498Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148702498
+2026-02-26T23:31:42.498Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:42.502Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:42.503Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:42.503Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148702498 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:42.504Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:42.518Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148702518
+2026-02-26T23:31:42.518Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:42.522Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:42.522Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:42.522Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148702518 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:42.523Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:42.539Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148702539
+2026-02-26T23:31:42.539Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:42.543Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:42.543Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:42.543Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148702539 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:42.545Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:49.663Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:49.669Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148709669
+2026-02-26T23:31:49.669Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:49.673Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:49.673Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:49.673Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148709669 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:49.673Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:49.689Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148709689
+2026-02-26T23:31:49.689Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:49.692Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:49.693Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:49.693Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148709689 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:49.693Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:49.705Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148709705
+2026-02-26T23:31:49.705Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:49.709Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:49.709Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:49.709Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148709705 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:49.709Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:49.721Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148709721
+2026-02-26T23:31:49.721Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:31:49.725Z [DEBUG] Temp file written successfully, size: 4212 bytes
+2026-02-26T23:31:49.725Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:31:49.725Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148709721 to C:\Users\0000250059\.claude.json
+2026-02-26T23:31:49.726Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:31:49.991Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:50.042Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:50.556Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:50.915Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:50.995Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:51.236Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:51.407Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:51.433Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:51.613Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:52.224Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:52.582Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:52.786Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:53.007Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:53.135Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:53.421Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:54.281Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:55.293Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:55.777Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:57.955Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:31:59.454Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:06.395Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\0000250059\.claude\skills, project=[]
+2026-02-26T23:32:06.396Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-02-26T23:32:06.397Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-02-26T23:32:06.398Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-02-26T23:32:06.398Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-02-26T23:32:06.398Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2026-02-26T23:32:06.398Z [DEBUG] Total plugin skills loaded: 0
+2026-02-26T23:32:06.398Z [DEBUG] Total plugin commands loaded: 0
+2026-02-26T23:32:06.399Z [DEBUG] Loaded 0 unique skills (0 unconditional, 0 conditional, managed: 0, user: 0, project: 0, additional: 0, legacy commands: 0)
+2026-02-26T23:32:06.399Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills, 3 bundled skills
+2026-02-26T23:32:06.415Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148726415
+2026-02-26T23:32:06.415Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:06.419Z [DEBUG] Temp file written successfully, size: 4244 bytes
+2026-02-26T23:32:06.419Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:06.419Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148726415 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:06.421Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:06.446Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148726446
+2026-02-26T23:32:06.446Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:06.451Z [DEBUG] Temp file written successfully, size: 4277 bytes
+2026-02-26T23:32:06.451Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:06.451Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148726446 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:06.452Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:06.466Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148726466
+2026-02-26T23:32:06.466Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:06.470Z [DEBUG] Temp file written successfully, size: 4307 bytes
+2026-02-26T23:32:06.471Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:06.471Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148726466 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:06.472Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:06.472Z [DEBUG] Sending 1 skills via attachment (initial, 1 total sent)
+2026-02-26T23:32:06.486Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148726486
+2026-02-26T23:32:06.486Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:06.490Z [DEBUG] Temp file written successfully, size: 4307 bytes
+2026-02-26T23:32:06.491Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:06.491Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148726486 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:06.492Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:06.506Z [WARN] [3P telemetry] Event dropped (no event logger initialized): user_prompt
+2026-02-26T23:32:06.510Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148726510
+2026-02-26T23:32:06.510Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:06.514Z [DEBUG] Temp file written successfully, size: 4345 bytes
+2026-02-26T23:32:06.515Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:06.515Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148726510 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:06.516Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:06.516Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-02-26T23:32:06.516Z [DEBUG] Found 0 hook matchers in settings
+2026-02-26T23:32:06.516Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-02-26T23:32:06.528Z [DEBUG] FileHistory: Making snapshot for message 384e971a-c68f-4eb8-8db3-730feff26e66
+2026-02-26T23:32:06.528Z [DEBUG] FileHistory: Added snapshot for 384e971a-c68f-4eb8-8db3-730feff26e66, tracking 0 files
+2026-02-26T23:32:06.531Z [DEBUG] [useDeferredValue] Messages deferred by 2 (3→5)
+2026-02-26T23:32:06.541Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:06.542Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:06.554Z [DEBUG] High write ratio: blit=0, write=1127 (100.0% writes), screen=26x133
+2026-02-26T23:32:06.561Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:06.621Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148726621
+2026-02-26T23:32:06.621Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:06.625Z [DEBUG] Temp file written successfully, size: 4345 bytes
+2026-02-26T23:32:06.625Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:06.625Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148726621 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:06.626Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:06.645Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148726645
+2026-02-26T23:32:06.645Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:06.650Z [DEBUG] Temp file written successfully, size: 4345 bytes
+2026-02-26T23:32:06.650Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:06.650Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148726645 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:06.651Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:06.668Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148726667
+2026-02-26T23:32:06.668Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:06.672Z [DEBUG] Temp file written successfully, size: 4345 bytes
+2026-02-26T23:32:06.672Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:06.672Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148726667 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:06.673Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:06.688Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148726688
+2026-02-26T23:32:06.688Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:06.692Z [DEBUG] Temp file written successfully, size: 4345 bytes
+2026-02-26T23:32:06.692Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:06.692Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148726688 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:06.693Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:06.747Z [DEBUG] Total plugin output styles loaded: 0
+2026-02-26T23:32:06.775Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:06.783Z [DEBUG] High write ratio: blit=0, write=1127 (100.0% writes), screen=26x133
+2026-02-26T23:32:07.196Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:12.911Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148732911
+2026-02-26T23:32:12.911Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:12.915Z [DEBUG] Temp file written successfully, size: 4378 bytes
+2026-02-26T23:32:12.915Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:12.915Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148732911 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:12.916Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:12.929Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148732929
+2026-02-26T23:32:12.929Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:12.932Z [DEBUG] Temp file written successfully, size: 4409 bytes
+2026-02-26T23:32:12.932Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:12.932Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148732929 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:12.933Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:12.945Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148732945
+2026-02-26T23:32:12.945Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:12.949Z [DEBUG] Temp file written successfully, size: 4437 bytes
+2026-02-26T23:32:12.949Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:12.949Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148732945 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:12.949Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:12.962Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148732962
+2026-02-26T23:32:12.962Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:12.965Z [DEBUG] Temp file written successfully, size: 4437 bytes
+2026-02-26T23:32:12.966Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:12.966Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148732962 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:12.966Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:12.979Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148732979
+2026-02-26T23:32:12.979Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:12.982Z [DEBUG] Temp file written successfully, size: 4474 bytes
+2026-02-26T23:32:12.982Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:12.982Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148732979 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:12.983Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:12.995Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148732995
+2026-02-26T23:32:12.995Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:12.999Z [DEBUG] Temp file written successfully, size: 4512 bytes
+2026-02-26T23:32:12.999Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:12.999Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148732995 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:12.999Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.012Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733012
+2026-02-26T23:32:13.012Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.015Z [DEBUG] Temp file written successfully, size: 4558 bytes
+2026-02-26T23:32:13.015Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.015Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733012 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.016Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.029Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733029
+2026-02-26T23:32:13.029Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.032Z [DEBUG] Temp file written successfully, size: 4589 bytes
+2026-02-26T23:32:13.033Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.033Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733029 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.033Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.046Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733046
+2026-02-26T23:32:13.047Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.050Z [DEBUG] Temp file written successfully, size: 4589 bytes
+2026-02-26T23:32:13.050Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.050Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733046 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.050Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.063Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733063
+2026-02-26T23:32:13.063Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.066Z [DEBUG] Temp file written successfully, size: 4589 bytes
+2026-02-26T23:32:13.066Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.066Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733063 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.067Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.078Z [DEBUG] autocompact: tokens=199 threshold=167000 effectiveWindow=180000
+2026-02-26T23:32:13.080Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733080
+2026-02-26T23:32:13.080Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.084Z [DEBUG] Temp file written successfully, size: 4626 bytes
+2026-02-26T23:32:13.084Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.084Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733080 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.084Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.096Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733096
+2026-02-26T23:32:13.096Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.100Z [DEBUG] Temp file written successfully, size: 4626 bytes
+2026-02-26T23:32:13.100Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.100Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733096 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.100Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.112Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733112
+2026-02-26T23:32:13.112Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.116Z [DEBUG] Temp file written successfully, size: 4626 bytes
+2026-02-26T23:32:13.116Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.116Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733112 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.116Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.128Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733128
+2026-02-26T23:32:13.128Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.131Z [DEBUG] Temp file written successfully, size: 4626 bytes
+2026-02-26T23:32:13.131Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.131Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733128 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.132Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.143Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733143
+2026-02-26T23:32:13.143Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.147Z [DEBUG] Temp file written successfully, size: 4626 bytes
+2026-02-26T23:32:13.147Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.147Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733143 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.148Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.166Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733166
+2026-02-26T23:32:13.167Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.170Z [DEBUG] Temp file written successfully, size: 4671 bytes
+2026-02-26T23:32:13.170Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.170Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733166 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.171Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.183Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733183
+2026-02-26T23:32:13.183Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.186Z [DEBUG] Temp file written successfully, size: 4671 bytes
+2026-02-26T23:32:13.187Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.187Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733183 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.188Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.199Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733199
+2026-02-26T23:32:13.199Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.211Z [DEBUG] Temp file written successfully, size: 4671 bytes
+2026-02-26T23:32:13.211Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.211Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733199 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.212Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.227Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733227
+2026-02-26T23:32:13.227Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.231Z [DEBUG] Temp file written successfully, size: 4738 bytes
+2026-02-26T23:32:13.231Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.231Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733227 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.232Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.248Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733248
+2026-02-26T23:32:13.248Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.251Z [DEBUG] Temp file written successfully, size: 4772 bytes
+2026-02-26T23:32:13.251Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.251Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733248 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.252Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.267Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733267
+2026-02-26T23:32:13.268Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.271Z [DEBUG] Temp file written successfully, size: 4797 bytes
+2026-02-26T23:32:13.271Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.271Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733267 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.272Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.288Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733288
+2026-02-26T23:32:13.288Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.292Z [DEBUG] Temp file written successfully, size: 4843 bytes
+2026-02-26T23:32:13.292Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.292Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733288 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.292Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.293Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-26T23:32:13.293Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-26T23:32:13.304Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-26T23:32:13.307Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:13.311Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733311
+2026-02-26T23:32:13.311Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.315Z [DEBUG] Temp file written successfully, size: 4843 bytes
+2026-02-26T23:32:13.315Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.315Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733311 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.315Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.330Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733330
+2026-02-26T23:32:13.330Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.333Z [DEBUG] Temp file written successfully, size: 4843 bytes
+2026-02-26T23:32:13.333Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.333Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733330 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.334Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.350Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733350
+2026-02-26T23:32:13.350Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.353Z [DEBUG] Temp file written successfully, size: 4843 bytes
+2026-02-26T23:32:13.353Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.353Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733350 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.354Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:13.367Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148733367
+2026-02-26T23:32:13.367Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:13.370Z [DEBUG] Temp file written successfully, size: 4843 bytes
+2026-02-26T23:32:13.370Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:13.370Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148733367 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:13.371Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:14.201Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148734201
+2026-02-26T23:32:14.201Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:14.205Z [DEBUG] Temp file written successfully, size: 4843 bytes
+2026-02-26T23:32:14.205Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:14.205Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148734201 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:14.206Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:14.206Z [DEBUG] Auto tool search enabled: 21522 tokens (threshold: 20000, 10% of context) [source: query]
+2026-02-26T23:32:14.226Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148734226
+2026-02-26T23:32:14.226Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:14.229Z [DEBUG] Temp file written successfully, size: 4885 bytes
+2026-02-26T23:32:14.230Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:14.230Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148734226 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:14.230Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:14.244Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148734244
+2026-02-26T23:32:14.244Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:14.247Z [DEBUG] Temp file written successfully, size: 4921 bytes
+2026-02-26T23:32:14.247Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:14.247Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148734244 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:14.248Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:14.263Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148734263
+2026-02-26T23:32:14.263Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:14.267Z [DEBUG] Temp file written successfully, size: 4921 bytes
+2026-02-26T23:32:14.267Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:14.267Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148734263 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:14.267Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:14.279Z [DEBUG] Dynamic tool loading: 0/12 deferred tools included
+2026-02-26T23:32:14.280Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.59.a37; cc_entrypoint=cli; cch=00000;
+2026-02-26T23:32:14.280Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:14.281Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-26T23:32:14.281Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-26T23:32:14.283Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148734283
+2026-02-26T23:32:14.283Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:14.286Z [DEBUG] Temp file written successfully, size: 4959 bytes
+2026-02-26T23:32:14.286Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:14.286Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148734283 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:14.287Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:14.299Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148734299
+2026-02-26T23:32:14.300Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:14.303Z [DEBUG] Temp file written successfully, size: 5076 bytes
+2026-02-26T23:32:14.303Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:14.303Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148734299 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:14.303Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:14.314Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:14.315Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-26T23:32:14.315Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:14.317Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148734317
+2026-02-26T23:32:14.317Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:14.320Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:14.321Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:14.321Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148734317 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:14.321Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:14.335Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:14.339Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148734339
+2026-02-26T23:32:14.339Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:14.343Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:14.343Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:14.343Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148734339 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:14.343Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:14.359Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148734359
+2026-02-26T23:32:14.360Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:14.363Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:14.363Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:14.363Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148734359 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:14.364Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:14.378Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148734378
+2026-02-26T23:32:14.378Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:14.382Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:14.382Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:14.382Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148734378 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:14.383Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:14.398Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148734398
+2026-02-26T23:32:14.398Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:14.401Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:14.401Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:14.401Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148734398 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:14.402Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:17.134Z [DEBUG] Stream started - received first chunk
+2026-02-26T23:32:17.136Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:17.422Z [DEBUG] [useDeferredValue] Messages deferred by 1 (5→6)
+2026-02-26T23:32:17.423Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:17.427Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148737427
+2026-02-26T23:32:17.427Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:17.434Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:17.434Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:17.434Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148737427 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:17.434Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:17.446Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148737446
+2026-02-26T23:32:17.446Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:17.451Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:17.452Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:17.452Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148737446 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:17.452Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:17.465Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148737465
+2026-02-26T23:32:17.465Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:17.468Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:17.468Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:17.468Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148737465 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:17.469Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:17.482Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148737482
+2026-02-26T23:32:17.482Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:17.485Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:17.485Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:17.485Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148737482 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:17.486Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:17.502Z [DEBUG] [useDeferredValue] Messages deferred by 1 (5→6)
+2026-02-26T23:32:17.504Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:17.511Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:17.537Z [DEBUG] High write ratio: blit=0, write=1137 (100.0% writes), screen=26x133
+2026-02-26T23:32:18.168Z [DEBUG] [useDeferredValue] Messages deferred by 1 (6→7)
+2026-02-26T23:32:18.174Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:18.177Z [DEBUG] High write ratio: blit=0, write=1137 (100.0% writes), screen=26x133
+2026-02-26T23:32:18.179Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148738179
+2026-02-26T23:32:18.179Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:18.182Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:18.182Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:18.182Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148738179 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:18.183Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:18.197Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148738197
+2026-02-26T23:32:18.197Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:18.201Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:18.201Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:18.201Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148738197 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:18.201Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:18.217Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148738217
+2026-02-26T23:32:18.217Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:18.221Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:18.221Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:18.221Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148738217 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:18.221Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:18.237Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148738237
+2026-02-26T23:32:18.237Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:18.240Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:18.241Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:18.241Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148738237 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:18.241Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:18.265Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:18.293Z [DEBUG] High write ratio: blit=0, write=1200 (100.0% writes), screen=28x133
+2026-02-26T23:32:18.776Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:18.822Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:19.061Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:19.064Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:19.066Z [DEBUG] [useDeferredValue] Messages deferred by 1 (7→8)
+2026-02-26T23:32:19.071Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:19.074Z [DEBUG] High write ratio: blit=0, write=1200 (100.0% writes), screen=28x133
+2026-02-26T23:32:19.077Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148739077
+2026-02-26T23:32:19.077Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:19.080Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:19.081Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:19.081Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148739077 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:19.081Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:19.095Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148739095
+2026-02-26T23:32:19.095Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:19.099Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:19.099Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:19.099Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148739095 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:19.099Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:19.115Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148739115
+2026-02-26T23:32:19.115Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:19.119Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:19.119Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:19.119Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148739115 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:19.119Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:19.134Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148739134
+2026-02-26T23:32:19.134Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:19.138Z [DEBUG] Temp file written successfully, size: 5139 bytes
+2026-02-26T23:32:19.138Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:19.138Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148739134 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:19.139Z [ERROR] Failed to write file atomically: Error: EPERM: operation not permitted, rename 'C:\Users\0000250059\.claude.json.tmp.2288.1772148739134' -> 'C:\Users\0000250059\.claude.json'
+2026-02-26T23:32:19.139Z [DEBUG] Cleaning up temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148739134
+2026-02-26T23:32:19.140Z [DEBUG] Falling back to non-atomic write for C:\Users\0000250059\.claude.json
+2026-02-26T23:32:19.143Z [DEBUG] File C:\Users\0000250059\.claude.json written successfully with non-atomic fallback
+2026-02-26T23:32:19.159Z [DEBUG] [useDeferredValue] Messages deferred by 1 (7→8)
+2026-02-26T23:32:19.160Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:19.169Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:19.180Z [DEBUG] High write ratio: blit=0, write=1279 (100.0% writes), screen=31x133
+2026-02-26T23:32:19.583Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:20.030Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148740030
+2026-02-26T23:32:20.030Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:20.034Z [DEBUG] Temp file written successfully, size: 5174 bytes
+2026-02-26T23:32:20.034Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:20.034Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148740030 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:20.034Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:20.046Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-02-26T23:32:20.047Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-02-26T23:32:20.047Z [DEBUG] Found 1 hook matchers in settings
+2026-02-26T23:32:20.047Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-02-26T23:32:20.119Z [DEBUG] [useDeferredValue] Messages deferred by 1 (8→9)
+2026-02-26T23:32:20.128Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:20.132Z [DEBUG] High write ratio: blit=0, write=1279 (100.0% writes), screen=31x133
+2026-02-26T23:32:20.136Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148740136
+2026-02-26T23:32:20.136Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:20.139Z [DEBUG] Temp file written successfully, size: 5174 bytes
+2026-02-26T23:32:20.140Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:20.140Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148740136 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:20.140Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:20.156Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148740156
+2026-02-26T23:32:20.156Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:20.160Z [DEBUG] Temp file written successfully, size: 5174 bytes
+2026-02-26T23:32:20.160Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:20.160Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148740156 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:20.160Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:20.176Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148740176
+2026-02-26T23:32:20.176Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:20.179Z [DEBUG] Temp file written successfully, size: 5174 bytes
+2026-02-26T23:32:20.179Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:20.179Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148740176 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:20.180Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:20.193Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148740193
+2026-02-26T23:32:20.193Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:20.196Z [DEBUG] Temp file written successfully, size: 5174 bytes
+2026-02-26T23:32:20.196Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:20.196Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148740193 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:20.197Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:20.225Z [DEBUG] tree-sitter: loaded from embedded
+2026-02-26T23:32:20.244Z [DEBUG] Creating shell snapshot for bash (C:\msys64\usr\bin\bash.exe)
+2026-02-26T23:32:20.244Z [DEBUG] Looking for shell config file: C:\Users\0000250059\.bashrc
+2026-02-26T23:32:20.244Z [DEBUG] Shell config file not found: C:\Users\0000250059\.bashrc, creating snapshot with Claude Code defaults only
+2026-02-26T23:32:20.244Z [DEBUG] Snapshots directory: C:\Users\0000250059\.claude\shell-snapshots
+2026-02-26T23:32:20.252Z [DEBUG] [useDeferredValue] Messages deferred by 1 (8→9)
+2026-02-26T23:32:20.253Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:20.258Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148740258
+2026-02-26T23:32:20.258Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:20.263Z [DEBUG] Temp file written successfully, size: 5174 bytes
+2026-02-26T23:32:20.263Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:20.263Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148740258 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:20.264Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:20.281Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148740281
+2026-02-26T23:32:20.281Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:20.285Z [DEBUG] Temp file written successfully, size: 5174 bytes
+2026-02-26T23:32:20.285Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:20.285Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148740281 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:20.286Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:20.302Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148740302
+2026-02-26T23:32:20.303Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:20.306Z [DEBUG] Temp file written successfully, size: 5174 bytes
+2026-02-26T23:32:20.306Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:20.306Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148740302 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:20.307Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:20.324Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148740324
+2026-02-26T23:32:20.324Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:20.327Z [DEBUG] Temp file written successfully, size: 5174 bytes
+2026-02-26T23:32:20.328Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:20.328Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148740324 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:20.328Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:20.380Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:20.389Z [DEBUG] High write ratio: blit=0, write=1355 (100.0% writes), screen=34x133
+2026-02-26T23:32:20.424Z [DEBUG] Creating snapshot at: C:\Users\0000250059\.claude\shell-snapshots\snapshot-bash-1772148740244-88ca9r.sh
+2026-02-26T23:32:20.424Z [DEBUG] Execution timeout: 10000ms
+2026-02-26T23:32:22.812Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:24.703Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:24.725Z [DEBUG] Shell snapshot created successfully (314 bytes)
+2026-02-26T23:32:24.725Z [DEBUG] Session environment not yet supported on Windows
+2026-02-26T23:32:24.726Z [DEBUG] Spawning shell without login (-l flag skipped)
+2026-02-26T23:32:27.224Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-02-26T23:32:27.228Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148747228
+2026-02-26T23:32:27.228Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:27.232Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:27.232Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:27.232Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148747228 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:27.232Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:27.250Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.59.8fe; cc_entrypoint=cli; cch=00000;
+2026-02-26T23:32:27.250Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:27.250Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-26T23:32:27.250Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-26T23:32:27.250Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:27.251Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-26T23:32:27.251Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:27.253Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-02-26T23:32:27.253Z [DEBUG] Found 5 hook matchers in settings
+2026-02-26T23:32:27.253Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-02-26T23:32:27.255Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-02-26T23:32:27.256Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-02-26T23:32:27.256Z [DEBUG] Found 1 hook matchers in settings
+2026-02-26T23:32:27.256Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-02-26T23:32:27.271Z [DEBUG] Session environment not yet supported on Windows
+2026-02-26T23:32:27.271Z [DEBUG] Spawning shell without login (-l flag skipped)
+2026-02-26T23:32:27.273Z [DEBUG] [useDeferredValue] Messages deferred by 1 (9→10)
+2026-02-26T23:32:27.282Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:27.287Z [DEBUG] High write ratio: blit=0, write=1307 (100.0% writes), screen=33x133
+2026-02-26T23:32:27.287Z [DEBUG] Full reset (shrink->below): prevHeight=34, nextHeight=33, viewport=33
+2026-02-26T23:32:27.292Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148747292
+2026-02-26T23:32:27.292Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:27.296Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:27.296Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:27.296Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148747292 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:27.297Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:27.317Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148747317
+2026-02-26T23:32:27.317Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:27.321Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:27.321Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:27.321Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148747317 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:27.322Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:27.343Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148747343
+2026-02-26T23:32:27.343Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:27.351Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:27.351Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:27.351Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148747343 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:27.352Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:27.371Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148747371
+2026-02-26T23:32:27.371Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:27.375Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:27.375Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:27.375Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148747371 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:27.376Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:27.441Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:27.448Z [DEBUG] High write ratio: blit=0, write=1307 (100.0% writes), screen=33x133
+2026-02-26T23:32:27.532Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:27.832Z [DEBUG] Stream started - received first chunk
+2026-02-26T23:32:29.623Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-02-26T23:32:29.624Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.59.d0c; cc_entrypoint=cli; cch=00000;
+2026-02-26T23:32:29.624Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:29.624Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-26T23:32:29.624Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-26T23:32:29.624Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:29.624Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-26T23:32:29.625Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:29.626Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-02-26T23:32:29.626Z [DEBUG] Found 5 hook matchers in settings
+2026-02-26T23:32:29.626Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-02-26T23:32:29.627Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-02-26T23:32:29.627Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-02-26T23:32:29.628Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-02-26T23:32:29.628Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-02-26T23:32:29.628Z [DEBUG] autocompact: tokens=22344 threshold=167000 effectiveWindow=180000
+2026-02-26T23:32:29.631Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148749631
+2026-02-26T23:32:29.631Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:29.635Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:29.635Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:29.635Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148749631 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:29.636Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:29.656Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148749656
+2026-02-26T23:32:29.656Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:29.660Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:29.660Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:29.660Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148749656 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:29.660Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:29.680Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148749680
+2026-02-26T23:32:29.680Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:29.684Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:29.684Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:29.684Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148749680 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:29.685Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:29.705Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148749705
+2026-02-26T23:32:29.705Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:29.709Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:29.709Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:29.709Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148749705 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:29.710Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:29.733Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148749733
+2026-02-26T23:32:29.734Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:29.737Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:29.737Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:29.737Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148749733 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:29.738Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:29.757Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148749757
+2026-02-26T23:32:29.757Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:29.761Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:29.761Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:29.761Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148749757 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:29.762Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:29.781Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-26T23:32:29.781Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-26T23:32:29.781Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-26T23:32:29.783Z [DEBUG] [useDeferredValue] Messages deferred by 1 (10→11)
+2026-02-26T23:32:29.789Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:29.794Z [DEBUG] High write ratio: blit=0, write=1307 (100.0% writes), screen=33x133
+2026-02-26T23:32:29.797Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148749797
+2026-02-26T23:32:29.798Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:29.801Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:29.801Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:29.802Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148749797 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:29.802Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:29.817Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148749817
+2026-02-26T23:32:29.817Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:29.821Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:29.821Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:29.821Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148749817 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:29.821Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:29.836Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148749836
+2026-02-26T23:32:29.836Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:29.840Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:29.840Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:29.840Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148749836 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:29.840Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:29.855Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148749855
+2026-02-26T23:32:29.855Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:29.858Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:29.859Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:29.859Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148749855 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:29.860Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:29.880Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:29.884Z [DEBUG] High write ratio: blit=0, write=1305 (100.0% writes), screen=33x133
+2026-02-26T23:32:30.379Z [DEBUG] Stream started - received first chunk
+2026-02-26T23:32:30.384Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148750384
+2026-02-26T23:32:30.384Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:30.387Z [DEBUG] Temp file written successfully, size: 5203 bytes
+2026-02-26T23:32:30.387Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:30.387Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148750384 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:30.388Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:30.403Z [DEBUG] Tool search disabled via experiment (tengu_tst_kx7): below threshold, deferred tools present [source: query]
+2026-02-26T23:32:30.409Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148750409
+2026-02-26T23:32:30.409Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:30.413Z [DEBUG] Temp file written successfully, size: 5231 bytes
+2026-02-26T23:32:30.413Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:30.413Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148750409 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:30.414Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:30.429Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148750429
+2026-02-26T23:32:30.429Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:30.432Z [DEBUG] Temp file written successfully, size: 5231 bytes
+2026-02-26T23:32:30.433Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:30.433Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148750429 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:30.433Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:30.447Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.59.a37; cc_entrypoint=cli; cch=00000;
+2026-02-26T23:32:30.447Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:30.447Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-26T23:32:30.447Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-26T23:32:30.447Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:30.448Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-26T23:32:30.448Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:30.451Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:30.455Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148750455
+2026-02-26T23:32:30.455Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:30.458Z [DEBUG] Temp file written successfully, size: 5231 bytes
+2026-02-26T23:32:30.458Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:30.458Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148750455 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:30.459Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:30.474Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148750474
+2026-02-26T23:32:30.474Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:30.477Z [DEBUG] Temp file written successfully, size: 5231 bytes
+2026-02-26T23:32:30.478Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:30.478Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148750474 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:30.478Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:30.495Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148750495
+2026-02-26T23:32:30.495Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:30.498Z [DEBUG] Temp file written successfully, size: 5231 bytes
+2026-02-26T23:32:30.499Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:30.499Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148750495 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:30.499Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:30.516Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148750516
+2026-02-26T23:32:30.516Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:30.521Z [DEBUG] Temp file written successfully, size: 5231 bytes
+2026-02-26T23:32:30.521Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:30.521Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148750516 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:30.522Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:33.107Z [DEBUG] Stream started - received first chunk
+2026-02-26T23:32:33.109Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:33.339Z [DEBUG] [onCancel] focusedInputDialog=undefined streamMode=responding
+2026-02-26T23:32:33.346Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:33.349Z [DEBUG] High write ratio: blit=0, write=1134 (100.0% writes), screen=30x133
+2026-02-26T23:32:33.349Z [DEBUG] Full reset (shrink->below): prevHeight=33, nextHeight=30, viewport=33
+2026-02-26T23:32:33.353Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148753353
+2026-02-26T23:32:33.353Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:33.356Z [DEBUG] Temp file written successfully, size: 5231 bytes
+2026-02-26T23:32:33.357Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:33.357Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148753353 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:33.357Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:33.373Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148753373
+2026-02-26T23:32:33.373Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:33.376Z [DEBUG] Temp file written successfully, size: 5231 bytes
+2026-02-26T23:32:33.376Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:33.376Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148753373 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:33.376Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:33.393Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148753393
+2026-02-26T23:32:33.393Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:33.397Z [DEBUG] Temp file written successfully, size: 5231 bytes
+2026-02-26T23:32:33.397Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:33.397Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148753393 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:33.397Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:33.415Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148753415
+2026-02-26T23:32:33.415Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:33.418Z [DEBUG] Temp file written successfully, size: 5231 bytes
+2026-02-26T23:32:33.418Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:33.418Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148753415 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:33.419Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:33.431Z [ERROR] Stream completed with message_start but no content blocks completed - triggering non-streaming fallback
+2026-02-26T23:32:33.432Z [ERROR] Error streaming, falling back to non-streaming mode: Stream ended without receiving any events
+2026-02-26T23:32:33.435Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148753435
+2026-02-26T23:32:33.435Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:33.438Z [DEBUG] Temp file written successfully, size: 5295 bytes
+2026-02-26T23:32:33.438Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:33.438Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148753435 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:33.439Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:33.439Z [ERROR] Error in API request: Request was aborted.
+2026-02-26T23:32:33.440Z [ERROR] Error: Error: Request was aborted.
+    at m7$ (B:/~BUN/root/claude.exe:840:96594)
+    at next (native:1:11)
+    at EDI (B:/~BUN/root/claude.exe:6033:6980)
+    at next (native:1:11)
+    at VDI (B:/~BUN/root/claude.exe:6038:9145)
+    at processTicksAndRejections (native:7:39)
+2026-02-26T23:32:33.454Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148753454
+2026-02-26T23:32:33.454Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:33.457Z [DEBUG] Temp file written successfully, size: 5320 bytes
+2026-02-26T23:32:33.458Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:33.458Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148753454 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:33.458Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:33.475Z [DEBUG] [useDeferredValue] Messages deferred by 1 (11→12)
+2026-02-26T23:32:33.480Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T23:32:33.483Z [DEBUG] High write ratio: blit=0, write=1183 (100.0% writes), screen=31x133
+2026-02-26T23:32:33.486Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148753486
+2026-02-26T23:32:33.486Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:33.490Z [DEBUG] Temp file written successfully, size: 5320 bytes
+2026-02-26T23:32:33.490Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:33.490Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148753486 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:33.491Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:33.505Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148753505
+2026-02-26T23:32:33.505Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:33.508Z [DEBUG] Temp file written successfully, size: 5320 bytes
+2026-02-26T23:32:33.508Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:33.508Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148753505 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:33.509Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:33.524Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148753524
+2026-02-26T23:32:33.525Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:33.528Z [DEBUG] Temp file written successfully, size: 5320 bytes
+2026-02-26T23:32:33.528Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:33.528Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148753524 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:33.529Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:33.546Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148753546
+2026-02-26T23:32:33.546Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:33.549Z [DEBUG] Temp file written successfully, size: 5320 bytes
+2026-02-26T23:32:33.549Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:33.549Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148753546 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:33.550Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:33.571Z [DEBUG] MCP server "claude.ai Notion": SSE transport closed/disconnected, attempting automatic reconnection
+2026-02-26T23:32:33.572Z [DEBUG] LSP server manager shut down successfully
+2026-02-26T23:32:33.572Z [DEBUG] MCP server "claude.ai Notion": Initializing claude.ai proxy transport for server mcpsrv_01NrtxBarc1ExyHkwvxZuZVm
+2026-02-26T23:32:33.572Z [DEBUG] MCP server "claude.ai Notion": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01NrtxBarc1ExyHkwvxZuZVm
+2026-02-26T23:32:33.572Z [DEBUG] MCP server "claude.ai Notion": claude.ai proxy transport created successfully
+2026-02-26T23:32:33.574Z [DEBUG] MCP server "claude.ai Notion": Starting connection with timeout of 30000ms
+2026-02-26T23:32:33.585Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.2288.1772148753585
+2026-02-26T23:32:33.585Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:32:33.589Z [DEBUG] Temp file written successfully, size: 5345 bytes
+2026-02-26T23:32:33.589Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:32:33.589Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.2288.1772148753585 to C:\Users\0000250059\.claude.json
+2026-02-26T23:32:33.590Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:32:33.603Z [DEBUG] Cleaned up session snapshot: C:\Users\0000250059\.claude\shell-snapshots\snapshot-bash-1772148740244-88ca9r.sh
+2026-02-26T23:32:33.604Z [DEBUG] Getting matching hook commands for SessionEnd with query: prompt_input_exit
+2026-02-26T23:32:33.604Z [DEBUG] Found 0 hook matchers in settings
+2026-02-26T23:32:33.604Z [DEBUG] Matched 0 unique hooks for query "prompt_input_exit" (0 before deduplication)
+2026-02-26T23:32:33.607Z [DEBUG] [useDeferredValue] Messages deferred by 1 (11→12)
+2026-02-26T23:32:33.610Z [DEBUG] [useDeferredValue] Messages deferred by 1 (11→12)

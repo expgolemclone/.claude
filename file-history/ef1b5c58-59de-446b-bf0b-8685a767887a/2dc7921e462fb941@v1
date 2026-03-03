@@ -1,0 +1,23 @@
+# qutebrowser config.py
+# autoconfig.yml は読み込まない（設定はすべてここで管理）
+config.load_autoconfig(False)
+
+# 広告ブロック
+c.content.blocking.method = "both"
+
+# GitHub でクリップボード貼り付けを許可
+config.set("content.javascript.clipboard", "access-paste", "https://github.com")
+
+# Gmail を mailto ハンドラに登録
+config.set(
+    "content.register_protocol_handler",
+    True,
+    "https://mail.google.com?extsrc=mailto&url=%25s",
+)
+
+# 起動ページ・デフォルトページ
+c.url.start_pages = ["https://claude.ai"]
+c.url.default_page = "https://claude.ai"
+
+# 検索エンジン
+c.url.searchengines = {"DEFAULT": "https://www.google.com/search?q={}"}

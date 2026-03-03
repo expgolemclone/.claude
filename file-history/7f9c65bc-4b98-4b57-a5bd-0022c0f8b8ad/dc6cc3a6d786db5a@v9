@@ -1,0 +1,277 @@
+# coding: cp932
+"""pre-commit hook: �S�ǐՃt�@�C���� CP932 + CRLF �ɕϊ�����."""
+
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+
+BINARY_EXTENSIONS: set[str] = {
+    # �摜
+    ".gif", ".ico", ".bmp", ".png", ".jpg", ".jpeg", ".cur",
+    # ����
+    ".wav",
+    # ���s�t�@�C���E���C�u����
+    ".dll", ".exe", ".lib", ".tlb", ".bin",
+    # Office �h�L�������g
+    ".xlsx", ".xlsm", ".xlsb", ".xls", ".docx", ".doc", ".pdf",
+    # �A�[�J�C�u�E�ؖ���
+    ".zip", ".snk", ".pfx", ".pvk", ".cer",
+    # Visual Studio �o�C�i��
+    ".suo", ".aps",
+    # ���̑��o�C�i��
+    ".euf", ".tte", ".stb", ".hlp", ".chm", ".cnt",
+    ".frx", ".dat", ".acf",
+}
+
+
+def is_binary_ext(filepath: str) -> bool:
+    """�g���q�Ńo�C�i�����肷��."""
+    _, ext = os.path.splitext(filepath)
+    return ext.lower() in BINARY_EXTENSIONS
+
+
+def tracked_files() -> list[str]:
+    """git ls-files �őS�ǐՃt�@�C����Ԃ�."""
+    result = subprocess.run(
+        ["git", "ls-files", "-z"],
+        capture_output=True,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"git ls-files failed: {result.stderr.decode()}")
+    raw = result.stdout
+    if not raw:
+        return []
+    return [p for p in raw.decode("utf-8").split("\0") if p]
+
+
+def detect_encoding(data: bytes) -> str | None:
+    """�G���R�[�f�B���O�����S�Ɍ��o����.
+
+    Returns:
+        "utf-16-le" / "utf-16-be" / "utf-8-sig" / "ascii" / "utf-8" / "cp932" / "shift_jis"
+        ���o�s�\�Ȃ� None
+    """
+    # 1. UTF-16 BOM
+    if data[:2] == b"\xff\xfe":
+        return "utf-16-le"
+    if data[:2] == b"\xfe\xff":
+        return "utf-16-be"
+
+    # 2. null byte �� �o�C�i�� (�擪 512 byte)
+    if b"\x00" in data[:512]:
+        return None  # �o�C�i������
+
+    # 3. UTF-8 BOM
+    if data[:3] == b"\xef\xbb\xbf":
+        return "utf-8-sig"
+
+    # 4. �� ASCII
+    if all(b < 0x80 for b in data):
+        return "ascii"
+
+    # 5. UTF-8 strict
+    try:
+        data.decode("utf-8", errors="strict")
+        return "utf-8"
+    except UnicodeDecodeError:
+        pass
+
+    # 6. CP932 strict
+    try:
+        data.decode("cp932", errors="strict")
+        return "cp932"
+    except UnicodeDecodeError:
+        pass
+
+    # 7. Shift-JIS strict (CP932 �Ɣ����Ƀ}�b�s���O���قȂ�)
+    try:
+        data.decode("shift_jis", errors="strict")
+        return "shift_jis"
+    except UnicodeDecodeError:
+        pass
+
+    return None
+
+
+def normalize_newlines(text: str) -> str:
+    """���s�� CRLF �ɐ��K������.
+
+    CRLF �� LF �� CR �� LF �̏��ɓ��ꂵ�A�Ō�� LF �� CRLF �ɂ���.
+    """
+    text = text.replace("\r\n", "\n")
+    text = text.replace("\r", "\n")
+    text = text.replace("\n", "\r\n")
+    return text
+
+
+def is_cp932_crlf(data: bytes) -> bool:
+    """���� CP932 + CRLF ���ǂ����𔻒肷��."""
+    # CP932 �Ƃ��ăf�R�[�h�ł��邩
+    try:
+        data.decode("cp932", errors="strict")
+    except UnicodeDecodeError:
+        return False
+
+    # bare LF (CRLF �łȂ� LF) �� bare CR ���Ȃ���
+    i = 0
+    while i < len(data):
+        if data[i] == 0x0A:  # LF
+            if i == 0 or data[i - 1] != 0x0D:  # bare LF
+                return False
+        elif data[i] == 0x0D:  # CR
+            if i + 1 >= len(data) or data[i + 1] != 0x0A:  # bare CR
+                return False
+        i += 1
+    return True
+
+
+def convert_file(filepath: str, restage: bool = True) -> bool:
+    """�t�@�C���� CP932 + CRLF �ɕϊ�����.
+
+    Args:
+        filepath: �ϊ��Ώۃt�@�C���p�X
+        restage: True �Ȃ�ϊ���� git add ����
+
+    Returns:
+        True: ���� (�ϊ��ς� or �X�L�b�v), False: �G���[
+    """
+    data = open(filepath, "rb").read()
+
+    if not data:
+        return True  # ��t�@�C���̓X�L�b�v
+
+    # ���� CP932 + CRLF �Ȃ�X�L�b�v
+    if is_cp932_crlf(data):
+        return True
+
+    enc = detect_encoding(data)
+
+    if enc is None:
+        # null byte ���������ꍇ�̓o�C�i�� �� �X�L�b�v
+        if b"\x00" in data[:512]:
+            return True
+        # ���o�s�\
+        print(f"ERROR: encoding detection failed: {filepath}", file=sys.stderr)
+        return False
+
+    # ASCII �� CP932 �݊��Ȃ̂ŉ��s�������K��
+    if enc == "ascii":
+        text = data.decode("ascii")
+    elif enc == "utf-16-le":
+        text = data.decode("utf-16-le")
+    elif enc == "utf-16-be":
+        text = data.decode("utf-16-be")
+    elif enc == "utf-8-sig":
+        text = data.decode("utf-8-sig")
+    elif enc == "utf-8":
+        text = data.decode("utf-8")
+    elif enc == "cp932":
+        text = data.decode("cp932")
+    elif enc == "shift_jis":
+        text = data.decode("shift_jis")
+    else:
+        print(f"ERROR: unexpected encoding '{enc}': {filepath}", file=sys.stderr)
+        return False
+
+    # BOM ����
+    if text.startswith(chr(0xFEFF)):
+        text = text[1:]
+
+    # CRLF ���K��
+    text = normalize_newlines(text)
+
+    # CP932 �ɑ��݂��Ȃ�������u��
+    text = text.replace(chr(0xA9), "(c)")
+
+    # CP932 �G���R�[�h (strict)
+    try:
+        new_data = text.encode("cp932", errors="strict")
+    except UnicodeEncodeError as e:
+        print(
+            f"ERROR: cannot encode to CP932: {filepath}: {e}",
+            file=sys.stderr,
+        )
+        return False
+
+    # �ϊ��㌟��: CP932 strict decode + bare LF/CR �Ȃ�
+    try:
+        new_data.decode("cp932", errors="strict")
+    except UnicodeDecodeError:
+        print(
+            f"ERROR: post-conversion CP932 verification failed: {filepath}",
+            file=sys.stderr,
+        )
+        return False
+
+    if not is_cp932_crlf(new_data):
+        print(
+            f"ERROR: post-conversion CRLF verification failed: {filepath}",
+            file=sys.stderr,
+        )
+        return False
+
+    # atomic write
+    dirpath = os.path.dirname(os.path.abspath(filepath))
+    fd, tmp_path = tempfile.mkstemp(dir=dirpath)
+    closed = False
+    try:
+        os.write(fd, new_data)
+        os.close(fd)
+        closed = True
+        shutil.move(tmp_path, filepath)
+    except Exception:
+        if not closed:
+            os.close(fd)
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
+        raise
+
+    # �ăX�e�[�W (���X�X�e�[�W�ς݂̃t�@�C���̂�)
+    if restage:
+        subprocess.run(["git", "add", filepath], check=True)
+    print(f"  converted ({enc} -> cp932+crlf): {filepath}")
+    return True
+
+
+def main() -> int:
+    # �X�e�[�W�ς݃t�@�C�����L�� (�ϊ���ɍăX�e�[�W���邽��)
+    result = subprocess.run(
+        ["git", "diff", "--cached", "--diff-filter=ACMR", "--name-only", "-z"],
+        capture_output=True,
+    )
+    staged = set()
+    if result.returncode == 0 and result.stdout:
+        staged = {p for p in result.stdout.decode("utf-8").split("\0") if p}
+
+    files = tracked_files()
+    if not files:
+        print("  no tracked files.")
+        return 0
+
+    errors = []
+    for f in files:
+        if not os.path.isfile(f):
+            continue
+        # .vscode/ �z���� UTF-8 �K�{�̂��ߕϊ��ΏۊO
+        if f.replace("\\", "/").startswith(".vscode/"):
+            continue
+        if is_binary_ext(f):
+            continue
+        if not convert_file(f, restage=(f in staged)):
+            errors.append(f)
+
+    if errors:
+        print(
+            f"\nWARNING: {len(errors)} file(s) could not be converted to CP932:",
+            file=sys.stderr,
+        )
+        for e in errors:
+            print(f"  {e}", file=sys.stderr)
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

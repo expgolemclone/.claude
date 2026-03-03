@@ -1,0 +1,40 @@
+$ErrorActionPreference = "Stop"
+
+# Get Arc Browser path from registry (survives version updates)
+$arcPath = (Get-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\App Paths\Arc.exe" -ErrorAction SilentlyContinue).'(default)'
+
+if (-not $arcPath -or -not (Test-Path $arcPath)) {
+    Write-Host "Arc Browser not found. Using default browser."
+    $arcPath = $null
+}
+
+function Open-Url($url) {
+    if ($arcPath) {
+        Start-Process $arcPath $url
+    } else {
+        Start-Process $url
+    }
+}
+
+$urls_before = @(
+    "http://mmm.osshub.mss.local/dashboard/todos"
+    "https://meiden.cybozu.com/g/portal/index.csp?"
+)
+
+$urls_after = @(
+    "https://meiden-cws.company.works-hi.com/self-workflow/cws/cws?@SID=weYa63tn0l&@SUB=root.cws.shuro.personal.term_kinmu_input&@SN=root.cws.shuro.personal.term_kinmu_input&@FN=FormSingleAttendance&@SRACT=GoBackToFormListAction&@SRSNDSVC=TermKinmuInputService"
+    "https://sgsv1.tokyo.meidensha.co.jp/SmartGrasper/joblist"
+)
+
+foreach ($url in $urls_before) { Open-Url $url }
+
+Write-Host ""
+Write-Host "--------------------------------------------------"
+Write-Host "Please login at meiden.cybozu.com"
+Write-Host "--------------------------------------------------"
+Read-Host | Out-Null
+
+foreach ($url in $urls_after) { Open-Url $url }
+
+Write-Host ""
+Write-Host "Done."

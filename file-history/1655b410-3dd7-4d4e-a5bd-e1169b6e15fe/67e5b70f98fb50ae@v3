@@ -1,0 +1,284 @@
+//#define OPSNEXUS_LIB
+#include "nexus_lib.h"
+
+
+#define Z_LOGFILE_MAXREC_N  10000
+#define Z_LOGFILE_MAXLV_N   5
+
+struct T_errfile_inf {          //�װ۸�̧�ُ��
+    char*       log_cp;         //۸�̧�ٖ���
+    int         ini_i;          //���������
+    int         no_i;           //�g�p�ԍ�
+    int         rec_i;          //ں��ސ�
+};
+
+void f_errlog_ini(struct T_errfile_inf*);           //�װ۸�̧�ُ�񏉊���
+
+
+struct T_errfile_inf file_inf[] =
+    {{"opsnxlib0_", 0, 0, 0}
+    ,{"opsnxlib1_", 0, 0, 0}
+    ,{"opsnxlib2_", 0, 0, 0}
+    ,{"opsnxlib3_", 0, 0, 0}
+    ,{"opsnxlib4_", 0, 0, 0}
+    ,{"opsnxlib5_", 0, 0, 0}
+    };
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//  �@  �\�F�װ۸ޏo�͏���
+//  calling sequence:
+//      int f_errlog_lib(int, const char*, uint, const char*, long*, uint)
+//  ��  �́Fint         lv_i    //۸�����
+//          const char* fn_cp   //̧�ٖ���
+//          uint        line_ui //ײݐ�
+//          const char* text_cp //÷��
+//          long*       data_lp //�t�����
+//          uint        dnum_ui //�t�����̐�
+//  �o  �́F�Ȃ�
+//  �߂�l�F�Ȃ�
+//
+//  �C������    :  2007�N  11��  21��  ���  ���L TO001
+//                 �n�o�r�T�O�O�O�J�����̏C��
+//                 c:\nx\dlink\tmp���̃��O�t�@�C�����폜����Ȃ���Q���C
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+void f_errlog_lib(int           lv_i,
+                  const char*   fn_cp,
+                  uint          line_ui,
+                  const char*   text_cp,
+                  long*         data_lp,
+                  uint          dnum_ui)
+{
+    char                        fname_cp[64];   //�װ۸�̧�ٖ���
+    char                        str_cp[2048];   //�װ۸ޕ�����
+    SYSTEMTIME                  stm ;           //GetLocalTime�p�����v�f
+//  struct timeval              tv;             //����
+//  struct tm*                  tm_p;           //۰�َ���
+    struct tm                   tm_p;           //۰�َ���
+    size_t                      cnt_t;          //����
+    int                         siz_i=0;        //����
+//  int                         fd_i;           //̧���ި������
+    HANDLE                      fd_h;           //̧�������
+    DWORD                       Error_ui ;      //���^�[���X�e�[�^�X(SetFilePointer)
+    int                         rtnsts_i ;      //���^�[���X�e�[�^�X
+    DWORD                       dwBytesWrite_ui;//�������݃t�@�C���T�C�Y
+
+
+
+
+
+
+
+    //����Ăяo���̏ꍇ�A�װ۸�̧�ُ��̏��������s��
+    if (file_inf[lv_i].ini_i!=0) {
+        file_inf[lv_i].ini_i=1;
+        f_errlog_ini(&file_inf[lv_i]);
+    }
+
+    memset(str_cp, 0, sizeof(str_cp));      //�װ۸��ޯ̧�̏�����
+//  gettimeofday(&tv, NULL);                //�����̎擾
+//  tm_p=localtime_s(&tv.tv_sec);            //۰�َ����̎擾
+    GetLocalTime(&stm) ;
+//  tm_p->tm_year=stm.wYear-1900;
+//  tm_p->tm_mon=stm.wMonth;
+//  tm_p->tm_mday=stm.wDay;
+//  tm_p->tm_hour=stm.wHour;
+//  tm_p->tm_min=stm.wMinute;
+//  tm_p->tm_sec=stm.wSecond;
+    tm_p.tm_year=stm.wYear-1900;
+    tm_p.tm_mon=stm.wMonth;
+    tm_p.tm_mday=stm.wDay;
+    tm_p.tm_hour=stm.wHour;
+    tm_p.tm_min=stm.wMinute;
+    tm_p.tm_sec=stm.wSecond;
+
+    //�װ۸�̧�ٖ��̂̍쐬
+    if (funcnm_cp[0]!=0) {
+        sprintf(fname_cp, "%s%s%s_%d.log", Z_LOG_DIR_N, file_inf[lv_i].log_cp, funcnm_cp, file_inf[lv_i].no_i);
+    }
+    else {
+        sprintf(fname_cp, "%s%d.log", file_inf[lv_i].log_cp, file_inf[lv_i].no_i);
+    }
+//  if (funcnm_cp[0]!=0) {
+//      sprintf_s(fname_cp,
+//                (size_t)fname_cp, (const char *)"%s%s%s_%d.log",
+//                Z_LOG_DIR_N,
+//                file_inf[lv_i].log_cp,
+//                funcnm_cp,
+//                file_inf[lv_i].no_i);
+//  }
+//  else {
+//      sprintf_s(fname_cp,
+//                (size_t)fname_cp, (const char *)"%s%d.log",
+//                file_inf[lv_i].log_cp,
+//                file_inf[lv_i].no_i);
+//  }
+    //���������̓o�^
+    siz_i+=sprintf(&str_cp[siz_i],
+                   "%04d/%02d/%02d %02d:%02d:%02d.%06d",
+                   tm_p.tm_year+1900,
+                   tm_p.tm_mon,
+                   tm_p.tm_mday,
+                   tm_p.tm_hour,
+                   tm_p.tm_min,
+                   tm_p.tm_sec,
+                   stm.wMilliseconds);
+//                 tm_p->tm_year+1900,
+//                 tm_p->tm_mon,
+//                 tm_p->tm_mday,
+//                 tm_p->tm_hour,
+//                 tm_p->tm_min,
+//                 tm_p->tm_sec,
+//                 (int)tv.tv_usec);
+//  siz_i+=sprintf_s(&str_cp[siz_i],
+//                   (size_t)str_cp, (const char *)"%04d/%02d/%02d %02d:%02d:%02d.%06d",
+//                   tm_p->tm_year+1900,
+//                   tm_p->tm_mon,
+//                   tm_p->tm_mday,
+//                   tm_p->tm_hour,
+//                   tm_p->tm_min,
+//                   tm_p->tm_sec,
+//                   stm.wMilliseconds);
+    /*
+    //̧�ٖ��̂����߽�������폜����
+    for (cnt_t=strlen(fn_cp);cnt_t>=0;cnt_t--) {
+        if (fn_cp[cnt_t]=='\\') {
+            break;
+        }
+    }
+    */
+    //�{��
+    siz_i+=sprintf(&str_cp[siz_i],
+                   " %s-%05d %s",
+//                 &fn_cp[cnt_t+1],
+                   fn_cp,
+                   line_ui,
+                   text_cp);
+//  siz_i+=sprintf_s(&str_cp[siz_i],
+//                   (size_t)str_cp, (const char *)" %s-%05d %s",
+//                   fn_cp,
+//                   line_ui,
+//                   text_cp);
+    //�t�����
+    if ((NULL!=data_lp)&&(dnum_ui>0)) {
+        for (cnt_t=0;cnt_t<dnum_ui;cnt_t++) {
+            siz_i+=sprintf(&str_cp[siz_i],
+                           " 0x%08x",
+                           (int)*data_lp);
+//          siz_i+=sprintf_s(&str_cp[siz_i],
+//                           (size_t)str_cp, (const char *)" 0x%08x",
+//                           ((int)*data_lp));
+               data_lp++;
+        }
+    }
+    siz_i+=sprintf(&str_cp[siz_i], "\r\n");
+//  siz_i+=sprintf_s(&str_cp[siz_i], (size_t)str_cp, (const char *)"\r\n");
+
+//  fd_i=open(fname_cp, O_CREAT|O_RDWR, S_IRWXU|S_IRWXG|S_IRWXO);
+    fd_h = (HANDLE)CreateFile(
+           (LPCTSTR)fname_cp,
+           (DWORD)GENERIC_WRITE | GENERIC_READ,
+           (DWORD)FILE_SHARE_READ | FILE_SHARE_WRITE,
+           (LPSECURITY_ATTRIBUTES)NULL,
+           (DWORD)OPEN_ALWAYS,
+           (DWORD)FILE_ATTRIBUTE_NORMAL | FILE_FLAG_RANDOM_ACCESS,
+           (HANDLE)NULL) ;
+
+//  if (fd_i==-1)
+    if (fd_h==INVALID_HANDLE_VALUE)
+    {
+        return;
+    }
+//  lseek(fd_i, 0, SEEK_END);
+    //�|�C���^�̈ړ�
+    Error_ui = (DWORD)SetFilePointer(
+               (HANDLE)fd_h,
+               (LONG)0,
+               (PLONG)0,
+               (DWORD)FILE_END) ;
+
+//  write(fd_i, str_cp, strlen(str_cp));
+    //�t�@�C���ւ̏�������
+    rtnsts_i = (INT)WriteFile(
+               (HANDLE)fd_h,
+               (LPVOID)str_cp,
+               (DWORD)strlen(str_cp),
+               &dwBytesWrite_ui,
+               (LPOVERLAPPED)0) ;
+
+//  close(fd_i);
+    (INT)CloseHandle((HANDLE)fd_h) ;
+
+    //�װ۸ނ��K��s�ȏ�ɂȂ�����ʂ�̧�قɐ؂�ւ���
+    //�i̧��0��̧��1�����݂Ɏg���j
+    file_inf[lv_i].rec_i++;
+    if (file_inf[lv_i].rec_i>Z_LOGFILE_MAXREC_N) {
+        if (file_inf[lv_i].no_i==0) file_inf[lv_i].no_i=1;
+        else file_inf[lv_i].no_i=0;
+        file_inf[lv_i].rec_i=0;
+                                                                         //TO001��
+        //�װ۸�̧�ٖ��̂̍쐬
+        if (funcnm_cp[0]!=0) {
+            sprintf(fname_cp, "%s%s%s_%d.log", Z_LOG_DIR_N, file_inf[lv_i].log_cp, funcnm_cp, file_inf[lv_i].no_i);
+        }
+        else {
+            sprintf(fname_cp, "%s%d.log", file_inf[lv_i].log_cp, file_inf[lv_i].no_i);
+        }
+//      sprintf(fname_cp, "%s%d.log", file_inf[lv_i].log_cp, file_inf[lv_i].no_i);
+                                                                         //TO001��
+//      sprintf_s(fname_cp, (size_t)fname_cp, (const char *)"%s%d.log",
+//                          file_inf[lv_i].log_cp,
+//                          file_inf[lv_i].no_i);
+//      unlink(fname_cp);
+        _unlink((const char *)fname_cp);
+    }
+    return;
+}
+
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//  �@  �\�F�װ۸�̧�ُ�񏉊�������
+//  calling sequence:
+//      void f_errlog_ini(struct T_errfile_inf*)
+//  ��  �́F�Ȃ�
+//  �o  �́Fstruct T_errfile_inf*   //�װ۸�̧�ُ��
+//  �߂�l�F�Ȃ�
+//  �T�@�v�F�O��I�����̏����擾���āA�װ۸�̧�ُ�������������
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+void f_errlog_ini(struct T_errfile_inf* file_inf)
+{
+    FILE*               fp;                         //̧���߲��
+    char                fname_cp[64];               //�װ۸�̧�ٖ���
+    char                buf_cp[2048];
+    int                 cnt_i;                      //����
+//  errno_t             err;                        //�߂�l
+
+    for (cnt_i=0;cnt_i<=1;cnt_i++) {
+
+        sprintf(fname_cp, "%s%d.log", file_inf->log_cp, cnt_i);
+//      sprintf_s(fname_cp, (size_t)fname_cp, (const char *)"%s%d.log",
+//                          file_inf->log_cp,
+//                          cnt_i);
+        fp = fopen(fname_cp, "r");                  //̧�ٵ����
+//      err = fopen_s(&fp, fname_cp, "r");          //̧�ٵ����
+        if (!fp) {                                  //̧�ٵ���ݎ��s
+//      if (err!=0) {                               //̧�ٵ���ݎ��s
+            continue;
+        }
+        file_inf->no_i=cnt_i;
+        file_inf->rec_i=0;
+        while (1) {
+            fgets(buf_cp, sizeof(buf_cp), fp);      //̧�ق���1�s�ǂݍ���
+            if (0 != feof(fp)) break;               //̧�ٴ��ނȂ��ٰ�߂𔲂���
+            file_inf->rec_i++;
+        }
+        fclose(fp);
+        if (file_inf->rec_i<Z_LOGFILE_MAXREC_N) {
+            break;
+        }
+    }
+    return;
+}
+
+
+

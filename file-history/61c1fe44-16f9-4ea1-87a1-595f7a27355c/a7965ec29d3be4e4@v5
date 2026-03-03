@@ -1,0 +1,80 @@
+@echo off
+setlocal
+
+:: --------------------------------------------------------
+:: Upload build artifacts to E:\micronet
+:: Run this script from the repository root directory.
+:: --------------------------------------------------------
+
+set DEST=E:\micronet
+
+:: Move to the repository root (same directory as this script)
+cd /d %~dp0
+
+:: Verify destination exists
+if not exist "%DEST%" (
+    echo ERROR: Destination "%DEST%" does not exist.
+    exit /b 1
+)
+
+echo ==================================================
+echo  Upload to %DEST% - Start    %date% %time%
+echo ==================================================
+
+:: --------------------------------------------------
+:: Backup existing folders to E:\micronet\backup\
+:: --------------------------------------------------
+set BACKUP=%DEST%\backup
+set TIMESTAMP=%date:~0,4%%date:~5,2%%date:~8,2%_%time:~0,2%%time:~3,2%%time:~6,2%
+set TIMESTAMP=%TIMESTAMP: =0%
+set BACKUP_DIR=%BACKUP%\micronet\%TIMESTAMP%
+
+echo [Backup] Saving current files to %BACKUP_DIR% ...
+if not exist "%BACKUP_DIR%" mkdir "%BACKUP_DIR%"
+
+for %%D in (bin dll exe file tool Web E_mail) do (
+    if exist "%DEST%\%%D" (
+        echo   Backing up %%D ...
+        xcopy "%DEST%\%%D" "%BACKUP_DIR%\%%D\" /S /E /K /H /V /Y >nul
+    )
+)
+echo [Backup] Done.
+echo.
+
+:: --------------------------------------------------
+:: Upload
+:: --------------------------------------------------
+
+:: bin (help files, WebView2, PdfSharp, etc.)
+echo [1/7] Copying bin ...
+xcopy bin "%DEST%\bin\" /S /E /K /H /V /Y
+
+:: dll
+echo [2/7] Copying dll ...
+xcopy Build\Image\exe_test\dll "%DEST%\dll\" /S /E /K /H /V /Y
+
+:: exe
+echo [3/7] Copying exe ...
+xcopy Build\Image\exe_test\exe "%DEST%\exe\" /S /E /K /H /V /Y
+
+:: file
+echo [4/7] Copying file ...
+xcopy Build\Image\exe_test\file "%DEST%\file\" /S /E /K /H /V /Y
+
+:: tool
+echo [5/7] Copying tool ...
+xcopy Build\Image\exe_test\tool "%DEST%\tool\" /S /E /K /H /V /Y
+
+:: Web
+echo [6/7] Copying Web ...
+xcopy Build\Image\exe_test\Web "%DEST%\Web\" /S /E /K /H /V /Y
+
+:: E_mail (create directory if it does not exist)
+echo [7/7] Creating E_mail ...
+if not exist "%DEST%\E_mail" mkdir "%DEST%\E_mail"
+
+echo ==================================================
+echo  Upload to %DEST% - End      %date% %time%
+echo ==================================================
+
+endlocal

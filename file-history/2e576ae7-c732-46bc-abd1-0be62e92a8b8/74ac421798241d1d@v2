@@ -1,0 +1,138 @@
+#Requires AutoHotkey v2.0
+
+; ============================================================
+; espanso match/powershell-open.yml から移行
+; PowerShell でフォルダを開くショートカット集
+; ============================================================
+
+#Hotstring *
+
+; ============================================================
+; ヘルパー関数
+; ============================================================
+
+OpenPowerShell(path) {
+    Run("powershell.exe", path)
+}
+
+; ============================================================
+; Desktop 直下
+; ============================================================
+
+:*::sdes:: {
+    OpenPowerShell(A_Desktop)
+}
+
+:*::smemo:: {
+    OpenPowerShell(A_Desktop "\memo")
+}
+
+:*::stoo:: {
+    OpenPowerShell(A_Desktop "\tool")
+}
+
+; ============================================================
+; Desktop\stock
+; ============================================================
+
+:*::ssto:: {
+    OpenPowerShell(A_Desktop "\stock")
+}
+
+:*::sland:: {
+    OpenPowerShell(A_Desktop "\stock\property\land_value_research")
+}
+
+; ============================================================
+; Desktop\local
+; ============================================================
+
+:*::sloc:: {
+    OpenPowerShell(A_Desktop "\local")
+}
+
+:*::splay:: {
+    OpenPowerShell(A_Desktop "\local\playwright")
+}
+
+; ============================================================
+; Desktop\refactoring
+; ============================================================
+
+:*::srefm:: {
+    OpenPowerShell(A_Desktop "\refactoring")
+}
+
+:*::srefu:: {
+    OpenPowerShell(A_Desktop "\refactoring\ops5k_x64_utf-8_safefunc")
+}
+
+:*::srefset:: {
+    OpenPowerShell(A_Desktop "\refactoring\OpsSetupForWin10_x64")
+}
+
+; ============================================================
+; Desktop\restart
+; ============================================================
+
+:*::sres:: {
+    OpenPowerShell(A_Desktop "\restart")
+}
+
+; ============================================================
+; D:\ ドライブ
+; ============================================================
+
+:*::sd\:: {
+    OpenPowerShell("D:\")
+}
+
+:*::sdref:: {
+    OpenPowerShell("D:\refactoring")
+}
+
+:*::smei:: {
+    OpenPowerShell("D:\meisvy_line")
+}
+
+; ============================================================
+; E:\ ドライブ
+; ============================================================
+
+:*::stool:: {
+    OpenPowerShell("E:\work\18.セットアップ(M5A Win10x64)\tool")
+}
+
+:*::sscr:: {
+    OpenPowerShell("E:\archive\screenshot")
+}
+
+; ============================================================
+; 設定・ツール
+; ============================================================
+
+; :sesp は削除 (espanso 廃止のため)
+
+:*::s.codex:: {
+    OpenPowerShell(EnvGet("USERPROFILE") "\.codex")
+}
+
+:*::s.claude:: {
+    OpenPowerShell(EnvGet("USERPROFILE") "\.claude")
+}
+
+:*::sahk:: {
+    Run("C:\Users\0000250059\Documents\AutoHotkey\test.ahk")
+}
+
+; ============================================================
+; Windows Startup フォルダ
+; ============================================================
+
+:*::sstav:: {
+    OpenPowerShell(EnvGet("USERPROFILE") "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\startup")
+}
+
+:*::sstae:: {
+    OpenPowerShell(EnvGet("USERPROFILE") "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\startup")
+}

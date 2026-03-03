@@ -1,0 +1,1204 @@
+//$History: $
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+// *****************************************************************************
+// *                Copyright Meidensha Corporation 2009					   *
+// *  ������Ж��d�ɂ͓��Ђɂ���Ē񋟂���Ȃ����u��ł̓��\�t�g�E�F�A�̎g�p   *
+// *  �ɑ΂��ӔC��S�������܂���B                                             *
+// *****************************************************************************
+//
+//      �v���O������:  hoemls
+//      �^�X�N��    :  E-mail �z�M
+//		�H	��		:  
+//		�V�X�e����	:  VS8000
+//      �o�[�W����  :  V01.01
+//      �쐬��      :  �N��j�i
+//      �쐬�N����  :  2009�N 9��01��
+//	    ���p�����@:�@OPS5K $/OPS5K_MSS Ver4
+//      �C������    :  2019�N  8��30��  TSS�g��
+//                     2021�N 11��02��  SCC���� SCCjiku_Emailx64_211102
+//                       VS6000 Email�@�\���P�Ŏ��{���ꂽ�{�t�@�C��(�ȉ��̑Ή����܂�)���ڐA����B
+//                       �EE���[���z�M SSL�ʐM�Ή�
+//                         2021�N  2�� 8��  TSS�с@��Q�����[P08001-Q08-2839�Ή� 
+//                     2025/04/17 ��t  P08001-Q08-3022
+//                     �EE���[����d���@�\�������A�T�u�n�Ńv���o�C�_�ُ킪��������B
+//                       �⑫�FVS8000�l�C�e�B�u���G���[���O�G���A�󂵉��C�̂݉��W�J�B
+//                     2025/07/07 ��t CM-3213
+//                       OPS5000�}�X�^���̉�ʂɁu E-mail�z�M�^�X�N�ihoemls.exe�j�v��
+//                       �������s���̃G���[�E�B���h�E���\�������B
+//                        1) GC�Ń��\�[�X���������₷���Ȃ�悤�Ɉȉ��̉��P�B
+//                          �ECOM���(Release)�̎��s��ǉ��B
+//                          �ECOM�C���X�^���X�̃��\�[�X���(Dispose)�����s���鏈����ǉ��B
+//                          �E��O�������ɂ�����������s���悤�ɉ��P�B
+//                          �ECOM���Q�Ɠn������Ɨ�O�������ɎQ�ƃJ�E���^�����炸
+//                            COM���������Ȃ��\�������邽�߁A
+//                            �T�u�֐��ɑ΂���COM��l�n������悤�ɏC���B
+//                        2) �l�C�e�B�u�ł�GC�ɂ���Ď����I�Ƀ������������Ȃ��󋵂ł��������߁A�ȉ��̉��C�B
+//                          �ECOM���C�u�����������ƏI����SSL�ڑ��̓x�Ɏ��s����悤�ɕύX�B(���ʂ���)
+//                     2025�N 10�� 29�� ���� CM-3219
+//                       �傫���T�C�Y(��4,096�o�C�g)�̃��[������M�ł������[���T�[�o�Ɏc������B
+//                       �E���[���f�[�^�T�C�Y���o�b�t�@�ő�T�C�Y�Ɠ����Ƃ��G���A�󂵂ƂȂ�s���C��
+//                       �E���[���f�[�^�������R�[�h�ϊ��ɂ��o�b�t�@�I�[�o�[���ăG���A�󂵂ƂȂ�s���C��
+//                       �E���[����M���s�̃t�@�C���N���[�Y�R��C��
+//                       �E�t�@�C���I�[�v�����s���̃f�[�^��M�R��C��
+//
+//      �@�\�T�v    : E-mail�𔭐M���āA���u�n�ł̃v�����g��ԊĎ��A���Ǘ�
+//                    �Ɩ����x������BE-mail�̔z�M�́A�v���o�C�_�i�h�r�o�j��
+//                    �΂��ă_�C�A���A�b�v�ڑ���A�p�\�R���ƌg�ѓd�b��Ώۂ�
+//                    �������z�M(���b�Z�[�W�A���[(ExcelFile)��z�M)���s���B
+//                    E-mail�̎�����i�Ƃ��ẮA�r�l�s�o�|�o�n�o�R�i�s�b�o�^
+//                    �h�o�j���x�[�X�Ƃ��č\�z����B�Ȃ��A�{�@�\�� Web�T�[�o
+//                    �̃I�v�V�����@�\�ł���A�����ݒ�̎��ɂ̂ݓ��삷��B
+//
+//      �����ꗗ    : 
+//
+//      ���L����    :  
+//----------------------------------------------------------------------------
+#include      "sysdef.h"                //OPS �W��
+#include      "hoemls.h"                //�^�X�N������
+#include      <stdio.h>                 //�W�����o��
+#include      <memory.h>                //��ؑ���֐�
+#import       "..\..\..\lib\vc\Release\hoemlsDLL.tlb" 
+using namespace hoemlsDLL;
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  LB10    *    E-mail��M����                                * fl_em10_ssl*
+// ****************************************************************************
+//
+//  �@�@�\:
+//       �T�[�o�ԃ\�P�b�g�ʐM�m���ifl_em30�j��A�o�n�o�R�v���g�R���ɏ�������
+//     �ʐM�����{�ifl_em50_ssl�Afl_em60�j�B�Ȃ��A��M���[���̓��e�ɂ��ẮAJIS/
+//     SJIS�ϊ������ifl_em12�j���s���B�S�Ẵ��[����M�̌�ɁA���M���[�����
+//     �����ifl_em11�j�����{����B
+//
+//  �R�[�����O�V�[�P���X:
+//     (int) fl_em10(short  *sucmail_s, int& x_rcvcnt_i);
+//
+//  ���̓f�[�^:
+//     �Ȃ�
+//
+//  �o�̓f�[�^:
+//     short *sucmail_s ;   �L�����[����M���i���F�O�A�L�F���O�j
+//     int& x_rcvcnt_i ;    E-mail��M�������{��
+//
+//  �߂�l:
+//     �����iRS_SUC:�j�A���s�i��RS_SUC:�j
+//
+//  �������e:
+//    1. �T�[�o�ԃ\�P�b�g�ʐM�m�������ifl_em30�j[LB 30]���{�B
+//    2. �o�n�o�R���x���ł̃Z�b�V�����m���̎|�i+OK�c�j����M�ifl_em60�j[LB 60]�B
+//    3. �uE-mail�v���o�C�_�ڑ����E���[�U���́i���[���p�j�v���烆�[�U�R�}���h
+//       �iUSER xxxx�j�𑗐M�ifl_em50_ssl�j[LB 50]�B
+//    4. ���[�U�R�}���h�iUSER xxxx�j���M��������M�ifl_em60�j[LB 60]�B
+//    5. �uE-mail�v���o�C�_�ڑ����E�p�X���[�h�i���[���p�j�v����p�X���[�h�R�}���h
+//       �iPASS password�j�𑗐M�ifl_em50_ssl�j[LB 50]�B
+//    6. �p�X���[�h�R�}���h�iPASS password�j���M��������M�ifl_em60�j[LB 60]�B
+//    7. STAT�R�}���h�𑗐M�ifl_em50_ssl�j[LB 50]�B
+//    8. STAT�R�}���h���M��������M�ifl_em60�j[LB 60]�B
+//    9. STAT�R�}���h���M�������e���璅�M���[�����A���T�C�Y���擾�B
+//    10. ���M���[�������ȉ��̏��������{�B
+//		(1) �ŐV���b�Z�[�W���M�v���}�~�m�F���������{(fl_em180) [LB180]
+//		(2) �ŐV���b�Z�[�W���M�v���}�~�m�F���ʂ��}�~���Ȃ�΁A
+//			���Y���[�����X�L�b�v���邽�߂Ɏ��̒��M���[���֕��򂷂�(continue)
+//      (3) LIST �R�}���h�iLIST n�j���M�ɂ��A����ڒ��M���[���̑��M�v��
+//          �����{�ifl_em50_ssl�j[LB 50]�B
+//      (4) LIST �R�}���h���M�����ɂ��A����ڒ��M���[���̃T�C�Y����M
+//         �ifl_em60�j[LB 60]�B
+//      (5) RETR �R�}���h�iRETR n�j���M�ɂ��A����ڒ��M���[���̓]���v����
+//          ���{�ifl_em50_ssl�j[LB 50]�B
+//      (6) RETR �R�}���h���M�����ɂ��A����ڒ��M���[������M�ifl_em60�j[LB 60]�B
+//      (7) ����ڒ��M���[����SJIS�ɕϊ��ifl_em12�j[LB 12]�B
+//      (8) �ǂݏo�������[�������[���{�b�N�X����폜�iDELE �R�}���h�iDELE n�j���M�j
+//          �ifl_em50_ssl�j[LB 50]�B
+//      (9) DELE�R�}���h���M��������M�ifl_em60�j[LB 60]�B
+//    11. QUIT�R�}���h�𑗐M�ifl_em50_ssl�j[LB 50]�B
+//    12. QUIT�R�}���h���M��������M�ifl_em60�j[LB 60]�B
+//    13. �T�[�o�ԃ\�P�b�g�ʐM�J�������ifl_em40�j[LB 40]���{�B
+//    14. ���M���[����͏����ifl_em11�j[LB 11]�����{����B
+//	  15. �ŐV���b�Z�[�W���M�v�����菈��(fl_em240) [LB 240]���{�B
+//    ��fl_em10��SSL�Ή���
+//-----------------------------------------------------------------------------
+//��P08001-Q08-2201
+int    fl_em10_ssl(short  *sucmail_s, int& x_rcvcnt_i)       //
+//��P08001-Q08-2201
+{                                       //
+  int            rtnsts_i = RS_SUC;     // �{�����߂�l(�����l = ����)
+  short          connnum_s;             // �T�[�o�ԃ\�P�b�g�ʐM�m����
+  short          conncnt_s;             // �T�[�o�ԃ\�P�b�g�ʐM�m������
+  char           keyword_c[64] ;        // ���[���z�X�g���E���[�U��
+  char           cmdbuf_c[256] ;        // �R�}���h�o�b�t�@(���M)
+  char           replybuf_c[256] ;      // �����o�b�t�@(��M)
+  unsigned char  rcvbuf_uc[TW_RECEIVE_BYTE_N] ; // ��M�o�b�t�@ //VS8K:��M�o�b�t�@�I�[�o�[�Ή�
+  //unsigned char  oldbuf_uc[4096] ;      // ��M�o�b�t�@(�e�X�g�p)
+  int            mailcnt_i ;            // ���M���[����
+  int            befrcvcnt_i ;          // �O�񒅐M���[����
+  int            mtotalsz_i ;           // ���M���[�����T�C�Y
+  int            mreadsz_i ;            // ���[���̓Ǎ��݃o�C�g��
+  char           pfname_c[256] ;        // �p�X�t���t�@�C����
+  char           filename_c[128] ;      // ���[���i�[�p�t�@�C����
+  FILE           *fd_h = NULL ;         // ���[���i�[�p�t�@�C���L�q�q   // CM-3219 mod
+  int            mailno_i = 0 ;         // ���[���ԍ�
+  char           *useless_cp;           // �d���s�v�ӏ��|�C���^
+  int            mailsize_i, nbyte_i ;  // ���[���T�C�Y
+                                        // ���M���[�����e�E���E�T�C�Y
+  char           *reply_c, *mcnt_c, *msize_c, *no_c ;
+  char           errlog_c[256];         // Error Log                // P08001-Q08-3022 mod
+  SYSTEMTIME y_stm ;                    // GetLocalTime�p����(�f�o�b�N�p)
+  BOOL			 rtnsts_bl;				// ���^�[���X�e�[�^�X
+  BOOL			 suspend_bl;			// ���[���ۗ��t���O
+  char			*pmark1_cp;				// �I�������`�F�b�N�p
+  char			*pmark2_cp;				// �I�������`�F�b�N�p
+  int			pmark1_i;				// �I�������`�F�b�N�p
+  int			pmark2_i;				// �I�������`�F�b�N�p
+  int			cmdrsize_i;				// LIST�R�}���h���ʕ����T�C�Y
+  int           errno_i;                // �G���[�R�[�h                 // CM-3219 add
+  char *strtok_ctx = NULL;
+#define		S_ENDMARK	3				// �{���I�[�����T�C�Y
+                                        //
+DP8_("      E-mailSSL ��M�����J�n(fl_em10)\n");//SCCjiku_Emailx64_211102
+//�� 20100722_0809
+//  Email��d���@�\�̌������A���L�̕\�ʂ�̋@�\����������
+//              �}�X�^  �T�u    ����
+//  ���M����    ��      �~      ��
+//  ��M����    ��      �~      �~
+    if (f_em450(TW_MOD_RECV) == SS_FALSE_P)
+    {
+DP8_("      E-mailSSL ��d���@�\����ɂ���M������(fl_em10)\n");//SCCjiku_Emailx64_211102
+        return(rtnsts_i);
+    } 
+//�� 20100722_0809
+  sprintf(errlog_c,"E-mailSSL��M����") ;  //SCCjiku_Emailx64_211102
+
+  IhoemlsPtr  pSSL = NULL;					// CM-3213 add
+
+  try
+  {
+
+  //-> CM-3213 add
+  // COM���C�u����������
+  if (z_comusecnt_i == 0) {
+    HRESULT hr;
+    hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+    if (FAILED(hr)) {
+      DPR_("COM���C�u�����C�j�V�����C�Y���s hr = %d\n", hr);
+      F_errlog(0x0131, 0x2007, (int)WSAGetLastError(), hr, 0, 0,
+               "COM���C�u�����C�j�V�����C�Y���s");
+      return(FALSE);
+    }
+  }
+  z_comusecnt_i++;
+  //<- CM-3213 add
+
+  pSSL.CreateInstance(__uuidof(SSLClass)); // SSLClass��COM�C���^�[�t�F�C�X�|�C���^�[	// CM-3213 mod
+  //-> CM-3213 add
+  if (pSSL == NULL) {
+	strcat(errlog_c, "�FCOM�C���X�^���X�������s");  // dll���W�X�g�����o�^�̉\����
+    goto EWRITE;
+  }
+  //<- CM-3213 add
+                                        //�T�[�o�ԃ\�P�b�g�ʐM�m��
+                                        //�E�T�[�o�ԃ\�P�b�g�ʐM�m���񐔃Z�b�g
+
+// KS003-�@ Start: (1) Ras,���[�^�Ɋւ�炸���g���C�񐔂͂R��ɕύX�B
+
+//                                        //  Mail�ڑ��^�C�v�F�q�����o�R
+//  if( TF_eoptions->MailConTyp_s == TW_MailConTyp_Ras ) {
+//    connnum_s = 1;                      //    ���g���C�񐔂��܂܂Ȃ��ׁA�P��
+//  }                                     //
+//  else {                                //  Mail�ڑ��^�C�v�F���[�^�o�R
+//    connnum_s = 3;                      //    ���g���C�񐔂��܂ވׁA�R��
+//  }                                     //�E�T�[�o�ԃ\�P�b�g�ʐM�m��(�O�L�񐔕�)
+   connnum_s = 3;                         //  ���g���C�񐔃Z�b�g�B
+// KS003-�@ End
+  for( conncnt_s = 1; conncnt_s <= connnum_s; conncnt_s++ ){
+    strcpy( keyword_c, TS_eproinf->pop3host_c );
+    if(AU_task[TASK.no_i].dbg_i & 0x10) GetLocalTime(&y_stm) ;
+    DPR_("*** ConnectionsTry<Pop3>:%2d %4d/%2d/%2d %02d:%02d:%02d ***\n",
+         conncnt_s,y_stm.wYear,y_stm.wMonth,y_stm.wDay,y_stm.wHour,y_stm.wMinute,y_stm.wSecond) ;
+
+//HN130213    pop_sock = fl_em30(keyword_c, POP3_PORT_NO);
+    if(fl_em30_p_ssl(pSSL, keyword_c, TS_eproinf->pop3_port_us) == false) {    //�E�m�����s
+      if(conncnt_s == connnum_s){       //  �{�������I��
+//��P08001-Q08-2201
+        // ��M�T�[�o�Ƃ̃\�P�b�g�ʐM�̊m���Ɏ��s�����ꍇ�͑����Ƀv���o�C�_�ُ��ʒm���A
+        // fl_em10�̌Ăь��ł̃��g���C�����{���Ȃ�
+        x_rcvcnt_i = RCVRETRY_MAX;
+//��P08001-Q08-2201
+        strcat( errlog_c, "�F�T�[�o�ԃ\�P�b�g�ʐM�m�����s") ;
+        goto EWRITE;                    //
+      }                                 //
+// KS003-�@ �C���^�[�o���R�O�b��ǉ��B
+      Sleep(30000);
+	}                                   //
+    else {                              //�E�m������
+// KS001 Start
+                                        //  �O��v���o�C�_�ڑ��󋵂���ُ한�A�ł���B
+      if(z_prostate_s == TW_ProState_Error){
+                                        //    �v���o�C�_�ڑ����A��ʒm�B
+        fl_em170((short)F_devno(DEV_PROVIDER_P), QL_ASERR_RTN_P);					//VS2000
+                                        //    �O��v���o�C�_�ڑ��󋵂𐳏�ɂ���B
+        z_prostate_s = TW_ProState_Normal;
+      }                                 //
+// KS001 End
+                                        //  �u�v���p�C�_�ڑ��󋵁F�ڑ����v�B
+      TU_eunyou->prostate_s = TU_EUNYOU_PROSTATE_ON_P;
+      break;                            //  �m���������I�����A�ȍ~�̏����𑱍s
+    }                                   //
+  }                                     //
+                                        //�o�n�o�R���x���ł̃Z�b�V�����m���̎|
+                                        //�i+OK�c�j����M
+  if( fl_em250_ssl( pSSL, replybuf_c, sizeof(replybuf_c) ) > 0) {
+    if( strstr( replybuf_c, "+OK" ) == NULL ) {		// KS006
+      strcat( errlog_c, "�FPOP3 �Z�b�V�����m����������") ;
+      goto ENDRCV;                      //
+    }                                   //
+  }                                     //
+  else {                                //
+      strcat( errlog_c, "�FPOP3 �Z�b�V�����m�����s") ;
+      goto ENDRCV;                      //
+  }                                     //�uE-mail�v���o�C�_�ڑ����E���[�U����
+                                        //�i���[���p�j�v���烆�[�U�R�}���h�iUSER xxxx�j
+                                        //�𑗐M
+  strcpy( keyword_c, TS_eproinf->username_c );
+  sprintf(cmdbuf_c,"USER %s\r\n",keyword_c) ;
+  if( fl_em50_ssl( pSSL, cmdbuf_c ) < 0) {
+    strcat( errlog_c, "�F���[�U�R�}���h(USER xxxx)���M���s") ;
+    goto ENDRCV;                        //
+  }                                     //  ������M, ����
+  if( fl_em250_ssl( pSSL, replybuf_c, sizeof(replybuf_c) ) > 0) {
+    if( strstr( replybuf_c, "+OK" ) == NULL ) {		// KS006
+      strcat( errlog_c, "�F���[�U�R�}���h(USER xxxx)�����ُ�") ;
+      goto ENDRCV;                      //
+    }                                   //
+  }                                     //
+  else {                                //
+    strcat( errlog_c, "�F���[�U�R�}���h(USER xxxx)������M���s") ;
+    goto ENDRCV;                        //
+  }                                     //�uE-mail�v���o�C�_�ڑ����E�p�X���[�h
+                                        //�i���[���p�j�v����p�X���[�h�R�}���h
+                                        //�iPASS password�j�𑗐M
+  strcpy( keyword_c, TS_eproinf->password_c );
+  sprintf(cmdbuf_c,"PASS %s\r\n", keyword_c ) ;
+  if( fl_em50_ssl( pSSL, cmdbuf_c ) < 0) {
+    strcat( errlog_c, "�F�p�X���[�h�R�}���h(PASS xxxx)���M���s") ;
+    goto ENDRCV;                        //
+  }                                     //  ������M, ����
+  if( fl_em250_ssl( pSSL, replybuf_c, sizeof(replybuf_c) ) > 0) {
+    if( strstr( replybuf_c, "+OK" ) == NULL ) {		// KS006
+      strcat( errlog_c, "�F�p�X���[�h�R�}���h(PASS xxxx)�����ُ�") ;
+      goto ENDRCV;                      //
+    }                                   //
+  }                                     //
+  else {                                //
+    strcat( errlog_c, "�F�p�X���[�h�R�}���h(PASS xxxx)������M���s") ;
+    goto ENDRCV;                        //
+  }                                     //
+                                        //STAT�R�}���h�𑗐M
+  sprintf(cmdbuf_c,"STAT\r\n" ) ;       //
+  if( fl_em50_ssl( pSSL, cmdbuf_c ) < 0) {
+    strcat( errlog_c, "�FSTAT�R�}���h(STAT)���M���s") ;
+    goto ENDRCV;                        //
+  }                                     //  ������M, ����
+  if( fl_em250_ssl( pSSL, replybuf_c, sizeof(replybuf_c) ) > 0) {
+    if( strstr( replybuf_c, "+OK" ) == NULL ) {		// KS006
+      strcat( errlog_c, "�FSTAT�R�}���h(STAT)�����ُ�") ;
+      goto ENDRCV;                      //
+    }                                   //
+    else {                              //  STAT�R�}���h��������
+      reply_c = strtok_s( replybuf_c, " " , &strtok_ctx);
+      mcnt_c  = strtok_s( NULL, " " , &strtok_ctx);    //
+      mailcnt_i = atoi( mcnt_c );       //  �E���M���[�����擾
+      msize_c = strtok_s( NULL, " \n\r" , &strtok_ctx);//
+      mtotalsz_i = atoi( msize_c );     //  �E���M���[�����T�C�Y�擾
+      DP8_("[TWEMAIL]:%d �ʎ�M���[��(���v %d �o�C�g)������܂�\n",
+           mailcnt_i, mtotalsz_i) ;
+    }                                   //
+  }                                     //
+  else {                                //
+    strcat( errlog_c, "�FSTAT�R�}���h(STAT)������M���s") ;
+    goto ENDRCV;                        //
+  }                                     //
+                                        //�e���M���[���̓ǂݏo��(���M���[������)
+                                        //  ��M���[���ۑ����擾
+  if( TU_eunyou->rmailnum_s <= 0 ){     //
+    TU_eunyou->rmailnum_s = 1;          //
+  }                                     //
+  else if( TU_eunyou->rmailnum_s > TU_EMRCV_MAXSAV_P ) {
+    TU_eunyou->rmailnum_s%=TU_EMRCV_MAXSAV_P;
+  }                                     //
+  befrcvcnt_i = TU_eunyou->rmailnum_s;  //  �O�񒅐M���[�����擾
+  for( mailno_i = 1; mailno_i <= mailcnt_i; mailno_i++ ) {
+	// �ŐV���b�Z�[�W���M�v���}�~����
+    rtnsts_bl = fl_em220_ssl(pSSL, mailno_i,&suspend_bl);
+	// �������ʂ�POP�R�}���h�ُ픭���Ȃ�\�P�b�g�ُ��
+	if (!rtnsts_bl)
+	{
+		goto ENDRCV;
+	}
+	// �}�~���ʂ��}�~����Ȃ�A�{���[�������̓X�L�b�v����
+	if (suspend_bl)
+	{
+		continue;
+	}
+	//-> KISOSAKI add
+	// ���ݒl���M�v���}�~����
+    rtnsts_bl = fl_em260_ssl(pSSL, mailno_i,&suspend_bl);
+	// �������ʂ�POP�R�}���h�ُ픭���Ȃ�\�P�b�g�ُ��
+	if (!rtnsts_bl)
+	{
+		goto ENDRCV;
+	}
+	// �}�~���ʂ��}�~����Ȃ�A�{���[�������̓X�L�b�v����
+	if (suspend_bl)
+	{
+		continue;
+	}
+	//<- KISOSAKI add
+                                        //  LIST �R�}���h�iLIST n�j���M
+    sprintf(cmdbuf_c,"LIST %d\r\n", mailno_i ) ;
+    if( fl_em50_ssl( pSSL, cmdbuf_c ) < 0) {
+      strcat( errlog_c, "�FLIST�R�}���h���M���s") ;
+      goto ENDRCV;                      //
+    }                                   //  ������M, ����
+	cmdrsize_i = fl_em250_ssl( pSSL, replybuf_c, sizeof(replybuf_c) );
+    if( cmdrsize_i > 0) {
+      if( strstr( replybuf_c, "+OK" ) == NULL ) {	// KS006
+        strcat( errlog_c, "�FLIST�R�}���h�����ُ�") ;
+        goto ENDRCV;                    //
+      }                                 //
+      else {                            //  LIST �R�}���h���M��������
+                                        //  ���Y���[���̃o�C�g���擾
+        reply_c = strtok_s( replybuf_c, " " , &strtok_ctx);
+        no_c    = strtok_s( NULL, " " , &strtok_ctx);  //
+        msize_c = strtok_s( NULL, "\n\r" , &strtok_ctx);
+        mailsize_i = atoi( msize_c );   //  �E���Y���[���o�C�g��
+        DP8_("[TWEMAIL]:�� %d ���[���� %d �o�C�g \n",
+             mailno_i, mailsize_i) ;    //
+      }                                 //
+    }                                   //
+    else {                              //
+      strcat( errlog_c, "�FLIST�R�}���h������M���s") ;
+      goto ENDRCV;                      //
+    }
+//��VS8K�F��M���[���I�[�o�[�Ή�
+//      ��M�o�b�t�@(TW_RECEIVE_BYTE_N)���z���郁�[���͎�M������
+//      �G���[���O���o�͂��č폜����
+    if (mailsize_i >= TW_RECEIVE_BYTE_N)
+    {
+        // ��M�I�[�o�[���[��
+        F_errlog(0x0131,0x2007,mailno_i,mailsize_i,0,0,
+            "��M�o�b�t�@�I�[�o�[ ���s�s�\�ɂ�胁�[���������폜") ;
+        DP4_("[TWEMAIL]:���[���� %d ��M�o�b�t�@�I�[�o�[(%d �o�C�g)�ɂ�菈���𖳌��ɂ��Ė������폜���܂��B\n",
+           mailcnt_i, mtotalsz_i) ;
+    }else
+    {
+        // ��M�o�b�t�@�ȓ��Ȃ�ʏ폈��
+        if( GetEnvironmentVariable (        //  ��M���[���i�[�p�X�擾
+            "PATH_EMAIL" ,                  //    �擾�Ώ�PATH��
+            pfname_c        ,               //    �擾�o�b�t�@
+            sizeof(pfname_c)) == (int)NULL){//    �擾�o�b�t�@�T�C�Y
+          EP_("[TWEMAIL]:��M���[���i�[�p�X�擾���s \n" ) ;
+          F_errlog(0x0131,0x2007,0,0,0,0,
+              "E-mail��M�����F��M���[���i�[�p�X�擾���s") ;
+          sprintf(errlog_c,"E-mail��M����") ;
+          continue;                         //
+        }                                   //
+        strcat( pfname_c, "\\" );           //
+                                            //  ��M���[�����̎擾
+        if( TU_eunyou->rmailnum_s <= TU_EMRCV_MAXSAV_P ) {
+          sprintf(filename_c,"Mail%d.dat", TU_eunyou->rmailnum_s) ;
+	    }                                   //
+        else {                              //
+          sprintf(filename_c,"Mail%d.dat", (TU_eunyou->rmailnum_s%TU_EMRCV_MAXSAV_P)) ;
+	    }                                   //
+        strcat( pfname_c, filename_c );     //
+        if ((fd_h = fopen( pfname_c, "w+")) == NULL ) {
+          errno_i = errno;                                                  // CM-3219 add
+          EP_("[TWEMAIL]:��M���[���i�[�t�@�C��(%s)�I�[�v���G���[ \n",
+              filename_c) ;                 //
+          F_errlog(0x0131,0x2007,TU_eunyou->rmailnum_s,mailno_i,errno_i,0,  // CM-3219 add
+              "E-mailSSL��M�����F��M���[���i�[�t�@�C���I�[�v���G���[") ;
+          sprintf(errlog_c,"E-mailSSL��M����") ;//SCCjiku_Emailx64_211102
+          continue;                         //
+        }                                   //
+        //-> CM-3219 mov
+        // �⑫�F���[���T�[�o��RETR�R�}���h���M��A
+        //       �K�����[���T�[�o����̉����f�[�^����M(fl_em60)����悤�ɏ������ړ��B
+		//       �i��M���Ȃ��ƃ\�P�b�g�Ƀf�[�^���c������ԂƂȂ�A
+		//       ����C�ӂ̃R�}���h�����s���ĉ�������M�����ۂɁA
+		//       �c�����Ă�����M�f�[�^��ǂݍ��ޏ󋵂ƂȂ��Ă��܂��̂ŗv���Ӂj
+                                            //  RETR �R�}���h�iRETR n�j���M�ɂ��A
+                                            //  ����ڒ��M���[���̓]���v�������{
+        sprintf(cmdbuf_c,"RETR %d\r\n", mailno_i ) ;
+        if( fl_em50_ssl( pSSL, cmdbuf_c ) < 0) {
+          strcat( errlog_c, "�FRETR�R�}���h���M���s") ;
+          fclose(fd_h);                     // CM-3219 add
+          fd_h = NULL;                      // CM-3219 add
+          goto ENDRCV;                      //
+        }                                   //
+                                            //  RETR �R�}���h���M�����ɂ��A�����
+                                            //  ���M���[������M
+                                            //
+        //<- CM-3219 mov
+        mreadsz_i = 0;                      //  ����ڒ��M���[����SJIS�ɕϊ�
+        memset(rcvbuf_uc, 0, sizeof(rcvbuf_uc));
+		// �I�[����NULL����ۏ؂��邽�߁A ��M�����֓n���o�b�t�@�T�C�Y��1�o�C�g�����炷         // CM-3219 add
+		// (1�o�C�g�����炳�Ȃ��Ǝ�M�������strcpy�ŃG���A�󂵂��Ă��܂�)                      // CM-3219 add
+		while( (nbyte_i = fl_em250_ssl( pSSL, (char *)&rcvbuf_uc[0], (sizeof(rcvbuf_uc) - 1), "\r\n.\r\n")) > 0 ) {	// P08001-Q08-2839 mod  // CM-3219 mod
+          while(1) {                        //    �]���� CR �̏���
+            if( useless_cp = strstr((char*)rcvbuf_uc, "\r\n") ) {
+              *useless_cp = '\n';           //
+              strcpy(useless_cp+1, useless_cp+2);
+		    }                               //
+            else {                          //
+              break;                        //
+		    }                               //
+	      }                                 //
+          while(1) {                        //    �]���� +OK(�����R�}���h) �̏���
+            if( useless_cp = strstr((char*)rcvbuf_uc, "+OK") ) {
+              strcpy(useless_cp, useless_cp+3);
+		    }                               //
+            else {                          //
+              break;                        //
+		    }                               //
+	      }                                 //
+	      // �I���R�[�h��M����Ƀt�@�C���i�[���I��
+	      pmark1_i = strcmp((char*)rcvbuf_uc, ".\r\n");
+	      pmark2_i = strcmp((char*)rcvbuf_uc, ".\n");
+          if((pmark1_i==0) || (pmark2_i==0)) {
+            //fclose(fd_h);                 // CM-3219 mov
+            break;                          //
+	      }                                 //
+	      // ���`��̎�M�o�b�t�@���t�@�C���֏�����
+          fprintf(fd_h, "%s", &rcvbuf_uc[0]);
+          fflush(fd_h);						//
+          // �{�����ɏI���R�[�h���܂܂�Ă���ꍇ�̃P�[�X
+	      pmark1_cp = strstr((char*)rcvbuf_uc, ".\r\n");
+	      pmark2_cp = strstr((char*)rcvbuf_uc, "\n.\n");
+          if((pmark1_cp) || (pmark2_cp)) {
+            //fclose(fd_h);                 // CM-3219 mov
+            break;                          //
+	      }                                 //
+
+	      // ��M���T�C�Y�����߂�
+          mreadsz_i += nbyte_i;
+	      // ���Y���[���Ǎ��݂��A���Y���[���T�C�Y�ɒB������A�t�@�C���i�[���ďI��
+          if( mreadsz_i > (mailsize_i + cmdrsize_i + S_ENDMARK) ) {   //    
+            //fclose(fd_h);                 // CM-3219 mov
+            break;                          //
+          }                                 //
+          memset(&rcvbuf_uc[0], 0, sizeof(rcvbuf_uc));
+        }                                   //
+        //-> CM-3219 add
+        // while���[�v�I����A�t�@�C�����J�����܂܂̏ꍇ�̓N���[�Y����
+        // �ifl_em60�G���[���ȂǁA����ȃN���[�Y������ʂ�Ȃ������ꍇ�̑Ή��j
+        if (fd_h != NULL) {
+          fclose(fd_h);
+          fd_h = NULL;
+        }
+        //<- CM-3219 add
+//��20100826_1030 ��M�t�@�C�����������������M���[���ۑ��J�E���g���J�E���g����
+        TU_eunyou->rmailnum_s++;
+//��20100826_1030
+    }
+//��VS8K�F��M���[���I�[�o�[�Ή�
+                                        //  �ǂݏo�������[�������[���{�b�N�X
+                                        //  ����폜
+    sprintf(cmdbuf_c,"DELE %d\r\n", mailno_i ) ;
+    if( fl_em50_ssl( pSSL, cmdbuf_c ) < 0) {
+      strcat( errlog_c, "�FDELE�R�}���h���M���s") ;
+      goto ENDRCV;                      //
+    }                                   //    ������M, ����
+	// ���X�|���X����
+    //Sleep(1000);						//	�P�b�E�F�C�g
+	memset(replybuf_c,0,sizeof(replybuf_c));
+    if( fl_em250_ssl( pSSL, replybuf_c, sizeof(replybuf_c) ) > 0) {
+      if( strstr( replybuf_c, "+OK" ) == NULL ) {	// KS006
+		//funa081225��	
+		F_errlog(0x0131,0x2010,mailno_i,0,0,0, //   // CM-3219 mod
+                 "E-mailSSL��M�����FDELE�R�}���h�����ُ�") ;//SCCjiku_Emailx64_211102
+		  goto QUITSTART;
+        //goto ENDRCV;                    //
+		//funa081225��
+      }                                 //
+    }                                   //
+    else {                              //
+      strcat( errlog_c, "�FDELE�R�}���h������M���s") ;
+      goto ENDRCV;                      //
+    }                                   //
+    //TU_eunyou->rmailnum_s++;            //  ��M���[���ۑ����J�E���g  // 20100826_1030
+  }                                     //�e���M���[���̓ǂݏo�� end
+
+QUITSTART:								//funa081225
+  mailno_i = 0;                         //
+                                        //
+                                        //QUIT�R�}���h�𑗐M
+  sprintf(cmdbuf_c,"QUIT\r\n") ;        //
+  if( fl_em50_ssl( pSSL, cmdbuf_c ) < 0) {
+    strcat( errlog_c, "�FQUIT�R�}���h���M���s") ;
+    goto EANALY;                        //
+  }                                     //    ������M, ����
+  if( fl_em250_ssl( pSSL, replybuf_c, sizeof(replybuf_c) ) > 0) {
+    if( strstr( replybuf_c, "+OK" ) == NULL ) {		// KS006
+      strcat( errlog_c, "�FQUIT�R�}���h�����ُ�") ;
+      goto EANALY;                      //
+    }                                   //
+  }                                     //
+  //SK090713-4���@DEL�@�@QUIT�R�}���h�������Ȃ��T�[�o������̂ŃG���[�Ƃ��Ȃ�
+  //else {                                //
+  //  strcat( errlog_c, "�FQUIT�R�}���h������M���s") ;
+  //  goto EANALY;                        //
+  //}                                     //
+  //SK090713-4���@DEL
+EANALY:                                 //�e���M���[���̉��(�O�� < ����)
+  if( befrcvcnt_i < TU_eunyou->rmailnum_s ) {
+    if( fl_em11( befrcvcnt_i, sucmail_s ) < 0 ) {
+      goto ENDRCV;                      //
+	}                                   //
+  }                                     //
+  if( strcmp(errlog_c, "E-mailSSL��M����") == 0 ) {
+    memset( errlog_c, 0, sizeof(errlog_c)) ;//SCCjiku_Emailx64_211102
+  }                                     //
+                                        //
+ENDRCV:                                 //E-mail��M�����I��
+DP8_("      E-mailSSL ��M�����I��(fl_em10)\n");//SCCjiku_Emailx64_211102
+  //pSSL->DisConnect();                 //  �T�[�o�ԃ\�P�b�g�ʐM�J��  // CM-3213 del(mov)
+
+  }
+  catch (_com_error &e )
+  {
+    strcat( errlog_c, "�FCOM_") ;
+    strcat( errlog_c, e.ErrorMessage()) ;
+    goto EWRITE;                    //
+  }
+EWRITE:                                 //
+  //-> CM-3213 add
+  // COM�㏈��
+  if (pSSL != NULL) {
+    try {
+      pSSL->DisConnect();               // �T�[�o�ԃ\�P�b�g�ʐM�J��
+      pSSL->Dispose();                  // ���\�[�X���
+      pSSL->Release();                  // �Q�ƃJ�E���^�����炷
+      pSSL.Release();                   // ���
+	}
+    catch (...) {
+    }
+	pSSL = NULL;
+  }
+  // COM���C�u�����I��
+  z_comusecnt_i--;
+  if (z_comusecnt_i <= 0) {
+    CoUninitialize();
+    z_comusecnt_i = 0;
+  }
+  //<- CM-3213 add
+
+  if( strcmp(errlog_c, "") != 0 ) {     //  �ُ킪����ꍇ�Ɉُ폈���J�n
+// KS001 Start
+                                        //    �O��v���o�C�_�ڑ��󋵂��珉��ُ�ł���B
+    if(z_prostate_s == TW_ProState_Normal){
+//��P08001-Q08-2201
+//                                        //      �v���o�C�_�ڑ��ُ��ʒm
+//      fl_em170((short)F_devno(DEV_PROVIDER_P), QL_ASERR_ERR_P);							//VS2000
+//      z_prostate_s = TW_ProState_Error; //      �O��v���o�C�_�ڑ��󋵂��ُ�ɂ���B
+
+      // E-mail��M�������{�񐔂��J�E���g�A�b�v
+      x_rcvcnt_i++;
+
+      // E-mail��M�������{�񐔂��ő吔�ɓ��B�����ꍇ
+      if( x_rcvcnt_i >= RCVRETRY_MAX )
+      {
+                                          //      �v���o�C�_�ڑ��ُ��ʒm
+        fl_em170((short)F_devno(DEV_PROVIDER_P), QL_ASERR_ERR_P);							//VS2000
+        z_prostate_s = TW_ProState_Error; //			�O��v���o�C�_�ڑ��󋵂��ُ�ɂ���B
+      }
+//��P08001-Q08-2201
+	}                                   //
+// KS001 End
+                                        //    �G���[���O�o��
+    if( strcmp(errlog_c, "E-mailSSL��M����") != 0 ) {
+      F_errlog(0x0131,0x2007,mailno_i,0,0,0,
+               errlog_c) ;              //SCCjiku_Emailx64_211102
+    }                                   //
+    rtnsts_i = -1;                      //    �{�����߂�l(���s)
+  }                                     //
+                                        //  Mail�ڑ��^�C�v�F�q�����o�R
+  if( TF_eoptions->MailConTyp_s == TW_MailConTyp_Ras ) {
+    if( fl_em120() != RS_SUC ) {        //    RAS ���ڑ�����Ă��Ȃ��ꍇ��
+      if( fl_em70() != RS_SUC ) {       //    �v���o�C�_�ڑ����������{�B
+        F_errlog(0x0131,0x2007,0,0,0,0, //
+                 "E-mailSSL��M�����F�v���o�C�_�Đڑ����s") ;//SCCjiku_Emailx64_211102
+        rtnsts_i = -2;                  //      �{�����߂�l(���s)
+      }                                 //
+    }                                   //
+  }                                     //
+  ////////////////////////////////////////
+  // �ŐV���b�Z�[�W���W�v�����M����
+  // �ŐV���b�Z�[�W�E�A���[���T�}���z�M����
+  // �v��������΁A���W�v���𑗐M����B
+  fl_em240();
+
+  //-> KISOSAKI add
+  // ���ݒl�ҏW�v�����M����
+  // ���ݒl�z�M���ɗv��������΁A���ݒl�ҏW�v���𑗐M����B
+  fl_em280();
+  //<- KISOSAKI add
+
+  return rtnsts_i;                      //
+}                                       //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  LB30SSL *    SSL�Ή��T�[�o�ԃ\�P�b�g�ʐM�m������           * fl_em30_ssl*
+// ****************************************************************************
+//
+//  �@�@�\:
+//
+//     �T�[�o�^�N���C�A���g�Ԃ̒ʐM�\�P�b�g�����E�ڑ����m������B
+//
+//  �R�[�����O�V�[�P���X:
+//     BOOL fl_em30_ssl(IhoemlsPtr& pSSL,char *hostname_c, short portno_s);
+//
+//  ���̓f�[�^:
+//     IhoemlsPtr& pSSL ;   SSLClass��COM�C���^�[�t�F�C�X�|�C���^�[
+//     char  *hostname_c ;  �z�X�g��
+//                          (TS_eproinf�̑��M(SMTPS)���ޖ��܂��́A ��M(POP3S)���ޖ�)
+//     short portno_s ;     �|�[�g�ԍ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     TRUE/FALSE
+//
+//  �������e:
+//    �R�l�N�g���������s����B
+//    fl_em30��SSL�Ή��ŁB
+//-----------------------------------------------------------------------------
+BOOL fl_em30_ssl(IhoemlsPtr& pSSL,char *hostname_c, short portno_s)		// CM-3213 mod
+{                                       //
+  VARIANT_BOOL   rtn;                   //���^�[���X�e�[�^�X
+  int            errstatus_i ;          //�G���[�X�e�[�^�X
+                                        //
+  unsigned long long_addr = 0;
+  struct in_addr inaddr;
+  try
+  {
+    rtn = pSSL->Connect(hostname_c, portno_s);
+    if(!rtn)
+    {
+      errstatus_i = WSAGetLastError();    //
+      F_errlog(0x0131,0xa00d,errstatus_i,0,0,0,
+        "�T�[�o�^�N���C�A���g�ԃR�l�N�g���s") ;
+      return false;                       //
+    }
+
+    //EHLO HELO�p�ɃN���C�A���gIP���擾����B
+    long_addr = pSSL->GetClientIpAddr();
+    if(long_addr == 0) 
+    {
+      strcpy(z_domain_c, "192.168.5.1");
+    }
+    else
+    {
+      inaddr.S_un.S_addr = htonl(long_addr);
+	  strcpy(z_domain_c, inet_ntoa(inaddr));
+    }
+
+    return true ;                      //
+    
+  }
+  catch (_com_error &e )
+  {
+    F_errlog(0x0141,0xc002,e.Error(),0,0,0,
+           (char *)e.ErrorMessage()) ;        //
+    return -1;
+  }
+}
+
+// *******************************************************************************
+// *�h�c      *��  ��                                            *�֐���         *
+// *  LB30SSL *    SSL�Ή��T�[�o�ԃ\�P�b�g�ʐM�m������           * fl_em30_p_ssl *
+// *******************************************************************************
+//
+//  �@�@�\:
+//
+//     �T�[�o�^�N���C�A���g�Ԃ̒ʐM�\�P�b�g�����E�ڑ����m������B(POP3�p)
+//
+//  �R�[�����O�V�[�P���X:
+//     BOOL fl_em30_p_ssl(IhoemlsPtr& pSSL,char *hostname_c, short portno_s);
+//
+//  ���̓f�[�^:
+//     IhoemlsPtr& pSSL ;   SSLClass��COM�C���^�[�t�F�C�X�|�C���^�[
+//     char  *hostname_c ;  �z�X�g��
+//                          (TS_eproinf�̑��M(SMTPS)���ޖ��܂��́A ��M(POP3S)���ޖ�)
+//     short portno_s ;     �|�[�g�ԍ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     TRUE/FALSE
+//
+//  �������e:
+//    �R�l�N�g���������s����B
+//    fl_em30��SSL�Ή��ł̂����POP3�p�B
+//-----------------------------------------------------------------------------
+BOOL fl_em30_p_ssl(IhoemlsPtr& pSSL,char *hostname_c, short portno_s)	// CM-3213 mod
+{                                       //
+  VARIANT_BOOL   rtn;                   //���^�[���X�e�[�^�X
+  int            errstatus_i ;          //�G���[�X�e�[�^�X
+                                        //
+  unsigned long long_addr = 0;
+
+  try
+  {
+    rtn = pSSL->Connect(hostname_c, portno_s);
+    if(!rtn)
+    {
+      errstatus_i = WSAGetLastError();    //
+      F_errlog(0x0131,0xa00d,errstatus_i,0,0,0,
+        "�T�[�o�^�N���C�A���g�ԃR�l�N�g���s") ;
+      return false;                       //
+    }
+    
+    return true ;                      //
+    
+    }
+    catch (_com_error &e )
+    {
+      F_errlog(0x0141,0xc002,e.Error(),0,0,0,
+             (char *)e.ErrorMessage()) ;        //
+      return -1;
+    }
+}
+
+// *****************************************************************************
+// *�h�c      *��  ��                                            *�֐���       *
+// *  LB50SSL *    SSL�Ή��v���g�R���R�}���h���M����             * fl_em50_ssl *
+// *****************************************************************************
+//
+//  �@�@�\:
+//       �r�l�s�o�r�A�o�n�o�R�r�Ŏg�p����v���g�R���R�}���h�𑗐M����B
+//
+//  �R�[�����O�V�[�P���X:
+//     (int) fl_em50_ssl(IhoemlsPtr& pSSL, char *command_c) ;
+//
+//  ���̓f�[�^:
+//     IhoemlsPtr&     pSSL ;   SSLClass��COM�C���^�[�t�F�C�X�|�C���^�[
+//     char    command_c[] ;    �Θb�R�}���h�d��
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �����iRS_SUC:�j�A���s�i��RS_SUC:�j
+//
+//  �������e:
+//    1. �Θb�R�}���h�d���𑗐M����isend()�j�B
+//    fl_em50_ssl��SSL�Ή���
+//-----------------------------------------------------------------------------
+int fl_em50_ssl(IhoemlsPtr& pSSL, char *command_c)	// CM-3213 mod
+{                                       //
+  try
+  {
+    fl_em200(command_c);                // ���M���[���t�@�C��������  KS002-�A
+    if( !(pSSL->executeCommand( command_c )) )
+    {                                   //
+      F_errlog(0x0131,0xa011,0,0,0,0,   //
+        "�v���g�R���R�}���h���M�������s") ;
+      return -1;                        //
+    }                                   //
+    return RS_SUC;                      //
+
+  }
+  catch (_com_error &e )
+  {
+    F_errlog(0x0141,0xc003,e.Error(),0,0,0,
+             (char *)e.ErrorMessage()) ;        //
+    return -1;
+  }
+}
+
+// ******************************************************************************
+// *�h�c      *��  ��                                            *�֐���        *
+// *  LB220   *    SSL�Ή��ŐV���b�Z�[�W���M�v���}�~�m�F����     * fl_em220_ssl *
+// ******************************************************************************
+//
+//  �@�@�\:
+//       �ŐV���b�Z�[�W���W�������Ɏ�M�����ŐV���b�Z�[�W���M���[����
+//       ��M�}�~(���񃁁[����M�ɉ���)����B
+//
+//  �R�[�����O�V�[�P���X:
+//     BOOL fl_em220_ssl(IhoemlsPtr& pSSL , int x_mailno_i, BOOL *x_flg_bl);
+//
+//  ���̓f�[�^:
+//     IhoemlsPtr& pSSL       SSLClass��COM�C���^�[�t�F�C�X�|�C���^�[
+//     int        x_mailno_i  ���[�����X�g�ԍ�
+//
+//  �o�̓f�[�^:
+//     BOOL      x_flg_bl    FALSE: �}���Ȃ�, TRUE: �}���L��
+//
+//  �߂�l:
+//     FALSE:POP3�R�}���h�ُ�  / TRUE:����I��
+//
+//  �������e:
+//�@    POP3��TOP�R�}���h�ɂ�蓖�Y���[���̌������擾����
+//      �u�ŐV���b�Z�[�W���M�v���v/�u�ŐV�A���[���T�}�����M�v���v�����o����B
+//      ���o�����ꍇ�́AE-mail�ŐV���b�Z�[�W���X�g�z�M���܂���
+//      E-mail�ŐV�A���[���T�}���z�M���̏����X�e�[�^�X���Q�Ƃ��ď������̎��́A
+//      �߂�l��}���L��ŕԂ��B
+//      fl_em220��SSL�Ή���
+//-----------------------------------------------------------------------------
+BOOL fl_em220_ssl(IhoemlsPtr& pSSL, int x_mailno_i, BOOL *x_flg_bl)	// CM-3213 mod
+{
+    BOOL        bmsgflg;                            // �ŐV���b�Z�[�W���W����
+    BOOL        balmflg;                            // �ŐV�A���[���T�}�����W����
+    char        cmdbuf_c[256] ;                     // �R�}���h�o�b�t�@(���M)
+    char        rcvbuf_c[4096] ;					// ��M�o�b�t�@
+    char        replybuf_c[4096] ;                  // �����o�b�t�@(��M����)
+    char        *subject_p;                         // �����o�b�t�@�|�C���^
+    char        *reply_p;                           // ���b�Z�[�W�|�C���^
+    char        *jobchk_p;                          // �v���`�F�b�N�|�C���^
+	int			rsize_i;							// ��M�T�C�Y
+	int			ofset_i;							// �I�t�Z�b�g
+	char		*pmark1_cp;							// �I�������`�F�b�N�p
+	char		*pmark2_cp;							// �I�������`�F�b�N�p
+
+    // ������
+    bmsgflg = FALSE;
+    balmflg = FALSE;
+	ofset_i = 0;
+    // �}�~�����ŏ���������
+    *x_flg_bl = FALSE;
+
+    //////////////////////////////////////////
+    // �ŐV���b�Z�[�W�E�A���[���T�}���z�M���̏����X�e�[�^�X���m�F���āA
+    // �������łȂ���΁A�������ŗ}�~�����ŏI��
+    if (TU_cmes_inf->colsts_s != TU_CRNTMSG_NON_P)
+    {
+        bmsgflg = TRUE;
+    }
+    if (TU_calm_inf->colsts_s != TU_CRNTMSG_NON_P)
+    {
+        balmflg = TRUE;
+    }
+    if ((!bmsgflg) && (!balmflg))
+    {
+        // ���b�Z�[�W�E�A���[���T�}���Ƃ��ɖ����W���Ȃ�}�~�����ŏI��
+        return TRUE;
+    }
+    //////////////////////////////////////////
+    // ���Y���b�Z�[�W�̌�����͏���
+    // POP3�R�}���h�uTOP %s 0�v���M
+    sprintf(cmdbuf_c,"TOP %d 0 \r\n", x_mailno_i ) ;
+    if( fl_em50_ssl( pSSL, cmdbuf_c ) < 0) {
+        F_errlog(0x0131,0x3220,0,0,0,0,
+            ":TOP�R�}���h���M���s") ;
+        return FALSE;
+    }
+    //////////////////////////////////////////
+    // TOP # 0 �R�}���h�́A���X�|���X�Ɏ��Ԃ�������̂ŃE�F�C�g�҂�����
+    //Sleep(1000);                //  �P�b�E�F�C�g
+    // POP��M��������
+	memset(replybuf_c, 0, sizeof(replybuf_c));
+	while(1)
+	{
+		memset(rcvbuf_c, 0, sizeof(rcvbuf_c));
+		rsize_i = fl_em250_ssl( pSSL, rcvbuf_c, sizeof(rcvbuf_c));
+		if (rsize_i < 1)
+		{
+			F_errlog(0x0131,0x3220,0,0,0,0,
+				":TOP�R�}���h������M���s") ;
+			return FALSE;
+		}
+		if ((ofset_i+rsize_i) > 4096)
+		{
+			rsize_i = 4096 - ofset_i;
+		}
+		memcpy(&replybuf_c[ofset_i],rcvbuf_c,rsize_i);
+		// �I���R�[�h��M����I���B
+		pmark1_cp = strstr((char*)rcvbuf_c, ".\r\n");
+		pmark2_cp = strstr((char*)rcvbuf_c, "\n.\n");
+		if((pmark1_cp) || (pmark2_cp)) {
+			break;
+		}
+		ofset_i += rsize_i;
+		// �X�g�b�p�[�`�F�b�N
+		if (ofset_i >= 4096)
+		{
+			break;
+		}
+	}
+	///////////////////////////////////////////////////
+	// ��M��͊J�n
+    if( strstr( replybuf_c, "+OK" ) == NULL ) {
+        // �������b�Z�[�W��NG�Ȃ�
+        F_errlog(0x0131,0x3220,0,0,0,0,
+            ":TOP�R�}���h��M����NG") ;
+        return FALSE;
+    }else
+    {
+        //  TOP 0�R�}���h���M��������
+        //  ����(Subject:)����͂���
+        reply_p = strstr( replybuf_c, TW_MAILTOKN_SUB );
+        //  TOP 0�R�}���h��M���e���s��
+        if (!reply_p)
+        {
+            F_errlog(0x0131,0x3220,0,0,0,0,
+                ":TOP�R�}���h��M���eNG") ;
+            return FALSE;
+        }
+        reply_p += sizeof(TW_MAILTOKN_SUB);
+        subject_p = strtok_s( reply_p, "\n\r" , &strtok_ctx);
+        DP8_("[TWEMAIL]:�� %d ���[�������� %s \n",
+             x_mailno_i, subject_p) ;
+        // �������ŐV���b�Z�[�W���M�v�����H
+        jobchk_p = strstr(subject_p,TW_MAILSEND_CURMSG);
+        if (NULL!=jobchk_p)
+        {
+            // �ŐV���b�Z�[�W���M�v���Ȃ�
+            if (bmsgflg)
+            {
+                // �ŐV���b�Z�[�W�͕ҏW��
+                *x_flg_bl = TRUE;
+				DP8_("[TWEMAIL]:�� %d ���[�������͎�M�}�~\n", x_mailno_i) ;
+            }
+        }
+        // �������ŐV�A���[���T�}�����M�v�����H
+        jobchk_p = strstr(subject_p,TW_MAILSEND_CURALM);
+        if (NULL!=jobchk_p)
+        {
+            // �ŐV�A���[���T�}�����M�v���Ȃ�
+            if (balmflg)
+            {
+                // �ŐV�A���[���T�}���͕ҏW��
+                *x_flg_bl = TRUE;
+				DP8_("[TWEMAIL]:�� %d ���[�������͎�M�}�~\n", x_mailno_i) ;
+            }
+        }
+    }
+    return TRUE;
+}
+
+// ****************************************************************************
+// *�h�c      *��  ��                                          *�֐���        *
+// *  LB250ssl*    SSL�Ή��R�}���h������M����                 * fl_em250_ssl *
+// ****************************************************************************
+//
+//  �@�@�\:
+//       �r�l�s�o�r�A�o�n�o�R�r�ő��M�����v���g�R���R�}���h�̉�������M����B
+//
+//  �R�[�����O�V�[�P���X:
+//     (int) fl_em250_ssl(IhoemlsPtr& pSSL, char* reply_cp, UINT size_i) ;
+//
+//  ���̓f�[�^:
+//     IhoemlsPtr&    pSSL ;          SSLClass��COM�C���^�[�t�F�C�X�|�C���^�[
+//     char*          reply_cp ;      ��M������
+//     UINT           size_i;         ��M������T�C�Y
+//     const char*    eof_cp ;        �I�[������
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �����i��M�o�C�g���j�A���s�i-1�j
+//
+//  �������e:
+//    1. ��������M���āA�����d���A�����d���T�C�Y���Z�b�g�B
+//    ��fl_em250_ssl��SSL�Ή���
+//-----------------------------------------------------------------------------
+int fl_em250_ssl(IhoemlsPtr& pSSL, char* reply_cp, UINT size_i, const char* eof_cp)	// P08001-Q08-2839 mod SCCjiku_Emailx64_211102  // CM-3213 mod
+{                                       //
+  BSTR    bstrText ; 
+  char*   psz;
+  UINT    nBytes=0;
+  VARIANT_BOOL    bSts=false;
+
+  try
+  {
+
+    memset(reply_cp, 0, sizeof(size_i));
+    // �����ǂݍ���
+    bSts = pSSL->readResponse(&bstrText, size_i, eof_cp);							// P08001-Q08-2839 mod SCCjiku_Emailx64_211102
+    if(bSts)
+    {
+      nBytes = SysStringLen(bstrText);
+      if((nBytes <= 0) || (nBytes > size_i))
+      {
+        //err
+        F_errlog(0x0131,0xa012,0,0,0,0,
+          "SSL������M�����񒷈ُ�") ;
+        return -1;
+      }
+      else
+      {
+        // �ǂݍ��ݐ���
+        psz = _com_util::ConvertBSTRToString(bstrText);
+
+        // �����R�[�h�ϊ��̉e���ɂ��A�ǂݍ��񂾃��[�����i�[��o�C�g�������傫���ꍇ������B // CM-3219 add
+        // ����A��M���[���̌㔼�͕s�g�p�ł��邽�߁A�i�[��G���A�������f�[�^�R�s�[����B       // CM-3219 add
+        // (�T�C�Y�`�F�b�N���Ȃ��ƁA�o�b�t�@�ւ̃f�[�^�i�[���ɃG���A�󂵂��Ă��܂�)             // CM-3219 add
+        size_t read_sz = strlen(psz);                                                           // CM-3219 add
+        if (read_sz <= size_i) {                                                                // CM-3219 add
+          sprintf(reply_cp, psz);
+        } else {                                                                                // CM-3219 add
+          memcpy(reply_cp, psz, size_i);                                                        // CM-3219 add
+          F_errlog(0x0131, 0xa013, (int)read_sz, (int)size_i, 0, 0,                             // CM-3219 add
+            "�x���FSSL������M�o�b�t�@�I�[�o�[�����؂�̂�(�����p��)") ;                        // CM-3219 add
+        }                                                                                       // CM-3219 add
+
+        delete[] psz;
+      }
+      SysFreeString(bstrText);
+
+    }
+    else
+    {
+      //err
+      F_errlog(0x0131,0xa012,0,0,0,0,
+        "SSL������M���s") ;
+      return -1;
+    }
+    return nBytes;
+
+  }
+  catch (_com_error &e )
+  {
+    F_errlog(0x0141,0xc004,e.Error(),0,0,0,
+             (char *)e.ErrorMessage()) ;        //
+    return -1;
+  }
+
+}
+
+// *****************************************************************************
+// *�h�c      *��  ��                                            *�֐���       *
+// *  LB260   *    SSL�Ή����ݒl���M�v���}�~�m�F����             * fl_em260_ssl*
+// *****************************************************************************
+//
+//  �@�@�\:
+//       ���ݒl�ҏW�������Ɏ�M�������ݒl���M���[����
+//       ��M�}�~(���񃁁[����M�ɉ���)����B
+//
+//  �R�[�����O�V�[�P���X:
+//     BOOL fl_em260_ssl(IhoemlsPtr& pSSL , int x_mailno_i, BOOL x_flg_bl);
+//
+//  ���̓f�[�^:
+//     IhoemlsPtr& pSSL      SSLClass��COM�C���^�[�t�F�C�X�|�C���^�[
+//     int       x_mailno_i  ���[�����X�g�ԍ�
+//
+//  �o�̓f�[�^:
+//     BOOL      x_flg_bl    FALSE: �}���Ȃ�, TRUE: �}���L��
+//
+//  �߂�l:
+//     FALSE:POP3�R�}���h�ُ�  / TRUE:����I��
+//
+//  �������e:
+//�@    POP3��TOP�R�}���h�ɂ�蓖�Y���[���̌������擾���āu���ݒl���M�v���v�����o����B
+//      ���o�����ꍇ�́AE-mail���ݒl�z�M���̏����X�e�[�^�X���Q�Ƃ��ď������̎��́A
+//      �߂�l��}���L��ŕԂ��B
+//-----------------------------------------------------------------------------
+BOOL fl_em260_ssl(IhoemlsPtr& pSSL, int x_mailno_i, BOOL *x_flg_bl)	// CM-3213 mod
+{
+    char        cmdbuf_c[256] ;                     // �R�}���h�o�b�t�@(���M)
+    char        rcvbuf_c[4096] ;					// ��M�o�b�t�@
+    char        replybuf_c[4096] ;                  // �����o�b�t�@(��M����)
+    char        *subject_p;                         // �����o�b�t�@�|�C���^
+    char        *reply_p;                           // ���b�Z�[�W�|�C���^
+    char        *jobchk_p;                          // �v���`�F�b�N�|�C���^
+	int			rsize_i;							// ��M�T�C�Y
+	int			ofset_i;							// �I�t�Z�b�g
+	char		*pmark1_cp;							// �I�������`�F�b�N�p
+	char		*pmark2_cp;							// �I�������`�F�b�N�p
+
+    // ������
+	ofset_i = 0;
+    // �}�~�����ŏ���������
+    *x_flg_bl = FALSE;
+
+    //////////////////////////////////////////
+    // ���ݒl�z�M���̏����X�e�[�^�X���m�F���āA
+    // �����W�̏ꍇ�́A�}�~�����ŏI��
+    if (TU_cval_inf->colsts_s == TU_CRNTVAL_NON_P)
+    {
+        return TRUE;
+    }
+    //////////////////////////////////////////
+    // ���Y���b�Z�[�W�̌�����͏���
+    // POP3�R�}���h�uTOP %s 0�v���M
+    sprintf(cmdbuf_c,"TOP %d 0 \r\n", x_mailno_i ) ;
+    if( fl_em50_ssl( pSSL, cmdbuf_c ) < 0) {
+        F_errlog(0x0131,0x2601,0,0,0,0,
+            ":TOP�R�}���h���M���s") ;
+        return FALSE;
+    }
+    //////////////////////////////////////////
+    // TOP # 0 �R�}���h�́A���X�|���X�Ɏ��Ԃ�������̂ŃE�F�C�g�҂�����
+    //Sleep(1000);                //  �P�b�E�F�C�g
+    // POP��M��������
+	memset(replybuf_c, 0, sizeof(replybuf_c));
+	while(1)
+	{
+		memset(rcvbuf_c, 0, sizeof(rcvbuf_c));
+		rsize_i = fl_em250_ssl( pSSL, rcvbuf_c, sizeof(rcvbuf_c));
+		if (rsize_i < 1)
+		{
+			F_errlog(0x0131,0x2602,0,0,0,0,
+				":TOP�R�}���h������M���s") ;
+			return FALSE;
+		}
+		if ((ofset_i+rsize_i) > 4096)
+		{
+			rsize_i = 4096 - ofset_i;
+		}
+		memcpy(&replybuf_c[ofset_i],rcvbuf_c,rsize_i);
+		// �I���R�[�h��M����I���B
+		pmark1_cp = strstr((char*)rcvbuf_c, ".\r\n");
+		pmark2_cp = strstr((char*)rcvbuf_c, "\n.\n");
+		if((pmark1_cp) || (pmark2_cp)) {
+			break;
+		}
+		ofset_i += rsize_i;
+		// �X�g�b�p�[�`�F�b�N
+		if (ofset_i >= 4096)
+		{
+			break;
+		}
+	}
+	///////////////////////////////////////////////////
+	// ��M��͊J�n
+    if( strstr( replybuf_c, "+OK" ) == NULL ) {
+        // �������b�Z�[�W��NG�Ȃ�
+        F_errlog(0x0131,0x2603,0,0,0,0,
+            ":TOP�R�}���h��M����NG") ;
+        return FALSE;
+    }else
+    {
+        //  TOP 0�R�}���h���M��������
+        //  ����(Subject:)����͂���
+        reply_p = strstr( replybuf_c, TW_MAILTOKN_SUB );
+        //  TOP 0�R�}���h��M���e���s��
+        if (!reply_p)
+        {
+            F_errlog(0x0131,0x2604,0,0,0,0,
+                ":TOP�R�}���h��M���eNG") ;
+            return FALSE;
+        }
+        reply_p += sizeof(TW_MAILTOKN_SUB);
+        subject_p = strtok_s( reply_p, "\n\r" , &strtok_ctx);
+        DP8_("[TWEMAIL]:�� %d ���[�������� %s \n",
+             x_mailno_i, subject_p) ;
+        
+		// ���������ݒl���M�v�����H
+        jobchk_p = strstr(subject_p,TW_MAILSEND_VAL);
+        if (NULL!=jobchk_p)
+        {
+            // ���ݒl�͕ҏW��
+            *x_flg_bl = TRUE;
+			DP8_("[TWEMAIL]:�� %d ���[�������͎�M�}�~\n", x_mailno_i) ;
+        }
+    }
+    return TRUE;
+}

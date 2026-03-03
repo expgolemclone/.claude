@@ -1,0 +1,30 @@
+{
+  "clientDataCache": {
+    "data": {},
+    "timestamp": 1772078818935
+  },
+  "userID": "9c6640e1e8d3e6533bdc601fa951b1cfe5bbd730d3c0b448a587d3811c737589",
+  "lastReleaseNotesSeen": "2.1.59",
+  "projects": {
+    "C:/Users/0000250059": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 1,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": []
+    }
+  },
+  "changelogLastFetched": 1772078813257,
+  "cachedExtraUsageDisabledReason": "org_level_disabled",
+  "toolUsage": {
+    "Bash": {
+      "usageCount": 2,
+      "lastUsedAt": 1772078815128
+    }
+  }
+}

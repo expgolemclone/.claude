@@ -1,0 +1,215 @@
+#Requires AutoHotkey v2.0
+
+; ============================================================
+; espanso match/base.yml から移行したテキスト展開
+; ============================================================
+
+#Hotstring *  ; 終了キー不要 (espanso 同様に即時発火)
+
+; ============================================================
+; ヘルパー関数
+; ============================================================
+
+PasteText(text, threshold := 100) {
+    if StrLen(text) <= threshold {
+        SendInput(text)
+        return
+    }
+    saved := ClipboardAll()
+    A_Clipboard := text
+    if !ClipWait(2) {
+        A_Clipboard := saved
+        return
+    }
+    Sleep(300)          ; espanso pre_paste_delay 相当
+    SendInput("^v")
+    Sleep(400)          ; espanso restore_clipboard_delay 相当
+    A_Clipboard := saved
+}
+
+; ============================================================
+; 日付・時刻
+; ============================================================
+
+:*::today:: {
+    SendInput(FormatTime(, "yyyy-MM-dd"))
+}
+
+:*::time:: {
+    SendInput(FormatTime(, "HH:mm:ss"))
+}
+
+:*::date:: {
+    SendInput(FormatTime(, "MM/dd/yyyy"))
+}
+
+; ============================================================
+; 金融計算式
+; ============================================================
+
+:*::net:: {
+    PasteText("ネットキャッシュ比率 = ([流動資産前期(億円)] + [投資有価証券前期(億円)] * 0.7 - [流動負債前期(億円)] - [固定負債前期(億円)]) / [時価総額(億円)]")
+}
+
+:*::purenet:: {
+    PasteText("pureネットキャッシュ比率 = ([流動資産前期(億円)] - [棚卸資産前期(億円)] + [投資有価証券前期(億円)] * 0.7 - [流動負債前期(億円)] - [固定負債前期(億円)]) / [時価総額(億円)]")
+}
+
+; ============================================================
+; AI プロンプトテンプレート
+; ============================================================
+
+:*::p:: {
+    text := "
+(
+# prompt
+1.言語は日本語で応答する.
+2.ユーザの誤りを指摘.
+3.賛成意見と反対意見を述べろ.
+4.結論を最初に述べる.
+5.参照は一次情報のみでresearch on web.
+6.参照したソースはすべてリンクを示せ.
+7.現在時刻を取得し,最新の情報のみを用いる.
+8.専門用語はその場で解説.
+9.対応関係は表形式で示せ.
+
+# question
+
+)"
+    PasteText(text)
+}
+
+; ============================================================
+; メール署名
+; ============================================================
+
+:*::mail:: {
+    text := "
+(
+お世話になっております.
+装置工場 コンピュータシステムユニット 設計部 システム管理課
+藤田 充人です.
+
+
+以上,何卒よろしくお願いいたします.
+--------------------------------------------------
+株式会社 明電舎
+    装置工場 コンピュータシステムユニット 設計部 システム管理課
+藤田 充人 (Mitsuto Fujita)
+E-mail: fujita-m.4c@mb.meidensha.co.jp
+)"
+    PasteText(text)
+}
+
+; ============================================================
+; Markdown テンプレート
+; ============================================================
+
+; fix aquavoice markdown
+:*::aq:: {
+    text := "
+(
+# TODO:fix markdown
+## 作業ルール
+### 見出し
+1. 文頭にはトピックごとに見出し(#/##/###)を付けろ.
+2. トピックはなるべく細かく区切りたいため, 見出し1から3までは少なくとも使ってほしい.
+### 本文
+1. ``-`` 始まりの箇条書きにしろ.
+2. 内容に合わせてインデントしろ.
+3. 指示語は文脈に合わせてすべて置換.
+4. 原文の表現はできるだけ維持し,修正は体裁調整の範囲に留めて.
+5. ファクトチェックと書かれている周辺の主張はファクトチェックして.
+  - 一次情報のみ参照して.
+  - 現在時刻を取得して最新の情報のみ参照して.
+---
+<!-- 修正対象ここから -->
+)"
+    PasteText(text)
+}
+
+; fix daily_report markdown
+:*::da:: {
+    text := "
+(
+# TODO:fix markdown
+---
+## 作業ルール
+    ※ 作業ルールはfix markdown完了後に削除すること.
+### 見出し
+    1. 文頭にはトピックごとに見出し""#"", ""##"", ""###""を付けろ.
+    2. トピックはなるべく細かく区切りたいため, 見出し1から3までは少なくとも使ってほしい.
+### 本文
+    1. ""-"" 始まりの箇条書きにしろ.
+    2. 内容に合わせてインデントしろ.
+    3. 指示語は文脈に合わせてすべて置換しろ.
+    4. 原文の表現はできるだけ維持し,修正は体裁調整の範囲に留めて.
+---
+<!-- 修正対象ここから -->
+)"
+    PasteText(text)
+}
+
+; ============================================================
+; クリップボード利用
+; ============================================================
+
+; insert folded section
+:*::fold:: {
+    content := A_Clipboard
+    text := "<details>`n  <summary></summary>`n`n" content "`n`n</details>"
+    PasteText(text)
+}
+
+; insert code block with language selection
+:*::mdscr:: {
+    content := A_Clipboard
+    langs := ["powershell", "python", "json", "c", "cpp", "toml", "yaml"]
+
+    g := Gui("+AlwaysOnTop", "Select Language")
+    g.SetFont("s10")
+    lb := g.AddListBox("r7 w200 vLang Choose1", langs)
+    btn := g.AddButton("w200", "OK")
+    submitted := false
+
+    btn.OnEvent("Click", (*) => (submitted := true, g.Hide()))
+    lb.OnEvent("DoubleClick", (*) => (submitted := true, g.Hide()))
+    g.OnEvent("Close", (*) => g.Hide())
+    g.OnEvent("Escape", (*) => g.Hide())
+
+    g.Show()
+    WinWaitClose(g.Hwnd)
+
+    if !submitted {
+        g.Destroy()
+        return
+    }
+
+    lang := langs[lb.Value]
+    g.Destroy()
+    text := "``````" lang "`n" content "`n``````"
+    PasteText(text)
+}
+
+; ============================================================
+; Git コマンド
+; ============================================================
+
+:*::gitremote:: {
+    PasteText('git fetch --prune && git reset --hard "@{u}" && git clean -fd')
+}
+
+:*::gitlocal:: {
+    PasteText('git push --force-with-lease --prune origin "refs/heads/*:refs/heads/*" "refs/tags/*:refs/tags/*"')
+}
+
+; ============================================================
+; その他
+; ============================================================
+
+:*::fix::fix-plan-muni-centroid
+
+:*::c:: {
+    SendInput('claude ""')
+    SendInput("{Left}")
+}

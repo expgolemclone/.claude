@@ -1,0 +1,252 @@
+# Plan: 非スレッドセーフ関数の _s (secure) 関数への置換
+
+## Context
+OPS5K x64 の C/C++ コードベースに含まれる非スレッドセーフ関数を、`unsafe_to_safe.csv` の定義に従い Windows secure 版 (`_s` サフィックス) に置換する。pre-commit フック (`.hooks/pre_commit_denylist.py`) が `src/` 以下の全追跡ファイルをスキャンし、unsafe 関数が残っていればコミットをブロックする。コメント内の関数呼び出しもdenylistに引っかかるため、対応が必要。
+
+### 制約 (CLAUDE.md)
+- **最小限の変更のみ** — ロジック変更禁止
+- **pre-commit に関係のない箇所の変更禁止**
+- **関係のないコメントアウトの変更禁止**
+
+---
+
+## 全体方針
+1. 関数種類ごとにフェーズを分けて段階的に置換
+2. 各フェーズ完了後、`python .hooks/pre_commit_denylist.py` で検証
+3. コメント内の unsafe 関数もdenylistにマッチするため、関数名を `_s` に変更
+
+## 使われていない関数 (変更不要)
+- `asctime()` — 使用箇所なし
+- `rand()` / `srand()` — `#retro` (レガシー) ディレクトリのみ、src/ 追跡外
+- `tmpnam()` — 使用箇所なし
+
+---
+
+## Phase 1: ctime() → ctime_s() [2ファイル, 低複雑度]
+
+**シグネチャ**: `errno_t ctime_s(char *buf, size_t sizeInBytes, const time_t *time)`
+
+### 対象ファイル
+- `src/NX_MW/libdl/memwatch.c` (2箇所: L457, L528)
+- `src/NX_MW/opsnexus/memwatch.c` (2箇所: L457, L528)
+
+### 変換パターン
+```c
+// Before:
+mwWrite( "\nStarted at %s\n", ctime( &tid ) );
+
+// After:
+ctime_s(ctime_buf, sizeof(ctime_buf), &tid);
+mwWrite( "\nStarted at %s\n", ctime_buf );
+// ※ 関数先頭に char ctime_buf[26]; を追加
+```
+
+### 注意
+- 既存のコメント `//mwWrite( "\nStarted at %s\n", ctime_s( ... ) );` は `ctime_s(` なのでdenylistに非マッチ → 変更不要
+
+---
+
+## Phase 2: localtime() → localtime_s() [7ファイル, 低-中複雑度]
+
+**シグネチャ**: `errno_t localtime_s(struct tm *_Tm, const time_t *_Time)`
+
+### アクティブコード (2ファイル)
+| ファイル | 箇所 |
+|---------|------|
+| `src/kcrt/gosav/gosavlib.c` | L1932付近 |
+| `src/tool/ErrorLog/ErrorLogView.cpp` | L267付近 |
+
+**変換パターン**:
+```c
+// Before:
+struct tm *date;
+date = localtime(&now);
+*intYear = date->tm_year + 1900;
+
+// After:
+struct tm date_buf;
+localtime_s(&date_buf, &now);
+*intYear = date_buf.tm_year + 1900;
+// ※ 全ての date-> を date_buf. に変更
+```
+
+### コメントのみ (5ファイル)
+`src/msg/cotalk/f_tlk.c`, `src/NX_MW/dfstat/main.c`, `src/NX_MW/nxstat/main.c`, `src/NX_MW/opsnexus/liberrlog.c`, `src/NX_MW/libdl/liberrlog.c`
+
+→ コメント内の `localtime(` を `localtime_s(` に変更
+
+---
+
+## Phase 3: gmtime() → gmtime_s() [11ファイル, 中複雑度]
+
+**シグネチャ**: `errno_t gmtime_s(struct tm *_Tm, const time_t *_Time)`
+
+### 対象ファイル (全てアクティブコード)
+| ファイル | 箇所数 |
+|---------|--------|
+| `src/lib/vc/fsectoun24.c` | 1 |
+| `src/lib/vc/fsectoun.c` | 1 |
+| `src/NX_MW/dfstat/main.c` | 1 |
+| `src/NX_MW/nxstat/main.c` | 1 |
+| `src/sys/aosysi/aosysi.c` | 3 |
+| `src/tool/jotesttool/jotesttool.c` | 18 |
+| `src/tool/NTP/NTPtest/NTPtest.c` | 1 |
+| `src/tool/NTP/NTPserver/NTPserver.c` | 1 |
+| `src/tool/NTP/NTPclient2/NTPclient2.c` | 1 |
+| `src/tool/NTP/NTPclient/NTPclient.c` | 1 |
+| `src/tool/NTP/NTPcheck/NTPcheck.c` | 1 |
+
+**変換パターン**:
+```c
+// Before:
+struct tm *tmt;
+tmt = gmtime(sec);
+work.ct_year_s = tmt->tm_year + 1900;
+
+// After:
+struct tm tmt_buf;
+gmtime_s(&tmt_buf, sec);
+work.ct_year_s = tmt_buf.tm_year + 1900;
+// ※ 全ての tmt-> を tmt_buf. に変更
+```
+
+### 注意
+- `jotesttool.c` は18箇所と多いが全て同一パターン
+- `aosysi.c` のコメント `//gmtime()` も `//gmtime_s()` に変更
+
+---
+
+## Phase 4: strerror() → strerror_s() [9ファイル, 中複雑度]
+
+**シグネチャ**: `errno_t strerror_s(char *buf, size_t sizeInBytes, int errnum)`
+
+### 対象ファイル (全て NX_MW 配下)
+| ファイル | アクティブ | コメント |
+|---------|-----------|---------|
+| `src/NX_MW/opsnexus/uptrs.c` | 26 | 3 |
+| `src/NX_MW/opsnexus/mctrs.c` | 16 | 0 |
+| `src/NX_MW/opsnexus/main.c` | 10 | 0 |
+| `src/NX_MW/opsnexus/libetc.c` | 6 | 0 |
+| `src/NX_MW/opsnexus/init.c` | 4 | 1 |
+| `src/NX_MW/opsnexus/deliv.c` | 2 | 0 |
+| `src/NX_MW/opsnexus/alive.c` | 8 | 1 |
+| `src/NX_MW/libdl/nexus_lib.c` | 8 | 0 |
+| `src/NX_MW/libdl/library.c` | 9 | 0 |
+
+**変換パターン** (全箇所で統一):
+```c
+// Before:
+sprintf(err_cp, "malloc(): %s", strerror(errno));
+
+// After:
+strerror_s(strerr_buf, sizeof(strerr_buf), errno);
+sprintf(err_cp, "malloc(): %s", strerr_buf);
+// ※ 関数先頭に char strerr_buf[256]; を追加 (関数内で1変数を再利用)
+```
+
+### 注意
+- 既存のコメント `//sprintf_s(...strerror_s(...))` は `strerror_s(` なのでdenylistに非マッチ → 変更不要
+- コメント内の `strerror(` は `strerror_s(` に変更
+
+---
+
+## Phase 5: getenv() → getenv_s() [22ファイル, 中-高複雑度]
+
+**シグネチャ**: `errno_t getenv_s(size_t *requiredSize, char *buffer, size_t numberOfElements, const char *varname)`
+
+**参考実装**: `src/ens/Dll/lelogf_dll/Lelogf.c` (L415-416) に既に正しい getenv_s 使用例あり:
+```c
+size_t requiredSize;
+getenv_s( &requiredSize, &PathExcl_c[0], sizeof(PathExcl_c), "PATH_EXCEL" );
+```
+
+### パターン1: NULL チェック付き (11ファイル)
+```c
+// Before:
+str_cp = getenv("PATH_EXCEL");
+if (str_cp == NULL) { /* error */ }
+
+// After:
+size_t env_len;
+char env_buf[256];
+getenv_s(&env_len, env_buf, sizeof(env_buf), "PATH_EXCEL");
+if (env_len == 0) { /* error */ }
+// str_cp の後続使用箇所を env_buf に変更
+```
+
+### パターン2: sprintf 内直接使用 (8ファイル)
+```c
+// Before:
+sprintf(buf, "%s\\file", getenv("PATH_FILE"));
+
+// After:
+getenv_s(&env_len, env_buf, sizeof(env_buf), "PATH_FILE");
+sprintf(buf, "%s\\file", env_buf);
+```
+
+### コメントのみ (3ファイル)
+`src/ens/Dll/lelogf_dll/Lelogf.c`, `src/ens/Dll/letagd_dll/dl_DBfileAcc.c`, `src/NX_MW/opsnexus/alive.c`
+→ コメント内の `getenv(` を `getenv_s(` に変更
+
+---
+
+## Phase 6: strtok() → strtok_s() [38ファイル, 最高複雑度]
+
+**シグネチャ**: `char *strtok_s(char *strToken, const char *strDelimit, char **context)`
+
+**参考**: `src/NX_MW/opsnexus/init.c` にコメントアウトされた strtok_s 使用例あり
+
+### 変換パターン (全パターン共通)
+```c
+// Before:
+tok = strtok(buf, " ,");
+...
+tok = strtok(NULL, " ,");
+
+// After:
+char *strtok_ctx = NULL;  // ← 関数先頭に追加
+tok = strtok_s(buf, " ,", &strtok_ctx);
+...
+tok = strtok_s(NULL, " ,", &strtok_ctx);
+```
+
+### 主要対象ファイル (箇所数順)
+| ファイル | 箇所数 |
+|---------|--------|
+| `src/sys/aosysi/aosysi.c` | 146 |
+| `src/his/dobnkcom/fl_bnkc01.c` | 34 |
+| `src/his/dobnkcomt/fl_bnkc01.c` | 34 |
+| `src/NX_MW/opsnexus/init.c` | 21 |
+| `src/tool/hstsav/hstsav.c` | 11 |
+| その他33ファイル | 各2-8箇所 |
+
+### 注意
+- 1関数内で `char *strtok_ctx = NULL;` を1つ宣言すれば、複数チェーンで再利用可能 (新チェーン開始時に第1引数が非NULLなら自動リセット)
+- コメント内の `strtok(` も `strtok_s(` に変更
+
+---
+
+## 検証方法
+
+### 各フェーズ完了後
+```bash
+python .hooks/pre_commit_denylist.py
+```
+→ 違反数が0になることを確認
+
+### 最終検証
+1. `python .hooks/pre_commit_denylist.py` → 違反 0
+2. git commit 実行 → pre-commit hook がパスすることを確認
+
+---
+
+## 複数関数が関わるファイル (注意必要)
+| ファイル | 関数 |
+|---------|------|
+| `src/sys/aosysi/aosysi.c` | strtok (146) + gmtime (3) |
+| `src/NX_MW/opsnexus/init.c` | strtok (21) + strerror (5) |
+| `src/NX_MW/dfstat/main.c` | gmtime (1) + localtime (コメント) |
+| `src/NX_MW/nxstat/main.c` | gmtime (1) + localtime (コメント) |
+| `src/lnk/jorepfl/jorepfl.c` | strtok (3) + getenv (1) |
+| `src/lnk/johubsts/johubsts.c` | strtok (4) + getenv (1) |
+| `src/sys/aoalm/aoalm.c` | strtok (4) + getenv (1) |

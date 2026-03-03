@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "deny": ["Task"]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/inject-rules.sh\""
+          }
+        ]
+      }
+    ]
+  },
+  "skipDangerousModePermissionPrompt": true
+}

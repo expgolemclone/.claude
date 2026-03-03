@@ -1,0 +1,1512 @@
+Imports Meidensha.Ops.CustomControl
+Imports Meidensha.Ops.CustomControl.OpsMpbLib	'FUDAKZN add
+Imports Meidensha.Ops.OpsGoMpb.OpsCtlFudaGraph  'FUDAKZN add
+
+''' <summary>
+''' �D�|����ԕ\��
+''' </summary>
+''' <remarks>
+''' *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+''' *
+''' * *****************************************************************************
+''' * *                Copyright Meidensha Corporation 2007                       *
+''' * *  ������Ж��d�ɂ͓��Ђɂ���Ē񋟂���Ȃ����u��ł̓��\�t�g�E�F�A�̎g�p   *
+''' * *  �ɑ΂��ӔC��S�������܂���B                                             *
+''' * *****************************************************************************
+''' *
+''' *      �v���Z�X��  :  �V�X�e�������e���
+''' *      �H  ��      :  F6030CM
+''' *      �V�X�e����  :  OPS5000
+''' *      �쐬��      :  �ѓc�@�D�M
+''' *      �쐬�N����  :  2007�N 03�� 31��
+''' *      �C������    :  2024�N 01�� 09�� MDC�_�c
+''' *                     �D�|���@�\���P(FUDAKZN)
+''' *
+''' *      �@�\�T�v    :
+''' *        �i�P�j�D�|����Ԃ�\������B
+''' *
+''' *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+''' </remarks>
+
+Public Class UCFuda
+
+#Region "�y�f�[�^�錾�z"
+
+    '�� �����o�萔
+    Private Const S_FUDAROWS_P As Short = 6                 ' �D�|���\���s��
+    Private Const I_APL_NONE_P As Integer = &H00            ' �@�\���(�V�X�e�������e�͋@�\�����쌠�ΏۊO�ɂ������l)
+
+    '�� �����o�ϐ�
+    Private mclsDll As CDllData                             ' �c�k�k���O���[�o���ϐ�
+    '<- FUDAKZN add
+    Private mintFdkznOpt As Boolean							' �D�|���@�\���P�I�v�V�����ݒ�
+	'�`�F�b�N�{�b�N�X�֘A
+    Private mintChkCnt As Integer                           ' �`�F�b�N��
+	'�D�|���v���֘A
+	Private mclsReqFudaSet As ClsMwsReqFudaSet				'(�l�v�r)�D�|�ݒ���v���N���X
+	Private mclsReqFudaInf(S_FUDAROWS_P -1) As clsGetFudaInf_Out	'(�v��)�D�|�����
+    Private mclsOldFudaInf(S_FUDAROWS_P -1) As clsGetFudaInf_Out    '(�ȑO)�D�|�����
+   	Private mblnSetBtnFlg(S_FUDAROWS_P -1) As Boolean       ' �ݒ�{�^���������t���O(True:������)
+    Private mblnQueFlg(S_FUDAROWS_P -1) As Boolean          ' �p�t�d���M�m�F�t���O(True:�D�|��������ʂ���̑��삠��)
+    Private mblnSetErrFlg As Boolean                        ' �D�|���ݒ�G���[�t���O(True:�G���[)
+    Private mblnClmChkFlg(S_FUDAROWS_P -1) As Boolean       ' ���쌠�m�F��D�|���v���t���O(True:�R�[���o�b�N�ŎD�|���v�����M)
+    '�Ď����u�ʑ��쌠�֘A
+    Private pclsGetOpeFcty As ClsMwsGetOpeFcty              '(�l�v�r)�w��^�O�Ď����u�ʑ��쌠�擾�N���X
+    Private pclsGetOpeFctyInData As clsGetOpeFcty_In        '�w��^�O�Ď����u�ʑ��쌠�擾�����N���X���͏��
+    Private pclsGetOpeFctyOutData As clsGetOpeFcty_Out      '�w��^�O�Ď����u�ʑ��쌠�擾�����N���X�o�͏��
+	'C/S���쌠�֘A
+	Private mClsSys As ClsSysData
+    Private mclsClaimInf As ClsMwsGetClaimInf             	'(�l�v�r)���쌠�Œ���擾�N���X
+    Private Delegate Sub mGetMwsClaimDelegate(ByVal objOutData As clsGetClaimInf_Out)
+    Private mclsClaimChk As ClsMwsGetClaimChk             	'(�l�v�r)���쌠�L�����擾�N���X
+    Private Delegate Sub mClaimChkBoxDelegate(ByVal blnClaim As Boolean, ByVal shtSts As Short)
+	'���b�Z�[�W�֘A
+	Public Event eMsgDisp(ByVal intWinType As Integer, ByVal strMsg As String)
+    '�D�|���X�V�T�[�r�X�֘A
+    Private pclsUpdFudaRAMW As ClsMwsUpdFuda                '(�l�v�r)�^�O���擾�N���X
+    Private pclsUpdFudaInData As clsGetUpdFuda_In           '�^�O���擾�N���X���͏��
+    Private pclsUpdFudaOutData As clsGetUpdFuda_Out         '�^�O���擾�N���X�o�͏��
+    Private Delegate Sub mGetMwsUpdFudaDelegate(ByVal objInData As clsGetUpdFuda_In, ByVal objOutData As clsGetUpdFuda_Out)
+    Private mstuUpdFudaTagIn(S_FUDAROWS_P -1) As TUpdFudaTagIn  '���̓^�O���
+    '�D�|���E�B���h�E�֘A
+    Private mintFdWinTagIdx As Integer                      '�D�|���E�B���h�E�̃^�ONo.�����s�ڂ��ێ�
+    '-> FUDAKZN add
+
+#End Region
+
+    ''' <summary>
+    ''' ��������
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub New(ByVal clsDll As CDllData)
+
+        Try
+            mclsDll = clsDll
+            InitializeComponent()
+            '<- FUDAKZN add
+			mintFdkznOpt = ((mclsDll.gclsSysCnf.AFsys().opt5_i And AF_OPT5_FUDAKZN_P)<>0)
+			If mintFdkznOpt Then				' �D�|���@�\���P�I�v�V��������̏ꍇ
+				' ���ڕ���ݒ肷��
+				Me.tblFuda.gpsngColumns = New Single() {11.0!, 25.0!, 47.0!, 53.0!, 61.0!, 81.0!, 94.0!, 100.0!}
+
+				'���ڂ��܂�Ԃ��Ȃ��悤�A�����T�C�Y���������A�e�[�u�������L����
+				Me.tblFuda.Font = New System.Drawing.Font("�l�r �S�V�b�N", 11.0!, System.Drawing.FontStyle.Bold)
+				Me.tblFuda.Location = New System.Drawing.Point(15, 34)
+				Me.tblFuda.Size = New System.Drawing.Size(1566, 882)
+
+				'�D�|�ݒ���v���N���X����
+				mclsReqFudaSet = New ClsMwsReqFudaSet(mclsDll.gintWinId, gobjSvrMW, gobjErrLog)
+				
+				'�D�|�����N���X����
+                Dim intCnt As Integer
+				For intCnt = 0 To S_FUDAROWS_P -1
+					mclsReqFudaInf(intCnt) = New clsGetFudaInf_Out
+                    mclsOldFudaInf(intCnt) = New clsGetFudaInf_Out
+				Next
+				
+                '�Ď����u�ʑ��쌠�擾�N���X����
+                pclsGetOpeFcty = New ClsMwsGetOpeFcty(gobjSvrMW, gobjErrLog)
+                pclsGetOpeFctyInData = New clsGetOpeFcty_In
+                pclsGetOpeFctyOutData = New clsGetOpeFcty_Out
+
+                '���쌠���擾�N���X����
+                mClsSys = New ClsSysData
+                mclsClaimInf = New ClsMwsGetClaimInf(gobjOpsMW)
+				AddHandler mclsClaimInf.eReadComplet, AddressOf mGetMwsClaim
+                If mclsClaimInf.mGetData = False Then
+                    RaiseEvent eMsgDisp(CInt(1), "���쌠��� �擾���s")
+                    Exit Sub
+                End If
+
+                '�D�|�������X�V�T�[�r�X�N���X����
+                pclsUpdFudaRAMW = New ClsMwsUpdFuda(gobjSvrMW)
+                AddHandler pclsUpdFudaRAMW.eReadComplet, AddressOf Me.mGetMwsUpdFuda
+
+                '�D�|���{�^���ƈꊇ�����{�^���̏�����
+                initBtnAndChk()
+            End If
+			'-> FUDAKZN add
+        Catch ex As Exception
+            gobjErrLog.Write(ex, "�V�X�����e-", 0, 0, 0, 0)
+        End Try
+
+    End Sub
+
+    ''' <summary>
+    ''' ���[�h����
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub UctlFuda_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        Dim intX As Integer
+        Dim strHead() As String		'FUDAKZN mod
+
+        Try
+            gfncResize(Me) '(P06014-Q08-1245)
+            '<- FUDAKZN add
+			If mintFdkznOpt Then				' �D�|���@�\���P�I�v�V��������̏ꍇ
+                ' ���ږ��̂�ݒ肷��
+		        Dim strHeadFdkzn() As String = _
+        		    {"�^�O�m���D", "�ݔ�����", "�^�O����", "�D�m���D", "�D���", "�D�|�����R", "�ݒ���t", "�ꊇ����"}
+                ReDim strHead(strHeadFdkzn.Length - 1)
+                Array.Copy(strHeadFdkzn, strHead, strHead.Length)
+                ' �K�C�_���X���b�Z�[�W��\������
+                lblFuda.Text = "�D�|������̎��s��́A�\�t�g�L�[�u�\���X�V�v�ɂ���Č������ʂ��X�V���Ă��������B"
+			Else								' �D�|���@�\���P�I�v�V�����Ȃ��̏ꍇ
+				' ���ږ��̂�ݒ肷��
+		        Dim strHeadNorm() As String = _
+        		    {"�^�O�m���D", "�ݔ�����", "�^�O����", "�D�m���D", "�D���", "�D�|�����R"}
+        		ReDim strHead(strHeadNorm.Length - 1)
+        		Array.Copy(strHeadNorm, strHead, strHead.Length)
+			End If
+            '-> FUDAKZN add
+
+            '�� ���ږ��̂�\������
+            For intX = 0 To strHead.Length - 1
+                With tblFuda.glblData(intX + 1, 0)
+                    .Text = strHead(intX)
+                    .TextAlign = ContentAlignment.MiddleCenter
+                End With
+            Next
+
+        Catch ex As Exception
+            gobjErrLog.Write(ex, "�V�X�����e-", 0, 0, 0, 0)
+        End Try
+
+    End Sub
+
+    ''' <summary>
+    ''' �\���X�V����
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gsRefresh(ByVal intMwsNo As Integer)
+
+        Dim intFudaNo, intX, intY, intCnt, _
+            intOffset, intPageNo, intLastPage, intFudaNum As Integer    'FUDAKZN mod
+
+        Try
+            '�� �D�|�����R���ς�������Ƃɂ��
+            '   �Ăяo���̏ꍇ�͏������Ȃ�
+            If intMwsNo = S_MWNO_GD_CARD_P Then
+                Exit Sub
+            End If
+
+            '<- FUDAKZN mod
+			If mintFdkznOpt Then		' �D�|���@�\���P�I�v�V��������̏ꍇ
+		        Dim btnWrk As OpsCtlButton		'�D�|���{�^��
+		        Dim chkWrk As CheckBox			'�ꊇ�����{�^��
+		        Dim blnRight As Boolean         '���쌠
+
+                '�\�����E�B���h�E����
+                If intMwsNo = S_MWNO_FUDA_P Then
+                	gFudaFormErase()
+                End If
+                '�T�[�r�X��~
+                gFudaStopSrvMW()
+				'�ϐ�������
+				mintChkCnt = 0											'�`�F�b�N��0
+				mclsDll.guctlBase.OpsCtlSftky.Button10.Enabled = False	'�ݒ�{�^������
+                For intY = 0 To S_FUDAROWS_P - 1
+				    mblnSetBtnFlg(intY) = False	    					'�ݒ�{�^���񏈗���
+                    mblnQueFlg(intY) = False                            '�D�|��������ʂ���̑���Ȃ�
+                    mblnClmChkFlg(intY) = False                         '���쌠�m�F��D�|���v���t���O�N���A
+                Next
+                mblnSetErrFlg = False                                   '�D�|���ݒ�G���[�Ȃ�
+
+	            For intY = 0 To S_FUDAROWS_P - 1
+	                intOffset = intY * 4 + 1
+                    intFudaNum = 0
+
+                   	'�D�|����񏉊���
+                    Array.Copy(mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtLock, mclsReqFudaInf(intY).shtLock, mclsReqFudaInf(intY).shtLock.Length)
+                    mclsReqFudaInf(intY).shtUse = mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtUse
+                    Array.Copy(mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtLock, mclsOldFudaInf(intY).shtLock, mclsReqFudaInf(intY).shtLock.Length)
+                    mclsOldFudaInf(intY).shtUse = mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtUse
+
+                    '�D�|���X�V�T�[�r�X�p���͏�����
+                    mstuUpdFudaTagIn(intY).shtKind = 0
+                    mstuUpdFudaTagIn(intY).shtStnNo = 0
+                    mstuUpdFudaTagIn(intY).shtKeiNo = 0
+
+                    btnWrk = CType(tblFuda.gclsObj(intY).gctlObj, OpsCtlButton)
+                    chkWrk = CType(tblFuda.gclsObj(intY+6).gctlObj, CheckBox)
+
+                    '6�^�O�ɖ����Ȃ��ꍇ�͋�\���ŏ����𔲂���
+	                If mclsDll.gclsFuda.gclsOut.shtRtrnPageNo * S_FUDAROWS_P + intY + 1 > _
+	                   mclsDll.gclsFuda.gclsOut.shtLastFudaNo Then
+	                    For intX = 1 To tblFuda.gpsngColumns.Length
+	                        For intCnt = 0 To 3
+	                            tblFuda.glblData(intX, intOffset + intCnt).Text = ""
+                                btnWrk.Visible = False
+                                chkWrk.Visible = False
+	                        Next
+	                    Next
+	                    Continue For
+	                End If
+
+                    '���ڕ\��
+                    With tblFuda
+                	    '���䑀��۔���
+					    blnRight = fncFudaCtlRight(intY)
+
+						'�^�O�m���D(�D�|���{�^��)
+                        btnWrk.Visible = True
+                        btnWrk.Text = gfncToWide(gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).bytTagNo, 8))
+                        btnWrk.Enabled = blnRight
+
+						'�ݔ����́A�^�O����
+	                    .glblData(2, intOffset).Text = _
+	                        gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).bytFctyName, 16)
+	                    .glblData(3, intOffset).Text = _
+	                        gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).bytTagName, 32)
+
+                        '�DNo.�A�D��ʁA�D�|�����R�A�ݒ���t
+	                    For intCnt = 0 To 3
+	                        intFudaNo = mclsDll.gclsFuda.gclsOut.stuTag(intY).bytFudaNo(intCnt)
+	                        If intFudaNo > 0 Then
+                                intFudaNum += 1
+	                            .glblData(4, intOffset + intCnt).Text = _
+	                                gfncToWide(intFudaNo.ToString)
+	                            .glblData(5, intOffset + intCnt).Text = fncFudaKind(intFudaNo)
+	                            .glblData(6, intOffset + intCnt).Text = _
+	                                gfncByteToStr(mclsDll.gclsGDcard.gpDb(intFudaNo - 1).reason_c, 32)
+                                .glblData(7, intOffset + intCnt).Text = _
+                                    fncSetTimToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).stuSetTim(intCnt))
+	                        Else
+	                            .glblData(4, intOffset + intCnt).Text = ""
+	                            .glblData(5, intOffset + intCnt).Text = ""
+	                            .glblData(6, intOffset + intCnt).Text = ""
+	                            .glblData(7, intOffset + intCnt).Text = ""
+	                        End If
+	                    Next
+
+						'�ꊇ�����{�^���̕\��
+                        If intFudaNum > 0 Then
+                            chkWrk.Visible = True
+                        Else
+                            chkWrk.Visible = False
+                        End If
+                        chkWrk.Enabled = blnRight
+                        chkWrk.Checked = False
+                        chkWrk.BackColor = Color.Transparent
+
+                        '�D�|���X�V�T�[�r�X�p���̓Z�b�g
+                        mstuUpdFudaTagIn(intY).shtKind = mclsDll.gclsFuda.gclsOut.stuTag(intY).shtKind
+                        mstuUpdFudaTagIn(intY).shtStnNo = mclsDll.gclsFuda.gclsOut.stuTag(intY).shtStnNo
+                        mstuUpdFudaTagIn(intY).shtKeiNo = mclsDll.gclsFuda.gclsOut.stuTag(intY).shtKeiNo
+	                End With
+	            Next
+
+                '�D�|���X�V�T�[�r�X�J�n
+                pclsUpdFudaRAMW.mGetData(mstuUpdFudaTagIn)
+
+			Else        				' �D�|���@�\���P�I�v�V�����Ȃ��̏ꍇ
+	            For intY = 0 To S_FUDAROWS_P - 1
+	                intOffset = intY * 4 + 1
+	                If mclsDll.gclsFuda.gclsOut.shtRtrnPageNo * S_FUDAROWS_P + intY + 1 > _
+	                   mclsDll.gclsFuda.gclsOut.shtLastFudaNo Then
+	                    For intX = 1 To 6
+	                        For intCnt = 0 To 3
+	                            tblFuda.glblData(intX, intOffset + intCnt).Text = ""
+	                        Next
+	                    Next
+	                    Continue For
+	                End If
+	                With tblFuda
+	                    .glblData(1, intOffset).Text = _
+	                        gfncToWide(gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).bytTagNo, 8))
+	                    .glblData(2, intOffset).Text = _
+	                        gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).bytFctyName, 16)
+	                    .glblData(3, intOffset).Text = _
+	                        gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).bytTagName, 32)
+	                    For intCnt = 0 To 3
+	                        intFudaNo = mclsDll.gclsFuda.gclsOut.stuTag(intY).bytFudaNo(intCnt)
+	                        If intFudaNo > 0 Then
+	                            .glblData(4, intOffset + intCnt).Text = _
+	                                gfncToWide(intFudaNo.ToString)
+	                            .glblData(5, intOffset + intCnt).Text = fncFudaKind(intFudaNo)
+	                            .glblData(6, intOffset + intCnt).Text = _
+	                                gfncByteToStr(mclsDll.gclsGDcard.gpDb(intFudaNo - 1).reason_c, 32)
+	                        Else
+	                            .glblData(4, intOffset + intCnt).Text = ""
+	                            .glblData(5, intOffset + intCnt).Text = ""
+	                            .glblData(6, intOffset + intCnt).Text = ""
+	                        End If
+	                    Next
+	                End With
+	            Next
+			End If
+            '-> FUDAKZN mod
+
+            With mclsDll.gclsFuda
+
+                intLastPage = (.gclsOut.shtLastFudaNo - 1) \ S_FUDAROWS_P
+
+                '�� �\�����y�[�W�ԍ���\������
+                mclsDll.guctlBase.lblPage.Text = _
+                    gfncToWide((.gclsOut.shtRtrnPageNo + 1).ToString)
+                mclsDll.guctlBase.lblAllPage.Text = _
+                    gfncToWide((intLastPage + 1).ToString)
+
+                '�� �v���y�[�W�Ɖ����y�[�W���Ⴄ�Ƃ��͌Ăђ���
+                intPageNo = .gshtPageNo
+                If intPageNo > intLastPage Then intPageNo = 0
+                While (intPageNo < 0)
+                    intPageNo += (intLastPage + 1)
+                End While
+                .gshtPageNo = CShort(intPageNo)
+
+                If .gclsOut.shtRtrnPageNo <> intPageNo Then
+                    .gsSvrMwsCall(False)
+                End If
+
+            End With
+
+        Catch ex As Exception
+            gobjErrLog.Write(ex, "�V�X�����e-", 0, 0, 0, 0)
+        End Try
+
+    End Sub
+
+#Region "�y�`�F�b�N�{�b�N�X�����z"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' �`�F�b�N�{�b�N�X����������
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub mChkBoxChg(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Try
+            '�� �D�|���������J�E���g
+            If CType(sender, CheckBox).Checked = True
+                mintChkCnt += 1
+            Else
+                If mintChkCnt > 0 Then mintChkCnt -= 1
+            End If
+
+            '�� �`�F�b�N�O��������1�ȏ�Ȃ�\�t�g�L�[�u�ݒ�v��L���A0�Ȃ疳��
+            If mintChkCnt > 0 Then
+                mclsDll.guctlBase.OpsCtlSftky.Button10.Enabled = True
+            Else
+                mclsDll.guctlBase.OpsCtlSftky.Button10.Enabled = False
+            End If       	
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "mChkBoxChg", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' �S�`�F�b�N�{�b�N�X�̃`�F�b�N���O��
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub fncAllChkRemove()
+        Dim intY As Integer
+        Dim chkWrk As CheckBox
+
+        Try
+            For intY = 0 To S_FUDAROWS_P - 1
+                chkWrk = CType(tblFuda.gclsObj(intY+6).gctlObj, CheckBox)
+                If chkWrk.Checked = True Then chkWrk.Checked = False
+            Next
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "fncAllChkRemove", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' �����Ώۃ`�F�b�N�{�b�N�X�𑀍�s�Ƃ���
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub fncCancelTgtDisable()
+        Dim intY As Integer
+        Dim chkWrk As CheckBox
+
+        Try
+            For intY = 0 To S_FUDAROWS_P - 1
+                chkWrk = CType(tblFuda.gclsObj(intY+6).gctlObj, CheckBox)
+                If chkWrk.Checked = True Then chkWrk.Enabled = False
+            Next
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "fncCancelTgtDisable", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' �S�`�F�b�N�{�b�N�X����ېݒ�
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub fncAllChkCtrlDsbl(ByVal blnCtrlDsbl As Boolean)
+        Dim intY As Integer
+        Dim chkWrk As CheckBox
+
+        Try
+            For intY = 0 To S_FUDAROWS_P - 1
+                chkWrk = CType(tblFuda.gclsObj(intY+6).gctlObj, CheckBox)
+                If blnCtrlDsbl Then     '�}�~����̏ꍇ�͑���s��
+                    chkWrk.Enabled = False
+                    chkWrk.Checked = False
+                Else                    '�}�~�Ȃ��̏ꍇ�͑��쌠���茋�ʂ�ݒ肷��
+                    chkWrk.Enabled = fncFudaCtlRight(intY)
+                End If
+            Next
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "fncAllChkCtrlDsbl", 0, 0, 0, 0)
+        End Try
+    End Sub
+    '-> FUDAKZN add
+#End Region
+
+#Region "�y�D�|���{�^�������z"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' �D�|���{�^���N���b�N������
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub mFudaBtnClick(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Dim intTagIdx As Integer = Integer.Parse(CType(sender, OpsCtlButton).Name)
+        Dim shtTagKind, shtStNum, shtKeikiNum As Short
+        Dim strSetubiName, strTaguName, strTaguNum As String
+
+        Try
+            '�\�����E�B���h�E����
+            gFudaFormErase()
+
+            '���{�^�������`��ɂ���B
+            DirectCast(sender, OpsCtlButton).gpblnValue = True
+
+            '�D�|�E�B���h�E��\������B
+            mclsDll.gfrmForm = New FormFudaWin(gfntFont, mclsDll.gfrmParent, gobjSvrMW, mclsDll.gintWinId, gobjColor, _
+                                          mclsDll.gblnOprClaim, mclsDll.gclsSysCnf.AFsys().plant_i(2), mclsDll.gclsSysCnf.AFsys().ownn_s, _
+                                          sender, mClsSys.gclsClaim, CShort(pclsUpdFudaOutData.stuTag(intTagIdx).shtFctyOpe))
+            AddHandler DirectCast(mclsDll.gfrmForm, FormFudaWin).eMsgDisp, AddressOf fncFudaMsgDisp         '���b�Z�[�W�\���v��to��ʊǗ�
+            AddHandler DirectCast(mclsDll.gfrmForm, FormFudaWin).eFormKeyDown, AddressOf fncFudaFormKeyDown '�t�@���N�V�����L�[�������C�x���g
+            '�e�t�H�[���ɎD�|����ʂ�ǉ�
+            DirectCast(mclsDll.gfrmParent, Form).AddOwnedForm(mclsDll.gfrmForm)
+
+            '�D�|���E�B���h�E�̕\���ʒu�ݒ�(��ʒ���)
+            Dim rctBtnPos As Rectangle
+            Dim intX, intY, intWidth, intHeight As Integer
+            With DirectCast(mclsDll.gfrmParent, Form)
+                intWidth = DirectCast(sender, OpsCtlButton).Width
+                intHeight = DirectCast(sender, OpsCtlButton).Height
+                intX = CInt(.Left + .Width / 2 - DirectCast(mclsDll.gfrmForm, FormFudaWin).Width / 2)
+                intY = CInt(.Top + .Height / 2 - DirectCast(mclsDll.gfrmForm, FormFudaWin).Height / 2 - intHeight)
+            End With
+            rctBtnPos = New Rectangle(intX, intY, intWidth, intHeight)
+
+            '�D�|���E�B���h�E�̕\���ɕK�v�ȏ��ݒ�
+            shtTagKind = mclsDll.gclsFuda.gclsOut.stuTag(intTagIdx).shtKind
+            shtStNum = mclsDll.gclsFuda.gclsOut.stuTag(intTagIdx).shtStnNo
+            shtKeikiNum = mclsDll.gclsFuda.gclsOut.stuTag(intTagIdx).shtKeiNo
+            strTaguNum = gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intTagIdx).bytTagNo, 8)
+            strSetubiName = gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intTagIdx).bytFctyName, 16)
+            strTaguName = gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intTagIdx).bytTagName, 32)
+
+            '�D�|���E�B���h�E�̕\��
+            Call  DirectCast(mclsDll.gfrmForm, FormFudaWin).mWinShow(shtTagKind, shtStNum, shtKeikiNum, strSetubiName, strTaguName, _
+                                                                    strTaguNum, rctBtnPos, pclsUpdFudaOutData.stuTag(intTagIdx).stuFudaInf, I_APL_NONE_P)
+
+            '���s�ڂ̃{�^�������������o���Ă���
+            mintFdWinTagIdx = intTagIdx
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "mFudaBtnClick", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' �S�D�|���{�^������ېݒ�
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub fncAllBtnCtrlDsbl(ByVal blnCtrlDsbl As Boolean)
+        Dim intY As Integer
+        Dim btnWrk As OpsCtlButton
+
+        Try
+            For intY = 0 To S_FUDAROWS_P - 1
+                btnWrk = CType(tblFuda.gclsObj(intY).gctlObj, OpsCtlButton)
+                If blnCtrlDsbl Then     '�}�~����̏ꍇ�͑���s��
+                    btnWrk.Enabled = False
+                Else                    '�}�~�Ȃ��̏ꍇ�͑��쌠���茋�ʂ�ݒ肷��
+                    btnWrk.Enabled = fncFudaCtlRight(intY)
+                End If
+            Next
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "fncAllBtnCtrlDsbl", 0, 0, 0, 0)
+        End Try
+    End Sub
+    '-> FUDAKZN add
+#End Region
+
+#Region "�y�ݒ�{�^�������z"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' �ݒ�{�^���N���b�N������
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gSetBtnClick()
+		Dim intFudaNo, intY, intCnt, intNum As Integer
+		Dim shtTagKind, shtStNum, shtKeikiNum As Short
+		Dim ReSts As Short = CShort(0)
+        Dim blnClaimChkFlg As Boolean = False
+
+        Try
+			With mclsDll
+                ' �\�����E�B���h�E����
+                gFudaFormErase()
+
+        		'�� �m�F���b�Z�[�W�\��
+                .gfrmForm = New FMessage(mclsDll)
+			    DirectCast(.gfrmForm, FMessage).gsSet _
+                    ("�D�|������", "�D�|���������s���܂��B��낵���ł����H", S_CONF_DSER_P, S_ICON_INFO_P, Nothing)
+                gfncModalDisp(mclsDll, .gfrmForm, .gfrmParent, S_CONF_DSER_P)
+
+                '������/�~�{�^�����N���b�N�����ꍇ�A�S�Ẵ`�F�b�N���O������Ԃɖ߂��A�����𔲂���
+                If (.gfrmForm Is Nothing) OrElse (.gfrmForm.DialogResult <> S_ANS_YES_P) Then
+                    fncAllChkRemove()
+                    Exit Sub
+                End If
+
+                '�����Ώۃ^�O�̃`�F�b�N�{�b�N�X�͑���s�p��
+                fncCancelTgtDisable()
+
+                '�� �ݒ�{�^�������J�n
+                For intY = 0 To S_FUDAROWS_P - 1
+                    If (CType(tblFuda.gclsObj(intY + 6).gctlObj, CheckBox).Visible) AndAlso _
+                       (CType(tblFuda.gclsObj(intY + 6).gctlObj, CheckBox).Checked) Then
+                        mblnSetBtnFlg(intY) = True
+                	End If
+                Next
+
+                '�� �v�����M
+				For intY = 0 To S_FUDAROWS_P - 1
+                    '�����Ώۂ̏ꍇ
+                    If (CType(tblFuda.gclsObj(intY + 6).gctlObj, CheckBox).Visible) AndAlso _
+                       (CType(tblFuda.gclsObj(intY + 6).gctlObj, CheckBox).Checked) Then
+					    '��ʁE�X�e�[�V�����ԍ��E�v��ԍ��̐ݒ�
+                        shtTagKind = .gclsFuda.gclsOut.stuTag(intY).shtKind
+                        shtStNum = .gclsFuda.gclsOut.stuTag(intY).shtStnNo
+                        shtKeikiNum = .gclsFuda.gclsOut.stuTag(intY).shtKeiNo
+
+                        '(MWS)�w��^�O�Ď����u�ʑ��쌠�擾����
+                        pclsGetOpeFctyInData.shtTagKind = shtTagKind
+                        pclsGetOpeFctyInData.shtStNo = shtStNum
+                        pclsGetOpeFctyInData.shtKeikiNum = shtKeikiNum
+                        pclsGetOpeFctyInData.Apl_i = I_APL_NONE_P
+                        If pclsGetOpeFcty.mGetData(pclsGetOpeFctyInData, pclsGetOpeFctyOutData) = True Then
+                            ' �Ď����u�ʑ��쌠�������ꍇ�͏������Ȃ�
+                            If pclsGetOpeFctyOutData.shtFctyOpe = SS_OFF_P Then
+                                mblnSetBtnFlg(intY) = False
+                                Continue For
+                            End If
+                        End If
+
+                        '�@��^�O�ő��쌠�I�v�V��������̏ꍇ�������A���쌠�؊����^�O�͏���
+                        If (shtTagKind = SYS_KIKI_P) And _
+                           (mClsSys.gclsClaim.inf_s = JF_ORI_OPS_P) And _
+                           ((shtStNum <> mClsSys.gclsClaim.stno_s) And _
+                            (shtKeikiNum <> mClsSys.gclsClaim.id_s)) Then
+                            '���쌠�L�����擾��ɎD�|�������v�����s���t���O���Z�b�g
+                            blnClaimChkFlg = True
+                            mblnClmChkFlg(intY) = True
+                        Else
+                            '(�v��)�D�|�����ɍŐV�l���Z�b�g
+                            mclsReqFudaInf(intY) = pclsUpdFudaOutData.stuTag(intY).stuFudaInf
+
+                            '�D�|�������v�����M
+                            For intCnt = 0 To 3
+                                intFudaNo = pclsUpdFudaOutData.stuTag(intY).bytFudaNo(intCnt)
+                                If (intFudaNo > 0) Then
+                                    '(�v��)�D�|�����̐ݒ�
+                                    Select Case intFudaNo
+                                        Case 1 To 30       '���ӎD�E����֎~�D����
+                                            For intNum = 0 To 2
+                                                If mclsReqFudaInf(intY).shtLock(intNum) = intFudaNo Then
+                                                    mclsReqFudaInf(intY).shtLock(intNum) = 0
+                                                End If
+                                            Next
+                                        Case 31            '���M���b�N�D����
+                                            mclsReqFudaInf(intY).shtUse = CShort(1)
+                                    End Select
+
+                                    '�D�|���v��
+                                    ReSts = mclsReqFudaSet.mReqData(shtTagKind, shtStNum, shtKeikiNum, CF_SUBT_UNSET_P, _
+                                                                       CShort(intFudaNo - 1), .gclsSysCnf.AFsys.ownn_s, mclsReqFudaInf(intY))
+                                    '�p�t�d���M�m�F�t���O�n�m
+                                    mblnQueFlg(intY) = True
+
+                                    If ReSts <> RetStsTRUE Then
+                                        If ReSts = RetStsEqu Then
+                                            RaiseEvent eMsgDisp(CInt(1), "�������̂��߁A�D�|������ł��܂���ł����B")
+                                        Else
+                                            Dim strWord As String = mErrMsg(ReSts)
+                                            '�G���[����
+                                            Call gobjErrLog.Write(Nothing, "�V�X�����e-" & strWord, ReSts, shtStNum, shtKeikiNum, shtTagKind)
+                                            '�D�|���ݒ�G���[�t���O�Z�b�g
+                                            mblnSetErrFlg = True
+                                        End If
+                                    End If
+                                End If
+                            Next
+
+                            '�ݒ�{�^�������I��
+                            mblnSetBtnFlg(intY) = False
+                        End If
+                    End If
+                Next
+
+                '���쌠�L�����擾��ɎD�|�������v�����s���ꍇ�̏���
+                If blnClaimChkFlg = True Then
+                    '�N���X����������Ă����ꍇ�폜
+                    If mclsClaimChk IsNot Nothing Then
+                        RemoveHandler mclsClaimChk.eReadComplet, AddressOf Me.mClaimChkFudaReq
+                        Call mclsClaimChk.sDispose()
+                        mclsClaimChk = Nothing
+                    End If
+
+                    '(�q�l�v)���쌠�L�����擾�N���X
+                    mclsClaimChk = New ClsMwsGetClaimChk(gobjSvrMW)
+                    AddHandler mclsClaimChk.eReadComplet, AddressOf Me.mClaimChkFudaReq
+                    If mclsClaimChk.mGetData(mClsSys.gclsClaim, CLAIMCHK.CLAIMCHKFUDA) = False Then
+                        RaiseEvent eMsgDisp(CInt(1), "���쌠�L�����m�F�����Ɏ��s���܂����B")
+                        '�D�|���ݒ�G���[�t���O�Z�b�g
+                        mblnSetErrFlg = True
+                        '�ݒ�{�^�������I���A���쌠�m�F��D�|���v���t���O�N���A
+                        For intY = 0 To S_FUDAROWS_P - 1
+                            If mblnClmChkFlg(intY) Then
+                                mblnSetBtnFlg(intY) = False
+                                mblnClmChkFlg(intY) = False
+                            End If
+                        Next
+                    End If
+                End If
+
+                '�S�Ẵ`�F�b�N���O������Ԃɖ߂�
+                fncAllChkRemove()
+            End With
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "gSetBtnClick", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' ���쌠���擾����
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub mGetMwsClaim(ByVal objOutData As clsGetClaimInf_Out)
+        Try
+            '���X���b�h����Ăяo���ꂽ�ꍇ
+            If InvokeRequired Then
+                Dim dlgIAddItem As New mGetMwsClaimDelegate(AddressOf mGetMwsClaim)
+                '���X���b�h����Ăђ����B
+                Me.BeginInvoke(dlgIAddItem, New Object() {objOutData})
+                Return
+            End If
+
+            mClsSys.gclsClaim = objOutData.strOpri  '���쌠���
+
+        Catch ex As Exception
+            '��O����
+            gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "mGetMwsClaim", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' ���쌠�m�F��D�|���v��
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub mClaimChkFudaReq(ByVal blnClaim As Boolean, ByVal shtSts As Short)
+        Dim intFudaNo, intY, intCnt, intNum As Integer
+        Dim ReSts As Short = CShort(0)
+        Dim shtTagKind, shtStNum, shtKeikiNum As Short
+
+        Try
+            '���X���b�h����Ăяo���ꂽ�ꍇ
+            If InvokeRequired Then
+                Dim dlgIAddItem As New mClaimChkBoxDelegate(AddressOf mClaimChkFudaReq)
+                '���X���b�h����Ăђ����B
+                Me.BeginInvoke(dlgIAddItem, New Object() {blnClaim, shtSts})
+                Return
+            End If
+
+            If shtSts <> CShort(1) Then
+                '�X�e�[�^�X��"����"�ȊO�̏ꍇ
+                RaiseEvent eMsgDisp(CInt(1), "���쌠�L����� �擾���� ���s(�l�v�r)")
+                '�ݒ�{�^�������I���A���쌠�m�F��D�|���v���t���O�N���A
+                For intY = 0 To S_FUDAROWS_P - 1
+                    If mblnClmChkFlg(intY) Then
+                        mblnSetBtnFlg(intY) = False
+                        mblnClmChkFlg(intY) = False
+                    End If
+                Next
+                Exit Sub
+            End If
+
+            If blnClaim = False Then
+                '���쌠���Ȃ��ꍇ
+                '���b�Z�[�W�\�� # ��ʊǗ��A�`���[�j���O�ƕ\�����@�����킹��B
+                RaiseEvent eMsgDisp(CInt(1), "���쌠������܂���B")
+                '�ݒ�{�^�������I���A���쌠�m�F��D�|���v���t���O�N���A
+                For intY = 0 To S_FUDAROWS_P - 1
+                    If mblnClmChkFlg(intY) Then
+                        mblnSetBtnFlg(intY) = False
+                        mblnClmChkFlg(intY) = False
+                    End If
+                Next
+                Exit Sub
+            End If
+
+             For intY = 0 To S_FUDAROWS_P - 1
+                If mblnClmChkFlg(intY) Then
+                    '��ʁE�X�e�[�V�����ԍ��E�v��ԍ��̐ݒ�
+                    shtTagKind = mclsDll.gclsFuda.gclsOut.stuTag(intY).shtKind
+                    shtStNum = mclsDll.gclsFuda.gclsOut.stuTag(intY).shtStnNo
+                    shtKeikiNum = mclsDll.gclsFuda.gclsOut.stuTag(intY).shtKeiNo
+
+                    '(�v��)�D�|�����ɍŐV�l���Z�b�g
+                    mclsReqFudaInf(intY) = pclsUpdFudaOutData.stuTag(intY).stuFudaInf
+
+                    '�D�|�������v�����M
+                    For intCnt = 0 To 3
+						intFudaNo = pclsUpdFudaOutData.stuTag(intY).bytFudaNo(intCnt)
+						If (intFudaNo > 0) Then
+							'(�v��)�D�|�����̐ݒ�
+                            Select Case intFudaNo
+                                Case 1 To 30       '���ӎD�E����֎~�D����
+                                    For intNum = 0 To 2
+                                        If mclsReqFudaInf(intY).shtLock(intNum) = intFudaNo Then
+                                            mclsReqFudaInf(intY).shtLock(intNum) = 0
+                                        End If
+                                    Next
+                                Case 31            '���M���b�N�D����
+                                    mclsReqFudaInf(intY).shtUse = CShort(1)
+                            End Select
+
+                            '�D�|���v��
+                            ReSts = mclsReqFudaSet.mReqData(shtTagKind, shtStNum, shtKeikiNum, CF_SUBT_UNSET_P, _
+                                                               CShort(intFudaNo - 1), mclsDll.gclsSysCnf.AFsys.ownn_s, mclsReqFudaInf(intY))
+
+                            '�p�t�d���M�m�F�t���O�n�m
+                            mblnQueFlg(intY) = True
+
+                            If ReSts <> RetStsTRUE Then
+                                If ReSts = RetStsEqu Then
+                                    RaiseEvent eMsgDisp(CInt(1), "�������̂��߁A�D�|������ł��܂���ł����B")
+                                Else
+                                    Dim strWord As String = mErrMsg(ReSts)
+                                    '�G���[����
+                                    Call gobjErrLog.Write(Nothing, "�V�X�����e-" & strWord, ReSts, shtStNum, shtKeikiNum, shtTagKind)
+                                    '�D�|���ݒ�G���[�t���O�Z�b�g
+                                    mblnSetErrFlg = True
+                                End If
+                            End If
+                        End If
+                    Next
+
+                    '�ݒ�{�^�������I���A���쌠�m�F��D�|���v���t���O�N���A
+                    mblnSetBtnFlg(intY) = False
+                    mblnClmChkFlg(intY) = False
+                End If
+            Next
+
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "mClaimChkFudaReq", 0, 0, 0, 0)
+        End Try
+    End Sub
+    '-> FUDAKZN add
+#End Region
+
+#Region "�y�D�|���X�V�T�[�r�X�����z"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' �ŐV�D�|�����擾��������
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub mGetMwsUpdFuda(ByVal objInData As clsGetUpdFuda_In, ByVal objOutData As clsGetUpdFuda_Out)
+        Try
+            '���X���b�h����Ăяo���ꂽ�ꍇ
+            If InvokeRequired Then
+                Dim dlgIAddItem As New mGetMwsUpdFudaDelegate(AddressOf mGetMwsUpdFuda)
+                '���X���b�h����Ăђ����B
+                Me.BeginInvoke(dlgIAddItem, New Object() {objInData, objOutData})
+                Return
+            End If
+
+            '�擾�����f�[�^������ϐ��ɃZ�b�g����B
+            pclsUpdFudaInData = objInData
+            pclsUpdFudaOutData = objOutData
+
+            '�T�[�r�X���G���[�`�F�b�N
+            If pclsUpdFudaOutData.shtRetSts <> RetStsTRUE Then
+                Exit Sub
+            End If
+
+            '��ʃ��b�N����Ԃ̉�ʍX�V�������ꎞ�s��Ȃ�
+            If mclsDll.gblnScreenLock = True Then
+                Exit Sub
+            End If
+
+            '�D�|���E�B���h�E���\�����̏ꍇ�͏��X�V
+            If (mclsDll.gfrmForm IsNot Nothing) And (TypeOf mclsDll.gfrmForm Is FormFudaWin) Then
+                If (DirectCast(mclsDll.gfrmForm, FormFudaWin).IsDisposed = False) Then
+                    If (DirectCast(mclsDll.gfrmForm, FormFudaWin).gpblnWinFlg = True) Then
+                        DirectCast(mclsDll.gfrmForm, FormFudaWin).mRefreshFuda(
+                            pclsUpdFudaOutData.stuTag(mintFdWinTagIdx).shtItrLckEna, pclsUpdFudaOutData.stuTag(mintFdWinTagIdx).stuFudaInf)
+                    Else
+                        Call DirectCast(mclsDll.gfrmForm, FormFudaWin).mWinDispose()
+                        mclsDll.gfrmForm = Nothing
+                    End If
+                Else
+                    mclsDll.gfrmForm = Nothing
+                End If
+            End If
+
+            '�D�|�������T�[�r�X�o�͒l���ŐV�l�ɂ���
+            '��gsRefresh���D�|���������ʉ�ʂɓ������Ƃ��ƃ\�t�g�L�[����ȊO�ŃR�[�����ꂽ�ꍇ�A
+            '  �D�|�������T�[�r�X�����s����Ȃ����߁A�O��o�͒l����ʔ��f���Ă��܂��̂�h���B
+            Dim intY As Integer
+            For intY = 0 To S_FUDAROWS_P - 1
+                '�D�|�����
+                Array.Copy(pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock, mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtLock, mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtLock.Length)
+                mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtUse = pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtUse
+                '�DNo
+                Array.Copy(pclsUpdFudaOutData.stuTag(intY).bytFudaNo, mclsDll.gclsFuda.gclsOut.stuTag(intY).bytFudaNo, mclsDll.gclsFuda.gclsOut.stuTag(intY).bytFudaNo.Length)
+                '�D�|���ݒ���t
+                Array.Copy(pclsUpdFudaOutData.stuTag(intY).stuSetTim, mclsDll.gclsFuda.gclsOut.stuTag(intY).stuSetTim, mclsDll.gclsFuda.gclsOut.stuTag(intY).stuSetTim.Length)
+                '���쌠
+                mclsDll.gclsFuda.gclsOut.stuTag(intY).shtFctyOpe = pclsUpdFudaOutData.stuTag(intY).shtFctyOpe
+                mclsDll.gclsFuda.gclsOut.stuTag(intY).shtItrLckEna = pclsUpdFudaOutData.stuTag(intY).shtItrLckEna
+            Next
+
+            '�D�|���������ʉ�ʂ̎D�|�����X�V
+            mRefreshFudaArea()
+
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "mGetMwsUpdFuda", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' �D�|����� �\���X�V����
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub mRefreshFudaArea()
+        Dim intCnt,intY,intOffset,intFudaNum As Integer
+        Dim intFudaNo As Byte
+        Dim chkWrk As CheckBox
+        Dim btnWrk As OpsCtlButton
+        Dim blnRight As Boolean
+
+        Try
+            '�D�|���ݒ�G���[�̏ꍇ�͉������Ȃ�
+            If (mblnSetErrFlg = True) Then
+                Exit Sub
+            End If
+
+            '�\�����y�[�W�̑S�^�O�̎D�|�������X�V
+            For intY = 0 To S_FUDAROWS_P - 1
+                '��s�łȂ��A�ݒ�{�^���񏈗����^�O�̏ꍇ
+                If (CType(tblFuda.gclsObj(intY).gctlObj, OpsCtlButton).Visible) And (Not(mblnSetBtnFlg(intY))) Then
+                    intOffset = intY * 4 + 1
+                    intFudaNum = 0            '�D�|����������
+                    chkWrk = CType(tblFuda.gclsObj(intY+6).gctlObj, CheckBox)
+                    btnWrk = CType(tblFuda.gclsObj(intY).gctlObj, OpsCtlButton)
+                    '���擾�f�[�^�Ƒ��M�p�t�d�f�[�^���r����B
+                    If ((pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock(0) = mclsReqFudaInf(intY).shtLock(0)) And _
+                        (pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock(1) = mclsReqFudaInf(intY).shtLock(1)) And _
+                        (pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock(2) = mclsReqFudaInf(intY).shtLock(2))) And _
+                        (mblnQueFlg(intY) = False) Then
+                        '���p�t�d���M������񖔂́A��������ύX�͂Ȃ����͂Q�T�ڂ̓������
+                        For intCnt = 0 To 3
+                            '�DNo.�A�D��ʁA�D�|�����R�A�ݒ���t�̍ŐV�l����ʂɔ��f����
+                            intFudaNo = pclsUpdFudaOutData.stuTag(intY).bytFudaNo(intCnt)
+                            If intFudaNo > 0 Then
+                                intFudaNum += 1                                 '�D�|�����J�E���g
+                                tblFuda.glblData(4, intOffset + intCnt).Text = _
+                                    gfncToWide(intFudaNo.ToString)
+                                tblFuda.glblData(5, intOffset + intCnt).Text = fncFudaKind(intFudaNo)
+                                tblFuda.glblData(6, intOffset + intCnt).Text = _
+                                    gfncByteToStr(mclsDll.gclsGDcard.gpDb(intFudaNo - 1).reason_c, 32)
+                                tblFuda.glblData(7, intOffset + intCnt).Text = _
+                                    fncSetTimToStr(pclsUpdFudaOutData.stuTag(intY).stuSetTim(intCnt))
+                            Else
+                                tblFuda.glblData(4, intOffset + intCnt).Text = ""
+                                tblFuda.glblData(5, intOffset + intCnt).Text = ""
+                                tblFuda.glblData(6, intOffset + intCnt).Text = ""
+                                tblFuda.glblData(7, intOffset + intCnt).Text = ""
+                            End If
+                        Next
+
+                        '�D�|������0�̏ꍇ�A�`�F�b�N�{�b�N�X���\������
+                        If intFudaNum > 0 Then
+                            chkWrk.Visible = True
+                        Else
+                            chkWrk.Visible = False
+                            chkWrk.Checked = False
+                        End If
+
+                        '���䑀���
+                        blnRight = fncFudaCtlRight(intY)
+                        chkWrk.Enabled = blnRight
+                        If blnRight = False Then chkWrk.Checked = False '���쌠���Ȃ��Ȃ����^�O�̃`�F�b�N�͊O��
+                        btnWrk.Enabled = blnRight
+                    Else
+                        mblnQueFlg(intY) = False
+                        '���擾�f�[�^�ƈ�����O�̎擾�f�[�^���r����B
+                        If ((pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock(0) = mclsOldFudaInf(intY).shtLock(0)) And _
+                            (pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock(1) = mclsOldFudaInf(intY).shtLock(1)) And _
+                            (pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock(2) = mclsOldFudaInf(intY).shtLock(2))) Then
+                            chkWrk.Enabled = False
+                            '�����M�p�t�d�f�[�^���擾�f�[�^�ŏ㏑��
+                            mclsReqFudaInf(intY) = pclsUpdFudaOutData.stuTag(intY).stuFudaInf
+                        Else
+                            '�����n�ŏ��ύX�����\��������̂ňꎞ����s�ɂ���B
+                            chkWrk.Enabled = False
+                            '��������O�̎擾�f�[�^���擾�f�[�^�ŏ㏑��
+                            mclsOldFudaInf(intY) = pclsUpdFudaOutData.stuTag(intY).stuFudaInf
+                        End If
+                    End If
+                End If
+            Next
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "mRefreshFudaArea", 0, 0, 0, 0)
+        End Try
+    End Sub
+    '-> FUDAKZN add
+#End Region
+
+#Region "�y�O���[�o�������z"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' �T�[�r�X��~
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaStopSrvMW()
+        Try
+            With mclsDll
+                '�D�|���X�V�T�[�r�X��~
+                If pclsUpdFudaRAMW IsNot Nothing Then
+                    Call pclsUpdFudaRAMW.mStopSrvMW()
+                End If
+            End With
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "gFudaStopSrvMW", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' �E�B���h�E��������
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaFormErase()
+        Try
+            With mclsDll
+                If .gfrmForm IsNot Nothing Then
+                    If TypeOf mclsDll.gfrmForm Is FormFudaWin Then
+                        If (DirectCast(mclsDll.gfrmForm, FormFudaWin).IsDisposed = False) Then
+                            '�D�|���E�B���h�E�̃T�[�r�X��~
+                            CType(.gfrmForm, FormFudaWin).mStopSrvMW()
+                            RemoveHandler DirectCast(mclsDll.gfrmForm, FormFudaWin).eMsgDisp, AddressOf fncFudaMsgDisp
+                            RemoveHandler DirectCast(mclsDll.gfrmForm, FormFudaWin).eFormKeyDown, AddressOf fncFudaFormKeyDown
+
+                            '�D�|���E�B���h�E������
+                            CType(.gfrmForm, FormFudaWin).mWinDispose()
+                            .gfrmForm.Visible = False
+                            .gfrmForm = Nothing
+
+                            '�{�^����ʏ�Ԃɖ߂�
+                            CType(tblFuda.gclsObj(mintFdWinTagIdx).gctlObj, OpsCtlButton).gpblnValue = False
+                        End If
+                    Else
+                        '�m�F�E�B���h�E������
+                        .gfrmForm.Dispose()
+                        .gfrmForm = Nothing
+                    End If
+                End If
+            End With
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "gFudaFormErase", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' �T�[�o�ڑ��pMW�I�u�W�F�N�g�ύX����
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaSrvMWChange()
+        Try
+            '�T�[�r�X��~
+            gFudaStopSrvMW()
+
+            '(�l�v�r)�^�O���擾�N���X
+            If pclsUpdFudaRAMW IsNot Nothing Then
+                pclsUpdFudaRAMW.pobjSrvMW = gobjSvrMW
+            End If
+
+            '�D�|�����N���X
+            If mclsReqFudaSet IsNot Nothing Then
+                mclsReqFudaSet.pobjSrvMW = gobjSvrMW
+            End If
+
+            '�Ď����u�ʑ��쌠�擾�N���X
+            If pclsGetOpeFcty IsNot Nothing Then
+                pclsGetOpeFcty.pobjSrvMW = gobjSvrMW
+            End If
+
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "gFudaSrvMWChange", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' �E�B���h�EID�ύX����
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaWinIdChange()
+        Try
+            If mclsReqFudaSet IsNot Nothing Then
+                mclsReqFudaSet.pintWinId = mclsDll.gintWinId
+            End If
+
+            If mclsDll.gfrmForm IsNot Nothing Then
+                If TypeOf mclsDll.gfrmForm Is FormFudaWin Then
+                    CType(mclsDll.gfrmForm, FormFudaWin).pintWinId = mclsDll.gintWinId
+                End If
+            End If
+
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "gFudaWinIdChange", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' �F�ύX����
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaColorChange()
+        Try
+            If mclsDll.gfrmForm IsNot Nothing Then
+                If TypeOf mclsDll.gfrmForm Is FormFudaWin Then
+                    If (CType(mclsDll.gfrmForm, FormFudaWin).IsDisposed = False) Then
+                        CType(mclsDll.gfrmForm, FormFudaWin).pobjColor = gobjColor
+                        CType(mclsDll.gfrmForm, FormFudaWin).mColorChange()
+                    End If
+                End If
+            End If
+
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "gFudaColorChange", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' ���쌠�t���O�ύX����
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaCtrlClaimChange()
+        Try
+            If mclsDll.gfrmForm IsNot Nothing Then
+                If TypeOf mclsDll.gfrmForm Is FormFudaWin Then
+                    If (CType(mclsDll.gfrmForm, FormFudaWin).IsDisposed = False) Then
+                        CType(mclsDll.gfrmForm, FormFudaWin).pblnCtrlClaim = mclsDll.gblnOprClaim
+                    End If
+                End If
+            End If
+
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "gFudaCtrlClaimChange", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' ���䑀��}�~
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaCtrlDsbl(ByVal blnCtrlDsbl As Boolean)
+        Try
+            '�ꊇ�����{�^���̑���۔���
+            fncAllChkCtrlDsbl(blnCtrlDsbl)
+            '�D�|���{�^���̑���۔���
+            fncAllBtnCtrlDsbl(blnCtrlDsbl)
+            
+            '�}�~����̏ꍇ�͎D�|���E�B���h�E�A�m�F�E�B���h�E����������
+            If blnCtrlDsbl Then
+                '�\�����E�B���h�E����
+                gFudaFormErase()
+                '�ݒ�{�^������
+                mclsDll.guctlBase.OpsCtlSftky.Button10.Enabled = False
+            Else
+                '�ݒ�{�^���L������
+                If mintChkCnt > 0 Then
+                    mclsDll.guctlBase.OpsCtlSftky.Button10.Enabled = True
+                Else
+                    mclsDll.guctlBase.OpsCtlSftky.Button10.Enabled = False
+                End If
+            End If
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "gFudaCtrlDsbl", 0, 0, 0, 0)
+        End Try
+    End Sub
+    '-> FUDAKZN add
+#End Region
+
+#Region "�y���[�J���֐��z"
+    ''' <summary>
+    ''' �D�|����ʎ擾����
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function fncFudaKind(ByVal intFudaNo As Integer) As String
+
+        Dim strFuda As String = ""
+
+        Try
+            Select Case intFudaNo
+                Case 1 To 15
+                    strFuda = "���ӎD"
+                Case 16 To 30
+                    strFuda = "����֎~�D"
+                Case 31
+                    strFuda = "���M���b�N�D"
+            End Select
+
+        Catch ex As Exception
+            gobjErrLog.Write(ex, "�V�X�����e-", 0, 0, 0, 0)
+        End Try
+
+        Return (strFuda)
+
+    End Function
+
+	'<- FUDAKZN add
+    ''' <summary>
+    ''' �D�|���{�^���ƈꊇ�����{�^���̏�����
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub initBtnAndChk()
+        Dim intY,intOffset As Integer
+		Dim btnWrk As OpsCtlButton
+		Dim chkWrk As CheckBox
+
+        Try
+            With tblFuda
+                .gsObjReDim(S_FUDAROWS_P + S_FUDAROWS_P)    '�D�|���{�^���ƈꊇ�����{�^���̃G���A�m��
+                For intY = 0 To S_FUDAROWS_P - 1
+                    intOffset = intY * 4 + 1
+                    '�D�|���{�^��
+                    .gclsObj(intY).gsSetObjCell(New OpsCtlButton, 1, intOffset, 1, 4)
+                    btnWrk = CType(.gclsObj(intY).gctlObj, OpsCtlButton)
+                    btnWrk.Visible = False
+                    btnWrk.Name = intY.ToString
+                    AddHandler btnWrk.Click, AddressOf Me.mFudaBtnClick
+
+                    '�ꊇ�����{�^��
+                    .gclsObj(intY+6).gsSetObjSize(New CheckBox, 8, intOffset, 1, 4, 44, 38, 28, 31)
+                    chkWrk = CType(.gclsObj(intY+6).gctlObj, CheckBox)
+                    chkWrk.Visible = False
+                    chkWrk.Checked = False
+                    AddHandler chkWrk.CheckedChanged, AddressOf Me.mChkBoxChg
+                Next
+            End With
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "initBtnAndChk", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' �D�|���ݒ���t�̕�����ϊ�����
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function fncSetTimToStr(ByVal setTim As T_TIME) As String
+        Dim strTime As String = ""
+        Try
+            If (setTim.ct_year_s <> 0) And (setTim.ct_mon_s <> 0) And (setTim.ct_day_s <> 0) Then
+                strTime = setTim.ct_year_s.ToString("0000") & "-" _
+                          & setTim.ct_mon_s.ToString("00") & "-" _
+                          & setTim.ct_day_s.ToString("00") & " " _
+                          & setTim.ct_hour_s.ToString("00") & ":" _
+                          & setTim.ct_min_s.ToString("00") & ":" _
+                          & setTim.ct_sec_s.ToString("00")
+            End If
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "fncSetTimToStr", 0, 0, 0, 0)
+        End Try
+
+        Return strTime
+    End Function
+    '-> FUDAKZN add
+#End Region
+
+#Region "�y���쌠����z"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' ���䑀��۔���
+    ''' </summary>
+    ''' <remarks>
+    ''' *   �T�v       : �w�肳�ꂽ�^�O�̐��䑀��ۂ𔻒肷��
+    ''' *                 [���荀��]
+    ''' *                 �E�^�]���[�h(True�F�\���\���[�h)
+    ''' *                 �E���䑀��}�~(True�F���䑀��\�ȃE�B���h�E�T�C�Y)
+    ''' *                 �EC/S���쌠(True�F�����u�ɑ��쌠�L��)
+    ''' *                 �E�C���^�[���b�N���̎D�|���ݒ�s��(True:�w��^�O�̎D�|���ݒ�\)
+    ''' *                 �E�Ď����u�ʑ��쌠(True:�w��^�O�̐ݔ��̑��쌠�L��)
+    ''' *                 �E���[�U�F�؋@�\(True:���O�C�������[�U�̊Ď��@�\�����L��)
+    ''' *                 �E���䐧���ݒ�(True:�w��^�O�̐ݔ����Ď��Ώۂł���)
+    ''' </remarks>
+    Private Function fncFudaCtlRight(ByVal fudaIdx As Integer) As Boolean
+        Dim blnRight As Boolean               '���䑀���
+
+        Try
+            '���䑀���
+            blnRight = (fncScrrenDispMode() = True) And _
+                       (mclsDll.gblnWinSizeCtlEna = False) And _
+                       (fncGetCSRight(fudaIdx) = True) And _
+                       (fncGetItrLckRight(fudaIdx) = True) And _
+                       (CBool(mclsDll.gclsFuda.gclsOut.stuTag(fudaIdx).shtFctyOpe) = True) And _
+                       (fncGetUsrRight() = True) And _
+                       (CBool(mclsDll.gclsFuda.gclsOut.stuTag(fudaIdx).shtIsCtlLim) = True)
+
+        Catch ex As Exception
+            blnRight = False
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "fncFudaCtlRight", 0, 0, 0, 0)
+        End Try
+
+        Return blnRight
+    End Function
+
+    ''' <summary>
+    ''' �^�]���[�h����
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function fncScrrenDispMode() As Boolean
+        Dim Smod As Integer
+        Try
+            If gintSysKind = S_SYS_CLNT_P Then
+                '�N���C�A���g�̏ꍇ�A�T�[�o�̉^�]���[�h���擾
+                Smod = mclsDll.gclsSvrInf.gclsOut.shtSmod
+            Else
+                '���^�]���[�h���擾
+                Smod = mclsDll.gclsOpsInf.gclsOut.shtSmod
+            End If
+
+            Select Case Smod
+                Case AU_MAS_P, AU_MASE_P, AU_SUB_P, AU_TST_P
+                    '�\���\���[�h
+                    Return True
+                Case Else
+                    '�\���s���[�h
+                    Return False
+            End Select
+
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "fncScrrenDispMode", 0, 0, 0, 0)
+            Return True
+        End Try
+    End Function
+
+    ''' <summary>
+    ''' ���[�U�F�؋@�\���쌠�擾
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function fncGetUsrRight() As Boolean
+        Dim blnUsrRight As Boolean = True   '���쌠
+
+        Try
+            If ((mclsDll.gclsSysCnf.AFsys().opt3_i And AF_OPT3_LOGON_P) <> 0) Then
+                If ((mclsDll.gintUsrLvl And USRLVL_WATCH) <> 0) Then
+                    '���[�U�F�؋@�\�I�v�V������������
+                    '���O�C�������[�U�̐ݒ肪�Ď��@�\�Ȃ��̏ꍇ�͑��쌠�Ȃ�
+                    blnUsrRight = False
+                End If
+            End If
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "fncGetUsrRight", 0, 0, 0, 0)
+        End Try
+
+        Return blnUsrRight
+    End Function
+
+    ''' <summary>
+    ''' �C���^�[���b�N���̎D�|���ݒ�s���쌠�擾
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function fncGetItrLckRight(ByVal fudaIdx As Integer) As Boolean
+        Dim blnItrLckRight As Boolean = True   '���쌠
+
+        Try
+            If (mclsDll.gclsSysCnf.AFsys().plant_i(2) <> 0) Then
+                '�C���^�[���b�N���^�O�̎D�|���ݒ肪�֎~�̏ꍇ
+                If (mclsDll.gclsFuda.gclsOut.stuTag(fudaIdx).shtItrLckEna = 1) Then
+                    '�w��^�O���C���^�[���b�N���̏ꍇ
+                    blnItrLckRight = False      '���쌠�Ȃ�
+                Else
+                    '�w��^�O����C���^�[���b�N���̏ꍇ
+                    blnItrLckRight = True       '���쌠����
+                End If
+            Else
+                '�C���^�[���b�N���^�O�̎D�|���ݒ肪���̏ꍇ
+                blnItrLckRight = True           '���쌠����
+            End If
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "fncGetItrLckRight", 0, 0, 0, 0)
+        End Try
+
+        Return blnItrLckRight
+    End Function
+
+    ''' <summary>
+    ''' C/S���쌠�擾
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function fncGetCSRight(ByVal fudaIdx As Integer) As Boolean
+        Dim blnCSRight As Boolean = True   '���쌠
+        Dim shtTagKind, shtStNum, shtKeikiNum As Short
+
+        Try
+            '�^�O��ʁA�X�e�[�V�����ԍ��A�v��ԍ����擾
+            shtTagKind = mclsDll.gclsFuda.gclsOut.stuTag(fudaIdx).shtKind
+            shtStNum = mclsDll.gclsFuda.gclsOut.stuTag(fudaIdx).shtStnNo
+            shtKeikiNum = mclsDll.gclsFuda.gclsOut.stuTag(fudaIdx).shtKeiNo
+
+            If (mClsSys.gclsClaim.inf_s = JF_ORI_OPS_P) Then            ' ���쌠�I�v�V�����L��̏ꍇ
+                If (shtTagKind = SYS_KIKI_P) Then                       ' �@��^�O�̏ꍇ
+                    If ((shtStNum = mClsSys.gclsClaim.stno_s) And _
+                        (shtKeikiNum = mClsSys.gclsClaim.id_s)) Then    ' ���쌠�^�O�̏ꍇ
+                        blnCSRight = True                               ' �����
+                    Else                                                ' ���쌠�^�O�ȊO�̏ꍇ
+                        blnCSRight = mclsDll.gblnOprClaim               ' ����ہ�C/S���쌠
+                    End If
+                Else                                                    ' �@��^�O�̏ꍇ
+                    blnCSRight = mclsDll.gblnOprClaim                   ' ����ہ�C/S���쌠
+                End If
+            Else                                                        ' ���쌠�I�v�V���������̏ꍇ
+                blnCSRight = True                                       ' �����
+            End If
+
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "fncGetCSRight", 0, 0, 0, 0)
+        End Try
+
+        Return blnCSRight
+    End Function
+    '-> FUDAKZN add
+#End Region
+
+#Region "�y���̑��C�x���g�����z"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' ���b�Z�[�W�\���v��
+    ''' </summary>
+    ''' <param name="intWinType">�\���v�����</param>
+    ''' <param name="strMsg">���b�Z�[�W���e</param>
+    ''' <remarks>
+    ''' *   �T�v        : 
+    ''' *       �i�P�j��ʊǗ��փ��b�Z�[�W�\���v���C�x���g�𔭍s����
+    ''' *   ����        : 
+    ''' *     intWinType
+    ''' *     # 1 : ����
+    ''' *     # 2 : ���A�C�R���\��
+    ''' *     # 3 : ���ӃA�C�R���\��
+    ''' *   �C������    : 
+    ''' *
+    ''' </remarks>
+    Private Sub fncFudaMsgDisp(ByVal intWinType As Integer, ByVal strMsg As String)
+        Try
+            '���b�Z�[�W�\���v��
+            RaiseEvent eMsgDisp(intWinType, strMsg)
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "fncFudaMsgDisp", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' �t�@���N�V�����L�[����������
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub fncFudaFormKeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+
+        Try
+            mclsDll.guctlBase.gsSftkyPerformClick(e)
+
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "fncFudaFormKeyDown", 0, 0, 0, 0)
+        End Try
+
+    End Sub
+
+    ''' <summary>
+    ''' �N���X�J������
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub UctlFuda_Disposed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Disposed
+        Dim intCnt As Integer
+
+        Try
+            If mintFdkznOpt Then
+                '�\�����E�B���h�E����
+                gFudaFormErase()
+                '�T�[�r�X��~
+                gFudaStopSrvMW()
+
+                '�D�|���v���֘A
+                If mclsReqFudaSet IsNot Nothing Then Call mclsReqFudaSet.sDispose()
+                mclsReqFudaSet = Nothing                '(�l�v�r)�D�|�ݒ���v���N���X
+                For intCnt = 0 To S_FUDAROWS_P -1
+                    mclsReqFudaInf(intCnt) = Nothing    '(�v��)�D�|�����
+                    mclsOldFudaInf(intCnt) = Nothing    '(�ȑO)�D�|�����
+                Next
+
+                '�Ď����u�ʑ��쌠�֘A
+                If pclsGetOpeFcty IsNot Nothing Then Call pclsGetOpeFcty.sDispose()
+                pclsGetOpeFcty = Nothing                '�w��^�O�Ď����u�ʑ��쌠�擾�N���X
+                pclsGetOpeFctyInData = Nothing          '�w��^�O�Ď����u�ʑ��쌠�擾�N���X���͏��
+                pclsGetOpeFctyOutData = Nothing         '�w��^�O�Ď����u�ʑ��쌠�擾�N���X�o�͏��
+
+                'C/S���쌠�֘A
+                If mClsSys IsNot Nothing Then Call mClsSys.sDispose()
+                mClsSys = Nothing
+                If mclsClaimInf IsNot Nothing Then
+                    RemoveHandler mclsClaimInf.eReadComplet, AddressOf mGetMwsClaim
+                    Call mclsClaimInf.sDispose()
+                End If
+                mclsClaimInf = Nothing
+                If mclsClaimChk IsNot Nothing Then
+                    RemoveHandler mclsClaimChk.eReadComplet, AddressOf Me.mClaimChkFudaReq
+                    Call mclsClaimChk.sDispose()
+                End If
+                mclsClaimChk = Nothing
+
+                '�D�|�����X�V�֘A
+                If pclsUpdFudaRAMW IsNot Nothing Then
+                    RemoveHandler pclsUpdFudaRAMW.eReadComplet, AddressOf Me.mGetMwsUpdFuda
+                    Call pclsUpdFudaRAMW.sDispose()
+                End If
+                pclsUpdFudaRAMW = Nothing
+                pclsUpdFudaInData = Nothing
+                pclsUpdFudaOutData = Nothing
+            End If
+
+        Catch ex As Exception
+            '��O����
+            Call gobjErrLog.Write(ex, "�V�X�����e-" & Me.Name & "." & "UctlFuda_Disposed", 0, 0, 0, 0)
+        End Try
+    End Sub
+    '-> FUDAKZN add
+#End Region
+
+End Class

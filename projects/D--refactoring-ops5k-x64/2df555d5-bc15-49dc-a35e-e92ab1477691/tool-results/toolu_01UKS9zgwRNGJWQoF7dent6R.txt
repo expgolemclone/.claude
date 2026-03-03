@@ -1,0 +1,476 @@
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-3-# Visual Studio 14
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-4-VisualStudioVersion = 14.0.25420.1
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-5-MinimumVisualStudioVersion = 10.0.40219.1
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:6:Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lib", "..\..\..\src\lib\vc\lib.vcxproj", "{A04E4C78-D1E2-48B3-9E6F-48DC53192D53}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-7-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-8-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aoalm", "..\..\..\src\sys\aoalm\aoalm.vcxproj", "{8C907825-9BD3-40D2-A320-DFE8462B9303}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-9-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:10:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-11-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-12-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-13-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aocpue", "..\..\..\src\sys\aocpue\aocpue.vcxproj", "{26D39246-CCB8-48F4-B20A-247390DDB258}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-14-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:15:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-16-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-17-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-18-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aoctrllg", "..\..\..\src\sys\aoctrllg\aoctrllg.vcxproj", "{3CB3A6E9-9187-4889-A463-484C024DFAFE}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-19-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:20:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-21-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-22-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-23-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aodbbu", "..\..\..\src\sys\aodbbu\aodbbu.vcxproj", "{C42ADB9A-B121-4B64-85AF-C5356E964BA0}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-24-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:25:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-26-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-27-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-28-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aoerlg", "..\..\..\src\sys\aoerlg\aoerlg.vcxproj", "{E271A99A-DB0A-4944-86B8-FB16A615A0E7}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-29-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:30:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-31-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-32-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-33-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vb", "..\..\..\src\lib\vc\vb.vcxproj", "{56E6C085-DE15-4F7B-BC3A-255B47A7349F}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-34-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-35-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aomngr", "..\..\..\src\sys\aomngr\aomngr.vcxproj", "{109F6D19-9F95-4886-B6D4-B5992CC1B286}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-36-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:37:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-38-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-39-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-40-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aopioi", "..\..\..\src\sys\aopioi\aopioi.vcxproj", "{0BCE6FD3-2D23-4676-8152-9F845D0CF74E}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-41-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:42:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-43-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-44-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-45-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aosche", "..\..\..\src\sys\aosche\aosche.vcxproj", "{D26878C0-90FF-4234-B415-2863A9E2E64F}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-46-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:47:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-48-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-49-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-50-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aoserr", "..\..\..\src\sys\aoserr\aoserr.vcxproj", "{90166B67-FDB9-4666-89C2-6E1BDDBA7D60}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-51-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:52:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-53-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-54-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-55-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aosysi", "..\..\..\src\sys\aosysi\aosysi.vcxproj", "{11080E64-D028-4EB7-85E3-205902AC213D}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-56-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:57:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-58-		{65827FE6-DCE2-41CE-87A5-5A39957D8832} = {65827FE6-DCE2-41CE-87A5-5A39957D8832}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-59-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-60-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-61-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aotime", "..\..\..\src\sys\aotime\aotime.vcxproj", "{A4C9C196-0D17-4A7F-BF22-C1CED3D4819C}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-62-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:63:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-64-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-65-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-66-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jocfms", "..\..\..\src\lnk\I-NET\jocfms.vcxproj", "{9A481946-F259-4FFF-8F58-49C1BEFEFB1A}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-67-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:68:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-69-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-70-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-71-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jodsrv", "..\..\..\src\lnk\I-NET\jodsrv.vcxproj", "{CB9888DF-649E-403C-BD22-EE31AF0365D4}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-72-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:73:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-74-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-75-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-76-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "joofmc", "..\..\..\src\lnk\I-NET\joofmc.vcxproj", "{492222CF-FA27-49AC-AD09-367ABC0050F1}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-77-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:78:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-79-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-80-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-81-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "joofms", "..\..\..\src\lnk\I-NET\joofms.vcxproj", "{3DA94CBD-2B30-413D-8DFB-F23997908DEA}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-82-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:83:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-84-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-85-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-86-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "joorcv", "..\..\..\src\lnk\I-NET\joorcv.vcxproj", "{1A8D2FAE-3EED-4997-8523-B7B964EC8B19}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-87-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:88:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-89-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-90-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-91-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "joosnd", "..\..\..\src\lnk\I-NET\joosnd.vcxproj", "{D50C72B3-567C-4F63-879D-EEACF1C76516}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-92-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:93:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-94-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-95-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-96-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "joquec", "..\..\..\src\lnk\I-NET\joquec.vcxproj", "{9247B3AE-6EED-4969-9CF5-C4A13DBF0648}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-97-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:98:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-99-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-100-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-101-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "joques", "..\..\..\src\lnk\I-NET\joques.vcxproj", "{9ED8B277-2532-4753-ADD2-7D1610846271}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-102-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:103:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-104-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-105-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:106:Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "enslib", "..\..\..\src\lib\enslib\enslib.vcxproj", "{18CA5946-9011-4E51-BBD7-13220695FEB8}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-107-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:108:Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "calclib", "..\..\..\src\lib\calc\calclib.vcxproj", "{3F8EC112-FDE0-4939-A7D5-21FE9170E00E}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-109-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-110-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LEGRPH_DLL", "..\..\..\src\ens\Legrph_Dll\LEGRPH_DLL.vcxproj", "{93D1C4C2-3308-4437-B802-4A752CF5D207}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-111-	ProjectSection(ProjectDependencies) = postProject
+--
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-119-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-120-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "initdb", "..\..\..\src\lib\initdb\initdb.vcxproj", "{65827FE6-DCE2-41CE-87A5-5A39957D8832}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-121-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:122:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-123-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-124-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-125-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "calc_vb", "..\..\..\src\lib\calc\calc_vb.vcxproj", "{ABDC002E-D639-4FD0-9176-673007E87C7A}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-126-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-127-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Botsch", "..\..\..\src\meas\Botsch\Botsch.vcxproj", "{6DD6DD3B-7B06-402A-AE98-7B79BD9F709C}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-128-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:129:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-130-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-131-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-132-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bodemd", "..\..\..\src\meas\Bodemd\Bodemd.vcxproj", "{9AF7CD85-C09F-4D8B-9994-FC56A3CF3D24}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-133-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:134:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-135-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-136-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-137-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dohstg", "..\..\..\src\his\dohstg\dohstg.vcxproj", "{ABA35B70-D3CA-4917-BAB8-FD74DD5AA8D8}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-138-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:139:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-140-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-141-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-142-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libdl", "..\..\..\src\NX_MW\libdl\libdl.vcxproj", "{6CECBA3E-61CF-4CBC-93A7-F4B8ED297CD2}"
+--
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-157-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-158-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "joadcr", "..\..\..\src\lnk\joadcr\joadcr.vcxproj", "{1157F657-C754-48C1-964E-C67A230D9405}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-159-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:160:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-161-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-162-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-163-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "joallr", "..\..\..\src\lnk\joallr\joallr.vcxproj", "{1761509A-36F0-4593-8D27-07C0B2FD24CC}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-164-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-165-		{6CECBA3E-61CF-4CBC-93A7-F4B8ED297CD2} = {6CECBA3E-61CF-4CBC-93A7-F4B8ED297CD2}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:166:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-167-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-168-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-169-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "joothr", "..\..\..\src\lnk\joothr\joothr.vcxproj", "{6D940E15-74C7-4311-8329-45C9CA1BED0F}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-170-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-171-		{6CECBA3E-61CF-4CBC-93A7-F4B8ED297CD2} = {6CECBA3E-61CF-4CBC-93A7-F4B8ED297CD2}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:172:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-173-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-174-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-175-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "joprtr", "..\..\..\src\lnk\joprtr\joprtr.vcxproj", "{A8383894-A276-49DC-B5F3-4A7DED5936CC}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-176-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-177-		{6CECBA3E-61CF-4CBC-93A7-F4B8ED297CD2} = {6CECBA3E-61CF-4CBC-93A7-F4B8ED297CD2}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:178:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-179-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-180-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-181-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jorecv", "..\..\..\src\lnk\jorecv\jorecv.vcxproj", "{01EA52DF-F7C7-4D2B-BF10-814E5CF6AD3D}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-182-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-183-		{6CECBA3E-61CF-4CBC-93A7-F4B8ED297CD2} = {6CECBA3E-61CF-4CBC-93A7-F4B8ED297CD2}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:184:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-185-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-186-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-187-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "josend", "..\..\..\src\lnk\josend\josend.vcxproj", "{4750735E-346F-4EEE-8E26-F99733DB2CC7}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-188-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-189-		{6CECBA3E-61CF-4CBC-93A7-F4B8ED297CD2} = {6CECBA3E-61CF-4CBC-93A7-F4B8ED297CD2}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:190:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-191-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-192-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-193-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jowtmo", "..\..\..\src\lnk\jowtmo\jowtmo.vcxproj", "{AD765166-2119-4125-9027-25D73604E591}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-194-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-195-		{6CECBA3E-61CF-4CBC-93A7-F4B8ED297CD2} = {6CECBA3E-61CF-4CBC-93A7-F4B8ED297CD2}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:196:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-197-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-198-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-199-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bobans", "..\..\..\src\meas\bobans\bobans.vcxproj", "{4AD22E16-9DC9-4A7F-A8F8-25E054D7769E}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-200-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:201:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-202-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-203-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-204-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bokijh", "..\..\..\src\meas\bokijh\bokijh.vcxproj", "{EF567232-2DE2-4957-BE8E-90E9A70EE362}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-205-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:206:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-207-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-208-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-209-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bomesh", "..\..\..\src\meas\bomesh\bomesh.vcxproj", "{B241AAE9-39D4-460E-9C6A-B3962EEB9867}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-210-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:211:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-212-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-213-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-214-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bomess", "..\..\..\src\meas\bomess\bomess.vcxproj", "{3C3CC619-305F-4EBB-BD95-9AB506A58E50}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-215-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:216:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-217-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-218-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-219-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "boresp", "..\..\..\src\meas\boresp\boresp.vcxproj", "{FB8A5A2C-4D80-45EA-A94D-DD411276D3C1}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-220-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:221:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-222-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-223-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-224-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "domdcl", "..\..\..\src\his\domdcl\domdcl.vcxproj", "{EB6B4B61-F36E-4D33-BFE2-39C68DFEB57C}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-225-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-226-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "comsgc", "..\..\..\src\msg\comsgc\comsgc.vcxproj", "{6B05CCBC-7078-47A3-8ABA-C10946F4F7FB}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-227-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:228:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-229-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-230-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-231-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "comsge", "..\..\..\src\msg\comsge\comsge.vcxproj", "{C1F6C290-4B26-4060-8D7C-449B5C64A7D9}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-232-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:233:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-234-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-235-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-236-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coprnt", "..\..\..\src\msg\coprnt\coprnt.vcxproj", "{F4345979-AE3E-4623-960C-BC46020FF4A5}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-237-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:238:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-239-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-240-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-241-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coalm", "..\..\..\src\msg\coalm\coalm.vcxproj", "{4574611E-0477-4EF7-B206-AE3BB814354C}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-242-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:243:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-244-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-245-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-246-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "EnsCtlGraphic", "..\..\..\src\ens\EnsCtlGraphic\EnsCtlGraphic\EnsCtlGraphic.vbproj", "{987C9BA5-BAC0-4E4D-A402-AFA4DAF50A81}"
+--
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-276-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lemmeq", "..\..\..\src\utly\lemmeq\lemmeq.vcxproj", "{2F70BF24-D188-461F-AA73-485A72EC307C}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-277-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-278-		{18CA5946-9011-4E51-BBD7-13220695FEB8} = {18CA5946-9011-4E51-BBD7-13220695FEB8}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:279:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-280-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-281-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-282-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aoprer", "..\..\..\src\sys\aoprer\aoprer.vcxproj", "{F28F5A6E-C676-4298-9D19-C7F892FFB208}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-283-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:284:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-285-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-286-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-287-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ledats_dll", "..\..\..\src\ens\Dll\ledats_dll\ledats_dll.vcxproj", "{A319B70D-36FA-4718-AB20-A50EA2A12A24}"
+--
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-356-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-357-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bocalc", "..\..\..\src\meas\bocalc\bocalc.vcxproj", "{FB2A8A8C-52DD-4CEB-9B9B-2FAE810BD671}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-358-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:359:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-360-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-361-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-362-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "botrdh", "..\..\..\src\trd\botrdh\botrdh.vcxproj", "{4B4872CF-9A15-49FF-A3E1-F31C3D5236B1}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-363-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:364:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-365-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-366-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-367-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "botrdr", "..\..\..\src\trd\botrdr\botrdr.vcxproj", "{B462BF94-4A46-4A13-9C89-729F366C5A60}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-368-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:369:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-370-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-371-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-372-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "botrdrs", "..\..\..\src\trd\botrdrs\botrdrs.vcxproj", "{962CFC30-EC99-42B1-A5AA-8D0521E9AFE7}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-373-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:374:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-375-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-376-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-377-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dobnkcom", "..\..\..\src\his\dobnkcom\dobnkcom.vcxproj", "{4A7BA111-CD2B-4C07-8F7C-D13FD3CD7B5B}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-378-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:379:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-380-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-381-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-382-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rf_dll", "..\..\..\src\gen\rf_dll\rf_dll.vcxproj", "{C0DD9F7C-41F0-4243-A8D1-BFE6F2C00145}"
+--
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-387-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gosav", "..\..\..\src\kcrt\gosav\gosav.vcxproj", "{A06EDFE5-096B-4C75-B4D9-1BA6A73149B2}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-388-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-389-		{D0CAFD45-76E3-47C7-A6B0-249297515727} = {D0CAFD45-76E3-47C7-A6B0-249297515727}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:390:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-391-		{1B252D99-E1B7-4057-BA7E-DFFB75C699F1} = {1B252D99-E1B7-4057-BA7E-DFFB75C699F1}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-392-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-393-EndProject
+--
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-398-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-399-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "doprct", "..\..\..\src\rep\doprct\doprct.vcxproj", "{F1F147F5-C724-4634-83BB-F320646FAC0A}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-400-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:401:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-402-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-403-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-404-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aoupser", "..\..\..\src\sys\aoupser\aoupser.vcxproj", "{9CC11E01-C2F9-4C29-BB44-66C73E843E24}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-405-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:406:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-407-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-408-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-409-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dountn", "..\..\..\src\his\dountn\dountn\dountn.vcxproj", "{9EA85F35-ADAC-4DF9-BC9F-98675905491A}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-410-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:411:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-412-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-413-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-414-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LeGmsCnv", "..\..\..\src\ens\LeGmsCnv\LeGmsCnv.vbproj", "{C8917E99-DC0D-4DC6-B7CA-A1E3D502D644}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-415-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-416-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aogtime", "..\..\..\src\sys\aogtime\aogtime.vcxproj", "{CF9BBF52-F3E4-42CC-87D4-F42AA88B358D}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-417-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:418:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-419-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-420-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-421-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KillWind", "..\..\..\netsrc\scrControl\OpsScrDatSav_dll\KillWind.vcxproj", "{9DE2201C-5033-46DF-9E4A-B556D175690A}"
+--
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-447-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-448-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cmmsgc", "..\..\..\src\msg\cmmsgc\cmmsgc.vcxproj", "{6D1FC341-02C1-476B-80C9-01FB31341DE6}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-449-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:450:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-451-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-452-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-453-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cmmsge", "..\..\..\src\msg\cmmsge\cmmsge.vcxproj", "{0B9C839D-A866-4DD6-8F25-B014DA006401}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-454-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:455:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-456-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-457-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-458-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bmtrdr", "..\..\..\src\trd\bmtrdr\bmtrdr.vcxproj", "{CF094903-90B2-4400-9B15-597FB6182C64}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-459-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:460:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-461-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-462-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-463-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bmtrdrs", "..\..\..\src\trd\bmtrdrs\bmtrdrs.vcxproj", "{173F7EDF-9DBA-4704-ABC2-1CC1AE4BBAF9}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-464-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:465:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-466-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-467-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-468-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lmmmeq", "..\..\..\src\utly\lmmmeq\lmmmeq.vcxproj", "{28486E85-EFDF-4A65-A81F-E3C879E40376}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-469-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-470-		{18CA5946-9011-4E51-BBD7-13220695FEB8} = {18CA5946-9011-4E51-BBD7-13220695FEB8}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:471:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-472-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-473-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-474-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aontime", "..\..\..\src\sys\aontime\aontime.vcxproj", "{243141A6-8E91-48C1-B153-1C3B9E4DBFBE}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-475-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:476:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-477-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-478-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-479-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aoope", "..\..\..\src\sys\aoope\aoope.vcxproj", "{0A2458CE-2A99-44C4-9147-338C7874DC63}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-480-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:481:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-482-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-483-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-484-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aomsctl", "..\..\..\src\sys\aomsctl\aomsctl.vcxproj", "{F70C3362-E2C3-4042-BD04-C37B8D3B1EA3}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-485-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:486:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-487-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-488-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-489-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hoemle", "..\..\..\src\mail\hoemle\hoemle.vcxproj", "{0709ACCD-9530-488A-A09E-A58577CCCBC8}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-490-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:491:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-492-		{1B252D99-E1B7-4057-BA7E-DFFB75C699F1} = {1B252D99-E1B7-4057-BA7E-DFFB75C699F1}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-493-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-494-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-495-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hoemls", "..\..\..\src\mail\hoemls\hoemls.vcxproj", "{48C7527B-7BE0-4B9C-83D8-55634E2415A9}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-496-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:497:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-498-		{2347D7A3-A6DF-46E8-AF71-152B47CA7D14} = {2347D7A3-A6DF-46E8-AF71-152B47CA7D14}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-499-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-500-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-501-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hoerpt", "..\..\..\src\mail\hoerpt\hoerpt.vcxproj", "{ACCB2945-1F45-4211-9DDF-153657689B1E}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-502-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:503:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-504-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-505-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-506-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hovntf", "..\..\..\src\voice\hovntf\hovntf.vcxproj", "{92AC9B36-4066-4844-A9E4-82D726347FD3}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-507-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:508:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-509-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-510-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-511-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mo11rv", "..\..\..\src\ada\mo11rv\mo11rv.vcxproj", "{A5998D14-29B9-4B7C-89DE-3CDA24D4E10E}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-512-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:513:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-514-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-515-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-516-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mo11sd", "..\..\..\src\ada\mo11sd\mo11sd.vcxproj", "{3B408935-CE90-4A86-BABE-DEE82350F8A2}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-517-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:518:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-519-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-520-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-521-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "moerrv", "..\..\..\src\ada\moerrv\moerrv.vcxproj", "{9D936B77-FC2C-462B-8B3A-DF947DE246EF}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-522-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:523:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-524-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-525-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-526-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mofirv", "..\..\..\src\ada\mofirv\mofirv.vcxproj", "{EDA8307C-76B9-421D-A56B-223EA7C943B1}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-527-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:528:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-529-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-530-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-531-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "moioct", "..\..\..\src\ada\moioct\moioct.vcxproj", "{A9855492-9650-4FE7-AC5E-61B9DDE380A5}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-532-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:533:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-534-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-535-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-536-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mosyse", "..\..\..\src\ada\mosyse\mosyse.vcxproj", "{8F0F19E4-DD93-4E1C-9FE8-97B03F665F49}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-537-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:538:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-539-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-540-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-541-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "botrdl", "..\..\..\src\trd\botrdl\botrdl.vcxproj", "{2C32759B-20DF-46FA-BFF5-076782A09378}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-542-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:543:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-544-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-545-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-546-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "botrdls", "..\..\..\src\trd\botrdls\botrdls.vcxproj", "{A41FEA18-3048-48CD-B806-ECCFC67FD8C2}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-547-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:548:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-549-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-550-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-551-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "roacum", "..\..\..\src\rply\roacum\roacum.vcxproj", "{DD63F584-EAEA-41F8-A6FD-05023E7F45D6}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-552-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-553-		{D0CAFD45-76E3-47C7-A6B0-249297515727} = {D0CAFD45-76E3-47C7-A6B0-249297515727}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:554:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-555-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-556-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-557-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rodtct", "..\..\..\src\rply\rodtct\rodtct.vcxproj", "{FCAC45B8-940E-42E0-B90D-CF4A70542E9E}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-558-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-559-		{D0CAFD45-76E3-47C7-A6B0-249297515727} = {D0CAFD45-76E3-47C7-A6B0-249297515727}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:560:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-561-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-562-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:563:Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rolib", "..\..\..\src\rply\rolib\rolib.vcxproj", "{D0CAFD45-76E3-47C7-A6B0-249297515727}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-564-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-565-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rosav", "..\..\..\src\rply\rosav\rosav.vcxproj", "{37E68034-5730-4C54-A5A0-A819C15789A4}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-566-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-567-		{D0CAFD45-76E3-47C7-A6B0-249297515727} = {D0CAFD45-76E3-47C7-A6B0-249297515727}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:568:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-569-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-570-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:571:Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hoelib", "..\..\..\src\mail\hoelib\hoelib.vcxproj", "{1B252D99-E1B7-4057-BA7E-DFFB75C699F1}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-572-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-573-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jopccmd", "..\..\..\src\lnk\jopccmd\jopccmd.vcxproj", "{2D5EC70F-6E51-493A-BDC7-BB3A734FAFC7}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-574-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:575:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-576-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-577-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-578-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CgwFtpDll", "..\..\..\src\lnk\CgwFtpDll\CgwFtpDll.vcxproj", "{D624B08E-EAA2-415C-9070-7235E8800228}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-579-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-580-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jorepfl", "..\..\..\src\lnk\jorepfl\jorepfl.vcxproj", "{776E7206-A3F9-40CA-80E4-9A7746D53EC8}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-581-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:582:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-583-		{D624B08E-EAA2-415C-9070-7235E8800228} = {D624B08E-EAA2-415C-9070-7235E8800228}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-584-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-585-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-586-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bogclc", "..\..\..\src\meas\bogclc\bogclc.vcxproj", "{18C946D8-39A5-4F9B-B67B-E285ECC2BCF8}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-587-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:588:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-589-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-590-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:591:Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hstlib", "..\..\..\src\lib\hlib\hstlib.vcxproj", "{F6C5ABC5-5C02-4785-979E-19F9CC92E548}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-592-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-593-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LeGmsCnv_Dll", "..\..\..\src\ens\LeGmsCnv_Dll\LeGmsCnv_Dll.vcxproj", "{3CF58CB1-0742-40FC-B421-7AC38A4986B1}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-594-	ProjectSection(ProjectDependencies) = postProject
+--
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-597-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-598-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hoeval", "..\..\..\src\mail\hoeval\hoeval.vcxproj", "{B5FA1D12-F8DB-4850-B63F-FEDC7C7F677B}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-599-	ProjectSection(ProjectDependencies) = postProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:600:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53} = {A04E4C78-D1E2-48B3-9E6F-48DC53192D53}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-601-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-602-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-603-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "aodi64", "..\..\..\src\sys\aodi64\aodi64.vcxproj", "{23F9CA11-8229-4CED-AFAC-3CF25125367C}"
+--
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-609-		{5EACA8EF-5923-4271-88F2-D743A611A07F} = {5EACA8EF-5923-4271-88F2-D743A611A07F}
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-610-	EndProjectSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-611-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:612:Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cotalk", "..\..\..\src\msg\cotalk\cotalk.vcxproj", "{A7811C1C-F7A5-4A86-9601-26E119C6D385}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-613-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:614:Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "johubsts", "..\..\..\src\lnk\johubsts\johubsts.vcxproj", "{5753403B-59E1-4C95-A3B2-30FB1FAFC7DC}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-615-EndProject
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-616-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "gosRepBind", "..\..\..\src\kcrt\gosRepBind\gosRepBind.vbproj", "{42AA7475-5CE7-4327-8C53-40E1CFAE00AE}"
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-617-EndProject
+--
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-621-		Release|x64 = Release|x64
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-622-	EndGlobalSection
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-623-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:624:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53}.Debug|x64.ActiveCfg = Debug|x64
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:625:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53}.Release|x64.ActiveCfg = Release|x64
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln:626:		{A04E4C78-D1E2-48B3-9E6F-48DC53192D53}.Release|x64.Build.0 = Release|x64
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-627-		{8C907825-9BD3-40D2-A320-DFE8462B9303}.Debug|x64.ActiveCfg = Release|x64
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-628-		{8C907825-9BD3-40D2-A320-DFE8462B9303}.Release|x64.ActiveCfg = Release|x64
+D:\refactoring\ops5k_x64\Build\Release\all_cmp\all_cmp.sln-629-		{8C907825-9BD3-40D2-A320-DFE8462B9303}.Release|x64.Build.0 = Release|x64

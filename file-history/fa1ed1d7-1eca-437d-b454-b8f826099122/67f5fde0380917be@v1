@@ -1,0 +1,30 @@
+#!/bin/bash
+INPUT=$(cat)
+
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+
+if [[ -z "$FILE_PATH" ]]; then
+  exit 0
+fi
+
+BASENAME=$(basename "$FILE_PATH")
+EXT="${BASENAME##*.}"
+
+if [[ -z "$EXT" || "$EXT" == "$BASENAME" ]]; then
+  exit 0
+fi
+
+EXT=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
+RULES_FILE="$HOME/.claude/rules/${EXT}.md"
+
+if [[ -s "$RULES_FILE" ]]; then
+  RULES_CONTENT=$(cat "$RULES_FILE")
+  jq -n --arg ctx "$RULES_CONTENT" '{
+    hookSpecificOutput: {
+      hookEventName: "PostToolUse",
+      additionalContext: $ctx
+    }
+  }'
+fi
+
+exit 0

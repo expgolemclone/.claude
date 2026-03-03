@@ -1,0 +1,14 @@
+@echo off
+REM setting Bitwarden's session key to environment variable
+for /f "delims=" %%i in ('bw unlock --raw') do (
+    set BW_SESSION=%%i
+    setx BW_SESSION %%i >nul
+)
+
+start "" "https://meiden.cybozu.com/g/portal/index.csp?"
+echo login at cybozu, then press any key to continue...
+pause >nul
+timeout /t 3 /nobreak >nul
+start "" "https://sgsv1.tokyo.meidensha.co.jp/SmartGrasper/joblist"
+timeout /t 3 /nobreak >nul
+start "" "https://meiden-cws.company.works-hi.com/self-workflow/cws/cws"

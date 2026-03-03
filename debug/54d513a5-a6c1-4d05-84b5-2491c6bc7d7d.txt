@@ -1,0 +1,150 @@
+2026-02-27T03:54:03.588Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-27T03:54:03.588Z [DEBUG] MDM settings load completed in 16ms
+2026-02-27T03:54:03.598Z [DEBUG] [init] configureGlobalMTLS starting
+2026-02-27T03:54:03.598Z [DEBUG] [init] configureGlobalMTLS complete
+2026-02-27T03:54:03.598Z [DEBUG] [init] configureGlobalAgents starting
+2026-02-27T03:54:03.598Z [DEBUG] [init] configureGlobalAgents complete
+2026-02-27T03:54:03.636Z [DEBUG] Using bash path: "C:\msys64\usr\bin\bash.exe"
+2026-02-27T03:54:03.645Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-02-27T03:54:03.647Z [DEBUG] [ToolSearch:optimistic] mode=tst-auto, ENABLE_TOOL_SEARCH=undefined, result=true
+2026-02-27T03:54:03.647Z [DEBUG] [STARTUP] Running setup()...
+2026-02-27T03:54:03.650Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\0000250059\.claude\skills, project=[]
+2026-02-27T03:54:03.651Z [DEBUG] Error log sink initialized
+2026-02-27T03:54:03.661Z [DEBUG] [STARTUP] setup() completed in 14ms
+2026-02-27T03:54:03.661Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-02-27T03:54:03.703Z [DEBUG] [Claude in Chrome] Found chrome profiles: Default
+2026-02-27T03:54:03.705Z [DEBUG] installed_plugins.json doesn't exist, returning empty V2 object
+2026-02-27T03:54:03.705Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2026-02-27T03:54:03.705Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2026-02-27T03:54:03.705Z [DEBUG] Total plugin skills loaded: 0
+2026-02-27T03:54:03.705Z [DEBUG] Total plugin commands loaded: 0
+2026-02-27T03:54:03.705Z [DEBUG] Registered 0 hooks from 0 plugins
+2026-02-27T03:54:03.707Z [DEBUG] Total plugin agents loaded: 0
+2026-02-27T03:54:03.709Z [DEBUG] Loaded 0 unique skills (0 unconditional, 0 conditional, managed: 0, user: 0, project: 0, additional: 0, legacy commands: 0)
+2026-02-27T03:54:03.709Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills, 3 bundled skills
+2026-02-27T03:54:03.710Z [DEBUG] [STARTUP] Commands and agents loaded in 49ms
+2026-02-27T03:54:03.717Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-02-27T03:54:03.789Z [DEBUG] Grove: Using fresh cached config
+2026-02-27T03:54:03.797Z [DEBUG] [Perfetto] initializePerfettoTracing called, env value: undefined
+2026-02-27T03:54:03.797Z [DEBUG] [3P telemetry] isTelemetryEnabled=false (CLAUDE_CODE_ENABLE_TELEMETRY=undefined)
+2026-02-27T03:54:03.808Z [DEBUG] [keybindings] KeybindingSetup initialized with 102 bindings, 0 warnings
+2026-02-27T03:54:03.841Z [DEBUG] [Claude in Chrome] Extension fcoeoabgfenejglbffodgkkbkcdhcgfn found in chrome Default
+2026-02-27T03:54:03.844Z [DEBUG] [keybindings] Watching for changes to C:\Users\0000250059\.claude\keybindings.json
+2026-02-27T03:54:03.847Z [DEBUG] Git remote URL: null
+2026-02-27T03:54:03.847Z [DEBUG] No git remote URL found
+2026-02-27T03:54:03.847Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-02-27T03:54:03.849Z [DEBUG] Git remote URL: null
+2026-02-27T03:54:03.849Z [DEBUG] No git remote URL found
+2026-02-27T03:54:04.671Z [DEBUG] [STARTUP] showSetupScreens() completed in 954ms
+2026-02-27T03:54:04.671Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-02-27T03:54:04.671Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-02-27T03:54:04.671Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-02-27T03:54:04.672Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-27T03:54:04.672Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-27T03:54:04.672Z [DEBUG] Passes: Using fresh cached eligibility data
+2026-02-27T03:54:04.673Z [DEBUG] Total LSP servers loaded: 0
+2026-02-27T03:54:04.673Z [DEBUG] [STARTUP] MCP configs loaded in 1028ms
+2026-02-27T03:54:04.679Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-02-27T03:54:04.679Z [DEBUG] LSP manager initialized with 0 servers
+2026-02-27T03:54:04.679Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-27T03:54:04.680Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-02-27T03:54:04.680Z [DEBUG] Found 0 hook matchers in settings
+2026-02-27T03:54:04.680Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-02-27T03:54:04.680Z [DEBUG] Initialized versioned plugins system with 0 plugins
+2026-02-27T03:54:04.680Z [DEBUG] LSP server manager initialized successfully
+2026-02-27T03:54:04.680Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-02-27T03:54:04.682Z [DEBUG] [Reconnection] computeInitialTeamContext: No teammate context set (not a teammate)
+2026-02-27T03:54:04.685Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.14672.1772164444685
+2026-02-27T03:54:04.685Z [DEBUG] Preserving file permissions: 100666
+2026-02-27T03:54:04.688Z [DEBUG] Temp file written successfully, size: 9442 bytes
+2026-02-27T03:54:04.688Z [DEBUG] Applied original permissions to temp file
+2026-02-27T03:54:04.688Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.14672.1772164444685 to C:\Users\0000250059\.claude.json
+2026-02-27T03:54:04.689Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-27T03:54:04.784Z [DEBUG] [keybindings] KeybindingSetup initialized with 102 bindings, 0 warnings
+2026-02-27T03:54:04.824Z [DEBUG] [REPL:mount] REPL mounted, disabled=false
+2026-02-27T03:54:04.827Z [DEBUG] Official marketplace auto-install skipped: already_attempted
+2026-02-27T03:54:04.828Z [DEBUG] performStartupChecks called
+2026-02-27T03:54:04.828Z [DEBUG] Starting background plugin installations
+2026-02-27T03:54:04.828Z [DEBUG] performBackgroundPluginInstallations called
+2026-02-27T03:54:04.830Z [DEBUG] Loaded 1 CLAUDE.md/rules files:
+  [Project] D:\refactoring\ops5k_x64\CLAUDE.md (253 chars)
+2026-02-27T03:54:04.832Z [DEBUG] Watching for changes in setting files C:\Users\0000250059\.claude\settings.json...
+2026-02-27T03:54:04.963Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-02-27T03:54:04.963Z [DEBUG] [claudeai-mcp] Gate returned: true
+2026-02-27T03:54:04.963Z [DEBUG] [claudeai-mcp] Fetching from https://api.anthropic.com/v1/mcp_servers?limit=1000
+2026-02-27T03:54:04.964Z [DEBUG] AutoUpdaterWrapper: Installation type: native
+2026-02-27T03:54:04.965Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2026-02-27T03:54:04.997Z [DEBUG] Security messages are fresh (<1h old), skipping fetch
+2026-02-27T03:54:04.998Z [DEBUG] Org fast mode: disabled (extra_usage_disabled)
+2026-02-27T03:54:05.012Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2026-02-27T03:54:05.020Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T03:54:05.042Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T03:54:05.247Z [DEBUG] [claudeai-mcp] Fetched 3 servers
+2026-02-27T03:54:05.248Z [DEBUG] MCP server "claude.ai Gmail": Initializing claude.ai proxy transport for server mcpsrv_01DokMh3ugP8kfyEKSwZdFXK
+2026-02-27T03:54:05.248Z [DEBUG] MCP server "claude.ai Gmail": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01DokMh3ugP8kfyEKSwZdFXK
+2026-02-27T03:54:05.249Z [DEBUG] MCP server "claude.ai Gmail": claude.ai proxy transport created successfully
+2026-02-27T03:54:05.251Z [DEBUG] MCP server "claude.ai Gmail": Starting connection with timeout of 30000ms
+2026-02-27T03:54:05.251Z [DEBUG] MCP server "claude.ai Google Calendar": Initializing claude.ai proxy transport for server mcpsrv_019yCVR7ND6sBtQPjDBreYMJ
+2026-02-27T03:54:05.252Z [DEBUG] MCP server "claude.ai Google Calendar": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_019yCVR7ND6sBtQPjDBreYMJ
+2026-02-27T03:54:05.252Z [DEBUG] MCP server "claude.ai Google Calendar": claude.ai proxy transport created successfully
+2026-02-27T03:54:05.253Z [DEBUG] MCP server "claude.ai Google Calendar": Starting connection with timeout of 30000ms
+2026-02-27T03:54:05.253Z [DEBUG] MCP server "claude.ai Notion": Initializing claude.ai proxy transport for server mcpsrv_01NrtxBarc1ExyHkwvxZuZVm
+2026-02-27T03:54:05.253Z [DEBUG] MCP server "claude.ai Notion": Using claude.ai proxy at https://mcp-proxy.anthropic.com/v1/mcp/mcpsrv_01NrtxBarc1ExyHkwvxZuZVm
+2026-02-27T03:54:05.253Z [DEBUG] MCP server "claude.ai Notion": claude.ai proxy transport created successfully
+2026-02-27T03:54:05.254Z [DEBUG] MCP server "claude.ai Notion": Starting connection with timeout of 30000ms
+2026-02-27T03:54:05.256Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T03:54:05.549Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T03:54:05.552Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=C:\Users\0000250059\.local\bin\claude.exe)
+2026-02-27T03:54:05.554Z [DEBUG] Checking for native installer update to version 2.1.62
+2026-02-27T03:54:05.556Z [DEBUG] Found 2.1.62 at C:\Users\0000250059\.local\bin\claude.exe, skipping install
+2026-02-27T03:54:05.559Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T03:54:05.856Z [DEBUG] MCP server "claude.ai Google Calendar": claude.ai proxy connection failed after 605ms: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYXu1hFgeThuCFDvHjBq9"}
+2026-02-27T03:54:05.856Z [ERROR] MCP server "claude.ai Google Calendar" Error: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYXu1hFgeThuCFDvHjBq9"}
+2026-02-27T03:54:05.856Z [DEBUG] MCP server "claude.ai Google Calendar": Authentication required for claude.ai proxy server
+2026-02-27T03:54:05.883Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T03:54:06.147Z [DEBUG] MCP server "claude.ai Gmail": claude.ai proxy connection failed after 899ms: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYXu1h9jMHdyFt6zEV2aC"}
+2026-02-27T03:54:06.148Z [ERROR] MCP server "claude.ai Gmail" Error: Streamable HTTP error: Error POSTing to endpoint: {"type":"error","error":{"type":"authentication_error","message":"MCP server requires authentication but no OAuth token is configured."},"request_id":"req_011CYXu1h9jMHdyFt6zEV2aC"}
+2026-02-27T03:54:06.148Z [DEBUG] MCP server "claude.ai Gmail": Authentication required for claude.ai proxy server
+2026-02-27T03:54:06.181Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T03:54:06.915Z [DEBUG] MCP server "claude.ai Notion": Successfully connected to claudeai-proxy server in 1662ms
+2026-02-27T03:54:06.915Z [DEBUG] MCP server "claude.ai Notion": Connection established with capabilities: {"hasTools":true,"hasPrompts":false,"hasResources":true,"hasResourceSubscribe":false,"serverVersion":{"name":"Notion MCP","icons":[{"src":"https://mcp.notion.com/notion-logo-block-main.svg","mimeType":"image/svg+xml"}],"version":"1.2.0","websiteUrl":"https://developers.notion.com/docs/mcp","description":"Notion's official MCP server lets you use your Notion workspace as a system of record for knowledge work and software development. Search questions about the codebase and business, fetch links to pages such as tech specs and PRDs, and track tasks with your team."}}
+2026-02-27T03:54:06.915Z [DEBUG] [MCP] Server "claude.ai Notion" connected with subscribe=false
+2026-02-27T03:54:07.566Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T04:11:31.428Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T04:11:31.515Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T04:24:04.851Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-27T04:24:05.025Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T04:24:05.584Z [DEBUG] Checking for native installer update to version 2.1.62
+2026-02-27T04:24:05.585Z [DEBUG] Found 2.1.62 at C:\Users\0000250059\.local\bin\claude.exe, skipping install
+2026-02-27T04:24:05.589Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T04:54:04.865Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-27T04:54:05.031Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T04:54:05.934Z [DEBUG] Checking for native installer update to version 2.1.62
+2026-02-27T04:54:05.937Z [DEBUG] Found 2.1.62 at C:\Users\0000250059\.local\bin\claude.exe, skipping install
+2026-02-27T04:54:05.940Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:16:57.910Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:00.764Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:00.774Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:00.779Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:01.238Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:01.251Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:01.255Z [DEBUG] High write ratio: blit=408, write=599 (59.5% writes), screen=14x102
+2026-02-27T05:17:01.334Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:01.337Z [DEBUG] High write ratio: blit=408, write=600 (59.5% writes), screen=14x102
+2026-02-27T05:17:01.340Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:01.754Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:01.763Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:01.827Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:01.832Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:01.851Z [DEBUG] High write ratio: blit=408, write=604 (59.7% writes), screen=14x102
+2026-02-27T05:17:02.107Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:02.109Z [DEBUG] High write ratio: blit=408, write=605 (59.7% writes), screen=14x102
+2026-02-27T05:17:02.113Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:02.210Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:02.217Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-27T05:17:02.636Z [DEBUG] git pull: cwd=C:\Users\0000250059\.claude\plugins\marketplaces\claude-plugins-official ref=default
+2026-02-27T05:17:02.825Z [DEBUG] /resume: loading sessions for cwd=D:\refactoring\ops5k_x64, worktrees=[D:/refactoring/ops5k_x64]
+2026-02-27T05:17:02.829Z [DEBUG] /resume: found 30 session files on disk
+2026-02-27T05:17:02.906Z [DEBUG] High write ratio: blit=506, write=1297 (71.9% writes), screen=54x102
+2026-02-27T05:17:02.957Z [DEBUG] High write ratio: blit=506, write=1297 (71.9% writes), screen=54x102
+2026-02-27T05:17:02.990Z [DEBUG] High write ratio: blit=506, write=1323 (72.3% writes), screen=54x102

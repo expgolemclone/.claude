@@ -1,0 +1,43 @@
+# Plan: pre-commit フックで denylist 違反 + エンコーディング変更の両方をブロックする
+
+## Context
+
+現在の `.hooks/pre-commit` は2つのチェックを実行するが、`check_encoding.py` は PostToolUse フック用（stdin JSON 入力）のため、pre-commit から直接呼ぶと JSON パースエラーで異常終了する。結果として意図しない形でコミットがブロックされている。
+
+**目的:** denylist 違反とエンコーディング変更の両方を正しく検出・ブロックする pre-commit フックにする。
+
+## 変更内容
+
+### 1. `pre_commit_encoding.py` を新規作成 (`.hooks/pre_commit_encoding.py`)
+
+pre-commit 用のエンコーディングチェックスクリプトを新規作成する。
+
+- `git diff --cached --name-only --diff-filter=ACMR` で **ステージされたファイルのみ** を対象とする
+- 対象拡張子: `.c`, `.h`, `.cpp`, `.hpp`
+- HEAD 版のエンコーディング（`git show HEAD:<path>`）と作業ツリー版を比較
+- `check_encoding.py` の `detect_encoding()` / `is_binary()` ロジックを再利用
+- 違反があれば詳細を表示して exit 1
+
+### 2. `.hooks/pre-commit` を修正
+
+- `check_encoding.py` の呼び出しを `pre_commit_encoding.py` に変更
+- typo 修正: "encording" → "encoding"
+
+## 修正ファイル
+
+| ファイル | 操作 |
+|---|---|
+| `.hooks/pre_commit_encoding.py` | 新規作成 |
+| `.hooks/pre-commit` | 修正（呼び出し先変更） |
+
+## 変更しないファイル
+
+- `.hooks/check_encoding.py` — PostToolUse フック用としてそのまま維持
+- `.hooks/pre_commit_denylist.py` — 変更不要（正しく動作している）
+- `.hooks/.denylist` — 変更不要
+
+## 検証方法
+
+1. エンコーディングが変更されたファイルをステージして `git commit` → ブロックされることを確認
+2. denylist 違反のあるファイルをステージして `git commit` → ブロックされることを確認
+3. 問題のないファイルのみステージして `git commit` → 正常にコミットできることを確認

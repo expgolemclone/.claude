@@ -1,0 +1,18 @@
+2026-02-26T01:34:43.297Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-26T01:34:43.297Z [DEBUG] MDM settings load completed in 17ms
+2026-02-26T01:34:43.308Z [DEBUG] [init] configureGlobalMTLS starting
+2026-02-26T01:34:43.308Z [DEBUG] [init] configureGlobalMTLS complete
+2026-02-26T01:34:43.308Z [DEBUG] [init] configureGlobalAgents starting
+2026-02-26T01:34:43.309Z [DEBUG] [init] configureGlobalAgents complete
+2026-02-26T01:34:43.349Z [DEBUG] Using bash path: "C:\msys64\usr\bin\bash.exe"
+2026-02-26T01:34:43.356Z [DEBUG] update: Starting update check
+2026-02-26T01:34:43.356Z [DEBUG] update: Running diagnostic
+2026-02-26T01:34:43.357Z [DEBUG] Git remote URL: null
+2026-02-26T01:34:43.357Z [DEBUG] No git remote URL found
+2026-02-26T01:34:43.854Z [DEBUG] update: Installation type: native
+2026-02-26T01:34:43.854Z [DEBUG] update: Config install method: native
+2026-02-26T01:34:43.854Z [DEBUG] update: Detected native installation, using native updater
+2026-02-26T01:34:44.555Z [DEBUG] Checking for native installer update to version 2.1.59
+2026-02-26T01:34:44.557Z [DEBUG] Force reinstalling native installer version 2.1.59
+2026-02-26T01:38:48.003Z [DEBUG] Atomically installed binary to C:\Users\0000250059\.local\share\claude\versions\2.1.59
+2026-02-26T01:38:48.006Z [DEBUG] Successfully updated to version 2.1.59

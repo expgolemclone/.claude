@@ -1,0 +1,356 @@
+2026-02-27T05:49:24.837Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-27T05:49:24.838Z [DEBUG] MDM settings load completed in 16ms
+2026-02-27T05:49:24.847Z [DEBUG] [init] configureGlobalMTLS starting
+2026-02-27T05:49:24.847Z [DEBUG] [init] configureGlobalMTLS complete
+2026-02-27T05:49:24.847Z [DEBUG] [init] configureGlobalAgents starting
+2026-02-27T05:49:24.848Z [DEBUG] [init] configureGlobalAgents complete
+2026-02-27T05:49:24.881Z [DEBUG] Using bash path: "C:\msys64\usr\bin\bash.exe"
+2026-02-27T05:49:24.890Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-02-27T05:49:24.893Z [DEBUG] [ToolSearch:optimistic] mode=tst-auto, ENABLE_TOOL_SEARCH=undefined, result=true
+2026-02-27T05:49:24.894Z [DEBUG] [STARTUP] Running setup()...
+2026-02-27T05:49:24.897Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\0000250059\.claude\skills, project=[]
+2026-02-27T05:49:24.897Z [DEBUG] Error log sink initialized
+2026-02-27T05:49:24.909Z [DEBUG] [STARTUP] setup() completed in 15ms
+2026-02-27T05:49:24.909Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-02-27T05:49:24.957Z [DEBUG] [Claude in Chrome] Found chrome profiles: Default
+2026-02-27T05:49:24.958Z [DEBUG] installed_plugins.json doesn't exist, returning empty V2 object
+2026-02-27T05:49:24.958Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2026-02-27T05:49:24.958Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2026-02-27T05:49:24.958Z [DEBUG] Total plugin skills loaded: 0
+2026-02-27T05:49:24.958Z [DEBUG] Total plugin commands loaded: 0
+2026-02-27T05:49:24.958Z [DEBUG] Registered 0 hooks from 0 plugins
+2026-02-27T05:49:24.961Z [DEBUG] Total plugin agents loaded: 0
+2026-02-27T05:49:24.963Z [DEBUG] Loaded 0 unique skills (0 unconditional, 0 conditional, managed: 0, user: 0, project: 0, additional: 0, legacy commands: 0)
+2026-02-27T05:49:24.963Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills, 3 bundled skills
+2026-02-27T05:49:24.963Z [DEBUG] [STARTUP] Commands and agents loaded in 54ms
+2026-02-27T05:49:24.972Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-02-27T05:49:25.023Z [DEBUG] Grove: Using fresh cached config
+2026-02-27T05:49:25.028Z [DEBUG] [Perfetto] initializePerfettoTracing called, env value: undefined
+2026-02-27T05:49:25.028Z [DEBUG] [3P telemetry] isTelemetryEnabled=false (CLAUDE_CODE_ENABLE_TELEMETRY=undefined)
+2026-02-27T05:49:25.040Z [DEBUG] [keybindings] KeybindingSetup initialized with 102 bindings, 0 warnings
+2026-02-27T05:49:25.044Z [DEBUG] [keybindings] Skipping file watcher - user customization disabled
+2026-02-27T05:49:25.072Z [DEBUG] [Claude in Chrome] Extension fcoeoabgfenejglbffodgkkbkcdhcgfn found in chrome Default
+2026-02-27T05:49:25.076Z [DEBUG] Git remote URL: null
+2026-02-27T05:49:25.076Z [DEBUG] No git remote URL found
+2026-02-27T05:49:25.076Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-02-27T05:49:25.077Z [DEBUG] Git remote URL: null
+2026-02-27T05:49:25.077Z [DEBUG] No git remote URL found
+2026-02-27T05:49:28.055Z [DEBUG] Failed to fetch Grove notice config: AxiosError: timeout of 3000ms exceeded
+2026-02-27T05:49:29.901Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:29.977Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:45.086Z [ERROR] Error: Error: 1P event logging: 6 events failed to export (code=ECONNABORTED, timeout of 10000ms exceeded)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6263:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6263:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:45.086Z [ERROR] Error: Error: {"message":"Failed to export 6 events (code=ECONNABORTED, timeout of 10000ms exceeded)","originalLine":"6263","originalColumn":"1409","line":"6263","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 6 events (code=ECONNABORTED, timeout of 10000ms exceeded)\n    at doExport (B:/~BUN/root/claude.exe:6263:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2426:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92465)
+    at z90 (B:/~BUN/root/claude.exe:118:93009)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:45.086Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 6 events (code=ECONNABORTED, timeout of 10000ms exceeded)","originalLine":"6263","originalColumn":"1409","line":"6263","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 6 events (code=ECONNABORTED, timeout of 10000ms exceeded)\n    at doExport (B:/~BUN/root/claude.exe:6263:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-27T05:49:46.083Z [ERROR] Error: [url=https://api.anthropic.com/api/oauth/account/settings] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:79:11356)
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10230)
+    at emitError (node:events:43:23)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:3470)
+    at emitError (node:events:43:23)
+    at <anonymous> (node:_http_client:253:22)
+    at processTicksAndRejections (native:7:39)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:46.085Z [DEBUG] [STARTUP] showSetupScreens() completed in 21113ms
+2026-02-27T05:49:46.085Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-02-27T05:49:46.085Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-02-27T05:49:46.085Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-02-27T05:49:46.085Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-27T05:49:46.085Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-27T05:49:46.085Z [DEBUG] Passes: Using fresh cached eligibility data
+2026-02-27T05:49:46.086Z [DEBUG] Total LSP servers loaded: 0
+2026-02-27T05:49:46.087Z [DEBUG] [STARTUP] MCP configs loaded in 21196ms
+2026-02-27T05:49:46.095Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-02-27T05:49:46.095Z [DEBUG] LSP manager initialized with 0 servers
+2026-02-27T05:49:46.095Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-27T05:49:46.096Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-02-27T05:49:46.096Z [DEBUG] Found 0 hook matchers in settings
+2026-02-27T05:49:46.096Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-02-27T05:49:46.096Z [DEBUG] Initialized versioned plugins system with 0 plugins
+2026-02-27T05:49:46.097Z [DEBUG] LSP server manager initialized successfully
+2026-02-27T05:49:46.097Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-02-27T05:49:46.099Z [DEBUG] [Reconnection] computeInitialTeamContext: No teammate context set (not a teammate)
+2026-02-27T05:49:46.102Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.15412.1772171386102
+2026-02-27T05:49:46.102Z [DEBUG] Preserving file permissions: 100666
+2026-02-27T05:49:46.106Z [DEBUG] Temp file written successfully, size: 8760 bytes
+2026-02-27T05:49:46.106Z [DEBUG] Applied original permissions to temp file
+2026-02-27T05:49:46.106Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.15412.1772171386102 to C:\Users\0000250059\.claude.json
+2026-02-27T05:49:46.107Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-27T05:49:46.187Z [DEBUG] [keybindings] KeybindingSetup initialized with 102 bindings, 0 warnings
+2026-02-27T05:49:46.253Z [DEBUG] [keybindings] Skipping file watcher - user customization disabled
+2026-02-27T05:49:46.253Z [DEBUG] [REPL:mount] REPL mounted, disabled=false
+2026-02-27T05:49:46.257Z [DEBUG] Official marketplace auto-install skipped: already_attempted
+2026-02-27T05:49:46.258Z [DEBUG] performStartupChecks called
+2026-02-27T05:49:46.259Z [DEBUG] Starting background plugin installations
+2026-02-27T05:49:46.259Z [DEBUG] performBackgroundPluginInstallations called
+2026-02-27T05:49:46.261Z [DEBUG] Loaded 1 CLAUDE.md/rules files:
+  [Project] D:\refactoring\ops5k_x64\CLAUDE.md (253 chars)
+2026-02-27T05:49:46.264Z [DEBUG] Watching for changes in setting files C:\Users\0000250059\.claude\settings.json...
+2026-02-27T05:49:46.361Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.15412.1772171386361
+2026-02-27T05:49:46.361Z [DEBUG] Preserving file permissions: 100666
+2026-02-27T05:49:46.364Z [DEBUG] Temp file written successfully, size: 8763 bytes
+2026-02-27T05:49:46.365Z [DEBUG] Applied original permissions to temp file
+2026-02-27T05:49:46.365Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.15412.1772171386361 to C:\Users\0000250059\.claude.json
+2026-02-27T05:49:46.366Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-27T05:49:46.384Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.15412.1772171386384
+2026-02-27T05:49:46.384Z [DEBUG] Preserving file permissions: 100666
+2026-02-27T05:49:46.388Z [DEBUG] Temp file written successfully, size: 8764 bytes
+2026-02-27T05:49:46.389Z [DEBUG] Applied original permissions to temp file
+2026-02-27T05:49:46.389Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.15412.1772171386384 to C:\Users\0000250059\.claude.json
+2026-02-27T05:49:46.389Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-27T05:49:46.408Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.15412.1772171386408
+2026-02-27T05:49:46.408Z [DEBUG] Preserving file permissions: 100666
+2026-02-27T05:49:46.412Z [DEBUG] Temp file written successfully, size: 8765 bytes
+2026-02-27T05:49:46.412Z [DEBUG] Applied original permissions to temp file
+2026-02-27T05:49:46.412Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.15412.1772171386408 to C:\Users\0000250059\.claude.json
+2026-02-27T05:49:46.412Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-27T05:49:46.413Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-02-27T05:49:46.426Z [DEBUG] [claudeai-mcp] Gate returned: true
+2026-02-27T05:49:46.426Z [DEBUG] [claudeai-mcp] Fetching from https://api.anthropic.com/v1/mcp_servers?limit=1000
+2026-02-27T05:49:46.430Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.15412.1772171386430
+2026-02-27T05:49:46.430Z [DEBUG] Preserving file permissions: 100666
+2026-02-27T05:49:46.433Z [DEBUG] Temp file written successfully, size: 8766 bytes
+2026-02-27T05:49:46.434Z [DEBUG] Applied original permissions to temp file
+2026-02-27T05:49:46.434Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.15412.1772171386430 to C:\Users\0000250059\.claude.json
+2026-02-27T05:49:46.434Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-27T05:49:46.435Z [DEBUG] AutoUpdaterWrapper: Installation type: native
+2026-02-27T05:49:46.451Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2026-02-27T05:49:46.453Z [DEBUG] Security messages are fresh (<1h old), skipping fetch
+2026-02-27T05:49:46.472Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2026-02-27T05:49:46.838Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=C:\Users\0000250059\.local\bin\claude.exe)
+2026-02-27T05:49:51.133Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:51.236Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:51.236Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:51.236Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:51.236Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:51.438Z [DEBUG] [claudeai-mcp] Fetch failed
+2026-02-27T05:49:51.500Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:51.500Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:51.500Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:51.500Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:53.931Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:53.931Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:53.931Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:53.931Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:53.931Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:53.931Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:53.931Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:53.931Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:54.282Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:54.282Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:54.282Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:49:54.282Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:02.292Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:02.292Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:02.292Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:02.293Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:06.367Z [ERROR] Error: Error: 1P event logging: 11 events failed to export (code=ECONNABORTED, timeout of 10000ms exceeded)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6263:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6263:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:06.367Z [ERROR] Error: Error: {"message":"Failed to export 11 events (code=ECONNABORTED, timeout of 10000ms exceeded)","originalLine":"6263","originalColumn":"1409","line":"6263","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 11 events (code=ECONNABORTED, timeout of 10000ms exceeded)\n    at doExport (B:/~BUN/root/claude.exe:6263:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2426:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92465)
+    at z90 (B:/~BUN/root/claude.exe:118:93009)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:06.367Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 11 events (code=ECONNABORTED, timeout of 10000ms exceeded)","originalLine":"6263","originalColumn":"1409","line":"6263","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 11 events (code=ECONNABORTED, timeout of 10000ms exceeded)\n    at doExport (B:/~BUN/root/claude.exe:6263:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-27T05:50:07.147Z [ERROR] Failed to fetch org fast mode status, defaulting to disabled: Error: ECONNREFUSED
+2026-02-27T05:50:09.825Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at dUE (B:/~BUN/root/claude.exe:2458:2072)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:09.825Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at dUE (B:/~BUN/root/claude.exe:2458:2072)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:09.827Z [DEBUG] Fast mode unavailable: Fast mode has been disabled by your organization
+2026-02-27T05:50:12.197Z [DEBUG] Fast mode unavailable: Fast mode has been disabled by your organization
+2026-02-27T05:50:14.846Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:14.847Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:14.847Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:14.847Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data] Error
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10649)
+    at emit (node:events:92:22)
+    at <anonymous> (B:/~BUN/root/claude.exe:92:5642)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:27.191Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNABORTED, timeout of 10000ms exceeded)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6263:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6263:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:27.191Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNABORTED, timeout of 10000ms exceeded)","originalLine":"6263","originalColumn":"1409","line":"6263","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNABORTED, timeout of 10000ms exceeded)\n    at doExport (B:/~BUN/root/claude.exe:6263:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2426:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92465)
+    at z90 (B:/~BUN/root/claude.exe:118:93009)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-27T05:50:27.191Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNABORTED, timeout of 10000ms exceeded)","originalLine":"6263","originalColumn":"1409","line":"6263","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNABORTED, timeout of 10000ms exceeded)\n    at doExport (B:/~BUN/root/claude.exe:6263:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-27T06:09:01.642Z [DEBUG] Fast mode unavailable: Fast mode has been disabled by your organization
+2026-02-27T06:09:08.282Z [DEBUG] Fast mode unavailable: Fast mode has been disabled by your organization
+2026-02-27T06:09:08.295Z [DEBUG] Fast mode unavailable: Fast mode has been disabled by your organization
+2026-02-27T06:09:08.656Z [DEBUG] Fast mode unavailable: Fast mode has been disabled by your organization
+2026-02-27T06:09:09.431Z [DEBUG] Fast mode unavailable: Fast mode has been disabled by your organization
+2026-02-27T06:09:09.437Z [DEBUG] Fast mode unavailable: Fast mode has been disabled by your organization
+2026-02-27T06:09:10.024Z [DEBUG] git pull: cwd=C:\Users\0000250059\.claude\plugins\marketplaces\claude-plugins-official ref=default
+2026-02-27T06:09:10.146Z [DEBUG] /resume: loading sessions for cwd=D:\refactoring\ops5k_x64, worktrees=[D:/refactoring/ops5k_x64]
+2026-02-27T06:09:10.148Z [DEBUG] /resume: found 30 session files on disk
+2026-02-27T06:09:10.602Z [DEBUG] High write ratio: blit=506, write=1297 (71.9% writes), screen=54x102
+2026-02-27T06:09:10.636Z [DEBUG] High write ratio: blit=506, write=1297 (71.9% writes), screen=54x102
+2026-02-27T06:09:10.655Z [DEBUG] High write ratio: blit=506, write=1323 (72.3% writes), screen=54x102

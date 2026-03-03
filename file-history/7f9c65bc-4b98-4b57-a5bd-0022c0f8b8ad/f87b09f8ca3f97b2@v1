@@ -1,0 +1,63 @@
+# pre_commit_encoding.py 改修 + 不要ファイル廃止
+
+## Context
+ユーザー要件:
+1. CP932+CRLF の強制は `pre_commit_encoding.py` **のみ**で行う
+2. Shift-JIS ファイルも CP932+CRLF に変換する。`shift_jis_to_cp932.py` は廃止
+3. `.vscode/` フォルダ以外の例外は認めず、`.hooks/` も含め全ディレクトリ全ファイルを強制
+4. `.gitattributes` は廃止（先ほど作成したファイルを削除）
+
+## 変更内容
+
+### 1. `D:\refactoring\ops5k_x64\.hooks\pre_commit_encoding.py` — 改修
+
+#### (a) `detect_encoding`: Shift-JIS 検出を追加（CP932 チェックの後）
+```python
+    # 7. Shift-JIS strict (CP932 と微妙にマッピングが異なる)
+    try:
+        data.decode("shift_jis", errors="strict")
+        return "shift_jis"
+    except UnicodeDecodeError:
+        pass
+```
+docstring の戻り値リストにも `"shift_jis"` を追加
+
+#### (b) `convert_file`: shift_jis のデコード分岐を追加
+`elif enc == "cp932":` ブロックの後に:
+```python
+    elif enc == "shift_jis":
+        text = data.decode("shift_jis")
+```
+
+#### (c) `main`: スキップ対象を `.hooks/` → `.vscode/` に変更
+```python
+        # .vscode/ 配下は UTF-8 必須のため変換対象外
+        if f.replace("\\", "/").startswith(".vscode/"):
+            continue
+```
+
+### 2. `.hooks/*.py` に `# coding: cp932` 宣言を追加
+- `pre_commit_encoding.py` — 1行目に追加
+- `pre_commit_denylist.py` — 1行目に追加
+
+### 3. 削除するファイル
+- `D:\refactoring\ops5k_x64\.hooks\shift_jis_to_cp932.py`
+- `D:\refactoring\ops5k_x64\.gitattributes`
+
+### 4. `D:\refactoring\ops5k_x64\.vscode\settings.json` — #todo コメント修正
+
+12行目:
+```
+// デフォルトを CP932 にしておく（CP932 への強制は pre-commit フックが担当）
+```
+
+20行目:
+```
+// Windows プロジェクトなので CRLF（\r\n）を必須にする（pre-commit フックで強制）
+```
+
+## 検証
+1. Shift-JIS テストファイルをステージ → `git commit` → CP932+CRLF に変換されること
+2. `.hooks/` 配下のファイルをステージ → 変換対象になること
+3. `.vscode/` 配下のファイルをステージ → スキップされること
+4. `.gitattributes` が削除されていること

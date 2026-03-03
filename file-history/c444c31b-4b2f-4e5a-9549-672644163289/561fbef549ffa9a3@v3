@@ -1,0 +1,316 @@
+//$History:$
+//
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ *
+ * ****************************************************************************
+ * *                Copyright Meidensha Corporation 2007                      *
+ * *  ������Ж��d�ɂ͓��Ђɂ���Ē񋟂���Ȃ����u��ł̓��\�t�g�E�F�A�̎g�p  *
+ * *  �ɑ΂��ӔC��S�������܂���B                                            *
+ * ****************************************************************************
+ *
+ *      �v���Z�X��  :
+ *      �H  ��      :  F6030CM
+ *      �V�X�e����  :  �L��Ď�����V�X�e���i�n�o�r�T�O�O�O�j
+ *      �쐬��      :  �r�ؒn�@�C��
+ *      �쐬�N����  :  2007�N  3��  2��
+ *      �C������    :  
+ *                     2007�N  3��  2���@�r�ؒn�@�C���@TA001
+ *                       OPS9000���痬�p��OPS5000�p�ɉ���
+ *
+ *                     2007�N  9�� 24���@�r�ؒn�@�C���@TA002
+ *                       �@�퍀�ڕ\�ُ̈��ʔԍ����S���Ή��i�����R��C���j
+ *
+ *                     2008�N  6�� 20���@�r�ؒn�@�C���@TA004
+ *                       �v�����ڕ\�̃X�p���A�X�P�[���̌������g��
+ *
+ *                     2013�N  6��  5���@�ѓc�@�D�M�@YI130605
+ *                       �e�L�X�g�v�팅���̐ݒ��ǉ�
+ *
+ *      �@�\�T�v    :  ��������
+ *
+ *      �R�[�����O�`��:
+ *
+ *      ���񎖍�    :
+ *+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+#include    "Genset.h"                          /* �ު�ڰ����ʒ�`           */
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ *  �@  �\�F
+ *      ��������(�p�X��`�A���ڒ�`�A�G���[�t�@�C���쐬)���s���B
+ *  calling sequence:
+ *      (int) Genset100(full_c, doc_b) ;
+ *  ��  �́F
+ *      char  *full_c    : ���s�t�@�C�����t���p�X
+ *      BOOL  doc_b      : �h�L�������g�쐬���� TRUE
+ *  �o  �́F
+ *      �Ȃ�
+ *  �߂�l�F
+ *      �Ȃ�
+ *+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+int Genset100(char *full_c, BOOL doc_b)
+{
+  char     err_c[S_PATHSIZE] ;                  /*                           */
+  FILE     *fp ;                                /*                           */
+
+  if (Genset110(full_c, doc_b) != RS_SUC)       /* �߽��`                   */
+    return (RS_ERR) ;                           /*                           */
+  Genset120() ;                                 /* ���ڒ�`                  */
+                                                /*                           */
+  sprintf(err_c, "%serr_.txt", z_path_gen) ;    /* �װ̧�ق����             */
+  if ((fp = fopen(err_c, "w")) == NULL) {       /*                           */
+    printf("�G���[�t�@�C�� %s �����Ȃ��ł�", err_c) ;
+    while(!_kbhit()) ;                          /*                           */
+    return (RS_OPENF) ;                         /*                           */
+  }                                             /*                           */
+  fclose (fp) ;                                 /*                           */
+  return (RS_SUC) ;                             /*                           */
+}                                               /*                           */
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ *  �@  �\�F
+ *      �p�X���`����B
+ *  calling sequence:
+ *      (int) Genset110(full_c, doc_b) ;
+ *  ��  �́F
+ *      char  *full_c    : ���s�t�@�C�����t���p�X
+ *      BOOL  doc_b      : �h�L�������g�쐬���� TRUE
+ *  �o  �́F
+ *      �Ȃ�
+ *  �߂�l�F
+ *      RS_SUC    : ��������
+ *      RS_ERR    : �������s
+ *+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+int Genset110(char *full_c, BOOL doc_b)
+{
+  char  *chk_c ;                                 /*                          */
+  size_t env_len;
+  char env_buf[256];
+
+  strcpy(z_path_gen, full_c) ;                   /* �ު�ڰ����߽�����       */
+                                                 /*                          */
+  env_buf = strrchr(z_path_gen, '\\') ;            /*                          */
+  if (env_buf == NULL)                             /*                          */
+    *z_path_gen = '\0' ;                         /*                          */
+  else                                           /*                          */
+    *chk_c = '\0' ;                              /*  ̧�ٖ����              */
+                                                 /*                          */
+  strcat(z_path_gen, "\\") ;                     /*                          */
+                                                 /*                          */
+  getenv_s(&env_len, env_buf, sizeof(env_buf), "PATH_ENSFILE");
+  if (env_len > 0){ /*                          */
+    strcpy(z_path_file, env_buf) ;                 /* ENŞ�ق��߽�����       */
+    if (z_path_file[strlen(z_path_file)-1] != '\\')
+      strcat(z_path_file, "\\") ;                /*                          */
+    strcpy(z_path_kou, z_path_file) ;            /* ���ڕ\���߽�����        */
+    strcat(z_path_kou, "���ڕ\\\") ;             /*                          */
+  }                                              /*                          */
+  else {                                         /*                   YI001c */
+    err_msg("���ϐ� %PATH_ENSFILE% ���ݒ肳��ĂȂ��ł�", "", "", 1) ;
+    return (RS_ERR) ;                            /*                          */
+  }                                              /*                          */
+                                                 /*                          */
+  if (doc_b) {                                   /*                          */
+    getenv_s(&env_len, env_buf, sizeof(env_buf), "PATH_DOC");
+    if (env_len > 0){   /* �޷���Ă��߽�����       */
+      strcpy(z_path_doc, env_buf) ;                /*                          */
+      if (z_path_doc[strlen(z_path_doc)-1] != '\\')
+        strcat(z_path_doc, "\\") ;               /*                          */
+//        strcat(z_path_doc, "pcs\\") ;            /* SM003 DEL                */
+    }                                            /*                          */
+  }                                              /*                          */
+  sprintf(z_path_dat, "%sdat\\", z_path_kou) ;   /* �ް�̧�ق��߽�����      */
+                                                 /*                          */
+  return (RS_SUC) ;                              /*                          */
+}                                                /*                          */
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ *  �@  �\�F
+ *      ���ڂ��`����B
+ *  calling sequence:
+ *      (void) Genset120() ;
+ *  ��  �́F
+ *      �Ȃ�
+ *  �o  �́F
+ *      �Ȃ�
+ *  �߂�l�F
+ *      �Ȃ�
+ *+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+void Genset120()
+{
+#define KK_KouSet(no,len,type,name)\
+  strcpy(z_kou[S_KIKI][no].name_c, name) ;\
+  z_kou[S_KIKI][no].len_s  = len ;\
+  z_kou[S_KIKI][no].type_s = type
+
+#define KS_KouSet(no,len,type,name)\
+  strcpy(z_kou[S_KESO][no].name_c, name) ;\
+  z_kou[S_KESO][no].len_s  = len ;\
+  z_kou[S_KESO][no].type_s = type
+
+  short        kind_s, pos_s, last_s ;          /*                           */
+  int          i ;                              /*                           */
+
+  memset(z_kou, 0, sizeof(z_kou)) ;             /*                           */
+                                                /* �@�퍀�ڒ�`              */
+  KK_KouSet(KK_KOBETU,  2,  S_DIO_1, "�ʂm�n"            ) ;
+//  KK_KouSet(KK_KEKINO,  3,  S_DIO_1, "�v��ԍ�"            ) ;
+  KK_KouSet(KK_KEKINO,  4,  S_DIO_1, "�v��ԍ�"            ) ;	// SM002 CHG
+  KK_KouSet(KK_TAG_NO,  8,  S_DIO_1, "�^�O�ԍ�"            ) ;
+  KK_KouSet(KK_SETUNM,  8,  S_DIO_1, "�ݔ���"              ) ;
+  KK_KouSet(KK_SETUID,  3,  S_DIO_1, "�ݔ��h�c"            ) ;	// TA001 (2��3)
+  KK_KouSet(KK_TAG_NM, 16,  S_DIO_1, "�^�O����"            ) ;	// TA001 (12��16)
+  KK_KouSet(KK_D_TYPE,  3,  S_DIO_A, "�f�[�^�^�C�v"        ) ;
+  KK_KouSet(KK_DOSAON,  8,  S_DIO_A, "���얼�n�m"          ) ;
+  KK_KouSet(KK_DOSAOF,  6,  S_DI_A,  "���얼�n�e�e"        ) ;
+  KK_KouSet(KK_SHORAI,  1,  S_DIO_A, "����"                ) ;
+  KK_KouSet(KK_DOSA_S,  1,  S_DI_A,  "��ʓ���"            ) ;
+  KK_KouSet(KK_KOSHOS,  1,  S_DI_A,  "��ʌ̏�"            ) ;
+  KK_KouSet(KK_HYOJIH,  1,  S_DI_A,  "�\������"            ) ;
+  KK_KouSet(KK_KEIHON,  1,  S_DI_A,  "�x��m�n"            ) ;
+  KK_KouSet(KK_KANSLV,  1,  S_DI_A,  "�Ď����x��"          ) ;
+  KK_KouSet(KK_GUIDNO,  3,  S_DI_A,  "�K�C�_���X�m�n"      ) ;
+  KK_KouSet(KK_MSGONF,  1,  S_DI_A,  "���b�Z�[�W�s�v�n�m"  ) ;
+  KK_KouSet(KK_MSGOFF,  1,  S_DI_A,  "���b�Z�[�W�s�v�n�e�e") ;
+  KK_KouSet(KK_FUSIYO,  1,  S_DIO_A, "�s�g�p"              ) ;
+  KK_KouSet(KK_SETTEN,  1,  S_DI_A,  "�ړ_���"            ) ;
+  KK_KouSet(KK_IOADRR,  1,  0,       "���o�̓A�h���X"      ) ;
+  KK_KouSet(KK_O_JIDO,  1,  S_DO_A,  "���������I������"    ) ;
+  KK_KouSet(KK_O_FUDO,  1,  S_DO_A,  "�����s�����Ď�"      ) ;
+  KK_KouSet(KK_O_TAGN,  8,  S_DO_A,  "�����^�O�ԍ�"        ) ;
+  KK_KouSet(KK_O_TYPE,  3,  S_DO_A,  "�����f�[�^�^�C�v"    ) ;
+  KK_KouSet(KK_O_DIRC,  3,  S_DO_A,  "��������"            ) ;
+  KK_KouSet(KK_L_TAGN,  8,  S_DO_1,  "�I���^�O�ԍ�"        ) ;
+  KK_KouSet(KK_L_TYPE,  3,  S_DO_1,  "�I���f�[�^�^�C�v"    ) ;
+  KK_KouSet(KK_L_DIRC,  3,  S_DO_1,  "�I�����"            ) ;
+  KK_KouSet(KK_PALSET,  3,  0,       "�o�̓p���X����"      ) ;
+  KK_KouSet(KK_IJOSHU,  1,  S_DI_1,  "�ُ��ʎ��"        ) ;
+  KK_KouSet(KK_IJOGRP,  4,  S_DI_1,  "�ُ��ʔԍ�"        ) ;	// TA002 (3��4)
+  KK_KouSet(KK_GRP_NO,  3,  S_DI_1,  "�b�q�s�O���t�B�b�N"  ) ;
+  KK_KouSet(KK_CTL_NO,  3,  S_DI_1,  "�b�q�s����"          ) ;
+  KK_KouSet(KK_TRD_NO,  4,  S_DI_1,  "�b�q�s�g�����h"      ) ;	// TA001 (3��4)
+  KK_KouSet(KK_KYODOU,  1,  S_DO_1,  "�����o��"            ) ;
+  KK_KouSet(KK_BIKORN,  1,  S_DIO_A, "���l"                ) ;
+//  KK_KouSet(KK_ONSENO,  1,  S_DI_A,  "�����ԍ�"            ) ;
+  KK_KouSet(KK_ONSENO,  3,  S_DI_A,  "�����ԍ�"            ) ;  // SM001 CHG
+  KK_KouSet(KK_SK_DIR,  3,  S_DI_A,  "�ώZ����"            ) ;
+  KK_KouSet(KK_NAISHU,  2,  S_DI_A,  "�������"            ) ;	// TA001 ("S_DI_1"��"S_DI_A")
+  KK_KouSet(KK_DDI_NO,  2,  S_DI_A,  "����DI�ԍ�"          ) ;
+  KK_KouSet(KK_L4TAGN,  8,  S_DIO_1, "�I���^�O�ԍ�"        ) ;
+  KK_KouSet(KK_L4TYPE,  3,  S_DIO_1, "�I���f�[�^�^�C�v"    ) ;
+  KK_KouSet(KK_L4DIRC,  3,  S_DIO_1, "�I�����"            ) ;
+  KK_KouSet(KK_O_TIME,  3,  S_DO_A,  "�����Ď�����"        ) ;  // SM001 ADD
+
+                                                /* �v�����ڒ�`              */
+//  KS_KouSet(KS_KEKINO,  3,  0, "�v��ԍ�"            ) ;
+  KS_KouSet(KS_KEKINO,  4,  0, "�v��ԍ�"            ) ;        // SM002 CHG
+  KS_KouSet(KS_KEKISH,  4,  0, "�v����"            ) ;
+  KS_KouSet(KS_TAG_NO,  8,  0, "�^�O�ԍ�"            ) ;
+  KS_KouSet(KS_SETUNM,  8,  0, "�ݔ���"              ) ;
+  KS_KouSet(KS_SETUID,  3,  0, "�ݔ��h�c"            ) ;		// TA001 (2��3)
+  KS_KouSet(KS_TAG_NM, 16,  0, "�^�O����"            ) ;		// TA001 (12��16)
+  KS_KouSet(KS_UNITNM,  6,  0, "�P��"                ) ;
+  KS_KouSet(KS_SHORAI,  1,  0, "��������"            ) ;
+  KS_KouSet(KS_SPAN_V, 13,  0, "�X�p��"              ) ;		// TA004 (8��13)
+  KS_KouSet(KS_SCALEV, 17,  0, "�X�P�[��"            ) ;		// TA004 (12��17)
+  KS_KouSet(KS_KEIHON,  1,  0, "�x��m�n"            ) ;
+  KS_KouSet(KS_KANSLV,  1,  0, "�Ď����x��"          ) ;
+  KS_KouSet(KS_GUIDNO,  3,  0, "�K�C�_���X�m�n"      ) ;
+  KS_KouSet(KS_IJOSHU,  1,  0, "�ُ��ʎ��"        ) ;
+  KS_KouSet(KS_IJOGRP,  4,  0, "�ُ��ʔԍ�"        ) ;		// TA001 (3��4)
+  KS_KouSet(KS_GRP_NO,  3,  0, "�b�q�s�O���t�B�b�N"  ) ;
+  KS_KouSet(KS_CTL_NO,  3,  0, "�b�q�s����"          ) ;
+  KS_KouSet(KS_TRD_NO,  4,  0, "�b�q�s�g�����h"      ) ;		// TA001 (3��4)
+  KS_KouSet(KS_NIPPOU,  1,  0, "���M���O����"        ) ;
+  KS_KouSet(KS_NISSHI,  1,  0, "���M���O����"        ) ;
+  KS_KouSet(KS_GEPPOU,  1,  0, "���M���O����"        ) ;
+  KS_KouSet(KS_NENPOU,  1,  0, "���M���O�N��"        ) ;
+  KS_KouSet(KS_KYODOU,  1,  0, "�����o��"            ) ;
+	KS_KouSet(KS_BIKORN,  1,  4, "���l"                ) ;
+  KS_KouSet(KS_L_TAGN,  8,  0, "�o�̓��b�N�^�O�ԍ�"  ) ;
+  KS_KouSet(KS_L_TYPE,  1,  0, "�o�̓��b�N�r�b�g"    ) ;
+  KS_KouSet(KS_L_DIRC,  3,  0, "�o�̓��b�N�L���ړ_"  ) ;
+  KS_KouSet(KS_J_SHUB,  4,  0, "�����t���v�����"    ) ;
+  KS_KouSet(KS_J_TAGN,  8,  0, "�����t���v���^�O�ԍ�") ;
+  KS_KouSet(KS_J_TYPE,  3,  0, "�����t���v���r�b�g"  ) ;
+  KS_KouSet(KS_J_DIRC,  3,  0, "�����t���v���L���ړ_") ;
+  KS_KouSet(KS_A_TAGN,  8,  0, "�ǉ���`�^�O�m�n"    ) ;
+  KS_KouSet(KS_A_TYPE,  1,  0, "�ǉ���`�r�b�g"      ) ;
+  KS_KouSet(KS_A_DIRC,  3,  0, "�ǉ���`�L���ړ_"    ) ;
+  KS_KouSet(KS_U_SHUB,  2,  0, "�^�]���Ԏ��"        ) ;
+  KS_KouSet(KS_DEM_NO,  1,  0, "�f�}���h��`��ʔԍ�") ;
+  KS_KouSet(KS_DEM_KO,  2,  0, "�f�}���h��`����"    ) ;
+  KS_KouSet(KS_H_SHUB,  3,  0, "�q�X�g�����"        ) ;
+  KS_KouSet(KS_H_SSHU,  3,  0, "�q�X�g���T�u���"    ) ;
+  KS_KouSet(KS_CLIPSH,  2,  0, "�N���b�v�������"    ) ;
+  KS_KouSet(KS_MARUME,  4,  0, "�ۂߏ���"            ) ;
+  KS_KouSet(KS_S_KETA,  2,  0, "��������"            ) ;
+  KS_KouSet(KS_TIMING,  4,  0, "�X�V�^�C�~���O"      ) ;
+  KS_KouSet(KS_Z_KESN,  3,  0, "�O�f�[�^��������"    ) ;
+  KS_KouSet(KS_Z_AVRG,  4,  0, "�O�f�[�^���ϒl�Z�o"  ) ;
+  KS_KouSet(KS_INTIAL,  2,  0, "�C�j�V�����p�^�[��"  ) ;
+  KS_KouSet(KS_HR_DAT,  2,  0, "���f�[�^���W"        ) ;
+  KS_KouSet(KS_HR_SHU,  4,  0, "���f�[�^���W���"    ) ;		// TA001�i3��4�j
+  KS_KouSet(KS_DY_DAT,  2,  0, "���f�[�^���W"        ) ;
+  KS_KouSet(KS_DY_DA1,  2,  0, "����\�f�[�^�P���W"  ) ;
+  KS_KouSet(KS_DY_SH1,  3,  0, "����\�f�[�^�P���"  ) ;
+  KS_KouSet(KS_DY_DA2,  2,  0, "����\�f�[�^�Q���W"  ) ;
+  KS_KouSet(KS_DY_SH2,  3,  0, "����\�f�[�^�Q���"  ) ;
+  KS_KouSet(KS_DY_DA3,  2,  0, "����\�f�[�^�R���W"  ) ;
+  KS_KouSet(KS_DY_SH3,  3,  0, "����\�f�[�^�R���"  ) ;
+  KS_KouSet(KS_SK_DAT,  3,  0, "���v�f�[�^����"      ) ;
+  KS_KouSet(KS_SK_TIM,  3,  0, "���v�f�[�^���ԃR�[�h") ;
+  KS_KouSet(KS_WK_DAT,  3,  0, "�T�f�[�^���W"        ) ;
+  KS_KouSet(KS_TK_SHU,  3,  0, "������f�[�^�T�ԍ�"  ) ;
+  KS_KouSet(KS_TK_DAY,  3,  0, "������f�[�^���t"    ) ;
+  KS_KouSet(KS_MT_DAT,  2,  0, "���f�[�^���W"        ) ;
+  KS_KouSet(KS_MT_SHU,  2,  0, "���f�[�^���W���"    ) ;
+  KS_KouSet(KS_YR_DAT,  2,  0, "�N�f�[�^���W"        ) ;
+  KS_KouSet(KS_YR_SHU,  3,  0, "�N�f�[�^���W���"    ) ;
+  KS_KouSet(KS_KK_SHU,  3,  0, "���H�������"        ) ;
+  KS_KouSet(KS_10_TIM,  2,  0, "�P�O�b���Z�^�C�~���O") ;
+  KS_KouSet(KS_1M_TIM,  2,  0, "�P�����Z�^�C�~���O"  ) ;
+  KS_KouSet(KS_HR_TIM,  2,  0, "�����Z�^�C�~���O"    ) ;
+  KS_KouSet(KS_DY_TIM,  2,  0, "�����Z�^�C�~���O"    ) ;
+  KS_KouSet(KS_WK_TIM,  2,  0, "�T���Z�^�C�~���O"    ) ;
+  KS_KouSet(KS_MT_TIM,  2,  0, "�����Z�^�C�~���O"    ) ;
+  KS_KouSet(KS_YR_TIM,  2,  0, "�N���Z�^�C�~���O"    ) ;
+  KS_KouSet(KS_HR_SAI,  2,  0, "���Čv�Z���x��"      ) ;
+  KS_KouSet(KS_DY_SAI,  2,  0, "���Čv�Z���x��"      ) ;
+  KS_KouSet(KS_WK_SAI,  2,  0, "�T�Čv�Z���x��"      ) ;
+  KS_KouSet(KS_MT_SAI,  2,  0, "���Čv�Z���x��"      ) ;
+  KS_KouSet(KS_YR_SAI,  2,  0, "�N�Čv�Z���x��"      ) ;
+#ifdef ADC7DSVS
+  KS_KouSet(KS_DY_CHG,  1,  0, "���ւ����"        ) ;  // SM003 ADD
+#endif                                          /*                           */
+  KS_KouSet(KS_A_KTAG,  8,  0, "�ǉ���`���NO.(�h)"  ) ;  // KS001 ADD
+  KS_KouSet(KS_A_SHNO,  1,  0, "���W����NO.(�h)"     ) ;  // KS001 ADD
+  KS_KouSet(KS_A_CLNO,  1,  0, "����ލ���NO.(�h)"    ) ;  // KS001 ADD
+  KS_KouSet(KS_R_SHUB,  2,  0, "�J�ʍő���(�h)"    ) ;  // KS001 ADD
+  KS_KouSet(KS_TXTKEI,  2,  0, "�e�L�X�g�v�팅��"    ) ;  // YI130605
+                                                /*                           */
+  for (kind_s=S_KIKI; kind_s<=S_KESO; kind_s++) {
+    for (last_s=S_KOUCOLM-1; last_s>0; last_s--)/*                           */
+      if (z_kou[kind_s][last_s].len_s > 0) break ;
+    pos_s = 0 ;                                 /*                           */
+    for (i=1; i<=last_s; i++) {                 /*                           */
+       z_kou[kind_s][i].pos_s = pos_s ;         /*                           */
+       if (z_kou[kind_s][i].len_s == 0)         /*                           */
+         z_kou[kind_s][i].len_s = 1 ;           /*                           */
+       pos_s += z_kou[kind_s][i].len_s*2 + 1 ;  /*                           */
+    }                                           /*  (for i)                  */
+  }                                             /* (for kind_s)              */
+                                                /*                           */
+                                                /* ���L���Ďg�p����   ��KS001*/
+                                                /*       ���ڈʒu�̐ݒ�      */
+  z_kou[S_KESO][KS_A_KTAG].pos_s =              /*  �ǉ���`���NO.(�h)       */
+    z_kou[S_KESO][KS_A_TAGN].pos_s ;            /*                           */
+  z_kou[S_KESO][KS_A_SHNO].pos_s =              /*  ���W����NO.(�h)          */
+    z_kou[S_KESO][KS_A_TYPE].pos_s ;            /*                           */
+  z_kou[S_KESO][KS_A_CLNO].pos_s =              /*  ����ލ���NO.(�h)         */
+    z_kou[S_KESO][KS_A_TYPE].pos_s ;            /*                           */
+  z_kou[S_KESO][KS_R_SHUB].pos_s =              /*  �J�ʍő���(�h)         */
+    z_kou[S_KESO][KS_U_SHUB].pos_s ;            /*                    ��KS001*/
+                                                /*                           */
+}                                               /*                           */

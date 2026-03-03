@@ -1,0 +1,2584 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+// *****************************************************************************
+// *                Copyright Meidensha Corporation 2015                       *
+// *  ������Ж��d�ɂ͓��Ђɂ���Ē񋟂���Ȃ����u��ł̓��\�t�g�E�F�A�̎g�p   *
+// *  �ɑ΂��ӔC��S�������܂���B                                             *
+// *****************************************************************************
+//
+//      �v���O������:  jorepfl
+//      �^�X�N��    :  ���[�f�[�^�t�@�C���`��
+//      �H  ��      :  
+//      �V�X�e����  :  
+//      �o�[�W����  :  
+//      �쐬��      :  ��t�@����
+//      �쐬�N����  :  2015�N  7��  7��
+//      �C������    :  2016�N  3�� 14�� SCC��t CGW_DEV
+//                     �ECGW�f�o�C�X�Ή�
+//                     2018�N 10�� 29�� SCC�ђ�
+//                     �E�l�C�e�B�u64bit�Ή�(�����L�[�FOPS5000_64bit)
+//      �@�\�T�v    : �{�^�X�N�́A���[�f�[�^�`�����t�@�C���Ɏw�肳�ꂽ
+//                    �`�����Ɋ�Â��A�O���̓��񒠕[�f�[�^���쐬�����
+//                    ���p���uCG1000�ɑ΂�FTP�ɂ��t�@�C���]�����s���B
+//                    �܂��AASC�f�[�^�Z���^����̒��[�f�[�^�đ��v��������
+//                    ���邩�Ď����A�v�����ꂽ���[�f�[�^���쐬���A���p���u
+//                    CG1000�ɑ΂�FTP�ɂ��t�@�C���]�����s���B
+//
+//      ���񎖍�    :
+//------------------------------------------------------------------------------
+//�C���N���[�h��`
+//------------------------------------------------------------------------------
+#define GROBAL_DEF                                      //VS8000�W��
+#define _CRT_SECURE_NO_WARNINGS
+
+#include        "sysdef.h"                              //VS8000�W��
+#include        "jorepfl.h"                             //�^�X�N������
+#include        <stdio.h>                               //�W�����o��
+#include        <memory.h>                              //����������֐�
+#include        "tar32api.h"
+#include        "lib_ftpdll.h"
+#include        <direct.h>
+
+//
+//------------------------------------------------------------------------------
+//�^�X�N���V���{��
+//------------------------------------------------------------------------------
+
+// *****************************************************************************
+// *�h�c      *��  ��                                      *�֐���             *
+// *  �O�D�O  *    ���C������                              * main              *
+// *****************************************************************************
+//
+//  �@�@�\:
+//
+//     ���[�f�[�^�t�@�C���`���^�X�N�̃��C�����W���[���ł���B
+//
+//  �R�[�����O�V�[�P���X:
+//     void main()
+//
+//  ���̓f�[�^:
+//     �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �Ȃ�
+//
+//------------------------------------------------------------------------------
+void main()
+{
+  int         size_i ;                  //�p�t�d��M�o�b�t�@�T�C�Y
+  int         rsts_i ;                  //���^�[���X�e�[�^�X
+
+  rsts_i = f_rep100();
+  if (rsts_i != RS_SUC) {               //���^�X�N�C�j�V��������
+    exit(1);                            //   �{�^�X�N�����I��
+  }
+  while(1) {                            //�i�v���[�v
+    size_i = S_QSIZ ;                   //��M�T�C�Y�擾
+    memset(&z_maindeque, 0, sizeof(z_maindeque) ) ; //�L���[�f�[�^������
+
+    rsts_i = F_quemgr((int)QUE_DEQ_P,   //�p�t�d��M
+               (short)Q_JREPFL_KEY1,    //���[�f�[�^�t�@�C���`���p�t�d �j�d�x
+               (void *)&z_maindeque.qh,
+               &size_i ) ;
+
+    if (rsts_i == RS_SUC){              //�p�t�d��M����
+      // ������U�蕪��
+      switch (z_maindeque.qh.func_s ) {
+        case QF_JREPFL_REPCHG_P:        //���[�f�[�^�ύX�ʒm
+          f_rep200();
+          break;
+        case QF_JREPFL_BKUPTIME_P:      //�o�b�N�A�b�v�������B�ʒm
+          f_rep300();
+          break;
+        case QF_JREPFL_REREQTIME_P:     //�đ��v���m�F�������B�ʒm
+          f_rep400();
+          break;
+        case QF_JREPFL_CSVSV_P:         //���[CSV�t�@�C���ۑ������ʒm
+          f_rep500();
+          break;
+        case QF_JREPFL_TIMEUP_P:        //�^�C���A�E�g�������B�ʒm
+          f_rep600();
+          break;
+        case QF_JREPFL_CGFILETIME_P:    //CG1000�t�@�C���L���m�F�������B�ʒm
+          f_rep700();
+          break;
+        case QF_JREPFL_CNFREAD_P:       //�ǂݒ���QUE��M
+          f_rep800();
+          break;
+        default :                       //�p�t�d�t�@���N�V�����s��
+          (void)F_errlog(0x131, 0x0001, (int)z_maindeque.qh.func_s, (int)z_maindeque.qh.sdpr_s, 0, 0,
+              "�p�t�d�t�@���N�V�����s��");
+      }
+    } else {                            //�p�t�d��M���s
+      (void)F_errlog(0x131, 0x0002, (int)z_maindeque.qh.func_s, (int)z_maindeque.qh.sdpr_s, 0, 0,
+          "�p�t�d��M���s");
+    }
+  }
+}
+
+// *****************************************************************************
+// *�h�c      *��  ��                                      *�֐���             *
+// *  �P�D�O  *    ���^�X�N�C�j�V��������                  * f_rep100          *
+// *****************************************************************************
+//
+//  �@�@�\:
+//
+//     �^�X�N�̏��������s���֐��ł���B
+//
+//  �R�[�����O�V�[�P���X:
+//     int f_rep100();
+//
+//  ���̓f�[�^:
+//     �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �����iRS_SUC�j�A���s�iRS_ERR�j
+//
+//------------------------------------------------------------------------------
+int  f_rep100()
+{
+  int           rsts_i;            //���^�[���X�e�[�^�X
+  int           loop1_i;
+
+  rsts_i = RS_SUC;
+  //�^�X�N�W������������
+  F_init(TN_JOREPFL, (int)NULL, (int)NULL);
+  //CGW�ڑ��I�v�V�������������̏ꍇ�́A�����I��
+  if(!(AF_sys->opt4_i & AF_OPT4_CGW_P)) {
+    (void)F_errlog(0x1002, 0x1001, 0, 0, 0, 0, "�b�f�v�ڑ��@�\������");
+    return RS_ERR;
+  }
+
+  //�^�X�N���O���[�o���ϐ��̏�����
+  z_prog_i = 0 ;
+  z_req_i = 0 ;
+  z_time_s = 0;
+  z_reqend_i = SS_OFF_P;
+  z_sheetmax_i = 0;
+  memset(&z_psth_bkup, 0, sizeof(z_psth_bkup));
+  memset(&z_psth_rereq, 0, sizeof(z_psth_rereq));
+  memset(&z_sortlist, 0, sizeof(z_sortlist));
+  memset(&z_csvlist, 0, sizeof(z_csvlist));
+  memset(&z_tarlist, 0, sizeof(z_tarlist));
+  // �ۑ��G���A���N���A����
+  memset(&JF_repfl[0], 0, sizeof(JF_repfl[0]));
+  memset(&JU_backup[0], 0, sizeof(JU_backup[0]));                //�o�b�N�A�b�v
+  for (loop1_i = 0; loop1_i < JU_RESEND_NUM_N+1; loop1_i++) {
+    memset(&JU_resend[loop1_i], 0, sizeof(JU_resend[loop1_i]));  //�đ��v��
+    memset(&JU_repchg[loop1_i], 0, sizeof(JU_repchg[loop1_i]));  //���[�f�[�^�ύX
+  }
+
+  //�t�H���_�p�X�����ϐ�����擾(�o�b�N�A�b�v�pCSV�t�@�C���o�̓t�H���_)
+  rsts_i = GetEnvironmentVariable(S_PATH_BKUP, z_psth_bkup, sizeof(z_psth_bkup));
+  if (rsts_i == 0) {
+    (void)F_errlog(0x150, 0x1002, rsts_i, 0, 0, 0, "PATH_CGW_BACKUP�F�p�X�擾���s");
+    return RS_ERR;
+  }
+  //�t�H���_�p�X�����ϐ�����擾(�đ��v���pCSV�t�@�C���o�̓t�H���_)
+  rsts_i = GetEnvironmentVariable(S_PATH_REREQ, z_psth_rereq, sizeof(z_psth_rereq));
+  if (rsts_i == 0) {
+    (void)F_errlog(0x150, 0x1003, rsts_i, 0, 0, 0, "PATH_CGW_RESEND�F�p�X�擾���s");
+    return RS_ERR;
+  }
+  //�t�H���_�p�X�����ϐ�����擾(�đ��v���ptxt�t�@�C���o�̓t�H���_)
+  rsts_i = GetEnvironmentVariable(S_FILE_PATH, z_psth_file, sizeof(z_psth_file));
+  if (rsts_i == 0) {
+    (void)F_errlog(0x150, 0x1009, rsts_i, 0, 0, 0, "PATH_FILE�F�p�X�擾���s");
+    return RS_ERR;
+  }
+
+  strcat(z_psth_file,"\\");
+
+  //���[�V�[�g������擾
+  z_sheetmax_i = CNF_MAXBPAG_N;
+
+  //���[�f�[�^�t�@�C���`�����ǂݍ��ݏ���
+  rsts_i = fl_rep01();
+  if (rsts_i != RS_SUC) {
+    return RS_ERR;
+  }
+  ////FTP�ڑ��m�F										// CGW_DEV �� del
+  //rsts_i = f_rep110();
+  //if (rsts_i != RS_SUC) {
+  //  return RS_ERR;
+  //}													// CGW_DEV �� del
+  //�����X�P�W���[���o�^
+  rsts_i = f_rep120();
+  if (rsts_i != RS_SUC) {
+    return RS_ERR;
+  }
+
+  //�����������t���O���N���A
+  AU_task[TN_JOREPFL].prf_i &= (int)(~AU_INIT_P);
+
+  //FTP�ڑ��m�F											// CGW_DEV �� mod
+  rsts_i = f_rep110();
+  if (rsts_i != RS_SUC) {
+    // �f�o�C�X�ُ�ʒm���M �f�o�C�X�ُ픭��
+    fl_rep09(SS_ON_P);
+  } else {
+    // �f�o�C�X�ُ�ʒm���M �f�o�C�X�ُ한�A
+    fl_rep09(SS_OFF_P);
+  }														// CGW_DEV �� mod
+
+  return RS_SUC;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//          FTP�ڑ��m�F����
+//          FTP�ڑ��m�F���s���B
+//  �߂�l:
+//     �����iRS_SUC�j�A���s�iRS_ERR�j
+//------------------------------------------------------------------------------
+int f_rep110()
+{
+  int       rsts_i;            //���^�[���X�e�[�^�X
+  rsts_i = RS_SUC;
+
+  // FTP�ڑ��m�F
+  rsts_i = F_CgwConnect(JF_repfl->ipaddr_c, JF_repfl->ftpusrid_c, JF_repfl->ftpusrps_c, JF_repfl->port_s);
+  if (rsts_i != RS_SUC) {
+    (void)F_errlog(0x1002, 0x1101, rsts_i, 0, 0, 0, "FTP�ڑ��m�F���s");
+    return RS_ERR;
+  }
+  F_CgwClose();
+
+  return RS_SUC;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        �����X�P�W���[���o�^����
+//        ���ԊǗ��փX�P�W���[���o�^���s���B
+//          �E�o�b�N�A�b�v����
+//          �E�đ��v���m�F����
+//  �߂�l:
+//     �����iRS_SUC�j�A���s�iRS_ERR�j
+//------------------------------------------------------------------------------
+int f_rep120()
+{
+  int                    rsts_i;            //���^�[���X�e�[�^�X
+  struct T_AU_SCHED_TIME sched;
+
+  rsts_i = RS_SUC;
+
+  //�ǂݒ������A�����X�P�W���[�����~
+  fl_rep08();
+
+  memset(&sched, 0, sizeof(sched));
+  // �o�b�N�A�b�v�����X�P�W���[���o�^
+  sched.day_s  = SS_ON_P;
+  sched.hour_s = JF_repfl->bkstart.ct_hour_s;
+  sched.min_s  = JF_repfl->bkstart.ct_min_s;
+  sched.sec_s  = JF_repfl->bkstart.ct_sec_s;
+  rsts_i = fl_rep02(QF_AOSCHE_ENTRY_P, QF_JREPFL_BKUPTIME_P, 0, &sched);
+  if (rsts_i != RS_SUC) {
+    (void)F_errlog(0x1002, 0x1201, rsts_i, 0, 0, 0, "�o�b�N�A�b�v�����X�P�W���[���o�^���s");
+    return RS_ERR;
+  }
+  memset(&sched, 0, sizeof(sched));
+  // �đ��v���m�F�����X�P�W���[���o�^
+  sched.min_s  = JF_repfl->resendcycle_s;
+  rsts_i = fl_rep02(QF_AOSCHE_ENTRY_P, QF_JREPFL_REREQTIME_P, 0, &sched);
+  if (rsts_i != RS_SUC) {
+    (void)F_errlog(0x1002, 0x1202, rsts_i, 0, 0, 0, "�đ��v���m�F�����X�P�W���[���o�^���s");
+    return RS_ERR;
+  }
+  return RS_SUC;
+}
+
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        ���[�f�[�^�ύX�ʒm��M������
+//        ���[�f�[�^�ύX�ʒm���e���f�[�^�x�[�X�֓W�J���A
+//        ���[�f�[�^�ύX�������s���B
+//------------------------------------------------------------------------------
+void f_rep200()
+{
+  short         mod_s;          //system mode inf
+  int           rsts_i;
+
+  mod_s = AU_sys->smod_s;        //���ݎ��n�^�]���[�h���擾���A
+  if ((mod_s != AU_MAS_P)  &&    //���݉^�]���[�h���}�X�^�A�}�X�^������
+      (mod_s != AU_MASE_P) &&    //�����A���������� �ȊO�́A�������Ȃ�
+      (mod_s != AU_TST_P)  &&    //
+      (mod_s != AU_TSTE_P)) {    //
+    return;
+  }
+
+  //���[�f�[�^�ύX�ʒm���e�i�[����
+  f_rep210();
+
+  //�v����M�t���O�ɁA���[�f�[�^�ύX�ʒm��M���ݒ肳��Ă��Ȃ��ꍇ�A�����I��
+  //(�v����M�t���O�̐ݒ�́A���[�f�[�^�ύX�ʒm���e�i�[�������ōs��)
+  if (!(z_req_i & S_CHKREQ)) {
+    return;
+  }
+  //�������t���O���ݒ肠��̏ꍇ�A�����I��
+  if (z_prog_i != 0) {
+    return;
+  }
+  //���[�f�[�^�ύX����
+  rsts_i = f_rep220();
+  if (rsts_i != RS_SUC) {
+    fl_rep06();     // �G���[���͊�������
+  }
+
+  return;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        ���[�f�[�^�ύX�ʒm���e�i�[����
+//        ���[�f�[�^�ύX�ʒm���e���f�[�^�x�[�X�֓W�J����
+//------------------------------------------------------------------------------
+void f_rep210()
+{
+  short         chgseetno_s[JF_REPFL_REPNUM_N];//�ۑ��G���A�̃V�[�g�ԍ�
+  int           loop1_i,loop2_i;               //���[�v�J�E���^
+  int           addflg_i;                      //�ǉ��t���O
+  int           updflg_i;                      //�X�V�t���O
+
+  //���[�f�[�^�ύX�ʒm�̃V�[�g�ԍ����A�o�b�N�A�b�v�Ώۂ̃V�[�g�ԍ����`�F�b�N
+  addflg_i = SS_OFF_P;
+  memset(&chgseetno_s, 0, sizeof(chgseetno_s));    //�ۑ����e��������
+  //���[�f�[�^�ύX�ʒm�̃V�[�g�ԍ����A�o�b�N�A�b�v�Ώۂ̃V�[�g�ԍ����`�F�b�N
+  for (loop1_i = 0; loop1_i < JF_REPFL_REPNUM_N; loop1_i++) {
+    chgseetno_s[loop1_i] = z_maindeque.chk.seetno_s[loop1_i] & JF_repfl->bksheetno_s[loop1_i];
+    if (chgseetno_s[loop1_i] != 0) {
+      addflg_i = SS_ON_P;
+    }
+  }
+  //�ǉ�����V�[�g�ԍ������݂��Ȃ��ꍇ�A�������I��
+  if (addflg_i != SS_ON_P) {
+    return;
+  }
+
+  //���[�f�[�^�ύX�ʒm���ۑ��G���A�ɕۑ�
+  updflg_i = SS_OFF_P;
+  //���[�f�[�^�ύX�ʒm���ۑ��G���A�ɓ����t�̃f�[�^�����݂���ꍇ�A
+  //�V�[�g�ԍ��̂ݒǉ�����
+  for (loop1_i = 1; loop1_i <= JU_REPCHG_NUM_N; loop1_i++) {
+    if ((z_maindeque.chk.dtime.ct_year_s == JU_repchg[loop1_i].date.ct_year_s) &&
+        (z_maindeque.chk.dtime.ct_mon_s  == JU_repchg[loop1_i].date.ct_mon_s) && 
+        (z_maindeque.chk.dtime.ct_day_s  == JU_repchg[loop1_i].date.ct_day_s)) {
+      updflg_i = SS_ON_P;
+      for (loop2_i = 0; loop2_i < JF_REPFL_REPNUM_N; loop2_i++) {
+        JU_repchg[loop1_i].sheet_s[loop2_i] |= chgseetno_s[loop2_i];
+      }
+      break;
+    }
+  }
+  //�����t�̃f�[�^�����݂��Ȃ��ꍇ�́A�ǉ�����
+  if (updflg_i != SS_ON_P) {
+    for (loop1_i = 1; loop1_i <= JU_REPCHG_NUM_N; loop1_i++) {
+      if (JU_repchg[loop1_i].date.ct_day_s != 0) {
+        continue;
+      } else {
+        memset(&JU_repchg[loop1_i], 0, sizeof(JU_repchg[loop1_i]));
+        JU_repchg[loop1_i].date.ct_year_s = z_maindeque.chk.dtime.ct_year_s;
+        JU_repchg[loop1_i].date.ct_mon_s  = z_maindeque.chk.dtime.ct_mon_s;
+        JU_repchg[loop1_i].date.ct_day_s  = z_maindeque.chk.dtime.ct_day_s;
+        memcpy(&JU_repchg[loop1_i].sheet_s, chgseetno_s, sizeof(JU_repchg[loop1_i].sheet_s));
+        break;
+      }
+    }
+  }
+
+  //�v����M�t���O�ɁA���[�f�[�^�ύX�ʒm��M��ݒ肷��
+  z_req_i |= S_CHKREQ;
+
+  return;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//			���[�f�[�^�ύX����
+//          ���[�f�[�^�쐬�v���������s���B
+//  �߂�l:
+//     �����iRS_SUC�j�A���s�iRS_ERR�j
+//------------------------------------------------------------------------------
+int f_rep220()
+{
+  int           rsts_i;
+
+  rsts_i = RS_SUC;
+
+  z_prog_i = S_CHKPROC;     // �������t���O�ݒ�
+
+  if (z_req_i & S_CHKREQ) { // ���[�f�[�^�ύX�J�n���̏ꍇ
+    z_req_i &= ~S_CHKREQ;   // �v����M�t���O����
+  }
+
+  //���[�f�[�^�쐬�v������
+  rsts_i = fl_rep05(QL_GSAV_CHCH_P);
+  if (rsts_i != RS_SUC) {
+    errlog(QL_GSAV_CHCH_P, 0x1002, 0x2201, rsts_i, 0, 0, 0, "���[�f�[�^�ύX�ʒmCSV�쐬�v�����s");
+    return RS_ERR;
+  }
+  return RS_SUC;
+}
+
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        �o�b�N�A�b�v�������B�ʒm��M������
+//        �o�b�N�A�b�v�������s��
+//------------------------------------------------------------------------------
+void f_rep300()
+{
+  short         mod_s;          //system mode inf
+  int           rsts_i;
+
+  mod_s = AU_sys->smod_s;        //���ݎ��n�^�]���[�h���擾���A
+  if ((mod_s != AU_MAS_P)  &&    //���݉^�]���[�h���}�X�^�A�}�X�^������
+      (mod_s != AU_MASE_P) &&    //�����A���������� �ȊO�́A�������Ȃ�
+      (mod_s != AU_TST_P)  &&    //
+      (mod_s != AU_TSTE_P)) {    //
+    return;
+  }
+  //�o�b�N�A�b�v�������̏ꍇ�́A�����I��
+  if (z_prog_i == S_BKUPPROC) {
+    return;
+  }
+
+  //�o�b�N�A�b�v���e�i�[����
+  rsts_i = f_rep310();
+  if (rsts_i != RS_SUC) {
+    return;
+  }
+  
+  //�v����M�t���O�ɁA�o�b�N�A�b�v�������B��M���ݒ肳��Ă��Ȃ��ꍇ�A�����I��
+  //(�v����M�t���O�̐ݒ�́A�o�b�N�A�b�v���e�i�[�������ōs��)
+  if (!(z_req_i & S_BKUPREQ)) {
+    return;
+  }
+
+  //�������t���O���ݒ肠��̏ꍇ�A�����I��
+  if (z_prog_i != 0) {
+    return;
+  }
+  //�o�b�N�A�b�v���[�쐬����
+  rsts_i = f_rep320();
+  if (rsts_i != RS_SUC) {
+    fl_rep06();     // �G���[���͊�������
+  }
+
+  return;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        �o�b�N�A�b�v���e�i�[����
+//        �o�b�N�A�b�v���e���f�[�^�x�[�X�֓W�J����
+//  �߂�l:
+//     �����iRS_SUC�j�A���s�iRS_ERR�j
+//------------------------------------------------------------------------------
+int f_rep310()
+{
+  time_t        makes_t ;                      //�쐬����(�b���P�ʂ̎���)
+  time_t        sec_t ;                        //�b���P�ʂ̎���
+  struct T_TIME timdat;                        //�����v�f
+  int           rsts_i;
+
+  rsts_i = RS_SUC;
+  //�O�����t�擾
+  rsts_i = F_timeget(&makes_t) ;            //���ݎ���(�b���P�ʂ̎���)�擾
+  if (rsts_i != RS_SUC) {
+    errlog(QL_GSAV_CHBA_P, 0x150, 0x3101, rsts_i, 0, 0, 0, "���ݎ���(�b���P�ʂ̎���)�擾���s");
+    return RS_ERR;
+  }
+  rsts_i = F_sectounit(&makes_t, &timdat);  //�b�������v�f�ϊ�
+  if (rsts_i != RS_SUC) {
+    errlog(QL_GSAV_CHBA_P, 0x150, 0x3102, rsts_i, 0, 0, 0, "�b�������v�f�ϊ����s");
+    return RS_ERR;
+  }
+  //  ���ւ�莞���ɂ��N�_���擾
+  if (timdat.ct_hour_s < AF_sys->chghour1_s) {
+    // �z���Ă��Ȃ��ꍇ
+    F_sptm(SS_LATE_P, makes_t, 1, SS_TU_DAY_P, &timdat);
+  } else if (timdat.ct_hour_s >= AF_sys->chghour1_s + S_HSTHB_MENPAT_P) {
+    // �z���Ă���ꍇ
+    F_sptm(SS_FUTR_P, makes_t, 1, SS_TU_DAY_P, &timdat);
+  }
+  //  �N�_���������v�f�b���ϊ�
+  rsts_i = F_unittosec(&timdat, &sec_t);
+  if (rsts_i != RS_SUC) {
+    errlog(QL_GSAV_CHBA_P, 0x150, 0x3103, rsts_i, 0, 0, 0, "�N�_�������v�f�b���ϊ����s");
+    return RS_ERR;
+  }
+  //  ����̓��t���擾
+  rsts_i = F_sptm(SS_LATE_P, sec_t, 1, SS_TU_DAY_P, &timdat);
+  if (rsts_i != RS_SUC) {
+    errlog(QL_GSAV_CHBA_P, 0x150, 0x3104, rsts_i, 0, 0, 0, "�O�����t�擾���s");
+    return RS_ERR;
+  }
+
+  //���[�f�[�^�t�@�C���`�����Œ�f�[�^�x�[�X �̃o�b�N�A�b�v����
+  //�o�b�N�A�b�v���ۑ��G���A�ɕێ�����
+  JU_backup->date.ct_year_s = timdat.ct_year_s;
+  JU_backup->date.ct_mon_s  = timdat.ct_mon_s;
+  JU_backup->date.ct_day_s  = timdat.ct_day_s;
+  memcpy(&JU_backup->sheet_s, JF_repfl->bksheetno_s, sizeof(JU_backup->sheet_s));
+  JU_backup->reqno_s = 0;
+
+  //�v����M�t���O�ɁA�o�b�N�A�b�v�������B��M��ݒ肷��
+  z_req_i |= S_BKUPREQ;
+
+  return RS_SUC;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        �o�b�N�A�b�v���[�쐬����
+//  �߂�l:
+//     �����iRS_SUC�j�A���s�iRS_ERR�j
+//------------------------------------------------------------------------------
+int f_rep320()
+{
+  struct T_TIME bkuptim;                //�o�b�N�A�b�v����
+  time_t        now_t;                  //���ݎ����b
+  time_t        bkup_t;                 //�o�b�N�A�b�v�����b
+  INT_PTR       diff_i;                 //��������
+  int           rsts_i;
+
+  rsts_i = RS_SUC;
+
+  z_prog_i = S_BKUPPROC;     // �������t���O�ݒ�
+
+  if (z_req_i & S_BKUPREQ) { // �o�b�N�A�b�v�J�n���̏ꍇ
+    // ���ݎ����擾
+    rsts_i = F_timeget(&now_t) ;
+    if (rsts_i != RS_SUC) {
+      errlog(QL_GSAV_CHBA_P, 0x150, 0x3201, rsts_i, 0, 0, 0, "���ݎ����擾���s");
+      return RS_ERR;
+    }
+    // �o�b�N�A�b�v�J�n�����擾
+    rsts_i = F_sptm(SS_LATE_P, now_t, 0, SS_TU_DAY_P, &bkuptim);
+    if (rsts_i != RS_SUC) {
+      errlog(QL_GSAV_CHBA_P, 0x150, 0x3202, rsts_i, 0, 0, 0, "�o�b�N�A�b�v�J�n�����擾���s");
+      return RS_ERR;
+    }
+    bkuptim.ct_hour_s = JF_repfl->bkstart.ct_hour_s;
+    bkuptim.ct_min_s  = JF_repfl->bkstart.ct_min_s;
+    bkuptim.ct_sec_s  = JF_repfl->bkstart.ct_sec_s;
+    // �o�b�N�A�b�v�J�n������b�ϊ�
+    rsts_i = F_unittosec(&bkuptim, &bkup_t);
+    if (rsts_i != RS_SUC) {
+      errlog(QL_GSAV_CHBA_P, 0x150, 0x3203, rsts_i, 0, 0, 0, "�o�b�N�A�b�v�J�n�����b�ϊ����s");
+      return RS_ERR;
+    }
+    // �b�P�ʂ̎��������Z�o
+    rsts_i = F_deft(now_t, bkup_t, 1, SS_TU_SEC_P, &diff_i);
+    if (rsts_i != RS_SUC) {
+      errlog(QL_GSAV_CHBA_P, 0x150, 0x3204, rsts_i, 0, 0, 0, "�������Z�o���s");
+      return RS_ERR;
+    }
+
+    // 60�b�ȏ�̍�������ꍇ�A�G���[���t�@�C���ɏo��
+    if (diff_i >= S_BKUPDIFTIME) {
+      errlog(QL_GSAV_CHBA_P, 0x1002, 0x3205, (int)diff_i, 0, 0, 0, "�o�b�N�A�b�v�����Ɏ����ȏ�̎��Ԃ��������Ă��܂��B"); // OPS5000_64bit mod
+    }
+    z_req_i &= ~S_BKUPREQ;   // �v����M�t���O����
+  }
+
+  //���[�f�[�^�쐬�v������
+  rsts_i = fl_rep05(QL_GSAV_CHBA_P);
+  if (rsts_i != RS_SUC) {
+    errlog(QL_GSAV_CHBA_P, 0x1002, 0x3206, rsts_i, 0, 0, 0, "�o�b�N�A�b�vCSV�쐬�v�����s");
+    return RS_ERR;
+  }
+
+  return RS_SUC;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        �đ��v���m�F�������B�ʒm��M������
+//        �đ��v���m�F�������s���A�v���f�[�^�����݂���ꍇ�A
+//        �đ��v�����[�f�[�^�쐬�������s��
+//------------------------------------------------------------------------------
+void f_rep400()
+{
+  short         mod_s;          //system mode inf
+  int           rsts_i;
+
+  mod_s = AU_sys->smod_s;        //���ݎ��n�^�]���[�h���擾���A
+  if ((mod_s != AU_MAS_P)  &&    //���݉^�]���[�h���}�X�^�A�}�X�^������
+      (mod_s != AU_MASE_P) &&    //�����A���������� �ȊO�́A�������Ȃ�
+      (mod_s != AU_TST_P)  &&    //
+      (mod_s != AU_TSTE_P)) {    //
+    return;
+  }
+  //�v����M�t���O�ɁA�đ��v���t�@�C���m�F�������B��M��ݒ肷��
+  z_req_i |= S_REREQREQ;
+
+  //�������t���O���ݒ肠��̏ꍇ�A�������I������
+  if (z_prog_i != 0) {
+    return;
+  }
+  //�đ��v���m�F�������s��
+  rsts_i = f_rep410();
+  if (rsts_i != RS_SUC) {
+    fl_rep06();     // �G���[���͊�������
+  }
+
+  return;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//          �đ��v���t�@�C���m�F����
+//          ���p���u�ɍđ��v���t�@�C�������݂��邩�m�F���A
+//          ���݂���ꍇ�A�đ��v���t�@�C�����擾����
+//------------------------------------------------------------------------------
+int f_rep410()
+{
+  int           rsts_i;                     //���^�[���X�e�[�^�X
+  char          *filename;                  //�t�@�C���L���m�F�p
+  char          filepath[S_BYTE_SIZE256_N]; //�đ��v���t�@�C���t���p�X(���p���u�p)
+  char          readbuf[S_BYTE_SIZE32_N];   //�đ��v���t�@�C�����[�h�o�b�t�@
+  char          cnfname_c[S_BYTE_SIZE256_N];//�đ��v���t�@�C���t���p�X(���[�J��)
+  char          chkfname_c[S_BYTE_SIZE256_N];//�L���m�F�t�@�C����
+  char          buf_c[S_BYTE_SIZE256_N];
+  struct T_TIME date_t;
+  short         seetno_s;
+  int           wrkNo_us;                //�ԍ�
+  int           updflg_i;
+  int           loop1_i;
+  int           year_i, month_i, day_i;  //�N����
+  int           rereqflg_i;              //�đ��v���f�[�^����t���O
+  unsigned char	byte_uc;                 //�}�X�N
+  unsigned short  bit_uc;                //�r�b�g
+  FILE *fp;
+
+  z_prog_i = S_REREQPROC;  //�������t���O�ɁA�đ��v����������ݒ肷��
+  rereqflg_i = SS_OFF_P;   //�đ��v���f�[�^����t���O��������
+
+  if (z_req_i & S_REREQREQ) { // �đ��v���J�n���̏ꍇ
+    z_req_i &= ~S_REREQREQ;   //�v����M�t���O�́A�đ��v���t�@�C���m�F�������B��M��ݒ����
+  }
+  memset(&filepath, 0x00, sizeof(filepath));
+  memset(&cnfname_c, 0x00, sizeof(cnfname_c));
+  memset(&chkfname_c, 0x00, sizeof(chkfname_c));
+
+  // FTP�ڑ�
+  rsts_i = F_CgwConnect(JF_repfl->ipaddr_c, JF_repfl->ftpusrid_c, JF_repfl->ftpusrps_c, JF_repfl->port_s);
+  if (rsts_i != RS_SUC) {
+    (void)F_errlog(0x1002, 0x4102, rsts_i, 0, 0, 0, "FTP�ڑ����s");
+    // �f�o�C�X�ُ�ʒm���M �f�o�C�X�ُ픭��			// CGW_DEV  add
+    fl_rep09(SS_ON_P);									// CGW_DEV  add
+    return RS_ERR;
+  }
+
+  // �f�o�C�X�ُ�ʒm���M �f�o�C�X�ُ한�A				// CGW_DEV  add
+  fl_rep09(SS_OFF_P);									// CGW_DEV  add
+
+  // ���p���u�̍đ��v���t�@�C���L���m�F
+  sprintf(chkfname_c, "%s%s", S_ROOT_DIR, S_FILE_TXT);
+  rsts_i = F_CgwFindFile(chkfname_c, &filename);
+  // �t�@�C�������݂��Ȃ��ꍇ�A�������t���O���N���A���ď����I��
+  if (rsts_i != RS_SUC) {
+    F_CgwClose();  // FTP�ڑ�����
+    z_prog_i = 0;  // �������t���O������
+    return RS_SUC;
+  }
+  //�đ��v���t�@�C���擾
+  rsts_i = F_CgwGetFile(S_ROOT_DIR, filename, z_psth_file);
+  if (rsts_i != RS_SUC) {
+    (void)F_errlog(0x1002, 0x4103, rsts_i, 0, 0, 0, "FTP�t�@�C����M���s");
+    F_CgwClose();  // FTP�ڑ�����
+    return RS_ERR;
+  }
+  //���p���u���̍đ��v���t�@�C���t���p�X
+  sprintf(filepath, "%s%s", S_ROOT_DIR, filename);
+  //���p���u�̍đ��v���t�@�C���͍폜
+  rsts_i = F_CgwDelFile(filepath);
+  if (rsts_i != RS_SUC) {
+    (void)F_errlog(0x1002, 0x4104, rsts_i, 0, 0, 0, "FTP�t�@�C���폜���s");
+    F_CgwClose();  // FTP�ڑ�����
+    return RS_ERR;
+  }
+  // FTP�ڑ�����
+  F_CgwClose();
+
+  // �đ��v���t�@�C���I�[�v��
+  sprintf(cnfname_c, "%s%s", z_psth_file, filename);
+  fp = fopen(cnfname_c, "r");
+  if (fp == NULL) {
+    (void)F_errlog(0x151, 0x4105, RS_ERR, 0, 0, 0, "�đ��v���t�@�C���̃I�[�v���Ɏ��s");
+    return RS_ERR;
+  }
+  // �đ��v���t�@�C���ǂݍ��݁A�đ��v���f�[�^���ۑ��G���A�ɓW�J
+  while (1) {
+    memset(&buf_c[0], 0, sizeof(buf_c));                //�ǂݏo���G���A������
+    fgets(buf_c, sizeof(buf_c), fp);                    //�đ��v���t�@�C������1�s�ǂݍ���
+    if (0 != feof(fp)) break;                           //�đ��v���t�@�C���G���h?
+    if (strncmp(&buf_c[0],"#",1)==0) continue;
+    if (strlen(buf_c) != S_REREQINFONUM) continue;
+    //YYYYMMDDNNN �`���ǂݍ���(NNN:�V�[�g�ԍ�)
+    //�N�擾
+    strncpy(readbuf, buf_c, 4);
+    readbuf[4] = '\0';
+    year_i = atoi(readbuf);
+    //���擾
+    strncpy(readbuf, buf_c+4, 2);
+    readbuf[2] = '\0';
+    month_i = atoi(readbuf);
+    //���擾
+    strncpy(readbuf, buf_c+4+2, 2);
+    readbuf[2] = '\0';
+    day_i = atoi(readbuf);
+    //�w�肵���N�������L���łȂ��ꍇ�A�ǂݔ�΂�
+    rsts_i = isgooddate(year_i, month_i, day_i);
+    if (rsts_i != RS_SUC) continue;
+    //�w�肵���N�������L���̏ꍇ�A�ݒ�
+    date_t.ct_year_s = year_i;
+    date_t.ct_mon_s  = month_i;
+    date_t.ct_day_s  = day_i;
+
+    //�V�[�g�ԍ��擾
+    strncpy(readbuf, buf_c+4+2+2, 3);
+    readbuf[3] = '\0';
+    seetno_s = atoi(readbuf);
+	if (seetno_s > S_SHEETMAX) continue;
+    //�V�[�g�ԍ����痧�Ă�r�b�g���Z�o
+    wrkNo_us = seetno_s - 1;
+    if( wrkNo_us == 0 ) {
+      // �ԍ�1�́A�擪�̃r�b�g�𗧂Ă�
+      byte_uc = 0;
+      bit_uc = 0;
+    } else {
+      // �ԍ�2�ȍ~
+      byte_uc = wrkNo_us / 16;
+      bit_uc  = wrkNo_us % 16;
+    }
+    updflg_i = 0;
+    //�đ��v���f�[�^���ۑ��G���A�ɓ����t�̃f�[�^�����݂���ꍇ�A�V�[�g�ԍ��ǉ�����
+    for (loop1_i = 1; loop1_i <= JU_REPCHG_NUM_N; loop1_i++) {
+      if ((date_t.ct_year_s == JU_resend[loop1_i].date.ct_year_s) &&
+          (date_t.ct_mon_s  == JU_resend[loop1_i].date.ct_mon_s) &&
+          (date_t.ct_day_s  == JU_resend[loop1_i].date.ct_day_s)) {
+        updflg_i = SS_ON_P;
+        rereqflg_i = SS_ON_P;
+        JU_resend[loop1_i].sheet_s[byte_uc] = JU_resend[loop1_i].sheet_s[byte_uc] | (1 << bit_uc);
+        break;
+      }
+    }
+    //�X�V�Ȃ��̏ꍇ�́A�ǉ�����
+    if (updflg_i != SS_ON_P) {
+      for (loop1_i = 1; loop1_i <= JU_REPCHG_NUM_N; loop1_i++) {
+        if (JU_resend[loop1_i].date.ct_day_s != 0) {
+          continue;
+        } else {
+          rereqflg_i = SS_ON_P;
+          memset(&JU_resend[loop1_i], 0, sizeof(JU_resend[loop1_i]));
+          JU_resend[loop1_i].date.ct_year_s = date_t.ct_year_s;
+          JU_resend[loop1_i].date.ct_mon_s  = date_t.ct_mon_s;
+          JU_resend[loop1_i].date.ct_day_s  = date_t.ct_day_s;
+          JU_resend[loop1_i].sheet_s[byte_uc] = JU_resend[loop1_i].sheet_s[byte_uc] | (1 << bit_uc);
+          break;
+        }
+      }
+    }
+  }
+  // �擾�����đ��v���t�@�C���͍폜
+  fclose( fp );
+  remove(cnfname_c);
+
+  //�đ��v���f�[�^�����݂��邩
+  if (rereqflg_i == SS_ON_P) {     // ���݂���
+    //�đ��v�����[�쐬����
+    rsts_i = f_rep420();
+    if (rsts_i != RS_SUC) {
+      z_prog_i = 0;    // �������t���O������������
+      return RS_ERR;
+    }
+  } else {                         // ���݂��Ȃ��ꍇ�́A��������
+    fl_rep06();
+  }
+
+  return RS_SUC;
+}
+
+int leapyear( int year_i )
+{
+  return (0 == (year_i % 400)) || ((0 != (year_i % 100)) && (0 == (year_i %4)));
+}
+
+int daysinmonth( int year_i, int month_i )
+{
+  // �w�肳�ꂽ���̍ŏI����Ԃ�
+  const int nDaysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  
+  if ((month_i < 1) || (12 < month_i)) {
+    return 0;
+  }
+  if ((2 == month_i) && leapyear(year_i)) {
+    return 29;
+  }
+  return nDaysInMonth[month_i - 1];
+}
+
+int isgooddate( int year_i, int month_i, int day_i )
+{
+  int   rsts_i;    // ���^�[���R�[�h
+  // �L���ȓ��t���`�F�b�N
+  if ((month_i >= 1)&&(month_i <= 12)&&(day_i >= 1)&&
+      (day_i <= daysinmonth(year_i, month_i))) {
+    rsts_i = RS_SUC;
+  } else {
+    rsts_i = RS_ERR;
+  }
+  return rsts_i;
+}
+
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        �đ��v�����[�쐬����
+//------------------------------------------------------------------------------
+int f_rep420()
+{
+  int           rsts_i;
+
+  rsts_i = RS_SUC;
+
+  //���[�f�[�^�쐬�v������
+  rsts_i = fl_rep05(QL_GSAV_CHRE_P);
+  if (rsts_i != RS_SUC) {
+    errlog(QL_GSAV_CHRE_P, 0x1002, 0x4201, rsts_i, 0, 0, 0, "�đ��v��CSV�쐬�v�����s");
+    return RS_ERR;
+  }
+
+  return RS_SUC;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        ���[CSV�t�@�C���ۑ������ʒm��M������
+//        CSV�t�@�C�������k�����p���u�֑��M����
+//------------------------------------------------------------------------------
+void f_rep500()
+{
+  int        rsts_i;
+  int        loop1_i;
+  int        scheflg_i;
+
+  //�f�[�^��ʂ��������̂��݈̂̂ȍ~�̏������s��
+  if (z_prog_i == S_BKUPPROC) {                // �o�b�N�A�b�v������
+    if (z_maindeque.sv.data_s != QL_GSAV_CHBA_P) {
+      return;
+    }
+  } else if (z_prog_i == S_REREQPROC) {        // �đ��v��������
+    if (z_maindeque.sv.data_s != QL_GSAV_CHRE_P) {
+      return;
+    }
+  } else if (z_prog_i == S_CHKPROC) {          // ���[�f�[�^�ύX������
+    if (z_maindeque.sv.data_s != QL_GSAV_CHCH_P) {
+      return;
+    }
+  } else {
+    // �����������Ă��Ȃ����
+    return;
+  }
+
+  scheflg_i = SS_OFF_P;
+  //�f�[�^��ʂ��A�o�b�N�A�b�vor�đ��v���̏ꍇ�A�^�C���A�E�g���Ă��Ȃ����m�F
+  if ((z_maindeque.sv.data_s == QL_GSAV_CHBA_P) ||   //�o�b�N�A�b�v
+      (z_maindeque.sv.data_s == QL_GSAV_CHRE_P)) {   //�đ��v��
+    for (loop1_i=0; loop1_i < CNF_SCHEVENTS_N; loop1_i++) {
+      if((AU_sched[loop1_i].prcflag_s & AU_ACTFLAG_P) &&
+         (AU_sched[loop1_i].sndprcno_s == Q_JREPFL_KEY1) &&
+         (AU_sched[loop1_i].schidno_s  == QF_JREPFL_TIMEUP_P)) {
+        scheflg_i = SS_ON_P;      //�^�C���A�E�g���Ă��Ȃ�
+        //�X�P�W���[�����~�v���𑗐M
+        rsts_i = fl_rep02(QF_AOSCHE_CANCEL_P, QF_JREPFL_TIMEUP_P, 0, 0);
+        if (rsts_i != RS_SUC) {
+          (void)F_errlog(0x1002, 0x5001, rsts_i, z_maindeque.sv.data_s, 0, 0,
+              "�X�P�W���[�����~�v�����s");
+        }
+        break;
+      }
+    }
+  } else {
+    scheflg_i = SS_ON_P;          //�o�b�N�A�b�vor�đ��v���ȊO
+  }
+  if (scheflg_i != SS_ON_P) {
+    //�^�C���A�E�g���Ă���ꍇ�́A�����I��
+    return;
+  }
+
+  //�����̗v�����s�����߁A�e�X�̏������s��
+  switch (z_maindeque.sv.data_s) {
+  case QL_GSAV_CHCH_P:       //���[�f�[�^�ύX����
+    rsts_i = f_rep220();
+    break;
+  case QL_GSAV_CHBA_P:       //�o�b�N�A�b�v����
+    rsts_i = f_rep320();
+    break;
+  case QL_GSAV_CHRE_P:       //�đ��v������
+    rsts_i = f_rep420();
+    break;
+  default:
+    rsts_i = RS_ERR;
+    (void)F_errlog(0x1002, 0x5002, z_maindeque.sv.data_s, 0, 0, 0,
+        "���[CSV�t�@�C���ۑ������ʒm�f�[�^��ʕs��") ;
+  }
+  if (rsts_i != RS_SUC) {
+    // �G���[�����������������s�������I��
+    fl_rep06();
+    return;
+  }
+
+  //���ׂĂ̍쐬�v�����ς݂ŁA�o�b�N�A�b�v���đ��v���̏ꍇ�A���k������FTP���M
+  if (z_reqend_i == SS_ON_P) {
+    z_reqend_i = SS_OFF_P;  // �쐬�v���ς݃t���O������
+    if (z_maindeque.sv.data_s == QL_GSAV_CHCH_P) {
+      // ���[�f�[�^�ύX�̍쐬�v���������A�����������s��
+      fl_rep06();
+    } else {
+      // �o�b�N�A�b�v���đ��v���̏ꍇ�A���k������FTP���M
+      memset(&z_tarlist, 0, sizeof(z_tarlist));
+      //���[�f�[�^���k����
+      rsts_i = fl_rep03(z_maindeque.sv.data_s);
+      if (rsts_i != RS_SUC) {
+        errlog(z_maindeque.sv.data_s, 0x1002, 0x5003, rsts_i, 0, 0, 0,
+             "���[�f�[�^���k�������s");
+      }
+      if (z_tarlist.filenum_s > 0) {
+        //���[�f�[�^���k�t�@�C��FTP���M����
+        rsts_i = fl_rep04(SS_OFF_P, z_maindeque.sv.data_s);
+        if (rsts_i != RS_SUC) {
+          // �����������s��
+          fl_rep06();
+        }
+      } else {
+        // �����������s��
+        fl_rep06();
+      }
+    }
+  }
+  return;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        �^�C���A�E�g�������B�ʒm��M������
+//        �^�C���A�E�g�����ꍇ�A�쐬�ς݂�CSV�t�@�C�������k���ē]������
+//------------------------------------------------------------------------------
+void f_rep600()
+{
+  int           rsts_i;
+  short         data_s;
+
+  memset(&z_csvlist, 0, sizeof(z_csvlist));
+  if (z_prog_i == S_BKUPPROC) {
+    //�o�b�N�A�b�v�����̃^�C���A�E�g�̏ꍇ
+    data_s = QL_GSAV_CHBA_P;
+    errlog(data_s, 0x1002, 0x6001, 0, 0, 0, 0, "�o�b�N�A�b�v��CSV̧�ٕۑ����^�C���A�E�g���܂����B");
+  } else if (z_prog_i == S_REREQPROC) {
+    //�đ��v�������̃^�C���A�E�g�̏ꍇ
+    data_s = QL_GSAV_CHRE_P;
+    errlog(data_s, 0x1002, 0x6002, 0, 0, 0, 0, "�đ��v����CSV̧�ٕۑ����^�C���A�E�g���܂����B");
+  } else {
+    (void)F_errlog(0x1002, 0x6003, 0, 0, 0, 0,"�^�C���A�E�g�ʒm�s��") ;
+    return;
+  }
+
+  z_reqend_i = SS_OFF_P;  // �쐬�v���ς݃t���O������
+
+  //�쐬�ς݂̃f�[�^�͈��k��FTP���M
+  //���[�f�[�^���k����
+  memset(&z_tarlist, 0, sizeof(z_tarlist));
+  rsts_i = fl_rep03(data_s);
+  if (rsts_i != RS_SUC) {
+    errlog(z_maindeque.sv.data_s, 0x1002, 0x6004, rsts_i, 0, 0, 0, "���[�f�[�^���k�������s");
+  }
+  if (z_tarlist.filenum_s > 0) {
+    //���[�f�[�^���k�t�@�C��FTP���M����
+    rsts_i = fl_rep04(SS_OFF_P, data_s);
+    if (rsts_i != RS_SUC) {
+      // �����������s��
+      fl_rep06();
+    }
+  } else {
+    // �����������s��
+    fl_rep06();
+  }
+  return;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        CG1000�t�@�C���L���m�F�������B�ʒm��M������
+//        FTP���M�������s��
+//------------------------------------------------------------------------------
+void f_rep700()
+{
+  int       rsts_i;
+  short     data_s;
+
+  if (z_prog_i == S_BKUPPROC) {
+    //�o�b�N�A�b�v�������s��
+    data_s = QL_GSAV_CHBA_P;
+  } else if (z_prog_i == S_REREQPROC) {
+    //�đ��v���������s��
+    data_s = QL_GSAV_CHRE_P;
+  } else {
+    (void)F_errlog(0x1002, 0x7001, z_prog_i,0,0,0,"CG1000�t�@�C���L���m�F�������B�ʒm�s��") ;
+    return;
+  }
+  if (z_tarlist.filenum_s > 0) {
+
+    //���[�f�[�^���k�t�@�C��FTP���M����
+    rsts_i = fl_rep04(SS_ON_P, data_s);
+    if (rsts_i != RS_SUC) {
+      // �����������s��
+      fl_rep06();
+    }
+  } else {
+    // �����������s��
+    fl_rep06();
+  }
+  return;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        �ǂݒ���QUE��M����
+//        �R���t�B�O�ǂݒ����������s���B
+//------------------------------------------------------------------------------
+void f_rep800()
+{
+  int rsts_i ;
+
+  //�v����M�t���O�ɁA�ǂݒ����p�t�d��M��ݒ�
+  z_req_i |= S_READREQ;
+
+  //�������t���O���ݒ肠��̏ꍇ�A�����I��
+  if (z_prog_i != 0) {
+    return;
+  }
+
+  //�ǂݒ������A�X�P�W���[�����~
+  fl_rep08();
+
+  //���[�f�[�^�t�@�C���`�����ǂݍ��ݏ���
+  rsts_i = fl_rep01();
+  if (rsts_i != RS_SUC) {
+    return;
+  }
+
+  //�X�P�W���[���o�^
+  f_rep120();
+
+  //�v����M�t���O�̓ǂݒ����p�t�d��M��ݒ����
+  z_req_i &= ~S_READREQ;
+
+  return;
+}
+
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        ���[�f�[�^�t�@�C���`�����ǂݍ��ݏ���
+//        ���[�f�[�^�t�@�C���`������ǂݍ��݁A�f�[�^�x�[�X�֓W�J����B
+//  ��  �́F �Ȃ�
+//
+//  �o  �́F �Ȃ�
+//
+//  �߂�l�F 1        ����
+//           1�ȊO    ���s
+//------------------------------------------------------------------------------
+int fl_rep01()
+{
+  char            cnfname_c[S_BYTE_SIZE256_N];  //��̨��̧�ٖ�
+  char            buf_c[S_BYTE_SIZE1024_N];     //������擾�̈�
+  int             data_i[S_BYTE_SIZE12_N] ;     //�f�[�^
+  int             wrkNo_us;                     //�ԍ�
+  int             i;                            //�J�E���^
+  static char     *p_c[S_BYTE_SIZE256_N+1];	    //������؂�o���p�߲��
+  unsigned char   byte_uc;                      //�}�X�N
+  unsigned short  bit_uc;                       //�r�b�g
+  size_t env_len;
+  char env_buf[256];
+  char *strtok_ctx = NULL;
+  FILE *fp;
+
+  // �̈揉����
+  memset((char *)JF_repfl, 0, sizeof(struct T_JF_repfl));
+  memset(&cnfname_c, 0x00, sizeof(cnfname_c));
+  memset(&buf_c, 0x00, sizeof(buf_c));
+
+  // �R���t�B�O�t�@�C�����擾
+  getenv_s(&env_len, env_buf, sizeof(env_buf), S_FILE_PATH);
+  sprintf(cnfname_c, "%s\\name\\%s", env_buf, S_JFREPFL_DEFNAME_P);
+
+  fp = fopen(cnfname_c, "r");
+  if (fp == NULL) {
+    (void)F_errlog(0x151,0xF101,RS_ERR,0,0,0,"��̨��̧��(JF_repfl.cnf)������܂���B") ;
+    return RS_ERR;
+  }
+  // �R���t�B�O�t�@�C���ǂݍ���
+  while (1) {
+    memset(&buf_c[0], 0, sizeof(buf_c));                //�ǂݏo���G���A������
+    fgets(buf_c, sizeof(buf_c), fp);                    //�R���t�B�O�t�@�C������1�s�ǂݍ���
+    if (0 != feof(fp)) break;                           //�R���t�B�O�t�@�C���G���h?
+    if (strncmp(&buf_c[0],"#",1)==0) continue;
+
+    p_c[0]=strtok_s(buf_c, " ,\t\n", &strtok_ctx) ;                    //�g�[�N�����ɕ�������쐬
+    if (p_c[0] == NULL) continue;
+    p_c[1]=strtok_s(NULL, " ,\t\n", &strtok_ctx);
+
+    if (strncmp(S_IPADDR_TITLE, buf_c, strlen(S_IPADDR_TITLE)) == 0) {
+      // CG1000�h�o�A�h���X
+      memcpy(JF_repfl->ipaddr_c, p_c[1], sizeof(JF_repfl->ipaddr_c));
+    } else if (strncmp(S_FTPUSER_TITLE, buf_c, strlen(S_FTPUSER_TITLE)) == 0) {
+      // FTP���[�U��
+      memcpy(JF_repfl->ftpusrid_c, p_c[1], sizeof(JF_repfl->ftpusrid_c));
+    } else if (strncmp(S_FTPPASS_TITLE, buf_c, strlen(S_FTPPASS_TITLE)) == 0) {
+      // FTP�p�X���[�h
+      memcpy(JF_repfl->ftpusrps_c, p_c[1], sizeof(JF_repfl->ftpusrps_c));
+    } else if (strncmp(S_PORT_TITLE, buf_c, strlen(S_PORT_TITLE)) == 0) {
+      // �ڑ��|�[�g�ԍ�
+      sscanf(p_c[1], "%d", &data_i[0]) ;
+      JF_repfl->port_s = data_i[0];
+    } else if (strncmp(S_MAXFILE_TITLE, buf_c, strlen(S_MAXFILE_TITLE)) == 0) {
+      // ���k�t�@�C������t�@�C���T�C�Y
+      sscanf(p_c[1], "%d", &data_i[0]) ;
+      if (data_i[0] < 1) {
+        (void)F_errlog(0x1002,0xF102,data_i[0],0,0,0,"��̨��̧��(JF_repfl.cnf)���k�t�@�C������t�@�C���T�C�Y�s��") ;
+        return RS_ERR;
+      }
+      JF_repfl->maxfilesize_s = data_i[0];
+    } else if (strncmp(S_CHKNUM_TITLE, buf_c, strlen(S_CHKNUM_TITLE)) == 0) {
+      // CG1000�t�@�C���L���m�F��
+      sscanf(p_c[1], "%d", &data_i[0]) ;
+      if (data_i[0] < 1) {
+        (void)F_errlog(0x1002,0xF102,data_i[0],0,0,0,"��̨��̧��(JF_repfl.cnf)CG1000�t�@�C���L���m�F�񐔕s��") ;
+        return RS_ERR;
+      }
+      JF_repfl->filechknum_s = data_i[0];
+    } else if (strncmp(S_RECYCLE_TITLE, buf_c, strlen(S_RECYCLE_TITLE)) == 0) {
+      // �đ��v���m�F����
+      sscanf(p_c[1], "%d", &data_i[0]) ;
+      if (data_i[0] < 1) {
+        (void)F_errlog(0x1002,0xF102,data_i[0],0,0,0,"��̨��̧��(JF_repfl.cnf)�đ��v���m�F�����s��") ;
+        return RS_ERR;
+      }
+      JF_repfl->resendcycle_s = data_i[0];
+    } else if (strncmp(S_TIMEOUT_TITLE, buf_c, strlen(S_TIMEOUT_TITLE)) == 0) {
+      // CSV�t�@�C���ۑ������ʒm��M�^�C���A�E�g����
+      sscanf(p_c[1], "%d", &data_i[0]) ;
+      if (data_i[0] < 1) {
+        (void)F_errlog(0x1002,0xF103,data_i[0],0,0,0,"��̨��̧��(JF_repfl.cnf)CSV�t�@�C���ۑ������ʒm��M�^�C���A�E�g���ԕs��") ;
+        return RS_ERR;
+      }
+      JF_repfl->svtimeout_s = data_i[0];
+    } else if (strncmp(S_CHKCYC_TITLE, buf_c, strlen(S_CHKCYC_TITLE)) == 0) {
+      // CG1000�t�@�C���L���m�F����
+      sscanf(p_c[1], "%d", &data_i[0]) ;
+      if (data_i[0] < 1) {
+        (void)F_errlog(0x1002,0xF104,data_i[0],0,0,0, "��̨��̧��(JF_repfl.cnf)CG1000�t�@�C���L���m�F�����s��") ;
+        return RS_ERR;
+      }
+      JF_repfl->filechkcycle_s = data_i[0];
+    } else if (strncmp(S_BKSTART_TITLE, buf_c, strlen(S_BKSTART_TITLE)) == 0) {
+      // �o�b�N�A�b�v�J�n����
+      //�u:�v��؂�p
+      sscanf(p_c[1], "%hd:%hd:%hd", (short*)&data_i[0], (short*)&data_i[1], (short*)&data_i[2]);
+      JF_repfl->bkstart.ct_hour_s = data_i[0];
+      JF_repfl->bkstart.ct_min_s  = data_i[1];
+      JF_repfl->bkstart.ct_sec_s  = data_i[2];
+    } else if (strncmp(S_SHEETNO_TITLE, buf_c, strlen(S_SHEETNO_TITLE)) == 0) {
+      // �o�b�N�A�b�v�Ώے��[�V�[�g�ԍ����
+      for (i=1 ; i < S_BYTE_SIZE256_N+1 ; i++) {
+        if (p_c[i] != NULL) {
+          p_c[i+1]=strtok_s(NULL, " ,", &strtok_ctx) ;
+          sscanf(p_c[i], "%d", &data_i[0]) ;
+          wrkNo_us = data_i[0] - 1;
+          if( wrkNo_us == 0 ) {
+            // �ԍ�1�́A�擪�̃r�b�g�𗧂Ă�
+            JF_repfl->bksheetno_s[0] = JF_repfl->bksheetno_s[0] | 1;
+          } else {
+            // �ԍ�2�ȍ~
+            byte_uc = wrkNo_us / 16;
+            bit_uc	= wrkNo_us % 16;
+            JF_repfl->bksheetno_s[byte_uc] = JF_repfl->bksheetno_s[byte_uc] | (1 << bit_uc);
+          }
+        } else {
+          break;
+        }
+      }
+    }
+  }
+  fclose(fp);
+  return RS_SUC;
+}
+//------------------------------------------------------------------------------
+//�@�@�\:
+//            �X�P�W���[���ʒm���M����
+//            ���ԊǗ��փX�P�W���[���o�^�𑗐M����B
+//  ��  �́F func_i   �X�P�W���[���o�^�^�L�����Z��
+//                    QF_AOSCHE_ENTRY_P  :�o�^
+//                    QF_AOSCHE_CANCEL_P :�L�����Z��
+//           schidno_s �X�P�W���[��ID
+//                    QF_JREPFL_BKUPTIME_P  : �o�b�N�A�b�v�����X�P�W���[���o�^
+//                    QF_JREPFL_REREQTIME_P : �đ��v���m�F�����X�P�W���[���o�^
+//                    QF_JREPFL_TIMEUP_P    : CSV̧�ٕۑ������ʒm��M�^�C���A�E�g�����X�P�W���[���o�^
+//                    QF_JREPFL_CGFILETIME_P: CG1000�t�@�C���L���m�F�����X�P�W���[���o�^
+//           time_s   �ʒm��
+//           sched    ����
+//
+//  �o  �́F �Ȃ�
+//
+//  �߂�l�F 1        ����
+//           1�ȊO    ���s
+//------------------------------------------------------------------------------
+int fl_rep02(short func_s, short schidno_s, short time_s, struct T_AU_SCHED_TIME *sched)
+{
+  int            rsts_i;            // ���^�[���X�e�[�^�X
+  int            qsiz_i;            // QUE�T�C�Y
+  struct Q_T_AOSCHE_ENTRY entry;    // �X�P�W���[���o�^�v�����M�o�b�t�@
+
+  rsts_i = RS_SUC;
+
+  // ���M�o�b�t�@������
+  memset(&entry, 0, sizeof(entry));
+
+  // �X�P�W���[���o�^
+  entry.qh.func_s = func_s;                // QUE�t�@���N�V����
+  entry.schidno_s = schidno_s;             // �X�P�W���[��ID�ԍ�
+
+  if (func_s == QF_AOSCHE_ENTRY_P){
+    //�o�^
+    entry.times_s     = time_s;                 //�J��Ԃ���(0=����)
+    entry.quekey_s    = Q_JREPFL_KEY1;          //�ʒmQUE KEY
+    entry.infcond_s   = Q_AOSCHE_CURTIME_NEC_P; //�X�P�W���[���ʒm�v
+    entry.scd.year_s  = sched->year_s;
+    entry.scd.mon_s   = sched->mon_s;
+    entry.scd.day_s   = sched->day_s;
+    entry.scd.hour_s  = sched->hour_s;
+    entry.scd.min_s   = sched->min_s;
+    entry.scd.sec_s   = sched->sec_s;
+    entry.scd.offset_s= sched->offset_s;
+  }
+
+  // QUE�T�C�Y
+  qsiz_i = sizeof(entry);
+
+  // �X�P�W���[���o�^�v�����M(ENQ)
+  rsts_i = F_quemgr((int)QUE_ENQ_P | QUE_NOWAIT_P,    // �t�@���N�V����
+                    (key_t)Q_AOSCHE_KEY1,             // QUEKEY�ԍ�
+                    &entry,                           // �f�[�^�o�b�t�@
+                    &qsiz_i);                         // �f�[�^�o�b�t�@�T�C�Y
+
+  // �X�P�W���[���o�^���s
+  if (rsts_i != RS_SUC){
+    return RS_ERR;
+  }
+
+  return RS_SUC;
+}
+//------------------------------------------------------------------------------
+//  �@  �\:
+//          ���[�f�[�^���k����
+//          ���[CSV�t�@�C�������k����
+//  ��  �́F
+//          short       data_s;         // �f�[�^���
+//                          QL_GSAV_CHRE_P : ���[(�đ��v��)
+//                          QL_GSAV_CHBA_P : ���[(�o�b�N�A�b�v)
+//                          QL_GSAV_CHCH_P : ���[(���[�f�[�^�ύX)
+//
+//  �o  �́F
+//          struct T_filelist* tarlist  // ���k�t�@�C�����X�g
+//
+//  �߂�l�F ���� : RS_SUC
+//           ���s : RS_ERR
+//------------------------------------------------------------------------------
+int fl_rep03(short data_s)
+{
+  int               rsts_i;                         // ���^�[���X�e�[�^�X
+
+  // ������  rsts_i = RS_ERR;
+  memset(&z_csvlist, 0, sizeof(z_csvlist));
+  memset(&z_tarlist, 0, sizeof(z_tarlist));
+
+  // ���[CSV�t�@�C�����X�g�擾����
+  rsts_i = fl_rep031(data_s, &z_csvlist);
+  if (rsts_i != RS_SUC) {
+    return RS_ERR;
+  }
+
+  // �Ώۃt�@�C�������݂��Ȃ��ꍇ
+  if (z_csvlist.filenum_s == 0) {
+    return RS_SUC;
+  }
+
+  // ���[CSV�t�@�C���ꗗ�\�[�g����
+  rsts_i = fl_rep032(&z_csvlist);
+  if (rsts_i != RS_SUC) {
+    return RS_ERR;
+  }
+
+  // ���[CSV�t�@�C���ړ�����
+  rsts_i = fl_rep033(data_s, &z_csvlist, &z_tarlist);
+  if (rsts_i != RS_SUC) {
+    return RS_ERR;
+  }
+
+  // �t�@�C�����k����
+  rsts_i = fl_rep034(data_s, &z_tarlist);
+  if (rsts_i != RS_SUC) {
+    return RS_ERR;
+  }
+
+  return RS_SUC;
+}
+
+//------------------------------------------------------------------------------
+//  �@  �\:
+//          ���[CSV�t�@�C�����X�g�擾����
+//          ���[CSV�t�@�C�����X�g���擾����B
+//  ��  �́F
+//          short       data_s;         // �f�[�^���
+//                          QL_GSAV_CHRE_P : ���[(�đ��v��)
+//                          QL_GSAV_CHBA_P : ���[(�o�b�N�A�b�v)
+//                          QL_GSAV_CHCH_P : ���[(���[�f�[�^�ύX)
+//
+//  �o  �́F
+//          struct T_filelist* tarlist  // ���[CSV�t�@�C�����X�g
+//
+//  �߂�l�F ���� : RS_SUC
+//           ���s : RS_ERR
+//------------------------------------------------------------------------------
+int fl_rep031(short data_s, struct T_filelist* csvlist_p)
+{
+  int               rsts_i;                         // ���^�[���X�e�[�^�X
+  int               fsize_i;                        // �t�@�C���T�C�Y
+  char              foldpath[64];                   // CSV�t�@�C���o�͐�t�H���_�p�X
+  char              searchname_c[64];               // �����t�@�C����
+  char              errbuf_c[MAX_PATH];             // �G���[���O�p
+  char              editbuf_c[64];                  // �ҏW�p
+  char              edit_c[8];                      // ������擾�p�G���A
+  HANDLE            fFile_h;                        // �����n���h��
+  WIN32_FIND_DATA   lpFData;                        // �t�@�C���f�[�^
+
+  // ������
+  rsts_i = RS_SUC;
+  memset(&foldpath[0], 0, sizeof(foldpath));
+  memset(&searchname_c[0], 0, sizeof(searchname_c));
+
+  // �f�[�^��ʂŕ���A�t�H���_�p�X���擾
+  switch (data_s) {
+    case QL_GSAV_CHBA_P:
+    case QL_GSAV_CHCH_P:
+      strcpy(&foldpath[0], &z_psth_bkup[0]);
+      break;
+    case QL_GSAV_CHRE_P:
+      strcpy(&foldpath[0], &z_psth_rereq[0]);
+      break;
+    default :
+      // �G���[���O�o�^
+      memset(errbuf_c,0,sizeof(errbuf_c));
+      sprintf(errbuf_c,"�f�[�^��ʕs��");
+      (void)F_errlog( 0x1002, 0xF311, data_s, 0, 0, 0, errbuf_c);
+      return RS_ERR;
+  }
+
+  sprintf(&searchname_c[0], "%s\\%s", foldpath, S_FILE_CSV);
+
+  // ���[CSV�t�@�C����������
+  fFile_h = FindFirstFile(&searchname_c[0], &lpFData);
+
+  // �t�@�C�������������s
+  if (fFile_h == INVALID_HANDLE_VALUE) {
+
+    // �w�肵���t�@�C����������Ȃ������ꍇ
+    if (GetLastError() == ERROR_FILE_NOT_FOUND) {
+      // �����I��
+      return RS_SUC;
+    }
+
+    // �w�肵���p�X��������Ȃ������ꍇ
+    if (GetLastError() == ERROR_PATH_NOT_FOUND) {
+      // �G���[���O�o�^
+      memset(errbuf_c,0,sizeof(errbuf_c));
+      sprintf(errbuf_c,"�t�@�C�������������s(FindFirstFile) �t�H���_���Ȃ�");
+      (void)F_errlog( 0x1002, 0xF312, data_s, 0, 0, 0, errbuf_c);
+      // �����I��
+      return RS_ERR;
+    }
+
+    // �G���[���O�o�^
+    memset(errbuf_c,0,sizeof(errbuf_c));
+    sprintf(errbuf_c,"�t�@�C�������������s(FindFirstFile)");
+    (void)F_errlog( 0x1002, 0xF313, data_s, GetLastError(), 0, 0, errbuf_c);
+
+  }
+
+  // �t�@�C����������(FindNextFile)�Ɏ��s����܂ŌJ��Ԃ��s���B
+  do {
+
+    if ((lpFData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0) {
+
+      memset(&editbuf_c[0], 0, sizeof(editbuf_c));
+
+      sprintf(&editbuf_c[0],"%s\\%s",&foldpath[0],lpFData.cFileName);
+
+      // �t�@�C���T�C�Y���擾
+      fsize_i = 0;
+      fsize_i = getfilesize(&editbuf_c[0]);
+      if (fsize_i <= 0) {
+        continue;
+      }
+      csvlist_p->fileinf[csvlist_p->filenum_s].size_i = fsize_i;
+
+      // ���[CSV�t�@�C�����̂��擾
+      strcpy(&csvlist_p->fileinf[csvlist_p->filenum_s].filename_c[0],lpFData.cFileName);
+
+      // ���[CSV�t�@�C���̓��t�����擾
+      memset(&edit_c[0], 0, sizeof(edit_c));
+      strncpy(&edit_c[0],&lpFData.cFileName[0],4);
+      csvlist_p->fileinf[csvlist_p->filenum_s].filedate.ct_year_s = (short)atoi(edit_c);
+      memset(&edit_c[0], 0, sizeof(edit_c));
+      strncpy(&edit_c[0],&lpFData.cFileName[4],2);
+      csvlist_p->fileinf[csvlist_p->filenum_s].filedate.ct_mon_s = (short)atoi(edit_c);
+      memset(&edit_c[0], 0, sizeof(edit_c));
+      strncpy(&edit_c[0],&lpFData.cFileName[6],2);
+      csvlist_p->fileinf[csvlist_p->filenum_s].filedate.ct_day_s = (short)atoi(edit_c);
+      strncpy(&edit_c[0],&lpFData.cFileName[8],3);
+      csvlist_p->fileinf[csvlist_p->filenum_s].sheetno_s = (short)atoi(edit_c);
+
+      // �f�[�^�����X�V
+      csvlist_p->filenum_s++;
+    }
+
+  } while (FindNextFile(fFile_h, &lpFData));
+
+  // �t�@�C����������Ȃ�����
+  if (GetLastError() != ERROR_NO_MORE_FILES) {
+    // �G���[���O�o�^
+    memset(errbuf_c,0,sizeof(errbuf_c));
+    sprintf(errbuf_c,"�t�@�C�������������s(FindNextFile)");
+    (void)F_errlog( 0x1002, 0xF314, data_s, GetLastError(), 0, 0, errbuf_c);
+    // �����I��
+    rsts_i = RS_ERR;
+  }
+
+  // �����n���h���N���[�Y
+  FindClose(fFile_h) ;
+
+  return(rsts_i);
+}
+
+int getfilesize(const char* fileName)
+{
+  fpos_t fsize = 0;
+  
+  FILE *fp = fopen(fileName,"rb");
+  
+  if (fp == NULL) {
+    return 0;
+  }
+
+  // �t�@�C���T�C�Y�𒲍�
+  fseek(fp,0,SEEK_END);
+  fgetpos(fp,&fsize);
+
+  fclose(fp);
+
+  return (int)fsize;
+}
+
+//------------------------------------------------------------------------------
+//  �@  �\:
+//          ���[CSV�t�@�C�����X�g���ёւ�����
+//          ���[CSV�t�@�C�����X�g����t���ɕ��ёւ���B
+//  ��  �́F
+//          struct T_filelist* csvlist_p    // ���[CSV�t�@�C�����X�g
+//
+//  �o  �́F
+//          struct T_filelist* csvlist_p    // ���[CSV�t�@�C�����X�g
+//
+//  �߂�l�F ���� : RS_SUC
+//           ���s : RS_ERR
+//------------------------------------------------------------------------------
+int fl_rep032(struct T_filelist* csvlist_p)
+{
+  int               cnt1_i ;                        // �J�E���^1
+  int               cnt2_i ;                        // �J�E���^2
+  int               sort_i ;                        // �\�[�g�pLoop�J�E���^
+  int               insindex_i ;                    // �\�[�g�}����Index
+  int               lcnt_i ;                        // �t�@�C�����X�g�J�E���g
+  char              date_c[12] ;                    // �������o�l
+
+  memset(&z_sortlist,0,sizeof(z_sortlist));
+
+  for (cnt1_i = 0;cnt1_i < csvlist_p->filenum_s ;cnt1_i++ ) {
+
+    // �t�@�C������������̒��o
+    strncpy(date_c,csvlist_p->fileinf[cnt1_i].filename_c,8);
+
+    // �P�ڂ̏ꍇ�͂��̂܂ܓo�^
+    if ( cnt1_i == 0 ) {
+
+      // �\�[�g�p�t�@�C�����X�g�o�^
+      memcpy(&z_sortlist.fileinf[cnt1_i], &csvlist_p->fileinf[cnt1_i], sizeof(struct T_fileinf));
+
+    // �Q�ڈȍ~�̓\�[�g�Ώ�
+    } else {
+
+      // �\�[�g�}���揉����
+      insindex_i = 0;
+
+      // �\�[�g����
+      for ( cnt2_i = cnt1_i; cnt2_i >= 0 ;cnt2_i-- ) {
+
+        // �ŏI�t�@�C�����V������
+        if ( atol(z_sortlist.fileinf[cnt2_i+1].date_c) <= atol(date_c) ) {
+
+          // �t�@�C������ޔ�
+          memcpy(&z_sortlist.fileinf[cnt2_i+1], &csvlist_p->fileinf[cnt1_i], sizeof(struct T_fileinf));
+
+          // �}����Index�ݒ�
+          insindex_i = cnt2_i;
+          break;
+        }
+      }
+
+      // �ǉ��ʒu�m��
+      for ( sort_i=cnt1_i; sort_i>=insindex_i; sort_i-- ) {
+
+        // �t�@�C������ޔ�
+        memcpy(&z_sortlist.fileinf[sort_i+1], &z_sortlist.fileinf[sort_i], sizeof(struct T_fileinf));
+
+      }
+
+      // �t�@�C������ޔ�
+      memcpy(&z_sortlist.fileinf[insindex_i], &csvlist_p->fileinf[cnt1_i], sizeof(struct T_fileinf));
+
+    }
+  }
+
+  // �t�@�C�������t�@�C�����X�g�J�E���g�ɐݒ�
+  lcnt_i = csvlist_p->filenum_s;
+
+  // �t�@�C�������Z�b�g
+  memcpy(csvlist_p, &z_sortlist, sizeof(z_csvlist));
+
+  // �t�@�C�������Z�b�g
+  csvlist_p->filenum_s = lcnt_i;
+
+  return RS_SUC;
+}
+
+//------------------------------------------------------------------------------
+//  �@  �\:
+//          ���[CSV�t�@�C���ړ�����
+//          ���[CSV�t�@�C������t�t�H���_�ֈړ�����B
+//
+//  ��  �́F
+//          short       data_s;         // �f�[�^���
+//                          QL_GSAV_CHRE_P : ���[(�đ��v��)
+//                          QL_GSAV_CHBA_P : ���[(�o�b�N�A�b�v)
+//                          QL_GSAV_CHCH_P : ���[(���[�f�[�^�ύX)
+//          struct T_filelist* csvlist_p    CSV�t�@�C�����X�g
+//
+//  �o  �́F
+//          struct T_tarlist* tarlist_p     ���k�t�@�C�����X�g
+//
+//  �߂�l�F ���� : RS_SUC
+//           ���s : RS_ERR
+//------------------------------------------------------------------------------
+int  fl_rep033(short data_s, struct T_filelist* csvlist_p, struct T_tarlist* tarlist_p)
+{
+
+  int               cnt1_i;                         // �J�E���^1
+  int               cnt2_i;                         // �J�E���^2
+  int               size_i;                         // �t�@�C���T�C�Y
+  short             sendinf_s;                      // ���M���ҏW�G���A
+  char              foldpath[S_BYTE_SIZE64_N];      // CSV�t�@�C���o�͐�t�H���_�p�X
+  char              temppath[S_BYTE_SIZE64_N];      // �ҏW�p�G���A
+  char              cpyfrom_c[S_BYTE_SIZE64_N];     // �R�s�[���t�@�C����
+  char              cpyto_c[S_BYTE_SIZE64_N];       // �R�s�[��t�@�C����
+  char              filesyn_c[S_BYTE_SIZE4_N];      // �t�@�C�����ʎq
+  char              errbuf_c[MAX_PATH];             // �G���[���O�p
+  struct stat       errfilestat;                    // �G���[�t�@�C�����
+
+  size_i = 0;
+  sendinf_s = 1;
+  memset(&foldpath[0], 0, sizeof(foldpath));
+
+  // �f�[�^��ʂŕ���A�t�H���_�p�X���擾
+  switch (data_s) {
+    case QL_GSAV_CHBA_P:
+    case QL_GSAV_CHCH_P:
+      strcpy(&foldpath[0], &z_psth_bkup[0]);
+      break;
+    case QL_GSAV_CHRE_P:
+      strcpy(&foldpath[0], &z_psth_rereq[0]);
+      break;
+    default :
+      // �G���[���O�o�^
+      memset(errbuf_c,0,sizeof(errbuf_c));
+      sprintf(errbuf_c,"�f�[�^��ʕs��");
+      (void)F_errlog( 0x1002, 0xF331, data_s, 0, 0, 0, errbuf_c);
+      return RS_ERR;
+  }
+
+  // ���M���Z�b�g�i���k�t�@�C���Ŏg�p����A�ԁj
+  for (cnt1_i = 0; cnt1_i < csvlist_p->filenum_s; cnt1_i++) {
+
+    size_i += csvlist_p->fileinf[cnt1_i].size_i;
+
+	// ���M�����Z�b�g
+    csvlist_p->fileinf[cnt1_i].sendinf_s = sendinf_s;
+
+    // �t�@�C������𒴂����ꍇ
+    if (size_i > (JF_repfl->maxfilesize_s * S_BYTE_SIZE1024_N)) {
+      sendinf_s++;
+      csvlist_p->fileinf[cnt1_i].sendinf_s = sendinf_s;
+      size_i = csvlist_p->fileinf[cnt1_i].size_i;
+      continue;
+    }
+
+    // ���t���ς�����ꍇ
+    if ((cnt1_i != 0) &&
+       ((csvlist_p->fileinf[cnt1_i].filedate.ct_year_s != csvlist_p->fileinf[cnt1_i - 1].filedate.ct_year_s) ||
+        (csvlist_p->fileinf[cnt1_i].filedate.ct_mon_s != csvlist_p->fileinf[cnt1_i - 1].filedate.ct_mon_s) || 
+        (csvlist_p->fileinf[cnt1_i].filedate.ct_day_s != csvlist_p->fileinf[cnt1_i - 1].filedate.ct_day_s))){
+      sendinf_s++;
+      csvlist_p->fileinf[cnt1_i].sendinf_s = sendinf_s;
+      size_i = csvlist_p->fileinf[cnt1_i].size_i;
+      continue;
+    }
+  }
+
+  // �ҏW�t�H���_�ֈړ�
+  for (cnt1_i = 0; cnt1_i < csvlist_p->filenum_s; cnt1_i++) {
+
+    sprintf(temppath,"%s\\%04d%02d%02d_%03d",foldpath,
+        csvlist_p->fileinf[cnt1_i].filedate.ct_year_s,
+        csvlist_p->fileinf[cnt1_i].filedate.ct_mon_s,
+        csvlist_p->fileinf[cnt1_i].filedate.ct_day_s,
+		csvlist_p->fileinf[cnt1_i].sendinf_s);
+
+    if (_mkdir(temppath)) {
+      continue;
+    }
+
+    for (cnt2_i = 0; cnt2_i < csvlist_p->filenum_s; cnt2_i++) {
+
+      // ���M��񂪈�v���Ȃ��ꍇ�͑ΏۊO
+      if (csvlist_p->fileinf[cnt1_i].sendinf_s != csvlist_p->fileinf[cnt2_i].sendinf_s) {
+        continue;
+      }
+
+      // �擪�V�[�g�ԍ����Z�b�g
+      if (tarlist_p->tarinf[tarlist_p->filenum_s].firstsheet_s == 0) {
+        tarlist_p->tarinf[tarlist_p->filenum_s].firstsheet_s = csvlist_p->fileinf[cnt2_i].sheetno_s;
+      }
+      // �ŏI�V�[�g�ԍ����Z�b�g
+      tarlist_p->tarinf[tarlist_p->filenum_s].lastsheet_s = csvlist_p->fileinf[cnt2_i].sheetno_s;
+
+      sprintf(cpyfrom_c,"%s\\%s",foldpath,csvlist_p->fileinf[cnt2_i].filename_c);   // OPS5000_64bit mod
+      sprintf(cpyto_c,"%s\\%s",temppath,csvlist_p->fileinf[cnt2_i].filename_c);
+
+      // �t�@�C���ړ�����
+      if (rename(&cpyfrom_c[0], &cpyto_c[0]) != 0) {
+
+        // �G���[���O�o�^
+        memset(errbuf_c,0,sizeof(errbuf_c));
+        sprintf(errbuf_c,"�t�@�C���̈ړ��Ɏ��s %s", csvlist_p->fileinf[cnt2_i].filename_c);
+        (void)F_errlog( 0x1002, 0xF332, data_s, 0, 0, 0, errbuf_c);
+
+      }
+
+      // �G���[��񔻒�
+      sprintf(cpyfrom_c,"%s\\%s",foldpath,S_FILE_ERR);                              // OPS5000_64bit mod
+      if (stat(cpyfrom_c, &errfilestat) == 0) {
+        
+        sprintf(cpyto_c,"%s\\%s",temppath,S_FILE_ERR);
+        
+        // �t�@�C���ړ�����
+        if (rename(&cpyfrom_c[0], &cpyto_c[0]) != 0) {
+
+          // �G���[���O�o�^
+          memset(errbuf_c,0,sizeof(errbuf_c));
+          sprintf(errbuf_c,"�t�@�C���̈ړ��Ɏ��s %s", S_FILE_ERR);
+          (void)F_errlog( 0x1002, 0xF333, data_s, 0, 0, 0, errbuf_c);
+
+        }
+
+        tarlist_p->tarinf[tarlist_p->filenum_s].errinf_s = SS_ON_P;
+      }
+    }
+
+    strcpy(&tarlist_p->tarinf[tarlist_p->filenum_s].befor_c[0],&temppath[0]);
+    if (tarlist_p->tarinf[tarlist_p->filenum_s].errinf_s != SS_ON_P) {
+      strcpy(&filesyn_c[0],"C");
+    } else {
+      strcpy(&filesyn_c[0],"CE");
+    }
+
+    sprintf(&tarlist_p->tarinf[tarlist_p->filenum_s].tar_c[0],"%s%d-%d_%04d%02d%02d_%03d%s",
+             &filesyn_c[0],
+             tarlist_p->tarinf[tarlist_p->filenum_s].firstsheet_s,
+             tarlist_p->tarinf[tarlist_p->filenum_s].lastsheet_s,
+             csvlist_p->fileinf[cnt1_i].filedate.ct_year_s,
+             csvlist_p->fileinf[cnt1_i].filedate.ct_mon_s,
+             csvlist_p->fileinf[cnt1_i].filedate.ct_day_s,
+             csvlist_p->fileinf[cnt1_i].sendinf_s,
+             S_TARGZ_EXEC);
+    tarlist_p->filenum_s++;
+
+  }
+  return RS_SUC;
+}
+
+//------------------------------------------------------------------------------
+//  �@  �\:
+//          �t�@�C�����k����
+//          ���[CSV�t�@�C�����X�g���擾����B
+//
+//  ��  �́Fstruct T_tarlist* tarlist_p    ���k�t�@�C�����X�g
+//
+//  �o  �́F
+//          �Ȃ�
+//
+//  �߂�l�F ���� : RS_SUC
+//           ���s : RS_ERR
+//------------------------------------------------------------------------------
+int  fl_rep034(short data_s, struct T_tarlist* tarlist_p){
+
+  int               rsts_i;                         // �X�e�[�^�X
+  int               ret_i;                          // �߂�l
+  int               cnt_i;                          // �J�E���^
+  char              cmd_c[S_BYTE_SIZE512_N];        // ���k�R�}���h
+  char              dsttmp_c[S_BYTE_SIZE128_N];     // ���k��ꎞ��
+  char              foldpath[S_BYTE_SIZE64_N];      // CSV�t�@�C���o�͐�t�H���_�p�X
+  char              filename_c[S_BYTE_SIZE64_N];    // CSV�t�@�C���o�͐�t�H���_�p�X
+  char              errbuf_c[MAX_PATH];             // �G���[���O�p
+  HINSTANCE         lib;                            // DLL�̃n���h��
+
+  // ������
+  ret_i  = RS_ERR;
+  rsts_i = -1;
+
+  // �f�[�^��ʂŕ���A�t�H���_�p�X���擾
+  switch (data_s) {
+    case QL_GSAV_CHBA_P:
+    case QL_GSAV_CHCH_P:
+      strcpy(&foldpath[0], &z_psth_bkup[0]);
+      break;
+    case QL_GSAV_CHRE_P:
+      strcpy(&foldpath[0], &z_psth_rereq[0]);
+      break;
+    default :
+      // �G���[���O�o�^
+      memset(errbuf_c,0,sizeof(errbuf_c));
+      sprintf(errbuf_c,"�f�[�^��ʕs��");
+      (void)F_errlog( 0x1002, 0xF341, data_s, 0, 0, 0, errbuf_c);
+      return RS_ERR;
+  }
+
+  try {
+    typedef WORD(WINAPI *TARGETVERSION)(void);
+    typedef int(WINAPI *TAR)(const HWND, LPCSTR, LPSTR , const DWORD);
+
+    lib = LoadLibrary("TAR32.dll");
+    TARGETVERSION TarGetVersion = (TARGETVERSION)GetProcAddress(lib,"TarGetVersion");
+    TAR Tar = (TAR)GetProcAddress(lib,"Tar");
+
+    for (cnt_i = 0; cnt_i < tarlist_p->filenum_s; cnt_i++) {
+
+      sprintf(&filename_c[0], "%s\\%s", &foldpath[0], &tarlist_p->tarinf[cnt_i].tar_c[0]);
+
+      // �� ���k�R�}���h���쐬����
+      sprintf(dsttmp_c, "%s_tmp", &filename_c[0]);
+      sprintf(cmd_c, "-c -z --use-directory=0 "  "--display-dialog=0 %s", dsttmp_c);
+
+      // ���k���t�@�C������ǉ�����
+      strcat(cmd_c, " ");
+      strcat(cmd_c, &tarlist_p->tarinf[cnt_i].befor_c[0]);
+	  strcat(cmd_c, "\\*.*");
+
+      // �� �R�}���h�����s����
+      rsts_i = Tar(NULL, cmd_c, NULL, NULL);
+
+      // ���k���s�̏ꍇ
+      if (rsts_i != 0) {
+        memset(errbuf_c,0,sizeof(errbuf_c));
+        sprintf(errbuf_c,"�t�@�C���̈��k�Ɏ��s %s", &tarlist_p->tarinf[cnt_i].befor_c[0]);
+        (void)F_errlog( 0x0151, 0xF342, data_s, GetLastError(), rsts_i, 0, errbuf_c);
+      }
+
+      // ���k�ɐ��������ꍇ
+      if (rsts_i == 0) {
+
+        // �t�@�C���������ɖ߂�
+        if (MoveFileEx(dsttmp_c, &filename_c[0], MOVEFILE_REPLACE_EXISTING)) {
+
+          // �߂�l�𐬌��ɂ���
+          ret_i = RS_SUC;
+
+          // �ҏW�t�H���_�폜����
+          fl_rep07(SS_ON_P, &tarlist_p->tarinf[cnt_i].befor_c[0]);
+        
+        }
+      }
+    }
+  }
+  catch (...) {
+  }
+
+  return (ret_i);
+}
+
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//            ���[�f�[�^���k�t�@�C��FTP���M����
+//            ���[�f�[�^���k�t�@�C���𒆌p���u�ɑ��M����
+//  ��  �́F
+//          int     ckflg_i              // �ďo���t���O
+//                   SS_ON_P : CG1000�t�@�C���L���m�F�������B�ʒm��M����������ďo
+//                   ��L�ȊO: ���񑗐M��
+//          short   data_s               // �f�[�^���
+//                    QL_GSAV_CHBA_P  :�o�b�N�A�b�v
+//                    QL_GSAV_CHRE_P  :�đ��v��
+//                    QL_GSAV_CHCH_P  :���[�f�[�^�ύX
+//  �o  �́F
+//          �Ȃ�
+//
+//  �߂�l�F ���� : RS_SUC
+//           ���s : RS_ERR
+//------------------------------------------------------------------------------
+int fl_rep04(int ckflg_i, short data_s)
+{
+  int           rsts_i;                         //���^�[���X�e�[�^�X
+  char          sndfname_c[S_BYTE_SIZE256_N];   // ���M��t�@�C����
+  char          chkfname_c[S_BYTE_SIZE256_N];   // �L���m�F�t�@�C����
+  char          findpath_c[S_BYTE_SIZE256_N];   // ���k�t�@�C���t���p�X
+  char          foldpath[S_BYTE_SIZE64_N];      // �t�H���_�p�X
+  char          sndfile_c[S_BYTE_SIZE64_N];     // ���M�t�@�C����
+  char          *filename;
+  struct T_AU_SCHED_TIME    sched;    //CSV̧�ٕۑ������ʒm��M�^�C���A�E�g����
+
+  // CG1000�t�@�C���L���m�F��
+  if (ckflg_i != SS_ON_P) {
+    // ���񑗐M��
+    z_time_s = 0; // ������
+  } else {
+    z_time_s++;   // ���Z
+  }
+
+  memset(&foldpath, 0x00, sizeof(foldpath));
+  memset(&sndfile_c, 0x00, sizeof(sndfile_c));
+  memset(&sndfname_c, 0x00, sizeof(sndfname_c));
+  memset(&chkfname_c, 0x00, sizeof(chkfname_c));
+  memset(&sched, 0, sizeof(sched));
+  memset(&findpath_c, 0x00, sizeof(findpath_c));
+
+  // ���M���鈳�k�t�@�C�������݂��邩�m�F
+  rsts_i = fl_rep041(data_s, foldpath, sndfile_c);
+  if (rsts_i != RS_SUC) {
+    return RS_ERR;
+  }
+  if (sndfile_c[0] == NULL) {
+    // ���M����t�@�C�����Ȃ��ꍇ
+    // CG1000�t�@�C���L���m�F�X�P�W���[���o�^�ς݂Ȃ�΁A���~�v������
+    if (ckflg_i == SS_ON_P) {
+      //�X�P�W���[�����~�v���𑗐M
+      rsts_i = fl_rep02(QF_AOSCHE_CANCEL_P, QF_JREPFL_CGFILETIME_P, 0, 0);
+      if (rsts_i != RS_SUC) {
+        (void)F_errlog(0x1002, 0xF401, rsts_i, 0, 0, 0, "�X�P�W���[�����~�v�����s");
+      }
+    }
+    // �����������s���B
+    fl_rep06();
+    return RS_SUC;
+  }
+  // ���M����t�@�C��������ꍇ�A���M�ł��邩�m�F����
+  // FTP�ڑ�
+  rsts_i = F_CgwConnect(JF_repfl->ipaddr_c, JF_repfl->ftpusrid_c, JF_repfl->ftpusrps_c, JF_repfl->port_s);
+  if (rsts_i != RS_SUC) {
+    (void)F_errlog(0x1002, 0xF402,rsts_i,0,0,0,"FTP�ڑ����s") ;
+    // �f�o�C�X�ُ�ʒm���M �f�o�C�X�ُ픭��			// CGW_DEV  add
+    fl_rep09(SS_ON_P);									// CGW_DEV  add
+    return RS_ERR;  
+  }
+
+  // �f�o�C�X�ُ�ʒm���M �f�o�C�X�ُ한�A				// CGW_DEV  add
+  fl_rep09(SS_OFF_P);									// CGW_DEV  add
+
+  // �t�@�C���L���m�F(tar.gz)
+  sprintf(chkfname_c, "%s%s", S_ROOT_DIR, S_FILE_TERGZ);
+  rsts_i = F_CgwFindFile(chkfname_c, &filename);
+  if (rsts_i == RS_SUC) {
+    // ���p���u����tar.gz�t�@�C�������݂��邽�߁ACG1000̧�ٗL���m�F�����X�P�W���[���̓o�^���s���B
+    if (ckflg_i == SS_ON_P) {
+      // CG1000̧�ٗL���m�F�������B�ŌĂяo���ꂽ�ꍇ�́A�m�F�񐔂𒴂����犮������
+      if (z_time_s >= JF_repfl->filechknum_s) {
+        (void)F_errlog(0x1002, 0xF403, rsts_i, 0, 0, 0, "CG1000�t�@�C���L���m�F�񐔒���");
+        F_CgwClose();  // FTP�ڑ�����
+        return RS_ERR;
+      }
+    } else {
+      // ��L�ȊO�́ACG1000�t�@�C���L���m�F�X�P�W���[���o�^
+      sched.min_s  = JF_repfl->filechkcycle_s;
+      rsts_i = fl_rep02(QF_AOSCHE_ENTRY_P, QF_JREPFL_CGFILETIME_P, JF_repfl->filechknum_s, &sched);
+      if (rsts_i != RS_SUC) {
+        (void)F_errlog(0x1002, 0xF404, rsts_i, 0, 0, 0, "CG1000�t�@�C���L���m�F�X�P�W���[���o�^���s");
+        F_CgwClose();  // FTP�ڑ�����
+        return RS_ERR ;
+      }
+    }
+    // FTP�ڑ�����
+    F_CgwClose();
+    return RS_SUC;
+  } else {
+    // ���p���u����tar.gz�t�@�C�������݂��Ȃ��ꍇ�́A���M����
+    // CG1000�t�@�C���L���m�F�X�P�W���[���o�^����Ă���ꍇ�́A���~����
+    if (ckflg_i == 1) {
+      //�X�P�W���[�����~�v���𑗐M
+      rsts_i = fl_rep02(QF_AOSCHE_CANCEL_P, QF_JREPFL_CGFILETIME_P, 0, 0);
+      if (rsts_i != RS_SUC) {
+        (void)F_errlog(0x1002, 0xF405, rsts_i, 0, 0, 0, "CG1000�t�@�C���L���m�F�X�P�W���[�����~�v�����s");
+      }
+    }
+    // ���M��t�@�C�����̎擾
+    sprintf(sndfname_c, "%s%s", S_ROOT_DIR, sndfile_c);
+    sprintf(findpath_c, "%s\\%s", foldpath, sndfile_c);
+    // ���k�t�@�C���𒆌p���u�ɑ��M
+    rsts_i = F_CgwPutFile(findpath_c, sndfname_c);
+    if (rsts_i != RS_SUC) {
+      (void)F_errlog(0x1002, 0xF406,rsts_i,0,0,0,"�t�@�C��FTP���M���s") ;
+      F_CgwClose();  // FTP�ڑ�����
+      return RS_ERR ;
+    }
+    // ���M�ς݂̃��[�J���t�@�C���͍폜����
+    remove(findpath_c);
+    z_time_s = 0;            // �񐔏�����
+  }
+  // FTP�ڑ�����
+  F_CgwClose();
+
+  // ���[�J���ɖ����M�̈��k�t�@�C�����c���Ă��邩�m�F
+  memset(&foldpath, 0x00, sizeof(foldpath));
+  memset(&sndfile_c, 0x00, sizeof(sndfile_c));
+  rsts_i = fl_rep041(data_s, foldpath, sndfile_c);
+  if (rsts_i != RS_SUC) {
+    return RS_ERR;
+  }
+  if (sndfile_c[0] != NULL) {
+    // ���̃t�@�C�����M�̂��߁ACG1000�t�@�C���L���m�F�X�P�W���[���o�^����
+    memset(&sched, 0, sizeof(sched));
+    sched.min_s  = JF_repfl->filechkcycle_s;
+    rsts_i = fl_rep02(QF_AOSCHE_ENTRY_P, QF_JREPFL_CGFILETIME_P, JF_repfl->filechknum_s, &sched);
+    if (rsts_i != RS_SUC) {
+      (void)F_errlog(0x1002, 0xF407, rsts_i, 0, 0, 0, "CG1000�t�@�C���L���m�F�X�P�W���[���o�^���s");
+      return RS_ERR ;
+    }
+  } else {
+    // �����M�t�@�C�������[�J���Ɏc���Ă��Ȃ��̂Ŋ����������s���B
+    fl_rep06();
+  }
+  return RS_SUC;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        ���M�Ώۈ��k�t�@�C�����݊m�F
+//  ��  �́F
+//        short   data_s            // �f�[�^���
+//                    QL_GSAV_CHBA_P  :�o�b�N�A�b�v
+//                    QL_GSAV_CHRE_P  :�đ��v��
+//                    QL_GSAV_CHCH_P  :���[�f�[�^�ύX
+//  �o  �́F
+//        char *foldpath          // ���M���t�H���_�p�X
+//        char *sndfname_c        // ���M�Ώۃt�@�C����
+//
+//  �߂�l�F ���� : RS_SUC
+//           ���s : RS_ERR
+//------------------------------------------------------------------------------
+int fl_rep041(short data_s, char *foldpath, char *sndfname_c)
+{
+  HANDLE           fhndl ;              //�t�@�C���n���h��
+  WIN32_FIND_DATA  fdata ;              //�t�@�C�����\��
+  char             findpath_c[256];
+
+  // �f�[�^��ʂŕ���A�t�H���_�p�X���擾
+  switch (data_s) {
+    case QL_GSAV_CHBA_P:
+    case QL_GSAV_CHCH_P:
+      strcpy(foldpath, &z_psth_bkup[0]);
+      break;
+    case QL_GSAV_CHRE_P:
+      strcpy(foldpath, &z_psth_rereq[0]);
+      break;
+    default :
+      // �G���[���O�o�^
+      (void)F_errlog( 0x1002, 0xF411, data_s, 0, 0, 0, "�f�[�^��ʕs��");
+      return RS_ERR;
+  }
+  // ���M���鈳�k�t�@�C�������݂��邩�m�F
+  for (int i=0; i < z_tarlist.filenum_s; i++) {
+    if (z_tarlist.tarinf[i].tar_c == NULL) {
+      break;
+    }
+    // �t�@�C�������݂����瑗�M�ΏۂƂ���
+    memset(&findpath_c, 0, sizeof(findpath_c));
+    sprintf(findpath_c, "%s\\%s", foldpath, z_tarlist.tarinf[i].tar_c);
+    fhndl=FindFirstFile(findpath_c, &fdata) ;  // ���M����t�@�C�����݊m�F
+    if(fhndl==INVALID_HANDLE_VALUE){           // ���M����t�@�C�����Ȃ��ꍇ�A��
+      continue;
+    } else {                                   // ���M����t�@�C��������ꍇ�A���M�Ώۂɐݒ�
+      strcpy(sndfname_c, z_tarlist.tarinf[i].tar_c);
+      break;
+    }
+    FindClose(fhndl) ;                         //�t�@�C�������n���h���N���[�Y
+  }
+  return RS_SUC;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//        ���[�f�[�^�쐬�v������
+//             �ۑ��G���A�̓��e�ŁA�쐬�v�����Ă��Ȃ������������A
+//             �쐬�v�����Ă��Ȃ���񂪑��݂���ꍇ�A�f�[�^�ۑ��ɒ��[�f�[�^�쐬��v������
+//  ��  �́F short data_s      �f�[�^���
+//                    QL_GSAV_CHBA_P  :�o�b�N�A�b�v
+//                    QL_GSAV_CHRE_P  :�đ��v��
+//                    QL_GSAV_CHCH_P  :���[�f�[�^�ύX
+//
+//  �߂�l�F 1        ����
+//           1�ȊO    ���s
+//------------------------------------------------------------------------------
+int fl_rep05(short data_s)
+{
+  int           loop1_i,startr_i;              //���[�v�J�E���^
+  int           mloop_i,bloop_i;               //�}�X�N���[�v�A�r�b�g���[�v
+  int           seetnum_i;                     //�v���V�[�g��
+  unsigned short  no_i;                        //�V�[�g�ԍ�
+  int           reqflg_i;                      //�v���t���O
+  short         reqseet_s[JF_REPFL_REPNUM_N];  //�v���G���A�̃V�[�g�ԍ�
+  int           datanum_s;                     //���R�[�h��
+  int           rsts_i;                        //���^�[���X�e�[�^�X
+  int           qsiz_i;                        //QUE�T�C�Y
+  struct T_JU_repfl         *repfl;
+  struct Q_T_GSAV_SAVREQ    entry;             //�v�����
+  struct T_TIME             reqday_t;          //�f�[�^����
+  struct T_AU_SCHED_TIME    sched;             //CSV̧�ٕۑ������ʒm��M�^�C���A�E�g����
+
+  rsts_i = RS_SUC;
+
+  // �f�[�^��ʂɂ��U�蕪��
+  if (data_s == QL_GSAV_CHBA_P) {          // �o�b�N�A�b�v
+    repfl = JU_backup;
+    datanum_s = 1;
+    startr_i = 0;
+  } else if (data_s == QL_GSAV_CHRE_P) {   // �đ��v��
+    repfl = JU_resend;
+    datanum_s = JU_RESEND_NUM_N;
+    startr_i = 1;
+  } else if (data_s == QL_GSAV_CHCH_P) {   // ���[�f�[�^�ύX
+    repfl = JU_repchg;
+    datanum_s = JU_REPCHG_NUM_N;
+    startr_i = 1;
+  } else {
+    // �f�[�^��ʕs��
+    (void)F_errlog(0x1002, 0xF501, data_s, 0, 0, 0, "�f�[�^��ʕs��");
+    return RS_ERR;
+  }
+
+  reqflg_i = SS_OFF_P;
+  seetnum_i = 0;
+  memset(&reqseet_s, 0, sizeof(reqseet_s));
+
+  //�ۑ��G���A�̓��e�ŁA�쐬�v�����Ă��Ȃ���������
+  for (loop1_i = startr_i; loop1_i <= datanum_s; loop1_i++) {       // ���R�[�h�����[�v
+    if (reqflg_i == SS_ON_P) {
+      // �v����񂠂�̏ꍇ�́A�����R�[�h�͌������Ȃ�
+      break;     // break for ���R�[�h���[�v
+    }
+    //�쐬�v�����Ă��Ȃ��V�[�g�ԍ�������
+    for (mloop_i = 0; mloop_i < JF_REPFL_REPNUM_N; mloop_i++) {    // �}�X�N�����[�v
+      for( bloop_i = 0; bloop_i < 16; bloop_i++ ) {                 // �r�b�g�����[�v 
+        if((repfl[loop1_i].sheet_s[mloop_i] >> bloop_i) & 1) {
+          //bit��ON�Ȃ�v���V�[�g�ԍ��ɐݒ肷�邩����
+          no_i = mloop_i * 16 + bloop_i + 1;	                       // �V�[�g�ԍ��擾
+          if (no_i <= repfl[loop1_i].reqno_s) {
+            //�v���ς݂Ȃ玟�̃r�b�g
+            continue;
+          } else {
+            //�v���ς݂łȂ��ꍇ�ŁA�v���V�[�g�ő吔�ȉ��Ȃ�A�v�����G���A��bit�����Ă�
+            reqflg_i = SS_ON_P;
+            if (seetnum_i < z_sheetmax_i) {
+              reqseet_s[mloop_i] = reqseet_s[mloop_i] | (1 << bloop_i);
+              repfl[loop1_i].reqno_s = no_i;  // �v���ς݃V�[�g�ԍ��ɐݒ�
+              seetnum_i++;
+            } else {
+              break;     // break for �r�b�g���[�v
+            }
+          }
+        } else {
+          //bit��OFF�Ȃ玟
+          continue;
+        }
+      }
+    }
+    if (reqflg_i == SS_ON_P) {
+      reqday_t = repfl[loop1_i].date;           // �f�[�^�����ۑ�
+      // �v����񂠂�̏ꍇ�́A�����R�[�h�͌������Ȃ�
+      break;     // break for ���R�[�h���[�v
+    }
+  }
+
+  //�쐬�v�����Ă��Ȃ���񂪑��݂���ꍇ�A�f�[�^�ۑ��ɒ��[�f�[�^�쐬��v������
+  if (reqflg_i == SS_ON_P) {
+    //�쐬�v�����Ă��Ȃ���񂪑��݂���ꍇ�A�f�[�^�ۑ��ɒ��[�f�[�^�쐬��v������
+    memset(&entry, 0, sizeof(entry));
+    entry.qh.func_s = QF_GSAV_SAVREQ_P;
+    entry.qh.sfnc_s = QS_GSAV_SAVE_P;
+    entry.dkind_s   = data_s;
+    entry.dtime     = reqday_t;
+    memcpy(entry.inf_s, reqseet_s, sizeof(short)*JF_REPFL_REPNUM_N);
+    entry.inf_s[JF_REPFL_REPNUM_N]   = DU_MOCTRL_CSV_P;
+    // QUE�T�C�Y
+    qsiz_i = sizeof(entry);
+    // ���[CSV�t�@�C���ۑ��v�����M(ENQ)
+    rsts_i = F_quemgr((int)QUE_ENQ_P | QUE_NOWAIT_P,    // �t�@���N�V����
+                    (key_t)Q_GSAV_KEY1,                 // QUEKEY�ԍ�
+                    &entry,                             // �f�[�^�o�b�t�@
+                    &qsiz_i);                           // �f�[�^�o�b�t�@�T�C�Y
+
+    // ���[CSV�t�@�C���ۑ��v�����s
+    if (rsts_i != RS_SUC){
+      (void)F_errlog(0x1002, 0xF502, rsts_i, data_s, 0, 0, "���[CSV�t�@�C���ۑ��v�����s");
+      return RS_ERR;
+    }
+    // �f�[�^��ʂ��o�b�N�A�b�vor�đ��v���̏ꍇ�́A
+    // CSV̧�ٕۑ������ʒm��M�^�C���A�E�g���ԃX�P�W���[���o�^
+    if ((data_s == QL_GSAV_CHBA_P) || (data_s == QL_GSAV_CHRE_P)) {
+      memset(&sched, 0, sizeof(sched));
+      sched.min_s  = JF_repfl->svtimeout_s;
+      rsts_i = fl_rep02(QF_AOSCHE_ENTRY_P, QF_JREPFL_TIMEUP_P, 1, &sched);
+      if (rsts_i != RS_SUC) {
+        (void)F_errlog(0x1002, 0xF503, rsts_i, 0, 0, 0,
+            "CSV̧�ٕۑ������ʒm��M�^�C���A�E�g���ԃX�P�W���[���o�^���s");
+      }
+    }
+  } else {
+    z_reqend_i = SS_ON_P;         // �쐬�v���ς�
+    // �ۑ��G���A���N���A����
+    for (loop1_i = 0; loop1_i < datanum_s; loop1_i++) {    // ���R�[�h�����[�v
+      memset(&repfl[loop1_i], 0, sizeof(repfl[loop1_i]));
+    }
+  }
+  return RS_SUC;
+}
+//------------------------------------------------------------------------------
+//  �@�@�\:
+//          ���[�f�[�^���M��������
+//          ���[�f�[�^���M�����㏈�����s��
+//------------------------------------------------------------------------------
+void fl_rep06()
+{
+  int              rsts_i;              //���^�[���X�e�[�^�X
+  HANDLE           fhndl;               //�t�@�C���n���h��
+  WIN32_FIND_DATA  fdata;               //�t�@�C�����\��
+  char             findpath_c[256];
+  char             delfpath_c[256];
+
+  // �s�v�ȃX�P�W���[���͒��~
+  // �^�C���A�E�g�X�P�W���[���o�^�ς݂𒆎~
+  rsts_i = fl_rep02(QF_AOSCHE_CANCEL_P, QF_JREPFL_TIMEUP_P, 0, 0);
+  if (rsts_i != RS_SUC) {
+    (void)F_errlog(0x1002, 0xF601, rsts_i, QF_JREPFL_TIMEUP_P, 0, 0,
+      "�^�C���A�E�g�X�P�W���[�����~�v�����s");
+  }
+  // CG1000�t�@�C���L���m�F�X�P�W���[���o�^�ς݂𒆎~
+  rsts_i = fl_rep02(QF_AOSCHE_CANCEL_P, QF_JREPFL_CGFILETIME_P, 0, 0);
+  if (rsts_i != RS_SUC) {
+    (void)F_errlog(0x1002, 0xF602, rsts_i, QF_JREPFL_CGFILETIME_P, 0, 0,
+      "CG1000�t�@�C���L���m�F�X�P�W���[�����~�v�����s");
+  }
+
+  // �G���[���������Ė{�֐����s�����ꍇ�A�ȉ��t���O���N���A����Ă��Ȃ��\����
+  // ���邽�߁A����������
+  z_time_s = 0;
+  z_reqend_i = SS_OFF_P;
+
+  //���k�t�@�C�����c���Ă����ꍇ�A���ׂč폜����(�o�b�N�A�b�v�t�H���_)
+  memset(&findpath_c, 0, sizeof(findpath_c));
+  sprintf(findpath_c, "%s\\%s", &z_psth_bkup[0], S_FILE_TERGZ);
+  fhndl = FindFirstFile(findpath_c, &fdata);
+  if (fhndl != INVALID_HANDLE_VALUE) {
+    memset(&delfpath_c, 0, sizeof(delfpath_c));
+    sprintf(findpath_c, "%s\\%s", &z_psth_bkup[0], fdata.cFileName);
+    remove(findpath_c);
+    while(FindNextFile(fhndl, &fdata)){     // �Ȍ�Q�ڈȌ���������폜
+      memset(&delfpath_c, 0, sizeof(delfpath_c));
+      sprintf(delfpath_c, "%s\\%s", &z_psth_bkup[0], fdata.cFileName);
+      remove(delfpath_c);
+    }
+  }
+  //���k�t�@�C�����c���Ă����ꍇ�A���ׂč폜����(�đ��v���t�H���_)
+  memset(&findpath_c, 0, sizeof(findpath_c));
+  sprintf(findpath_c, "%s\\%s", &z_psth_rereq[0], S_FILE_TERGZ);
+  fhndl = FindFirstFile(findpath_c, &fdata);
+  if (fhndl != INVALID_HANDLE_VALUE) {
+    memset(&delfpath_c, 0, sizeof(delfpath_c));
+    sprintf(findpath_c, "%s\\%s", &z_psth_rereq[0], fdata.cFileName);
+    remove(findpath_c);
+    while(FindNextFile(fhndl, &fdata)){     // �Ȍ�Q�ڈȌ���������폜
+      memset(&delfpath_c, 0, sizeof(delfpath_c));
+      sprintf(delfpath_c, "%s\\%s", &z_psth_rereq[0], fdata.cFileName);
+      remove(delfpath_c);
+    }
+  }
+
+  // ���k�t�@�C�����X�g������������B
+  memset(&z_tarlist, 0, sizeof(z_tarlist));
+
+  // �������t���O���đ��v���������̏ꍇ�A�đ��v���t�@�C���m�F�������s��
+  if (z_prog_i == S_REREQPROC) {
+    rsts_i = f_rep410();
+    if (rsts_i != RS_SUC) {
+      z_prog_i = 0;
+	}
+    if (z_prog_i != 0) {
+      // �đ��v���t�@�C�����Ăё��݂��Ă����犮�������͍s��Ȃ�
+      return;
+    }
+  }
+
+  // �������t���O��ݒ��������B
+  z_prog_i = 0;
+
+  // ���v�������Ă����珈�����s��
+  if (z_req_i & S_BKUPREQ) {              // �o�b�N�A�b�v�������B�ʒm
+    // �o�b�N�A�b�v���[�쐬����
+    rsts_i = f_rep320();
+    if (rsts_i != RS_SUC) {
+      z_prog_i = 0;
+      return;
+    }
+	return;
+  }
+  if (z_req_i & S_REREQREQ) {             // �đ��v���m�F�������B�ʒm
+    // �đ��v���t�@�C���m�F����
+    rsts_i = f_rep410();
+    if (rsts_i != RS_SUC) {
+      z_prog_i = 0;
+      return;
+    }
+    if (z_prog_i != 0) {
+      // �đ��v���t�@�C�����Ăё��݂��Ă����犮�������͍s��Ȃ�
+      return;
+    }
+  }
+  if (z_req_i & S_CHKREQ) {               // ���[�f�[�^�ύX�ʒm
+    // ���[�f�[�^�ύX����
+    rsts_i = f_rep220();
+    if (rsts_i != RS_SUC) {
+      z_prog_i = 0;
+      return;
+    }
+	return;
+  }
+  if (z_req_i & S_READREQ) {              // �ǂݒ���QUE
+    //���[�f�[�^�t�@�C���`�����ǂݍ��ݏ���
+    rsts_i = fl_rep01();
+    if (rsts_i != RS_SUC) {
+      z_prog_i = 0;
+      return;
+    }
+    //�X�P�W���[���o�^
+    f_rep120();
+
+    //�v����M�t���O�̓ǂݒ����p�t�d��M��ݒ����
+    z_req_i &= ~S_READREQ;
+  }
+  return;
+}
+
+//------------------------------------------------------------------------------
+//  �@  �\:
+//          �t�H���_���t�@�C���폜����
+//          �w��t�H���_���폜����B
+//
+//  ��  �́F short  del_s                   �t�H���_�폜�w��
+//                      SS_ON_P   �F �t�H���_�폜
+//                      ��L�ȊO  �F �t�H���_�폜���Ȃ�
+//           char*  path_c                  �t�H���_����
+//
+//  �o  �́F
+//          �Ȃ�
+//
+//  �߂�l�F ���� : RS_SUC
+//           ���s : RS_ERR
+//------------------------------------------------------------------------------
+int  fl_rep07(short del_s, char* path_c){
+  
+  int               rsts_i;                         // ���^�[���X�e�[�^�X
+  char              searchname_c[S_BYTE_SIZE64_N];  // �����p�G���A
+  char              editbuf_c[S_BYTE_SIZE64_N];     // �ҏW�p�G���A
+  char              errbuf_c[MAX_PATH];             // �G���[���O�p
+  HANDLE            fFile_h;                        // �����n���h��
+  WIN32_FIND_DATA   lpFData;                        // �t�@�C���f�[�^
+
+  rsts_i = RS_SUC;
+
+  sprintf(&searchname_c[0], "%s\\%s", path_c, S_FILE_ANY);
+
+  // ���[CSV�t�@�C����������
+  fFile_h = FindFirstFile(&searchname_c[0], &lpFData);
+
+  // �t�@�C�������������s
+  if (fFile_h == INVALID_HANDLE_VALUE) {
+
+    // �w�肵���t�@�C����������Ȃ������ꍇ
+    if (GetLastError() == ERROR_FILE_NOT_FOUND) {
+      // �����I��
+      return RS_SUC;
+    }
+
+    // �w�肵���p�X��������Ȃ������ꍇ
+    if (GetLastError() == ERROR_PATH_NOT_FOUND) {
+      // �G���[���O�o�^
+      memset(errbuf_c,0,sizeof(errbuf_c));
+      sprintf(errbuf_c,"�t�@�C�������������s(FindFirstFile) �t�H���_���Ȃ�");
+      (void)F_errlog(0x151, 0xF701, 0, 0, 0, 0, errbuf_c);
+      // �����I��
+      return RS_ERR;
+    }
+
+    // �G���[���O�o�^
+    memset(errbuf_c,0,sizeof(errbuf_c));
+    sprintf(errbuf_c,"�t�@�C�������������s(FindFirstFile)");
+    (void)F_errlog(0x151, 0xF702, GetLastError(), 0, 0, 0, errbuf_c);
+
+  }
+
+  // �t�@�C����������(FindNextFile)�Ɏ��s����܂ŌJ��Ԃ��s���B
+  do {
+
+    if ((lpFData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0) {
+
+      memset(&editbuf_c[0], 0, sizeof(editbuf_c));
+      sprintf(&editbuf_c[0],"%s\\%s",path_c,lpFData.cFileName);
+
+      // �t�@�C���폜
+      if (remove(&editbuf_c[0]) != 0) {
+        memset(errbuf_c,0,sizeof(errbuf_c));
+        sprintf(errbuf_c,"�t�@�C���폜���s %s", &editbuf_c[0]);
+        (void)F_errlog( 0x151, 0xF703, GetLastError(), 0, 0, 0, errbuf_c);
+        rsts_i = RS_ERR;
+      }
+    }
+
+  } while (FindNextFile(fFile_h, &lpFData));
+
+  // �t�@�C����������Ȃ�����
+  if (GetLastError() != ERROR_NO_MORE_FILES) {
+    // �G���[���O�o�^
+    memset(errbuf_c,0,sizeof(errbuf_c));
+    sprintf(errbuf_c,"�t�@�C�������������s(FindNextFile)");
+    (void)F_errlog( 0x151, 0xF704, GetLastError(), 0, 0, 0, errbuf_c);
+    // �����I��
+    rsts_i = RS_ERR;
+  }
+
+  // �����n���h���N���[�Y
+  FindClose(fFile_h) ;
+
+  // �t�H���_�폜�w��
+  if (del_s == SS_ON_P) {
+    // �t�H���_���폜
+    if (_rmdir(path_c) != 0) {
+      memset(errbuf_c,0,sizeof(errbuf_c));
+      sprintf(errbuf_c,"�t�H���_�폜���s %s", path_c);
+      (void)F_errlog( 0x150, 0xF705, GetLastError(), 0, 0, 0, errbuf_c);
+      rsts_i = RS_ERR;
+    }
+  }
+
+  return rsts_i;
+
+}
+//------------------------------------------------------------------------------
+//  �@  �\:
+//          �o�^�ς݂̃X�P�W���[���𒆎~����
+//
+//------------------------------------------------------------------------------
+void  fl_rep08(){
+
+  int               rsts_i;                         // ���^�[���X�e�[�^�X
+
+  // �o�b�N�A�b�v�����X�P�W���[���o�^�ς݂𒆎~
+  rsts_i = fl_rep02(QF_AOSCHE_CANCEL_P, QF_JREPFL_BKUPTIME_P, 0, 0);
+  if (rsts_i != RS_SUC) {
+    (void)F_errlog(0x1002, 0xF801, rsts_i, QF_JREPFL_BKUPTIME_P, 0, 0,
+       "�o�b�N�A�b�v�����X�P�W���[�����~�v�����s");
+  }
+  // �đ��v���m�F�����X�P�W���[���o�^�ς݂𒆎~
+  rsts_i = fl_rep02(QF_AOSCHE_CANCEL_P, QF_JREPFL_REREQTIME_P, 0, 0);
+  if (rsts_i != RS_SUC) {
+    (void)F_errlog(0x1002, 0xF802, rsts_i, QF_JREPFL_REREQTIME_P, 0, 0,
+      "�đ��v���m�F�����X�P�W���[�����~�v�����s");
+  }
+  // �^�C���A�E�g�X�P�W���[���o�^�ς݂𒆎~
+  rsts_i = fl_rep02(QF_AOSCHE_CANCEL_P, QF_JREPFL_TIMEUP_P, 0, 0);
+  if (rsts_i != RS_SUC) {
+    (void)F_errlog(0x1002, 0xF803, rsts_i, QF_JREPFL_TIMEUP_P, 0, 0,
+      "�^�C���A�E�g�X�P�W���[�����~�v�����s");
+  }
+  // CG1000�t�@�C���L���m�F�X�P�W���[���o�^�ς݂𒆎~
+  rsts_i = fl_rep02(QF_AOSCHE_CANCEL_P, QF_JREPFL_CGFILETIME_P, 0, 0);
+  if (rsts_i != RS_SUC) {
+    (void)F_errlog(0x1002, 0xF804, rsts_i, QF_JREPFL_CGFILETIME_P, 0, 0,
+      "CG1000�t�@�C���L���m�F�X�P�W���[�����~�v�����s");
+  }
+  return;
+
+}
+// CGW_DEV ��
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ *  �@  �\�F
+ *      �f�o�C�X�ُ�ʒm���M����
+ *  calling sequence:
+ *      (void)fl_rep09((int)mst_i , (int)srv_i) ;
+ *  ��  �́F
+ *      short    dir_s ;          �����iSS_ON_P�F���� / SS_OFF_P�F���A�j
+ *  �o  �́F
+ *      �Ȃ�
+ *  �߂�l�F
+ *      �Ȃ�
+ *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+void  fl_rep09(short dir_s){
+
+  int                     rsts_i;		// ���^�[���X�e�[�^�X
+  int                     size_i;		// �`���T�C�Y
+  struct Q_T_ASERR_DEVERS enq;			// QUE�ʒm�o�b�t�@
+
+  // QUE�擾
+  size_i = sizeof(enq);
+
+  // QUE���M�G���A������
+  (void)memset(&enq,0,size_i);
+
+  // �f�o�C�X�ُ�ʒm�ҏW
+  enq.qh.func_s = QF_ASERR_DEVERS_P ;           //�f�o�C�X�ُ�ʒm              
+  enq.devno_s = DEV_CGW_P ;                     //�f�o�C�X�ԍ�
+  enq.errinf_s = BIT0 ;                         //���bit
+  enq.status_s = dir_s ;                        //�����^���A                    
+
+  // QUE���M
+  rsts_i = F_quemgr(QUE_ENQ_P|QUE_NOWAIT_P,
+                   (short)Q_ASERR_KEY1,
+                    &enq,&size_i);
+
+  if (rsts_i != RS_SUC) {
+    F_errlog(0x131,0xF801,rsts_i,(int)enq.devno_s,(int)enq.status_s,0,
+          "�f�o�C�X�ُ�ʒm���M���s") ;
+  }
+}
+// CGW_DEV ��
+//------------------------------------------------------------------------------
+//  �@  �\:
+//          ���O�o�͏���
+//          CGW�����̃G���[�����o�͂��A�G���[���O��o�^����B
+//
+//  ��  �́F
+//          int     errkind_i  : �G���[���
+//          int     errorid_i  : �G���[�h�c
+//          int     errinf1_i  : �G���[���P
+//          int     errinf2_i  : �G���[���Q
+//          int     errinf3_i  : �G���[���R
+//          int     errinf4_i  : �G���[���S
+//          char *  mess_c[64] : ���b�Z�[�W���
+//
+//  �o  �́F
+//          �Ȃ�
+//
+//  �߂�l�F ���� : RS_SUC
+//           ���s : RS_ERR
+//------------------------------------------------------------------------------
+void  errlog(short kind_s, int errkind_i, int errorid_i, int errinf1_i, int errinf2_i, int errinf3_i, int errinf4_i, char *mess_c){
+
+  int               rsts_i;                         // ���^�[���X�e�[�^�X
+  int               size_i;                         // �T�C�Y
+  int               wsize_i;                        // �Ǎ��f�[�^�T�C�Y
+  HANDLE            handle_h;                       // �t�@�C���n���h��
+  char              foldpath[64];                   // �t�H���_�p�X
+  char              filepath_c[64];                 // �t�@�C���p�X
+  char              editbuf_c[128];                 // �������ݕ�����ҏW�G���A
+  char              errbuf_c[MAX_PATH];             // �G���[���O�p
+  LARGE_INTEGER        li;                          // �ړ��o�C�g��
+
+  // ������
+  rsts_i = RS_ERR;
+  handle_h = NULL;
+
+  // �f�[�^��ʂŕ���A�t�H���_�p�X���擾
+  switch (kind_s) {
+    case QL_GSAV_CHBA_P:
+    case QL_GSAV_CHCH_P:
+      strcpy(&foldpath[0], &z_psth_bkup[0]);
+      break;
+    case QL_GSAV_CHRE_P:
+      strcpy(&foldpath[0], &z_psth_rereq[0]);
+      break;
+    default :
+      // �G���[���O�o�^
+      memset(&errbuf_c,0,sizeof(errbuf_c));
+      sprintf(errbuf_c,"�f�[�^��ʕs��");
+      (void)F_errlog( 0x1000, 0xFF01, kind_s, 0, 0, 0, errbuf_c);
+	  return;
+  }
+
+  memset(&filepath_c, 0, sizeof(filepath_c));
+  memset(&editbuf_c, 0, sizeof(editbuf_c));
+  sprintf(&filepath_c[0], "%s\\%s", &foldpath[0], S_FILE_ERR);
+  sprintf(&editbuf_c[0], "%08x %08x %d %d %d %d %s\n",errkind_i, errorid_i, errinf1_i, errinf2_i, errinf3_i, errinf4_i, mess_c);
+  // ̧��OPEN
+  handle_h = (HANDLE)CreateFile((LPCTSTR)filepath_c,                 // �t�@�C����
+                                  (DWORD)GENERIC_WRITE,              // �A�N�Z�X���[�h
+                                  (DWORD)0,                          // ���L���[�h
+                                  (LPSECURITY_ATTRIBUTES)NULL,       // �Z�L�����e�B�L�q�q
+                                  (DWORD)OPEN_ALWAYS,                // �쐬���@
+                                  (DWORD)FILE_ATTRIBUTE_NORMAL |     // �t�@�C������
+                                  FILE_FLAG_RANDOM_ACCESS,           //
+                                  (HANDLE)NULL) ;                    //
+  // ̧�ٵ���ݎ��s
+  if (handle_h == INVALID_HANDLE_VALUE) {
+     // �G���[���O�o�^
+    memset(&errbuf_c,0,sizeof(errbuf_c));
+    sprintf(errbuf_c,"�G���[���t�@�C���I�[�v�����s");
+    (void)F_errlog( 0x1000, 0xFF02, kind_s, GetLastError(), 0, 0, errbuf_c);
+  // ̧�ٵ���ݐ���
+  } else {
+    // �ۑ���t�@�C���̏����݃|�C���^���ړ�
+    memset(&li, 0, sizeof(li));
+    li.QuadPart =(LONGLONG) 0;
+    if (SetFilePointerEx(handle_h, li, NULL, FILE_END) == -1) {
+      CloseHandle(handle_h);
+      return;
+    }
+    size_i = (int)strlen(editbuf_c);                                 // OPS5000_64bit mod
+    // ү����̧�ُ�������
+    rsts_i = (INT)WriteFile((HANDLE)handle_h,                        // �t�@�C���n���h��
+                           (LPVOID)&editbuf_c[0],                    // �f�[�^�A�h���X
+                           (DWORD)size_i,                            // �o�C�g��
+                           (LPDWORD)&wsize_i,                        // �Ǎ��݃o�C�g���̃A�h���X
+                           (LPOVERLAPPED)NULL) ;                     // �d��I/O�ɕK�v�ȍ\���̃A�h���X
+    // �������ݎ��s
+    if (rsts_i != TRUE) {
+    // �G���[���O�o�^
+      memset(&errbuf_c,0,sizeof(errbuf_c));
+      sprintf(errbuf_c,"�G���[���t�@�C���������ݎ��s");
+      (void)F_errlog( 0x1000, 0xFF03, kind_s, GetLastError(), 0, 0, errbuf_c);
+    }
+
+    // ̧�ٸ۰��
+    CloseHandle(handle_h) ;
+
+  }
+
+  (void)F_errlog(errkind_i, errorid_i, errinf1_i, errinf2_i, errinf3_i, errinf4_i, mess_c);
+
+  return;
+}

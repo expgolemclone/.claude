@@ -1,0 +1,2 @@
+@echo off
+start "" "C:\Users\0000250059\AppData\Local\Programs\mpv.net\mpvnet.exe" "%QUTE_URL%"

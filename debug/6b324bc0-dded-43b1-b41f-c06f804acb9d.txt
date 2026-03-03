@@ -1,0 +1,173 @@
+2026-03-03T01:29:23.439Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-03-03T01:29:23.439Z [DEBUG] MDM settings load completed in 16ms
+2026-03-03T01:29:23.473Z [DEBUG] [init] configureGlobalMTLS starting
+2026-03-03T01:29:23.473Z [DEBUG] [init] configureGlobalMTLS complete
+2026-03-03T01:29:23.473Z [DEBUG] [init] configureGlobalAgents starting
+2026-03-03T01:29:23.473Z [DEBUG] [init] configureGlobalAgents complete
+2026-03-03T01:29:23.514Z [DEBUG] Using bash path: "C:\msys64\usr\bin\bash.exe"
+2026-03-03T01:29:23.524Z [DEBUG] Applying permission update: Adding 1 deny rule(s) to destination 'userSettings': ["Agent"]
+2026-03-03T01:29:23.526Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-03-03T01:29:23.528Z [DEBUG] [ToolSearch:optimistic] mode=tst-auto, ENABLE_TOOL_SEARCH=undefined, result=true
+2026-03-03T01:29:23.529Z [DEBUG] [STARTUP] Running setup()...
+2026-03-03T01:29:23.532Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\0000250059\.claude\skills, project=[]
+2026-03-03T01:29:23.532Z [DEBUG] Error log sink initialized
+2026-03-03T01:29:23.582Z [DEBUG] [Claude in Chrome] Found chrome profiles: Default
+2026-03-03T01:29:23.584Z [DEBUG] installed_plugins.json doesn't exist, returning empty V2 object
+2026-03-03T01:29:23.584Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2026-03-03T01:29:23.584Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2026-03-03T01:29:23.584Z [DEBUG] Total plugin skills loaded: 0
+2026-03-03T01:29:23.584Z [DEBUG] Total plugin commands loaded: 0
+2026-03-03T01:29:23.584Z [DEBUG] Registered 0 hooks from 0 plugins
+2026-03-03T01:29:23.588Z [DEBUG] Loaded 0 unique skills (0 unconditional, 0 conditional, managed: 0, user: 0, project: 0, additional: 0, legacy commands: 0)
+2026-03-03T01:29:23.588Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills, 5 bundled skills
+2026-03-03T01:29:23.590Z [DEBUG] [STARTUP] setup() completed in 61ms
+2026-03-03T01:29:23.590Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-03-03T01:29:23.591Z [DEBUG] Total plugin agents loaded: 0
+2026-03-03T01:29:23.591Z [DEBUG] [STARTUP] Commands and agents loaded in 1ms
+2026-03-03T01:29:23.595Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-03-03T01:29:23.666Z [DEBUG] Grove: Using fresh cached config
+2026-03-03T01:29:23.673Z [DEBUG] [Perfetto] initializePerfettoTracing called, env value: undefined
+2026-03-03T01:29:23.673Z [DEBUG] [3P telemetry] isTelemetryEnabled=false (CLAUDE_CODE_ENABLE_TELEMETRY=undefined)
+2026-03-03T01:29:23.685Z [DEBUG] [keybindings] KeybindingSetup initialized with 104 bindings, 0 warnings
+2026-03-03T01:29:23.693Z [DEBUG] [keybindings] Skipping file watcher - user customization disabled
+2026-03-03T01:29:23.724Z [DEBUG] [Claude in Chrome] Extension fcoeoabgfenejglbffodgkkbkcdhcgfn found in chrome Default
+2026-03-03T01:29:23.729Z [DEBUG] Git remote URL: null
+2026-03-03T01:29:23.729Z [DEBUG] No git remote URL found
+2026-03-03T01:29:23.729Z [DEBUG] Not in a GitHub repository, skipping path mapping update
+2026-03-03T01:29:23.729Z [DEBUG] Git remote URL: null
+2026-03-03T01:29:23.729Z [DEBUG] No git remote URL found
+2026-03-03T01:29:25.772Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.12068.1772501365772
+2026-03-03T01:29:25.772Z [DEBUG] Preserving file permissions: 100666
+2026-03-03T01:29:25.776Z [DEBUG] Temp file written successfully, size: 13854 bytes
+2026-03-03T01:29:25.777Z [DEBUG] Applied original permissions to temp file
+2026-03-03T01:29:25.777Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.12068.1772501365772 to C:\Users\0000250059\.claude.json
+2026-03-03T01:29:25.778Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-03-03T01:29:25.798Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.12068.1772501365798
+2026-03-03T01:29:25.798Z [DEBUG] Preserving file permissions: 100666
+2026-03-03T01:29:25.801Z [DEBUG] Temp file written successfully, size: 13853 bytes
+2026-03-03T01:29:25.802Z [DEBUG] Applied original permissions to temp file
+2026-03-03T01:29:25.802Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.12068.1772501365798 to C:\Users\0000250059\.claude.json
+2026-03-03T01:29:25.802Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-03-03T01:29:25.819Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.12068.1772501365819
+2026-03-03T01:29:25.819Z [DEBUG] Preserving file permissions: 100666
+2026-03-03T01:29:25.822Z [DEBUG] Temp file written successfully, size: 13852 bytes
+2026-03-03T01:29:25.822Z [DEBUG] Applied original permissions to temp file
+2026-03-03T01:29:25.823Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.12068.1772501365819 to C:\Users\0000250059\.claude.json
+2026-03-03T01:29:25.823Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-03-03T01:29:25.842Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.12068.1772501365842
+2026-03-03T01:29:25.842Z [DEBUG] Preserving file permissions: 100666
+2026-03-03T01:29:25.846Z [DEBUG] Temp file written successfully, size: 13851 bytes
+2026-03-03T01:29:25.846Z [DEBUG] Applied original permissions to temp file
+2026-03-03T01:29:25.846Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.12068.1772501365842 to C:\Users\0000250059\.claude.json
+2026-03-03T01:29:25.847Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-03-03T01:29:25.865Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.12068.1772501365865
+2026-03-03T01:29:25.865Z [DEBUG] Preserving file permissions: 100666
+2026-03-03T01:29:25.868Z [DEBUG] Temp file written successfully, size: 13852 bytes
+2026-03-03T01:29:25.868Z [DEBUG] Applied original permissions to temp file
+2026-03-03T01:29:25.868Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.12068.1772501365865 to C:\Users\0000250059\.claude.json
+2026-03-03T01:29:25.869Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-03-03T01:29:26.697Z [DEBUG] Failed to fetch Grove notice config: AxiosError: timeout of 3000ms exceeded
+2026-03-03T01:29:26.699Z [DEBUG] [STARTUP] showSetupScreens() completed in 3104ms
+2026-03-03T01:29:26.699Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-03-03T01:29:26.699Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-03-03T01:29:26.699Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-03-03T01:29:26.699Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-03-03T01:29:26.699Z [DEBUG] [API:auth] OAuth token check starting
+2026-03-03T01:29:26.699Z [DEBUG] Passes: Using fresh cached eligibility data
+2026-03-03T01:29:26.700Z [DEBUG] Total LSP servers loaded: 0
+2026-03-03T01:29:26.700Z [DEBUG] [STARTUP] MCP configs loaded in 3174ms
+2026-03-03T01:29:26.708Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-03-03T01:29:26.708Z [DEBUG] LSP manager initialized with 0 servers
+2026-03-03T01:29:26.708Z [DEBUG] [API:auth] OAuth token check complete
+2026-03-03T01:29:26.710Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-03-03T01:29:26.710Z [DEBUG] Found 0 hook matchers in settings
+2026-03-03T01:29:26.710Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-03-03T01:29:26.710Z [DEBUG] Initialized versioned plugins system with 0 plugins
+2026-03-03T01:29:26.710Z [DEBUG] LSP server manager initialized successfully
+2026-03-03T01:29:26.710Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-03-03T01:29:26.749Z [DEBUG] [Reconnection] computeInitialTeamContext: No teammate context set (not a teammate)
+2026-03-03T01:29:26.752Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.12068.1772501366752
+2026-03-03T01:29:26.752Z [DEBUG] Preserving file permissions: 100666
+2026-03-03T01:29:26.756Z [DEBUG] Temp file written successfully, size: 13852 bytes
+2026-03-03T01:29:26.756Z [DEBUG] Applied original permissions to temp file
+2026-03-03T01:29:26.756Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.12068.1772501366752 to C:\Users\0000250059\.claude.json
+2026-03-03T01:29:26.756Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-03-03T01:29:26.797Z [DEBUG] [keybindings] KeybindingSetup initialized with 104 bindings, 0 warnings
+2026-03-03T01:29:26.841Z [DEBUG] [REPL:mount] REPL mounted, disabled=false
+2026-03-03T01:29:26.841Z [DEBUG] Official marketplace auto-install skipped: already_attempted
+2026-03-03T01:29:26.842Z [DEBUG] performStartupChecks called
+2026-03-03T01:29:26.842Z [DEBUG] Starting background plugin installations
+2026-03-03T01:29:26.844Z [DEBUG] Loaded 2 CLAUDE.md/rules files:
+  [User] C:\Users\0000250059\.claude\rules\README.md (1013 chars)
+  [Project] D:\refactoring\ops5k_x64\CLAUDE.md (652 chars)
+2026-03-03T01:29:26.847Z [DEBUG] performBackgroundPluginInstallations called
+2026-03-03T01:29:26.979Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.12068.1772501366979
+2026-03-03T01:29:26.979Z [DEBUG] Preserving file permissions: 100666
+2026-03-03T01:29:26.984Z [DEBUG] Temp file written successfully, size: 13849 bytes
+2026-03-03T01:29:26.984Z [DEBUG] Applied original permissions to temp file
+2026-03-03T01:29:26.984Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.12068.1772501366979 to C:\Users\0000250059\.claude.json
+2026-03-03T01:29:26.985Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-03-03T01:29:27.005Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.12068.1772501367005
+2026-03-03T01:29:27.006Z [DEBUG] Preserving file permissions: 100666
+2026-03-03T01:29:27.009Z [DEBUG] Temp file written successfully, size: 13848 bytes
+2026-03-03T01:29:27.010Z [DEBUG] Applied original permissions to temp file
+2026-03-03T01:29:27.010Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.12068.1772501367005 to C:\Users\0000250059\.claude.json
+2026-03-03T01:29:27.011Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-03-03T01:29:27.032Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.12068.1772501367032
+2026-03-03T01:29:27.032Z [DEBUG] Preserving file permissions: 100666
+2026-03-03T01:29:27.036Z [DEBUG] Temp file written successfully, size: 13847 bytes
+2026-03-03T01:29:27.036Z [DEBUG] Applied original permissions to temp file
+2026-03-03T01:29:27.036Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.12068.1772501367032 to C:\Users\0000250059\.claude.json
+2026-03-03T01:29:27.037Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-03-03T01:29:27.037Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-03-03T01:29:27.050Z [DEBUG] [claudeai-mcp] Gate returned: false
+2026-03-03T01:29:27.050Z [DEBUG] [claudeai-mcp] Disabled via gate
+2026-03-03T01:29:27.054Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.12068.1772501367054
+2026-03-03T01:29:27.054Z [DEBUG] Preserving file permissions: 100666
+2026-03-03T01:29:27.057Z [DEBUG] Temp file written successfully, size: 13846 bytes
+2026-03-03T01:29:27.058Z [DEBUG] Applied original permissions to temp file
+2026-03-03T01:29:27.058Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.12068.1772501367054 to C:\Users\0000250059\.claude.json
+2026-03-03T01:29:27.058Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-03-03T01:29:27.059Z [DEBUG] AutoUpdaterWrapper: Installation type: native
+2026-03-03T01:29:27.074Z [DEBUG] [keybindings] Watching for changes to C:\Users\0000250059\.claude\keybindings.json
+2026-03-03T01:29:27.076Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 0 uninstallable plugins
+2026-03-03T01:29:27.076Z [DEBUG] Security messages are fresh (<1h old), skipping fetch
+2026-03-03T01:29:27.078Z [DEBUG] Watching for changes in setting files C:\Users\0000250059\.claude\settings.json, D:\refactoring\ops5k_x64\.claude\settings.json, D:\refactoring\ops5k_x64\.claude\settings.local.json...
+2026-03-03T01:29:27.103Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0
+2026-03-03T01:29:27.504Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=C:\Users\0000250059\.local\bin\claude.exe)
+2026-03-03T01:29:28.497Z [DEBUG] Org fast mode: disabled (extra_usage_disabled)
+2026-03-03T01:29:28.786Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:28.794Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:28.798Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:29.136Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:29.143Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:29.219Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:29.224Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:29.430Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:29.434Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:29.459Z [DEBUG] High write ratio: blit=836, write=868 (50.9% writes), screen=13x209
+2026-03-03T01:29:29.466Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:29.468Z [DEBUG] High write ratio: blit=836, write=869 (51.0% writes), screen=13x209
+2026-03-03T01:29:29.471Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:29.489Z [DEBUG] High write ratio: blit=836, write=968 (53.7% writes), screen=14x209
+2026-03-03T01:29:29.696Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:29.699Z [DEBUG] High write ratio: blit=836, write=969 (53.7% writes), screen=14x209
+2026-03-03T01:29:29.702Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:29.776Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:29.784Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-03-03T01:29:30.062Z [DEBUG] /resume: loading sessions for cwd=D:\refactoring\ops5k_x64, worktrees=[D:/refactoring/ops5k_x64]
+2026-03-03T01:29:30.070Z [DEBUG] /resume: found 42 session files on disk
+2026-03-03T01:29:30.358Z [DEBUG] Checking for native installer update to version 2.1.63
+2026-03-03T01:29:30.360Z [DEBUG] Found 2.1.63 at C:\Users\0000250059\.local\bin\claude.exe, skipping install
+2026-03-03T01:29:30.366Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.12068.1772501370366
+2026-03-03T01:29:30.366Z [DEBUG] Preserving file permissions: 100666
+2026-03-03T01:29:30.369Z [DEBUG] Temp file written successfully, size: 13845 bytes
+2026-03-03T01:29:30.369Z [DEBUG] Applied original permissions to temp file
+2026-03-03T01:29:30.369Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.12068.1772501370366 to C:\Users\0000250059\.claude.json
+2026-03-03T01:29:30.370Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-03-03T01:29:30.672Z [DEBUG] High write ratio: blit=1041, write=1907 (64.7% writes), screen=54x209
+2026-03-03T01:29:30.698Z [DEBUG] High write ratio: blit=1041, write=1907 (64.7% writes), screen=54x209
+2026-03-03T01:29:30.735Z [DEBUG] High write ratio: blit=1041, write=1933 (65.0% writes), screen=54x209
+2026-03-03T01:29:32.810Z [DEBUG] High write ratio: blit=1041, write=1933 (65.0% writes), screen=54x209
+2026-03-03T01:29:32.979Z [DEBUG] SSH config check: code=1 configured=false
+2026-03-03T01:29:33.109Z [DEBUG] git pull: cwd=C:\Users\0000250059\.claude\plugins\marketplaces\claude-plugins-official ref=default

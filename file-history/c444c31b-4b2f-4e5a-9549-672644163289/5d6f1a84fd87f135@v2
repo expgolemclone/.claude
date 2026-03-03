@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"D:/refactoring/ops5k_x64/.hooks/check_encoding.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

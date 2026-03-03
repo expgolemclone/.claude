@@ -1,0 +1,83 @@
+2026-02-26T23:30:36.179Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-26T23:30:36.180Z [DEBUG] MDM settings load completed in 25ms
+2026-02-26T23:30:36.239Z [DEBUG] [init] configureGlobalMTLS starting
+2026-02-26T23:30:36.239Z [DEBUG] [init] configureGlobalMTLS complete
+2026-02-26T23:30:36.239Z [DEBUG] [init] configureGlobalAgents starting
+2026-02-26T23:30:36.239Z [DEBUG] [init] configureGlobalAgents complete
+2026-02-26T23:30:36.276Z [DEBUG] Using bash path: "C:\msys64\usr\bin\bash.exe"
+2026-02-26T23:30:36.294Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-02-26T23:30:36.298Z [DEBUG] [ToolSearch:optimistic] mode=tst-auto, ENABLE_TOOL_SEARCH=undefined, result=true
+2026-02-26T23:30:36.299Z [DEBUG] [STARTUP] Running setup()...
+2026-02-26T23:30:36.310Z [DEBUG] Loading skills from: managed=C:\ProgramData\ClaudeCode\.claude\skills, user=C:\Users\0000250059\.claude\skills, project=[]
+2026-02-26T23:30:36.311Z [DEBUG] Error log sink initialized
+2026-02-26T23:30:36.345Z [DEBUG] [STARTUP] setup() completed in 46ms
+2026-02-26T23:30:36.345Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-02-26T23:30:36.410Z [DEBUG] [Claude in Chrome] Found chrome profiles: Default
+2026-02-26T23:30:36.411Z [DEBUG] installed_plugins.json doesn't exist, returning empty V2 object
+2026-02-26T23:30:36.412Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2026-02-26T23:30:36.412Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2026-02-26T23:30:36.412Z [DEBUG] Total plugin skills loaded: 0
+2026-02-26T23:30:36.412Z [DEBUG] Total plugin commands loaded: 0
+2026-02-26T23:30:36.412Z [DEBUG] Registered 0 hooks from 0 plugins
+2026-02-26T23:30:36.415Z [DEBUG] Total plugin agents loaded: 0
+2026-02-26T23:30:36.417Z [DEBUG] Loaded 0 unique skills (0 unconditional, 0 conditional, managed: 0, user: 0, project: 0, additional: 0, legacy commands: 0)
+2026-02-26T23:30:36.417Z [DEBUG] getSkills returning: 0 skill dir commands, 0 plugin skills, 3 bundled skills
+2026-02-26T23:30:36.418Z [DEBUG] [STARTUP] Commands and agents loaded in 73ms
+2026-02-26T23:30:36.430Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-02-26T23:30:36.596Z [DEBUG] [keybindings] KeybindingSetup initialized with 102 bindings, 0 warnings
+2026-02-26T23:30:36.623Z [DEBUG] [keybindings] Skipping file watcher - user customization disabled
+2026-02-26T23:30:36.625Z [DEBUG] [Claude in Chrome] Extension fcoeoabgfenejglbffodgkkbkcdhcgfn found in chrome Default
+2026-02-26T23:30:36.634Z [DEBUG] Git remote URL: http://mmm.osshub.mss.local/on-premises/ops/ops5k_x64.git
+2026-02-26T23:30:36.634Z [DEBUG] Parsed repository: null from URL: http://mmm.osshub.mss.local/on-premises/ops/ops5k_x64.git
+2026-02-26T23:30:37.111Z [DEBUG] High write ratio: blit=0, write=1809 (100.0% writes), screen=36x140
+2026-02-26T23:30:37.130Z [DEBUG] High write ratio: blit=0, write=1809 (100.0% writes), screen=36x140
+2026-02-26T23:30:37.664Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.17396.1772148637664
+2026-02-26T23:30:37.665Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:30:37.668Z [DEBUG] Temp file written successfully, size: 1623 bytes
+2026-02-26T23:30:37.669Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:30:37.669Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.17396.1772148637664 to C:\Users\0000250059\.claude.json
+2026-02-26T23:30:37.670Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:30:37.879Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data,status=401,body=OAuth token has expired. Please obtain a new token or refresh your existing token.] Error
+    at Du (B:/~BUN/root/claude.exe:92:1144)
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10067)
+    at emit (node:events:92:22)
+    at endReadableNT (internal:streams/readable:861:50)
+    at processTicksAndRejections (native:7:39)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-26T23:30:37.989Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.17396.1772148637989
+2026-02-26T23:30:37.989Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:30:37.992Z [DEBUG] Temp file written successfully, size: 1623 bytes
+2026-02-26T23:30:37.992Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:30:37.992Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.17396.1772148637989 to C:\Users\0000250059\.claude.json
+2026-02-26T23:30:37.993Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:30:38.197Z [ERROR] AxiosError: [url=https://api.anthropic.com/api/oauth/claude_cli/client_data,status=401,body=OAuth token has expired. Please obtain a new token or refresh your existing token.] Error
+    at Du (B:/~BUN/root/claude.exe:92:1144)
+    at <anonymous> (B:/~BUN/root/claude.exe:93:10067)
+    at emit (node:events:92:22)
+    at endReadableNT (internal:streams/readable:861:50)
+    at processTicksAndRejections (native:7:39)
+    at request (B:/~BUN/root/claude.exe:95:2149)
+    at processTicksAndRejections (native:7:39)
+2026-02-26T23:30:39.501Z [DEBUG] High write ratio: blit=0, write=1799 (100.0% writes), screen=36x140
+2026-02-26T23:30:39.502Z [DEBUG] Full reset (scrollback changes): scrollbackRows=4, firstChangeY=0
+  prev: "Welcome to Claude Code v2.1.59                                                                                                              "
+  next: "Welcome to Claude Code v2.1.59                                                                                                              "
+2026-02-26T23:30:39.625Z [DEBUG] High write ratio: blit=0, write=1809 (100.0% writes), screen=36x140
+2026-02-26T23:30:39.625Z [DEBUG] Full reset (scrollback changes): scrollbackRows=4, firstChangeY=0
+  prev: "Welcome to Claude Code v2.1.59                                                                                                              "
+  next: "Welcome to Claude Code v2.1.59                                                                                                              "
+2026-02-26T23:30:43.839Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.17396.1772148643839
+2026-02-26T23:30:43.839Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:30:43.842Z [DEBUG] Temp file written successfully, size: 1653 bytes
+2026-02-26T23:30:43.842Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:30:43.842Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.17396.1772148643839 to C:\Users\0000250059\.claude.json
+2026-02-26T23:30:43.843Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:30:43.857Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.17396.1772148643857
+2026-02-26T23:30:43.857Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T23:30:43.860Z [DEBUG] Temp file written successfully, size: 1653 bytes
+2026-02-26T23:30:43.861Z [DEBUG] Applied original permissions to temp file
+2026-02-26T23:30:43.861Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.17396.1772148643857 to C:\Users\0000250059\.claude.json
+2026-02-26T23:30:43.861Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T23:30:43.870Z [DEBUG] High write ratio: blit=0, write=1222 (100.0% writes), screen=28x140
+2026-02-26T23:30:43.870Z [DEBUG] Full reset (shrink->below): prevHeight=36, nextHeight=28, viewport=33

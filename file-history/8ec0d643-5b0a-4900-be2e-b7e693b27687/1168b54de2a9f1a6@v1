@@ -1,0 +1,51 @@
+#!/bin/bash
+set -euo pipefail
+
+HOOKS_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# --- Python 3.12 �����C���X�g�[�� (Windows 10/11) ---
+ensure_python312() {
+    # python3.12 �܂��� python3 �܂��� python �Ńo�[�W�����m�F
+    for cmd in python3.12 python3 python; do
+        if command -v "$cmd" &>/dev/null; then
+            local ver
+            ver=$("$cmd" --version 2>&1 | grep -oP '\d+\.\d+')
+            if [[ "$ver" == "3.12" ]]; then
+                echo "[pre-commit] Python 3.12 detected ($cmd). Skip install."
+                return 0
+            fi
+        fi
+    done
+
+    echo "[pre-commit] Python 3.12 not found. Installing via winget..."
+
+    # winget �̑��݊m�F
+    if ! command -v winget &>/dev/null; then
+        echo "[pre-commit] ERROR: winget ��������܂���BWindows 10 (1709+) / 11 ���K�v�ł��B" >&2
+        echo "[pre-commit] �蓮�� Python 3.12 ���C���X�g�[�����Ă�������: https://www.python.org/downloads/" >&2
+        exit 1
+    fi
+
+    # winget �� Python 3.12 ���C���X�g�[�� (�T�C�����g, PATH�ǉ�����)
+    winget install --id Python.Python.3.12 --accept-source-agreements --accept-package-agreements --silent
+
+    if [[ $? -ne 0 ]]; then
+        echo "[pre-commit] ERROR: Python 3.12 �̃C���X�g�[���Ɏ��s���܂����B" >&2
+        echo "[pre-commit] �蓮�ŃC���X�g�[�����Ă�������: https://www.python.org/downloads/" >&2
+        exit 1
+    fi
+
+    # PATH ���ēǂݍ��� (���݂̃V�F���Z�b�V�����ɔ��f)
+    export PATH="/c/Users/$USERNAME/AppData/Local/Programs/Python/Python312:/c/Users/$USERNAME/AppData/Local/Programs/Python/Python312/Scripts:$PATH"
+
+    echo "[pre-commit] Python 3.12 installed successfully."
+}
+
+ensure_python312
+# --- Python 3.12 �����C���X�g�[�� �����܂� ---
+
+echo "=== pre-commit: encoding check ==="
+python "$HOOKS_DIR/pre_commit_encoding.py"
+
+# echo "=== pre-commit: denylist check ==="
+# python "$HOOKS_DIR/pre_commit_denylist.py"

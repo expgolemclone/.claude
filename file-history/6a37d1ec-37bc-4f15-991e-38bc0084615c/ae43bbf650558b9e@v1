@@ -1,0 +1,656 @@
+#![windows_subsystem = "windows"]
+
+use chrono::{Local, NaiveTime};
+use std::env;
+use std::ffi::c_void;
+use std::fs::{self, File, OpenOptions};
+use std::io::{Read, Seek, SeekFrom, Write};
+use std::path::PathBuf;
+use std::process::Command;
+use std::sync::Mutex;
+use std::thread;
+use std::time::Duration;
+use sysinfo::System;
+
+// --- Constants (matching C# version) ---
+const MONITOR_INTERVAL_SECONDS: u64 = 10;
+const STATUS_TIMEOUT_SECONDS: u64 = 5;
+const START_TIMEOUT_SECONDS: u64 = 10;
+const RECOVERY_RETRY_COUNT: u32 = 3;
+const EXPECTED_ESPANSO_PROCESS_COUNT: usize = 3;
+const ESPANSO_LOG_TAIL_BYTES: u64 = 256 * 1024;
+const MAX_LOG_FILE_BYTES: u64 = 2 * 1024 * 1024;
+const CRITICAL_LOG_LOOKBACK_MINUTES: i64 = 2;
+const RECOVERY_KILL_WAIT: Duration = Duration::from_secs(1);
+const RECOVERY_START_WAIT: Duration = Duration::from_secs(2);
+
+static LOG_LOCK: Mutex<()> = Mutex::new(());
+
+// --- Windows FFI ---
+#[allow(clippy::upper_case_acronyms)]
+type HANDLE = *mut c_void;
+#[allow(clippy::upper_case_acronyms)]
+type BOOL = i32;
+#[allow(clippy::upper_case_acronyms)]
+type DWORD = u32;
+#[allow(clippy::upper_case_acronyms)]
+type LPCWSTR = *const u16;
+
+const WAIT_OBJECT_0: DWORD = 0;
+const WAIT_ABANDONED: DWORD = 0x00000080;
+const PROCESS_SET_INFORMATION: DWORD = 0x0200;
+const HIGH_PRIORITY_CLASS: DWORD = 0x00000080;
+
+extern "system" {
+    fn CreateMutexW(
+        lpMutexAttributes: *const c_void,
+        bInitialOwner: BOOL,
+        lpName: LPCWSTR,
+    ) -> HANDLE;
+    fn WaitForSingleObject(hHandle: HANDLE, dwMilliseconds: DWORD) -> DWORD;
+    fn ReleaseMutex(hMutex: HANDLE) -> BOOL;
+    fn CloseHandle(hObject: HANDLE) -> BOOL;
+    fn OpenProcess(dwDesiredAccess: DWORD, bInheritHandle: BOOL, dwProcessId: DWORD) -> HANDLE;
+    fn SetPriorityClass(hProcess: HANDLE, dwPriorityClass: DWORD) -> BOOL;
+}
+
+// --- Named Mutex RAII wrapper ---
+struct WinMutex {
+    handle: HANDLE,
+}
+
+unsafe impl Send for WinMutex {}
+
+impl WinMutex {
+    fn try_acquire(name: &str) -> Option<Self> {
+        let wide: Vec<u16> = name.encode_utf16().chain(std::iter::once(0)).collect();
+        let handle = unsafe { CreateMutexW(std::ptr::null(), 0, wide.as_ptr()) };
+        if handle.is_null() {
+            return None;
+        }
+        // Always try to acquire ownership (matches C# mutex.WaitOne(0))
+        let wait = unsafe { WaitForSingleObject(handle, 0) };
+        if wait != WAIT_OBJECT_0 && wait != WAIT_ABANDONED {
+            unsafe { CloseHandle(handle) };
+            return None;
+        }
+        Some(WinMutex { handle })
+    }
+}
+
+impl Drop for WinMutex {
+    fn drop(&mut self) {
+        unsafe {
+            ReleaseMutex(self.handle);
+            CloseHandle(self.handle);
+        }
+    }
+}
+
+// --- Command result ---
+struct CommandResult {
+    completed: bool,
+    timed_out: bool,
+    exit_code: Option<i32>,
+    stdout: String,
+    stderr: String,
+    error_message: String,
+}
+
+impl CommandResult {
+    fn failed(message: String) -> Self {
+        Self {
+            completed: false,
+            timed_out: false,
+            exit_code: None,
+            stdout: String::new(),
+            stderr: String::new(),
+            error_message: message,
+        }
+    }
+
+    fn timed_out_result(stdout: String, stderr: String) -> Self {
+        Self {
+            completed: false,
+            timed_out: true,
+            exit_code: None,
+            stdout,
+            stderr,
+            error_message: String::new(),
+        }
+    }
+
+    fn completed_result(exit_code: i32, stdout: String, stderr: String) -> Self {
+        Self {
+            completed: true,
+            timed_out: false,
+            exit_code: Some(exit_code),
+            stdout,
+            stderr,
+            error_message: String::new(),
+        }
+    }
+}
+
+// --- Paths ---
+fn app_dir() -> PathBuf {
+    let local_app_data = env::var("LOCALAPPDATA").unwrap_or_else(|_| ".".to_string());
+    PathBuf::from(&local_app_data).join("EspansoWatchdog")
+}
+
+fn log_path() -> PathBuf {
+    app_dir().join("watchdog.log")
+}
+
+fn espanso_log_path() -> PathBuf {
+    let local_app_data = env::var("LOCALAPPDATA").unwrap_or_else(|_| ".".to_string());
+    PathBuf::from(&local_app_data)
+        .join("espanso")
+        .join("espanso.log")
+}
+
+fn resolve_espanso_cli_path() -> String {
+    let local_app_data = env::var("LOCALAPPDATA").unwrap_or_else(|_| ".".to_string());
+    let local_programs = PathBuf::from(&local_app_data)
+        .join("Programs")
+        .join("Espanso");
+
+    let espansod = local_programs.join("espansod.exe");
+    if espansod.exists() {
+        return espansod.to_string_lossy().to_string();
+    }
+
+    let espanso = local_programs.join("espanso.exe");
+    if espanso.exists() {
+        return espanso.to_string_lossy().to_string();
+    }
+
+    "espanso".to_string()
+}
+
+// --- Logging ---
+fn log(message: &str) {
+    let line = format!("{} {}", Local::now().format("%Y-%m-%d %H:%M:%S"), message);
+    let _lock = LOG_LOCK.lock().unwrap_or_else(|e| e.into_inner());
+
+    let log = log_path();
+
+    // Log rotation
+    if let Ok(meta) = fs::metadata(&log) {
+        if meta.len() > MAX_LOG_FILE_BYTES {
+            let backup = log.with_extension("log.old");
+            let _ = fs::remove_file(&backup);
+            let _ = fs::rename(&log, &backup);
+        }
+    }
+
+    if let Ok(mut f) = OpenOptions::new().create(true).append(true).open(&log) {
+        let _ = writeln!(f, "{}", line);
+    }
+}
+
+// --- Trim helper ---
+fn trim_for_log(text: &str, max_length: usize) -> String {
+    let trimmed = text.trim();
+    if trimmed.is_empty() {
+        return String::new();
+    }
+    let single_line: String = trimmed.replace(['\r', '\n'], " ");
+    if single_line.len() <= max_length {
+        single_line
+    } else {
+        let mut end = max_length;
+        while !single_line.is_char_boundary(end) && end > 0 {
+            end -= 1;
+        }
+        format!("{}...", &single_line[..end])
+    }
+}
+
+// Kill a process and all its descendants (process tree).
+fn kill_process_tree(pid: u32) {
+    use std::os::windows::process::CommandExt;
+    const CREATE_NO_WINDOW: u32 = 0x08000000;
+    let _ = Command::new("taskkill")
+        .args(["/F", "/T", "/PID", &pid.to_string()])
+        .creation_flags(CREATE_NO_WINDOW)
+        .stdout(std::process::Stdio::null())
+        .stderr(std::process::Stdio::null())
+        .status();
+}
+
+// --- Run command with timeout ---
+fn run_command(file_name: &str, arguments: &str, timeout: Duration) -> CommandResult {
+    use std::os::windows::process::CommandExt;
+    use std::sync::mpsc;
+    const CREATE_NO_WINDOW: u32 = 0x08000000;
+
+    let args: Vec<&str> = arguments.split_whitespace().collect();
+    let child = Command::new(file_name)
+        .args(&args)
+        .stdout(std::process::Stdio::piped())
+        .stderr(std::process::Stdio::piped())
+        .creation_flags(CREATE_NO_WINDOW)
+        .spawn();
+
+    let mut child = match child {
+        Ok(c) => c,
+        Err(e) => return CommandResult::failed(e.to_string()),
+    };
+
+    let child_pid = child.id();
+
+    // Read stdout/stderr in background threads to avoid pipe buffer deadlock.
+    // Use channels so we can collect output with a timeout (child processes
+    // may inherit pipe handles and keep them open after the parent exits).
+    let (stdout_tx, stdout_rx) = mpsc::channel();
+    let (stderr_tx, stderr_rx) = mpsc::channel();
+
+    if let Some(out) = child.stdout.take() {
+        thread::spawn(move || {
+            let mut s = String::new();
+            let mut out = out;
+            let _ = out.read_to_string(&mut s);
+            let _ = stdout_tx.send(s);
+        });
+    }
+    if let Some(err) = child.stderr.take() {
+        thread::spawn(move || {
+            let mut s = String::new();
+            let mut err = err;
+            let _ = err.read_to_string(&mut s);
+            let _ = stderr_tx.send(s);
+        });
+    }
+
+    let start = std::time::Instant::now();
+    loop {
+        match child.try_wait() {
+            Ok(Some(status)) => {
+                // Process exited. Give reader threads 2s to finish
+                // (child processes may keep pipes open longer).
+                let stdout = stdout_rx
+                    .recv_timeout(Duration::from_secs(2))
+                    .unwrap_or_default();
+                let stderr = stderr_rx
+                    .recv_timeout(Duration::from_secs(2))
+                    .unwrap_or_default();
+                return CommandResult::completed_result(
+                    status.code().unwrap_or(-1),
+                    stdout.trim().to_string(),
+                    stderr.trim().to_string(),
+                );
+            }
+            Ok(None) => {
+                if start.elapsed() >= timeout {
+                    // Kill entire process tree so grandchildren that inherited
+                    // pipe handles are also terminated, preventing thread leaks.
+                    kill_process_tree(child_pid);
+                    let _ = child.wait();
+                    let stdout = stdout_rx
+                        .recv_timeout(Duration::from_secs(2))
+                        .unwrap_or_default();
+                    let stderr = stderr_rx
+                        .recv_timeout(Duration::from_secs(2))
+                        .unwrap_or_default();
+                    return CommandResult::timed_out_result(
+                        stdout.trim().to_string(),
+                        stderr.trim().to_string(),
+                    );
+                }
+                thread::sleep(Duration::from_millis(100));
+            }
+            Err(e) => return CommandResult::failed(e.to_string()),
+        }
+    }
+}
+
+fn format_command_result(result: &CommandResult) -> String {
+    let out_text = trim_for_log(&result.stdout, 160);
+    let err_text = trim_for_log(&result.stderr, 160);
+    let msg_text = trim_for_log(&result.error_message, 160);
+    let exit_str = match result.exit_code {
+        Some(code) => code.to_string(),
+        None => "null".to_string(),
+    };
+    format!(
+        "completed={}, timedOut={}, exitCode={}, stdout=\"{}\", stderr=\"{}\", error=\"{}\"",
+        result.completed, result.timed_out, exit_str, out_text, err_text, msg_text
+    )
+}
+
+// --- Process management ---
+fn is_espanso_process(process: &sysinfo::Process) -> bool {
+    let name = process.name().to_string_lossy().to_lowercase();
+    name == "espanso" || name == "espanso.exe" || name == "espansod" || name == "espansod.exe"
+}
+
+fn get_espanso_process_count(sys: &mut System) -> usize {
+    sys.refresh_processes(sysinfo::ProcessesToUpdate::All, true);
+    sys.processes()
+        .values()
+        .filter(|p| is_espanso_process(p))
+        .count()
+}
+
+fn kill_espanso_processes(sys: &mut System) -> u32 {
+    sys.refresh_processes(sysinfo::ProcessesToUpdate::All, true);
+    let mut killed = 0u32;
+    let pids: Vec<sysinfo::Pid> = sys
+        .processes()
+        .iter()
+        .filter(|(_, p)| is_espanso_process(p))
+        .map(|(pid, _)| *pid)
+        .collect();
+
+    for pid in pids {
+        if let Some(process) = sys.process(pid) {
+            if process.kill() {
+                killed += 1;
+            } else {
+                log(&format!("failed to kill pid={}", pid));
+            }
+        }
+    }
+    killed
+}
+
+fn set_espanso_high_priority(sys: &mut System) -> u32 {
+    sys.refresh_processes(sysinfo::ProcessesToUpdate::All, true);
+    let mut count = 0u32;
+    for (pid, process) in sys.processes() {
+        if !is_espanso_process(process) {
+            continue;
+        }
+        let raw_pid = pid.as_u32();
+        let handle = unsafe { OpenProcess(PROCESS_SET_INFORMATION, 0, raw_pid) };
+        if handle.is_null() {
+            continue;
+        }
+        let ok = unsafe { SetPriorityClass(handle, HIGH_PRIORITY_CLASS) };
+        unsafe { CloseHandle(handle) };
+        if ok != 0 {
+            count += 1;
+        }
+    }
+    count
+}
+
+// --- Espanso log analysis ---
+fn read_tail_text(path: &PathBuf, max_bytes: u64) -> Result<String, std::io::Error> {
+    let mut file = File::open(path)?;
+    let length = file.metadata()?.len();
+    let bytes_to_read = length.min(max_bytes);
+    if bytes_to_read == 0 {
+        return Ok(String::new());
+    }
+
+    file.seek(SeekFrom::End(-(bytes_to_read as i64)))?;
+    let mut buffer = vec![0u8; bytes_to_read as usize];
+    let read = file.read(&mut buffer)?;
+    let mut text = String::from_utf8_lossy(&buffer[..read]).to_string();
+
+    if length > max_bytes {
+        if let Some(pos) = text.find('\n') {
+            if pos + 1 < text.len() {
+                text = text[pos + 1..].to_string();
+            }
+        }
+    }
+
+    Ok(text)
+}
+
+fn is_recent_espanso_log_line(line: &str) -> bool {
+    if line.len() < 8 || !line.is_char_boundary(8) {
+        return false;
+    }
+
+    let time_str = &line[..8];
+    let parsed_time = match NaiveTime::parse_from_str(time_str, "%H:%M:%S") {
+        Ok(t) => t,
+        Err(_) => return false,
+    };
+
+    let now = Local::now();
+    let today = now.date_naive();
+    let mut line_dt = today
+        .and_time(parsed_time)
+        .and_local_timezone(Local)
+        .single();
+
+    if let Some(dt) = line_dt {
+        if dt > now + chrono::Duration::minutes(1) {
+            line_dt = (today - chrono::Duration::days(1))
+                .and_time(parsed_time)
+                .and_local_timezone(Local)
+                .single();
+        }
+    }
+
+    match line_dt {
+        Some(dt) => {
+            let diff = now.signed_duration_since(dt);
+            diff >= chrono::Duration::zero()
+                && diff <= chrono::Duration::minutes(CRITICAL_LOG_LOOKBACK_MINUTES)
+        }
+        None => false,
+    }
+}
+
+fn is_critical_espanso_log_line(line: &str) -> bool {
+    let lower = line.to_lowercase();
+    lower.contains("[error]")
+        && lower.contains("could not restart worker")
+        && is_recent_espanso_log_line(line)
+}
+
+fn get_latest_critical_espanso_log_line() -> Option<String> {
+    let path = espanso_log_path();
+    if !path.exists() {
+        return None;
+    }
+
+    let tail = match read_tail_text(&path, ESPANSO_LOG_TAIL_BYTES) {
+        Ok(t) => t,
+        Err(e) => {
+            log(&format!(
+                "failed to read espanso.log: {}",
+                trim_for_log(&e.to_string(), 200)
+            ));
+            return None;
+        }
+    };
+
+    let lines: Vec<&str> = tail.split(['\r', '\n']).filter(|l| !l.is_empty()).collect();
+
+    for line in lines.iter().rev() {
+        if is_critical_espanso_log_line(line) {
+            return Some(trim_for_log(line, 220));
+        }
+    }
+
+    None
+}
+
+// --- Health check ---
+struct HealthState {
+    last_critical_log_line: Option<String>,
+    sys: System,
+    espanso_cli: String,
+}
+
+impl HealthState {
+    fn new() -> Self {
+        Self {
+            last_critical_log_line: None,
+            sys: System::new(),
+            espanso_cli: resolve_espanso_cli_path(),
+        }
+    }
+
+    fn is_healthy(&mut self) -> (bool, String) {
+        let status_result = run_command(
+            &self.espanso_cli,
+            "service status",
+            Duration::from_secs(STATUS_TIMEOUT_SECONDS),
+        );
+
+        let service_running = status_result.completed
+            && status_result
+                .stdout
+                .to_lowercase()
+                .contains("espanso is running");
+
+        let process_count = get_espanso_process_count(&mut self.sys);
+        let has_required = process_count >= EXPECTED_ESPANSO_PROCESS_COUNT;
+        let basic_healthy = service_running && has_required;
+
+        if basic_healthy {
+            if let Some(critical_line) = get_latest_critical_espanso_log_line() {
+                let is_new = self.last_critical_log_line.as_ref() != Some(&critical_line);
+                if is_new {
+                    self.last_critical_log_line = Some(critical_line.clone());
+                    let detail = format!(
+                        "criticalEspansoError=\"{}\", serviceRunning={}, processCount={}, status={}",
+                        critical_line,
+                        service_running,
+                        process_count,
+                        format_command_result(&status_result)
+                    );
+                    return (false, detail);
+                }
+            }
+        }
+
+        let detail = format!(
+            "serviceRunning={}, processCount={}, status={}",
+            service_running,
+            process_count,
+            format_command_result(&status_result)
+        );
+        (basic_healthy, detail)
+    }
+
+    fn ensure_healthy(&mut self) -> bool {
+        let (healthy, detail) = self.is_healthy();
+        if healthy {
+            let priority_count = set_espanso_high_priority(&mut self.sys);
+            log(&format!(
+                "healthy: {} (priority set on {} processes)",
+                detail, priority_count
+            ));
+            return true;
+        }
+
+        log(&format!("unhealthy detected: {}", detail));
+
+        for attempt in 1..=RECOVERY_RETRY_COUNT {
+            let killed = kill_espanso_processes(&mut self.sys);
+            log(&format!(
+                "recovery attempt {}/{}: killed espanso processes={}.",
+                attempt, RECOVERY_RETRY_COUNT, killed
+            ));
+
+            thread::sleep(RECOVERY_KILL_WAIT);
+
+            let start_result = run_command(
+                &self.espanso_cli,
+                "service start --unmanaged",
+                Duration::from_secs(START_TIMEOUT_SECONDS),
+            );
+
+            log(&format!(
+                "recovery attempt {}/{}: service start result={}.",
+                attempt,
+                RECOVERY_RETRY_COUNT,
+                format_command_result(&start_result)
+            ));
+
+            thread::sleep(RECOVERY_START_WAIT);
+
+            let (recovered, recovered_detail) = self.is_healthy();
+            if recovered {
+                let priority_count = set_espanso_high_priority(&mut self.sys);
+                log(&format!(
+                    "recovery succeeded on attempt {}: {} (priority set on {} processes)",
+                    attempt, recovered_detail, priority_count
+                ));
+                return true;
+            }
+
+            log(&format!(
+                "recovery attempt {}/{} failed.",
+                attempt, RECOVERY_RETRY_COUNT
+            ));
+        }
+
+        log("recovery failed after all retries.");
+        false
+    }
+}
+
+// --- Entrypoint ---
+fn main() {
+    std::panic::set_hook(Box::new(|info| {
+        let payload = if let Some(s) = info.payload().downcast_ref::<&str>() {
+            s.to_string()
+        } else if let Some(s) = info.payload().downcast_ref::<String>() {
+            s.clone()
+        } else {
+            "unknown panic payload".to_string()
+        };
+        let location = info
+            .location()
+            .map(|l| format!("{}:{}:{}", l.file(), l.line(), l.column()))
+            .unwrap_or_else(|| "unknown location".to_string());
+        log(&format!("PANIC at {}: {}", location, payload));
+    }));
+
+    let dir = app_dir();
+    let _ = fs::create_dir_all(&dir);
+
+    let _mutex = match WinMutex::try_acquire(r"Local\EspansoWatchdogMutex") {
+        Some(m) => m,
+        None => {
+            log("watchdog is already running. exiting.");
+            return;
+        }
+    };
+
+    let args: Vec<String> = env::args().collect();
+    let run_once = args.iter().any(|a| a.eq_ignore_ascii_case("--once"));
+
+    if run_once {
+        log("watchdog started in once mode.");
+    } else {
+        log("watchdog started in monitor mode.");
+    }
+
+    let mut state = HealthState::new();
+
+    if run_once {
+        let result = state.ensure_healthy();
+        if result {
+            log("once mode completed successfully.");
+        } else {
+            log("once mode failed to recover.");
+            std::process::exit(1);
+        }
+        return;
+    }
+
+    loop {
+        match std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
+            state.ensure_healthy();
+        })) {
+            Ok(_) => {}
+            Err(_) => {
+                log("recovered from panic in ensure_healthy, continuing monitoring.");
+                thread::sleep(Duration::from_secs(MONITOR_INTERVAL_SECONDS * 3));
+                continue;
+            }
+        }
+        thread::sleep(Duration::from_secs(MONITOR_INTERVAL_SECONDS));
+    }
+}

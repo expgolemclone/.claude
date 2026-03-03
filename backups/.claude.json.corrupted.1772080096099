@@ -1,0 +1,49 @@
+{
+  "tipsHistory": {
+    "new-user-warmup": 0
+  },
+  "cachedGrowthBookFeatures": {
+    "tengu_plum_vx3": true,
+    "tengu_disable_streaming_to_non_streaming_fallback": false
+  },
+  "clientDataCache": {
+    "data": {},
+    "timestamp": 1772080096076
+  },
+  "userID": "e2b25ef24d7873f0545873b8793102ebbb23294ae80ed03a1c15f2681c169fe5",
+  "lastReleaseNotesSeen": "2.1.59",
+  "projects": {
+    "C:/Users/0000250059": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 1,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": []
+    }
+  },
+  "changelogLastFetched": 1772079568464,
+  "cachedExtraUsageDisabledReason": "org_level_disabled",
+  "toolUsage": {
+    "Bash": {
+      "usageCount": 9,
+      "lastUsedAt": 1772080064632
+    },
+    "WebSearch": {
+      "usageCount": 1,
+      "lastUsedAt": 1772080040047
+    },
+    "ToolSearch": {
+      "usageCount": 1,
+      "lastUsedAt": 1772080044148
+    },
+    "Read": {
+      "usageCount": 1,
+      "lastUsedAt": 1772080049202
+    }
+  }
+}

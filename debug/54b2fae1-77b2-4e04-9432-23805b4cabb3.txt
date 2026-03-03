@@ -1,0 +1,1453 @@
+2026-02-25T07:28:43.912Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:43.912Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:43.997Z [DEBUG] High write ratio: blit=0, write=81056 (100.0% writes), screen=1582x102
+2026-02-25T07:28:44.004Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:44.026Z [DEBUG] AutoUpdaterWrapper: Installation type: native
+2026-02-25T07:28:44.071Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:44.416Z [DEBUG] Getting matching hook commands for SessionStart with query: resume
+2026-02-25T07:28:44.416Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T07:28:44.417Z [DEBUG] Matched 0 unique hooks for query "resume" (0 before deduplication)
+2026-02-25T07:28:44.417Z [DEBUG] [FileIndex] getProjectFiles called, respectGitignore=true
+2026-02-25T07:28:44.417Z [DEBUG] [FileIndex] getFilesUsingGit called
+2026-02-25T07:28:44.440Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.27068.1772004524440
+2026-02-25T07:28:44.440Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T07:28:44.443Z [DEBUG] Temp file written successfully, size: 27379 bytes
+2026-02-25T07:28:44.443Z [DEBUG] Applied original permissions to temp file
+2026-02-25T07:28:44.443Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.27068.1772004524440 to C:\Users\0000250059\.claude.json
+2026-02-25T07:28:44.444Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T07:28:44.853Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:44.984Z [DEBUG] High write ratio: blit=0, write=81065 (100.0% writes), screen=1580x102
+2026-02-25T07:28:44.985Z [DEBUG] Full reset (scrollback changes): scrollbackRows=1532, firstChangeY=485
+  prev: "✻ Cogitated for 5m 48s                                                                                "
+  next: "✻ Cooked for 5m 48s                                                                                   "
+2026-02-25T07:28:45.026Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:45.131Z [DEBUG] High write ratio: blit=0, write=81065 (100.0% writes), screen=1580x102
+2026-02-25T07:28:45.134Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-02-25T07:28:45.134Z [DEBUG] [claudeai-mcp] Gate returned: true
+2026-02-25T07:28:45.134Z [DEBUG] [claudeai-mcp] Fetching from https://api.anthropic.com/v1/mcp_servers?limit=1000
+2026-02-25T07:28:45.158Z [DEBUG] Checking for native installer update to version 2.1.56
+2026-02-25T07:28:45.476Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:45.583Z [DEBUG] High write ratio: blit=0, write=82410 (100.0% writes), screen=1625x102
+2026-02-25T07:28:45.672Z [DEBUG] [claudeai-mcp] Fetched 3 servers
+2026-02-25T07:28:45.677Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:45.707Z [DEBUG] Version 2.1.56 already installed, updating symlink
+2026-02-25T07:28:45.711Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:45.717Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:45.721Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:45.724Z [DEBUG] Successfully updated to version 2.1.56
+2026-02-25T07:28:45.726Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:45.728Z [DEBUG] [FileIndex] git ls-files (tracked) took 1311ms
+2026-02-25T07:28:45.729Z [DEBUG] [FileIndex] git ls-files: 8290 tracked files in 1312ms
+2026-02-25T07:28:45.745Z [DEBUG] [FileIndex] using git ls-files result (8290 files)
+2026-02-25T07:28:45.761Z [DEBUG] [FileIndex] cache refresh completed in 1344ms (rust index)
+2026-02-25T07:28:45.764Z [DEBUG] Cleaned up old staging directory: 2.1.56.13112.1772000906301
+2026-02-25T07:28:45.765Z [DEBUG] Cleaned up 1 orphaned staging directories
+2026-02-25T07:28:45.918Z [DEBUG] [FileIndex] background untracked fetch: 5 files
+2026-02-25T07:28:45.928Z [DEBUG] [FileIndex] rebuilt Rust index with 8290 tracked + 5 untracked files
+2026-02-25T07:28:47.387Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:48.109Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:49.117Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:49.618Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:49.740Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:50.754Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:50.906Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:51.069Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-02-25T07:28:51.069Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-02-25T07:28:51.069Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-02-25T07:28:51.069Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-02-25T07:28:51.071Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-02-25T07:28:51.071Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T07:28:51.071Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-02-25T07:28:51.071Z [DEBUG] FileHistory: Making snapshot for message 1366274e-c575-4235-a8be-bc0da322337f
+2026-02-25T07:28:51.117Z [DEBUG] FileHistory: Added snapshot for 1366274e-c575-4235-a8be-bc0da322337f, tracking 10 files
+2026-02-25T07:28:51.119Z [DEBUG] [useDeferredValue] Messages deferred by 2 (641→643)
+2026-02-25T07:28:51.142Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:51.143Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:51.234Z [DEBUG] High write ratio: blit=0, write=82424 (100.0% writes), screen=1627x102
+2026-02-25T07:28:51.266Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.27068.1772004531266
+2026-02-25T07:28:51.266Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T07:28:51.270Z [DEBUG] Temp file written successfully, size: 27379 bytes
+2026-02-25T07:28:51.270Z [DEBUG] Applied original permissions to temp file
+2026-02-25T07:28:51.270Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.27068.1772004531266 to C:\Users\0000250059\.claude.json
+2026-02-25T07:28:51.271Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T07:28:51.287Z [DEBUG] autocompact: tokens=126532 threshold=167000 effectiveWindow=180000
+2026-02-25T07:28:51.288Z [DEBUG] Auto tool search enabled: 21016 tokens (threshold: 20000, 10% of context) [source: query]
+2026-02-25T07:28:51.288Z [DEBUG] Dynamic tool loading: found 2 discovered tools in message history
+2026-02-25T07:28:51.293Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.27068.1772004531293
+2026-02-25T07:28:51.293Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T07:28:51.302Z [DEBUG] Temp file written successfully, size: 27379 bytes
+2026-02-25T07:28:51.302Z [DEBUG] Applied original permissions to temp file
+2026-02-25T07:28:51.302Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.27068.1772004531293 to C:\Users\0000250059\.claude.json
+2026-02-25T07:28:51.303Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T07:28:51.317Z [DEBUG] Dynamic tool loading: 2/28 deferred tools included
+2026-02-25T07:28:51.319Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.55.2ca; cc_entrypoint=cli; cch=00000;
+2026-02-25T07:28:51.319Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:51.320Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-25T07:28:51.320Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-25T07:28:51.320Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:51.320Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-25T07:28:51.320Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:51.333Z [DEBUG] [useDeferredValue] Messages deferred by 2 (641→643)
+2026-02-25T07:28:51.334Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:51.387Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:28:51.502Z [DEBUG] High write ratio: blit=0, write=82434 (100.0% writes), screen=1629x102
+2026-02-25T07:29:04.484Z [DEBUG] Stream started - received first chunk
+2026-02-25T07:29:04.487Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:05.182Z [DEBUG] [useDeferredValue] Messages deferred by 1 (643→644)
+2026-02-25T07:29:05.185Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:05.223Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:05.328Z [DEBUG] High write ratio: blit=0, write=82444 (100.0% writes), screen=1629x102
+2026-02-25T07:29:18.257Z [DEBUG] [useDeferredValue] Messages deferred by 1 (644→645)
+2026-02-25T07:29:18.259Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:18.294Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-02-25T07:29:18.294Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T07:29:18.294Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-02-25T07:29:18.296Z [DEBUG] [useDeferredValue] Messages deferred by 1 (644→645)
+2026-02-25T07:29:18.329Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:18.436Z [DEBUG] High write ratio: blit=0, write=84021 (100.0% writes), screen=1666x102
+2026-02-25T07:29:18.440Z [DEBUG] [useDeferredValue] Messages deferred by 1 (644→645)
+2026-02-25T07:29:18.441Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:18.473Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:35.204Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:40.004Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:40.118Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:40.681Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:40.804Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:40.808Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:41.033Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:41.044Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:41.047Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:41.599Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:41.606Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:41.698Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:41.706Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:41.988Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:41.994Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:42.080Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:42.084Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:42.330Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:42.335Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:42.408Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:42.413Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:43.199Z [DEBUG] High write ratio: blit=0, write=84114 (100.0% writes), screen=1689x102
+2026-02-25T07:29:51.634Z [DEBUG] [onCancel] focusedInputDialog=message-selector streamMode=tool-use
+2026-02-25T07:29:51.752Z [DEBUG] High write ratio: blit=0, write=84021 (100.0% writes), screen=1666x102
+2026-02-25T07:29:51.756Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:51.784Z [DEBUG] AutoUpdaterWrapper: Installation type: native
+2026-02-25T07:29:52.214Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:52.215Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:52.345Z [DEBUG] High write ratio: blit=0, write=81627 (100.0% writes), screen=1594x102
+2026-02-25T07:29:52.345Z [DEBUG] Full reset (scrollback changes): scrollbackRows=1616, firstChangeY=485
+  prev: "✻ Cooked for 5m 48s                                                                                   "
+  next: "✻ Baked for 5m 48s                                                                                    "
+2026-02-25T07:29:52.389Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:52.478Z [DEBUG] High write ratio: blit=0, write=81647 (100.0% writes), screen=1594x102
+2026-02-25T07:29:52.496Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:53.124Z [DEBUG] Checking for native installer update to version 2.1.56
+2026-02-25T07:29:53.126Z [DEBUG] Version 2.1.56 already installed, updating symlink
+2026-02-25T07:29:53.127Z [DEBUG] Successfully updated to version 2.1.56
+2026-02-25T07:29:53.129Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:53.134Z [DEBUG] Cleaned up old staging directory: 2.1.56.13112.1772000935052
+2026-02-25T07:29:53.134Z [DEBUG] Cleaned up 1 orphaned staging directories
+2026-02-25T07:29:53.625Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.124Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.160Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.190Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.223Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.252Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.299Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.329Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.360Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.391Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.422Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.460Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.495Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.522Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.561Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.587Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.617Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.648Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.680Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:54.684Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:29:55.687Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:01.956Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:02.069Z [DEBUG] High write ratio: blit=612, write=81458 (99.3% writes), screen=1594x102
+2026-02-25T07:30:05.020Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:05.124Z [DEBUG] High write ratio: blit=612, write=81458 (99.3% writes), screen=1594x102
+2026-02-25T07:30:06.652Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:06.658Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:06.663Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:07.208Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:07.215Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:07.263Z [DEBUG] AutoUpdaterWrapper: Installation type: native
+2026-02-25T07:30:07.270Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:07.674Z [DEBUG] Checking for native installer update to version 2.1.56
+2026-02-25T07:30:07.678Z [DEBUG] Version 2.1.56 already installed, updating symlink
+2026-02-25T07:30:07.679Z [DEBUG] Successfully updated to version 2.1.56
+2026-02-25T07:30:07.683Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:08.217Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:08.977Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:09.159Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:09.256Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:09.502Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:09.964Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:10.082Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:10.331Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:10.514Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:10.719Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:11.519Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:11.836Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:12.124Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:12.429Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:13.115Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:13.243Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:14.265Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:14.759Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:18.291Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:18.450Z [DEBUG] High write ratio: blit=612, write=81470 (99.3% writes), screen=1594x102
+2026-02-25T07:30:18.947Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:19.155Z [DEBUG] High write ratio: blit=612, write=81470 (99.3% writes), screen=1594x102
+2026-02-25T07:30:21.497Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:21.597Z [DEBUG] High write ratio: blit=612, write=81470 (99.3% writes), screen=1594x102
+2026-02-25T07:30:22.065Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:22.164Z [DEBUG] High write ratio: blit=612, write=81470 (99.3% writes), screen=1594x102
+2026-02-25T07:30:23.201Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:23.292Z [DEBUG] High write ratio: blit=612, write=81470 (99.3% writes), screen=1594x102
+2026-02-25T07:30:33.389Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:33.488Z [DEBUG] High write ratio: blit=612, write=81470 (99.3% writes), screen=1594x102
+2026-02-25T07:30:36.406Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:36.490Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:37.287Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:37.330Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:37.438Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:37.827Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:38.016Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:38.168Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:38.297Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:38.545Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:38.556Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:38.647Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:38.691Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:39.069Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:39.227Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:39.368Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:40.377Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:40.873Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:42.664Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:42.850Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:42.974Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:43.449Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:43.691Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:44.131Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:44.276Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:44.430Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:45.441Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:45.944Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:47.285Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:47.466Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:47.606Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:47.746Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:47.913Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:48.278Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:48.412Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:48.817Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:48.947Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:49.129Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:49.274Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:49.474Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:49.822Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:49.952Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:50.680Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:50.834Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:50.996Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:51.115Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:51.375Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:51.996Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:52.450Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:52.548Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:53.482Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:55.006Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:56.005Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:56.050Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:56.234Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:56.627Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:56.764Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:56.994Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:57.219Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:57.504Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:58.049Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:59.076Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:59.571Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:30:59.909Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:00.920Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:01.430Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:03.184Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:03.850Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:04.465Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:05.991Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:06.165Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:07.677Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:10.343Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:11.424Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:12.947Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:13.050Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:13.650Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:14.005Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-02-25T07:31:14.005Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-02-25T07:31:14.005Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-02-25T07:31:14.005Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-02-25T07:31:14.008Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-02-25T07:31:14.008Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T07:31:14.008Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-02-25T07:31:14.008Z [DEBUG] FileHistory: Making snapshot for message e9d59a17-9c71-4ffc-b711-bf12490c2911
+2026-02-25T07:31:14.042Z [DEBUG] FileHistory: Added snapshot for e9d59a17-9c71-4ffc-b711-bf12490c2911, tracking 10 files
+2026-02-25T07:31:14.044Z [DEBUG] [useDeferredValue] Messages deferred by 2 (634→636)
+2026-02-25T07:31:14.069Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:14.069Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:14.156Z [DEBUG] High write ratio: blit=0, write=81638 (100.0% writes), screen=1596x102
+2026-02-25T07:31:14.189Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.27068.1772004674189
+2026-02-25T07:31:14.189Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T07:31:14.192Z [DEBUG] Temp file written successfully, size: 27379 bytes
+2026-02-25T07:31:14.192Z [DEBUG] Applied original permissions to temp file
+2026-02-25T07:31:14.192Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.27068.1772004674189 to C:\Users\0000250059\.claude.json
+2026-02-25T07:31:14.193Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T07:31:14.210Z [DEBUG] autocompact: tokens=121861 threshold=167000 effectiveWindow=180000
+2026-02-25T07:31:14.211Z [DEBUG] Auto tool search enabled: 21016 tokens (threshold: 20000, 10% of context) [source: query]
+2026-02-25T07:31:14.211Z [DEBUG] Dynamic tool loading: found 2 discovered tools in message history
+2026-02-25T07:31:14.217Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.27068.1772004674217
+2026-02-25T07:31:14.217Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T07:31:14.221Z [DEBUG] Temp file written successfully, size: 27379 bytes
+2026-02-25T07:31:14.221Z [DEBUG] Applied original permissions to temp file
+2026-02-25T07:31:14.221Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.27068.1772004674217 to C:\Users\0000250059\.claude.json
+2026-02-25T07:31:14.222Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T07:31:14.240Z [DEBUG] Dynamic tool loading: 2/28 deferred tools included
+2026-02-25T07:31:14.242Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.55.2ca; cc_entrypoint=cli; cch=00000;
+2026-02-25T07:31:14.243Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:14.243Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-25T07:31:14.243Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-25T07:31:14.244Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:14.244Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-25T07:31:14.244Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:14.262Z [DEBUG] [useDeferredValue] Messages deferred by 2 (634→636)
+2026-02-25T07:31:14.263Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:14.322Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:14.431Z [DEBUG] High write ratio: blit=0, write=81702 (100.0% writes), screen=1598x102
+2026-02-25T07:31:16.395Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:16.491Z [DEBUG] High write ratio: blit=612, write=81552 (99.3% writes), screen=1598x102
+2026-02-25T07:31:19.358Z [DEBUG] Stream started - received first chunk
+2026-02-25T07:31:19.360Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:36.707Z [DEBUG] [useDeferredValue] Messages deferred by 1 (636→637)
+2026-02-25T07:31:36.711Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:36.751Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:36.850Z [DEBUG] High write ratio: blit=0, write=81719 (100.0% writes), screen=1598x102
+2026-02-25T07:31:45.868Z [DEBUG] [useDeferredValue] Messages deferred by 1 (637→638)
+2026-02-25T07:31:45.869Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:45.910Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-02-25T07:31:45.910Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T07:31:45.910Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-02-25T07:31:45.913Z [DEBUG] [useDeferredValue] Messages deferred by 2 (637→639)
+2026-02-25T07:31:45.945Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:46.047Z [DEBUG] High write ratio: blit=0, write=83162 (100.0% writes), screen=1634x102
+2026-02-25T07:31:46.051Z [DEBUG] [useDeferredValue] Messages deferred by 2 (637→639)
+2026-02-25T07:31:46.052Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:31:46.078Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:03.271Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:03.366Z [DEBUG] High write ratio: blit=612, write=83012 (99.3% writes), screen=1634x102
+2026-02-25T07:32:03.884Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:04.008Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:04.284Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:04.366Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:04.441Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:04.683Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:05.688Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:06.218Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:06.707Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:06.750Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:08.273Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:10.235Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:10.758Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:11.688Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:12.059Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:12.843Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:14.360Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:17.248Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:18.787Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:18.928Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:19.701Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:19.837Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-02-25T07:32:19.837Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-02-25T07:32:19.837Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-02-25T07:32:19.837Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-02-25T07:32:19.840Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-02-25T07:32:19.840Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T07:32:19.840Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-02-25T07:32:19.840Z [DEBUG] FileHistory: Making snapshot for message 236f1999-fce2-4133-b01a-8a1585ae23e1
+2026-02-25T07:32:19.875Z [DEBUG] FileHistory: Added snapshot for 236f1999-fce2-4133-b01a-8a1585ae23e1, tracking 10 files
+2026-02-25T07:32:19.877Z [DEBUG] [useDeferredValue] Messages deferred by 1 (639→640)
+2026-02-25T07:32:19.900Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:19.900Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:19.990Z [DEBUG] High write ratio: blit=0, write=83197 (100.0% writes), screen=1636x102
+2026-02-25T07:32:20.027Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.27068.1772004740027
+2026-02-25T07:32:20.027Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T07:32:20.030Z [DEBUG] Temp file written successfully, size: 27379 bytes
+2026-02-25T07:32:20.030Z [DEBUG] Applied original permissions to temp file
+2026-02-25T07:32:20.030Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.27068.1772004740027 to C:\Users\0000250059\.claude.json
+2026-02-25T07:32:20.031Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T07:32:20.046Z [DEBUG] autocompact: tokens=123158 threshold=167000 effectiveWindow=180000
+2026-02-25T07:32:20.047Z [DEBUG] Auto tool search enabled: 21016 tokens (threshold: 20000, 10% of context) [source: query]
+2026-02-25T07:32:20.047Z [DEBUG] Dynamic tool loading: found 2 discovered tools in message history
+2026-02-25T07:32:20.052Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.27068.1772004740052
+2026-02-25T07:32:20.052Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T07:32:20.056Z [DEBUG] Temp file written successfully, size: 27379 bytes
+2026-02-25T07:32:20.056Z [DEBUG] Applied original permissions to temp file
+2026-02-25T07:32:20.056Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.27068.1772004740052 to C:\Users\0000250059\.claude.json
+2026-02-25T07:32:20.057Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T07:32:20.073Z [DEBUG] Dynamic tool loading: 2/28 deferred tools included
+2026-02-25T07:32:20.075Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.55.2ca; cc_entrypoint=cli; cch=00000;
+2026-02-25T07:32:20.075Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:20.076Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-25T07:32:20.076Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-25T07:32:20.076Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:20.076Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-25T07:32:20.076Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:20.086Z [DEBUG] [useDeferredValue] Messages deferred by 1 (639→640)
+2026-02-25T07:32:20.087Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:20.146Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:20.265Z [DEBUG] High write ratio: blit=0, write=83238 (100.0% writes), screen=1638x102
+2026-02-25T07:32:22.669Z [DEBUG] Stream started - received first chunk
+2026-02-25T07:32:22.672Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:23.360Z [DEBUG] [useDeferredValue] Messages deferred by 1 (640→641)
+2026-02-25T07:32:23.361Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:23.397Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:23.499Z [DEBUG] High write ratio: blit=0, write=83248 (100.0% writes), screen=1638x102
+2026-02-25T07:32:30.447Z [DEBUG] [useDeferredValue] Messages deferred by 1 (641→642)
+2026-02-25T07:32:30.448Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:30.487Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:30.491Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-02-25T07:32:30.491Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T07:32:30.491Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-02-25T07:32:30.494Z [DEBUG] [useDeferredValue] Messages deferred by 1 (641→642)
+2026-02-25T07:32:30.523Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:30.625Z [DEBUG] High write ratio: blit=0, write=83566 (100.0% writes), screen=1658x102
+2026-02-25T07:32:30.628Z [DEBUG] [useDeferredValue] Messages deferred by 1 (641→642)
+2026-02-25T07:32:30.630Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:30.666Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:53.367Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:56.760Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:56.899Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:57.907Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:57.913Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:58.923Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:59.374Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:59.776Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:32:59.938Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:00.085Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:01.102Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:01.576Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:02.586Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:02.614Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:03.018Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:03.980Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:04.160Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:04.309Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:04.449Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:05.133Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:06.629Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:07.057Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:08.553Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:09.767Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:11.292Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:12.076Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:12.613Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:12.895Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-02-25T07:33:12.895Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-02-25T07:33:12.895Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-02-25T07:33:12.895Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-02-25T07:33:12.897Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-02-25T07:33:12.897Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T07:33:12.897Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-02-25T07:33:12.897Z [DEBUG] FileHistory: Making snapshot for message 4cbfca50-3e55-445c-b743-e1e838e0c3e4
+2026-02-25T07:33:12.935Z [DEBUG] FileHistory: Added snapshot for 4cbfca50-3e55-445c-b743-e1e838e0c3e4, tracking 10 files
+2026-02-25T07:33:12.937Z [DEBUG] [useDeferredValue] Messages deferred by 1 (642→643)
+2026-02-25T07:33:12.964Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:12.964Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:13.058Z [DEBUG] High write ratio: blit=0, write=83598 (100.0% writes), screen=1660x102
+2026-02-25T07:33:13.100Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.27068.1772004793100
+2026-02-25T07:33:13.100Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T07:33:13.103Z [DEBUG] Temp file written successfully, size: 27379 bytes
+2026-02-25T07:33:13.103Z [DEBUG] Applied original permissions to temp file
+2026-02-25T07:33:13.103Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.27068.1772004793100 to C:\Users\0000250059\.claude.json
+2026-02-25T07:33:13.103Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T07:33:13.119Z [DEBUG] autocompact: tokens=123531 threshold=167000 effectiveWindow=180000
+2026-02-25T07:33:13.119Z [DEBUG] Auto tool search enabled: 21016 tokens (threshold: 20000, 10% of context) [source: query]
+2026-02-25T07:33:13.120Z [DEBUG] Dynamic tool loading: found 2 discovered tools in message history
+2026-02-25T07:33:13.124Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.27068.1772004793124
+2026-02-25T07:33:13.124Z [DEBUG] Preserving file permissions: 100666
+2026-02-25T07:33:13.128Z [DEBUG] Temp file written successfully, size: 27379 bytes
+2026-02-25T07:33:13.128Z [DEBUG] Applied original permissions to temp file
+2026-02-25T07:33:13.128Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.27068.1772004793124 to C:\Users\0000250059\.claude.json
+2026-02-25T07:33:13.129Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-25T07:33:13.146Z [DEBUG] Dynamic tool loading: 2/28 deferred tools included
+2026-02-25T07:33:13.148Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.55.2ca; cc_entrypoint=cli; cch=00000;
+2026-02-25T07:33:13.148Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:13.148Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-25T07:33:13.148Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-25T07:33:13.148Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:13.149Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-25T07:33:13.149Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:13.163Z [DEBUG] [useDeferredValue] Messages deferred by 1 (642→643)
+2026-02-25T07:33:13.165Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:13.223Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:13.338Z [DEBUG] High write ratio: blit=0, write=83626 (100.0% writes), screen=1662x102
+2026-02-25T07:33:15.681Z [DEBUG] Stream started - received first chunk
+2026-02-25T07:33:15.683Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:15.688Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:27.446Z [DEBUG] [useDeferredValue] Messages deferred by 1 (643→644)
+2026-02-25T07:33:27.447Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:27.494Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:27.595Z [DEBUG] High write ratio: blit=0, write=83643 (100.0% writes), screen=1662x102
+2026-02-25T07:33:32.508Z [DEBUG] [useDeferredValue] Messages deferred by 1 (644→645)
+2026-02-25T07:33:32.509Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:32.541Z [DEBUG] Getting matching hook commands for Stop with query: undefined
+2026-02-25T07:33:32.541Z [DEBUG] Found 0 hook matchers in settings
+2026-02-25T07:33:32.541Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-02-25T07:33:32.546Z [DEBUG] [useDeferredValue] Messages deferred by 1 (644→645)
+2026-02-25T07:33:32.580Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:32.682Z [DEBUG] High write ratio: blit=0, write=84034 (100.0% writes), screen=1679x102
+2026-02-25T07:33:32.685Z [DEBUG] [useDeferredValue] Messages deferred by 1 (644→645)
+2026-02-25T07:33:32.686Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:32.712Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:45.066Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:45.772Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:46.274Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:46.305Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:46.309Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:47.325Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:51.914Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:33:52.008Z [DEBUG] High write ratio: blit=612, write=83884 (99.3% writes), screen=1679x102
+2026-02-25T07:33:57.440Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T07:38:38.054Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T08:00:07.282Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T08:00:07.425Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T08:00:07.425Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T08:00:07.431Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T08:00:12.275Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T08:00:12.276Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T08:00:12.276Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T08:08:35.673Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T08:30:07.287Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T08:30:07.389Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T08:30:07.389Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T08:30:07.392Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T08:30:12.289Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T08:30:12.289Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T08:30:12.289Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T08:38:35.646Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T09:00:07.291Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T09:00:07.395Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T09:00:07.395Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T09:00:07.407Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T09:00:12.286Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T09:00:12.287Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T09:00:12.287Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T09:08:35.659Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T09:30:07.302Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T09:30:07.402Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T09:30:07.402Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T09:30:07.410Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T09:30:12.313Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T09:30:12.313Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T09:30:12.313Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T09:38:35.665Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T10:00:07.319Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T10:00:07.417Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T10:00:07.417Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T10:00:07.422Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T10:00:12.343Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T10:00:12.343Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T10:00:12.343Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T10:08:35.672Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T10:30:07.329Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T10:30:07.447Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T10:30:07.447Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T10:30:07.452Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T10:30:12.336Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T10:30:12.336Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T10:30:12.336Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T10:38:35.685Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T11:00:07.340Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T11:00:07.341Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T11:00:07.344Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T11:00:12.347Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T11:00:12.347Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T11:00:12.347Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T11:08:35.682Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T11:30:07.346Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T11:30:07.442Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T11:30:07.443Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T11:30:07.448Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T11:30:12.345Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T11:30:12.345Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T11:30:12.345Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T11:38:35.689Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T12:00:07.343Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T12:00:07.464Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T12:00:07.464Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T12:00:07.469Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T12:00:12.354Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T12:00:12.354Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T12:00:12.354Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T12:08:35.800Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T12:30:07.361Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T12:30:07.458Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T12:30:07.458Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T12:30:07.463Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T12:30:12.377Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T12:30:12.377Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T12:30:12.377Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T12:38:35.726Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T13:00:07.353Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T13:00:07.452Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T13:00:07.452Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T13:00:07.459Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T13:00:12.364Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T13:00:12.364Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T13:00:12.364Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T13:08:35.736Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T13:30:07.363Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T13:30:07.466Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T13:30:07.467Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T13:30:07.471Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T13:30:12.353Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T13:30:12.353Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T13:30:12.353Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T13:38:35.748Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T14:00:07.358Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T14:00:07.358Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T14:00:07.361Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T14:00:12.368Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T14:00:12.368Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T14:00:12.368Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T14:08:35.735Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T14:30:07.363Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T14:30:07.489Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T14:30:07.490Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T14:30:07.495Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T14:30:12.359Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T14:30:12.359Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T14:30:12.359Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T14:38:35.737Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T15:00:07.355Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T15:00:07.458Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T15:00:07.459Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T15:00:07.464Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T15:00:12.382Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T15:00:12.382Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T15:00:12.382Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T15:08:35.740Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T15:30:07.357Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T15:30:07.457Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T15:30:07.457Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T15:30:07.462Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T15:30:12.370Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T15:30:12.371Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T15:30:12.371Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T15:38:35.753Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T16:00:07.354Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T16:00:07.458Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T16:00:07.458Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T16:00:07.464Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T16:00:12.353Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T16:00:12.353Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T16:00:12.353Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T16:08:35.749Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T16:30:07.358Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T16:30:07.457Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T16:30:07.457Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T16:30:07.463Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T16:30:12.354Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T16:30:12.354Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T16:30:12.354Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T16:38:35.750Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T17:00:07.356Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T17:00:07.463Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T17:00:07.463Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T17:00:07.468Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T17:00:12.385Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T17:00:12.385Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T17:00:12.385Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T17:08:35.763Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T17:30:07.362Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T17:30:07.482Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T17:30:07.482Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T17:30:07.488Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T17:30:12.378Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T17:30:12.379Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T17:30:12.379Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T17:38:35.761Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T18:00:07.366Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T18:00:07.473Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T18:00:07.473Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T18:00:07.479Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T18:00:12.379Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T18:00:12.379Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T18:00:12.379Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T18:08:35.785Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T18:30:07.373Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T18:30:07.476Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T18:30:07.477Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T18:30:07.483Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T18:30:12.385Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T18:30:12.385Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T18:30:12.385Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T18:38:35.772Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T19:00:07.379Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T19:00:07.508Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T19:00:07.509Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T19:00:07.515Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T19:00:12.373Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T19:00:12.374Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T19:00:12.374Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T19:08:35.794Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T19:30:07.368Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T19:30:07.471Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T19:30:07.471Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T19:30:07.477Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T19:30:12.382Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T19:30:12.382Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T19:30:12.382Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T19:38:35.794Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T20:00:07.380Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T20:00:07.483Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T20:00:07.483Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T20:00:07.489Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T20:00:12.381Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T20:00:12.381Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T20:00:12.381Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T20:08:35.879Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T20:30:07.395Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T20:30:07.496Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T20:30:07.496Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T20:30:07.502Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T20:30:12.391Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T20:30:12.392Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T20:30:12.392Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T20:38:35.795Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T21:00:07.393Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T21:00:07.506Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T21:00:07.506Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T21:00:07.512Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T21:00:12.390Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T21:00:12.391Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T21:00:12.391Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T21:08:35.802Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T21:30:07.398Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T21:30:07.507Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T21:30:07.508Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T21:30:07.517Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T21:30:12.391Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T21:30:12.391Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T21:30:12.391Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T21:38:35.799Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T22:00:07.392Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T22:00:07.504Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T22:00:07.504Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T22:00:07.512Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T22:00:12.387Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T22:00:12.387Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T22:00:12.387Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T22:08:35.805Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T22:30:07.390Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T22:30:07.509Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T22:30:07.509Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T22:30:07.515Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T22:30:12.405Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=FailedToOpenSocket, Was there a typo in the url or port?)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T22:30:12.405Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T22:30:12.405Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=FailedToOpenSocket, Was there a typo in the url or port?)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T22:38:35.820Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-25T23:00:07.390Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T23:00:07.497Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T23:00:07.497Z [ERROR] Error: Error: Failed to fetch version from https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/latest: ECONNREFUSED
+    at l5E (B:/~BUN/root/claude.exe:3643:2060)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T23:00:07.503Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-25T23:00:12.385Z [ERROR] Error: Error: 1P event logging: 3 events failed to export (code=ECONNREFUSED, ECONNREFUSED)
+    at queueFailedEvents (B:/~BUN/root/claude.exe:6234:2350)
+    at async doExport (B:/~BUN/root/claude.exe:6234:1257)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T23:00:12.385Z [ERROR] Error: Error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+    at error (B:/~BUN/root/claude.exe:2419:25028)
+    at <anonymous> (B:/~BUN/root/claude.exe:118:92467)
+    at $10 (B:/~BUN/root/claude.exe:118:93011)
+    at <anonymous> (B:/~BUN/root/claude.exe:119:17366)
+    at processTicksAndRejections (native:7:39)
+2026-02-25T23:00:12.385Z [ERROR] [3P telemetry] OTEL diag error: {"message":"Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)","originalLine":"6234","originalColumn":"1409","line":"6234","column":"1409","sourceURL":"B:/~BUN/root/claude.exe","stack":"Error: Failed to export 3 events (code=ECONNREFUSED, ECONNREFUSED)\n    at doExport (B:/~BUN/root/claude.exe:6234:1409)\n    at processTicksAndRejections (native:7:39)","name":"Error"}
+2026-02-25T23:08:35.813Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-26T00:49:59.413Z [DEBUG] Getting matching hook commands for SessionStart with query: resume
+2026-02-26T00:49:59.413Z [DEBUG] Found 0 hook matchers in settings
+2026-02-26T00:49:59.413Z [DEBUG] Matched 0 unique hooks for query "resume" (0 before deduplication)
+2026-02-26T00:49:59.413Z [DEBUG] [FileIndex] getProjectFiles called, respectGitignore=true
+2026-02-26T00:49:59.413Z [DEBUG] [FileIndex] getFilesUsingGit called
+2026-02-26T00:49:59.472Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.25432.1772066999472
+2026-02-26T00:49:59.472Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T00:49:59.476Z [DEBUG] Temp file written successfully, size: 26787 bytes
+2026-02-26T00:49:59.476Z [DEBUG] Applied original permissions to temp file
+2026-02-26T00:49:59.476Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.25432.1772066999472 to C:\Users\0000250059\.claude.json
+2026-02-26T00:49:59.478Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T00:49:59.502Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.25432.1772066999502
+2026-02-26T00:49:59.502Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T00:49:59.506Z [DEBUG] Temp file written successfully, size: 26787 bytes
+2026-02-26T00:49:59.506Z [DEBUG] Applied original permissions to temp file
+2026-02-26T00:49:59.506Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.25432.1772066999502 to C:\Users\0000250059\.claude.json
+2026-02-26T00:49:59.507Z [ERROR] Failed to write file atomically: Error: EPERM: operation not permitted, rename 'C:\Users\0000250059\.claude.json.tmp.25432.1772066999502' -> 'C:\Users\0000250059\.claude.json'
+2026-02-26T00:49:59.507Z [DEBUG] Cleaning up temp file: C:\Users\0000250059\.claude.json.tmp.25432.1772066999502
+2026-02-26T00:49:59.507Z [DEBUG] Falling back to non-atomic write for C:\Users\0000250059\.claude.json
+2026-02-26T00:49:59.528Z [DEBUG] File C:\Users\0000250059\.claude.json written successfully with non-atomic fallback
+2026-02-26T00:49:59.550Z [DEBUG] FileHistory: Copied backup f335c25b96aa8cc5@v10 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:49:59.552Z [DEBUG] [useDeferredValue] Messages deferred by 644 (0→644)
+2026-02-26T00:50:00.621Z [DEBUG] High write ratio: blit=0, write=149468 (100.0% writes), screen=1567x226
+2026-02-26T00:50:00.674Z [DEBUG] Slow render: 52.8ms, screen: 1567x226, damage: 226x1567 at (0,0), changes: 301788
+2026-02-26T00:50:00.824Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .vb
+2026-02-26T00:50:00.828Z [DEBUG] [useDeferredValue] Messages deferred by 644 (0→644)
+2026-02-26T00:50:00.837Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:50:01.283Z [DEBUG] High write ratio: blit=0, write=149468 (100.0% writes), screen=1567x226
+2026-02-26T00:50:01.288Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-02-26T00:50:01.288Z [DEBUG] [claudeai-mcp] Gate returned: true
+2026-02-26T00:50:01.288Z [DEBUG] [claudeai-mcp] Fetching from https://api.anthropic.com/v1/mcp_servers?limit=1000
+2026-02-26T00:50:01.344Z [DEBUG] AutoUpdaterWrapper: Installation type: native
+2026-02-26T00:50:01.450Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .vb
+2026-02-26T00:50:01.467Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .vb
+2026-02-26T00:50:01.468Z [DEBUG] FileHistory: Copied backup f5820e0d3b9a9639@v10 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.471Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .vb
+2026-02-26T00:50:01.472Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .vb
+2026-02-26T00:50:01.474Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:50:01.497Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .md
+2026-02-26T00:50:01.497Z [DEBUG] FileHistory: Copied backup 964ca92c29a0fbfe@v10 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.499Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .py
+2026-02-26T00:50:01.503Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .md
+2026-02-26T00:50:01.503Z [DEBUG] FileHistory: Copied backup da433dabc43b72e8@v10 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.504Z [DEBUG] [lspRecommendation] No file extension found
+2026-02-26T00:50:01.504Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .py
+2026-02-26T00:50:01.511Z [DEBUG] FileHistory: Copied backup 7cbd2ca379e0e055@v10 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.513Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:50:01.524Z [DEBUG] FileHistory: Copied backup 4c485e2357d7144e@v10 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.528Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:50:01.534Z [DEBUG] FileHistory: Copied backup dc6cc3a6d786db5a@v5 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.537Z [DEBUG] FileHistory: Copied backup ffe6e3139182de23@v3 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.545Z [DEBUG] FileHistory: Copied backup 1168b54de2a9f1a6@v3 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.545Z [DEBUG] [FileIndex] git ls-files (tracked) took 2132ms
+2026-02-26T00:50:01.546Z [DEBUG] [FileIndex] git ls-files: 8290 tracked files in 2133ms
+2026-02-26T00:50:01.578Z [DEBUG] [FileIndex] using git ls-files result (8290 files)
+2026-02-26T00:50:01.611Z [DEBUG] [FileIndex] cache refresh completed in 2198ms (rust index)
+2026-02-26T00:50:01.623Z [DEBUG] FileHistory: Copied backup 397b984fcfe8f772@v3 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.628Z [DEBUG] FileHistory: Copied backup f335c25b96aa8cc5@v11 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.630Z [DEBUG] FileHistory: Copied backup f5820e0d3b9a9639@v11 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.632Z [DEBUG] FileHistory: Copied backup 964ca92c29a0fbfe@v11 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.635Z [DEBUG] FileHistory: Copied backup da433dabc43b72e8@v11 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.638Z [DEBUG] FileHistory: Copied backup 7cbd2ca379e0e055@v11 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.641Z [DEBUG] FileHistory: Copied backup 4c485e2357d7144e@v11 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.650Z [DEBUG] FileHistory: Copied backup f335c25b96aa8cc5@v12 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.652Z [DEBUG] FileHistory: Copied backup f5820e0d3b9a9639@v12 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.665Z [DEBUG] FileHistory: Copied backup 964ca92c29a0fbfe@v12 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.667Z [DEBUG] FileHistory: Copied backup da433dabc43b72e8@v12 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.669Z [DEBUG] FileHistory: Copied backup 7cbd2ca379e0e055@v12 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.671Z [DEBUG] FileHistory: Copied backup 4c485e2357d7144e@v12 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to ee88c173-8f21-4087-9f29-ece0be6f7881
+2026-02-26T00:50:01.879Z [DEBUG] [claudeai-mcp] Fetched 3 servers
+2026-02-26T00:50:01.960Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:50:02.261Z [DEBUG] High write ratio: blit=0, write=149468 (100.0% writes), screen=1567x226
+2026-02-26T00:50:02.277Z [DEBUG] [FileIndex] background untracked fetch: 5 files
+2026-02-26T00:50:02.296Z [DEBUG] [FileIndex] rebuilt Rust index with 8290 tracked + 5 untracked files
+2026-02-26T00:50:02.298Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:50:03.133Z [DEBUG] Checking for native installer update to version 2.1.58
+2026-02-26T00:50:03.137Z [DEBUG] Downloading native installer version 2.1.58
+2026-02-26T00:50:16.975Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:48.798Z [DEBUG] Getting matching hook commands for SessionStart with query: resume
+2026-02-26T00:51:48.798Z [DEBUG] Found 0 hook matchers in settings
+2026-02-26T00:51:48.798Z [DEBUG] Matched 0 unique hooks for query "resume" (0 before deduplication)
+2026-02-26T00:51:48.798Z [DEBUG] [FileIndex] getProjectFiles called, respectGitignore=true
+2026-02-26T00:51:48.799Z [DEBUG] [FileIndex] getFilesUsingGit called
+2026-02-26T00:51:48.828Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.19008.1772067108828
+2026-02-26T00:51:48.828Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T00:51:48.831Z [DEBUG] Temp file written successfully, size: 26474 bytes
+2026-02-26T00:51:48.832Z [DEBUG] Applied original permissions to temp file
+2026-02-26T00:51:48.832Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.19008.1772067108828 to C:\Users\0000250059\.claude.json
+2026-02-26T00:51:48.833Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T00:51:48.856Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.19008.1772067108856
+2026-02-26T00:51:48.857Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T00:51:48.860Z [DEBUG] Temp file written successfully, size: 26474 bytes
+2026-02-26T00:51:48.861Z [DEBUG] Applied original permissions to temp file
+2026-02-26T00:51:48.861Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.19008.1772067108856 to C:\Users\0000250059\.claude.json
+2026-02-26T00:51:48.861Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T00:51:48.882Z [DEBUG] FileHistory: Copied backup f335c25b96aa8cc5@v10 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:48.883Z [DEBUG] [useDeferredValue] Messages deferred by 640 (4→644)
+2026-02-26T00:51:49.548Z [DEBUG] High write ratio: blit=0, write=149473 (100.0% writes), screen=1567x226
+2026-02-26T00:51:49.641Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .vb
+2026-02-26T00:51:49.644Z [DEBUG] [useDeferredValue] Messages deferred by 640 (4→644)
+2026-02-26T00:51:49.648Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:49.831Z [DEBUG] High write ratio: blit=0, write=149473 (100.0% writes), screen=1567x226
+2026-02-26T00:51:49.833Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-02-26T00:51:49.833Z [DEBUG] [claudeai-mcp] Gate returned: true
+2026-02-26T00:51:49.833Z [DEBUG] [claudeai-mcp] Fetching from https://api.anthropic.com/v1/mcp_servers?limit=1000
+2026-02-26T00:51:49.859Z [DEBUG] AutoUpdaterWrapper: Installation type: native
+2026-02-26T00:51:49.864Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .vb
+2026-02-26T00:51:49.883Z [DEBUG] FileHistory: Copied backup f5820e0d3b9a9639@v10 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.883Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .vb
+2026-02-26T00:51:49.885Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .vb
+2026-02-26T00:51:49.886Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .vb
+2026-02-26T00:51:49.886Z [DEBUG] FileHistory: Copied backup 964ca92c29a0fbfe@v10 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.886Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .md
+2026-02-26T00:51:49.887Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:49.893Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .py
+2026-02-26T00:51:49.895Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .md
+2026-02-26T00:51:49.896Z [DEBUG] FileHistory: Copied backup da433dabc43b72e8@v10 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.896Z [DEBUG] [lspRecommendation] No file extension found
+2026-02-26T00:51:49.896Z [DEBUG] [lspRecommendation] Looking for LSP plugins for .py
+2026-02-26T00:51:49.898Z [DEBUG] FileHistory: Copied backup 7cbd2ca379e0e055@v10 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.901Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:49.907Z [DEBUG] FileHistory: Copied backup 4c485e2357d7144e@v10 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.909Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:49.912Z [DEBUG] FileHistory: Copied backup dc6cc3a6d786db5a@v5 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.914Z [DEBUG] FileHistory: Copied backup ffe6e3139182de23@v3 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.915Z [DEBUG] FileHistory: Copied backup 1168b54de2a9f1a6@v3 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.917Z [DEBUG] [FileIndex] git ls-files (tracked) took 1118ms
+2026-02-26T00:51:49.917Z [DEBUG] [FileIndex] git ls-files: 8290 tracked files in 1118ms
+2026-02-26T00:51:49.935Z [DEBUG] [FileIndex] using git ls-files result (8290 files)
+2026-02-26T00:51:49.949Z [DEBUG] [FileIndex] cache refresh completed in 1151ms (rust index)
+2026-02-26T00:51:49.952Z [DEBUG] FileHistory: Copied backup 397b984fcfe8f772@v3 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.955Z [DEBUG] FileHistory: Copied backup f335c25b96aa8cc5@v11 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.962Z [DEBUG] FileHistory: Copied backup f5820e0d3b9a9639@v11 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.963Z [DEBUG] FileHistory: Copied backup 964ca92c29a0fbfe@v11 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.964Z [DEBUG] FileHistory: Copied backup da433dabc43b72e8@v11 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.965Z [DEBUG] FileHistory: Copied backup 7cbd2ca379e0e055@v11 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.966Z [DEBUG] FileHistory: Copied backup 4c485e2357d7144e@v11 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.969Z [DEBUG] FileHistory: Copied backup f335c25b96aa8cc5@v12 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.970Z [DEBUG] FileHistory: Copied backup f5820e0d3b9a9639@v12 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.971Z [DEBUG] FileHistory: Copied backup 964ca92c29a0fbfe@v12 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.972Z [DEBUG] FileHistory: Copied backup da433dabc43b72e8@v12 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.973Z [DEBUG] FileHistory: Copied backup 7cbd2ca379e0e055@v12 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:49.974Z [DEBUG] FileHistory: Copied backup 4c485e2357d7144e@v12 from session 54b2fae1-77b2-4e04-9432-23805b4cabb3 to fd3d86b4-c01c-4c67-b1b9-2b384fd3337e
+2026-02-26T00:51:50.228Z [DEBUG] [claudeai-mcp] Fetched 3 servers
+2026-02-26T00:51:50.288Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:50.447Z [DEBUG] High write ratio: blit=0, write=149473 (100.0% writes), screen=1567x226
+2026-02-26T00:51:50.456Z [DEBUG] [FileIndex] background untracked fetch: 5 files
+2026-02-26T00:51:50.466Z [DEBUG] [FileIndex] rebuilt Rust index with 8290 tracked + 5 untracked files
+2026-02-26T00:51:50.469Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:50.589Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:50.705Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:50.711Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:50.773Z [DEBUG] Checking for native installer update to version 2.1.58
+2026-02-26T00:51:50.775Z [DEBUG] Downloading native installer version 2.1.58
+2026-02-26T00:51:51.697Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:52.081Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:52.703Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:52.928Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:53.028Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:53.307Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:53.663Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-02-26T00:51:53.663Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-02-26T00:51:53.663Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-02-26T00:51:53.663Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-02-26T00:51:53.674Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:53.675Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:53.684Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:53.742Z [DEBUG] Getting matching hook commands for UserPromptSubmit with query: undefined
+2026-02-26T00:51:53.742Z [DEBUG] Found 0 hook matchers in settings
+2026-02-26T00:51:53.742Z [DEBUG] Matched 0 unique hooks for query "no match query" (0 before deduplication)
+2026-02-26T00:51:53.742Z [DEBUG] FileHistory: Making snapshot for message c8ee0b0f-93bf-4715-bd6d-19efab11c57d
+2026-02-26T00:51:53.922Z [DEBUG] FileHistory: Added snapshot for c8ee0b0f-93bf-4715-bd6d-19efab11c57d, tracking 10 files
+2026-02-26T00:51:53.924Z [DEBUG] [useDeferredValue] Messages deferred by 8 (644→652)
+2026-02-26T00:51:53.949Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:54.116Z [DEBUG] High write ratio: blit=0, write=149584 (100.0% writes), screen=1570x226
+2026-02-26T00:51:54.149Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.19008.1772067114149
+2026-02-26T00:51:54.149Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T00:51:54.154Z [DEBUG] Temp file written successfully, size: 26474 bytes
+2026-02-26T00:51:54.154Z [DEBUG] Applied original permissions to temp file
+2026-02-26T00:51:54.154Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.19008.1772067114149 to C:\Users\0000250059\.claude.json
+2026-02-26T00:51:54.155Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T00:51:54.176Z [DEBUG] autocompact: tokens=126482 threshold=167000 effectiveWindow=180000
+2026-02-26T00:51:54.179Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-26T00:51:54.179Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-26T00:51:54.179Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-26T00:51:54.192Z [DEBUG] [useDeferredValue] Messages deferred by 8 (644→652)
+2026-02-26T00:51:54.193Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:54.242Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:54.407Z [DEBUG] High write ratio: blit=0, write=150012 (100.0% writes), screen=1573x226
+2026-02-26T00:51:55.069Z [DEBUG] Auto tool search enabled: 21522 tokens (threshold: 20000, 10% of context) [source: query]
+2026-02-26T00:51:55.070Z [DEBUG] Dynamic tool loading: found 2 discovered tools in message history
+2026-02-26T00:51:55.075Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.19008.1772067115075
+2026-02-26T00:51:55.076Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T00:51:55.080Z [DEBUG] Temp file written successfully, size: 26474 bytes
+2026-02-26T00:51:55.080Z [DEBUG] Applied original permissions to temp file
+2026-02-26T00:51:55.080Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.19008.1772067115075 to C:\Users\0000250059\.claude.json
+2026-02-26T00:51:55.081Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T00:51:55.097Z [DEBUG] Dynamic tool loading: 2/28 deferred tools included
+2026-02-26T00:51:55.100Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.56.82d; cc_entrypoint=cli; cch=00000;
+2026-02-26T00:51:55.100Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:55.100Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-26T00:51:55.100Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-26T00:51:55.101Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:55.101Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-26T00:51:55.101Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:51:55.106Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:01.903Z [DEBUG] Stream started - received first chunk
+2026-02-26T00:52:01.906Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:06.207Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:06.382Z [DEBUG] High write ratio: blit=1356, write=149872 (99.1% writes), screen=1573x226
+2026-02-26T00:52:12.334Z [DEBUG] [useDeferredValue] Messages deferred by 1 (652→653)
+2026-02-26T00:52:12.368Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:12.542Z [DEBUG] High write ratio: blit=0, write=150022 (100.0% writes), screen=1573x226
+2026-02-26T00:52:12.575Z [DEBUG] [useDeferredValue] Messages deferred by 1 (652→653)
+2026-02-26T00:52:12.576Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:12.631Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:12.796Z [DEBUG] High write ratio: blit=0, write=150029 (100.0% writes), screen=1573x226
+2026-02-26T00:52:12.815Z [DEBUG] executePreToolHooks called for tool: Bash
+2026-02-26T00:52:12.817Z [DEBUG] Getting matching hook commands for PreToolUse with query: Bash
+2026-02-26T00:52:12.817Z [DEBUG] Found 1 hook matchers in settings
+2026-02-26T00:52:12.817Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-02-26T00:52:12.857Z [DEBUG] [useDeferredValue] Messages deferred by 1 (653→654)
+2026-02-26T00:52:12.882Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:13.075Z [DEBUG] High write ratio: blit=0, write=150029 (100.0% writes), screen=1573x226
+2026-02-26T00:52:13.097Z [DEBUG] tree-sitter: loaded from embedded
+2026-02-26T00:52:13.109Z [DEBUG] Creating shell snapshot for bash (C:\msys64\usr\bin\bash.exe)
+2026-02-26T00:52:13.110Z [DEBUG] Looking for shell config file: C:\Users\0000250059\.bashrc
+2026-02-26T00:52:13.110Z [DEBUG] Shell config file not found: C:\Users\0000250059\.bashrc, creating snapshot with Claude Code defaults only
+2026-02-26T00:52:13.110Z [DEBUG] Snapshots directory: C:\Users\0000250059\.claude\shell-snapshots
+2026-02-26T00:52:13.111Z [DEBUG] [useDeferredValue] Messages deferred by 1 (653→654)
+2026-02-26T00:52:13.113Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:13.199Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:13.210Z [DEBUG] Creating snapshot at: C:\Users\0000250059\.claude\shell-snapshots\snapshot-bash-1772067133110-u6l8xq.sh
+2026-02-26T00:52:13.210Z [DEBUG] Execution timeout: 10000ms
+2026-02-26T00:52:13.408Z [DEBUG] High write ratio: blit=0, write=150105 (100.0% writes), screen=1576x226
+2026-02-26T00:52:20.005Z [DEBUG] Shell snapshot created successfully (314 bytes)
+2026-02-26T00:52:20.007Z [DEBUG] Session environment not yet supported on Windows
+2026-02-26T00:52:20.007Z [DEBUG] Spawning shell without login (-l flag skipped)
+2026-02-26T00:52:23.039Z [DEBUG] [useDeferredValue] Messages deferred by 1 (654→655)
+2026-02-26T00:52:23.056Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:23.373Z [DEBUG] High write ratio: blit=0, write=150132 (100.0% writes), screen=1577x226
+2026-02-26T00:52:23.437Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:23.698Z [DEBUG] High write ratio: blit=0, write=150132 (100.0% writes), screen=1577x226
+2026-02-26T00:52:24.032Z [DEBUG] [useDeferredValue] Messages deferred by 1 (655→656)
+2026-02-26T00:52:24.043Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:24.303Z [DEBUG] High write ratio: blit=0, write=150152 (100.0% writes), screen=1577x226
+2026-02-26T00:52:24.380Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:24.678Z [DEBUG] High write ratio: blit=0, write=150152 (100.0% writes), screen=1577x226
+2026-02-26T00:52:25.035Z [DEBUG] [useDeferredValue] Messages deferred by 1 (656→657)
+2026-02-26T00:52:25.043Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:25.242Z [DEBUG] High write ratio: blit=0, write=150152 (100.0% writes), screen=1577x226
+2026-02-26T00:52:25.314Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:25.653Z [DEBUG] High write ratio: blit=0, write=150152 (100.0% writes), screen=1577x226
+2026-02-26T00:52:25.952Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-02-26T00:52:25.960Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.19008.1772067145960
+2026-02-26T00:52:25.961Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T00:52:25.965Z [DEBUG] Temp file written successfully, size: 26474 bytes
+2026-02-26T00:52:25.965Z [DEBUG] Applied original permissions to temp file
+2026-02-26T00:52:25.965Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.19008.1772067145960 to C:\Users\0000250059\.claude.json
+2026-02-26T00:52:25.966Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T00:52:25.993Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.56.c0a; cc_entrypoint=cli; cch=00000;
+2026-02-26T00:52:25.993Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:25.994Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-26T00:52:25.994Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-26T00:52:25.995Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:25.995Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-26T00:52:25.995Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:25.999Z [DEBUG] Getting matching hook commands for PostToolUse with query: Bash
+2026-02-26T00:52:25.999Z [DEBUG] Found 5 hook matchers in settings
+2026-02-26T00:52:26.000Z [DEBUG] Matched 0 unique hooks for query "Bash" (0 before deduplication)
+2026-02-26T00:52:26.004Z [DEBUG] LSP Diagnostics: getLSPDiagnosticAttachments called
+2026-02-26T00:52:26.004Z [DEBUG] LSP Diagnostics: Checking registry - 0 pending
+2026-02-26T00:52:26.004Z [DEBUG] Hooks: Found 0 total hooks in registry
+2026-02-26T00:52:26.004Z [DEBUG] Hooks: checkForNewResponses returning 0 responses
+2026-02-26T00:52:26.007Z [DEBUG] autocompact: tokens=115996 threshold=167000 effectiveWindow=180000
+2026-02-26T00:52:26.008Z [DEBUG] Auto tool search enabled: 21522 tokens (threshold: 20000, 10% of context) [source: query]
+2026-02-26T00:52:26.008Z [DEBUG] Dynamic tool loading: found 2 discovered tools in message history
+2026-02-26T00:52:26.015Z [DEBUG] Writing to temp file: C:\Users\0000250059\.claude.json.tmp.19008.1772067146015
+2026-02-26T00:52:26.015Z [DEBUG] Preserving file permissions: 100666
+2026-02-26T00:52:26.019Z [DEBUG] Temp file written successfully, size: 26474 bytes
+2026-02-26T00:52:26.020Z [DEBUG] Applied original permissions to temp file
+2026-02-26T00:52:26.020Z [DEBUG] Renaming C:\Users\0000250059\.claude.json.tmp.19008.1772067146015 to C:\Users\0000250059\.claude.json
+2026-02-26T00:52:26.020Z [DEBUG] File C:\Users\0000250059\.claude.json written atomically
+2026-02-26T00:52:26.044Z [DEBUG] Dynamic tool loading: 2/28 deferred tools included
+2026-02-26T00:52:26.047Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.56.82d; cc_entrypoint=cli; cch=00000;
+2026-02-26T00:52:26.047Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:26.047Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-26T00:52:26.047Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-26T00:52:26.047Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:26.048Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-26T00:52:26.048Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:26.052Z [DEBUG] [useDeferredValue] Messages deferred by 1 (657→658)
+2026-02-26T00:52:26.085Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:26.296Z [DEBUG] High write ratio: blit=0, write=150125 (100.0% writes), screen=1576x226
+2026-02-26T00:52:26.401Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:26.730Z [DEBUG] High write ratio: blit=0, write=150125 (100.0% writes), screen=1576x226
+2026-02-26T00:52:27.263Z [DEBUG] Stream started - received first chunk
+2026-02-26T00:52:33.675Z [DEBUG] Stream started - received first chunk
+2026-02-26T00:52:33.723Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:34.006Z [DEBUG] High write ratio: blit=0, write=150125 (100.0% writes), screen=1576x226
+2026-02-26T00:52:34.025Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:34.453Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:34.489Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:34.522Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:34.535Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-26T00:52:42.349Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable

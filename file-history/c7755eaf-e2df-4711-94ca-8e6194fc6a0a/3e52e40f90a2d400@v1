@@ -1,0 +1,3402 @@
+//$History: $
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+//
+// *****************************************************************************
+// *                Copyright Meidensha Corporation 2001                       *
+// *  ������Ж��d�ɂ͓��Ђɂ���Ē񋟂���Ȃ����u��ł̓��\�t�g�E�F�A�̎g�p   *
+// *  �ɑ΂��ӔC��S�������܂���B                                             *
+// *****************************************************************************
+//
+//      �v���O������:  aoalm
+//      �^�X�N��    :  �x��o��
+//      �H  ��      :  F6030CM
+//      �V�X�e����  :  �n�o�r�T�O�O�O
+//      �o�[�W����  :  V01
+//      �쐬��      :  �D�R�@���B
+//      �쐬�N����  :  2007�N  1�� 6��
+//      �C������    :  
+//�@�@�@�@�@�@2007�N�@10���@4���@�D�R���B�@funa071004
+//            �EPIO�{�[�h�̐��ɂ���āA�O��DO�o�͂�}�����鏈����ǉ�
+//			  2008�N�@ 7���@7���@�D�R���B�@funa080707
+//			  �E�l�r�r�@�\�Ή�
+//			  2009�N�@01�� 20���@�͐�
+//			  �EM5�Ή�
+//            2010�N�@03�� 24���@�D�R�@�@�@funa100324
+//            �E�x��O���[�v�ԍ��̒ǉ�
+//            2012�N�@01�� 26���@TSS���� �@P06014-Q08-1733
+//            �E��Q�[P06014-Q08-1733�̑Ή�
+//            2017�N 10�� 19�� ���� (SPPART_NAITOU)
+//            �E�Ď��敪�ݒ�@�\�A���䐧���ݒ�@�\�ǉ��i�Έ䐅�����Z���^�[�Ή��j
+//            2018�N 02�� 19�� �n�Ә@ (2017M5A_REN)
+//            �E��PORT M5A�Ή�
+//            2018�N10��29�� SCC�ђ�
+//            �E�l�C�e�B�u64bit�Ή�(�����L�[�FOPS5000_64bit)
+//            2021�N11��17�� ����  (NS_Ooita)
+//            �E�x���~PCS�o�͑Ή�/�x���~�����Ή�(���{���S�啪�Ή�)
+//            2023�N02��23�� ��  OPS5K Wow64�ł�萅���W�J
+//            �E�ЊO��QCM-3118 �ُ픭�����Ɍx�񂪖����Ȃ��ꍇ������s��̉��C(TH211004)
+//            �E�ЊO��QCM-3118 RAS-DO�o�͎��̃��O�o�͒ǉ�(TH220301)
+//            �EPIO-DO�o�͎��̃��O�o�͒ǉ��A�X���b�h����������(TH220719)
+//            �E���쉹������������s��̉��C(TH221020)
+//              �X���b�h����������(�r�����䏈���ǉ�)
+//            2023�N 03�� 01�� �� (TH230301)
+//            �E���쉹������������s��̉��C ����3
+//              ���쉹��PIO�o�̓c�[������ON/OFF�o�͂���悤�ɕύX
+//              mutex�͑��쉹�p�Ƃ���ȊO�Ƃŗp�ӂ���
+//
+//      �@�\�T�v    :  1.�x���ʂ��O���x��̏ꍇ�APIO�ް�ނɑ΂�����ٽ�o�͂ɂ��A�x������s���B
+//                     2.�x���ʂ������x��̏ꍇ�AWAVE���x������s���B
+//                     3.���쉶�L��̏ꍇ�APIO�ް�ނɑ΂�����ٽ�o�͂ɂ��A���쉹�����s���B
+//                     4.�O���o�͗L��̏ꍇ�APIO�ް�ނɑ΂���ð���o�͂ɂ��ADO�o�͂��s���B
+//
+//      ���񎖍�    :
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//-----------------------------------------------------------------------------
+//�C���N���[�h��`
+//-----------------------------------------------------------------------------
+#define       GROBAL_DEF                        //OPS5000�W��
+#include      "sysdef.h"                        //OPS5000�W��
+#include      <stdio.h>                         //�W�����o��
+#include      <string.h>                        //�����񏈗��֐���`
+#include      <stdlib.h>                        //
+#include      <winioctl.h>                      //
+#include      <mmsystem.h>                      //
+#include      <windows.h>                       //
+//#include      <iostream>                      //
+#include      <process.h>                       //
+#include      "Cpioinc.h"                       //PIO���޲�
+//#include      <signal.h>
+
+#include    "lib_pio.h"                                                 //M-M4
+
+// ��++++++++++++++++++++++++++++++++++++++ M-M5 ++++++++++++++++++++++++++++++++
+#include    "Raslib.h"                          //RZ24�C���N���[�h
+#include    "lib_ras.h"                         //M-M5
+#include	"lib_m5aras.h"						//M-M5A
+
+
+#include <atlbase.h>
+#include <atlstr.h>
+#include <string>
+
+
+#import "..\..\..\lib\vc\release\MeidenRas.tlb" no_namespace, named_guids
+
+CComPtr<IERas> g_RasObj;
+CComModule _Module;
+// ��++++++++++++++++++++++++++++++++++++++ M-M5 ++++++++++++++++++++++++++++++++
+//-----------------------------------------------------------------------------
+//�����֐��v���g�^�C�v�錾
+//-----------------------------------------------------------------------------
+void  fl_alm01(void) ;                  //�x�񎩓���~���ޭ�ٷ�ݾٗv��
+void  fl_alm02(void) ;                  //�x�񎩓���~���ޭ�ٓo�^
+int   fl_alm11(void) ;                  //PIO���޲�����ݏ���
+int   fl_alm12(unsigned char , int, int, int, int, int*) ;   //PIO���޲����쏈��  TH230301 MOD
+void  fl_alm13(void) ;                  //PIO���޲��۰�ޏ���
+void  fl_alm14(int,int,unsigned char,int *) ; //�w���ް�DO�o�͏���          TH230301 MOD
+int   fl_alm14_1(int *,unsigned char *) ;   //�w���ް�DO�o�͏���            funa071004
+void  CALLBACK  fl_alm15(UINT,UINT,     //���쉹OFF DO�o�ͺ���ޯ��֐�
+                   DWORD,DWORD,DWORD) ; //
+void  CALLBACK  fl_alm16(UINT,UINT,     //�x��OFF DO�o�ͺ���ޯ��֐�
+                   DWORD,DWORD,DWORD) ; //
+int   fl_alm17(void) ;                  //WAVE�f�o�C�X�I�[�v������
+void  fl_alm20(unsigned (__stdcall *)(void *),     //�گ�ދN������          TH211004 MOD
+               UCHAR) ;                 //
+void  fl_alm21(UCHAR *) ;               //���쉹�o�͏���                    TH211004 MOD
+void  fl_alm22(UCHAR *) ;               //�x��o�͏���                      TH211004 MOD
+void  fl_writelog(char *, char *) ;     //���O�o�͏���                      TH220301 ADD
+BOOL  fl_CreProc(char *, char *, HANDLE *, HANDLE *) ; //�c�[���N������     TH230301 ADD
+void  main() ;                          //Ҳݏ���
+int   f_alm100(void) ;                  //��������
+void  f_alm105(void);                   //PCS�x���~��`̧�ٓǂݍ��ݏ��� NS_Ooita ADD
+int   f_alm110(void) ;                  //PIO��ʎ擾����    funa071004
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+int   f_alm120() ;                      //
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+int   f_alm200(void) ;                  //QUE��M����
+void  f_alm210(void) ;                  //��MQUE��͏���
+void  f_alm212(void) ;                  //�x���~�v�����W�J���� NS_Ooita ADD
+void  f_alm300(void) ;                  //�x��o���ް���͏���
+int   f_alm400() ;                      //�v�`�u�d�t�@�C���Đ�����
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+int   f_alm500() ;                      //�q�`�r�|�c�n�o�͏���
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+
+void  f_alm510(void) ;                  //PCS�x���~�o�͏��� NS_Ooita ADD
+
+// OPS5000_64bit del ��
+//   2017M5A_REN--->
+//#ifdef _VS2005_PROJECT
+//BOOL IsWow64Process(HANDLE /*handl_h*/, PBOOL wow64_b) {
+//    *wow64_b = FALSE;
+//    return FALSE;
+//}
+//#endif
+//	<---2017M5A_REN
+// OPS5000_64bit del ��
+//-----------------------------------------------------------------------------
+//�^�X�N���V���{��
+//-----------------------------------------------------------------------------
+#define S_ALM_STOP_P    0x01            //�x���~�o�͗v��
+#define S_ALM_CANCEL_P  0x02            //�x�񎩓���~�^�C�}�L�����Z���v��
+#define S_ALM_OUTPUT_P  0x04            //�x��o�͗v��
+#define S_ALM_DOPEN_P   1               //�f�o�C�X�I�[�v��
+#define S_ALM_DCLOSE_P  0               //�f�o�C�X�N���[�Y
+#define	S_ALM_WAIT_P	1000			//�w�莞��]
+
+#define AF_ALM1_P       0x1             //�x��1DO�ޯ������
+#define AF_ALM2_P       0x2             //�x��2DO�ޯ������
+#define AF_ALM3_P       0x4             //�x��3DO�ޯ������
+#define AF_ALM4_P       0x8             //�x��4DO�ޯ������
+#define AF_ALMSTP_P     0x10            //�x���~DO�ޯ������
+#define AF_ALM6_P       0x20            //�x��6DO�r�b�g�p�^�[�� 2017M5A_REN
+#define AF_ALM7_P       0x40            //�x��7DO�r�b�g�p�^�[�� 2017M5A_REN
+#define AF_ALM8_P       0x80            //�x��8DO�r�b�g�p�^�[�� 2017M5A_REN
+#define AF_ALMOPE_P     0x1             //���쉹DO�ޯ������
+#define AF_ALMPORT_ALM_P 0              //�x����pDO�߰Ĕԍ�
+#define AF_ALMPORT_OPE_P 1              //���쉹���pDO�߰Ĕԍ�
+#define AF_ALMPORT_DO1_P 2              //�O��DO�o��1�`8�p�߰Ĕԍ�
+#define AF_ALMPORT_DO2_P 3              //�O��DO�o��9�`16�p�߰Ĕԍ�
+#define AF_ALMTIME_P    10              //�x����ٽ���P�ʎ���(msec)
+#define AF_OPETIME_P    10              //���쉹��ٽ���P�ʎ���(msec)
+
+#define	S_RASNUM_P		4				//RAS�ėp�A���[����	         M-M5
+#define S_RASNUM_M5A_P		8				//RASM5A�p�ėp�A���[����	2017M5A_REN
+
+#define S_OPS_PATH    "PATH_OPS"        //PATH_OPS�̊��ϐ��� 2017M5A_REN
+#define S_FILE_PATH	  "PATH_FILE"		//PATH_FILE�̊��ϐ���
+#define	S_ALM_WFILE1  "ALARM01.WAV"		//WAVE�t�@�C�����i�d�̏�j
+#define	S_ALM_WFILE2  "ALARM02.WAV"		//WAVE�t�@�C�����i���̏�j
+#define	S_ALM_WFILE3  "ALARM03.WAV"		//WAVE�t�@�C�����i�y�̏�j
+#define	S_ALM_WFILE4  "ALARM04.WAV"		//WAVE�t�@�C�����i���Ѵװ�j
+#define	S_ALM_WFILE6  "ALARM06.WAV"		//WAVE�t�@�C����	2017M5A_REN
+#define	S_ALM_WFILE7  "ALARM07.WAV"		//WAVE�t�@�C����	2017M5A_REN
+#define	S_ALM_WFILE8  "ALARM08.WAV"		//WAVE�t�@�C����	2017M5A_REN
+
+#define	S_ALM_FILMAX_P	4				//WAVE�t�@�C���ő吔
+#define S_ALM_FILMAX_M5A_P  8			//M5A�pWAVE�t�@�C���ő吔	//M-M5A   2017M5A_REN
+
+
+//funa071004��
+#define S_PIO32_PORTNUM_P   4                   //PIO��ʂ�32�̃|�[�g��
+#define S_PIO16_PORTNUM_P   2                   //PIO��ʂ�16�̃|�[�g��
+#define S_PIO16_DONUM_P     3                   //PIO��ʂ�16�̏ꍇ�́ADO�ő�_��
+#define S_PIO16_DOHOSEI_P   5                   //PIO��ʂ�16�̏ꍇ�́A�O��DO�o�͂��ް��␳
+#define S_DIO_MOJI_SIZE 10                      //PIO�f�o�C�X��ʎ擾�̕����T�C�Y
+#define S_DIO           "SOFTWARE\\CONTEC\\DEVICELIST\\DIO00"         //PIO�f�o�C�X��ʂ̃��W�X�g��
+//funa071004��
+
+// ��  NS_Ooita ADD
+#define S_FILE_PCSALMSTP_N  "AF_pcsalmstp.cnf"  //PCS�x���~�o�͒�`̧�ٖ���
+#define S_CNF_DATANO_N      "����f�[�^NO"      //��`̧�ٓ�����1
+#define S_CNF_PLCOUT_N      "��~�o�͗L��"      //��`̧�ٓ�����2
+#define S_MAXCNT_DATANO     6                   //����f�[�^NO�ݒ�ő吔
+// ��  NS_Ooita ADD
+
+//TH230301 ADD��
+#define S_PIO_KIND_PORT_P   0                   //PIO�o�͎��:�|�[�g�P��
+#define S_PIO_KIND_BIT_P    1                   //PIO�o�͎��:�r�b�g�P��
+#define S_PIO_KIND_BEEP_P   2                   //PIO�o�͎��:���쉹�o��
+#define S_MAX_BEEPCNT_N     100                 //PIO�c�[�� �n���h���J�E���^(���쉹�p)�ő�o�^��
+//TH230301 ADD��
+
+
+//-----------------------------------------------------------------------------
+//�^�X�N���R�����f�[�^
+//-----------------------------------------------------------------------------
+union U_rcvque {                        //QUE��M���p��
+  struct  Q_T_HEAD    qh ;              //  QUEͯ��
+  struct  Q_T_AOSCHE_TIMEUP timeup ;    //  ���ޭ�َ������B�ʒm
+  struct  Q_T_AALM_DOREQ    doreq ;     //  �O���c�n�o�͗v��              HN003  
+  struct  Q_T_AALM_OUT_EX   outex ;		//  �x��o�͗v���i�x��O���[�v�ԍ��j
+  struct  Q_T_AALM_STOP_EX  stopex ;    //  �x���~�v���i�x��O���[�v�ԍ��j
+  struct  Q_T_AALM_OUT      out ;       // �x��o�͗v�� SPPART_NAITOU
+} z_deq ;                               //QUE�ް���M�ޯ̧
+unsigned int    z_kind_ui ;             //��MQUE����׸�
+unsigned int    z_res_ui ;              //MM��ύŏ�����\
+unsigned char   z_almptn_uc ;           //�x��o��DO�ޯ������
+time_t          z_otime_t ;             //�x��o�͎���
+//int             z_dopen_i ;             //���޲�����ݍς��׸�
+HANDLE          z_hfile ;               //̧�������
+short			z_almnow_s ;			//WAVE�̌��݌x��ԍ�(0:���݌x���~�j
+unsigned char   z_abit_uc[16]           //�x��ԍ��|�����ޯĕϊ�ð���
+ = {0,AF_ALM1_P,AF_ALM2_P,AF_ALM3_P,AF_ALM4_P,0,AF_ALM6_P,AF_ALM7_P,AF_ALM8_P} ;//2017M5A_REN
+                                                                        //M-M4
+short           z_dpioopen_s ;          //PIO�f�o�C�X�I�[�v���t���O       M-M4
+HANDLE          z_hPio ;                //PIO�f�o�C�X�n���h��             M-M4
+short           z_dwavopen_s ;          //WAVE�f�o�C�X�I�[�v���t���O
+
+char					z_filnam_c[S_ALM_FILMAX_M5A_P][128];	//�x��t�@�C����
+char					z_nam_c[S_ALM_FILMAX_M5A_P][128]	//̧�ٖ�������
+						= {S_ALM_WFILE1, S_ALM_WFILE2, S_ALM_WFILE3, S_ALM_WFILE4,
+									"", S_ALM_WFILE6, S_ALM_WFILE7, S_ALM_WFILE8};//2017M5A_REN
+short           z_portnum_s;            //����port��            funa071004
+short           z_porterrfg_s;          //�|�[�g�G���[�t���O�@�@funa071004
+                                        //�iPIO�{�[�h��32/32�łȂ��̂ɁA�O��DO�o�͂����悤�Ƃ����ꍇ�A
+                                        //  �ŏ��̈��̂݃G���[���O���������߂̃t���O�j
+
+// ��++++++++++++++++++++++++++++++++++++++ M-M5 ++++++++++++++++++++++++++++++++
+unsigned char	z_errflg_uc ;           //�װ۸ޓo�^�ς��׸�
+int				z_errflg2_i;            //�װ۸ޓo�^�ς��׸�2(�x��ԍ�6�`8�p) 2017M5A_RENI
+short           z_drasopen_s ;          //RAS�f�o�C�X�I�[�v���t���O      //M-M5
+unsigned char   z_dotbl_uc;             //�c�n�o�̓e�[�u��               //M-M5
+unsigned char   z_stop_uc;              //                               //M-M5
+unsigned char   z_walmptn_uc ;          //WAVE�x��o��DO�ޯ������		 //M-M5
+// ��++++++++++++++++++++++++++++++++++++++ M-M5 ++++++++++++++++++++++++++++++++
+
+char            z_ToolPath_c[128];      //PIO�c�[���p�X   2017M5A_REN
+//BOOL            z_WOW64_b;              //WOW64���       2017M5A_REN  // OPS5000_64bit del
+
+// ��  NS_Ooita ADD
+int             z_Plcout_i;             //PCS�x���~�o�͗L���i1�G�L��A0�F�����j
+struct  T_AF_pcsalmstp {                //PCS�x���~�o�͑Ώ�
+    short       logno_s[CNF_LIDANUM_N]; //�����v��ԍ�
+    int         outdata_i;              //�o�͂����ԍ�
+};
+T_AF_pcsalmstp almstop[S_MAXCNT_DATANO];
+// ��  NS_Ooita ADD
+
+char            z_msg_c[256];           //���O�o�^������                        TH220301 ADD
+UCHAR           z_BitPtn_uc;            //PIO�o�̓f�[�^(�X���b�h�p)             TH220719 ADD
+HANDLE          z_Mutex_h;              //�~���[�e�b�N�X�̃n���h��              TH221020 ADD
+//TH230301 ADD��
+HANDLE          z_Mutex_Beep_h;         //�~���[�e�b�N�X�̃n���h��(���쉹�p)
+HANDLE          z_phndl_h;              //PIO�c�[�� �v���Z�X�n���h��
+HANDLE          z_thndl_h;              //PIO�c�[�� �X���b�h�n���h��
+int             z_BeepCnt_i;            //PIO�c�[�� �n���h���J�E���^(���쉹�p)
+HANDLE          z_phndl_Beep_h[S_MAX_BEEPCNT_N];    //PIO�c�[�� �v���Z�X�n���h��(���쉹�p)
+HANDLE          z_thndl_Beep_h[S_MAX_BEEPCNT_N];    //PIO�c�[�� �X���b�h�n���h��(���쉹�p)
+//TH230301 ADD��
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �k�a�O�P*    �x�񎩓���~�X�P�W���[���L�����Z���v��        * fl_alm01   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      �x�񎩓���~�X�P�W���[���ʒm�̃L�����Z���v���𑗐M����B
+//
+//  �R�[�����O�V�[�P���X:
+//     (void)fl_alm01() ;
+//
+//  ���̓f�[�^:
+//      �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �Ȃ�
+//
+//  �������e�F
+//      �i�P�j���ԊǗ��^�X�N�ɃL�����Z���v���𑗐M����B(F_quemgr)
+//      �i�Q�jQUE���M�Ɏ��s�����ꍇ�װ۸ޓo�^���s���B
+//
+//-----------------------------------------------------------------------------
+void fl_alm01()                         //
+{                                       //
+  int   rst_i ;                         //�߂�l
+  int   size_i ;                        //QUE���M����
+  struct Q_T_AOSCHE_ENTRY   enq ;       //QUE���M�ҏW�ر
+                                        //
+  //if (AF_sys ->opt2_i  != AF_OPT2_ALMTM_P){  //�x�񎩓���~�I�v�V������������
+  if(AF_sys->almstp_s ==0){             //�x���~���s���ԂO�b FCLNT
+	  return ;                          //�����I��
+  }                                     //
+  size_i = sizeof(enq) ;                //���M���ގ擾
+  memset(&enq, 0 ,sizeof(enq)) ;        //QUE���M�ҏW�ر�̏�����
+  enq.qh.func_s =                       //QUȨݸ���
+          (short)QF_AOSCHE_CANCEL_P ;   //
+  enq.schidno_s =                       //
+          (short)QF_AALM_TIMEUP_P ;     //���ޭ�ٻ�ނh�c
+  rst_i = F_quemgr(QUE_ENQ_P,           //��ݾٗv�����M
+              Q_AOSCHE_KEY1,&enq,&size_i) ;
+  if (rst_i != RS_SUC)                  //���M���s
+    (void)F_errlog(0x131,0xf011,        //  �װ۸ޓo�^
+            rst_i,(int)NULL,(int)NULL,(int)NULL,
+            "���ޭ�ٷ�ݾٗv��QUE���M���s") ;
+}                                       //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �k�a�O�Q*    �x�񎩓���~�X�P�W���[���o�^                  * fl_alm02   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      �x�񎩓���~�X�P�W���[���o�^���s���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (void)fl_alm02() ;
+//
+//  ���̓f�[�^:
+//      �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �Ȃ�
+//
+//  �������e�F
+//      �i�P�j���ԊǗ��^�X�N�Ɍx�񎩓���~�̂��߂̃����V���b�g�^�C�}�o�^�v����
+//            ���M����B(F_quemgr)
+//      �i�Q�jQUE���M�Ɏ��s�����ꍇ�װ۸ޓo�^���s���B
+//
+//-----------------------------------------------------------------------------
+void fl_alm02()                         //
+{                                       //
+  int   rst_i ;                         //�߂�l
+  int   size_i ;                        //QUE���M����
+  struct Q_T_AOSCHE_ENTRY   enq ;       //QUE���M�ҏW�ر
+                                        //
+//  if (AF_sys ->opt2_i  != AF_OPT2_ALMTM_P){  //�x�񎩓���~�I�v�V������������
+  if(AF_sys->almstp_s ==0){             //�x���~���s���ԂO�b FCLNT
+	  return ;                               //�����I��
+  }                                     //
+  size_i = sizeof(enq) ;                //���M���ގ擾
+  memset(&enq, 0 ,sizeof(enq)) ;        //QUE���M�ҏW�ر�̏�����
+  rst_i = F_timeget(&z_otime_t) ;       //���ݎ����擾
+  enq.qh.func_s =                       //QUȨݸ���
+            (short)QF_AOSCHE_ENTRY_P ;  //
+  enq.schidno_s =                       //���ޭ�ٻ��ID
+            (short)QF_AALM_TIMEUP_P ;   //
+  enq.times_s = 1 ;                     //�ݼ�����ώw��
+  enq.quekey_s = Q_AALM_KEY1 ;          //�ʒmQUE�w��
+  enq.infcond_s =                       //�������B�{�����{�ʒm�ް�
+            (short)Q_AOSCHE_INF_P ;     //
+  memcpy(&enq.inf_c[0],                 //�ʒm�ް�
+         &z_otime_t,sizeof(z_otime_t)) ;//
+  enq.scd.sec_s = 1 ;                   //
+  enq.scd.offset_s =                    //�����l*10�b��ɋN��
+        AF_sys->almstp_s ;
+  rst_i = F_quemgr(QUE_ENQ_P,           //�x�񎩓���~��ϓo�^
+            Q_AOSCHE_KEY1,&enq,&size_i) ;
+  if (rst_i != RS_SUC)                  //���M���s
+    (void)F_errlog(0x131,0xf021,        //  �װ۸ޓo�^
+            rst_i,(int)NULL,(int)NULL,(int)NULL,
+            "�x�񎩓���~��ϓo�^�v�����s") ;
+}                                       //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �k�a�P�P*    PIO�f�o�C�X�I�[�v������                       * fl_alm11   *
+// ****************************************************************************
+//
+//  �@�@�\:
+//      PIO���޲�����݂���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (int)fl_alm11() ;
+//
+//  ���̓f�[�^:
+//     �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     RS_SUC : ��������
+//     RS_ERR : �������s
+//
+//-----------------------------------------------------------------------------
+int fl_alm11()                          //
+{                                       //
+  int   rst_i ;                         //�߂�l
+  int   errno_i ;                       //�g���װ����
+  int   i ;                             //�߰�ٰ�߶���
+  int   PioType_i ;                     //PIO�f�o�C�X���
+  int   sts_i ;                         //
+  int   BeepCnt_i = 0 ;                 //PIO�c�[�� �n���h���J�E���^(���g�p) TH230301 ADD
+  char  path_c[64];
+                                        //
+  rst_i = RS_ERR ;                      //
+	// OPS5000_64bit del ��
+	//if ((AF_sys->Pio_s != 0) && (!z_WOW64_b)) {             //PIO�f�o�C�X�`�F�b�N
+	//    rst_i = RS_SUC ;                    //
+	//    PioType_i = (int)AF_sys->Pio_s ;    //PIO�f�o�C�X��ʂ̎擾
+	//    //sts_i = FA_PioDllInit(PioType_i) ;  //PIO�A�N�Z�XDLL������
+	//    if (sts_i == NO_ERROR) {            //PIO�f�o�C�X�I�[�v��
+	//      //z_hPio = (HANDLE)FA_PioOpenDevice("\\\\.\\CPO") ;
+	//      if (z_hPio != INVALID_HANDLE_VALUE) {
+	//        z_dpioopen_s = S_ALM_DOPEN_P ;  //�f�o�C�X�I�[�v���t���O�Z�b�g
+	//        for (i=0;i<CNF_MAXDOPORT_N;i++) //  ����N�����S�_OFF����
+	//          rst_i = fl_alm12(0, i, 0, 0) ;      //
+	//        }								//
+	//    									//
+	//      else {                            //
+	//        errno_i =(int)GetLastError() ;  //
+	//        (void)F_errlog(                 //�G���[���O�o�^
+	//                0x0150,0x0003,          //
+	//                errno_i,                //�G���[�m���D
+	//                (int)NULL,(int)NULL,(int)NULL,
+	//                "PIO�f�o�C�X�̃I�[�v���Ɏ��s���܂����B") ;
+	//        rst_i = RS_ERR ;                //                             
+	//      }                                 //
+	//	}                                   //
+	//}                                     //
+	//// 2017M5A_REN--->
+	//else if ((AF_sys->Pio_s != 0) && (z_WOW64_b)) {
+	// OPS5000_64bit del ��
+	if (AF_sys->Pio_s != 0) {				// OPS5000_64bit mod
+	      //OPS�p�X�擾
+	      sts_i = GetEnvironmentVariable(S_OPS_PATH, path_c, sizeof(path_c));
+	      //PIOTool_64�c�[���p�X�擾
+	      sprintf(z_ToolPath_c, "%s\\%s", path_c, "tool\\exe\\PIOTool_64.exe");
+          for (i = 0; i < CNF_MAXDOPORT_N; i++) {//  ����N�����S�_OFF����
+              rst_i = fl_alm12((int)0, i, (int)S_PIO_KIND_PORT_P, (int)0, (int)0,  &BeepCnt_i); //TH230301 MOD
+          }
+          z_dpioopen_s = S_ALM_DOPEN_P;
+    }								//
+	// <---2017M5A_REN
+  return(rst_i) ;                       //
+}                                       //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �k�a�P�Q*    PIO�f�o�C�X���쏈��                           * fl_alm12   *
+// ****************************************************************************
+//
+//  �@�@�\:
+//      PIO���޲��ɑ΂��A�w���ް��l���o�͂���֐��ł���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (int)fl_alm12(odata_uc, port_i, Kind_i, BitNo_i, Pulse_i, BeepCnt_i) ;
+//
+//  ���̓f�[�^:
+//     unsigned char    odata_uc ;      //�o���ް�
+//     int              port_i ;        //�o���߰Ĕԍ�
+//     int              Kind_i�F        //�o�͎��(0:�|�[�g�P��, 1:�r�b�g�P��, 2:���쉹)
+//     int              BitNo_i;        //�o�͕���(CPIO_BIS(0):ON CPIO_BIC(-1):OFF ���o�͎�ʂ��r�b�g�P�ʂ̏ꍇ�L��) TH230301 MOD
+//     int              Pulse_i;        //�o�̓p���X��(���쉹�̂ݎg�p) TH230301 ADD
+//     int*             BeepCnt_i;      //���쉹�p�n���h���J�E���^ TH230301 ADD
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     RS_SUC : ��������
+//     RS_ERR : �������s
+//
+//-----------------------------------------------------------------------------
+int fl_alm12(unsigned char odata_uc, int port_i, int Kind_i, int BitNo_i, int Pulse_i, int* BeepCnt_i) //TH230301 MOD
+{                                       //
+  int   rst_i ;                         //�߂�l
+  int   status_i ;                      //PIO���޲��o�ͽð��
+  int   errno_i ;                       //�g���װ����
+  char	arg_c[64];						//PIOTool_64.exe�̈��� HF-W7500_64 2017M5A_REN
+//TH230301 ADD
+  DWORD ret_dw = 0;                     //�߂�l(WaitForSingleObject)
+  BOOL  ret_b = FALSE;                  //�߂�l(fl_CreProc)
+  HANDLE phndl_h = NULL;                //PIO�c�[�� �v���Z�X�n���h��(�x��p)
+  HANDLE thndl_h = NULL;                //PIO�c�[�� �X���b�h�n���h��(�x��p)
+  HANDLE phndl_Beep_h = NULL;           //PIO�c�[�� �v���Z�X�n���h��(���쉹�p)
+  HANDLE thndl_Beep_h = NULL;           //PIO�c�[�� �X���b�h�n���h��(���쉹�p)
+//TH230301 ADD��
+                                        //
+  rst_i = RS_SUC ;                      //  �߂�l�ɏ����������Z�b�g
+
+//TH230301 MOD��z
+  //�o�͎�ʂ����쉹�o��(ON+OFF���s)�̏ꍇ
+  if (Kind_i == S_PIO_KIND_BEEP_P){
+    WaitForSingleObject(z_Mutex_Beep_h,INFINITE);         //�~���[�e�b�N�X�擾 TH221020 ADD
+    sprintf(arg_c, " %d %d %d %d %d", port_i, odata_uc, Kind_i, BitNo_i, Pulse_i); //TH230301 MOD
+    if (BitNo_i == CPIO_BIS){ //�o�͕�����ON ON�̏ꍇ��ON�{OFF���s
+      if(z_phndl_Beep_h[z_BeepCnt_i] != NULL){            //�O��(1������O)�̃n���h�����c���Ă���H
+        CloseHandle(z_phndl_Beep_h[z_BeepCnt_i]);         //�c�[���v���Z�X�n���h�����
+        CloseHandle(z_thndl_Beep_h[z_BeepCnt_i]);         //�c�[���X���b�h�n���h�����
+        z_phndl_Beep_h[z_BeepCnt_i] = NULL;
+        z_thndl_Beep_h[z_BeepCnt_i] = NULL;
+      }
+      //PIO�o�̓c�[���N��
+      ret_b = fl_CreProc(z_ToolPath_c, arg_c, &z_phndl_Beep_h[z_BeepCnt_i], &z_thndl_Beep_h[z_BeepCnt_i]);
+      *BeepCnt_i = z_BeepCnt_i;
+      if (ret_b == TRUE){                                 //�c�[���N������
+        z_BeepCnt_i = z_BeepCnt_i + 1;                    //PIO�n���h���J�E���^�����Z
+        if(z_BeepCnt_i >= S_MAX_BEEPCNT_N){               //�J�E���^�l���ő�ɓ��B������
+          z_BeepCnt_i = 0;                                //���Z�b�g(�擪��)����
+        }
+        //PIO�o�̓��O�o�^
+        memset(z_msg_c, NULL, sizeof(z_msg_c));
+        sprintf(z_msg_c, "PIOTool_64 port=%d odata=%02x kind=%d dir=%d ���쉹ON(1)�o�� cnt=%02d phndl=%08p", port_i, odata_uc, Kind_i, BitNo_i, *BeepCnt_i, z_phndl_Beep_h[*BeepCnt_i]);
+        fl_writelog("PIO�o��(���쉹)", z_msg_c);
+      }
+    }
+    else{                     //�o�͕�����OFF OFF�̏ꍇ��OFF�̂ݎ��s
+      //PIO�o�̓c�[���N��
+      ret_b = fl_CreProc(z_ToolPath_c, arg_c, &phndl_Beep_h, &thndl_Beep_h);
+      if (ret_b == TRUE){                                 //�c�[���N������
+        //PIO�o�̓��O�o�^
+        memset(z_msg_c, NULL, sizeof(z_msg_c));
+        sprintf(z_msg_c, "PIOTool_64 port=%d odata=%02x kind=%d dir=%d ���쉹OFF(0)�o��", port_i, odata_uc, Kind_i, BitNo_i);
+        fl_writelog("PIO�o��(���쉹)", z_msg_c);
+        CloseHandle(phndl_Beep_h);                        //�c�[���v���Z�X�n���h�����
+        CloseHandle(thndl_Beep_h);                        //�c�[���X���b�h�n���h�����
+        phndl_Beep_h = NULL;
+        thndl_Beep_h = NULL;
+      }
+    }
+    ReleaseMutex(z_Mutex_Beep_h);                       //�~���[�e�b�N�X��� TH221020 ADD
+  }
+  else{       //���쉹�ȊO�̏o��
+    WaitForSingleObject(z_Mutex_h,INFINITE);          //�~���[�e�b�N�X�擾 TH221020 ADD
+    sprintf(arg_c, " %d %d %d %d %d", port_i, odata_uc, Kind_i, BitNo_i, Pulse_i); //TH230301 MOD
+    //PIO�o�̓c�[���N��
+    ret_b = fl_CreProc(z_ToolPath_c, arg_c, &phndl_h, &thndl_h);
+    if (ret_b == TRUE){                               //�c�[���N������
+      //PIO�o�̓��O�o�^
+      if(BitNo_i == CPIO_BIS){            //�o�͂�ON
+        memset(z_msg_c, NULL, sizeof(z_msg_c));
+        sprintf(z_msg_c, "PIOTool_64 port=%d odata=%02x kind=%d dir=%d ON(1)�o��", port_i, odata_uc, Kind_i, BitNo_i);
+        fl_writelog("PIO�o��", z_msg_c);
+      }
+      else{                               //�o�͂�OFF
+        memset(z_msg_c, NULL, sizeof(z_msg_c));
+        sprintf(z_msg_c, "PIOTool_64 port=%d odata=%02x kind=%d dir=%d OFF(0)�o��", port_i, odata_uc, Kind_i, BitNo_i);
+        fl_writelog("PIO�o��", z_msg_c);
+      }
+      CloseHandle(phndl_h);                           //�c�[���v���Z�X�n���h�����
+      CloseHandle(thndl_h);                           //�c�[���X���b�h�n���h�����
+      phndl_h = NULL;
+      thndl_h = NULL;
+    }
+    ReleaseMutex(z_Mutex_h);                          //�~���[�e�b�N�X��� TH221020 ADD
+  }
+//TH230301 MOD��
+
+  return(rst_i) ;                       //	
+}                                       //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �k�a�P�R*    �f�o�C�X�N���[�Y����                          * fl_alm13   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      �e�f�o�C�X�̃N���[�Y�������s���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (void) fl_alm13() ;
+//
+//  ���̓f�[�^:
+//      �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//      �Ȃ�
+//
+//  �������e�F
+//      �i�P�j���޲��۰�ނ��s���B(CloseHandle)
+//      �i�Q�j�۰�ޏ����Ɏ��s�����ꍇ�A�װ۸ޓo�^���s���B
+//
+//-----------------------------------------------------------------------------
+void fl_alm13()                         //
+{                                       //
+  int   sts_i ;                         //                       
+                                        //
+  if (z_dwavopen_s == S_ALM_DOPEN_P){   //
+                                        //
+	  sts_i = mciSendCommand(			//�v�`�u�d�f�o�C�X�N���[�Y����
+		  MCI_ALL_DEVICE_ID, MCI_CLOSE, //
+		  MCI_WAIT, (DWORD) NULL);      //
+	  if (sts_i != 0) {					//�N���[�Y���s
+		  (void)F_errlog(				//�G���[���O�o�^
+			0x0150,0x0007,              //
+			sts_i,						//���^�[���X�e�[�^�X
+			(int)NULL,                  //
+			(int)NULL,                  //
+			(int)NULL,                  //
+			"�v�`�u�d�f�o�C�X�̃N���[�Y�Ɏ��s���܂����B") ;
+	  }                                 //
+  }                                     //
+  if (z_drasopen_s == S_ALM_DOPEN_P){   //
+    //2017M5A_REN--->
+    if (AF_sys->Ras_s == AF_HWOPT_RASM5A_P){
+       FA_M5ARasDllExit() ;     //M5ARasDLL �I������
+    }
+    else{
+      g_RasObj.Release();       //RasSvr�|�C���^�J��
+      CoUninitialize();
+    }
+  	//<---2017M5A_REN
+  }                                     //
+}                                       //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �k�a�P�S*    �w��f�[�^�c�n�o�͏���                        * fl_alm14   *
+// ****************************************************************************
+//
+//  �@�@�\:
+//      PIO���޲��̎w��|�[�g�ɑ΂��A�w���ޯĂ�ON/OFF���o�͂���֐��ł���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (void)fl_alm14(port_i,dir_i,odata_uc,BeepCnt_i) ;
+//
+//  ���̓f�[�^:
+//     int              port_i ;        //�o���߰Ĕԍ�
+//     int              dir_i ;         //�o�͕���
+//     unsigned char    odata_uc ;      //�o���ް�
+//     int*             BeepCnt_i;      //���쉹�p�n���h���J�E���^ TH230301 ADD
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �Ȃ�
+//
+//-----------------------------------------------------------------------------
+void fl_alm14(int port_i,int dir_i,unsigned char odata_uc,int* BeepCnt_i) //TH230301 MOD
+{                                       //
+  int   status_i ;                      //PIO���޲��o�ͽð��
+  int   errno_i ;                       //�g���װ����
+  int   rsts_i ;                        //���ݽð��  funa071004
+  byte  ctype ;                         // �o�̓^�C�v
+                                        //
+  if ((AU_sys->smod_s == AU_MAS_P) ||   //OPS�^�pӰ�ނ�Ͻ��AϽ�������
+      (AU_sys->smod_s == AU_MASE_P)||   //             �����A����������
+      (AU_sys->smod_s == AU_TST_P) ||   //
+      (AU_sys->smod_s == AU_TSTE_P)||   //
+      (port_i == AF_ALMPORT_OPE_P) ||   //���쉹�o�͖͂�����
+      (port_i == AF_ALMPORT_ALM_P)){    //�x�񉹏o�͂�������
+                                        //(QUE��M���ɕs�v�Ȍx������O���Ă��邽��)
+                                        //
+//      ((port_i == AF_ALMPORT_ALM_P)&& //�x�񉹏o�͂�OFF������
+//       (odata_uc == 0)) ||            //  �x���~�̂ݖ�����
+//      ((port_i == AF_ALMPORT_ALM_P)&& //
+//       (odata_uc == AF_ALMSTP_P))){   //
+                                        //
+    // 2017M5A_REN--->
+	  if (dir_i == SS_ON_P) {              //  �o�͕������n�m
+		  ctype = CPIO_BIS;                //    �w���ޯľ��
+	  }                                 //
+	  else {                              //  �o�͕������n�e�e
+		  ctype = CPIO_BIC;                //    �w���ޯĸر
+	  }                                 //
+    //if (z_WOW64_b) {				    // OPS5000_64bit del
+//TH230301 MOD��
+      //���쉹�o�͂̏ꍇ
+      if ((port_i == AF_ALMPORT_OPE_P) && (odata_uc == AF_ALMOPE_P)){
+          fl_alm12(odata_uc, port_i, (int)S_PIO_KIND_BEEP_P, (int)ctype, (int)(AF_sys->opepls_s*AF_OPETIME_P), BeepCnt_i);
+      }
+      else{                           //���쉹�ȊO�̏o��
+          fl_alm12(odata_uc, port_i, (int)S_PIO_KIND_BIT_P, (int)ctype, (int)0, BeepCnt_i);
+      }
+//TH230301 MOD��
+	// OPS5000_64bit del ��
+    //}
+    //else {
+    // <---2017M5A_REN
+    //rsts_i =  fl_alm14_1(&port_i,&odata_uc); //  PIO16�̏ꍇ�A�o�̓|�[�g��ϊ�����    funa071004��
+	//if(rsts_i == RS_ERR){                   //�@�@�o�͕s�̔ԍ��������ꍇ�A�����I��
+	//	if(z_porterrfg_s == SS_OFF_P){      //�@�@�ŏ��̈��̂݁A�G���[���O�o�^
+	//			z_porterrfg_s = SS_ON_P;    //      �o�^�ς݁A�t���O�𗧂Ă�
+	//			(void)F_errlog(0x014,0x141, //      �װ۸ޓo�^
+	//				port_i,                 //        �o���߰Ĕԍ�
+	//				dir_i,                  //        �o�͕���
+	//				(int)odata_uc,          //
+	//				(int)NULL,              //
+	//				"PIO�{�[�h��32/32�ȊO�ŁA�s���ȊO��DO�o�͂��ʒm����܂����B") ;
+	//	}                                   //
+	//	return;
+	//}                                       //                                        funa071004��
+	// OPS5000_64bit del ��
+
+
+    // OPS5000_64bit del ��
+    //status_i = FA_PioSetDo(             //DO�o��
+    //               z_hPio,              //  �f�o�C�X�n���h��
+    //               ctype,               //  �o��Type
+    //               port_i,              //  �|�[�g�ԍ�
+    //               (BYTE)odata_uc) ;    //  �o�̓C���[�W
+                                        //
+    //if(status_i != TRUE) {              //DO�o�͎��s
+    //  errno_i =(int)GetLastError() ;    //  �g���װ���ގ擾
+    //  (void)F_errlog(0x150,0xf141,      //  �װ۸ޓo�^
+    //            errno_i,                //  �g���װ����
+    //            odata_uc,               //  �o���ް�
+    //            port_i,                 //  �߰Ĕԍ�
+    //            dir_i,                  //  �o�͕���
+    //            "DO�o�͎��s(1:err code 2:�ް� 3:�߰� 4:����)") ;
+    //  }                                 //
+    // OPS5000_64bit del ��
+
+    //}                                 // OPS5000_64bit del
+  }                                     // 2017M5A_REN
+  return ;                              //
+}                                       //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �k�a�P�T*    ���쉹OFF DO�o�ͺ���ޯ��֐�                   * fl_alm15   *
+// ****************************************************************************
+//
+//  �@�@�\:
+//      PIO���޲��̑��쉹�|�[�g�ɑ΂��A�w��f�[�^��OFF�o�͂���֐��ł���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (void CALLBACK)fl_alm15(dwData) ;
+//
+//  ���̓f�[�^:
+//     DWORD            dwData ;        //PIO�c�[�� �n���h���J�E���^ TH230301 MOD
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �Ȃ�
+//
+//-----------------------------------------------------------------------------
+void CALLBACK fl_alm15(UINT uid,UINT umsg,DWORD dwData,DWORD dw1,DWORD dw2)
+{                                       //
+  int   status_i ;                      //PIO���޲��o�ͽð��
+  int   errno_i ;                       //�g���װ����
+  int   BeepCnt_i = 0 ;                 //PIO�c�[�� �n���h���J�E���^(���g�p) TH230301 ADD
+                                        //
+  // OPS5000_64bit del ��
+  //if (!z_WOW64_b) {                     // 2017M5A_REN
+  //status_i = FA_PioSetDo(               //DO�o��
+  //              z_hPio,                 //  �f�o�C�X�n���h��
+  //              (BYTE)CPIO_BIC,         //  �o��Type
+  //              (INT)AF_ALMPORT_OPE_P,  //  �|�[�g�ԍ�
+  //              (BYTE)dwData) ;         //  �o�̓C���[�W
+  //                                      //
+  //if(status_i != TRUE) {                //DO�o�͎��s
+  //  errno_i =(int)GetLastError() ;      //  �g���װ���ގ擾
+  //  (void)F_errlog(0x150,0xf151,        //  �װ۸ޓo�^
+  //            errno_i,                  //  �g���װ����
+  //            dwData,                   //  �o���ް�
+  //            0,0,                      //
+  //            "���쉹OFF�o�͎��s(1:err code 2:�ް�)") ;
+  //  }                                   //
+  //}
+  // 2017M5A_REN--->
+  //else {
+  // OPS5000_64bit del ��
+//TH230301 MOD��
+    if(z_phndl_Beep_h[dwData] != NULL){
+        WaitForSingleObject(z_phndl_Beep_h[dwData], INFINITE);      //�c�[�����s�����҂�
+        CloseHandle(z_phndl_Beep_h[dwData]);                        //�c�[���v���Z�X�n���h�����
+        CloseHandle(z_thndl_Beep_h[dwData]);                        //�c�[���X���b�h�n���h�����
+        z_phndl_Beep_h[dwData] = NULL;
+        z_thndl_Beep_h[dwData] = NULL;
+    }
+//TH230301 MOD��
+    fl_alm12((unsigned char)AF_ALMOPE_P, (int)AF_ALMPORT_OPE_P, (int)S_PIO_KIND_BEEP_P, (int)CPIO_BIC, (int)0, &BeepCnt_i); //TH230301 MOD
+  //}									// OPS5000_64bit del
+  // <---2017M5A_REN
+  return ;                              //
+}                                       //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �k�a�P�U*    �x��OFF DO�o�ͺ���ޯ�����                     * fl_alm16   *
+// ****************************************************************************
+//
+//  �@�@�\:
+//      PIO���޲��̌x��|�[�g�ɑ΂��A�w��f�[�^��OFF DO�o�͂���֐��ł���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (void CALLBACK)fl_alm16(dwData) ;
+//
+//  ���̓f�[�^:
+//     DWORD            dwDatat ;      //�o�̓f�[�^
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �Ȃ�
+//
+//-----------------------------------------------------------------------------
+void CALLBACK fl_alm16(UINT uid,UINT umsg,DWORD dwData,DWORD dw1,DWORD dw2)
+{                                       //
+  int   status_i ;                      //PIO���޲��o�ͽð��
+  int   errno_i ;                       //�g���װ����
+  int   BeepCnt_i = 0 ;                 //PIO�c�[�� �n���h���J�E���^(���g�p) TH230301 ADD
+                                        //
+  // OPS5000_64bit del ��
+  //if (!z_WOW64_b) {                     // 2017M5A_REN
+  //status_i = FA_PioSetDo(               //DO�o��
+  //              z_hPio,                 //  �f�o�C�X�n���h��
+  //              (BYTE)CPIO_BIC,         //  �o��Type
+  //              (INT)AF_ALMPORT_ALM_P,  //  �|�[�g�ԍ�
+  //              (BYTE)dwData) ;         //  �o�̓C���[�W
+  //                                      //
+  //if(status_i != TRUE) {                //DO�o�͎��s
+  //  errno_i =(int)GetLastError() ;      //  �g���װ���ގ擾
+  //  (void)F_errlog(0x150,0xf161,        //  �װ۸ޓo�^
+  //            errno_i,                  //  �g���װ����
+  //            dwData,                   //  �o���ް�
+  //            0, 0,                     //
+  //            "�x��OFF�o�͎��s(1:err code 2:�ް�)") ;
+  //  }                                   //
+  //}
+  //// 2017M5A_REN--->
+  //else {
+  // OPS5000_64bit del ��
+    fl_alm12((unsigned char)dwData, (int)AF_ALMPORT_ALM_P, (int)S_PIO_KIND_BIT_P, (int)CPIO_BIC, (int)0, &BeepCnt_i); //TH230301 MOD
+  //}									// OPS5000_64bit del
+  // <---2017M5A_REN
+  return ;                              //
+}                                       //
+
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �k�a�P�V*    WAVE�f�o�C�X�I�[�v������                      * fl_alm17   *
+// ****************************************************************************
+//
+//  �@�@�\:
+//      WAVE���޲�����݂���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (int)fl_alm17() ;
+//
+//  ���̓f�[�^:
+//     �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     RS_SUC : ��������
+//     RS_ERR : �������s
+//
+//-----------------------------------------------------------------------------
+int fl_alm17()                                  //
+{                                               //
+  int				rst_i ;						//�߂�l
+  int				sts_i ;						//�X�e�[�^�X
+  char				temp_c[64] ;				//�p�X�t�@�C����
+  char				path_c[64] ;				//�p�X�t�@�C����
+  int				cnt_i ;						//�J�E���g
+  MCI_OPEN_PARMS	mciOpenParms;				//�����ү�������Ұ�
+  int				errno_i ;					//�G���[�m���D
+                                                //
+	  sts_i =								    //���ϐ��p�X���擾
+		  GetEnvironmentVariable(S_FILE_PATH, temp_c, sizeof(path_c));
+	  strcpy(path_c,strcat(temp_c, "\\name\\")) ;
+	  if(sts_i != 0){						    //�p�X���̎擾�ɐ����H
+											    //�v�`�u�d�t�@�C�������擾
+		  for(cnt_i = 0 ; cnt_i<S_ALM_FILMAX_M5A_P; cnt_i++) {
+            // 2017M5A_REN--->
+		  	if (cnt_i == SYS_ALM_STOP_P - 1) {//�x���~�r�b�g�H
+                  continue;                     //�������Ȃ�
+            }
+		  	// <---2017M5A_REN
+			strcpy(&z_filnam_c[cnt_i][0], path_c);
+			strcpy(&z_filnam_c[cnt_i][0],
+					strcat(&z_filnam_c[cnt_i][0], &z_nam_c[cnt_i][0]));
+		  }                                     //
+											    //��������Ұ��̏�����
+		  mciOpenParms.lpstrDeviceType = "waveaudio";
+		  mciOpenParms.lpstrElementName = z_filnam_c[0];
+											    //�f�o�C�X�I�[�v������
+		  sts_i = mciSendCommand(0,							// device ID
+						MCI_OPEN,							// command
+						MCI_OPEN_ELEMENT | MCI_OPEN_TYPE,	// flags
+						//(DWORD) (LPVOID) &mciOpenParms);	// parameter block	// OPS5000_64bit del
+			            (DWORD_PTR) &mciOpenParms);			// parameter block	// OPS5000_64bit add
+
+		  rst_i = RS_SUC ;                    //
+		  
+		  if (sts_i != 0) {					    //�f�o�C�X���������H
+				(void)F_errlog(				    //�G���[���O�o�^
+						0x0150,0x0006,          //
+						(int)sts_i,			    //���^�[���X�e�[�^�X
+						(int)NULL,              //
+						(int)NULL,              //
+						(int)NULL,              //
+						"�v�`�u�d�f�o�C�X�̃I�[�v���Ɏ��s���܂����B") ;
+				rst_i = RS_ERR ;                //
+		  }                                     //
+		  else {                                //
+			  z_dwavopen_s = S_ALM_DOPEN_P ;	//�f�o�C�X�I�[�v���t���O�Z�b�g
+		  }                                     //
+                                                //
+                                                //
+	  }                                         //
+	  else {								    //�p�X���s���H
+		  errno_i =(int)GetLastError() ;        //
+		  (void)F_errlog(					    //�G���[���O�o�^
+				0x0150,0x0005,                  //
+				errno_i,					    //�G���[�m���D
+				(int)NULL,                      //
+				(int)NULL,                      //
+				(int)NULL,                      //
+				"���ϐ�(FILE_PATH)�̎擾�Ɏ��s���܂����B") ;
+		  rst_i = RS_ERR ;                      //
+	  }                                         //
+                                                //
+  return(rst_i) ;                               //
+}                                               //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �k�a�Q�O*    �X���b�h�N������                              * fl_alm20   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      �x��^�x���~�o�́A���쉹�o�́A�O��DO�o�̓X���b�h���N������B
+//
+//  �R�[�����O�V�[�P���X:
+//     (void) fl_alm20(unsigned int (__stdcall *)(void *) function,UCHAR aptn_uc) ;
+//
+//  ���̓f�[�^:
+//      unsigned int (__stdcall *)(void *) function ;       //�N���֐�          TH211004 MOD �^��ύX
+//      UCHAR                   aptn_uc ;       //�x��o���ޯ������
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//      �Ȃ�
+//
+//  �������e�F
+//      �i�P�j�����ŗ^����ꂽ�֐����X���b�h�Ƃ��ċN������B
+//      �i�Q�j�N���Ɏ��s�����ꍇ�A�װ۸ޓo�^���s���B
+//      �i�R�j�X���b�h�n���h�������i�q�X���b�h�̏�ԊǗ������j
+//
+//-----------------------------------------------------------------------------
+void fl_alm20(unsigned (__stdcall *function)(void *) , UCHAR aptn_uc)           //TH211004 MOD
+{                                       //
+  HANDLE hHndl ;                        //�گ�������
+  DWORD  id_ui ;                        //�گ��ID
+  DWORD  ecode_ui = 1 ;                 //�I������
+                                        //
+//TH220719 �N�������X���b�h�Ŋm���ɒl���g�p�ł���悤�O���[�o���ϐ����g�p MOD��
+  z_BitPtn_uc = aptn_uc ;               
+//TH211004 MOD��
+  hHndl = (HANDLE)_beginthreadex(NULL, 0, function, (void *)&z_BitPtn_uc, 0, (unsigned int *)&id_ui);
+//TH211004 MOD��
+//TH220719 �N�������X���b�h�Ŋm���ɒl���g�p�ł���悤�O���[�o���ϐ����g�p MOD��
+
+  if (hHndl){                           //�گ�ލ쐬����
+    CloseHandle(hHndl) ;                //  �گ������ق�۰��
+    }                                   //
+  else {                                //�گ�ލ쐬���s
+//TH211004 MOD��
+    (void)F_errlog(0x150,0xf201,        //�G���[���O�o�^
+            (int)GetLastError(),
+            (int)NULL, (int)NULL, (int)NULL,
+            "�X���b�h�쐬���s") ;       //
+//TH211004 MOD��
+    }                                   //
+}                                       //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �k�a�Q�P*    ���쉹�o�͏���                                * fl_alm21   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      ���쉹�o�͂̃|�[�g�ԍ��ADO�r�b�g�p�^�[�����w�肵�APIO���޲��o�͂���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (void) fl_alm21(UCHAR *aptn_uc) ;
+//
+//  ���̓f�[�^:
+//      UCHAR                   *aptn_uc ;      //�x��o���ޯ�����݁i���g�p�j
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//      �Ȃ�
+//
+//  �������e�F
+//      �i�P�j���쉹�o��DO�߰Ĕԍ��ADO�ޯ�����݂������Ƃ���PIO���޲����쏈����
+//            ��ق���B
+//      �i�Q�j���Ѻ�݌Œ��ް��ް��Ŏw�肳�ꂽ���쉹��ٽ��*AF_OPETIME_P msec�҂��A
+//            ��Ă���DO�ޯĂ𗎂Ƃ��B(Sleep()�ɂ��҂�����AtimeSetEvent()�ɂ��
+//            OFF DO�o�ͺ���ޯ��֐��o�^�ɕύX)
+//            timeSetEvent()�쐬���s����Sleep()�����̂�OFF DO�o�͂��s���BKY001
+//      �i�R�j�گ�ނ��I������B
+//
+//-----------------------------------------------------------------------------
+void fl_alm21(UCHAR *aptn_uc)                        //TH211004 MOD UCHAR��UCHAR *
+{                                                    //
+  unsigned int rsts_ui ;                             //�߂�l
+                                                     //
+  int   status_i ;                                   //PIO���޲��o�ͽð��
+  int   errno_i ;                                    //�g���װ����
+  int   BeepCnt_i = 0 ;                              //PIO�c�[�� �n���h���J�E���^ TH230301 ADD
+                                                     //
+  fl_alm14(AF_ALMPORT_OPE_P, SS_ON_P, AF_ALMOPE_P, &BeepCnt_i) ; //TH230301 MOD
+  rsts_ui = timeSetEvent(                            //�w��msec��DO OFF
+              (UINT)(AF_sys->opepls_s*AF_OPETIME_P), //  �҂�msec
+              z_res_ui,                              //  MM��ύŏ�����\
+              (LPTIMECALLBACK)fl_alm15,              //  ����ޯ��֐�
+              (DWORD)BeepCnt_i,                      //  ����ޯ��֐��ւ̈��� TH230301 MOD
+              (UINT)TIME_ONESHOT) ;                  //  �Ăяo������
+                                                     //
+  if (rsts_ui == 0){                                 //���M���s 
+    (void)F_errlog(0x150,0xf211,                     //  �װ۸ޓo�^
+            rsts_ui,(int)z_res_ui,(int)NULL,(int)NULL,  //TH211004 MOD TH220719 MOD
+            "���쉹�o�͎��s(fl_alm21)") ;
+//�^�C�}�Z�b�g�C�x���g�̍쐬���������s�������̑Ή��B���쉹�̋�����~�o�͂��s���B
+    Sleep(50);                                       //
+                                                     //
+    //TH211004 MOD��
+    fl_alm12((unsigned char)1, (int)AF_ALMPORT_OPE_P, (int)S_PIO_KIND_BEEP_P, (int)CPIO_BIC, (int)0,  &BeepCnt_i); //TH230301 MOD
+    //TH211004 MOD��
+    }                                                //
+                                                     //
+  _endthreadex(1) ;                                  //TH211004 ADD
+}                                                    //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �k�a�Q�Q*    �x��o�͏���                                  * fl_alm22   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      �x��o�͂̃|�[�g�ԍ��ADO�r�b�g�p�^�[�����w�肵�APIO���޲��o�͂���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (void) fl_alm22(UCHAR *aptn_uc) ;
+//
+//  ���̓f�[�^:
+//      UCHAR                   *aptn_uc ;      //�x��o���ޯ������
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//      �Ȃ�
+//
+//  �������e�F
+//      �i�P�j�x��o��DO�߰Ĕԍ��ADO�ޯ�����݂������Ƃ���PIO���޲����쏈����
+//            ��ق���B
+//      �i�Q�j���Ѻ�݌Œ��ް��ް��Ŏw�肳�ꂽ�x����ٽ��*AF_ALMTIME_P msec�҂��A
+//            ��Ă���DO�ޯĂ𗎂Ƃ��B(Sleep()�ɂ��҂�����AtimeSetEvent()�ɂ��
+//            OFF DO�o�ͺ���ޯ��֐��o�^�ɕύX)
+//            timeSetEvent()�쐬���s����Sleep()�����̂�OFF DO�o�͂��s���BKY001
+//      �i�R�j�گ�ނ��I������B
+//
+//-----------------------------------------------------------------------------
+void fl_alm22(UCHAR *aptn_uc)                        //TH211004 MOD UCHAR��UCHAR *
+{                                                    //
+  unsigned int rsts_ui ;                             //�߂�l
+  int   status_i ;                                   //PIO���޲��o�ͽð��
+  int   errno_i ;                                    //�g���װ����
+  UCHAR y_aptn_uc ;                                  //���̓f�[�^(�x��o��BIT�p�^�[��)		//TH220719 �|�C���^�Q�ƃf�[�^�����[�J���R�s�[���Ďg�p ADD
+  int   BeepCnt_i = 0 ;                              //PIO�c�[�� �n���h���J�E���^(���g�p) TH230301 ADD
+                                                     //
+//TH220719 ���n���̒l�i*aptn_uc�j�����X���b�h�ōX�V����邱�Ƃ��l�����A���[�J���R�s�[�iy_aptn_uc�j���Ďg�p����悤�ɕύX MOD��
+  y_aptn_uc = *aptn_uc;
+
+  fl_alm14(AF_ALMPORT_ALM_P, SS_ON_P, y_aptn_uc, &BeepCnt_i) ; //TH211004 MOD TH230301 MOD
+  rsts_ui = timeSetEvent(                            //�w��msec��DO OFF
+              (UINT)(AF_sys->almpls_s*AF_ALMTIME_P), //  �҂�msec
+              z_res_ui,                              //  MM��ύŏ�����\
+              (LPTIMECALLBACK)fl_alm16,              //  ����ޯ��֐�
+              (DWORD)y_aptn_uc,                      //  ����ޯ��֐��ւ̈��� TH211004 MOD
+              (UINT)TIME_ONESHOT) ;                  //  �Ăяo������
+                                                     //
+  if (rsts_ui == 0){                                 //�^�C�}�C�x���g�쐬���s
+    (void)F_errlog(0x150,0xf221,                     //  �װ۸ޓo�^
+            rsts_ui,(int)z_res_ui,(int)y_aptn_uc,(int)NULL,  //TH211004 MOD
+            "�x��o�͎��s(fl_alm22)") ;
+//�^�C�}�Z�b�g�C�x���g�̍쐬���������s�������̑Ή��B�x�񉹂̋�����~�o�͂��s���B
+    Sleep(50);
+                                                     //                  
+    //TH211004 ADD��
+    fl_alm12(y_aptn_uc, (int)AF_ALMPORT_ALM_P, (int)S_PIO_KIND_BIT_P, (int)CPIO_BIC, (int)0, &BeepCnt_i); //TH230301 MOD
+    //TH211004 ADD��
+//TH220719 ���n���̒l�i*aptn_uc�j�����X���b�h�ōX�V����邱�Ƃ��l�����A���[�J���R�s�[�iy_aptn_uc�j���Ďg�p����悤�ɕύX MOD��
+
+  }                                                  //
+                                                     //
+  _endthreadex(1) ;                                  //TH211004 ADD
+}                                                    //
+
+
+
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �O�D�O  *    ���C������                                    * main       *
+// ****************************************************************************
+//
+//  �@  �\:
+//      �x��o�̓^�X�N�̃��C�������ł���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (void) main() ;
+//
+//  ���̓f�[�^:
+//     �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �Ȃ�
+//
+//  �������e�F
+//      �i�P�j���������R�[���B[ID 1.0]
+//      �i�Q�j���������������A�ȉ��̏������J��Ԃ��B
+//          [1] �p�t�d��M�������R�[������[ID 2.0]
+//          [2] �p�t�d��M�������A�O���x�񂪎w�肳��Ă����ꍇ��
+//              �c�n�o�͏������R�[������B[ID 3.0]
+//          [3] �������s���A�{�^�X�N���I������B
+//      �i�R�j�f�o�C�X�I�[�v���������A�f�o�C�X�N���[�Y�������s���Ă���
+//            �{�^�X�N���I������B(CloseHandle)
+//
+//-----------------------------------------------------------------------------
+void main()                             //
+{                                       //
+  int  rst_i ;                          //�߂�l
+                                        //
+  try{                                  //�G���[�g���b�v
+    rst_i = (int)f_alm100() ;             //��������
+    // OPS5000_64bit del ��
+    //if((rst_i == RS_SUC) && 
+	//	((AF_sys -> almtype_s ==AF_SYS_DO_P)||
+	//	 (AF_sys -> almtype_s ==AF_SYS_DOWEV_P)) && (!z_WOW64_b)) //�����������̏ꍇ�@   funa071004
+	//	rst_i = (int)f_alm110();        //  PIO�{�[�h��ʎ擾  funa071004
+    // OPS5000_64bit del ��
+   
+    f_alm105();                           //PCS�x���~��`̧�ٓǂݍ��ݏ��� NS_Ooita ADD
+
+    while(rst_i == RS_SUC) {              //������������&ٰ�ߓ����������ŌJ�Ԃ�
+      rst_i = (int)f_alm200() ;           //  QUE��M�������
+      if(rst_i == RS_SUC)                 //  QUE��M���������H
+                                          //
+	    switch (AF_sys -> almtype_s){     //�x���ʂɂ���ď����𕪂���B
+	    case AF_SYS_NOALM_P :             //�x�񖳂�
+		    break;                        //
+	    case AF_SYS_DO_P :                //�O���x��
+		    if (AF_sys ->sys_s == AF_CLNT_P){  //�V�X�e���`�Ԃ��N���C�A���g
+				if (AF_clntdev[DEV_CLNT_DIDO_P].jis_uc != 0){
+					f_alm300();           //    �x��o���ް���͏���
+				}                         //
+			}                             //
+		    else{                         //  �V�X�e���`�Ԃ��N���C�A���g�ȊO
+			    if (AF_dev[F_devno(DEV_DIDO_P)].rofg_i & AF_DEV_EXIST_P){    
+				    f_alm300() ;          //    �x��o���ް���͏���
+			    }                         //
+		    }                             //
+		    break;                        //
+	    case AF_SYS_WEV_P :               //�����x��
+		    f_alm400();                   //WAVE���޲�����ݏ���
+		    break;
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+	    case AF_SYS_RAS_P :               //RAS�x��
+		    f_alm500();                   //  RAS DO����
+		    break;                        //
+	    case AF_SYS_DOWEV_P :             //�O���{�����x��
+		    if (AF_sys ->sys_s == AF_CLNT_P){  //�V�X�e���`�Ԃ��N���C�A���g
+				if (AF_clntdev[DEV_CLNT_DIDO_P].jis_uc != 0){
+					f_alm300();           //    �x��o���ް���͏���
+				}                         //
+			}                             //
+		    else{                         //  �V�X�e���`�Ԃ��N���C�A���g�ȊO
+			    if (AF_dev[F_devno(DEV_DIDO_P)].rofg_i & AF_DEV_EXIST_P){    
+				    f_alm300() ;          //    �x��o���ް���͏���
+			    }                         //
+		    }                             //
+		    f_alm400();                   //WAVE���޲�����ݏ���
+		    break;                        //
+	    case AF_SYS_RASWEV_P :            //RAS�{�����x��
+		    f_alm400();                   //WAVE���޲�����ݏ���
+		    f_alm500();                   //  RAS DO����
+		    break;                        //
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+	    }                                 //
+    }                                     //while
+    fl_alm13() ;                          //  ���޲��۰�ޏ���
+
+  }                                       //
+  catch(...){                             //
+	  F_errlog(0x1000,0x0001,0,0,0,0,     //
+		  "���C�������ŃG���[����");      //
+  }                                       //
+}                                       //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �P�D�O  *    ��������                                      * f_alm100   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      �{�^�X�N�̏��������s���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (int) f_alm100() ;
+//
+//  ���̓f�[�^:
+//     �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     RS_SUC�F����
+//     RS_ERR�F���s
+//
+//  �������e�F
+//      �i�P�j�^�X�N�W���������������s���B
+//      �i�Q�j�����R�����̏��������s���B
+//      �i�R�j�����ި���ύŏ�����\�擾
+//      �i�S�j�o�̓f�o�C�X���I�[�v������B
+//      �i�T�j���^�X�N�̃C�j�V�����C�Y�����t���O�̃N���A�B
+//
+//-----------------------------------------------------------------------------
+int f_alm100()                                    //
+{                                                 //
+  int      rst_i ;                                //�߂�l
+  int      opt2_i ;                               //AF_sys.opt2�̎擾�ꏊ
+  MMRESULT rsts_M ;                               //���^�[���X�e�[�^�X
+  TIMECAPS tc ;                                   //
+  //HANDLE   proc_h;                     			  //���v���Z�X�̃n���h�� 2017M5A_REN    // OPS5000_64bit del
+  __try {
+    F_init(TN_AOALM, (int)NULL, (int)NULL);           //�W������������
+    rst_i = RS_SUC;                                //�߂�l�ɐ������
+    // OPS5000_64bit del ��
+    ////   2017M5A_REN--->
+    //// WOW64��Ԏ擾
+    //z_WOW64_b = false;
+    //proc_h = GetCurrentProcess();
+    //IsWow64Process(proc_h, &z_WOW64_b);
+    ////   <---2017M5A_REN
+    // OPS5000_64bit del ��
+    z_Mutex_h = CreateMutex(NULL,FALSE,NULL);      //�~���[�e�b�N�X���� TH221020 ADD
+//TH230301 ADD
+    z_Mutex_Beep_h = CreateMutex(NULL,FALSE,NULL);        //���쉹�p�~���[�e�b�N�X����
+    memset(z_phndl_Beep_h, NULL, sizeof(z_phndl_Beep_h)); //PIO�c�[�� �v���Z�X�n���h��(���쉹�p)������
+    memset(z_thndl_Beep_h, NULL, sizeof(z_thndl_Beep_h)); //PIO�c�[�� �X���b�h�n���h��(���쉹�p)������
+    z_BeepCnt_i = 0;                                      //PIO�c�[�� �n���h���J�E���^(���쉹�p)������
+//TH230301 ADD��
+//  z_dopen_i = S_ALM_DCLOSE_P ;                    //������ݏ�����
+    z_almptn_uc = 0;                               //�x��o��DO�ޯ�����ݏ�����
+    z_walmptn_uc = 0;                              //�x��o��DO�ޯ�����ݏ�����
+    z_otime_t = 0;                                 //�x�񎩓���~�v������������
+                                                    //
+    z_porterrfg_s = SS_OFF_P;                       //�|�[�g�G���[�t���O������   funa071004
+    z_dpioopen_s = S_ALM_DCLOSE_P;                 //PIO�f�o�C�X�I�[�v���t���O������
+    z_dwavopen_s = S_ALM_DCLOSE_P;                 //WAVE�f�o�C�X�I�[�v���t���O������
+                                                    //
+    z_almnow_s = 0;                                //WAVE�̌x��ԍ�������
+                                                    //
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+    z_errflg_uc = false;                           //�װ۸ޓo�^�ς��׸ޏ�����
+    z_errflg2_i = 0;                         		//�װ۸ޓo�^�ς��׸�2������ 2017M5A_REN
+    z_dotbl_uc = 0;                                //�x��o�̓e�[�u��������
+    z_stop_uc = 0;									//�x���~�r�b�g������
+    if (AF_sys->RasAlmStop_s == AF_RASDO3_ALMSTP_P) //�x���~DO3
+      z_stop_uc |= BIT2;                           //�x���~�r�b�g������
+    else if (AF_sys->RasAlmStop_s == AF_RASDO4_ALMSTP_P) //�x���~DO4
+      z_stop_uc |= BIT3;                           //�x���~�r�b�g������
+    z_drasopen_s = S_ALM_DCLOSE_P;                 //RAS�f�o�C�X�I�[�v���t���O������
+  // ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+                                                      //
+    memset(&z_deq, 0, sizeof(z_deq));              //��MQUE�ޯ̧�ر
+    timeGetDevCaps(&tc, sizeof(TIMECAPS));          //MM��ύŏ�����\�擾
+    z_res_ui = min(max(tc.wPeriodMin, 1), tc.wPeriodMax);
+    rsts_M = timeBeginPeriod(z_res_ui);            //�ŏ�����\�o�^
+    if (rsts_M == TIMERR_NOERROR) {                   //
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+      if (AF_sys->almtype_s == AF_SYS_NOALM_P) { //�x�񖳂�
+        goto JP1;                              //
+      }                                           //
+      if ((AF_sys->almtype_s == AF_SYS_DO_P) ||    //�O���x��
+        (AF_sys->almtype_s == AF_SYS_DOWEV_P)) { //�O��+�����x��
+        if (AF_sys->sys_s == AF_CLNT_P) {        //�V�X�e���`�Ԃ��N���C�A���g
+          if (AF_clntdev[DEV_CLNT_DIDO_P].jis_uc != 0) {
+            rst_i = fl_alm11();             //PIO�f�o�C�X�I�[�v������
+          }                                   //
+        }                                       //
+        else {                                   //�V�X�e���`�Ԃ��N���C�A���g�ȊO
+          if (AF_dev[F_devno(DEV_DIDO_P)].rofg_i & AF_DEV_EXIST_P) {
+            rst_i = fl_alm11();            //PIO���޲�����ݏ���
+          }                                   //
+        }
+      }                                           //
+      if ((AF_sys->almtype_s == AF_SYS_WEV_P) ||   //�����x��
+        (AF_sys->almtype_s == AF_SYS_DOWEV_P) ||//�O��+�����x��
+        (AF_sys->almtype_s == AF_SYS_RASWEV_P)) {//RAS+�����x��
+        rst_i = fl_alm17();                     //WAVE���޲�����ݏ���
+      }                                           //
+      if ((AF_sys->almtype_s == AF_SYS_RAS_P) ||   //RAS�x��
+        (AF_sys->almtype_s == AF_SYS_RASWEV_P)) {//RAS+�����x��
+        rst_i = f_alm120();                     //RAS���޲�������
+      }                                           //
+    JP1:
+      // ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+      opt2_i = AF_sys->opt2_i;                  //�I�v�V���������擾
+      //PIO�f�o�C�X���I�[�v���ŁA���쉹�������͊O��DO����������Ă���ꍇ
+      if ((z_dpioopen_s == S_ALM_DCLOSE_P) &&
+        (((opt2_i & AF_OPT2_CSOUND_P) == AF_OPT2_CSOUND_P) ||
+        ((opt2_i & AF_OPT2_OUTDO_P) == AF_OPT2_OUTDO_P))) {
+        //
+        if (AF_sys->sys_s == AF_CLNT_P) {       //�V�X�e���`�Ԃ��N���C�A���g
+          if (AF_clntdev[DEV_CLNT_DIDO_P].jis_uc != 0) {
+            rst_i = fl_alm11();            //PIO���޲�����ݏ���
+          }                                   //
+        }                                       //
+        else {                                   //
+          if (AF_dev[F_devno(DEV_DIDO_P)].rofg_i & AF_DEV_EXIST_P) {
+            rst_i = fl_alm11();        //PIO���޲�����ݏ���
+          }                                   //
+        }                                           //
+      }                                               //
+    }
+    else {                                          //
+      rst_i = RS_ERR;                              //
+    }                                               //
+    if (rst_i == RS_SUC) {                           //
+      AU_task[TN_AOALM].prf_i &= (int)(~AU_INIT_P);//���������׸޸ر
+    }                                               //
+    return(rst_i);                                 //
+  }                                                 //
+  __except(EXCEPTION_EXECUTE_HANDLER){              //
+	  F_errlog(0x1000,0x1001,0,0,0,0,               //
+		  "�����������ŃG���[����");                //
+	  return(RS_ERR);                               //
+  }                                                 //
+}                                                   //
+
+// ��++++++++++++++++++++++++++++++++++++++ M-M5 ++++++++++++++++++++++++++++++++
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �P�D�Q  *    RAS��������                                      * f_alm120   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      �{�^�X�N��RAS���������s���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (void) f_alm120() ;
+//
+//  ���̓f�[�^:
+//     �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �Ȃ�
+//
+//  �������e�F
+//      �i�P�jM5�pRAS�������̏��������s���B
+//
+//-----------------------------------------------------------------------------
+int f_alm120(){
+	HRESULT hr;
+    int sts_i = RS_ERR;                     // 2017M5A_REN
+	if (AF_sys->Ras_s == AF_HWOPT_RASM5_P){//M5�̏ꍇ
+		hr = CoInitialize(NULL);		//�C���^�[�t�F�[�X����������
+
+		//�C���^�[�t�F�[�X�N���G�C�g
+		hr = g_RasObj.CoCreateInstance(CLSID_ERas);
+		if(FAILED(hr)){
+			printf("RasSrv CoCreateInstance Error\n");
+			return(RS_ERR);
+		}
+		z_drasopen_s = S_ALM_DOPEN_P ;
+	}
+  //2017M5A_REN--->
+  else if(AF_sys->Ras_s == AF_HWOPT_RASM5A_P){//M5A�̏ꍇ
+    sts_i = FA_M5ARasDllInit();					//M5ARasDLL������
+    if(sts_i != RS_SUC) return(RS_ERR);
+    z_drasopen_s = S_ALM_DOPEN_P;
+  }
+	//<---2017M5A_REN
+	return(RS_SUC);
+}
+// ��++++++++++++++++++++++++++++++++++++++ M-M5 ++++++++++++++++++++++++++++++++
+
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �Q�D�O  *    �p�t�d��M����                                * f_alm200   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      �p�t�d�@�d�l�o�s�x�ɂȂ�܂łp�t�d��M���s���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (int) f_alm200() ;
+//
+//  ���̓f�[�^:
+//     �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     RS_SUC�F����
+//     �ȊO�@�F���s
+//
+//  �������e�F
+//      �i�P�j�e�^�X�N����̂p�t�d��M�҂��B(F_quemgr)
+//      �i�Q�j�x��}�~��񂪃Z�b�g����Ă���ꍇ�A�ēx�p�t�d��M�҂��ƂȂ�B
+//      �i�R�j��M�X�e�[�^�X���펞�A�ȉ��̏������s���B
+//            [1] ��M�p�t�d��͏������R�[������B[ID 2.1]
+//            [2] QUE EMPTY�ɂȂ�܂�QUEײ���؁A��MQUE��͏����̺�ق�
+//                �J��Ԃ��B���̎��A��M�ُ�Ȃ�δװ۸ޓo�^���s���{Ӽޭ�ق�
+//                �I������B
+//      �i�S�j��M�X�e�[�^�X�ُ펞�A�G���[���O�o�^���s���B
+//
+//-----------------------------------------------------------------------------
+int f_alm200()                          //
+{                                       //
+  int   rst_i ;                         //�߂�l
+  int   size_i ;                        //�T�C�Y
+  int   fnc_i ;                         //QUE��M̧ݸ���
+                                        //
+  fnc_i = (int)QUE_DEQ_P ;              //�����QUE��M��WAITӰ��
+  z_kind_ui = 0 ;                       //��MQUE����׸ޏ�����
+  do {                                  //QUE��Mٰ��
+    size_i = sizeof(z_deq) ;            //�T�C�Y�擾
+    rst_i = F_quemgr(fnc_i,             //  QUE��M
+            Q_AALM_KEY1,&z_deq,&size_i);//
+										//
+										//
+	if(AF_sys->sys_s == AF_MSS_P)		//�@�V�X�e���`�Ԃ��l�r�r�̏ꍇ�A�i����M	funa080707
+		continue;						//											funa080707
+										//
+    if(rst_i == RS_SUC) {               //  QUE��M����
+      f_alm210() ;                      //    ��MQUE��͏���
+      fnc_i |= (int)QUE_NOWAIT_P ;      //      �����QUE��M�ł�NOWAIT  
+	}                                   //
+    else if (rst_i == RS_NODATA){       //  QUE�ް��Ȃ�
+	}                                   //
+    else {                              //  QUE��M���s
+      (void)F_errlog(0x131,0x2001,      //    �װ۸ޓo�^
+            rst_i,(int)NULL,            //      ���ݽð��
+            (int)NULL,(int)NULL,        //
+            "QUE��M���s") ;            //
+      rst_i = RS_NODATA ;               //    ������I�������Ȃ����߂̕ϊ�
+	}                                   //
+  }while(rst_i == RS_SUC) ;             //
+  if(rst_i == RS_NODATA)                //QUE ENPTY�͐�������
+    rst_i = RS_SUC ;                    //  ���ݽð���ϊ�
+  return(rst_i) ;                       //
+}                                       //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �Q�D�P  *    ��M�p�t�d��͏���                            * f_alm210   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      ��M�����p�t�d�̃t�@���N�V�����ɉ����A�x���M�p�t�d��ʃt���O�A
+//    �x��o�̓r�b�g�p�^�[�����쐬����B��M�����p�t�d�t�@���N�V��������
+//    �쉹�o�́A�O���c�n�o�͂̏ꍇ�A���ꂼ��̏o�̓X���b�h���Ăяo���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (void) f_alm210() ;
+//
+//  ���̓f�[�^:
+//     �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �Ȃ�
+//
+//  �������e�F
+//      �i�P�j��MQUE���x���~�v���̏ꍇ�A�Y���ޯĂ���MQUE����׸ނɾ�Ă���B
+//      �i�Q�j��MQUE����ѱ��ߒʒm�̏ꍇ�B
+//            [1] �x��o�͎����i������݁j�ƕt�����̎�������v�����ꍇ�A�x��
+//                ��~�ޯĂ�DO�o��ð��قɾ�Ă���B
+//            [2] �Y���ޯĂ���MQUE����׸ނɾ�Ă���B
+//      �i�R�j��MQUE���x��o�͗v���̏ꍇ�A�x��ԍ���DO�o��ð��قɾ�Ă���B
+//            �܂���MQUE����׸ނւ̾�Ă��s���B
+//
+//-----------------------------------------------------------------------------
+void f_alm210()                                 //
+{                                               //
+  short alm_s ;                                 //�x��ԍ�
+  short do_s ;                                  //�v���O��DO�ԍ�
+  time_t ans_i ;                                //��M�f�[�^                   // OPS5000_64bit mod
+  int   rst_i ;                                 //���^�[���X�e�[�^�X
+  int   port_i ;                                //�O���c�n�o���߰�
+  int   dir_i ;                                 //�O���c�n�o�͕���
+  UCHAR doptn_uc ;                              //�O���c�n�o���ް�
+  unsigned char	msk_uc ;						//�}�X�N�r�b�g
+  const short almgrp_s = AF_sys->almgrp_s;		//�����u�̌x��O���[�v�ԍ��@funa100324
+  bool  almok_b = true;                         // �x������t���O�i����=true�j  SPPART_NAITOU
+  short SpPart_s = 0;                           // �v���Ď��敪                 SPPART_NAITOU
+  int   cnfalm_i;                               // �x��ԍ�                     2017M5A_REN
+  int   BeepCnt_i = 0 ;                         //PIO�c�[�� �n���h���J�E���^(���g�p) TH230301 ADD
+                                                //
+  msk_uc =	1;
+  rst_i = RS_SUC ;                              //
+  switch(z_deq.qh.func_s) {                     //QUȨݸ���(�v��)����
+    case QF_AALM_STOP_P :                       //  �x���~�v���H
+      z_kind_ui |= S_ALM_STOP_P ;               //    ��MQUE����׸޾��
+      z_almptn_uc |= (UCHAR)AF_ALMSTP_P ;       //      �x���~�ޯĂ��
+      z_walmptn_uc |= (UCHAR)AF_ALMSTP_P ;      //      �x���~�ޯĂ��
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+      if ((AF_sys->almtype_s == AF_SYS_RAS_P)||    //RAS�x��H
+          (AF_sys->almtype_s == AF_SYS_RASWEV_P)){ //RAS+�����x��H
+                                                //
+		  z_dotbl_uc |= z_stop_uc ;
+      }
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+	  if ((AF_sys->sys_s == AF_OPS_S_P)||       //�n�o�r 
+			(AF_sys->sys_s == AF_OPS_A_P)||     //
+			(AF_sys->sys_s == AF_OPS_B_P)||     //
+			(AF_sys->sys_s == AF_DSVS_S_P)||    //
+			(AF_sys->sys_s == AF_DSVS_A_P)||    //
+			(AF_sys->sys_s == AF_DSVS_B_P)){    //
+												//�@�x���~�o�[�W�������グ��
+			// funa100324��
+			//AU_almver -> alm_stop_i ++;         //
+			//if (AU_almver -> alm_stop_i > CNF_VERMAX_N){
+			//	AU_almver -> alm_stop_i = 1;    //
+			//}                                   //
+			
+			AU_almver[almgrp_s].alm_stop_i ++;         //
+			if (AU_almver[almgrp_s].alm_stop_i > CNF_VERMAX_N){
+				AU_almver[almgrp_s].alm_stop_i = 1;    //
+			}                                   //
+
+			// funa100324��
+	  }                                         //
+
+      break ;                                   //
+                                                //
+    case QF_AALM_TIMEUP_P :                     //  �x�񎩓���~�v���H
+      memcpy(&ans_i,&z_deq.timeup.inf_c[0],     //    �t�����Ɠ�����݂̌x��
+             sizeof(time_t)) ;                  //    �o�͎������������H       // OPS5000_64bit mod
+      if(z_otime_t == ans_i){                   //
+        z_kind_ui |= S_ALM_CANCEL_P ;           //      ��MQUE����׸޾��
+        z_almptn_uc |= (UCHAR)AF_ALMSTP_P ;     //      �x���~�ޯĂ��  
+        z_walmptn_uc |= (UCHAR)AF_ALMSTP_P ;    //      �x���~�ޯĂ��  
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+	    if ((AF_sys->almtype_s == AF_SYS_RAS_P)||    //RAS�x��H
+	        (AF_sys->almtype_s == AF_SYS_RASWEV_P)){ //RAS+�����x��H
+                                                //
+		    z_dotbl_uc |= z_stop_uc ;
+        }
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+	  }                                         //
+      break ;                                   //
+                                                //
+    case QF_AALM_OUT_P :                        //  �x��o�͗v���H
+      // SPPART_NAITOU--->
+      // �ݔ�ID�͈̓`�F�b�N
+      if ((z_deq.out.fid_s<=0) || (z_deq.out.fid_s>CNF_FCTY_N)) {
+        (void)F_errlog(0x131, 0x2105,
+                       z_deq.out.fid_s,
+                       QF_AALM_OUT_P,
+                       z_deq.qh.sfnc_s,
+                       z_deq.out.fid_s,
+                       "�ݔ�ID�s�� 1:�ݔ�ID,2:�v��QUEFunc,3:�x��ԍ�");
+        break;
+      }
+      // �v���Ď��敪�̎擾
+      SpPart_s = GF_lkfcty[z_deq.out.fid_s].SpPart_s;
+      // �����u�̊Ď��敪������i1�`8�̏ꍇ�x�񐬗��������X�V�j
+      if (((AF_sys->SpPart_s >= 1) && (AF_sys->SpPart_s <= CNF_MAXSPPART_N)) &&
+          ((AF_sys->opt4_i & AF_OPT4_SPPART_P) != 0)){
+        if (SpPart_s != AF_sys->SpPart_s) {
+          almok_b = false;
+        }
+      }
+      // <---SPPART_NAITOU
+      // 2017M5A_REN--->
+      cnfalm_i = CNF_ALM_P;
+  	  // <---2017M5A_REN
+      alm_s = z_deq.qh.sfnc_s ;                 //
+      if((alm_s >= 1) && (alm_s <= cnfalm_i)){  //    �x��ԍ�����H
+                                                //
+        if (((AU_sys->smod_s == AU_MAS_P) ||    //OPS�^�pӰ�ނ�Ͻ��AϽ�������
+            (AU_sys->smod_s == AU_MASE_P)||     //             �����A����������
+            (AU_sys->smod_s == AU_TST_P) ||     //
+            (AU_sys->smod_s == AU_TSTE_P)||     //
+            (z_deq.qh.sdpr_s == TN_BOBANS)) &&  //�s�����Ď��͖����� 
+             almok_b) {                         //�x��������������Ă���ꍇ�̂� SPPART_NAITOU
+          z_kind_ui |= S_ALM_OUTPUT_P ;         //    ��MQUE����׸޾��
+          z_almptn_uc |= z_abit_uc[alm_s] ;     //
+          z_walmptn_uc |= z_abit_uc[alm_s] ;    //
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+          msk_uc <<=(alm_s-1) ;                 // RAS DO�p                //M-M5
+          z_dotbl_uc |= (msk_uc);               // RAS DO�p                //M-M5
+		  printf("�A���[���ԍ��F%d  z_dotbl_uc�F0x%04x\n",alm_s,z_dotbl_uc);
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+		}                                       //
+                                                //
+		if ((AF_sys->sys_s == AF_OPS_S_P)||     //�n�o�r 
+			(AF_sys->sys_s == AF_OPS_A_P)||     //
+			(AF_sys->sys_s == AF_OPS_B_P)||     //
+			(AF_sys->sys_s == AF_DSVS_S_P)||    //
+			(AF_sys->sys_s == AF_DSVS_A_P)||    //
+			(AF_sys->sys_s == AF_DSVS_B_P)){    //
+                                                //
+				switch(alm_s){                  //
+				case 1:                         //
+					//funa100324��
+					//AU_almver -> alm1_i ++;     //
+					//if (AU_almver -> alm1_i > CNF_VERMAX_N){
+					//	AU_almver -> alm1_i = 1;
+					//}                           //
+
+					// �x�񉹂P�̃o�[�W�������X�V����B
+					// ��AU_almver[8]��Web�p�̂��߁A�����ł͍X�V���Ȃ�
+					for(int cnt_i=1 ; cnt_i<CNF_MAXALMGRP_N ; cnt_i++)
+					{
+						AU_almver[cnt_i].alm1_i ++;     //
+						if (AU_almver[cnt_i].alm1_i > CNF_VERMAX_N){
+							AU_almver[cnt_i].alm1_i = 1;
+						}                           //
+					}
+					//funa100324��
+          // SPPART_NAITOU--->
+          // �Ď��敪�ݒ�@�\�I�v�V���������̏ꍇ�A�v�����ꂽ�敪�̌x��1���X�V
+          if (((AF_sys->opt4_i & AF_OPT4_SPPART_P) != 0) &&
+              ((SpPart_s >= 1) && (SpPart_s <= CNF_MAXSPPART_N))) {
+            // �Ď��敪�p�A���[���o�[�W����DB�X�V
+            if (AU_spalmver[SpPart_s].alm1_i >= CNF_VERMAX_N) {
+              AU_spalmver[SpPart_s].alm1_i = 1;
+            }
+            else {
+              AU_spalmver[SpPart_s].alm1_i++;
+            }
+          }
+          // <---SPPART_NAITOU
+					break;                      //
+				case 2:                         //
+					//funa100324��
+					//AU_almver -> alm2_i ++;     //
+					//if (AU_almver -> alm2_i > CNF_VERMAX_N){
+					//	AU_almver -> alm2_i = 1;
+					//}
+
+					// �x�񉹂Q�̃o�[�W�������X�V����B
+					// ��AU_almver[8]��Web�p�̂��߁A�����ł͍X�V���Ȃ�
+					for(int cnt_i=1 ; cnt_i<CNF_MAXALMGRP_N ; cnt_i++)
+					{
+						AU_almver[cnt_i].alm2_i ++;     //
+						if (AU_almver[cnt_i].alm2_i > CNF_VERMAX_N){
+							AU_almver[cnt_i].alm2_i = 1;
+						}                           //
+					}
+					//funa100324��
+          // SPPART_NAITOU--->
+          // �Ď��敪�ݒ�@�\�I�v�V���������̏ꍇ�A�v�����ꂽ�敪�̌x��2���X�V
+          if (((AF_sys->opt4_i & AF_OPT4_SPPART_P) != 0) &&
+              ((SpPart_s >= 1) && (SpPart_s <= CNF_MAXSPPART_N))) {
+            // �Ď��敪�p�A���[���o�[�W����DB�X�V
+            if (AU_spalmver[SpPart_s].alm2_i >= CNF_VERMAX_N) {
+              AU_spalmver[SpPart_s].alm2_i = 1;
+            }
+            else {
+              AU_spalmver[SpPart_s].alm2_i++;
+            }
+          }
+          // <---SPPART_NAITOU
+					break;                      //
+				case 3:                         //
+					//funa100324��
+					//AU_almver -> alm3_i ++;     //
+					//if (AU_almver -> alm3_i > CNF_VERMAX_N){
+					//	AU_almver -> alm3_i = 1;
+					//}
+
+					// �x�񉹂R�̃o�[�W�������X�V����B
+					// ��AU_almver[8]��Web�p�̂��߁A�����ł͍X�V���Ȃ�
+					for(int cnt_i=1 ; cnt_i<CNF_MAXALMGRP_N ; cnt_i++)
+					{
+						AU_almver[cnt_i].alm3_i ++; //
+						if (AU_almver[cnt_i].alm3_i > CNF_VERMAX_N){
+							AU_almver[cnt_i].alm3_i = 1;
+						}                           //
+					}
+					//funa100324��
+          // SPPART_NAITOU--->
+          // �Ď��敪�ݒ�@�\�I�v�V���������̏ꍇ�A�v�����ꂽ�敪�̌x��3���X�V
+          if (((AF_sys->opt4_i & AF_OPT4_SPPART_P) != 0) &&
+              ((SpPart_s >= 1) && (SpPart_s <= CNF_MAXSPPART_N))) {
+            // �Ď��敪�p�A���[���o�[�W����DB�X�V
+            if (AU_spalmver[SpPart_s].alm3_i >= CNF_VERMAX_N) {
+              AU_spalmver[SpPart_s].alm3_i = 1;
+            }
+            else {
+              AU_spalmver[SpPart_s].alm3_i++;
+            }
+          }
+          // <---SPPART_NAITOU
+					break;                      //
+				case 4:                         //
+					//funa100324��
+					//AU_almver -> alm4_i ++;     //
+					//if (AU_almver -> alm4_i > CNF_VERMAX_N){
+					//	AU_almver -> alm4_i = 1;
+					//}
+
+					// �x�񉹂S�̃o�[�W�������X�V����B
+					// ��AU_almver[8]��Web�p�̂��߁A�����ł͍X�V���Ȃ�
+					for(int cnt_i=1 ; cnt_i<CNF_MAXALMGRP_N ; cnt_i++)
+					{
+						AU_almver[cnt_i].alm4_i ++; //
+						if (AU_almver[cnt_i].alm4_i > CNF_VERMAX_N){
+							AU_almver[cnt_i].alm4_i = 1;
+						}                           //
+					}
+					//funa100324��
+                                                //RAS�x��Ŵװ۸ޖ��o�^
+					if ((AF_sys->almtype_s == AF_SYS_RAS_P)
+					 && (z_errflg_uc == false)
+					 && (AF_sys->Ras_s != AF_HWOPT_RASM5A_P)) {
+				        (void)F_errlog(0x131,   //      �װ۸ޓo�^
+				                0x2104,         //
+				                0,              //        ���M���No.
+				                0,              //        ̧ݸ���
+				                0,              //        �x��ԍ�
+				                (int)NULL,      //
+				                "RAS�x��I���ŉ��F4�o�͂��v�����ꂽ") ;
+						z_errflg_uc = true ;    //�װ۸ޓo�^�ς�
+					}                           //
+          // SPPART_NAITOU--->
+          // �Ď��敪�ݒ�@�\�I�v�V���������̏ꍇ�A�v�����ꂽ�敪�̌x��4���X�V
+          if (((AF_sys->opt4_i & AF_OPT4_SPPART_P) != 0) &&
+              ((SpPart_s >= 1) && (SpPart_s <= CNF_MAXSPPART_N))) {
+            // �Ď��敪�p�A���[���o�[�W����DB�X�V
+            if (AU_spalmver[SpPart_s].alm4_i >= CNF_VERMAX_N) {
+              AU_spalmver[SpPart_s].alm4_i = 1;
+            }
+            else {
+              AU_spalmver[SpPart_s].alm4_i++;
+            }
+          }
+          // <---SPPART_NAITOU
+					break;                      //
+        //2017M5A_REN--->
+        case 6:
+          for(int cnt_i=1 ; cnt_i<CNF_MAXALMGRP_N ; cnt_i++)
+          {
+            AU_almver[cnt_i].alm6_i ++;
+            if (AU_almver[cnt_i].alm6_i > CNF_VERMAX_N) {
+              AU_almver[cnt_i].alm6_i = 1;
+            }
+          }
+          //RAS�x��Ŵװ۸ޖ��o�^
+          if ((AF_sys->almtype_s == AF_SYS_RAS_P)
+             && ((z_errflg2_i & BIT5) == 0)
+             && (AF_sys->Ras_s != AF_HWOPT_RASM5A_P)) {
+            (void)F_errlog(0x131, 0x2104,  //      �װ۸ޓo�^
+              (int)NULL, (int)NULL, (int)NULL, (int)NULL,
+                    "RAS�x��I���ŉ��F6�o�͂��v�����ꂽ") ;
+            z_errflg2_i |= BIT5;    //�װ۸ޓo�^�ς�
+          }
+          // �Ď��敪�ݒ�@�\�I�v�V���������̏ꍇ�A�v�����ꂽ�敪�̌x��6���X�V
+          if (((AF_sys->opt4_i & AF_OPT4_SPPART_P) != 0) &&
+              ((SpPart_s >= 1) && (SpPart_s <= CNF_MAXSPPART_N))) {
+            // �Ď��敪�p�A���[���o�[�W����DB�X�V
+            if (AU_spalmver[SpPart_s].alm6_i >= CNF_VERMAX_N) {
+              AU_spalmver[SpPart_s].alm6_i = 1;
+            }
+            else {
+              AU_spalmver[SpPart_s].alm6_i++;
+            }
+          }
+          break;
+        case 7:
+          for(int cnt_i=1 ; cnt_i<CNF_MAXALMGRP_N ; cnt_i++)
+          {
+            AU_almver[cnt_i].alm7_i ++;
+            if (AU_almver[cnt_i].alm7_i > CNF_VERMAX_N) {
+              AU_almver[cnt_i].alm7_i = 1;
+            }
+          }
+          //RAS�x��Ŵװ۸ޖ��o�^
+          if ((AF_sys->almtype_s == AF_SYS_RAS_P)
+             && ((z_errflg2_i & BIT6) == 0)
+                        && (AF_sys->Ras_s != AF_HWOPT_RASM5A_P)) {
+                (void)F_errlog(0x131, 0x2104,  //      �װ۸ޓo�^
+              (int)NULL, (int)NULL, (int)NULL, (int)NULL,
+                    "RAS�x��I���ŉ��F7�o�͂��v�����ꂽ") ;
+            z_errflg2_i |= BIT6;    //�װ۸ޓo�^�ς�
+          }
+          // �Ď��敪�ݒ�@�\�I�v�V���������̏ꍇ�A�v�����ꂽ�敪�̌x��7���X�V
+          if (((AF_sys->opt4_i & AF_OPT4_SPPART_P) != 0) &&
+              ((SpPart_s >= 1) && (SpPart_s <= CNF_MAXSPPART_N))) {
+            // �Ď��敪�p�A���[���o�[�W����DB�X�V
+            if (AU_spalmver[SpPart_s].alm7_i >= CNF_VERMAX_N) {
+              AU_spalmver[SpPart_s].alm7_i = 1;
+            }
+            else {
+              AU_spalmver[SpPart_s].alm7_i++;
+            }
+          }
+          break;
+        case 8:
+          for(int cnt_i=1 ; cnt_i<CNF_MAXALMGRP_N ; cnt_i++)
+          {
+            AU_almver[cnt_i].alm8_i ++;
+            if (AU_almver[cnt_i].alm8_i > CNF_VERMAX_N){
+              AU_almver[cnt_i].alm8_i = 1;
+            }
+          }
+          //RAS�x��Ŵװ۸ޖ��o�^
+          if ((AF_sys->almtype_s == AF_SYS_RAS_P)
+             && ((z_errflg2_i & BIT7) == 0)
+                        && (AF_sys->Ras_s != AF_HWOPT_RASM5A_P)) {
+                (void)F_errlog(0x131, 0x2104,  //      �װ۸ޓo�^
+              (int)NULL, (int)NULL, (int)NULL, (int)NULL,
+                    "RAS�x��I���ŉ��F8�o�͂��v�����ꂽ") ;
+            z_errflg2_i |= BIT7;    //�װ۸ޓo�^�ς�
+          }                           //
+          // �Ď��敪�ݒ�@�\�I�v�V���������̏ꍇ�A�v�����ꂽ�敪�̌x��8���X�V
+          if (((AF_sys->opt4_i & AF_OPT4_SPPART_P) != 0) &&
+              ((SpPart_s >= 1) && (SpPart_s <= CNF_MAXSPPART_N))) {
+            // �Ď��敪�p�A���[���o�[�W����DB�X�V
+            if (AU_spalmver[SpPart_s].alm8_i >= CNF_VERMAX_N) {
+              AU_spalmver[SpPart_s].alm8_i = 1;
+            }
+            else {
+              AU_spalmver[SpPart_s].alm8_i++;
+            }
+          }
+          break;
+      //<---2017M5A_REN
+				}                               //
+		}                                       //
+	  }                                         //
+      else {                                    //    �x��ԍ��ُ�H
+        (void)F_errlog(0x131,0x2101,            //      �װ۸ޓo�^
+                z_deq.qh.sdpr_s,                //        ���M���No.
+                z_deq.qh.func_s,                //        ̧ݸ���
+                z_deq.qh.sfnc_s,                //        �x��ԍ�
+                (int)NULL,                      //
+                "���(inf1)����̌x��v���ԍ�(inf3)���͈͊O") ;  
+	  }                                         //
+      break ;                                   //
+                                                //
+    case QF_AALM_SOUSA_P:                       //    ���쉹�o�͗v��
+	  //���쉹����������Ă���ꍇ
+	  if (AF_sys ->opt2_i & AF_OPT2_CSOUND_P ) {
+		  fl_alm20((unsigned int(__stdcall *)(void *))fl_alm21, (UCHAR)0) ;     //TH211004 MOD
+	  }
+      break ;                                   //
+                                                //
+    case QF_AALM_DO_P:                          //    DO�o�͗v��
+	  //�O��DO����������Ă���ꍇ
+	  if (AF_sys ->opt2_i  & AF_OPT2_OUTDO_P){
+		  do_s = z_deq.doreq.qh.sfnc_s ;            //
+		  dir_i = z_deq.doreq.dir_s ;               //
+		  if ((do_s >= 1) && (do_s <= 8)){          //      DO1�`8
+			  port_i = AF_ALMPORT_DO1_P ;           //
+			  doptn_uc = 1 ;                        //
+			  doptn_uc <<= (do_s - 1) ;             //
+		  }                                         //
+		  else if ((do_s >= 9) && (do_s <= 16)){    //      DO9�`16
+			  port_i = AF_ALMPORT_DO2_P ;       //
+			  doptn_uc = 1 ;                    //
+			  doptn_uc <<= (do_s - 9) ;         //
+		  }                                     //
+		  else {                                //
+			  do_s = 0 ;                        //
+			  (void)F_errlog(0x131,0x2102,      //      �װ۸ޓo�^
+				  z_deq.doreq.qh.sdpr_s,        //        ���M���No.
+				  z_deq.doreq.qh.func_s,        //        ̧ݸ���
+				  z_deq.doreq.qh.sfnc_s,        //        �x��ԍ�
+				  z_deq.doreq.dir_s,            //
+				  "���(inf1)����̊O��DO�ԍ�(inf3)���͈͊O") ;
+		  }                                     //
+		  if (do_s)                             //
+			  fl_alm14(port_i, dir_i, doptn_uc, &BeepCnt_i) ; //TH230301 MOD
+		  break ;                               //
+	  }                                         //
+	  break ;                                   //
+      
+	  //funa100324��
+	case QF_AALM_STOP_EX_P :                    //  �x���~�v���i�x��O���[�v�ԍ��w��j�H
+
+	  if (almgrp_s == z_deq.stopex.almgrp_s)	//    �v���x��O���[�v�ԍ��������u�̌x��O���[�v�ԍ��ƈ�v����B
+	  {											//
+		  z_kind_ui |= S_ALM_STOP_P ;           //      ��MQUE����׸޾��
+		  z_almptn_uc |= (UCHAR)AF_ALMSTP_P ;   //      �x���~�ޯĂ��
+		  z_walmptn_uc |= (UCHAR)AF_ALMSTP_P ;  //      �x���~�ޯĂ��
+	  
+		  if ((AF_sys->almtype_s == AF_SYS_RAS_P)||		//RAS�x��H
+			  (AF_sys->almtype_s == AF_SYS_RASWEV_P)){	//RAS+�����x��H
+														//
+			  z_dotbl_uc |= z_stop_uc ;
+		  }
+	  }
+
+	  if ((AF_sys->sys_s == AF_OPS_S_P)||       //�n�o�r 
+			(AF_sys->sys_s == AF_OPS_A_P)||     //
+			(AF_sys->sys_s == AF_OPS_B_P)||     //
+			(AF_sys->sys_s == AF_DSVS_S_P)||    //
+			(AF_sys->sys_s == AF_DSVS_A_P)||    //
+			(AF_sys->sys_s == AF_DSVS_B_P)){    //
+												//�@�x���~�o�[�W�������グ��
+			AU_almver[z_deq.stopex.almgrp_s].alm_stop_i ++;			//
+			if (AU_almver[z_deq.stopex.almgrp_s].alm_stop_i > CNF_VERMAX_N){
+				AU_almver[z_deq.stopex.almgrp_s].alm_stop_i = 1;    //
+			}                                   //
+	  }                                         //
+
+      // �� NS_Ooita ADD
+      if(AF_sys->ownn_s == z_deq.qh.sops_s) {   // ���M���n�o�r�ԍ��������u�̏ꍇ
+          f_alm212();                           // �x���~�v�����W�J����
+          f_alm510();                           // PLC�ւ̌x���~�o�͏���
+      }
+      // �� NS_Ooita ADD
+
+      break ;                                   //
+												//
+	case QF_AALM_OUT_EX_P :                     //  �x��o�͗v���i�x��O���[�v�ԍ��j�H
+      //// SPPART_NAITOU--->
+      //// �ݔ�ID�͈̓`�F�b�N
+      //if ((z_deq.outex.fid_s<=0) || (z_deq.outex.fid_s>CNF_FCTY_N)) {
+      //  (void)F_errlog(0x131, 0x2105,
+      //                 z_deq.out.fid_s,
+      //                 QF_AALM_OUT_EX_P,
+      //                 z_deq.qh.sfnc_s,
+      //                 z_deq.outex.fid_s,
+      //                 "�ݔ�ID�s�� 1:�ݔ�ID,2:�v��QUEFunc,3:�x��ԍ�");
+      //  break;
+      //}
+      //// �v���Ď��敪�̎擾
+      //SpPart_s = GF_lkfcty[z_deq.outex.fid_s].SpPart_s;
+      //// �����u�̊Ď��敪������i1�`8�̏ꍇ�x�񐬗��������X�V�j
+      //if (((AF_sys->SpPart_s >= 1) && (AF_sys->SpPart_s <= CNF_MAXSPPART_N)) &&
+      //    ((AF_sys->opt4_i & AF_OPT4_SPPART_P) != 0)){
+      //  if (SpPart_s != AF_sys->SpPart_s) {
+      //    almok_b = false;
+      //  }
+      //}
+      //// <---SPPART_NAITOU
+  	  // 2017M5A_REN--->
+      cnfalm_i = CNF_ALM_P;
+  	  // <---2017M5A_REN
+      alm_s = z_deq.qh.sfnc_s ;                 //
+      if((alm_s >= 1) && (alm_s <= cnfalm_i)){ //    �x��ԍ�����H
+                                                //
+	    if (almgrp_s == z_deq.outex.almgrp_s)
+		{
+			if (((AU_sys->smod_s == AU_MAS_P) ||     //OPS�^�pӰ�ނ�Ͻ��AϽ�������
+				(AU_sys->smod_s == AU_MASE_P)||     //             �����A����������
+				(AU_sys->smod_s == AU_TST_P) ||     //
+				(AU_sys->smod_s == AU_TSTE_P)||     //
+				(z_deq.qh.sdpr_s == TN_BOBANS)) &&   //�s�����Ď��͖�����             SPPART_NAITOU
+          almok_b) {                       //�x��������������Ă���ꍇ�̂� SPPART_NAITOU
+			  z_kind_ui |= S_ALM_OUTPUT_P ;         //    ��MQUE����׸޾��
+			  z_almptn_uc |= z_abit_uc[alm_s] ;     //
+			  z_walmptn_uc |= z_abit_uc[alm_s] ;    //
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+			  msk_uc <<=(alm_s-1) ;                 // RAS DO�p                //M-M5
+			  z_dotbl_uc |= (msk_uc);               // RAS DO�p                //M-M5
+			  printf("�A���[���ԍ��F%d  z_dotbl_uc�F0x%04x\n",alm_s,z_dotbl_uc);
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+			}                                       //
+		}
+                                                //
+		if ((AF_sys->sys_s == AF_OPS_S_P)||     //�n�o�r 
+			(AF_sys->sys_s == AF_OPS_A_P)||     //
+			(AF_sys->sys_s == AF_OPS_B_P)||     //
+			(AF_sys->sys_s == AF_DSVS_S_P)||    //
+			(AF_sys->sys_s == AF_DSVS_A_P)||    //
+			(AF_sys->sys_s == AF_DSVS_B_P)){    //
+                                                //
+				switch(alm_s){                  //
+				case 1:                         //
+					// �x�񉹂P�̃o�[�W�������X�V����B
+					AU_almver[z_deq.outex.almgrp_s].alm1_i ++;     //
+					if (AU_almver[z_deq.outex.almgrp_s].alm1_i > CNF_VERMAX_N){
+						AU_almver[z_deq.outex.almgrp_s].alm1_i = 1;
+					}                           //
+          //// SPPART_NAITOU--->
+          //// �Ď��敪�ݒ�@�\�I�v�V���������̏ꍇ�A�v�����ꂽ�敪�̌x��1���X�V
+          //if (((AF_sys->opt4_i & AF_OPT4_SPPART_P) != 0) &&
+          //    ((SpPart_s >= 1) && (SpPart_s <= CNF_MAXSPPART_N))) {
+          //  // �Ď��敪�p�A���[���o�[�W����DB�X�V
+          //  if (AU_spalmver[SpPart_s].alm1_i >= CNF_VERMAX_N) {
+          //    AU_spalmver[SpPart_s].alm1_i = 1;
+          //  }
+          //  else {
+          //    AU_spalmver[SpPart_s].alm1_i++;
+          //  }
+          //}
+          //// <---SPPART_NAITOU
+					break;                      //
+				case 2:                         //
+					// �x�񉹂Q�̃o�[�W�������X�V����B
+					AU_almver[z_deq.outex.almgrp_s].alm2_i ++;     //
+					if (AU_almver[z_deq.outex.almgrp_s].alm2_i > CNF_VERMAX_N){
+						AU_almver[z_deq.outex.almgrp_s].alm2_i = 1;
+					}                           //
+          //// SPPART_NAITOU--->
+          //// �Ď��敪�ݒ�@�\�I�v�V���������̏ꍇ�A�v�����ꂽ�敪�̌x��2���X�V
+          //if (((AF_sys->opt4_i & AF_OPT4_SPPART_P) != 0) &&
+          //    ((SpPart_s >= 1) && (SpPart_s <= CNF_MAXSPPART_N))) {
+          //  // �Ď��敪�p�A���[���o�[�W����DB�X�V
+          //  if (AU_spalmver[SpPart_s].alm2_i >= CNF_VERMAX_N) {
+          //    AU_spalmver[SpPart_s].alm2_i = 1;
+          //  }
+          //  else {
+          //    AU_spalmver[SpPart_s].alm2_i++;
+          //  }
+          //}
+          //// <---SPPART_NAITOU
+					break;                      //
+				case 3:                         //
+					// �x�񉹂R�̃o�[�W�������X�V����B
+					AU_almver[z_deq.outex.almgrp_s].alm3_i ++; //
+					if (AU_almver[z_deq.outex.almgrp_s].alm3_i > CNF_VERMAX_N){
+						AU_almver[z_deq.outex.almgrp_s].alm3_i = 1;
+					}                           //
+          //// SPPART_NAITOU--->
+          //// �Ď��敪�ݒ�@�\�I�v�V���������̏ꍇ�A�v�����ꂽ�敪�̌x��3���X�V
+          //if (((AF_sys->opt4_i & AF_OPT4_SPPART_P) != 0) &&
+          //    ((SpPart_s >= 1) && (SpPart_s <= CNF_MAXSPPART_N))) {
+          //  // �Ď��敪�p�A���[���o�[�W����DB�X�V
+          //  if (AU_spalmver[SpPart_s].alm3_i >= CNF_VERMAX_N) {
+          //    AU_spalmver[SpPart_s].alm3_i = 1;
+          //  }
+          //  else {
+          //    AU_spalmver[SpPart_s].alm3_i++;
+          //  }
+          //}
+          //// <---SPPART_NAITOU
+					break;                      //
+				case 4:                         //
+					// �x�񉹂S�̃o�[�W�������X�V����B
+					AU_almver[z_deq.outex.almgrp_s].alm4_i ++; //
+					if (AU_almver[z_deq.outex.almgrp_s].alm4_i > CNF_VERMAX_N){
+						AU_almver[z_deq.outex.almgrp_s].alm4_i = 1;
+					}                           //
+                            
+					//RAS�x��Ŵװ۸ޖ��o�^
+					if ((AF_sys->almtype_s == AF_SYS_RAS_P)
+					 && (z_errflg_uc == false)
+					 && (AF_sys->Ras_s != AF_HWOPT_RASM5A_P)) {
+				        (void)F_errlog(0x131,   //      �װ۸ޓo�^
+				                0x2104,         //
+				                0,              //        ���M���No.
+				                0,              //        ̧ݸ���
+				                0,              //        �x��ԍ�
+				                (int)NULL,      //
+				                "RAS�x��I���ŉ��F4�o�͂��v�����ꂽ") ;
+						z_errflg_uc = true ;    //�װ۸ޓo�^�ς�
+					}                           //
+          //// SPPART_NAITOU--->
+          //// �Ď��敪�ݒ�@�\�I�v�V���������̏ꍇ�A�v�����ꂽ�敪�̌x��3���X�V
+          //if (((AF_sys->opt4_i & AF_OPT4_SPPART_P) != 0) &&
+          //    ((SpPart_s >= 1) && (SpPart_s <= CNF_MAXSPPART_N))) {
+          //  // �Ď��敪�p�A���[���o�[�W����DB�X�V
+          //  if (AU_spalmver[SpPart_s].alm4_i >= CNF_VERMAX_N) {
+          //    AU_spalmver[SpPart_s].alm4_i = 1;
+          //  }
+          //  else {
+          //    AU_spalmver[SpPart_s].alm4_i++;
+          //  }
+          //}
+          //// <---SPPART_NAITOU
+					break;                      //
+         //2017M5A_REN--->
+         case 6:  
+            // �x�񉹂U�̃o�[�W�������X�V����B
+          AU_almver[z_deq.outex.almgrp_s].alm6_i ++; //
+          if (AU_almver[z_deq.outex.almgrp_s].alm6_i > CNF_VERMAX_N){
+            AU_almver[z_deq.outex.almgrp_s].alm6_i = 1;
+          }                           //
+                            
+          //RAS�x��Ŵװ۸ޖ��o�^
+          if ((AF_sys->almtype_s == AF_SYS_RAS_P)
+             && ((z_errflg2_i & BIT5) == 0)
+                        && (AF_sys->Ras_s != AF_HWOPT_RASM5A_P)) {
+                (void)F_errlog(0x131, 0x2106,  //      �װ۸ޓo�^
+              (int)NULL, (int)NULL, (int)NULL, (int)NULL,
+                    "RAS�x��I���ŉ��F6�o�͂��v�����ꂽ") ;
+            z_errflg2_i |= BIT5;    //�װ۸ޓo�^�ς�
+          }                           //
+             break;                     //TH211004 ADD
+         case 7:  
+            // �x�񉹂V�̃o�[�W�������X�V����B
+          AU_almver[z_deq.outex.almgrp_s].alm7_i ++; //
+          if (AU_almver[z_deq.outex.almgrp_s].alm7_i > CNF_VERMAX_N){
+            AU_almver[z_deq.outex.almgrp_s].alm7_i = 1;
+          }                           //
+                            
+          //RAS�x��Ŵװ۸ޖ��o�^
+          if ((AF_sys->almtype_s == AF_SYS_RAS_P)
+             && ((z_errflg2_i & BIT6) == 0)
+                        && (AF_sys->Ras_s != AF_HWOPT_RASM5A_P)) {
+                (void)F_errlog(0x131, 0x2106,  //      �װ۸ޓo�^
+              (int)NULL, (int)NULL, (int)NULL, (int)NULL,
+                    "RAS�x��I���ŉ��F7�o�͂��v�����ꂽ") ;
+            z_errflg2_i |= BIT6;    //�װ۸ޓo�^�ς�
+          }                           //
+             break;                     //TH211004 ADD
+         case 8:  
+            // �x�񉹂W�̃o�[�W�������X�V����B
+          AU_almver[z_deq.outex.almgrp_s].alm8_i ++; //
+          if (AU_almver[z_deq.outex.almgrp_s].alm8_i > CNF_VERMAX_N){
+            AU_almver[z_deq.outex.almgrp_s].alm8_i = 1;
+          }                           //
+                            
+          //RAS�x��Ŵװ۸ޖ��o�^
+          if ((AF_sys->almtype_s == AF_SYS_RAS_P)
+            && ((z_errflg2_i & BIT7) == 0)
+                        && (AF_sys->Ras_s != AF_HWOPT_RASM5A_P)) {
+                (void)F_errlog(0x131, 0x2106,  //      �װ۸ޓo�^
+              (int)NULL, (int)NULL, (int)NULL, (int)NULL,
+                    "RAS�x��I���ŉ��F8�o�͂��v�����ꂽ") ;
+            z_errflg2_i |= BIT7;    //�װ۸ޓo�^�ς�
+          }                           //
+             break;                     //TH211004 ADD
+        //<---2017M5A_REN        
+				}                               //
+		}                                       //
+	  }                                         //
+      else {                                    //    �x��ԍ��ُ�H
+        (void)F_errlog(0x131,0x2101,            //      �װ۸ޓo�^
+                z_deq.qh.sdpr_s,                //        ���M���No.
+                z_deq.qh.func_s,                //        ̧ݸ���
+                z_deq.qh.sfnc_s,                //        �x��ԍ�
+                (int)NULL,                      //
+                "���(inf1)����̌x��v���ԍ�(inf3)���͈͊O") ;  
+	  }                                         //
+      break ;                                   //
+
+	case QF_AALM_OUT_NOVER_P :                  //  �x��o�͗v���i�o�[�W�����X�V���j�H
+      // 2017M5A_REN--->
+      cnfalm_i = CNF_ALM_P;
+      // <---2017M5A_REN
+      alm_s = z_deq.qh.sfnc_s ;                 //
+      if((alm_s >= 1) && (alm_s <= cnfalm_i)){ //    �x��ԍ�����H
+                                                //
+        if ((AU_sys->smod_s == AU_MAS_P) ||     //OPS�^�pӰ�ނ�Ͻ��AϽ�������
+            (AU_sys->smod_s == AU_MASE_P)||     //             �����A����������
+            (AU_sys->smod_s == AU_TST_P) ||     //
+            (AU_sys->smod_s == AU_TSTE_P)||     //
+            (z_deq.qh.sdpr_s == TN_BOBANS)) {   //�s�����Ď��͖�����
+          z_kind_ui |= S_ALM_OUTPUT_P ;         //    ��MQUE����׸޾��
+          z_almptn_uc |= z_abit_uc[alm_s] ;     //
+          z_walmptn_uc |= z_abit_uc[alm_s] ;    //
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+          msk_uc <<=(alm_s-1) ;                 // RAS DO�p                //M-M5
+          z_dotbl_uc |= (msk_uc);               // RAS DO�p                //M-M5
+		  printf("�A���[���ԍ��F%d  z_dotbl_uc�F0x%04x\n",alm_s,z_dotbl_uc);
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+		}                                       //
+                                                //
+		if ((AF_sys->sys_s == AF_OPS_S_P)||     //�n�o�r 
+			(AF_sys->sys_s == AF_OPS_A_P)||     //
+			(AF_sys->sys_s == AF_OPS_B_P)||     //
+			(AF_sys->sys_s == AF_DSVS_S_P)||    //
+			(AF_sys->sys_s == AF_DSVS_A_P)||    //
+			(AF_sys->sys_s == AF_DSVS_B_P)){    //
+                                                //
+				switch(alm_s){                  //
+				case 1:                         //
+					break;                      //
+				case 2:                         //
+					break;                      //
+				case 3:                         //
+					break;                      //
+				case 4:                         //
+				//2017M5A_REN--->
+					//RAS�x��Ŵװ۸ޖ��o�^
+					if ((AF_sys->almtype_s == AF_SYS_RAS_P)
+					 && (z_errflg_uc == false)
+					 && (AF_sys->Ras_s != AF_HWOPT_RASM5A_P)) {
+				        (void)F_errlog(0x131,   //      �װ۸ޓo�^
+				                0x2107,         //
+				                0,              //        ���M���No.
+				                0,              //        ̧ݸ���
+				                0,              //        �x��ԍ�
+				                (int)NULL,      //
+				                "RAS�x��I���ŉ��F4�o�͂��v�����ꂽ") ;
+						z_errflg_uc = true ;    //�װ۸ޓo�^�ς�
+					}                           //
+					break;                      //
+				 case 6:	
+					//RAS�x��Ŵװ۸ޖ��o�^
+					if ((AF_sys->almtype_s == AF_SYS_RAS_P)
+					 	&& ((z_errflg2_i & BIT5) == 0)
+                        && (AF_sys->Ras_s != AF_HWOPT_RASM5A_P)) {
+				        (void)F_errlog(0x131, 0x2107,  //      �װ۸ޓo�^
+							(int)NULL, (int)NULL, (int)NULL, (int)NULL,
+				            "RAS�x��I���ŉ��F6�o�͂��v�����ꂽ") ;
+						z_errflg2_i |= BIT5;    //�װ۸ޓo�^�ς�
+					}                           //
+					break;                      //TH211004 ADD
+				 case 7:	
+					//RAS�x��Ŵװ۸ޖ��o�^
+					if ((AF_sys->almtype_s == AF_SYS_RAS_P)
+					 	&& ((z_errflg2_i & BIT6) == 0)
+                        && (AF_sys->Ras_s != AF_HWOPT_RASM5A_P)) {
+				        (void)F_errlog(0x131, 0x2107,  //      �װ۸ޓo�^
+							(int)NULL, (int)NULL, (int)NULL, (int)NULL,
+				            "RAS�x��I���ŉ��F7�o�͂��v�����ꂽ") ;
+						z_errflg2_i |= BIT6;    //�װ۸ޓo�^�ς�
+					}                           //
+					break;                      //TH211004 ADD
+				 case 8:	
+					//RAS�x��Ŵװ۸ޖ��o�^
+					if ((AF_sys->almtype_s == AF_SYS_RAS_P)
+						&& ((z_errflg2_i & BIT7) == 0)
+                        && (AF_sys->Ras_s != AF_HWOPT_RASM5A_P)) {
+				        (void)F_errlog(0x131, 0x2107,  //      �װ۸ޓo�^
+							(int)NULL, (int)NULL, (int)NULL, (int)NULL,
+				            "RAS�x��I���ŉ��F8�o�͂��v�����ꂽ") ;
+						z_errflg2_i |= BIT7;    //�װ۸ޓo�^�ς�
+					}                           //
+					break;                      //TH211004 ADD
+				//<---2017M5A_REN									
+					
+				}                               //
+		}                                       //
+	  }                                         //
+      else {                                    //    �x��ԍ��ُ�H
+        (void)F_errlog(0x131,0x2101,            //      �װ۸ޓo�^
+                z_deq.qh.sdpr_s,                //        ���M���No.
+                z_deq.qh.func_s,                //        ̧ݸ���
+                z_deq.qh.sfnc_s,                //        �x��ԍ�
+                (int)NULL,                      //
+                "���(inf1)����̌x��v���ԍ�(inf3)���͈͊O") ;  
+	  }                                         //
+      break ;                                   //
+
+	  //funa100324��
+	                                            //
+    default :                                   //  ��MQUȨݸ��ُ݈�H
+      (void)F_errlog(0x131,0x2103,              //    �װ۸ޓo�^
+              z_deq.qh.sdpr_s,                  //      ���M���No.
+              z_deq.qh.func_s,                  //      QUȨݸ���
+              (int)NULL,(int)NULL,              //
+              "QUȨݸ��ݕs��") ;               //
+    }                                           //switch
+}                                               //
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �R�D�O  *    �x��o�̓f�[�^��͏���                        * f_alm300   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      �x���M�p�t�d��ʃt���O���������A�x��o�́A�x���~�̗D�揇�ʂ�
+//    �������s���A�x��o�̓|�[�g�ɑ΂���o�̓X���b�h���Ăяo���B
+//
+//  �R�[�����O�V�[�P���X:
+//     (void) f_alm300() ;
+//
+//  ���̓f�[�^:
+//      �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     RS_SUC : ����
+//     �ȊO�@ : ���s
+//
+//  �������e�F
+//      �i�P�j��M�p�t�d�Ɍx���~�v�������݂����ꍇ�A���ԊǗ��^�X�N��
+//            �L�����Z���v���𑗐M����B(F_quemgr)
+//      �i�Q�j��M�p�t�d���x��o�͗v���̂݁A����������ѱ��ߒʒm�Ƃ̍��݂̏ꍇ�B
+//            [1] �x�񎩓���~�^�C�}���Z�b�g����Ă���Ȃ�΁A���ԊǗ��^�X�N��
+//                �����V���b�g�^�C�}�v���𑗐M����B(F_quemgr)
+//      �i�R�j�c�n�o�̓e�[�u�������Z�b�g���A�c�n�o�͂��s���B(DeviceControl)
+//      �i�S�j�c�n�o�̓e�[�u���G���A���N���A���A�c�n�o�͂��s���B(DeviceControl)
+//
+//-----------------------------------------------------------------------------
+void f_alm300()                         //
+{                                       //
+  if(z_kind_ui & S_ALM_STOP_P) {        //�x���~�v���L��
+    fl_alm01() ;                        //  �x�񎩓���~���ޭ�ٷ�ݾٗv��
+    z_almptn_uc = (UCHAR)AF_ALMSTP_P ;  //  �x���~�ޯĂ̂ݾ��
+  }                                     //
+  else {                                //�x���~�v���Ȃ�
+    if(z_kind_ui & S_ALM_OUTPUT_P) {    //  �x��o�͗v���L��H
+      z_almptn_uc &= ~((UCHAR)AF_ALMSTP_P) ;  //    �x���~�ޯĂ̂ݸر
+      if(AF_sys->almstp_s){             //    �x�񎩓���~���Ԑݒ�L��H
+        fl_alm02() ;                    //      �x�񎩓���~��ϓo�^
+      }                                 //
+    }                                   //
+    else if(z_kind_ui & S_ALM_CANCEL_P){//  �x�񎩓���~��ѱ��ߒʒm�̂݁H
+      if(z_almptn_uc != (UCHAR)AF_ALMSTP_P){ //    �x���~�ޯĂ̂�ON�H
+        z_almptn_uc = 0 ;                //      �����Ⴂ����ѱ��ߒʒm�̂���
+                                        //      DO�o�͂���K�v�͂Ȃ�
+        (void)F_errlog(0x131,0x3001,    //      �װ۸ޓo�^
+                (int)NULL,(int)NULL,    //
+                (int)NULL,(int)NULL,    //
+                "�����Ⴂ����ѱ��ߒʒm") ;
+      }                                 //
+    }                                   //
+    else {                              //  ���쉹�o�́ADO�o�͏�����
+      z_almptn_uc = 0 ;                 //    DO�o��ð��ٸر
+    }                                   //
+  }                                     //
+  if(z_almptn_uc) {                     //�x��o�́A�x���~�o�͂���
+    fl_alm20((unsigned int(__stdcall *)(void *))fl_alm22, z_almptn_uc) ;        //TH211004 MOD
+    z_almptn_uc = 0 ;                   //
+  }                                     //
+}                                       //
+
+//------------------------------------------------------------------------------
+//�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+//�E�h�c	�E��	��									�E�� �� ��			  �E
+//�E �S�D�O �E			�v�`�u�d�f�o�C�X�Đ�����  �@�@�@�E	 f_alm400		  �E
+//�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+//
+//	�@	�\:
+//
+//		�v�`�u�d�f�o�C�X�̍Đ��������s���B
+//
+//	�R�[�����O�V�[�P���X:
+//
+//	   (int) f_alm400() ;
+//
+//	���̓f�[�^:
+//
+//		�Ȃ�
+//
+//	�o�̓f�[�^:
+//
+//	   �Ȃ�
+//
+//	�߂�l:
+//
+//	   RS_SUC : ����
+//	   �ȊO�@ : ���s
+//
+//	�������e�F
+//
+//		�i�P�j��M�p�t�d�Ɍx���~�v�������݂����ꍇ�A���ԊǗ��^�X�N��
+//			  �L�����Z���v���𑗐M���A�v�`�u�d�t�@�C���̍Đ��𒆎~����B(F_quemgr,sndPlaySound)
+//
+//		�i�Q�j��M�p�t�d���x��o�͗v���̂݁A�������̓^�C���A�b�v�ʒm�Ƃ̍��݂̏ꍇ�B
+//
+//			  [1] �x�񎩓���~�^�C�}���Z�b�g����Ă���Ȃ�΁A���ԊǗ��^�X�N��
+//				  �����V���b�g�^�C�}�v���𑗐M����B(F_quemgr)
+//
+//		�i�R�j�D�揇�ʂ̍����x��ԍ��̂v�`�u�d�t�@�C�����Đ�����B(SndPlaySound)
+//
+//		�i�S�j�c�n�o�̓e�[�u���G���A���N���A����B
+//
+//------------------------------------------------------------------------------
+int f_alm400()
+{
+//------------------------------------------------------------------------------
+//		���[�W���[�������f�[�^
+//------------------------------------------------------------------------------
+  int	rst_i ;							//�߂�l
+//  int	sts_i ;							//�߂�l
+  int	cnt_i ;							//�J�E���^
+  short	almnum_s ;						//�ŗD�揇�ʌx��ԍ��i���̧ݸ��݁j
+  unsigned char	msk_uc ;				//�}�X�N�r�b�g
+  int	size_i ;						//�p�t�d���M�T�C�Y
+  struct Q_T_AOSCHE_ENTRY	enq ;		//�p�t�d���M�ҏW�G���A
+
+//------------------------------------------------------------------------------
+//		�v���O����
+//------------------------------------------------------------------------------
+  rst_i = RS_SUC ;
+  size_i = sizeof(enq) ;
+  memset(&enq, 0 ,sizeof(enq)) ;			//�p�t�d���M�ҏW�G���A�̏�����
+  if(z_kind_ui & S_ALM_STOP_P) {			//�x���~�v���L��H
+	  fl_alm01() ;                          //�x�񎩓���~���ޭ�ٷ�ݾٗv��
+	  z_walmptn_uc = (UCHAR)AF_ALMSTP_P ;   //�x���~�r�b�g�̂݃Z�b�g
+  }
+  else {									//�x���~�v���Ȃ��H
+	  if(z_kind_ui & S_ALM_OUTPUT_P) {		//�x��o�͗v���L��H
+		  z_walmptn_uc &= ~((UCHAR)AF_ALMSTP_P) ;		//�x���~�r�b�g�̂݃N���A
+		  almnum_s = 0 ;
+		  msk_uc =	1;
+//		  msk_uc <<= SYS_ALM_OFSET_P ;		//�J�n�r�b�g�Z�b�g
+											//�S�t�@�C���������[�v����
+		  for(cnt_i=0; cnt_i<S_ALM_FILMAX_M5A_P; cnt_i++){
+		  	  //2017M5A_REN--->
+		  	  if (cnt_i == SYS_ALM_STOP_P - 1) {	//�x���~�r�b�g�H
+                  msk_uc <<= 1;				//���̃r�b�g���쐬
+                  continue;						//���̃r�b�g��
+              }
+		  	  //<---2017M5A_REN
+			  if(z_walmptn_uc & msk_uc) {		//�r�b�g�n�m�H
+				  almnum_s = cnt_i+1 ;
+				  break ;
+			  }
+			  msk_uc <<= 1 ;
+		  }
+		  if(z_almnow_s != 0) {				//���ݔ������̌x��L��
+			  if(almnum_s > z_almnow_s){	//��MQUE�x��ԍ��̗D�揇�ʂ��Ⴂ�ꍇ
+				  goto RTN_NEXT ;			//��MQUE�𖳌��ɂ���
+			  }
+			  sndPlaySound(NULL,0);			//���ݖ����̌x���~����
+		  }                                 //
+		  if(AF_sys->almstp_s){             //    �x�񎩓���~���Ԑݒ�L��H
+			  fl_alm02() ;                  //      �x�񎩓���~��ϓo�^
+		  }                                 //
+	  }
+	  else if(z_kind_ui & S_ALM_CANCEL_P){	//�x�񎩓���~��ѱ��ߒʒm�̂݁H
+		  if(z_walmptn_uc != (UCHAR)AF_ALMSTP_P){		//�x���~�ޯĂ݂̂n�m�łȂ��H�i�x��o�͎����ƈقȂ�H�j
+			  rst_i = RS_ERR ;				//̧�ٍĐ��s�v
+		  }
+	  }
+	  else {								//����p�t�d�Ȃ��H
+//		  rst_i = RS_ERR ;													//  P06014-Q08-1733 del
+		  rst_i = RS_NODATA ;												//  P06014-Q08-1733 add
+	  }
+  }
+  if (rst_i == RS_NODATA) {													//��P06014-Q08-1733 add
+	  rst_i = RS_SUC ;						//QUE��M�װ�ł�����I�����Ȃ����߂̏���
+	  goto RTN_NEXT ;
+  } else if(rst_i != RS_SUC) {				//�p�t�d���M�G���[�H			//��P06014-Q08-1733 add
+//if(rst_i != RS_SUC) {						//�p�t�d���M�G���[�H			//  P06014-Q08-1733 del
+	  // ���쉹�̏ꍇ�A�G���[���O�������Ȃ�
+	  if(z_deq.qh.func_s != QF_AALM_SOUSA_P)
+	  {
+		  (void)F_errlog(						//�G���[���O�o�^
+					0x0131,0x0006,
+					rst_i,
+					z_deq.qh.sdpr_s,				//���M��^�X�N�m���D
+					z_deq.qh.func_s,				//�t�@���N�V����
+					(int)NULL,
+					"�v�`�u�d�t�@�C���Đ��̂p�t�d�s��") ;
+	  }
+	  rst_i = RS_SUC ;						//QUE��M�װ�͖{������I�����Ȃ��ׂ̏���
+	  goto RTN_NEXT ;
+  }
+  if(z_walmptn_uc == (UCHAR)AF_ALMSTP_P){    //�x���~�ޯĂ݂̂n�m�H(�x���~�j
+	  sndPlaySound(NULL,0);					//���ݖ����̌x���~����
+
+	  //PLC�ւ̌x���~�o�͏���	0921
+//	  f_alm510();
+
+	  z_almnow_s = 0 ;
+	  goto RTN_NEXT ;
+  }
+											//�v�`�u�d�t�@�C���Đ�
+  if(!sndPlaySound(z_filnam_c[almnum_s-1], SND_ASYNC|SND_LOOP)){
+											//�Đ����s
+	  (void)F_errlog(						//�G���[���O�o�^
+				0x0150,0x0008,
+				cnt_i,						//�t�@�C���ԍ�
+				(int)NULL,					//�o�̓f�[�^
+				(int)NULL,					//�R�[���|�C���g
+				(int)NULL,
+				"�v�`�u�d�t�@�C���̍Đ��Ɏ��s���܂����B") ;
+	  rst_i = RS_ERR ;
+  }
+  else{										//�Đ�����
+	  z_almnow_s = almnum_s ;				//���ݔ������̌x��ԍ����
+
+  }
+RTN_NEXT:
+  z_walmptn_uc = 0 ;							//�c�n�o�̓e�[�u��������
+  return(rst_i) ;
+}
+
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+//�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+//�E�h�c	�E��	��									�E�� �� ��			  �E
+//�E �T�D�O �E			�q�`�r�|�c�n�o�͏���			�E	 f_alm500		  �E
+//�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E�E
+//
+//	�@	�\:
+//
+//	   �q�`�r���W���[���ւ̏o�͏������s���B
+//
+//	�R�[�����O�V�[�P���X:
+//
+//	   (int) f_alm500() ;
+//
+//	���̓f�[�^:
+//
+//	   �Ȃ�
+//
+//	�o�̓f�[�^:
+//
+//	   �Ȃ�
+//
+//	�߂�l:
+//
+//	   RS_SUC : ����
+//	   �ȊO	  : ���s
+//
+//	�������e�F
+//
+//		�i�P�j��M�p�t�d�Ɍx���~�v�������݂����ꍇ�A���ԊǗ��^�X�N��
+//			  �L�����Z���v���𑗐M����B(F_quemgr)
+//
+//		�i�Q�j��M�p�t�d���x��o�͗v���̂݁A�������̓^�C���A�b�v�ʒm�Ƃ̍��݂̏ꍇ�B
+//
+//			  [1] �x�񎩓���~�^�C�}���Z�b�g����Ă���Ȃ�΁A���ԊǗ��^�X�N��
+//				  �����V���b�g�^�C�}�v���𑗐M����B(F_quemgr)
+//
+//		�i�R�j�c�n�o�̓e�[�u�������Z�b�g���A�c�n�o�͂��s���B
+//
+//		�i�S�j�c�n�o�̓e�[�u���G���A���N���A���A�c�n�o�͂��s���B
+//
+//------------------------------------------------------------------------------
+int f_alm500()
+{
+//------------------------------------------------------------------------------
+//		���[�W���[�������f�[�^
+//------------------------------------------------------------------------------
+  int	rst_i ;							//�߂�l
+  int	sts_i ;							//�߂�l
+  int	size_i ;						//�p�t�d���M�T�C�Y
+  int	num_i ;							//�q�`�r�|�c�n�o�͔ԍ�
+  char	bit_c ;							//�q�`�r�|�c�n�o�͏��
+  struct Q_T_AOSCHE_ENTRY	enq ;		//�p�t�d���M�ҏW�G���A
+  int	rasnum_i;                       // RASDO�ő�_�� 2017M5A_REN
+
+//------------------------------------------------------------------------------
+//		�v���O����
+//------------------------------------------------------------------------------
+  rst_i = RS_SUC ;								//
+  size_i = sizeof(enq) ;						//
+  memset(&enq, 0 ,sizeof(enq)) ;				//�p�t�d���M�ҏW�G���A�̏�����
+
+  if(z_kind_ui & S_ALM_STOP_P) {				//�x���~�v������
+	  enq.qh.func_s = QF_AOSCHE_CANCEL_P;		//�x�񎩓���~��
+	  enq.schidno_s = QF_AALM_TIMEUP_P ;		//�X�P�W���[�����L�����Z��
+	  rst_i = F_quemgr(							//
+		  QUE_ENQ_P, Q_AOSCHE_KEY1, &enq, &size_i) ;
+												//
+  	if ((AF_sys->RasAlmStop_s == AF_RASDO3_ALMSTP_P)&&(AF_sys->Ras_s == AF_HWOPT_RASM5_P)){	//2017M5A_REN
+	    z_dotbl_uc = BIT2 ;						//�x���~�r�b�g�݂̂ɂ���
+  	}
+	  else                                      //
+	    z_dotbl_uc = BIT3 ;                     //�x���~�r�b�g�݂̂ɂ���
+  }												//
+  else {										//(�x���~�v���Ȃ�)
+												//
+	  if(z_kind_ui & S_ALM_OUTPUT_P) {			//�x��o�͗v������
+												//
+		  if((z_kind_ui & S_ALM_CANCEL_P)!=0) 	//
+			  z_dotbl_uc &= ~(z_stop_uc) ;      //�x���~�r�b�g���N���A
+												//
+		  if(AF_sys->almstp_s != 0){			//�x�񎩓���~���Ԑݒ肠��
+			  fl_alm02() ;						//  �x�񎩓���~��ϓo�^
+		  }										//
+	  }											//
+	  else if(z_kind_ui & S_ALM_CANCEL_P){		//�x�񎩓���~��ѱ��ߒʒm�̂݁H
+		  if(z_dotbl_uc != z_stop_uc){			//�x���~�ޯĂ݂̂n�m�H
+			  rst_i = RS_ERR ;					//�����Ⴂ����ѱ��ߒʒm
+		  }										//
+	  }											//
+	  else {									//����p�t�d�Ȃ��H
+//		  rst_i = RS_ERR ;						//							//  P06014-Q08-1733 del
+		  rst_i = RS_NODATA ;					//							//  P06014-Q08-1733 add
+	  }											//
+  }												//
+  if (rst_i == RS_NODATA) {													//��P06014-Q08-1733 add
+	  rst_i = RS_SUC ;							//QUE��M�װ�ł�����I�����Ȃ����߂̏���
+  } else if(rst_i != RS_SUC) {					//�p�t�d���M�G���[�H		//��P06014-Q08-1733 add
+//if(rst_i != RS_SUC) {							//�p�t�d���M�G���[�H		//  P06014-Q08-1733 del
+	  F_errlog(									//�G���[���O�o�^
+		  0x0131,0x000a, rst_i, Q_AOSCHE_KEY1,
+		  enq.qh.func_s, (int)NULL,				//
+		  "�p�t�d���M�Ɏ��s���܂����B") ;		//
+	  rst_i = RS_SUC ;							//QUE��M�װ�ł�����I�����Ȃ����߂̏���
+  }												//
+  else {										//�p�t�d���M����H
+	  bit_c = 0 ;								//�q�`�r�|�c�n�o�͏�Ԃ̏�����
+	  if (((z_dotbl_uc & z_stop_uc) != 0) &&
+		   ((z_kind_ui & S_ALM_STOP_P)) ||
+		    (z_kind_ui & S_ALM_CANCEL_P)) {		//�x���~�v��
+		  bit_c |= z_stop_uc ;					//�@�x���~�r�b�g�Z�b�g
+	  }											//
+  	else if(AF_sys->Ras_s == AF_HWOPT_RASM5A_P){
+  		  if ((z_dotbl_uc & BIT0) != 0)	{		//�x��ԍ��P�v��
+			  bit_c |= BIT0 ;					//�@�d�̏�r�b�g�Z�b�g
+		  }										//
+		  if ((z_dotbl_uc & BIT1) != 0)	{		//�x��ԍ��Q�v��
+			  bit_c |= BIT1 ;					//�@�y�̏�r�b�g�Z�b�g
+		  }										//
+		  if ((z_dotbl_uc & BIT2) != 0) {		//�x��ԍ��R�v��
+			  bit_c |= BIT2 ;					//
+		  }
+  		  if ((z_dotbl_uc & BIT3) != 0) {		//�x��ԍ��S�v��
+			  bit_c |= BIT4 ;					//
+		  }
+  		  if ((z_dotbl_uc & BIT5) != 0) {		//�x��ԍ��U�v��
+			  bit_c |= BIT5 ;					//
+		  }
+  		  if ((z_dotbl_uc & BIT6) != 0) {		//�x��ԍ��V�v��
+			  bit_c |= BIT6 ;					//
+		  }
+  		  if ((z_dotbl_uc & BIT7) != 0) {		//�x��ԍ��W�v��
+			  bit_c |= BIT7 ;					//
+		  }
+  		
+  			}
+	  else {									//
+		  if ((z_dotbl_uc & BIT0) != 0)	{		//�x��ԍ��P�v��
+			  bit_c |= BIT0 ;					//�@�d�̏�r�b�g�Z�b�g
+		  }										//
+		  if ((z_dotbl_uc & BIT1) != 0)	{		//�x��ԍ��Q�v��
+			  bit_c |= BIT1 ;					//�@�y�̏�r�b�g�Z�b�g
+		  }										//
+		  if ((z_dotbl_uc & BIT2) != 0) {		//�x��ԍ��R�v��
+			  if (AF_sys->RasAlmStop_s == AF_RASDO3_ALMSTP_P){
+				  bit_c |= BIT1 ;				//	BIT2 -> BIT1
+			  }									//
+			  else {							//
+				  bit_c |= BIT2 ;				//
+			  }									//
+		  }										//
+		  if ((z_dotbl_uc & BIT3) != 0) {		//�x��ԍ��S�v��
+			  if (AF_sys->RasAlmStop_s == AF_RASDO3_ALMSTP_P) {
+				  bit_c |= BIT1 ;				//	BIT3 -> BIT1
+			  }									//
+			  else {							//
+				  bit_c |= BIT2 ;				//	BIT3 -> BIT2
+			  }									//
+		  }										//
+	  }											//
+  	 //2017M5A_REN--->
+  	 if(AF_sys->Ras_s == AF_HWOPT_RASM5A_P)	//
+  		rasnum_i=S_RASNUM_M5A_P;					//
+  	 else{										//
+  		rasnum_i=S_RASNUM_P;						//
+  	 	 }										//
+	 //<---2017M5A_REN
+	 for (num_i=0; num_i<rasnum_i; num_i++){		//2017M5A_REN
+		  if ((bit_c & (1<<num_i)) != 0){		//�o�͗v������
+		  	//2017M5A_REN--->
+		  	if (AF_sys->Ras_s == AF_HWOPT_RASM5A_P){//M5A�̏ꍇ
+		  		sts_i = FA_M5ASetRasDo((short)num_i, (short)SS_ON_P);//M5A�pRAS DO�o��
+		  	}									//
+		  	else{								//M5A�ȊO�̏ꍇ
+		  	  sts_i = g_RasObj->SetRasDo((short)num_i, (short)SS_ON_P) ;
+		  	}									//
+		  	//<---2017M5A_REN
+//TH211004 ADD��
+			if (sts_i != 0){				//�o�͎��s
+				F_errlog((int)0x0150, (int)0x000b,
+						 sts_i, num_i, (int)z_dotbl_uc, (int)NULL,
+					"RAS-DO �X�e�[�^�XON �o�͎��s") ;
+			}									//
+//TH211004 ADD��
+//TH220301 ADD��
+			memset(z_msg_c, NULL, sizeof(z_msg_c));
+			sprintf(z_msg_c, "SetRasDo rsts=%d index=%d  ON(1)�o��", sts_i, num_i);
+			fl_writelog("RAS�o��", z_msg_c);
+//TH220301 ADD��
+		  }										//
+	 }											//
+												//
+	 if (bit_c != 0)							//�o�͗v�����������Ƃ���
+		  Sleep(S_ALM_WAIT_P) ;					//�P�b�v�`�h�s����
+												//
+  												//
+	 for (num_i=0; num_i<rasnum_i; num_i++){		//2017M5A_REN
+		  if ((bit_c & (1<<num_i)) != 0){		//�o�͗v������
+		  	//2017M5A_REN--->
+		  	if (AF_sys->Ras_s == AF_HWOPT_RASM5A_P){//M5A�̏ꍇ
+		  		sts_i = FA_M5ASetRasDo((char)num_i, (char)SS_OFF_P);//M5A�pRAS DO�o��
+		  	}									//
+		  	else{								//M5A�ȊO�̏ꍇ
+			  sts_i = g_RasObj->SetRasDo((char)num_i, (char)SS_OFF_P) ;
+			  //sts_i = ras_almout((char)num_i,(char)SS_OFF_P) ;
+		  	}									//
+		  	//<---2017M5A_REN		  	
+//TH211004 ADD��
+			if (sts_i != 0){				//�o�͎��s
+				F_errlog((int)0x0150, (int)0x000c,
+						 sts_i, num_i, (int)z_dotbl_uc, (int)NULL,
+				  "RAS-DO �X�e�[�^�XOFF �o�͎��s") ;
+			}									//
+//TH211004 ADD��
+//TH220301 ADD��
+			memset(z_msg_c, NULL, sizeof(z_msg_c));
+			sprintf(z_msg_c, "SetRasDo rsts=%d index=%d OFF(0)�o��", sts_i, num_i);
+			fl_writelog("RAS�o��", z_msg_c);
+//TH220301 ADD��
+		  }										//
+	 }											//
+  }												//
+  z_dotbl_uc = 0 ;								//�c�n�o�̓e�[�u��������
+  return(rst_i) ;								//
+}												//
+// ��++++++++++++++++++++++++++++++++ M M5 ++++++++++++++++++++++++++++++++++++++
+
+// ***funa071004***************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �P�D�P  *    PIO�̎�ʎ擾                                 * f_alm110   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      PIO��32�^32���A16�^16���𔻒肷��B
+
+//
+//  �R�[�����O�V�[�P���X:
+//     (int) f_alm110() ;
+//
+//  ���̓f�[�^:
+//     �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     RS_SUC�F����
+//     �ȊO�@�F���s
+//
+//  �������e�F
+//-----------------------------------------------------------------------------
+int f_alm110()                                      //
+{                                                   //
+	LONG         rsts_l ;                           //���^�[���X�e�[�^�X
+	int          rsts_i ;                           //���^�[���X�e�[�^�X
+	HKEY         khndl_h ;                          //���W�X�g���L�[�n���h��
+	char         dio_c[128] ;                       //PIO������
+	char         diocmp_c[128] ;                    //PIO��ʔ�r������
+	DWORD        size ;                             //�󂯎�镶����̃T�C�Y
+	DWORD        Type_dw;	                        // �l�̎�ނ��󂯎��
+	DWORD        Size_dw;	                        // �f�[�^�̃T�C�Y���󂯎��
+
+	memset(&dio_c,0,sizeof(dio_c));                 //PIO��ʕ�����̏�����
+	memset(&diocmp_c,0,sizeof(diocmp_c));           //PIO��ʔ�r������̏�����
+	sprintf(diocmp_c,"PIO-32/32L");                 //
+                                                    //
+	rsts_l=RegOpenKeyEx(                            //���W�X�g���I�[�v��
+            (HKEY)HKEY_LOCAL_MACHINE,               //  ���W�X�g���L�[
+            (LPCTSTR)S_DIO,                         //  �L�[����
+            (DWORD)0,                               //  �\��
+            (REGSAM)KEY_ALL_ACCESS,                 //  �A�N�Z�X�}�X�N
+            (PHKEY)&khndl_h) ;                      //  �L�[�n���h��
+                                                    //
+	if (rsts_l != ERROR_SUCCESS){                   //  �L�[�̃I�[�v�����s
+		(void)F_errlog(                             //    �G���[���O�o�^
+			0x0110,0x0001,                          //
+			(int)NULL,(int)NULL,(int)NULL,(int)NULL,//
+			"PIO���W�X�g���̎擾�Ɏ��s") ;          //
+		return(RS_ERR);                             //
+	}                                               //
+    else {                                          //
+		size=S_DIO_MOJI_SIZE ;                      //   �O����10�����̂ݎ擾
+
+		rsts_i = RegQueryValueEx(
+			khndl_h,	                            // ���݃I�[�v�����Ă���L�[�̃n���h��
+			(LPCTSTR)"Device",                      // �擾����l�́u���O�v��������������ւ̃|�C���^
+			NULL,	                                // �\��p�����[�^�BNULL���w�肷��
+			&Type_dw,	                            // �l�́u��ށv���󂯎��
+			NULL,		                            // �l�́u�f�[�^�v���󂯎��BNULL���w�肷�邱�Ƃ��\�����A�f�[�^�͎󂯎��Ȃ�
+			&Size_dw);		                        // �f�[�^�T�C�Y���w�肷��B
+
+		rsts_i = RegQueryValueEx(                   //
+			(HKEY)khndl_h,                          // KEY�n���h��
+			(LPCTSTR)"Device",                      // ���W�X�g���̒l�̖��O
+			NULL,                                   // �\��p�����[�^�BNULL���w�肷��
+			&Type_dw,                               // �l�́u���
+			(PBYTE)dio_c,                           // �l�́u�f�[�^�v���󂯎��B
+			&Size_dw);                              // �f�[�^�T�C�Y���w�肷��B
+
+		if(strncmp(dio_c,diocmp_c,size) == 0){      //PIO-32/32L�Ȃ�
+			z_portnum_s = S_PIO32_PORTNUM_P;        // �|�[�g�����S�ɂ���B
+		}                                           //
+		else{                                       //
+			z_portnum_s = S_PIO16_PORTNUM_P;        // �|�[�g�����Q�ɂ���B
+		}                                           //
+	}                                               //
+	return(RS_SUC) ;                                //
+}                                                   //
+// ****funa071004**************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �k�a�P�S*    �O��DO���菈���@�@�@�@                        * fl_alm14_1 *
+// ****************************************************************************
+//
+//  �@�@�\:
+//      PIO�{�[�h��16/16L�̏ꍇ�A�o�̓|�[�g��AF_ALMPORT_ALM_P�֕ύX����
+//
+//  �R�[�����O�V�[�P���X:
+//     (void)fl_alm14_1(port_i,odata_uc) ;
+//
+//  ���̓f�[�^:
+//     int              port_i ;        //�o���߰Ĕԍ�
+//     unsigned char    odata_uc ;      //�o���ް�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     RS_ERR �F���s�i�o�͂��Ȃ��Ă悢�j
+//�@�@ RS_SUC �F�����i�o�͂���j
+//-----------------------------------------------------------------------------
+int fl_alm14_1(int *port_i,unsigned char *odata_uc)
+{                                             //
+	unsigned char hikaku_uc = 1;              // �c�n�ԍ���r�p�r�b�g�p�^�[��
+	if(z_portnum_s == S_PIO32_PORTNUM_P)      // �|�[�g�����S�̏ꍇ�iPIO�{�[�h��32/32�̏ꍇ�j�������Ȃ�
+		return RS_SUC;                        //
+	if((*port_i == AF_ALMPORT_ALM_P) ||
+	   (*port_i == AF_ALMPORT_OPE_P))         // �x��A���쉹�̏ꍇ�������Ȃ�
+	    return RS_SUC;                        //
+
+	if(*port_i == AF_ALMPORT_DO2_P)           // �O��DO9�`16�̓G���[
+		return RS_ERR;                        //
+	hikaku_uc <<= (S_PIO16_DONUM_P - 1);      // �O��DO4�`8�̓G���[
+	if(hikaku_uc < *odata_uc)                 //
+		return RS_ERR;                        //
+	                                          //
+	*port_i = AF_ALMPORT_ALM_P;               // �o�̓|�[�g��AF_ALMPORT_ALM_P�֕ύX����
+	*odata_uc <<= S_PIO16_DOHOSEI_P;          // �o��DO��DO5�`DO7�֕ϊ�����
+	return RS_SUC;                            // ����
+}
+
+// ��  NS_Ooita ADD
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �P�D�O�T*    PLC�x���~��̨��̧�ٓǍ�                     * f_alm105   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      PLC�x���~��̨��̧�ٓǂݍ��݂���B
+//
+//  �R�[�����O�V�[�P���X:
+//     void fl_alm105() ;
+//
+//  ���̓f�[�^:
+//      �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �Ȃ�
+//
+//  �������e�F
+//      ��̨��̧�ق����̨���ް���ǂݍ���
+//
+//-----------------------------------------------------------------------------
+void f_alm105()
+{
+
+    FILE*       fh_p;                                  // ̧���߲��
+    char        buf_cp[256];                           // �ް��ǂݍ����ޯ̧
+    char*       token_c[8];                            // İ��
+    char        temp_c[128];
+    char        path_c[128];
+    char        tagno_c[16];                           // �^�O��
+    short       logno_s[CNF_LIDANUM_N];
+    int         cnt_i;                                 // PCS�x���~�o�͑Ώۃf�[�^No
+    int         j ;                                    // ������؂�o���p�߲������������
+    int         sts_i;
+
+    memset(temp_c, 0, sizeof(temp_c));
+    memset(path_c, 0, sizeof(path_c));
+    memset(almstop, 0, sizeof(almstop));
+    z_Plcout_i = 0;
+    cnt_i = 0;                                         // ������
+
+    //�ǂݍ��ݑΏ�̧�ٖ��̂̎擾
+    GetEnvironmentVariable(S_FILE_PATH, temp_c, sizeof(path_c));
+    strcpy(path_c,strcat(strcat(temp_c, "\\name\\"), S_FILE_PCSALMSTP_N));
+
+    fh_p=fopen(path_c, "r");                            // ̧�ٵ���݁i�ǂݍ��ݐ�p�j
+    if (NULL==fh_p) {                                   // ���s
+        return ;
+    }
+    
+    // ̧�ق�1�s���ǂݍ��݂Ȃ���̧�ٴ��ނ܂�
+    // ��������
+    while (1) {
+        fgets(buf_cp, sizeof(buf_cp), fh_p);            // 1�s�擾
+        if (0!=feof(fh_p))                              // ̧�ٴ��ނȂ��
+        {                                               // ٰ�߂𔲂���
+            break;                                      // 
+        }                                               // 
+        if (0==strncmp(&buf_cp[0], "#", 1))             // ���čs�Ȃ��
+        {                                               // ���̍s������
+            continue;                                   // 
+        }                                               // 
+
+        //---------------------------------------------------------
+        // �v�f���o��
+        //---------------------------------------------------------
+        // 01.����f�[�^NO
+        if (0 == strncmp(buf_cp, S_CNF_DATANO_N, strlen(S_CNF_DATANO_N)))
+        {
+            for(j=0;j<=7;j++) token_c[j] = NULL ;       //  ������؂�o���ر������
+            token_c[0]=strtok_s(buf_cp, " ,", &strtok_ctx) ;           //  İ�ݖ��ɕ�������쐬
+            for (j=0;j<2;j++){                          //
+                if (token_c[j] != NULL)                 //
+                    token_c[j+1]=strtok_s(NULL, " ,", &strtok_ctx) ;   //    ���Ұ������̎��o��
+            }                                           //
+            if (cnt_i < S_MAXCNT_DATANO) {              // MAX�ȏ�͖�������
+                memset(tagno_c, 0, sizeof(tagno_c));    //  �^�O��������
+                memset(logno_s, 0, sizeof(logno_s));    // 
+                (void)sscanf(token_c[1], "%s", &tagno_c[0]);
+                if (0x00 != tagno_c[0] && 0x20 != tagno_c[0]) {
+                    sts_i = F_tagget(SS_CNV_P, &tagno_c[0], logno_s);
+                    if (sts_i != RS_SUC) {
+                        //۸ޏo��
+                        F_errlog(                           //�G���[���O�o�^
+                            0x0105, 0x0001, sts_i, cnt_i + 1,
+                            0, (int)NULL,                   //
+                            "����ID�ϊ��Ɏ��s���܂����B");  //
+                    }
+                    else {
+                        //��ʂ��@��^�O
+                        if (logno_s[0] != SYS_KIKI_P) {
+                            //۸ޏo��
+                            F_errlog(                               //�G���[���O�o�^
+                                0x0510,
+                                0x0002,
+                                sts_i, cnt_i + 1,
+                                0, (int)NULL,
+                                "�@��^�O�ȊO���o�^����Ă��܂��B");
+                        }
+                        else {
+                            (void)sscanf(token_c[2], "%d", &almstop[cnt_i].outdata_i);
+                            almstop[cnt_i].logno_s[0] = logno_s[0];
+                            almstop[cnt_i].logno_s[1] = logno_s[1];
+                            almstop[cnt_i].logno_s[2] = logno_s[2];
+                            almstop[cnt_i].logno_s[3] = logno_s[3];
+                        }
+                    }
+                }
+                else{
+                    //۸ޏo��
+                    F_errlog(                           //�G���[���O�o�^
+                        0x0105, 0x0003, sts_i, cnt_i + 1,
+                        0, (int)NULL,                   //
+                        "����ID�ϊ��Ɏ��s���܂����B");  //
+               }
+               cnt_i++;
+            }
+        }
+        // 02.��~�o�͗L��
+        if (0 == strncmp(buf_cp, S_CNF_PLCOUT_N, strlen(S_CNF_PLCOUT_N)))
+        {
+            for(j=0;j<=7;j++) token_c[j] = NULL ;       //  ������؂�o���ر������
+            token_c[0]=strtok_s(buf_cp, " ,", &strtok_ctx) ;           //  İ�ݖ��ɕ�������쐬
+            for (j=0;j<2;j++){                          //
+                if (token_c[j] != NULL)                 //
+                    token_c[j+1]=strtok_s(NULL, " ,", &strtok_ctx) ;   //    ���Ұ������̎��o��
+            }                                           //
+            (void)sscanf(token_c[1],"%d",&z_Plcout_i);
+        }
+    }
+    fclose(fh_p);
+    return ;
+}
+    char *strtok_ctx = NULL;
+    char *strtok_ctx = NULL;
+    char *strtok_ctx = NULL;
+    char *strtok_ctx = NULL;
+
+
+// ****************************************************************************
+// *�h�c          *��  ��                                        *�֐���      *
+// *  �Q�D�P�D�Q  *    �x���~�v�����W�J����                    * f_alm212   *
+// ****************************************************************************
+//
+//  �@  �\:
+//		���n�o�r�ɑ΂��Čx���~�v���𑗐M����B
+//		�܂��A�����Ɏ��s�����ꍇ�G���[���O�o�^����B
+//
+//  �R�[�����O�V�[�P���X:
+//		(void)f_alm212();
+//
+//  ���̓f�[�^:
+//      �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//     �Ȃ�
+//
+//
+//-----------------------------------------------------------------------------
+void f_alm212()
+{
+
+    int                         qsiz_i;         // �p�t�d�T�C�Y
+    int                         opsno_i;        // �n�o�r�ԍ�
+    int                         rsts_i;         // ���^�[���X�e�[�^�X
+    struct Q_T_AALM_STOP_EX     stopex;         // �x���~�v���i�O���[�v�ԍ��w��j
+
+    // ���ׂĂ̂n�o�r�ɑ΂��ď���
+    for (opsno_i = 1; opsno_i <= CNF_MAXOPS_N; opsno_i++) {
+
+        // �Ώۑ��u��OPS,DSVS�ȊO�̏ꍇ�̓X�L�b�v
+        if ((AF_sys->stn[opsno_i].kind_s != AF_OPS_S_P) &&
+            (AF_sys->stn[opsno_i].kind_s != AF_OPS_A_P) &&
+            (AF_sys->stn[opsno_i].kind_s != AF_OPS_B_P) &&
+            (AF_sys->stn[opsno_i].kind_s != AF_DSVS_S_P) &&
+            (AF_sys->stn[opsno_i].kind_s != AF_DSVS_A_P) &&
+            (AF_sys->stn[opsno_i].kind_s != AF_DSVS_B_P)) {
+            continue;
+        }
+
+        // �Ώۑ��u�������u
+        // �܂��͑��M��x���~������`�̏ꍇ�̓X�L�b�v
+        if ((opsno_i == AF_sys->ownn_s) ||    
+           (0 == (AF_sys->almops_i & (0x0001 << (opsno_i -1))))) {
+            continue;
+        }
+
+        // ���^�[���X�e�[�^�X��������
+        rsts_i = RS_SUC;
+
+        // �p�t�d�f�[�^��������
+        qsiz_i = sizeof(stopex);
+        memset(&stopex, 0, qsiz_i);
+
+        // �x���~�v����ݒ�
+        stopex.qh.func_s = QF_AALM_STOP_EX_P;
+        stopex.qh.sops_s = AF_sys->ownn_s;
+        stopex.qh.rops_s = opsno_i;
+        stopex.almgrp_s = AF_sys->almgrp_s;
+
+        // �x���~�v���𑗐M
+        rsts_i = F_quemgr(QUE_OPS_P | QUE_NOWAIT_P,
+            Q_AALM_KEY1,
+            &stopex,
+            &qsiz_i);
+
+        // �p�t�d���M���s�̏ꍇ
+        if (rsts_i != RS_SUC) {
+            // �G���[���O�o�^
+            F_errlog(0x0212,                        // �p�t�d�֘A
+                0x0001,                             // �G���[�h�c
+                rsts_i,                             // ���^�[���X�e�[�^�X
+                opsno_i,                            // �n�o�r�ԍ�
+                AF_sys->stn[opsno_i-1].kind_s,      // �Ώۑ��u�V�X�e���`��
+                NULL,	
+                "�x���~�v���p�t�d���M���s");      //
+        }
+
+    }
+
+    return;
+
+}
+
+// ****************************************************************************
+// *�h�c      *��  ��                                            *�֐���      *
+// *  �T�D�P  *    PCS�x���~�o��                               * f_alm510   *
+// ****************************************************************************
+//
+//  �@  �\:
+//      PCS�x���~�o�͂�����B
+//
+//  �R�[�����O�V�[�P���X:
+//     void f_alm510(void);
+//
+//  ���̓f�[�^:
+//      �Ȃ�
+//
+//  �o�̓f�[�^:
+//     �Ȃ�
+//
+//  �߂�l:
+//      �Ȃ�
+//
+//  �������e�F
+//      PCS�ւ̌x���~�o�͂��s��
+//
+//-----------------------------------------------------------------------------
+void f_alm510()
+{
+    int                     sts_i;
+    struct Q_T_JSEND_KIK    que;
+    int                     siz_i = sizeof(struct Q_T_JSEND_KIK);
+    int                     cnt_i;
+
+    //�o�͖����Ȃ�ΏI���
+    if (z_Plcout_i == 0) return ;
+
+    //����ID�ϊ�
+    for (cnt_i = 0; cnt_i < S_MAXCNT_DATANO; cnt_i++) {
+        //��ʂ��@��^�O
+        if (almstop[cnt_i].logno_s[0] == SYS_KIKI_P) {
+            //���䷭��쐬
+            memset(&que, 0, sizeof(que));
+            que.qh.func_s = QF_JSEND_KIK_P;         // QUE�t�@���N�V����
+            que.qh.sfnc_s = 0;                      // QUE�T�u�t�@���N�V����
+            que.qh.sdpr_s = TN_AOALM;               // ���M���v���Z�XID   
+            que.pcs_us = almstop[cnt_i].logno_s[1]; // �o�b�r�ԍ�
+            que.id_us  = almstop[cnt_i].logno_s[2]; // �v��ԍ��i����ID�j
+            que.mpb_us = QL_JSEND_DO_P;             // �l�o�a�I�t�Z�b�g
+                                                    // ����f�[�^
+            que.dat_us = (0x0001 << (almstop[cnt_i].outdata_i - 1));
+            que.srf_us = que.dat_us;                // �r�q�e�f�[�^      
+            que.que_us = QL_JSEND_NULL_P;           // �ʒm�p�t�d �j�d�x 
+            que.ord_us = QL_JSEND_NOORD_P;          // ���^�O���M���
+            que.mod_us = QL_JSEND_NULL_P;           // ���b�Z�[�W�o��  
+
+            //���䷭����M
+            sts_i = F_quemgr(QUE_ENQ_P | QUE_NOWAIT_P, Q_JSEND_KEY1, &que, &siz_i);
+            if (sts_i != RS_SUC) {
+                F_errlog(                           //�G���[���O�o�^
+                    0x0510, 0x0001, sts_i, cnt_i + 1,
+                    (int)almstop[cnt_i].logno_s[1] , (int)NULL,
+                    "�p�t�d���M�Ɏ��s���܂����B");
+            }
+        }
+    }
+}
+// ��  NS_Ooita ADD
+//TH220301 ADD��
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ *  �@  �\�F
+ *      ���O�o�͏���
+ *  calling sequence:
+ *       void fl_writelog(char *func_c, char *msg_c) ;
+ *
+ *  ��  �́F
+ *      func_c  :  �Ăяo�����֐���
+ *      msg_c   :  �o�̓��b�Z�[�W
+ *
+ *  �o  �́F
+ *      �Ȃ�
+ *
+ *  �߂�l�F
+ *      �Ȃ�
+ *
+ *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+void fl_writelog(char *func_c, char *msg_c){
+	size_t env_len;
+	char env_buf[256];
+
+  #define S_FILEMAX_N  10                     // �ő�t�@�C����
+  #define S_LINEMAX_N  1000                   // �ő�s��
+
+  int              cnt_i;
+  int              fileno_i = 0;
+  int              lineno_i = 0;
+  char             file_c[128];
+  char             *path_c = NULL;
+  char             dir_c[128];
+  char             log_c[256];
+  HANDLE           find_h = NULL;
+  WIN32_FIND_DATA  find_fd;
+  FILETIME         find_ft;
+  SYSTEMTIME       find_st;
+  SYSTEMTIME       SysTim_st;                 // TH221020 ADD
+  struct T_TIME    find_tt;                   // TH221020 MOD
+  time_t           find_tm, new_tm;
+  HANDLE           file_h;
+  DWORD            create_dw, read_dw, write_dw;
+
+  // ���ϐ����擾����
+  getenv_s(&env_len, env_buf, sizeof(env_buf), "PATH_FILE");
+  path_c = env_buf;
+  if (env_len == 0){
+    return;
+  }
+
+  // ���O�t�@�C���̊i�[��t�H���_�������ꍇ�͍쐬����
+  for (cnt_i=0; cnt_i<=1; cnt_i++){
+    if (cnt_i == 0){
+      sprintf(dir_c, "%s\\log", path_c);
+    }
+    else {
+      sprintf(dir_c, "%s\\log\\aoalm", path_c);
+    }
+    find_h = FindFirstFile(dir_c, &find_fd);
+    if (find_h == INVALID_HANDLE_VALUE){
+      CreateDirectory(dir_c, NULL);
+    }
+    else {
+      FindClose(find_h);
+    }
+  }
+
+  // �C���f�b�N�X�t�@�C������O�񏑂����񂾃t�@�C���ԍ��A�s�ԍ����擾����
+  sprintf(file_c, "%s\\%s_00.txt", dir_c, func_c);
+  file_h = CreateFile(
+        file_c, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING,
+        FILE_ATTRIBUTE_NORMAL | FILE_FLAG_RANDOM_ACCESS, NULL);
+  if (file_h != INVALID_HANDLE_VALUE){
+    ReadFile(file_h, &fileno_i, sizeof(fileno_i), &read_dw, NULL);
+    ReadFile(file_h, &lineno_i, sizeof(lineno_i), &read_dw, NULL);
+    CloseHandle(file_h);
+  }
+
+  // �������ݍs�ԍ����P�i�߂�
+  lineno_i++;
+  if ((lineno_i >= 1) && (lineno_i <= S_LINEMAX_N) &&
+      (fileno_i >= 1) && (fileno_i <= S_FILEMAX_N)){
+
+    // �t�@�C���ԍ�����эs�ԍ����͈͓��̏ꍇ�͊����̃��O�t�@�C�����J��
+    create_dw = OPEN_ALWAYS;
+  }
+  else {
+
+    // �s�ԍ����͈͊O�̏ꍇ�͎��̃t�@�C���̐擪����n�߂�
+    if ((lineno_i < 1) || (lineno_i > S_LINEMAX_N)){
+      lineno_i = 1;
+      fileno_i++;
+    }
+
+    // �Ō�̃t�@�C���܂ōs�����ꍇ�͐擪�̃t�@�C������n�߂�
+    if (fileno_i > S_FILEMAX_N){
+      lineno_i = 1;
+      fileno_i = 1;
+    }
+
+    // �t�@�C���ԍ��������l�̏ꍇ�́A��ԐV�����t�@�C���𒲂ׂĎ�����n�߂�
+    if (fileno_i < 1){
+
+      lineno_i = 1;
+      fileno_i = 1;
+      new_tm   = 0;
+
+      for (cnt_i=1; cnt_i<=S_FILEMAX_N; cnt_i++){
+
+        // �t�@�C���̎������擾����
+        sprintf(file_c, "%s\\%s_%02d.txt", dir_c, func_c, cnt_i);
+        find_h = FindFirstFile(file_c, &find_fd);
+        if (find_h != INVALID_HANDLE_VALUE){
+          FindClose(find_h);
+          FileTimeToLocalFileTime(&find_fd.ftLastWriteTime, &find_ft);
+          FileTimeToSystemTime(&find_ft, &find_st);
+          find_tt.ct_year_s = find_st.wYear;
+          find_tt.ct_mon_s  = find_st.wMonth;
+          find_tt.ct_day_s  = find_st.wDay;
+          find_tt.ct_hour_s = find_st.wHour;
+          find_tt.ct_min_s  = find_st.wMinute;
+          find_tt.ct_sec_s  = find_st.wSecond;
+          F_unittosec(&find_tt, &find_tm);
+
+          // ��ԐV�����t�@�C���̎��̔ԍ����擾����
+          if (find_tm >= new_tm){
+            new_tm = find_tm;
+            fileno_i = cnt_i + 1;
+            if (fileno_i > S_FILEMAX_N){
+              fileno_i = 1;
+            }
+          }
+        }
+      }
+    }
+
+    // �V�������O�t�@�C�����쐬����
+    create_dw = CREATE_ALWAYS;
+  }
+
+  // ���b�Z�[�W�ɓ�����ǉ�����
+//��TH221020 MOD �~���b�܂œo�^����悤�ɕύX
+  GetLocalTime(&SysTim_st);
+  sprintf(log_c, "%04d: %04d/%02d/%02d %02d:%02d:%02d.%03d  %s\r\n", lineno_i,
+	  SysTim_st.wYear, SysTim_st.wMonth, SysTim_st.wDay,
+	  SysTim_st.wHour, SysTim_st.wMinute, SysTim_st.wSecond, SysTim_st.wMilliseconds ,msg_c);
+//��TH221020 MOD
+
+  // ���O�t�@�C���̓ǂݎ�葮������������
+  sprintf(file_c, "%s\\%s_%02d.txt", dir_c, func_c, fileno_i);
+  find_h = FindFirstFile(file_c, &find_fd);
+  if (find_h != INVALID_HANDLE_VALUE){
+    FindClose(find_h);
+    SetFileAttributes(file_c, FILE_ATTRIBUTE_NORMAL);
+  }
+
+  // ���O�t�@�C���ɏo�͂���
+  file_h = CreateFile(
+        file_c, GENERIC_WRITE | GENERIC_READ,
+        FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, create_dw,
+        FILE_ATTRIBUTE_NORMAL | FILE_FLAG_RANDOM_ACCESS, NULL);
+  if (file_h != INVALID_HANDLE_VALUE){
+    SetFilePointer(file_h, 0, NULL, FILE_END);
+    WriteFile(file_h, log_c, (DWORD)strlen(log_c), &write_dw, NULL);
+    CloseHandle(file_h);
+
+    // ���O�t�@�C���ɓǂݎ�葮����ݒ肷��
+    SetFileAttributes(file_c, FILE_ATTRIBUTE_READONLY);
+  }
+
+  // �C���f�b�N�X�t�@�C���̓ǂݎ�葮������������
+  sprintf(file_c, "%s\\%s_00.txt", dir_c, func_c);
+  find_h = FindFirstFile(file_c, &find_fd);
+  if (find_h != INVALID_HANDLE_VALUE){
+    FindClose(find_h);
+    SetFileAttributes(file_c, FILE_ATTRIBUTE_NORMAL);
+  }
+
+  // �C���f�b�N�X�t�@�C���Ƀt�@�C���ԍ��A�s�ԍ���ۑ�����
+  file_h = CreateFile(
+        file_c, GENERIC_WRITE | GENERIC_READ,
+        FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, CREATE_ALWAYS,
+        FILE_ATTRIBUTE_NORMAL | FILE_FLAG_RANDOM_ACCESS, NULL);
+  if (file_h != INVALID_HANDLE_VALUE){
+    WriteFile(file_h, &fileno_i, sizeof(fileno_i), &write_dw, NULL);
+    WriteFile(file_h, &lineno_i, sizeof(lineno_i), &write_dw, NULL);
+    CloseHandle(file_h);
+
+    // �C���f�b�N�X�t�@�C���ɓǂݎ�葮����ݒ肷��
+    SetFileAttributes(file_c, FILE_ATTRIBUTE_READONLY);
+  }
+}
+//TH220301 ADD��
+//TH230301 ADD��
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ *  �@  �\�F
+ *      �c�[���N������
+ *  calling sequence:
+ *       void fl_CreProc(char *excec_c, char *arg_c) ;
+ *
+ *  ��  �́F
+ *      excec_c :  ���s�t�@�C����
+ *      arg_c   :  �A�[�M�������g
+ *
+ *  �o  �́F
+ *      phndl_h :  �v���Z�X�n���h��
+ *      thndl_h :  �X���b�h�n���h��
+ *
+ *  �߂�l�F
+ *     TRUE   �F�c�[���N������
+ *     FALSE  �F�c�[���N�����s
+ *
+ *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+BOOL fl_CreProc(char *excec_c, char *arg_c, HANDLE *phndl_h, HANDLE *thndl_h){
+STARTUPINFO			sinf;				//�N�����̃v���Z�X�Ɋւ�����̏��
+PROCESS_INFORMATION	pinf;				//�v���Z�X�ɑ΂��ĕԂ������
+DWORD				sts_i = 0;			//�߂�l(CreateProcess)
+BOOL				ret_b = FALSE;		//�߂�l
+
+	//�e�f�[�^�̏�����
+	sinf.cb               = sizeof(STARTUPINFO);
+	sinf.lpReserved       = 0;
+	sinf.lpDesktop        = NULL;
+	sinf.lpTitle          = NULL;
+	sinf.dwX              = 0;
+	sinf.dwY              = 0;
+	sinf.dwXSize          = 0;
+	sinf.dwYSize          = 0;
+	sinf.dwXCountChars    = 0;
+	sinf.dwYCountChars    = 0;
+	sinf.dwFillAttribute  = 0;
+	sinf.dwFlags          = STARTF_USESHOWWINDOW;	//wShowWindow�ɒǉ���񂠂�̐ݒ�
+	sinf.wShowWindow      = SW_HIDE;				//�R���\�[����\��
+	sinf.cbReserved2      = 0;
+	sinf.lpReserved2      = 0;
+
+	sts_i = CreateProcess				//�v���Z�X�N��
+			(excec_c,					//�h���C�u�ȉ��̃^�X�N��
+			 arg_c,						//�A�[�M�������g
+			 NULL,						//�v���Z�X�Z�L�����e�B
+			 NULL,						//�X���b�h�Z�L�����e�B
+			 FALSE,						//�n���h���̌p���Ȃ�
+			 (DWORD)0,					//�v���Z�X�T�N�Z�X�t���O(�w��Ȃ�)
+			 NULL,						//���u���b�N
+			 NULL,						//�J�����g�f�B���N�g��
+			 &sinf,						//�N�����̃v���Z�X�Ɋւ�����̏��
+			 &pinf) ;					//�v���Z�X�ɑ΂��ĕԂ������
+
+	if (sts_i == TRUE){					//�N������
+		*phndl_h = pinf.hProcess ;		//�v���Z�X�n���h���i�[
+		*thndl_h = pinf.hThread ;		//�X���b�h�n���h���i�[
+		ret_b = TRUE;
+	}
+	else{								//�N�����s
+		F_errlog((int)0x0150,(int)0xf301,		//�G���[���O�o�^
+				 (int)GetLastError(),			//�g���G���[�R�[�h
+				 (int)0, (int)0, (int)0,
+				 "�c�[���N���Ɏ��s���܂����B") ;
+		ret_b = FALSE;
+	}
+	return ret_b;
+}
+//TH230301 ADD��

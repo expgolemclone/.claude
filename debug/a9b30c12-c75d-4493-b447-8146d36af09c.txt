@@ -1,0 +1,18 @@
+2026-02-26T01:35:45.427Z [DEBUG] detectFileEncoding failed for expected reason: ENOENT
+2026-02-26T01:35:45.427Z [DEBUG] MDM settings load completed in 21ms
+2026-02-26T01:35:45.502Z [DEBUG] [init] configureGlobalMTLS starting
+2026-02-26T01:35:45.502Z [DEBUG] [init] configureGlobalMTLS complete
+2026-02-26T01:35:45.502Z [DEBUG] [init] configureGlobalAgents starting
+2026-02-26T01:35:45.502Z [DEBUG] [init] configureGlobalAgents complete
+2026-02-26T01:35:45.557Z [DEBUG] Using bash path: "C:\msys64\usr\bin\bash.exe"
+2026-02-26T01:35:45.567Z [DEBUG] Git remote URL: null
+2026-02-26T01:35:45.567Z [DEBUG] No git remote URL found
+2026-02-26T01:35:45.612Z [DEBUG] [keybindings] KeybindingSetup initialized with 103 bindings, 0 warnings
+2026-02-26T01:35:45.648Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2026-02-26T01:35:45.649Z [DEBUG] [keybindings] Watching for changes to C:\Users\0000250059\.claude\keybindings.json
+2026-02-26T01:35:45.669Z [DEBUG] Security messages are fresh (<1h old), skipping fetch
+2026-02-26T01:35:45.669Z [DEBUG] installed_plugins.json doesn't exist, returning empty V2 object
+2026-02-26T01:35:45.670Z [DEBUG] Total plugin commands loaded: 0
+2026-02-26T01:35:45.670Z [DEBUG] Total plugin agents loaded: 0
+2026-02-26T01:35:45.670Z [DEBUG] Registered 0 hooks from 0 plugins
+2026-02-26T01:35:45.670Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 0

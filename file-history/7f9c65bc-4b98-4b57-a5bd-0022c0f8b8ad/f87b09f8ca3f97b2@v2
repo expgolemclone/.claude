@@ -1,0 +1,61 @@
+# pre_commit_encoding.py — バイナリ判定を拡張子ベースに変更
+
+## Context
+`context.md` の指摘:
+- `pre-commit` や `README.md` が CP932+CRLF に変換されていない
+- 現在の null byte チェック（先頭512byte）だけでは不十分
+- **バイナリ拡張子リスト** で判定する方式に変更する
+
+## 変更内容
+
+### `D:\refactoring\ops5k_x64\.hooks\pre_commit_encoding.py`
+
+#### (a) `BINARY_EXTENSIONS` 定数を追加（モジュール先頭、import の後）
+リポジトリに存在するバイナリ拡張子（旧 `.gitattributes` + 実際の拡張子一覧から網羅）:
+```python
+BINARY_EXTENSIONS: set[str] = {
+    # 画像
+    ".gif", ".ico", ".bmp", ".png", ".jpg", ".jpeg", ".cur",
+    # 音声
+    ".wav",
+    # 実行ファイル・ライブラリ
+    ".dll", ".exe", ".lib", ".tlb", ".bin",
+    # Office ドキュメント
+    ".xlsx", ".xlsm", ".xlsb", ".xls", ".docx", ".doc", ".pdf",
+    # アーカイブ・証明書
+    ".zip", ".snk", ".pfx", ".pvk", ".cer",
+    # Visual Studio バイナリ
+    ".suo", ".aps",
+    # その他バイナリ
+    ".euf", ".tte", ".stb", ".hlp", ".chm", ".cnt",
+    ".frx", ".dat", ".acf",
+}
+```
+
+#### (b) `is_binary_ext` ヘルパー関数を追加
+```python
+def is_binary_ext(filepath: str) -> bool:
+    """拡張子でバイナリ判定する."""
+    _, ext = os.path.splitext(filepath)
+    return ext.lower() in BINARY_EXTENSIONS
+```
+
+#### (c) `main` に拡張子チェックを追加
+`.vscode/` スキップの後、`convert_file` 呼び出しの前に:
+```python
+        if is_binary_ext(f):
+            continue
+```
+
+#### (d) `detect_encoding` の null byte チェックは残す（二重防御）
+拡張子リストに漏れたバイナリも null byte チェックで救う。変更なし。
+
+## 変更しないファイル
+- `pre_commit_denylist.py` — 変更不要
+- `.vscode/settings.json` — 変更不要
+
+## 検証
+1. バイナリ拡張子ファイル（`.dll`, `.gif` 等）をステージ → スキップされること
+2. `.hooks/pre-commit`（拡張子なし bash スクリプト）をステージ → 変換対象になること
+3. `README.md` をステージ → CP932+CRLF に変換されること
+4. 既存テキストファイル（`.vb`, `.c`, `.h` 等）が従来通り変換されること

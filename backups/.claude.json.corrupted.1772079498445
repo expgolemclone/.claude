@@ -1,0 +1,19 @@
+{
+  "installMethod": "native",
+  "autoUpdates": false,
+  "clientDataCache": {
+    "data": {},
+    "timestamp": 1772079498421
+  },
+  "userID": "00208197b7f96dbc504e5571c20c0195ddba403c2de00a168704c7f1e3bf0b79",
+  "lastReleaseNotesSeen": "2.1.59",
+  "autoUpdatesProtectedForNative": true,
+  "toolUsage": {
+    "Bash": {
+      "usageCount": 1,
+      "lastUsedAt": 1772079494997
+    }
+  },
+  "changelogLastFetched": 1772079495656,
+  "cachedExtraUsageDisabledReason": "org_level_disabled"
+}

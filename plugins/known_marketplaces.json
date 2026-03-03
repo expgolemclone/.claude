@@ -1,0 +1,10 @@
+{
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "C:\\Users\\0000250059\\.claude\\plugins\\marketplaces\\claude-plugins-official",
+    "lastUpdated": "2026-03-03T02:05:57.793Z"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "installMethod": "native",
+  "autoUpdates": false,
+  "tipsHistory": {
+    "new-user-warmup": 0
+  },
+  "cachedGrowthBookFeatures": {
+    "tengu_tool_input_aliasing": false
+  },
+  "clientDataCache": {
+    "data": {},
+    "timestamp": 1772078928435
+  },
+  "userID": "15c452940fdb88a7c9c535c96f60d9f400a1e04f4e0f9d252420295645f0ef1c",
+  "lastReleaseNotesSeen": "2.1.59",
+  "projects": {
+    "C:/Users/0000250059": {
+      "allowedTools": [],
+      "mcpContextUris": [],
+      "mcpServers": {},
+      "enabledMcpjsonServers": [],
+      "disabledMcpjsonServers": [],
+      "hasTrustDialogAccepted": false,
+      "projectOnboardingSeenCount": 1,
+      "hasClaudeMdExternalIncludesApproved": false,
+      "hasClaudeMdExternalIncludesWarningShown": false,
+      "exampleFiles": []
+    }
+  },
+  "changelogLastFetched": 1772078813257,
+  "cachedExtraUsageDisabledReason": "org_level_disabled",
+  "toolUsage": {
+    "Bash": {
+      "usageCount": 12,
+      "lastUsedAt": 1772078879874
+    }
+  },
+  "autoUpdatesProtectedForNative": true
+}

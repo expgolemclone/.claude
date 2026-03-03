@@ -1,0 +1,1512 @@
+﻿Imports Meidensha.Ops.CustomControl
+Imports Meidensha.Ops.CustomControl.OpsMpbLib	'FUDAKZN add
+Imports Meidensha.Ops.OpsGoMpb.OpsCtlFudaGraph  'FUDAKZN add
+
+''' <summary>
+''' 札掛け状態表示
+''' </summary>
+''' <remarks>
+''' *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+''' *
+''' * *****************************************************************************
+''' * *                Copyright Meidensha Corporation 2007                       *
+''' * *  株式会社明電舎は当社によって提供されない装置上での当ソフトウェアの使用   *
+''' * *  に対し責任を全く負いません。                                             *
+''' * *****************************************************************************
+''' *
+''' *      プロセス名  :  システムメンテ画面
+''' *      工  号      :  F6030CM
+''' *      システム名  :  OPS5000
+''' *      作成者      :  飯田　好貴
+''' *      作成年月日  :  2007年 03月 31日
+''' *      修正履歴    :  2024年 01月 09日 MDC神田
+''' *                     札掛け機能改善(FUDAKZN)
+''' *
+''' *      機能概要    :
+''' *        （１）札掛け状態を表示する。
+''' *
+''' *++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+''' </remarks>
+
+Public Class UCFuda
+
+#Region "【データ宣言】"
+
+    '■ メンバ定数
+    Private Const S_FUDAROWS_P As Short = 6                 ' 札掛け表示行数
+    Private Const I_APL_NONE_P As Integer = &H00            ' 機能種別(システムメンテは機能毎操作権対象外につき無効値)
+
+    '■ メンバ変数
+    Private mclsDll As CDllData                             ' ＤＬＬ内グローバル変数
+    '<- FUDAKZN add
+    Private mintFdkznOpt As Boolean							' 札掛け機能改善オプション設定
+	'チェックボックス関連
+    Private mintChkCnt As Integer                           ' チェック数
+	'札掛け要求関連
+	Private mclsReqFudaSet As ClsMwsReqFudaSet				'(ＭＷＳ)札掛設定情報要求クラス
+	Private mclsReqFudaInf(S_FUDAROWS_P -1) As clsGetFudaInf_Out	'(要求)札掛け情報
+    Private mclsOldFudaInf(S_FUDAROWS_P -1) As clsGetFudaInf_Out    '(以前)札掛け情報
+   	Private mblnSetBtnFlg(S_FUDAROWS_P -1) As Boolean       ' 設定ボタン処理中フラグ(True:処理中)
+    Private mblnQueFlg(S_FUDAROWS_P -1) As Boolean          ' ＱＵＥ送信確認フラグ(True:札掛け検索画面からの操作あり)
+    Private mblnSetErrFlg As Boolean                        ' 札掛け設定エラーフラグ(True:エラー)
+    Private mblnClmChkFlg(S_FUDAROWS_P -1) As Boolean       ' 操作権確認後札掛け要求フラグ(True:コールバックで札掛け要求送信)
+    '監視装置別操作権関連
+    Private pclsGetOpeFcty As ClsMwsGetOpeFcty              '(ＭＷＳ)指定タグ監視装置別操作権取得クラス
+    Private pclsGetOpeFctyInData As clsGetOpeFcty_In        '指定タグ監視装置別操作権取得処理クラス入力情報
+    Private pclsGetOpeFctyOutData As clsGetOpeFcty_Out      '指定タグ監視装置別操作権取得処理クラス出力情報
+	'C/S操作権関連
+	Private mClsSys As ClsSysData
+    Private mclsClaimInf As ClsMwsGetClaimInf             	'(ＭＷＳ)操作権固定情報取得クラス
+    Private Delegate Sub mGetMwsClaimDelegate(ByVal objOutData As clsGetClaimInf_Out)
+    Private mclsClaimChk As ClsMwsGetClaimChk             	'(ＭＷＳ)操作権有無情報取得クラス
+    Private Delegate Sub mClaimChkBoxDelegate(ByVal blnClaim As Boolean, ByVal shtSts As Short)
+	'メッセージ関連
+	Public Event eMsgDisp(ByVal intWinType As Integer, ByVal strMsg As String)
+    '札掛け更新サービス関連
+    Private pclsUpdFudaRAMW As ClsMwsUpdFuda                '(ＭＷＳ)タグ情報取得クラス
+    Private pclsUpdFudaInData As clsGetUpdFuda_In           'タグ情報取得クラス入力情報
+    Private pclsUpdFudaOutData As clsGetUpdFuda_Out         'タグ情報取得クラス出力情報
+    Private Delegate Sub mGetMwsUpdFudaDelegate(ByVal objInData As clsGetUpdFuda_In, ByVal objOutData As clsGetUpdFuda_Out)
+    Private mstuUpdFudaTagIn(S_FUDAROWS_P -1) As TUpdFudaTagIn  '入力タグ情報
+    '札掛けウィンドウ関連
+    Private mintFdWinTagIdx As Integer                      '札掛けウィンドウのタグNo.が何行目か保持
+    '-> FUDAKZN add
+
+#End Region
+
+    ''' <summary>
+    ''' 初期処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub New(ByVal clsDll As CDllData)
+
+        Try
+            mclsDll = clsDll
+            InitializeComponent()
+            '<- FUDAKZN add
+			mintFdkznOpt = ((mclsDll.gclsSysCnf.AFsys().opt5_i And AF_OPT5_FUDAKZN_P)<>0)
+			If mintFdkznOpt Then				' 札掛け機能改善オプションありの場合
+				' 項目幅を設定する
+				Me.tblFuda.gpsngColumns = New Single() {11.0!, 25.0!, 47.0!, 53.0!, 61.0!, 81.0!, 94.0!, 100.0!}
+
+				'項目が折り返さないよう、文字サイズを小さし、テーブル幅を広げる
+				Me.tblFuda.Font = New System.Drawing.Font("ＭＳ ゴシック", 11.0!, System.Drawing.FontStyle.Bold)
+				Me.tblFuda.Location = New System.Drawing.Point(15, 34)
+				Me.tblFuda.Size = New System.Drawing.Size(1566, 882)
+
+				'札掛設定情報要求クラス生成
+				mclsReqFudaSet = New ClsMwsReqFudaSet(mclsDll.gintWinId, gobjSvrMW, gobjErrLog)
+				
+				'札掛け情報クラス生成
+                Dim intCnt As Integer
+				For intCnt = 0 To S_FUDAROWS_P -1
+					mclsReqFudaInf(intCnt) = New clsGetFudaInf_Out
+                    mclsOldFudaInf(intCnt) = New clsGetFudaInf_Out
+				Next
+				
+                '監視装置別操作権取得クラス生成
+                pclsGetOpeFcty = New ClsMwsGetOpeFcty(gobjSvrMW, gobjErrLog)
+                pclsGetOpeFctyInData = New clsGetOpeFcty_In
+                pclsGetOpeFctyOutData = New clsGetOpeFcty_Out
+
+                '操作権情報取得クラス生成
+                mClsSys = New ClsSysData
+                mclsClaimInf = New ClsMwsGetClaimInf(gobjOpsMW)
+				AddHandler mclsClaimInf.eReadComplet, AddressOf mGetMwsClaim
+                If mclsClaimInf.mGetData = False Then
+                    RaiseEvent eMsgDisp(CInt(1), "操作権情報 取得失敗")
+                    Exit Sub
+                End If
+
+                '札掛け検索更新サービスクラス生成
+                pclsUpdFudaRAMW = New ClsMwsUpdFuda(gobjSvrMW)
+                AddHandler pclsUpdFudaRAMW.eReadComplet, AddressOf Me.mGetMwsUpdFuda
+
+                '札掛けボタンと一括解除ボタンの初期化
+                initBtnAndChk()
+            End If
+			'-> FUDAKZN add
+        Catch ex As Exception
+            gobjErrLog.Write(ex, "シスメンテ-", 0, 0, 0, 0)
+        End Try
+
+    End Sub
+
+    ''' <summary>
+    ''' ロード処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub UctlFuda_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+        Dim intX As Integer
+        Dim strHead() As String		'FUDAKZN mod
+
+        Try
+            gfncResize(Me) '(P06014-Q08-1245)
+            '<- FUDAKZN add
+			If mintFdkznOpt Then				' 札掛け機能改善オプションありの場合
+                ' 項目名称を設定する
+		        Dim strHeadFdkzn() As String = _
+        		    {"タグＮｏ．", "設備名称", "タグ名称", "札Ｎｏ．", "札種別", "札掛け理由", "設定日付", "一括解除"}
+                ReDim strHead(strHeadFdkzn.Length - 1)
+                Array.Copy(strHeadFdkzn, strHead, strHead.Length)
+                ' ガイダンスメッセージを表示する
+                lblFuda.Text = "札掛け操作の実行後は、ソフトキー「表示更新」によって検索結果を更新してください。"
+			Else								' 札掛け機能改善オプションなしの場合
+				' 項目名称を設定する
+		        Dim strHeadNorm() As String = _
+        		    {"タグＮｏ．", "設備名称", "タグ名称", "札Ｎｏ．", "札種別", "札掛け理由"}
+        		ReDim strHead(strHeadNorm.Length - 1)
+        		Array.Copy(strHeadNorm, strHead, strHead.Length)
+			End If
+            '-> FUDAKZN add
+
+            '■ 項目名称を表示する
+            For intX = 0 To strHead.Length - 1
+                With tblFuda.glblData(intX + 1, 0)
+                    .Text = strHead(intX)
+                    .TextAlign = ContentAlignment.MiddleCenter
+                End With
+            Next
+
+        Catch ex As Exception
+            gobjErrLog.Write(ex, "シスメンテ-", 0, 0, 0, 0)
+        End Try
+
+    End Sub
+
+    ''' <summary>
+    ''' 表示更新処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gsRefresh(ByVal intMwsNo As Integer)
+
+        Dim intFudaNo, intX, intY, intCnt, _
+            intOffset, intPageNo, intLastPage, intFudaNum As Integer    'FUDAKZN mod
+
+        Try
+            '■ 札掛け理由が変わったことによる
+            '   呼び出しの場合は処理しない
+            If intMwsNo = S_MWNO_GD_CARD_P Then
+                Exit Sub
+            End If
+
+            '<- FUDAKZN mod
+			If mintFdkznOpt Then		' 札掛け機能改善オプションありの場合
+		        Dim btnWrk As OpsCtlButton		'札掛けボタン
+		        Dim chkWrk As CheckBox			'一括解除ボタン
+		        Dim blnRight As Boolean         '操作権
+
+                '表示中ウィンドウ消去
+                If intMwsNo = S_MWNO_FUDA_P Then
+                	gFudaFormErase()
+                End If
+                'サービス停止
+                gFudaStopSrvMW()
+				'変数初期化
+				mintChkCnt = 0											'チェック数0
+				mclsDll.guctlBase.OpsCtlSftky.Button10.Enabled = False	'設定ボタン無効
+                For intY = 0 To S_FUDAROWS_P - 1
+				    mblnSetBtnFlg(intY) = False	    					'設定ボタン非処理中
+                    mblnQueFlg(intY) = False                            '札掛け検索画面からの操作なし
+                    mblnClmChkFlg(intY) = False                         '操作権確認後札掛け要求フラグクリア
+                Next
+                mblnSetErrFlg = False                                   '札掛け設定エラーなし
+
+	            For intY = 0 To S_FUDAROWS_P - 1
+	                intOffset = intY * 4 + 1
+                    intFudaNum = 0
+
+                   	'札掛け情報初期化
+                    Array.Copy(mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtLock, mclsReqFudaInf(intY).shtLock, mclsReqFudaInf(intY).shtLock.Length)
+                    mclsReqFudaInf(intY).shtUse = mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtUse
+                    Array.Copy(mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtLock, mclsOldFudaInf(intY).shtLock, mclsReqFudaInf(intY).shtLock.Length)
+                    mclsOldFudaInf(intY).shtUse = mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtUse
+
+                    '札掛け更新サービス用入力初期化
+                    mstuUpdFudaTagIn(intY).shtKind = 0
+                    mstuUpdFudaTagIn(intY).shtStnNo = 0
+                    mstuUpdFudaTagIn(intY).shtKeiNo = 0
+
+                    btnWrk = CType(tblFuda.gclsObj(intY).gctlObj, OpsCtlButton)
+                    chkWrk = CType(tblFuda.gclsObj(intY+6).gctlObj, CheckBox)
+
+                    '6タグに満たない場合は空表示で処理を抜ける
+	                If mclsDll.gclsFuda.gclsOut.shtRtrnPageNo * S_FUDAROWS_P + intY + 1 > _
+	                   mclsDll.gclsFuda.gclsOut.shtLastFudaNo Then
+	                    For intX = 1 To tblFuda.gpsngColumns.Length
+	                        For intCnt = 0 To 3
+	                            tblFuda.glblData(intX, intOffset + intCnt).Text = ""
+                                btnWrk.Visible = False
+                                chkWrk.Visible = False
+	                        Next
+	                    Next
+	                    Continue For
+	                End If
+
+                    '項目表示
+                    With tblFuda
+                	    '制御操作可否判定
+					    blnRight = fncFudaCtlRight(intY)
+
+						'タグＮｏ．(札掛けボタン)
+                        btnWrk.Visible = True
+                        btnWrk.Text = gfncToWide(gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).bytTagNo, 8))
+                        btnWrk.Enabled = blnRight
+
+						'設備名称、タグ名称
+	                    .glblData(2, intOffset).Text = _
+	                        gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).bytFctyName, 16)
+	                    .glblData(3, intOffset).Text = _
+	                        gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).bytTagName, 32)
+
+                        '札No.、札種別、札掛け理由、設定日付
+	                    For intCnt = 0 To 3
+	                        intFudaNo = mclsDll.gclsFuda.gclsOut.stuTag(intY).bytFudaNo(intCnt)
+	                        If intFudaNo > 0 Then
+                                intFudaNum += 1
+	                            .glblData(4, intOffset + intCnt).Text = _
+	                                gfncToWide(intFudaNo.ToString)
+	                            .glblData(5, intOffset + intCnt).Text = fncFudaKind(intFudaNo)
+	                            .glblData(6, intOffset + intCnt).Text = _
+	                                gfncByteToStr(mclsDll.gclsGDcard.gpDb(intFudaNo - 1).reason_c, 32)
+                                .glblData(7, intOffset + intCnt).Text = _
+                                    fncSetTimToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).stuSetTim(intCnt))
+	                        Else
+	                            .glblData(4, intOffset + intCnt).Text = ""
+	                            .glblData(5, intOffset + intCnt).Text = ""
+	                            .glblData(6, intOffset + intCnt).Text = ""
+	                            .glblData(7, intOffset + intCnt).Text = ""
+	                        End If
+	                    Next
+
+						'一括解除ボタンの表示
+                        If intFudaNum > 0 Then
+                            chkWrk.Visible = True
+                        Else
+                            chkWrk.Visible = False
+                        End If
+                        chkWrk.Enabled = blnRight
+                        chkWrk.Checked = False
+                        chkWrk.BackColor = Color.Transparent
+
+                        '札掛け更新サービス用入力セット
+                        mstuUpdFudaTagIn(intY).shtKind = mclsDll.gclsFuda.gclsOut.stuTag(intY).shtKind
+                        mstuUpdFudaTagIn(intY).shtStnNo = mclsDll.gclsFuda.gclsOut.stuTag(intY).shtStnNo
+                        mstuUpdFudaTagIn(intY).shtKeiNo = mclsDll.gclsFuda.gclsOut.stuTag(intY).shtKeiNo
+	                End With
+	            Next
+
+                '札掛け更新サービス開始
+                pclsUpdFudaRAMW.mGetData(mstuUpdFudaTagIn)
+
+			Else        				' 札掛け機能改善オプションなしの場合
+	            For intY = 0 To S_FUDAROWS_P - 1
+	                intOffset = intY * 4 + 1
+	                If mclsDll.gclsFuda.gclsOut.shtRtrnPageNo * S_FUDAROWS_P + intY + 1 > _
+	                   mclsDll.gclsFuda.gclsOut.shtLastFudaNo Then
+	                    For intX = 1 To 6
+	                        For intCnt = 0 To 3
+	                            tblFuda.glblData(intX, intOffset + intCnt).Text = ""
+	                        Next
+	                    Next
+	                    Continue For
+	                End If
+	                With tblFuda
+	                    .glblData(1, intOffset).Text = _
+	                        gfncToWide(gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).bytTagNo, 8))
+	                    .glblData(2, intOffset).Text = _
+	                        gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).bytFctyName, 16)
+	                    .glblData(3, intOffset).Text = _
+	                        gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intY).bytTagName, 32)
+	                    For intCnt = 0 To 3
+	                        intFudaNo = mclsDll.gclsFuda.gclsOut.stuTag(intY).bytFudaNo(intCnt)
+	                        If intFudaNo > 0 Then
+	                            .glblData(4, intOffset + intCnt).Text = _
+	                                gfncToWide(intFudaNo.ToString)
+	                            .glblData(5, intOffset + intCnt).Text = fncFudaKind(intFudaNo)
+	                            .glblData(6, intOffset + intCnt).Text = _
+	                                gfncByteToStr(mclsDll.gclsGDcard.gpDb(intFudaNo - 1).reason_c, 32)
+	                        Else
+	                            .glblData(4, intOffset + intCnt).Text = ""
+	                            .glblData(5, intOffset + intCnt).Text = ""
+	                            .glblData(6, intOffset + intCnt).Text = ""
+	                        End If
+	                    Next
+	                End With
+	            Next
+			End If
+            '-> FUDAKZN mod
+
+            With mclsDll.gclsFuda
+
+                intLastPage = (.gclsOut.shtLastFudaNo - 1) \ S_FUDAROWS_P
+
+                '■ 表示中ページ番号を表示する
+                mclsDll.guctlBase.lblPage.Text = _
+                    gfncToWide((.gclsOut.shtRtrnPageNo + 1).ToString)
+                mclsDll.guctlBase.lblAllPage.Text = _
+                    gfncToWide((intLastPage + 1).ToString)
+
+                '■ 要求ページと応答ページが違うときは呼び直す
+                intPageNo = .gshtPageNo
+                If intPageNo > intLastPage Then intPageNo = 0
+                While (intPageNo < 0)
+                    intPageNo += (intLastPage + 1)
+                End While
+                .gshtPageNo = CShort(intPageNo)
+
+                If .gclsOut.shtRtrnPageNo <> intPageNo Then
+                    .gsSvrMwsCall(False)
+                End If
+
+            End With
+
+        Catch ex As Exception
+            gobjErrLog.Write(ex, "シスメンテ-", 0, 0, 0, 0)
+        End Try
+
+    End Sub
+
+#Region "【チェックボックス処理】"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' チェックボックス押下時処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub mChkBoxChg(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Try
+            '■ 札掛け解除数カウント
+            If CType(sender, CheckBox).Checked = True
+                mintChkCnt += 1
+            Else
+                If mintChkCnt > 0 Then mintChkCnt -= 1
+            End If
+
+            '■ チェック外した数が1つ以上ならソフトキー「設定」を有効、0なら無効
+            If mintChkCnt > 0 Then
+                mclsDll.guctlBase.OpsCtlSftky.Button10.Enabled = True
+            Else
+                mclsDll.guctlBase.OpsCtlSftky.Button10.Enabled = False
+            End If       	
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "mChkBoxChg", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 全チェックボックスのチェックを外す
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub fncAllChkRemove()
+        Dim intY As Integer
+        Dim chkWrk As CheckBox
+
+        Try
+            For intY = 0 To S_FUDAROWS_P - 1
+                chkWrk = CType(tblFuda.gclsObj(intY+6).gctlObj, CheckBox)
+                If chkWrk.Checked = True Then chkWrk.Checked = False
+            Next
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "fncAllChkRemove", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 解除対象チェックボックスを操作不可とする
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub fncCancelTgtDisable()
+        Dim intY As Integer
+        Dim chkWrk As CheckBox
+
+        Try
+            For intY = 0 To S_FUDAROWS_P - 1
+                chkWrk = CType(tblFuda.gclsObj(intY+6).gctlObj, CheckBox)
+                If chkWrk.Checked = True Then chkWrk.Enabled = False
+            Next
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "fncCancelTgtDisable", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 全チェックボックス操作可否設定
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub fncAllChkCtrlDsbl(ByVal blnCtrlDsbl As Boolean)
+        Dim intY As Integer
+        Dim chkWrk As CheckBox
+
+        Try
+            For intY = 0 To S_FUDAROWS_P - 1
+                chkWrk = CType(tblFuda.gclsObj(intY+6).gctlObj, CheckBox)
+                If blnCtrlDsbl Then     '抑止ありの場合は操作不可
+                    chkWrk.Enabled = False
+                    chkWrk.Checked = False
+                Else                    '抑止なしの場合は操作権判定結果を設定する
+                    chkWrk.Enabled = fncFudaCtlRight(intY)
+                End If
+            Next
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "fncAllChkCtrlDsbl", 0, 0, 0, 0)
+        End Try
+    End Sub
+    '-> FUDAKZN add
+#End Region
+
+#Region "【札掛けボタン処理】"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' 札掛けボタンクリック時処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub mFudaBtnClick(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Dim intTagIdx As Integer = Integer.Parse(CType(sender, OpsCtlButton).Name)
+        Dim shtTagKind, shtStNum, shtKeikiNum As Short
+        Dim strSetubiName, strTaguName, strTaguNum As String
+
+        Try
+            '表示中ウィンドウ消去
+            gFudaFormErase()
+
+            '自ボタンを凹形状にする。
+            DirectCast(sender, OpsCtlButton).gpblnValue = True
+
+            '札掛ウィンドウを表示する。
+            mclsDll.gfrmForm = New FormFudaWin(gfntFont, mclsDll.gfrmParent, gobjSvrMW, mclsDll.gintWinId, gobjColor, _
+                                          mclsDll.gblnOprClaim, mclsDll.gclsSysCnf.AFsys().plant_i(2), mclsDll.gclsSysCnf.AFsys().ownn_s, _
+                                          sender, mClsSys.gclsClaim, CShort(pclsUpdFudaOutData.stuTag(intTagIdx).shtFctyOpe))
+            AddHandler DirectCast(mclsDll.gfrmForm, FormFudaWin).eMsgDisp, AddressOf fncFudaMsgDisp         'メッセージ表示要求to画面管理
+            AddHandler DirectCast(mclsDll.gfrmForm, FormFudaWin).eFormKeyDown, AddressOf fncFudaFormKeyDown 'ファンクションキー押下時イベント
+            '親フォームに札掛け画面を追加
+            DirectCast(mclsDll.gfrmParent, Form).AddOwnedForm(mclsDll.gfrmForm)
+
+            '札掛けウィンドウの表示位置設定(画面中央)
+            Dim rctBtnPos As Rectangle
+            Dim intX, intY, intWidth, intHeight As Integer
+            With DirectCast(mclsDll.gfrmParent, Form)
+                intWidth = DirectCast(sender, OpsCtlButton).Width
+                intHeight = DirectCast(sender, OpsCtlButton).Height
+                intX = CInt(.Left + .Width / 2 - DirectCast(mclsDll.gfrmForm, FormFudaWin).Width / 2)
+                intY = CInt(.Top + .Height / 2 - DirectCast(mclsDll.gfrmForm, FormFudaWin).Height / 2 - intHeight)
+            End With
+            rctBtnPos = New Rectangle(intX, intY, intWidth, intHeight)
+
+            '札掛けウィンドウの表示に必要な情報設定
+            shtTagKind = mclsDll.gclsFuda.gclsOut.stuTag(intTagIdx).shtKind
+            shtStNum = mclsDll.gclsFuda.gclsOut.stuTag(intTagIdx).shtStnNo
+            shtKeikiNum = mclsDll.gclsFuda.gclsOut.stuTag(intTagIdx).shtKeiNo
+            strTaguNum = gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intTagIdx).bytTagNo, 8)
+            strSetubiName = gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intTagIdx).bytFctyName, 16)
+            strTaguName = gfncByteToStr(mclsDll.gclsFuda.gclsOut.stuTag(intTagIdx).bytTagName, 32)
+
+            '札掛けウィンドウの表示
+            Call  DirectCast(mclsDll.gfrmForm, FormFudaWin).mWinShow(shtTagKind, shtStNum, shtKeikiNum, strSetubiName, strTaguName, _
+                                                                    strTaguNum, rctBtnPos, pclsUpdFudaOutData.stuTag(intTagIdx).stuFudaInf, I_APL_NONE_P)
+
+            '何行目のボタンを押したか覚えておく
+            mintFdWinTagIdx = intTagIdx
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "mFudaBtnClick", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 全札掛けボタン操作可否設定
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub fncAllBtnCtrlDsbl(ByVal blnCtrlDsbl As Boolean)
+        Dim intY As Integer
+        Dim btnWrk As OpsCtlButton
+
+        Try
+            For intY = 0 To S_FUDAROWS_P - 1
+                btnWrk = CType(tblFuda.gclsObj(intY).gctlObj, OpsCtlButton)
+                If blnCtrlDsbl Then     '抑止ありの場合は操作不可
+                    btnWrk.Enabled = False
+                Else                    '抑止なしの場合は操作権判定結果を設定する
+                    btnWrk.Enabled = fncFudaCtlRight(intY)
+                End If
+            Next
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "fncAllBtnCtrlDsbl", 0, 0, 0, 0)
+        End Try
+    End Sub
+    '-> FUDAKZN add
+#End Region
+
+#Region "【設定ボタン処理】"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' 設定ボタンクリック時処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gSetBtnClick()
+		Dim intFudaNo, intY, intCnt, intNum As Integer
+		Dim shtTagKind, shtStNum, shtKeikiNum As Short
+		Dim ReSts As Short = CShort(0)
+        Dim blnClaimChkFlg As Boolean = False
+
+        Try
+			With mclsDll
+                ' 表示中ウィンドウ消去
+                gFudaFormErase()
+
+        		'■ 確認メッセージ表示
+                .gfrmForm = New FMessage(mclsDll)
+			    DirectCast(.gfrmForm, FMessage).gsSet _
+                    ("札掛け解除", "札掛け解除を行います。よろしいですか？", S_CONF_DSER_P, S_ICON_INFO_P, Nothing)
+                gfncModalDisp(mclsDll, .gfrmForm, .gfrmParent, S_CONF_DSER_P)
+
+                'いいえ/✕ボタンをクリックした場合、全てのチェックを外した状態に戻し、処理を抜ける
+                If (.gfrmForm Is Nothing) OrElse (.gfrmForm.DialogResult <> S_ANS_YES_P) Then
+                    fncAllChkRemove()
+                    Exit Sub
+                End If
+
+                '解除対象タグのチェックボックスは操作不可継続
+                fncCancelTgtDisable()
+
+                '■ 設定ボタン処理開始
+                For intY = 0 To S_FUDAROWS_P - 1
+                    If (CType(tblFuda.gclsObj(intY + 6).gctlObj, CheckBox).Visible) AndAlso _
+                       (CType(tblFuda.gclsObj(intY + 6).gctlObj, CheckBox).Checked) Then
+                        mblnSetBtnFlg(intY) = True
+                	End If
+                Next
+
+                '■ 要求送信
+				For intY = 0 To S_FUDAROWS_P - 1
+                    '解除対象の場合
+                    If (CType(tblFuda.gclsObj(intY + 6).gctlObj, CheckBox).Visible) AndAlso _
+                       (CType(tblFuda.gclsObj(intY + 6).gctlObj, CheckBox).Checked) Then
+					    '種別・ステーション番号・計器番号の設定
+                        shtTagKind = .gclsFuda.gclsOut.stuTag(intY).shtKind
+                        shtStNum = .gclsFuda.gclsOut.stuTag(intY).shtStnNo
+                        shtKeikiNum = .gclsFuda.gclsOut.stuTag(intY).shtKeiNo
+
+                        '(MWS)指定タグ監視装置別操作権取得処理
+                        pclsGetOpeFctyInData.shtTagKind = shtTagKind
+                        pclsGetOpeFctyInData.shtStNo = shtStNum
+                        pclsGetOpeFctyInData.shtKeikiNum = shtKeikiNum
+                        pclsGetOpeFctyInData.Apl_i = I_APL_NONE_P
+                        If pclsGetOpeFcty.mGetData(pclsGetOpeFctyInData, pclsGetOpeFctyOutData) = True Then
+                            ' 監視装置別操作権が無い場合は処理しない
+                            If pclsGetOpeFctyOutData.shtFctyOpe = SS_OFF_P Then
+                                mblnSetBtnFlg(intY) = False
+                                Continue For
+                            End If
+                        End If
+
+                        '機器タグで操作権オプションありの場合しかし、操作権切換えタグは除く
+                        If (shtTagKind = SYS_KIKI_P) And _
+                           (mClsSys.gclsClaim.inf_s = JF_ORI_OPS_P) And _
+                           ((shtStNum <> mClsSys.gclsClaim.stno_s) And _
+                            (shtKeikiNum <> mClsSys.gclsClaim.id_s)) Then
+                            '操作権有無情報取得後に札掛け解除要求を行うフラグをセット
+                            blnClaimChkFlg = True
+                            mblnClmChkFlg(intY) = True
+                        Else
+                            '(要求)札掛け情報に最新値をセット
+                            mclsReqFudaInf(intY) = pclsUpdFudaOutData.stuTag(intY).stuFudaInf
+
+                            '札掛け解除要求送信
+                            For intCnt = 0 To 3
+                                intFudaNo = pclsUpdFudaOutData.stuTag(intY).bytFudaNo(intCnt)
+                                If (intFudaNo > 0) Then
+                                    '(要求)札掛け情報の設定
+                                    Select Case intFudaNo
+                                        Case 1 To 30       '注意札・操作禁止札解除
+                                            For intNum = 0 To 2
+                                                If mclsReqFudaInf(intY).shtLock(intNum) = intFudaNo Then
+                                                    mclsReqFudaInf(intY).shtLock(intNum) = 0
+                                                End If
+                                            Next
+                                        Case 31            '送信ロック札解除
+                                            mclsReqFudaInf(intY).shtUse = CShort(1)
+                                    End Select
+
+                                    '札掛け要求
+                                    ReSts = mclsReqFudaSet.mReqData(shtTagKind, shtStNum, shtKeikiNum, CF_SUBT_UNSET_P, _
+                                                                       CShort(intFudaNo - 1), .gclsSysCnf.AFsys.ownn_s, mclsReqFudaInf(intY))
+                                    'ＱＵＥ送信確認フラグＯＮ
+                                    mblnQueFlg(intY) = True
+
+                                    If ReSts <> RetStsTRUE Then
+                                        If ReSts = RetStsEqu Then
+                                            RaiseEvent eMsgDisp(CInt(1), "等価中のため、札掛け操作できませんでした。")
+                                        Else
+                                            Dim strWord As String = mErrMsg(ReSts)
+                                            'エラー処理
+                                            Call gobjErrLog.Write(Nothing, "シスメンテ-" & strWord, ReSts, shtStNum, shtKeikiNum, shtTagKind)
+                                            '札掛け設定エラーフラグセット
+                                            mblnSetErrFlg = True
+                                        End If
+                                    End If
+                                End If
+                            Next
+
+                            '設定ボタン処理終了
+                            mblnSetBtnFlg(intY) = False
+                        End If
+                    End If
+                Next
+
+                '操作権有無情報取得後に札掛け解除要求を行う場合の処理
+                If blnClaimChkFlg = True Then
+                    'クラスが生成されていた場合削除
+                    If mclsClaimChk IsNot Nothing Then
+                        RemoveHandler mclsClaimChk.eReadComplet, AddressOf Me.mClaimChkFudaReq
+                        Call mclsClaimChk.sDispose()
+                        mclsClaimChk = Nothing
+                    End If
+
+                    '(ＲＭＷ)操作権有無情報取得クラス
+                    mclsClaimChk = New ClsMwsGetClaimChk(gobjSvrMW)
+                    AddHandler mclsClaimChk.eReadComplet, AddressOf Me.mClaimChkFudaReq
+                    If mclsClaimChk.mGetData(mClsSys.gclsClaim, CLAIMCHK.CLAIMCHKFUDA) = False Then
+                        RaiseEvent eMsgDisp(CInt(1), "操作権有無情報確認処理に失敗しました。")
+                        '札掛け設定エラーフラグセット
+                        mblnSetErrFlg = True
+                        '設定ボタン処理終了、操作権確認後札掛け要求フラグクリア
+                        For intY = 0 To S_FUDAROWS_P - 1
+                            If mblnClmChkFlg(intY) Then
+                                mblnSetBtnFlg(intY) = False
+                                mblnClmChkFlg(intY) = False
+                            End If
+                        Next
+                    End If
+                End If
+
+                '全てのチェックを外した状態に戻す
+                fncAllChkRemove()
+            End With
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "gSetBtnClick", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 操作権情報取得処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub mGetMwsClaim(ByVal objOutData As clsGetClaimInf_Out)
+        Try
+            '他スレッドから呼び出された場合
+            If InvokeRequired Then
+                Dim dlgIAddItem As New mGetMwsClaimDelegate(AddressOf mGetMwsClaim)
+                '自スレッドから呼び直す。
+                Me.BeginInvoke(dlgIAddItem, New Object() {objOutData})
+                Return
+            End If
+
+            mClsSys.gclsClaim = objOutData.strOpri  '操作権情報
+
+        Catch ex As Exception
+            '例外処理
+            gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "mGetMwsClaim", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 操作権確認後札掛け要求
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub mClaimChkFudaReq(ByVal blnClaim As Boolean, ByVal shtSts As Short)
+        Dim intFudaNo, intY, intCnt, intNum As Integer
+        Dim ReSts As Short = CShort(0)
+        Dim shtTagKind, shtStNum, shtKeikiNum As Short
+
+        Try
+            '他スレッドから呼び出された場合
+            If InvokeRequired Then
+                Dim dlgIAddItem As New mClaimChkBoxDelegate(AddressOf mClaimChkFudaReq)
+                '自スレッドから呼び直す。
+                Me.BeginInvoke(dlgIAddItem, New Object() {blnClaim, shtSts})
+                Return
+            End If
+
+            If shtSts <> CShort(1) Then
+                'ステータスが"成功"以外の場合
+                RaiseEvent eMsgDisp(CInt(1), "操作権有無情報 取得処理 失敗(ＭＷＳ)")
+                '設定ボタン処理終了、操作権確認後札掛け要求フラグクリア
+                For intY = 0 To S_FUDAROWS_P - 1
+                    If mblnClmChkFlg(intY) Then
+                        mblnSetBtnFlg(intY) = False
+                        mblnClmChkFlg(intY) = False
+                    End If
+                Next
+                Exit Sub
+            End If
+
+            If blnClaim = False Then
+                '操作権がない場合
+                'メッセージ表示 # 画面管理、チューニングと表示方法を合わせる。
+                RaiseEvent eMsgDisp(CInt(1), "操作権がありません。")
+                '設定ボタン処理終了、操作権確認後札掛け要求フラグクリア
+                For intY = 0 To S_FUDAROWS_P - 1
+                    If mblnClmChkFlg(intY) Then
+                        mblnSetBtnFlg(intY) = False
+                        mblnClmChkFlg(intY) = False
+                    End If
+                Next
+                Exit Sub
+            End If
+
+             For intY = 0 To S_FUDAROWS_P - 1
+                If mblnClmChkFlg(intY) Then
+                    '種別・ステーション番号・計器番号の設定
+                    shtTagKind = mclsDll.gclsFuda.gclsOut.stuTag(intY).shtKind
+                    shtStNum = mclsDll.gclsFuda.gclsOut.stuTag(intY).shtStnNo
+                    shtKeikiNum = mclsDll.gclsFuda.gclsOut.stuTag(intY).shtKeiNo
+
+                    '(要求)札掛け情報に最新値をセット
+                    mclsReqFudaInf(intY) = pclsUpdFudaOutData.stuTag(intY).stuFudaInf
+
+                    '札掛け解除要求送信
+                    For intCnt = 0 To 3
+						intFudaNo = pclsUpdFudaOutData.stuTag(intY).bytFudaNo(intCnt)
+						If (intFudaNo > 0) Then
+							'(要求)札掛け情報の設定
+                            Select Case intFudaNo
+                                Case 1 To 30       '注意札・操作禁止札解除
+                                    For intNum = 0 To 2
+                                        If mclsReqFudaInf(intY).shtLock(intNum) = intFudaNo Then
+                                            mclsReqFudaInf(intY).shtLock(intNum) = 0
+                                        End If
+                                    Next
+                                Case 31            '送信ロック札解除
+                                    mclsReqFudaInf(intY).shtUse = CShort(1)
+                            End Select
+
+                            '札掛け要求
+                            ReSts = mclsReqFudaSet.mReqData(shtTagKind, shtStNum, shtKeikiNum, CF_SUBT_UNSET_P, _
+                                                               CShort(intFudaNo - 1), mclsDll.gclsSysCnf.AFsys.ownn_s, mclsReqFudaInf(intY))
+
+                            'ＱＵＥ送信確認フラグＯＮ
+                            mblnQueFlg(intY) = True
+
+                            If ReSts <> RetStsTRUE Then
+                                If ReSts = RetStsEqu Then
+                                    RaiseEvent eMsgDisp(CInt(1), "等価中のため、札掛け操作できませんでした。")
+                                Else
+                                    Dim strWord As String = mErrMsg(ReSts)
+                                    'エラー処理
+                                    Call gobjErrLog.Write(Nothing, "シスメンテ-" & strWord, ReSts, shtStNum, shtKeikiNum, shtTagKind)
+                                    '札掛け設定エラーフラグセット
+                                    mblnSetErrFlg = True
+                                End If
+                            End If
+                        End If
+                    Next
+
+                    '設定ボタン処理終了、操作権確認後札掛け要求フラグクリア
+                    mblnSetBtnFlg(intY) = False
+                    mblnClmChkFlg(intY) = False
+                End If
+            Next
+
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "mClaimChkFudaReq", 0, 0, 0, 0)
+        End Try
+    End Sub
+    '-> FUDAKZN add
+#End Region
+
+#Region "【札掛け更新サービス処理】"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' 最新札掛け情報取得完了処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub mGetMwsUpdFuda(ByVal objInData As clsGetUpdFuda_In, ByVal objOutData As clsGetUpdFuda_Out)
+        Try
+            '他スレッドから呼び出された場合
+            If InvokeRequired Then
+                Dim dlgIAddItem As New mGetMwsUpdFudaDelegate(AddressOf mGetMwsUpdFuda)
+                '自スレッドから呼び直す。
+                Me.BeginInvoke(dlgIAddItem, New Object() {objInData, objOutData})
+                Return
+            End If
+
+            '取得したデータを内部変数にセットする。
+            pclsUpdFudaInData = objInData
+            pclsUpdFudaOutData = objOutData
+
+            'サービス内エラーチェック
+            If pclsUpdFudaOutData.shtRetSts <> RetStsTRUE Then
+                Exit Sub
+            End If
+
+            '画面ロック中状態の画面更新処理を一時行わない
+            If mclsDll.gblnScreenLock = True Then
+                Exit Sub
+            End If
+
+            '札掛けウィンドウが表示中の場合は情報更新
+            If (mclsDll.gfrmForm IsNot Nothing) And (TypeOf mclsDll.gfrmForm Is FormFudaWin) Then
+                If (DirectCast(mclsDll.gfrmForm, FormFudaWin).IsDisposed = False) Then
+                    If (DirectCast(mclsDll.gfrmForm, FormFudaWin).gpblnWinFlg = True) Then
+                        DirectCast(mclsDll.gfrmForm, FormFudaWin).mRefreshFuda(
+                            pclsUpdFudaOutData.stuTag(mintFdWinTagIdx).shtItrLckEna, pclsUpdFudaOutData.stuTag(mintFdWinTagIdx).stuFudaInf)
+                    Else
+                        Call DirectCast(mclsDll.gfrmForm, FormFudaWin).mWinDispose()
+                        mclsDll.gfrmForm = Nothing
+                    End If
+                Else
+                    mclsDll.gfrmForm = Nothing
+                End If
+            End If
+
+            '札掛け検索サービス出力値を最新値にする
+            '※gsRefreshが札掛け検索結果画面に入ったときとソフトキー操作以外でコールされた場合、
+            '  札掛け検索サービスが実行されないため、前回出力値を画面反映してしまうのを防ぐ。
+            Dim intY As Integer
+            For intY = 0 To S_FUDAROWS_P - 1
+                '札掛け情報
+                Array.Copy(pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock, mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtLock, mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtLock.Length)
+                mclsDll.gclsFuda.gclsOut.stuTag(intY).stuFudaInf.shtUse = pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtUse
+                '札No
+                Array.Copy(pclsUpdFudaOutData.stuTag(intY).bytFudaNo, mclsDll.gclsFuda.gclsOut.stuTag(intY).bytFudaNo, mclsDll.gclsFuda.gclsOut.stuTag(intY).bytFudaNo.Length)
+                '札掛け設定日付
+                Array.Copy(pclsUpdFudaOutData.stuTag(intY).stuSetTim, mclsDll.gclsFuda.gclsOut.stuTag(intY).stuSetTim, mclsDll.gclsFuda.gclsOut.stuTag(intY).stuSetTim.Length)
+                '操作権
+                mclsDll.gclsFuda.gclsOut.stuTag(intY).shtFctyOpe = pclsUpdFudaOutData.stuTag(intY).shtFctyOpe
+                mclsDll.gclsFuda.gclsOut.stuTag(intY).shtItrLckEna = pclsUpdFudaOutData.stuTag(intY).shtItrLckEna
+            Next
+
+            '札掛け検索結果画面の札掛け情報更新
+            mRefreshFudaArea()
+
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "mGetMwsUpdFuda", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 札掛け情報 表示更新処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub mRefreshFudaArea()
+        Dim intCnt,intY,intOffset,intFudaNum As Integer
+        Dim intFudaNo As Byte
+        Dim chkWrk As CheckBox
+        Dim btnWrk As OpsCtlButton
+        Dim blnRight As Boolean
+
+        Try
+            '札掛け設定エラーの場合は何もしない
+            If (mblnSetErrFlg = True) Then
+                Exit Sub
+            End If
+
+            '表示中ページの全タグの札掛け情報を更新
+            For intY = 0 To S_FUDAROWS_P - 1
+                '空行でなく、設定ボタン非処理中タグの場合
+                If (CType(tblFuda.gclsObj(intY).gctlObj, OpsCtlButton).Visible) And (Not(mblnSetBtnFlg(intY))) Then
+                    intOffset = intY * 4 + 1
+                    intFudaNum = 0            '札掛け数初期化
+                    chkWrk = CType(tblFuda.gclsObj(intY+6).gctlObj, CheckBox)
+                    btnWrk = CType(tblFuda.gclsObj(intY).gctlObj, OpsCtlButton)
+                    '■取得データと送信ＱＵＥデータを比較する。
+                    If ((pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock(0) = mclsReqFudaInf(intY).shtLock(0)) And _
+                        (pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock(1) = mclsReqFudaInf(intY).shtLock(1)) And _
+                        (pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock(2) = mclsReqFudaInf(intY).shtLock(2))) And _
+                        (mblnQueFlg(intY) = False) Then
+                        '■ＱＵＥ送信した情報又は、初期から変更はない又は２週目の同期情報
+                        For intCnt = 0 To 3
+                            '札No.、札種別、札掛け理由、設定日付の最新値を画面に反映する
+                            intFudaNo = pclsUpdFudaOutData.stuTag(intY).bytFudaNo(intCnt)
+                            If intFudaNo > 0 Then
+                                intFudaNum += 1                                 '札掛け数カウント
+                                tblFuda.glblData(4, intOffset + intCnt).Text = _
+                                    gfncToWide(intFudaNo.ToString)
+                                tblFuda.glblData(5, intOffset + intCnt).Text = fncFudaKind(intFudaNo)
+                                tblFuda.glblData(6, intOffset + intCnt).Text = _
+                                    gfncByteToStr(mclsDll.gclsGDcard.gpDb(intFudaNo - 1).reason_c, 32)
+                                tblFuda.glblData(7, intOffset + intCnt).Text = _
+                                    fncSetTimToStr(pclsUpdFudaOutData.stuTag(intY).stuSetTim(intCnt))
+                            Else
+                                tblFuda.glblData(4, intOffset + intCnt).Text = ""
+                                tblFuda.glblData(5, intOffset + intCnt).Text = ""
+                                tblFuda.glblData(6, intOffset + intCnt).Text = ""
+                                tblFuda.glblData(7, intOffset + intCnt).Text = ""
+                            End If
+                        Next
+
+                        '札掛け数が0の場合、チェックボックスを非表示する
+                        If intFudaNum > 0 Then
+                            chkWrk.Visible = True
+                        Else
+                            chkWrk.Visible = False
+                            chkWrk.Checked = False
+                        End If
+
+                        '制御操作可否
+                        blnRight = fncFudaCtlRight(intY)
+                        chkWrk.Enabled = blnRight
+                        If blnRight = False Then chkWrk.Checked = False '操作権がなくなったタグのチェックは外す
+                        btnWrk.Enabled = blnRight
+                    Else
+                        mblnQueFlg(intY) = False
+                        '■取得データと一周期前の取得データを比較する。
+                        If ((pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock(0) = mclsOldFudaInf(intY).shtLock(0)) And _
+                            (pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock(1) = mclsOldFudaInf(intY).shtLock(1)) And _
+                            (pclsUpdFudaOutData.stuTag(intY).stuFudaInf.shtLock(2) = mclsOldFudaInf(intY).shtLock(2))) Then
+                            chkWrk.Enabled = False
+                            '■送信ＱＵＥデータを取得データで上書き
+                            mclsReqFudaInf(intY) = pclsUpdFudaOutData.stuTag(intY).stuFudaInf
+                        Else
+                            '■他系で情報変更した可能性があるので一時操作不可にする。
+                            chkWrk.Enabled = False
+                            '■一周期前の取得データを取得データで上書き
+                            mclsOldFudaInf(intY) = pclsUpdFudaOutData.stuTag(intY).stuFudaInf
+                        End If
+                    End If
+                End If
+            Next
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "mRefreshFudaArea", 0, 0, 0, 0)
+        End Try
+    End Sub
+    '-> FUDAKZN add
+#End Region
+
+#Region "【グローバル処理】"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' サービス停止
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaStopSrvMW()
+        Try
+            With mclsDll
+                '札掛け更新サービス停止
+                If pclsUpdFudaRAMW IsNot Nothing Then
+                    Call pclsUpdFudaRAMW.mStopSrvMW()
+                End If
+            End With
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "gFudaStopSrvMW", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' ウィンドウ消去処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaFormErase()
+        Try
+            With mclsDll
+                If .gfrmForm IsNot Nothing Then
+                    If TypeOf mclsDll.gfrmForm Is FormFudaWin Then
+                        If (DirectCast(mclsDll.gfrmForm, FormFudaWin).IsDisposed = False) Then
+                            '札掛けウィンドウのサービス停止
+                            CType(.gfrmForm, FormFudaWin).mStopSrvMW()
+                            RemoveHandler DirectCast(mclsDll.gfrmForm, FormFudaWin).eMsgDisp, AddressOf fncFudaMsgDisp
+                            RemoveHandler DirectCast(mclsDll.gfrmForm, FormFudaWin).eFormKeyDown, AddressOf fncFudaFormKeyDown
+
+                            '札掛けウィンドウを消去
+                            CType(.gfrmForm, FormFudaWin).mWinDispose()
+                            .gfrmForm.Visible = False
+                            .gfrmForm = Nothing
+
+                            'ボタンを凸状態に戻す
+                            CType(tblFuda.gclsObj(mintFdWinTagIdx).gctlObj, OpsCtlButton).gpblnValue = False
+                        End If
+                    Else
+                        '確認ウィンドウを消去
+                        .gfrmForm.Dispose()
+                        .gfrmForm = Nothing
+                    End If
+                End If
+            End With
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "gFudaFormErase", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' サーバ接続用MWオブジェクト変更処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaSrvMWChange()
+        Try
+            'サービス停止
+            gFudaStopSrvMW()
+
+            '(ＭＷＳ)タグ情報取得クラス
+            If pclsUpdFudaRAMW IsNot Nothing Then
+                pclsUpdFudaRAMW.pobjSrvMW = gobjSvrMW
+            End If
+
+            '札掛け情報クラス
+            If mclsReqFudaSet IsNot Nothing Then
+                mclsReqFudaSet.pobjSrvMW = gobjSvrMW
+            End If
+
+            '監視装置別操作権取得クラス
+            If pclsGetOpeFcty IsNot Nothing Then
+                pclsGetOpeFcty.pobjSrvMW = gobjSvrMW
+            End If
+
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "gFudaSrvMWChange", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' ウィンドウID変更処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaWinIdChange()
+        Try
+            If mclsReqFudaSet IsNot Nothing Then
+                mclsReqFudaSet.pintWinId = mclsDll.gintWinId
+            End If
+
+            If mclsDll.gfrmForm IsNot Nothing Then
+                If TypeOf mclsDll.gfrmForm Is FormFudaWin Then
+                    CType(mclsDll.gfrmForm, FormFudaWin).pintWinId = mclsDll.gintWinId
+                End If
+            End If
+
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "gFudaWinIdChange", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 色変更処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaColorChange()
+        Try
+            If mclsDll.gfrmForm IsNot Nothing Then
+                If TypeOf mclsDll.gfrmForm Is FormFudaWin Then
+                    If (CType(mclsDll.gfrmForm, FormFudaWin).IsDisposed = False) Then
+                        CType(mclsDll.gfrmForm, FormFudaWin).pobjColor = gobjColor
+                        CType(mclsDll.gfrmForm, FormFudaWin).mColorChange()
+                    End If
+                End If
+            End If
+
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "gFudaColorChange", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 操作権フラグ変更処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaCtrlClaimChange()
+        Try
+            If mclsDll.gfrmForm IsNot Nothing Then
+                If TypeOf mclsDll.gfrmForm Is FormFudaWin Then
+                    If (CType(mclsDll.gfrmForm, FormFudaWin).IsDisposed = False) Then
+                        CType(mclsDll.gfrmForm, FormFudaWin).pblnCtrlClaim = mclsDll.gblnOprClaim
+                    End If
+                End If
+            End If
+
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "gFudaCtrlClaimChange", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 制御操作抑止
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub gFudaCtrlDsbl(ByVal blnCtrlDsbl As Boolean)
+        Try
+            '一括解除ボタンの操作可否判定
+            fncAllChkCtrlDsbl(blnCtrlDsbl)
+            '札掛けボタンの操作可否判定
+            fncAllBtnCtrlDsbl(blnCtrlDsbl)
+            
+            '抑止ありの場合は札掛けウィンドウ、確認ウィンドウを消去する
+            If blnCtrlDsbl Then
+                '表示中ウィンドウ消去
+                gFudaFormErase()
+                '設定ボタン無効
+                mclsDll.guctlBase.OpsCtlSftky.Button10.Enabled = False
+            Else
+                '設定ボタン有効判定
+                If mintChkCnt > 0 Then
+                    mclsDll.guctlBase.OpsCtlSftky.Button10.Enabled = True
+                Else
+                    mclsDll.guctlBase.OpsCtlSftky.Button10.Enabled = False
+                End If
+            End If
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "gFudaCtrlDsbl", 0, 0, 0, 0)
+        End Try
+    End Sub
+    '-> FUDAKZN add
+#End Region
+
+#Region "【ローカル関数】"
+    ''' <summary>
+    ''' 札掛け種別取得処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function fncFudaKind(ByVal intFudaNo As Integer) As String
+
+        Dim strFuda As String = ""
+
+        Try
+            Select Case intFudaNo
+                Case 1 To 15
+                    strFuda = "注意札"
+                Case 16 To 30
+                    strFuda = "操作禁止札"
+                Case 31
+                    strFuda = "送信ロック札"
+            End Select
+
+        Catch ex As Exception
+            gobjErrLog.Write(ex, "シスメンテ-", 0, 0, 0, 0)
+        End Try
+
+        Return (strFuda)
+
+    End Function
+
+	'<- FUDAKZN add
+    ''' <summary>
+    ''' 札掛けボタンと一括解除ボタンの初期化
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub initBtnAndChk()
+        Dim intY,intOffset As Integer
+		Dim btnWrk As OpsCtlButton
+		Dim chkWrk As CheckBox
+
+        Try
+            With tblFuda
+                .gsObjReDim(S_FUDAROWS_P + S_FUDAROWS_P)    '札掛けボタンと一括解除ボタンのエリア確保
+                For intY = 0 To S_FUDAROWS_P - 1
+                    intOffset = intY * 4 + 1
+                    '札掛けボタン
+                    .gclsObj(intY).gsSetObjCell(New OpsCtlButton, 1, intOffset, 1, 4)
+                    btnWrk = CType(.gclsObj(intY).gctlObj, OpsCtlButton)
+                    btnWrk.Visible = False
+                    btnWrk.Name = intY.ToString
+                    AddHandler btnWrk.Click, AddressOf Me.mFudaBtnClick
+
+                    '一括解除ボタン
+                    .gclsObj(intY+6).gsSetObjSize(New CheckBox, 8, intOffset, 1, 4, 44, 38, 28, 31)
+                    chkWrk = CType(.gclsObj(intY+6).gctlObj, CheckBox)
+                    chkWrk.Visible = False
+                    chkWrk.Checked = False
+                    AddHandler chkWrk.CheckedChanged, AddressOf Me.mChkBoxChg
+                Next
+            End With
+        Catch ex As Exception
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "initBtnAndChk", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 札掛け設定日付の文字列変換処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function fncSetTimToStr(ByVal setTim As T_TIME) As String
+        Dim strTime As String = ""
+        Try
+            If (setTim.ct_year_s <> 0) And (setTim.ct_mon_s <> 0) And (setTim.ct_day_s <> 0) Then
+                strTime = setTim.ct_year_s.ToString("0000") & "-" _
+                          & setTim.ct_mon_s.ToString("00") & "-" _
+                          & setTim.ct_day_s.ToString("00") & " " _
+                          & setTim.ct_hour_s.ToString("00") & ":" _
+                          & setTim.ct_min_s.ToString("00") & ":" _
+                          & setTim.ct_sec_s.ToString("00")
+            End If
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "fncSetTimToStr", 0, 0, 0, 0)
+        End Try
+
+        Return strTime
+    End Function
+    '-> FUDAKZN add
+#End Region
+
+#Region "【操作権判定】"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' 制御操作可否判定
+    ''' </summary>
+    ''' <remarks>
+    ''' *   概要       : 指定されたタグの制御操作可否を判定する
+    ''' *                 [判定項目]
+    ''' *                 ・運転モード(True：表示可能モード)
+    ''' *                 ・制御操作抑止(True：制御操作可能なウィンドウサイズ)
+    ''' *                 ・C/S操作権(True：自装置に操作権有り)
+    ''' *                 ・インターロック中の札掛け設定不可(True:指定タグの札掛け設定可能)
+    ''' *                 ・監視装置別操作権(True:指定タグの設備の操作権有り)
+    ''' *                 ・ユーザ認証機能(True:ログイン中ユーザの監視機能権限有り)
+    ''' *                 ・制御制限設定(True:指定タグの設備が監視対象である)
+    ''' </remarks>
+    Private Function fncFudaCtlRight(ByVal fudaIdx As Integer) As Boolean
+        Dim blnRight As Boolean               '制御操作可否
+
+        Try
+            '制御操作可否
+            blnRight = (fncScrrenDispMode() = True) And _
+                       (mclsDll.gblnWinSizeCtlEna = False) And _
+                       (fncGetCSRight(fudaIdx) = True) And _
+                       (fncGetItrLckRight(fudaIdx) = True) And _
+                       (CBool(mclsDll.gclsFuda.gclsOut.stuTag(fudaIdx).shtFctyOpe) = True) And _
+                       (fncGetUsrRight() = True) And _
+                       (CBool(mclsDll.gclsFuda.gclsOut.stuTag(fudaIdx).shtIsCtlLim) = True)
+
+        Catch ex As Exception
+            blnRight = False
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "fncFudaCtlRight", 0, 0, 0, 0)
+        End Try
+
+        Return blnRight
+    End Function
+
+    ''' <summary>
+    ''' 運転モード判定
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function fncScrrenDispMode() As Boolean
+        Dim Smod As Integer
+        Try
+            If gintSysKind = S_SYS_CLNT_P Then
+                'クライアントの場合、サーバの運転モードを取得
+                Smod = mclsDll.gclsSvrInf.gclsOut.shtSmod
+            Else
+                '自運転モードを取得
+                Smod = mclsDll.gclsOpsInf.gclsOut.shtSmod
+            End If
+
+            Select Case Smod
+                Case AU_MAS_P, AU_MASE_P, AU_SUB_P, AU_TST_P
+                    '表示可能モード
+                    Return True
+                Case Else
+                    '表示不可モード
+                    Return False
+            End Select
+
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "fncScrrenDispMode", 0, 0, 0, 0)
+            Return True
+        End Try
+    End Function
+
+    ''' <summary>
+    ''' ユーザ認証機能操作権取得
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function fncGetUsrRight() As Boolean
+        Dim blnUsrRight As Boolean = True   '操作権
+
+        Try
+            If ((mclsDll.gclsSysCnf.AFsys().opt3_i And AF_OPT3_LOGON_P) <> 0) Then
+                If ((mclsDll.gintUsrLvl And USRLVL_WATCH) <> 0) Then
+                    'ユーザ認証機能オプションが実装で
+                    'ログイン中ユーザの設定が監視機能なしの場合は操作権なし
+                    blnUsrRight = False
+                End If
+            End If
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "fncGetUsrRight", 0, 0, 0, 0)
+        End Try
+
+        Return blnUsrRight
+    End Function
+
+    ''' <summary>
+    ''' インターロック中の札掛け設定不可操作権取得
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function fncGetItrLckRight(ByVal fudaIdx As Integer) As Boolean
+        Dim blnItrLckRight As Boolean = True   '操作権
+
+        Try
+            If (mclsDll.gclsSysCnf.AFsys().plant_i(2) <> 0) Then
+                'インターロック中タグの札掛け設定が禁止の場合
+                If (mclsDll.gclsFuda.gclsOut.stuTag(fudaIdx).shtItrLckEna = 1) Then
+                    '指定タグがインターロック中の場合
+                    blnItrLckRight = False      '操作権なし
+                Else
+                    '指定タグが非インターロック中の場合
+                    blnItrLckRight = True       '操作権あり
+                End If
+            Else
+                'インターロック中タグの札掛け設定が許可の場合
+                blnItrLckRight = True           '操作権あり
+            End If
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "fncGetItrLckRight", 0, 0, 0, 0)
+        End Try
+
+        Return blnItrLckRight
+    End Function
+
+    ''' <summary>
+    ''' C/S操作権取得
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Function fncGetCSRight(ByVal fudaIdx As Integer) As Boolean
+        Dim blnCSRight As Boolean = True   '操作権
+        Dim shtTagKind, shtStNum, shtKeikiNum As Short
+
+        Try
+            'タグ種別、ステーション番号、計器番号を取得
+            shtTagKind = mclsDll.gclsFuda.gclsOut.stuTag(fudaIdx).shtKind
+            shtStNum = mclsDll.gclsFuda.gclsOut.stuTag(fudaIdx).shtStnNo
+            shtKeikiNum = mclsDll.gclsFuda.gclsOut.stuTag(fudaIdx).shtKeiNo
+
+            If (mClsSys.gclsClaim.inf_s = JF_ORI_OPS_P) Then            ' 操作権オプション有りの場合
+                If (shtTagKind = SYS_KIKI_P) Then                       ' 機器タグの場合
+                    If ((shtStNum = mClsSys.gclsClaim.stno_s) And _
+                        (shtKeikiNum = mClsSys.gclsClaim.id_s)) Then    ' 操作権タグの場合
+                        blnCSRight = True                               ' 制御可
+                    Else                                                ' 操作権タグ以外の場合
+                        blnCSRight = mclsDll.gblnOprClaim               ' 制御可否＝C/S操作権
+                    End If
+                Else                                                    ' 機器タグの場合
+                    blnCSRight = mclsDll.gblnOprClaim                   ' 制御可否＝C/S操作権
+                End If
+            Else                                                        ' 操作権オプション無しの場合
+                blnCSRight = True                                       ' 制御可
+            End If
+
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "fncGetCSRight", 0, 0, 0, 0)
+        End Try
+
+        Return blnCSRight
+    End Function
+    '-> FUDAKZN add
+#End Region
+
+#Region "【その他イベント処理】"
+    '<- FUDAKZN add
+    ''' <summary>
+    ''' メッセージ表示要求
+    ''' </summary>
+    ''' <param name="intWinType">表示要求種別</param>
+    ''' <param name="strMsg">メッセージ内容</param>
+    ''' <remarks>
+    ''' *   概要        : 
+    ''' *       （１）画面管理へメッセージ表示要求イベントを発行する
+    ''' *   引数        : 
+    ''' *     intWinType
+    ''' *     # 1 : 消去
+    ''' *     # 2 : 情報アイコン表示
+    ''' *     # 3 : 注意アイコン表示
+    ''' *   修正履歴    : 
+    ''' *
+    ''' </remarks>
+    Private Sub fncFudaMsgDisp(ByVal intWinType As Integer, ByVal strMsg As String)
+        Try
+            'メッセージ表示要求
+            RaiseEvent eMsgDisp(intWinType, strMsg)
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "fncFudaMsgDisp", 0, 0, 0, 0)
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' ファンクションキー押下時処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub fncFudaFormKeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+
+        Try
+            mclsDll.guctlBase.gsSftkyPerformClick(e)
+
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "fncFudaFormKeyDown", 0, 0, 0, 0)
+        End Try
+
+    End Sub
+
+    ''' <summary>
+    ''' クラス開放処理
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub UctlFuda_Disposed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Disposed
+        Dim intCnt As Integer
+
+        Try
+            If mintFdkznOpt Then
+                '表示中ウィンドウ消去
+                gFudaFormErase()
+                'サービス停止
+                gFudaStopSrvMW()
+
+                '札掛け要求関連
+                If mclsReqFudaSet IsNot Nothing Then Call mclsReqFudaSet.sDispose()
+                mclsReqFudaSet = Nothing                '(ＭＷＳ)札掛設定情報要求クラス
+                For intCnt = 0 To S_FUDAROWS_P -1
+                    mclsReqFudaInf(intCnt) = Nothing    '(要求)札掛け情報
+                    mclsOldFudaInf(intCnt) = Nothing    '(以前)札掛け情報
+                Next
+
+                '監視装置別操作権関連
+                If pclsGetOpeFcty IsNot Nothing Then Call pclsGetOpeFcty.sDispose()
+                pclsGetOpeFcty = Nothing                '指定タグ監視装置別操作権取得クラス
+                pclsGetOpeFctyInData = Nothing          '指定タグ監視装置別操作権取得クラス入力情報
+                pclsGetOpeFctyOutData = Nothing         '指定タグ監視装置別操作権取得クラス出力情報
+
+                'C/S操作権関連
+                If mClsSys IsNot Nothing Then Call mClsSys.sDispose()
+                mClsSys = Nothing
+                If mclsClaimInf IsNot Nothing Then
+                    RemoveHandler mclsClaimInf.eReadComplet, AddressOf mGetMwsClaim
+                    Call mclsClaimInf.sDispose()
+                End If
+                mclsClaimInf = Nothing
+                If mclsClaimChk IsNot Nothing Then
+                    RemoveHandler mclsClaimChk.eReadComplet, AddressOf Me.mClaimChkFudaReq
+                    Call mclsClaimChk.sDispose()
+                End If
+                mclsClaimChk = Nothing
+
+                '札掛け情報更新関連
+                If pclsUpdFudaRAMW IsNot Nothing Then
+                    RemoveHandler pclsUpdFudaRAMW.eReadComplet, AddressOf Me.mGetMwsUpdFuda
+                    Call pclsUpdFudaRAMW.sDispose()
+                End If
+                pclsUpdFudaRAMW = Nothing
+                pclsUpdFudaInData = Nothing
+                pclsUpdFudaOutData = Nothing
+            End If
+
+        Catch ex As Exception
+            '例外処理
+            Call gobjErrLog.Write(ex, "シスメンテ-" & Me.Name & "." & "UctlFuda_Disposed", 0, 0, 0, 0)
+        End Try
+    End Sub
+    '-> FUDAKZN add
+#End Region
+
+End Class

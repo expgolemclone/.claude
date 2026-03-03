@@ -1,0 +1,348 @@
+src/NX_MW/opsnexus/init.c:554: tokh_cp=strtok(buf_cp, " ,\t\n");			//要素名の取り出し
+src/NX_MW/opsnexus/init.c:558: tokv_cp=strtok(NULL , " ,\t\n");			//要素値の取り出し
+src/NX_MW/opsnexus/init.c:877: tokh_cp=strtok(buf_cp, " ,\t\n");			//ﾊﾝﾄﾞﾙ番号の取り出し
+src/NX_MW/opsnexus/init.c:884: tokt_cp=strtok(NULL, " ,\t\n");				//ﾀｲﾌﾟの取り出し
+src/NX_MW/opsnexus/init.c:889: tokp_cp[cnti_ui]=strtok(NULL, " ,\t\n");//ﾊﾟﾗﾒｰﾀ1取り出し
+src/NX_MW/opsnexus/init.c:1044: tokgrp_cp=strtok(buf_cp, " ,\t\n");			//選択受信ｸﾞﾙｰﾌﾟ番号の取り出し
+src/NX_MW/opsnexus/init.c:1059: toktcd_cp=strtok(NULL, " ,\t\n");
+src/NX_MW/opsnexus/init.c:1141: tokbuf_cp=strtok(buf_cp, " ,\t\n");				//機能ﾓｼﾞｭｰﾙ名称の取り出し
+src/NX_MW/opsnexus/init.c:1150: tokbuf_cp=strtok(NULL, " ,\t\n");				//機能ﾓｼﾞｭｰﾙ番号の取り出し
+src/NX_MW/opsnexus/init.c:1156: tokbuf_cp=strtok(NULL, " ,\t\n");				//ｳｫｯﾁﾄﾞｯｸﾀｲﾑｱｳﾄ時間の取り出し
+src/NX_MW/opsnexus/init.c:1162: tokbuf_cp=strtok(NULL, " ,\t\n");				//業務状態監視する場合のﾃﾞｰﾀﾌｨｰﾙﾄﾞ番号と業務ID(TID)の取り出し
+src/NX_MW/opsnexus/init.c:1179: tokbuf_cp=strtok(NULL, " ,\t\n");
+src/NX_MW/opsnexus/init.c:1297: tokh_cp=strtok(buf_cp, " ,\t\n");			//要素名の取り出し
+src/NX_MW/opsnexus/init.c:1300: tokv_cp=strtok(NULL , " ,\t\n");			//要素値の取り出し
+src/NX_MW/opsnexus/init.c:1733: tokg_cp=strtok(buf_cp, " ,\t\n");			//ｸﾞﾙｰﾌﾟ番号の取り出し
+src/NX_MW/opsnexus/init.c:1745: tokb_cp=strtok(NULL, " ,\t\n");
+src/NX_MW/opsnexus/init.c:1749: tokb_cp=strtok(NULL, " ,\t\n");
+src/NX_MW/opsnexus/init.c:1753: tokb_cp=strtok(NULL, " ,\t\n");
+src/NX_MW/opsnexus/init.c:1812: tokb_cp=strtok(buf_cp, " ,\t\n");
+src/NX_MW/opsnexus/init.c:1816: tokb_cp=strtok(NULL, " ,\t\n");
+src/NX_MW/opsnexus/init.c:1820: tokb_cp=strtok(NULL, " ,\t\n");
+src/ens/LEGRPH_DLL/Legrph.c:776: FLensP_c[0] = strtok(buf_c, " ,\t\n");
+src/ens/LEGRPH_DLL/Legrph.c:781: FLensP_c[i+1]=strtok(NULL, " ,\t\n");
+src/ens/LeGmsDraw_Dll/LeGmsDraw.c:3211: FLensP_c[0] = strtok(buf_c, " ,\t\n");
+src/ens/LeGmsDraw_Dll/LeGmsDraw.c:3216: FLensP_c[i+1]=strtok(NULL, " ,\t\n");
+src/his/dobnkcom/fl_bnkc01.c:138: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:139: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:161: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:162: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:184: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:185: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:207: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:208: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:232: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:233: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:258: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:259: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:285: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:286: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:311: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:312: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:334: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:335: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:357: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:358: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:380: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:381: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:403: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:404: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:426: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:427: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:449: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:450: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:472: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:473: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:495: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:496: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcom/fl_bnkc01.c:518: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcom/fl_bnkc01.c:519: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:138: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:139: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:161: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:162: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:184: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:185: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:207: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:208: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:232: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:233: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:258: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:259: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:285: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:286: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:311: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:312: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:334: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:335: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:357: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:358: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:380: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:381: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:403: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:404: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:426: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:427: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:449: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:450: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:472: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:473: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:495: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:496: char_p[1] = strtok(NULL, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:518: char_p[0] = strtok(readbuf_c, " ,");
+src/his/dobnkcomt/fl_bnkc01.c:519: char_p[1] = strtok(NULL, " ,");
+src/his/dohstg/hstg120.c:101: p_c[0]=strtok(z_buf_c, " ,") ;      /*  ﾄｰｸﾝ毎に文字列を作成      */
+src/his/dohstg/hstg120.c:104: p_c[i+1]=strtok(NULL, " ,") ;   /*    ﾊﾟﾗﾒｰﾀ文字の取り出し    */
+src/his/domdcl/mdcl160.c:127: p_c[0]=strtok(buf_c, " ,") ;        /* トークン毎に文字列を作成   */
+src/his/domdcl/mdcl160.c:130: p_c[i+1] = strtok(NULL, " ,");  /*   パラメータ文字取り出し   */
+src/lib/initdb/ini_GS_color.c:83: p_c[cnt_s] = strtok(buf_c, " ,"); /*                                  */
+src/lib/initdb/ini_GS_color.c:86: p_c[cnt_s] = strtok(NULL, " ,");  /*                                  */
+src/lib/initdb/ini_GS_hcpalt.c:83: p_c[cnt_s] = strtok(buf_c, " ,"); /*                                  */
+src/lib/initdb/ini_GS_hcpalt.c:86: p_c[cnt_s] = strtok(NULL, " ,");  /*                                  */
+src/lnk/I-NET/jorecs.c:2214: p_c[0]=strtok(z_buf_c, " ,") ;              //  ﾄｰｸﾝ毎に文字列を作成
+src/lnk/I-NET/jorecs.c:2215: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,\n") ;
+src/lnk/I-NET/jorecs.c:2216: if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,\n") ;
+src/lnk/I-NET/jorecs.c:2217: if (p_c[2] != NULL) p_c[3]=strtok(NULL, " ,\n") ;
+src/lnk/I-NET/jorecs.c:2323: p_c[0]=strtok(z_buf_c, " ,") ;              //  ﾄｰｸﾝ毎に文字列を作成
+src/lnk/I-NET/jorecs.c:2324: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,\n") ;
+src/lnk/I-NET/jorecs.c:2396: p_c[0]=strtok(z_buf_c, " ,") ;              //  ﾄｰｸﾝ毎に文字列を作成
+src/lnk/I-NET/jorecs.c:2397: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,\n") ;
+src/lnk/johubsts/johubsts.c:676: p_c[0] = strtok(z_buf_c, " ,");                     // ﾄｰｸﾝ毎に文字列を作成
+src/lnk/johubsts/johubsts.c:678: p_c[1] = strtok(NULL, " ,");
+src/lnk/johubsts/johubsts.c:823: p_c[0] = strtok(z_buf_c, " ,");                     // ﾄｰｸﾝ毎に文字列を作成
+src/lnk/johubsts/johubsts.c:825: p_c[1] = strtok(NULL, " ,");
+src/lnk/jorepfl/jorepfl.c:1119: p_c[0]=strtok(buf_c, " ,\t\n") ;                    //トークン毎に文字列を作成
+src/lnk/jorepfl/jorepfl.c:1121: p_c[1]=strtok(NULL, " ,\t\n");
+src/lnk/jorepfl/jorepfl.c:1187: p_c[i+1]=strtok(NULL, " ,") ;
+src/mail/hoemls/hoe_rcv.c:326: reply_c = strtok( replybuf_c, " " );
+src/mail/hoemls/hoe_rcv.c:327: mcnt_c  = strtok( NULL, " " );    //
+src/mail/hoemls/hoe_rcv.c:329: msize_c = strtok( NULL, " \n\r" );//
+src/mail/hoemls/hoe_rcv.c:389: reply_c = strtok( replybuf_c, " " );
+src/mail/hoemls/hoe_rcv.c:390: no_c    = strtok( NULL, " " );  //
+src/mail/hoemls/hoe_rcv.c:391: msize_c = strtok( NULL, "\n\r" );
+src/mail/hoemls/hoe_rcv_ssl.c:308: reply_c = strtok( replybuf_c, " " );
+src/mail/hoemls/hoe_rcv_ssl.c:309: mcnt_c  = strtok( NULL, " " );    //
+src/mail/hoemls/hoe_rcv_ssl.c:311: msize_c = strtok( NULL, " \n\r" );//
+src/mail/hoemls/hoe_rcv_ssl.c:371: reply_c = strtok( replybuf_c, " " );
+src/mail/hoemls/hoe_rcv_ssl.c:372: no_c    = strtok( NULL, " " );  //
+src/mail/hoemls/hoe_rcv_ssl.c:373: msize_c = strtok( NULL, "\n\r" );
+src/mail/hoemls/hoe_rcv_ssl.c:953: subject_p = strtok( reply_p, "\n\r" );
+src/mail/hoemls/hoe_rcv_ssl.c:1189: subject_p = strtok( reply_p, "\n\r" );
+src/mail/hoemls/hoe_sub.c:1876: subject_p = strtok( reply_p, "\n\r" );
+src/mail/hoemls/hoe_sub.c:2394: subject_p = strtok( reply_p, "\n\r" );
+src/msg/coalm/coalm100.c:124: p_c[ 0 ] = strtok ( buf_c , " ," ) ; /* ﾄｰｸﾝ毎に文字列を作成            */
+src/msg/coalm/coalm100.c:127: p_c[ i+1 ] = strtok( NULL , " ," ) ; /* ﾊﾟﾗﾒｰﾀ文字の取り出し        */
+src/sys/aoalm/aoalm.c:2939: token_c[0]=strtok(buf_cp, " ,") ;           //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aoalm/aoalm.c:2942: token_c[j+1]=strtok(NULL, " ,") ;   //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aoalm/aoalm.c:2991: token_c[0]=strtok(buf_cp, " ,") ;           //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aoalm/aoalm.c:2994: token_c[j+1]=strtok(NULL, " ,") ;   //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aomngr/aomngr.c:5253: p_c[0]=strtok(buf_c, " ,") ;                //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aomngr/aomngr.c:5256: p_c[i+1]=strtok(NULL, " ,") ;       //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:694: p_c[0] = strtok(z_buf_c," ,") ;             //ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:697: if (p_c[i] != NULL) p_c[i+1] = strtok(NULL," ,") ;
+src/sys/aosysi/aosysi.c:892: p_c[0]=strtok(z_buf_c, " ,") ;                  //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:895: p_c[i+1]=strtok(NULL, " ,") ;               //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:1920: p_c[0]=strtok(z_buf_c, " ,") ;            //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:1923: p_c[i+1]=strtok(NULL, " ,") ;         //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:2095: p_c[0]=strtok(z_buf_c, " ,") ;                         //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:2098: p_c[i+1]=strtok(NULL, " ,") ;                      //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:2100: if (p_c[17] != NULL) p_c[18]=strtok(NULL,"") ;         //
+src/sys/aosysi/aosysi.c:2849: p_c[0]=strtok(z_buf_c, " ,") ;                   //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:2852: p_c[i+1]=strtok(NULL, " ,") ;                //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:2967: p_c[0]=strtok(z_buf_c, " ,") ;                    //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:2970: p_c[i+1]=strtok(NULL, " ,") ;                 //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:3800: p_c[0]=strtok(z_clntbuf_c, " ,") ;            //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:3803: p_c[i+1]=strtok(NULL, " ,") ;         //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:3913: p_c[0]=strtok(z_buf_c, " ,") ;              //ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:3914: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:3927: p_c[2]=strtok(NULL, " ,") ;           //
+src/sys/aosysi/aosysi.c:3928: if (p_c[2] != NULL) p_c[3]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:3929: if (p_c[3] != NULL) p_c[4]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:3930: if (p_c[4] != NULL) p_c[5]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:3931: if (p_c[5] != NULL) p_c[6]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:3932: if (p_c[6] != NULL) p_c[7]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:3933: if (p_c[7] != NULL) p_c[8]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:3934: if (p_c[8] != NULL) p_c[9]=strtok(NULL, " ,") ; // MonoPrint mod
+src/sys/aosysi/aosysi.c:3991: p_c[2]=strtok(NULL, "") ;             //
+src/sys/aosysi/aosysi.c:4006: p_c[2]=strtok(NULL, "") ;             //
+src/sys/aosysi/aosysi.c:4019: p_c[2]=strtok(NULL, " ,") ;           //
+src/sys/aosysi/aosysi.c:4020: if (p_c[2] != NULL) p_c[3]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:4021: if (p_c[3] != NULL) p_c[4]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:4023: if (p_c[4] != NULL) p_c[5]=strtok(NULL, " ,") ;          /* TOKAIKAMI mod */
+src/sys/aosysi/aosysi.c:4125: p_c[0]=strtok(z_buf_c, " ,") ;            //ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:4128: p_c[i+1]=strtok(NULL, " ,") ;         //ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:4138: p_c[0]=strtok(z_buf_c, " ,") ;            //ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:4141: p_c[i+1]=strtok(NULL, " ,") ;         //ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:4151: p_c[0]=strtok(z_buf_c, " ,") ;            //ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:4154: p_c[i+1]=strtok(NULL, " ,") ;         //ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:4165: p_c[0]=strtok(z_buf_c," ,");            //ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:4168: p_c[i+1] = strtok(NULL," ,");   //ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:4236: p_c[0]=strtok(z_buf_c, " ,") ;          //ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:4239: p_c[i+1]=strtok(NULL, " ,") ;       //ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:4333: p_c[0]=strtok(z_buf_c, " ,") ;              //      ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:4335: p_c[1]=strtok(NULL, " ,") ;               //
+src/sys/aosysi/aosysi.c:4472: p_c[0]=strtok(z_buf_c, " ,") ;             //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:4473: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:4474: if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:4546: p_c[0]=strtok(z_buf_c, " ,") ;              //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:4549: p_c[i+1]=strtok(NULL, " ,") ;           //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:4629: p_c[0]=strtok(z_buf_c, " ,") ;              //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:4632: p_c[i+1]=strtok(NULL, " ,") ;           //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:5029: p_c[0]=strtok(z_buf_c, " ,") ;             //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:5030: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:5031: if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:5032: if (p_c[2] != NULL) p_c[3]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:5106: p_c[0]=strtok(z_buf_c, " ,") ;      //      ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:5108: p_c[1]=strtok(NULL, " ,") ;       //
+src/sys/aosysi/aosysi.c:5194: p_c[0]=strtok(z_buf_c, " ,") ;             //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:5195: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:5276: p_c[0]=strtok(z_buf_c, " ,") ;                  //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:5277: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:5278: if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:5340: p_c[0]=strtok(z_buf_c, " ,") ;                  //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:5341: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:5342: if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,") ;
+src/sys/aosysi/aosysi.c:5394: p_c[0]=strtok(name_c, ".,") ;                   //  帳票表示名称取得
+src/sys/aosysi/aosysi.c:5395: p_c[1]=strtok(NULL, "") ;                       //  拡張子名取得
+src/sys/aosysi/aosysi.c:5401: p_c[0]=strtok(name_c, ".,") ;                   //  帳票印字名称取得
+src/sys/aosysi/aosysi.c:5402: p_c[1]=strtok(NULL, "") ;                       //  拡張子名取得
+src/sys/aosysi/aosysi.c:5408: p_c[0]=strtok(name_c, ".,") ;                   //  帳票保存名称取得
+src/sys/aosysi/aosysi.c:5409: p_c[1]=strtok(NULL, "") ;                       //  拡張子名取得
+src/sys/aosysi/aosysi.c:5415: p_c[0]=strtok(name_c, ".,") ;                   //  帳票定義名称取得
+src/sys/aosysi/aosysi.c:5416: p_c[1]=strtok(NULL, "") ;                       //  拡張子名取得
+src/sys/aosysi/aosysi.c:5422: p_c[0]=strtok(name_c, ".,") ;                   //  帳票定義名称取得
+src/sys/aosysi/aosysi.c:5423: p_c[1]=strtok(NULL, "") ;                       //  拡張子名取得
+src/sys/aosysi/aosysi.c:5429: p_c[0]=strtok(name_c, ".,") ;                   //  帳票定義名称取得
+src/sys/aosysi/aosysi.c:5430: p_c[1]=strtok(NULL, "") ;                       //  拡張子名取得
+src/sys/aosysi/aosysi.c:5436: p_c[0]=strtok(name_c, ".,") ;                   //  帳票定義名称取得
+src/sys/aosysi/aosysi.c:5437: p_c[1]=strtok(NULL, "") ;                       //  拡張子名取得
+src/sys/aosysi/aosysi.c:5505: p_c[0]=strtok(z_buf_c, " ,") ;      //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:5508: p_c[j+1]=strtok(NULL, " ,") ;   //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:5604: p0_c=strtok(buf_c, " ,");                   //トークン毎に文字列を作成
+src/sys/aosysi/aosysi.c:5605: if (p0_c != NULL) p1_c=strtok(NULL, " ,");  //パラメータ文字の取り出し
+src/sys/aosysi/aosysi.c:5606: if (p1_c != NULL) p2_c=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:5680: p_c[0]=strtok(z_buf_c," ,") ;          //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:5683: p_c[i+1] = strtok(NULL, " ,") ;//   ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:5760: p_c[0]=strtok(z_buf_c, " ,") ;              //      ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:5762: p_c[1]=strtok(NULL, " ,") ;               //
+src/sys/aosysi/aosysi.c:5845: p_c[0]=strtok(z_buf_c, " ,") ;                  //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:5848: p_c[i+1]=strtok(NULL, " ,") ;               //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:5923: p_c[0]=strtok(z_buf_c, " ,") ;      //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:5926: p_c[j+1]=strtok(NULL, " ,") ;   //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:6007: p_c[0]=strtok(z_buf_c, " ,") ;              //      ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:6009: p_c[1]=strtok(NULL, " ,") ;               //
+src/sys/aosysi/aosysi.c:6080: p_c[0]=strtok(z_buf_c, " ,") ;                  //ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:6081: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6179: p_c[0]=strtok(z_buf_c, " ,") ;                  //ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:6180: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6294: p_c[0]=strtok(buf_c, " ,") ;                    //トークン毎に文字列を作成
+src/sys/aosysi/aosysi.c:6295: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6303: p_c[0]=strtok(buf_c, " ,") ;                    //トークン毎に文字列を作成
+src/sys/aosysi/aosysi.c:6304: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6312: p_c[0]=strtok(buf_c, " ,") ;                    //トークン毎に文字列を作成
+src/sys/aosysi/aosysi.c:6313: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6321: p_c[0]=strtok(buf_c, " ,") ;                    //トークン毎に文字列を作成
+src/sys/aosysi/aosysi.c:6322: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6330: p_c[0]=strtok(buf_c, " ,") ;                    //トークン毎に文字列を作成
+src/sys/aosysi/aosysi.c:6331: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6332: if (p_c[0] != NULL) p_c[2]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6333: if (p_c[0] != NULL) p_c[3]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6349: p_c[0]=strtok(buf_c, " ,") ;                    //トークン毎に文字列を作成
+src/sys/aosysi/aosysi.c:6350: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6351: if (p_c[0] != NULL) p_c[2]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6352: if (p_c[0] != NULL) p_c[3]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6368: p_c[0]=strtok(buf_c, " ,") ;                    //トークン毎に文字列を作成
+src/sys/aosysi/aosysi.c:6369: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6378: p_c[0]=strtok(buf_c, " ,") ;                    //トークン毎に文字列を作成
+src/sys/aosysi/aosysi.c:6379: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6447: p_c[0]=strtok(z_buf_c, " \t,") ;                  //ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:6448: if (p_c[0] != NULL) p_c[1]=strtok(NULL, "\t,");
+src/sys/aosysi/aosysi.c:6543: p_c[0]=strtok(z_buf_c, " \t,") ;                //  ﾄｰｸﾝ毎に文字列を作成
+src/sys/aosysi/aosysi.c:6546: p_c[i+1]=strtok(NULL, "\t,") ;              //    ﾊﾟﾗﾒｰﾀ文字の取り出し
+src/sys/aosysi/aosysi.c:6699: p_c[0]=strtok(buf_c, " ,") ;                    //トークン毎に文字列を作成
+src/sys/aosysi/aosysi.c:6700: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6711: p_c[0]=strtok(buf_c, " ,") ;                    //トークン毎に文字列を作成
+src/sys/aosysi/aosysi.c:6712: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6713: if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6714: if (p_c[2] != NULL) p_c[3]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6715: if (p_c[3] != NULL) p_c[4]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6716: if (p_c[4] != NULL) p_c[5]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6717: if (p_c[5] != NULL) p_c[6]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6718: if (p_c[6] != NULL) p_c[7]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6719: if (p_c[7] != NULL) p_c[8]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6720: if (p_c[8] != NULL) p_c[9]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6721: if (p_c[9] != NULL) p_c[10]=strtok(NULL, " ,");
+src/sys/aosysi/aosysi.c:6817: p_c[0]=strtok(buf_c, " ,") ;                      //トークン毎に文字列を作成
+src/sys/aosysi/aosysi.c:6818: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");    //配列インデックス（設備ID）
+src/sys/aosysi/aosysi.c:6819: if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,");    //監視区分
+src/sys/aosysi/aosysi.c:6895: p_c[0]=strtok(buf_c, " ,") ;                      //トークン毎に文字列を作成
+src/sys/aosysi/aosysi.c:6896: if (p_c[0] != NULL) p_c[1]=strtok(NULL, " ,");    //配列インデックス（画面No）
+src/sys/aosysi/aosysi.c:6897: if (p_c[1] != NULL) p_c[2]=strtok(NULL, " ,");    //監視区分
+src/sys/aosysi/aosysi.c:6983: p_c[0] = strtok(buf_c, " \t\n");
+src/sys/aosysi/aosysi.c:6986: p_c[i + 1] = strtok(NULL, " \t\n");
+src/sys/aosysi/aosysi.c:7108: p_c[0] = strtok(buf_c, " \t\n");                    // 情報名の取得
+src/sys/aosysi/aosysi.c:7113: p_c[i + 1] = strtok(NULL, " \t\n");
+src/sys/aosysi/aosysi.c:8995: exe_c = strtok(tmp_c, " ,") ;         //実行名取得
+src/sys/aosysi/aosysi.c:8997: wrk_c=strtok(NULL, " ,") ;          //
+src/tool/#retro/ops9kgra1st/graph.cpp:549: p_cp[i] = strtok(str1, " ");
+src/tool/#retro/ops9kgra1st/graph.cpp:1045: p_cp[i] = strtok(str1, " \t");
+src/tool/TF_subjectset/TF_subjectset.c:97: p_c[0]=strtok(buf_c, " \t,") ;					// トークン毎に文字列を作成
+src/tool/TF_subjectset/TF_subjectset.c:98: if (p_c[0] != NULL) p_c[1]=strtok(NULL, "\t,");	//
+src/tool/TF_valinfset/TF_valinfset.c:123: p_c[0]=strtok(buf_c, " \t,") ;					// トークン毎に文字列を作成
+src/tool/TF_valinfset/TF_valinfset.c:125: if (p_c[i] != NULL) p_c[i+1]=strtok(NULL, "\t,");
+src/tool/dll/ShQue/ShQue.c:191: Token_p = strtok(FString_c, " ");				//タスク名称を取得する
+src/tool/dll/ShQue/ShQue.c:192: Token_p = strtok(NULL, " ");
+src/tool/dll/ShQue/ShQue.c:194: while((Token_p = strtok(NULL, " ")) != (int)NULL){
+src/tool/dll/erlgdsp/erlgdsp.c:131: Token_p = strtok(FString_c, " ");				//タスク名称を取得する
+src/tool/dll/erlgdsp/erlgdsp.c:132: Token_p = strtok(NULL, " ");
+src/tool/dll/erlgdsp/erlgdsp.c:134: while((Token_p = strtok(NULL, " ")) != (int)NULL){
+src/tool/dll/erlgdsp/erlgdsp.c:216: Token_p = strtok(FString_c, " ");				//タスク名称を取得する
+src/tool/dll/erlgdsp/erlgdsp.c:217: Token_p = strtok(NULL, " ");
+src/tool/dll/erlgdsp/erlgdsp.c:219: while((Token_p = strtok(NULL, " ")) != (int)NULL){
+src/tool/enq/enq.c:129: func_c = strtok(argv[S_FUNC],":");
+src/tool/enq/enq.c:159: }while ((func_c = strtok(NULL,":")) != NULL);
+src/tool/hstatst/hstatst_9000.c:1468: //exe_c = strtok(tmp_c, " ,") ;                 /* 実行名取得                 */
+src/tool/hstatst/hstatst_9000.c:1470: //  wrk_c=strtok(NULL, " ,") ;                  /*                            */
+src/tool/hstmove/f_csvread.c:54: p1_c = strtok(buf_c, ",,") ;
+src/tool/hstmove/f_csvread.c:55: if (p1_c != NULL) p2_c = strtok(NULL, ",,") ;
+src/tool/hstsav/hstsav.c:764: bufptr_c = strtok(bufptr_c, "/");
+src/tool/hstsav/hstsav.c:775: bufptr_c = strtok(NULL, "/");
+src/tool/hstsav/hstsav.c:785: bufptr_c = strtok(NULL, "/");
+src/tool/hstsav/hstsav.c:796: bufptr_c = strtok( bufptr_c, " " );
+src/tool/hstsav/hstsav.c:804: bufptr_c = strtok( NULL, " " );
+src/tool/hstsav/hstsav.c:810: bufptr_c = strtok( NULL, " " );
+src/tool/hstsav/hstsav.c:816: bufptr_c = strtok( NULL, " " );
+src/tool/hstsav/hstsav.c:823: bufptr_c = strtok( NULL, " " );
+src/tool/hstsav/hstsav.c:830: bufptr_c = strtok( NULL, " " );
+src/tool/hstsav/hstsav.c:930: bufptr_c = strtok( bufptr_c, " " );
+src/tool/hstsav/hstsav.c:942: bufptr_c = strtok( NULL, " " );
+src/tool/mssctl/mssctl.c:123: str_cp = strtok(buf_c, " ");
+src/tool/mssctl/mssctl.c:130: str_cp = strtok(NULL, " ");
+src/tool/mssctl/mssctl_cmdsend.c:164: str_cp = strtok(buf_c, " ");
+src/tool/mssctl/mssctl_cmdsend.c:181: str_cp = strtok(NULL, " ");
+src/tool/mssctl/mssctl_cmdsend.c:209: str_cp = strtok(buf_c, " ");
+src/tool/mssctl/mssctl_cmdsend.c:225: str_cp = strtok(NULL, " ");
+src/tool/mssctl/mssctl_cmdsend.c:254: str_cp = strtok(buf_c, " ");
+src/tool/mssctl/mssctl_cmdsend.c:276: str_cp = strtok(NULL, " ");
+src/tool/mssctl/mssctl_db_itvnm.c:53: str_cp = strtok(buf_c, " ");
+src/tool/mssctl/mssctl_db_itvnm.c:64: str_cp = strtok(NULL, " ");
+src/tool/mssctl/mssctl_db_mscrn.c:66: str_cp = strtok(buf_c, " ");
+src/tool/mssctl/mssctl_db_mscrn.c:73: str_cp = strtok(NULL, " ");
+src/tool/mssctl2/mssctl2.c:123: str_cp = strtok(buf_c, " ");
+src/tool/mssctl2/mssctl2.c:130: str_cp = strtok(NULL, " ");
+src/tool/mssctl2/mssctl2_db_itvnm.c:53: str_cp = strtok(buf_c, " ");
+src/tool/mssctl2/mssctl2_db_itvnm.c:64: str_cp = strtok(NULL, " ");
+src/tool/mssctl2/mssctl2_db_mscrn.c:66: str_cp = strtok(buf_c, " ");
+src/tool/mssctl2/mssctl2_db_mscrn.c:73: str_cp = strtok(NULL, " ");
+src/tool/trdmov/trdmov.c:220: y_t_cp[0] = strtok(y_buf_c, " ,\t\n");						//トークン毎に文字列を作成
+src/tool/trdmov/trdmov.c:223: y_t_cp[y_cnt_i + 1] = strtok(NULL, " ,\t\n");
+src/tool/trdmov/trdmov.c:409: y_t_cp[0] = strtok(y_buf_c, " ,\t\n");						//トークン毎に文字列を作成
+src/tool/trdmov/trdmov.c:412: y_t_cp[y_cnt_i + 1] = strtok(NULL, " ,\t\n");
+src/tool/trdmov/trdmov.c:609: y_t_cp[0] = strtok(y_buf_c, " ,\t\n");						//トークン毎に文字列を作成
+src/tool/trdmov/trdmov.c:612: y_t_cp[y_cnt_i + 1] = strtok(NULL, " ,\t\n");
+src/trd/botrdls/botrdls.c:2636: p_c[0]=strtok(buf_c, " ,");
+src/trd/botrdls/botrdls.c:2640: p_c[i+1]=strtok(NULL, " ,");
+src/utly/lemmeq/lemmeq100.cpp:307: token_c[0]=strtok(buf_c, " \n") ;           // 識別子
+src/utly/lemmeq/lemmeq100.cpp:308: token_c[1]=strtok(NULL, " \n") ;            // 置換先文字列
+
+Total: 346 hits in 38 files

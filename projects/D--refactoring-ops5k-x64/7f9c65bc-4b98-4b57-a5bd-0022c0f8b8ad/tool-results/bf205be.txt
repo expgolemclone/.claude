@@ -1,0 +1,3354 @@
+Unstaged changes after reset:
+M	.hooks/pre-commit
+M	.hooks/pre_commit_denylist.py
+M	.hooks/pre_commit_encoding.py
+D	.hooks/shift_jis_to_cp932.py
+M	Build/Release/all_cmp/all_cmp.sln
+M	Build/Release/all_cmp/all_tool.sln
+M	Build/Release/all_netsrc/all_netsrc.sln
+M	Build/Release/all_netsrc/all_netsrc.vbproj
+M	Build/Release/bat/file/publish.htm
+M	include/vb_net/ClsDwmWindow.vb
+M	include/vb_net/IOpsScrInterface.vb
+M	include/vb_net/def_color.vb
+M	include/vc/lib_m5aras.h
+M	netsrc/Web/All_Web_Build/All_Web_Build.sln
+M	netsrc/Web/CleanCache/My Project/Application.Designer.vb
+M	netsrc/Web/CleanCache/My Project/Application.myapp
+M	netsrc/Web/CleanCache/My Project/AssemblyInfo.vb
+M	netsrc/Web/CleanCache/My Project/Resources.Designer.vb
+M	netsrc/Web/CleanCache/My Project/Resources.resx
+M	netsrc/Web/CleanCache/My Project/Settings.Designer.vb
+M	netsrc/Web/CleanCache/My Project/Settings.settings
+M	netsrc/Web/CleanCache/formMain.Designer.vb
+M	netsrc/Web/WebMenu/ClasDllDefine.vb
+M	netsrc/Web/WebMenu/ClasDllLib.vb
+M	netsrc/Web/WebMenu/ClasMwsBase.vb
+M	netsrc/Web/WebMenu/ClasMwsData.vb
+M	netsrc/Web/WebMenu/FormAlarm.Designer.vb
+M	netsrc/Web/WebMenu/FormAlarm.vb
+M	netsrc/Web/WebMenu/FormColor.Designer.vb
+M	netsrc/Web/WebMenu/FormColor.vb
+M	netsrc/Web/WebMenu/FormCtrlMsg.Designer.vb
+M	netsrc/Web/WebMenu/FormCtrlMsg.vb
+M	netsrc/Web/WebMenu/FormCtrlWin.Designer.vb
+M	netsrc/Web/WebMenu/FormCtrlWin.vb
+M	netsrc/Web/WebMenu/FormFusenBase.Designer.vb
+M	netsrc/Web/WebMenu/FormFusenBase.vb
+M	netsrc/Web/WebMenu/FormFusenMake.Designer.vb
+M	netsrc/Web/WebMenu/FormFusenMake.vb
+M	netsrc/Web/WebMenu/FormFusenSet.Designer.vb
+M	netsrc/Web/WebMenu/FormFusenSet.vb
+M	netsrc/Web/WebMenu/FormMessage.designer.vb
+M	netsrc/Web/WebMenu/FormMessage.vb
+M	netsrc/Web/WebMenu/FormScrWin.Designer.vb
+M	netsrc/Web/WebMenu/FormScrWin.vb
+M	netsrc/Web/WebMenu/FormSetUp.Designer.vb
+M	netsrc/Web/WebMenu/FormSetUp.vb
+M	netsrc/Web/WebMenu/FormSubMenu.Designer.vb
+M	netsrc/Web/WebMenu/FormSubMenu.vb
+M	netsrc/Web/WebMenu/ModlConst.vb
+M	netsrc/Web/WebMenu/ModlDefine.vb
+M	netsrc/Web/WebMenu/My Project/Application.Designer.vb
+M	netsrc/Web/WebMenu/My Project/Application.myapp
+M	netsrc/Web/WebMenu/My Project/AssemblyInfo.vb
+M	netsrc/Web/WebMenu/My Project/Resources.Designer.vb
+M	netsrc/Web/WebMenu/My Project/Resources.resx
+M	netsrc/Web/WebMenu/My Project/Settings.Designer.vb
+M	netsrc/Web/WebMenu/My Project/Settings.settings
+M	netsrc/Web/WebMenu/UctlBase.Designer.vb
+M	netsrc/Web/WebMenu/UctlBase.vb
+M	netsrc/Web/WebMenu/UctlLogin.Designer.vb
+M	netsrc/Web/WebMenu/UctlLogin.vb
+M	netsrc/Web/WebMenu/UctlMain.Designer.vb
+M	netsrc/Web/WebMenu/WebMenu.sln
+M	netsrc/Web/WebMenu/WebMenu.vbproj
+M	netsrc/Web/WebMenuMws/WebMenuMws.sln
+M	netsrc/Web/WebMenuMws/WebMenuMws.vcxproj
+M	netsrc/Web/WebMenuMws/WebMenuMws.vcxproj.filters
+M	netsrc/Web/WebStart/FormBase.Designer.vb
+M	netsrc/Web/WebStart/FormBase.vb
+M	netsrc/Web/WebStart/My Project/Application.Designer.vb
+M	netsrc/Web/WebStart/My Project/Application.myapp
+M	netsrc/Web/WebStart/My Project/AssemblyInfo.vb
+M	netsrc/Web/WebStart/My Project/Resources.Designer.vb
+M	netsrc/Web/WebStart/My Project/Resources.resx
+M	netsrc/Web/WebStart/My Project/Settings.Designer.vb
+M	netsrc/Web/WebStart/My Project/Settings.settings
+M	netsrc/Web/WebStart/WebStart.vbproj
+M	netsrc/Web/WebTest/My Project/Application.Designer.vb
+M	netsrc/Web/WebTest/My Project/Application.myapp
+M	netsrc/Web/WebTest/My Project/AssemblyInfo.vb
+M	netsrc/Web/WebTest/My Project/Resources.Designer.vb
+M	netsrc/Web/WebTest/My Project/Resources.resx
+M	netsrc/Web/WebTest/My Project/Settings.Designer.vb
+M	netsrc/Web/WebTest/My Project/Settings.settings
+M	netsrc/Web/WebTest/WebTest.Designer.vb
+M	netsrc/Web/WebTest/WebTest.sln
+M	netsrc/Web/WebTest/WebTest.vbproj
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin.sln
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin/My Project/AssemblyInfo.vb
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin/My Project/Resources.Designer.vb
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin/My Project/Resources.resx
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin/My Project/Settings.Designer.vb
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin/My Project/Settings.settings
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin/OpsGuidDispWordAddin.vbproj
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin/OpsGuidDispWordAddin.vbproj.vspscc
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin/Ribbon1.vb
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin/Ribbon1.xml
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin/Ribbon2.xml
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin/Ribbon3.xml
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin/ThisAddIn.Designer.vb
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddin/ThisAddIn.Designer.xml
+M	netsrc/addins/OpsGuidDispWordAddin/OpsGuidDispWordAddinセットアップ/OpsGuidDispWordAddinセットアップ
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn.sln
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/ExcelRibbon.vb
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/ExcelRibbon0.xml
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/ExcelRibbon1.xml
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/ExcelRibbon2.xml
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/ExcelRibbon3.xml
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/ExcelRibbon4.xml
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/ExcelRibbon5.xml
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/My Project/AssemblyInfo.vb
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/My Project/Resources.Designer.vb
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/My Project/Resources.resx
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/My Project/Settings.Designer.vb
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/My Project/Settings.settings
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/OpsRepExcelAddIn.vbproj
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/OpsRepExcelAddIn.vbproj.vspscc
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/ThisAddIn.Designer.vb
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/ThisAddIn.Designer.xml
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddIn/ThisAddIn.vb
+M	netsrc/addins/OpsRepExcelAddIn/OpsRepExcelAddInセットアップ/OpsRepExcelAddInセットアップ
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn.sln
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/ExclRibbon.vb
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/ExclRibbon.xml
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/ExclRibbon0.xml
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/ExclRibbon1.xml
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/ExclRibbon2.xml
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/ExclRibbon3.xml
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/ExclRibbon4.xml
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/My Project/AssemblyInfo.vb
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/My Project/Resources.Designer.vb
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/My Project/Resources.resx
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/My Project/Settings.Designer.vb
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/My Project/Settings.settings
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn.vbproj
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/ThisAddIn.Designer.vb
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/ThisAddIn.Designer.xml
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddIn/ThisAddIn.vb
+M	netsrc/addins/サンプル/OpsRepNormalExclAddIn/OpsRepNormalExclAddInセットアップ/OpsRepNormalExclAddInセットアップ
+M	netsrc/addins/サンプル/WindowsApplication2/Form1.Designer.vb
+M	netsrc/addins/サンプル/WindowsApplication2/My Project/Application.Designer.vb
+M	netsrc/addins/サンプル/WindowsApplication2/My Project/Application.myapp
+M	netsrc/addins/サンプル/WindowsApplication2/My Project/AssemblyInfo.vb
+M	netsrc/addins/サンプル/WindowsApplication2/My Project/Resources.Designer.vb
+M	netsrc/addins/サンプル/WindowsApplication2/My Project/Resources.resx
+M	netsrc/addins/サンプル/WindowsApplication2/My Project/Settings.Designer.vb
+M	netsrc/addins/サンプル/WindowsApplication2/My Project/Settings.settings
+M	netsrc/addins/サンプル/WindowsApplication2/WindowsApplication2.sln
+M	netsrc/addins/サンプル/WindowsApplication2/WindowsApplication2.vbproj
+M	netsrc/gcrt/#goscrm（県南用）/CThreadManage.vb
+M	netsrc/gcrt/GcrtAllBuild/GcrtAllBuild.sln
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwAlmlstAsnList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwBsllTras.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwBsslTras.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwBstras.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwCtlAsnList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwCtlGrpList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwDemAsnList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwGFMpbInf.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwGraphCalcList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwGrpAsnList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwGrpGrpList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwKeisoTagAsnList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwKikiTagAsnList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwRepAsnList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwSetubiAsnList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwTagVertion.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwTimAsnList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwTrdAsnList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwTrdGrpList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/CMwWebAsnList.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/ListViewItemComparer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/Module1.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/My Project/Application.Designer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/My Project/Application.myapp
+M	netsrc/gcrt/OpsCtlGoscrmCustom/My Project/AssemblyInfo.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/My Project/Resources.Designer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/My Project/Resources.resx
+M	netsrc/gcrt/OpsCtlGoscrmCustom/My Project/Settings.Designer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/My Project/Settings.settings
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlGoscrmCustom.vbproj
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuAlmlst.Designer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuAlmlst.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuCtl.Designer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuCtl.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuDem.Designer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuDem.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuGCl.Designer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuGCl.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuGrp.Designer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuGrp.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuRep.Designer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuRep.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuTag.Designer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuTag.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuTim.Designer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuTim.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuTrd.Designer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuTrd.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuWeb.Designer.vb
+M	netsrc/gcrt/OpsCtlGoscrmCustom/OpsCtlSubMenuWeb.vb
+M	netsrc/gcrt/OpsGoscrmMws/OpsGoscrmMws.cpp
+M	netsrc/gcrt/OpsGoscrmMws/goscrm_dll.vcxproj
+M	netsrc/gcrt/OpsGoscrmMws/goscrm_dll.vcxproj.filters
+M	netsrc/gcrt/OpsSubMnuInterFace/IOpsSubMnuInterface.vb
+M	netsrc/gcrt/OpsSubMnuInterFace/My Project/Application.Designer.vb
+M	netsrc/gcrt/OpsSubMnuInterFace/My Project/Application.myapp
+M	netsrc/gcrt/OpsSubMnuInterFace/My Project/AssemblyInfo.vb
+M	netsrc/gcrt/OpsSubMnuInterFace/My Project/Resources.Designer.vb
+M	netsrc/gcrt/OpsSubMnuInterFace/My Project/Resources.resx
+M	netsrc/gcrt/OpsSubMnuInterFace/My Project/Settings.Designer.vb
+M	netsrc/gcrt/OpsSubMnuInterFace/My Project/Settings.settings
+M	netsrc/gcrt/OpsSubMnuInterFace/OpsSubMnuInterFace.vbproj
+M	netsrc/gcrt/goscrm/CCnfAfmmiinf.vb
+M	netsrc/gcrt/goscrm/CCnfAfsysCnf.vb
+M	netsrc/gcrt/goscrm/CCnfErrMsg.vb
+M	netsrc/gcrt/goscrm/CDateTimeString.vb
+M	netsrc/gcrt/goscrm/CEnvironment.vb
+M	netsrc/gcrt/goscrm/CMWBUkiisd.vb
+M	netsrc/gcrt/goscrm/CMWCalendar.vb
+M	netsrc/gcrt/goscrm/CMWDataNoInf.vb
+M	netsrc/gcrt/goscrm/CMWFusenData.vb
+M	netsrc/gcrt/goscrm/CMWFusenDataLocal.vb
+M	netsrc/gcrt/goscrm/CMWGetBdfcty.vb
+M	netsrc/gcrt/goscrm/CMWGetBdkeso.vb
+M	netsrc/gcrt/goscrm/CMWGetBdkiki.vb
+M	netsrc/gcrt/goscrm/CMWGetGdGraph.vb
+M	netsrc/gcrt/goscrm/CMWGetGdtag.vb
+M	netsrc/gcrt/goscrm/CMWGetGflkgraph.vb
+M	netsrc/gcrt/goscrm/CMWGetRdkesorp.vb
+M	netsrc/gcrt/goscrm/CMWGetRdkikirp.vb
+M	netsrc/gcrt/goscrm/CMWInitDb.vb
+M	netsrc/gcrt/goscrm/CMWJFopri.vb
+M	netsrc/gcrt/goscrm/CMWJFopriCheck.vb
+M	netsrc/gcrt/goscrm/CMWLoginLog.vb
+M	netsrc/gcrt/goscrm/CMWLogoutInf.vb
+M	netsrc/gcrt/goscrm/CMWOpsConection.vb
+M	netsrc/gcrt/goscrm/CMWOverView.vb
+M	netsrc/gcrt/goscrm/CMWPreset.vb
+M	netsrc/gcrt/goscrm/CMWSetBdfcty.vb
+M	netsrc/gcrt/goscrm/CMWSetBdkeso.vb
+M	netsrc/gcrt/goscrm/CMWSetBdkiki.vb
+M	netsrc/gcrt/goscrm/CMWSetGdGraph.vb
+M	netsrc/gcrt/goscrm/CMWSetGdtag.vb
+M	netsrc/gcrt/goscrm/CMWSetRdkesorp.vb
+M	netsrc/gcrt/goscrm/CMWSetRdkikirp.vb
+M	netsrc/gcrt/goscrm/CMWSvrDrv.vb
+M	netsrc/gcrt/goscrm/CMWUserMenu.vb
+M	netsrc/gcrt/goscrm/CMWVersionAlarm.vb
+M	netsrc/gcrt/goscrm/CMWVersionGrp.vb
+M	netsrc/gcrt/goscrm/CMWWinAlarm.vb
+M	netsrc/gcrt/goscrm/CMWafstnname.vb
+M	netsrc/gcrt/goscrm/CMWafsys.vb
+M	netsrc/gcrt/goscrm/CMWaualmver.vb
+M	netsrc/gcrt/goscrm/CMWausys.vb
+M	netsrc/gcrt/goscrm/CMWjfnode.vb
+M	netsrc/gcrt/goscrm/CMWprtinf.vb
+M	netsrc/gcrt/goscrm/CMWrfcnf.vb
+M	netsrc/gcrt/goscrm/CMWrpyreset.vb
+M	netsrc/gcrt/goscrm/CMWusrctf.vb
+M	netsrc/gcrt/goscrm/CMwUserKey.vb
+M	netsrc/gcrt/goscrm/CMwWebAsn.vb
+M	netsrc/gcrt/goscrm/CMwgfkey.vb
+M	netsrc/gcrt/goscrm/COpsSelect.vb
+M	netsrc/gcrt/goscrm/CThreadManage.vb
+M	netsrc/gcrt/goscrm/DialogColor.Designer.vb
+M	netsrc/gcrt/goscrm/DialogColor.vb
+M	netsrc/gcrt/goscrm/DialogFusen.Designer.vb
+M	netsrc/gcrt/goscrm/DialogFusen.vb
+M	netsrc/gcrt/goscrm/DialogMakeFusen.Designer.vb
+M	netsrc/gcrt/goscrm/FormBase.Designer.vb
+M	netsrc/gcrt/goscrm/FormBase.vb
+M	netsrc/gcrt/goscrm/FormControlWin.Designer.vb
+M	netsrc/gcrt/goscrm/FormControlWin.vb
+M	netsrc/gcrt/goscrm/FormFHDHed.Designer.vb
+M	netsrc/gcrt/goscrm/FormFHDHed.vb
+M	netsrc/gcrt/goscrm/FormFHDScroll.Designer.vb
+M	netsrc/gcrt/goscrm/FormFHDScroll.vb
+M	netsrc/gcrt/goscrm/FormFHDWin.Designer.vb
+M	netsrc/gcrt/goscrm/FormFHDWin.vb
+M	netsrc/gcrt/goscrm/FormFusen.Designer.vb
+M	netsrc/gcrt/goscrm/FormFusen.vb
+M	netsrc/gcrt/goscrm/FormHed.Designer.vb
+M	netsrc/gcrt/goscrm/FormHed.vb
+M	netsrc/gcrt/goscrm/FormLogin.designer.vb
+M	netsrc/gcrt/goscrm/FormLogin.vb
+M	netsrc/gcrt/goscrm/FormMainMenu.Designer.vb
+M	netsrc/gcrt/goscrm/FormMainMenu.vb
+M	netsrc/gcrt/goscrm/FormMessageCtlWin.Designer.vb
+M	netsrc/gcrt/goscrm/FormMessageCtlWin.vb
+M	netsrc/gcrt/goscrm/FormMessageDevErrWin.Designer.vb
+M	netsrc/gcrt/goscrm/FormMessageDevErrWin.vb
+M	netsrc/gcrt/goscrm/FormMessageWin.Designer.vb
+M	netsrc/gcrt/goscrm/FormMessageWin.vb
+M	netsrc/gcrt/goscrm/FormScreen.Designer.vb
+M	netsrc/gcrt/goscrm/FormScreen.vb
+M	netsrc/gcrt/goscrm/FormSubmenus.Designer.vb
+M	netsrc/gcrt/goscrm/FormSubmenus.vb
+M	netsrc/gcrt/goscrm/FormWinList.Designer.vb
+M	netsrc/gcrt/goscrm/FormWinList.vb
+M	netsrc/gcrt/goscrm/FormbtnIconWin.Designer.vb
+M	netsrc/gcrt/goscrm/FormbtnIconWin.vb
+M	netsrc/gcrt/goscrm/Module1.vb
+M	netsrc/gcrt/goscrm/Module2.vb
+M	netsrc/gcrt/goscrm/Module3.vb
+M	netsrc/gcrt/goscrm/Module4.vb
+M	netsrc/gcrt/goscrm/My Project/Application.Designer.vb
+M	netsrc/gcrt/goscrm/My Project/Application.myapp
+M	netsrc/gcrt/goscrm/My Project/AssemblyInfo.vb
+M	netsrc/gcrt/goscrm/My Project/Resources.Designer.vb
+M	netsrc/gcrt/goscrm/My Project/Resources.resx
+M	netsrc/gcrt/goscrm/My Project/Settings.Designer.vb
+M	netsrc/gcrt/goscrm/My Project/Settings.settings
+M	netsrc/gcrt/goscrm/ThreadAlarmVersion.Designer.vb
+M	netsrc/gcrt/goscrm/ThreadAlarmVersion.vb
+M	netsrc/gcrt/goscrm/ThreadGrpVersion.Designer.vb
+M	netsrc/gcrt/goscrm/ThreadGrpVersion.vb
+M	netsrc/gcrt/goscrm/ThreadHcopy.Designer.vb
+M	netsrc/gcrt/goscrm/ThreadHcopy.vb
+M	netsrc/gcrt/goscrm/ThreadMWDSVSManager.Designer.vb
+M	netsrc/gcrt/goscrm/ThreadMWDSVSManager.vb
+M	netsrc/gcrt/goscrm/ThreadMWManager.Designer.vb
+M	netsrc/gcrt/goscrm/ThreadMWManager.vb
+M	netsrc/gcrt/goscrm/ThreadMain.Designer.vb
+M	netsrc/gcrt/goscrm/ThreadMain.vb
+M	netsrc/gcrt/goscrm/ThreadPok.Designer.vb
+M	netsrc/gcrt/goscrm/ThreadPok.vb
+M	netsrc/gcrt/goscrm/ThreadScreenManager.Designer.vb
+M	netsrc/gcrt/goscrm/ThreadScreenManager.vb
+M	netsrc/gcrt/goscrm/ThreadTimer.Designer.vb
+M	netsrc/gcrt/goscrm/ThreadTimer.vb
+M	netsrc/gcrt/goscrm/app.config
+M	netsrc/gcrt/goscrm/goscrm.vbproj
+M	netsrc/kcrt/gocamera/FormMain.Designer.vb
+M	netsrc/kcrt/gocamera/My Project/Application.Designer.vb
+M	netsrc/kcrt/gocamera/My Project/Application.myapp
+M	netsrc/kcrt/gocamera/My Project/AssemblyInfo.vb
+M	netsrc/kcrt/gocamera/My Project/Resources.Designer.vb
+M	netsrc/kcrt/gocamera/My Project/Resources.resx
+M	netsrc/kcrt/gocamera/My Project/Settings.Designer.vb
+M	netsrc/kcrt/gocamera/My Project/Settings.settings
+M	netsrc/kcrt/gocamera/app.config
+M	netsrc/kcrt/gocamera/gocamera.vbproj
+M	netsrc/kcrt/gohelp/FormMain.Designer.vb
+M	netsrc/kcrt/gohelp/My Project/Application.Designer.vb
+M	netsrc/kcrt/gohelp/My Project/Application.myapp
+M	netsrc/kcrt/gohelp/My Project/AssemblyInfo.vb
+M	netsrc/kcrt/gohelp/My Project/Resources.Designer.vb
+M	netsrc/kcrt/gohelp/My Project/Resources.resx
+M	netsrc/kcrt/gohelp/My Project/Settings.Designer.vb
+M	netsrc/kcrt/gohelp/My Project/Settings.settings
+M	netsrc/kcrt/gohelp/app.config
+M	netsrc/kcrt/gohelp/gohelp.vbproj
+M	netsrc/kcrt/gosys/CCnfAfmmiinf.vb
+M	netsrc/kcrt/gosys/CCnfAfsysCnf.vb
+M	netsrc/kcrt/gosys/CCnfErrMsg.vb
+M	netsrc/kcrt/gosys/CDateTimeString.vb
+M	netsrc/kcrt/gosys/CEnvironment.vb
+M	netsrc/kcrt/gosys/CMWInitDb.vb
+M	netsrc/kcrt/gosys/CMWOpsConection.vb
+M	netsrc/kcrt/gosys/CMWafstnname.vb
+M	netsrc/kcrt/gosys/CMWafsys.vb
+M	netsrc/kcrt/gosys/CMWausys.vb
+M	netsrc/kcrt/gosys/CMWprtinf.vb
+M	netsrc/kcrt/gosys/COpsSelect.vb
+M	netsrc/kcrt/gosys/CSvrDrv.vb
+M	netsrc/kcrt/gosys/CSysCnf.vb
+M	netsrc/kcrt/gosys/CThreadManage.vb
+M	netsrc/kcrt/gosys/ClsMwsBase.vb
+M	netsrc/kcrt/gosys/FormBase.designer.vb
+M	netsrc/kcrt/gosys/FormBase.vb
+M	netsrc/kcrt/gosys/FormHed.designer.vb
+M	netsrc/kcrt/gosys/FormMain.Designer.vb
+M	netsrc/kcrt/gosys/FormMessageWin.designer.vb
+M	netsrc/kcrt/gosys/FormMessageWin.vb
+M	netsrc/kcrt/gosys/FormPicSave.Designer.vb
+M	netsrc/kcrt/gosys/FormPicSave.vb
+M	netsrc/kcrt/gosys/FormScreen.designer.vb
+M	netsrc/kcrt/gosys/FormScreen.vb
+M	netsrc/kcrt/gosys/ModlFunc.vb
+M	netsrc/kcrt/gosys/Module1.vb
+M	netsrc/kcrt/gosys/Module2.vb
+M	netsrc/kcrt/gosys/Module3.vb
+M	netsrc/kcrt/gosys/My Project/Application.Designer.vb
+M	netsrc/kcrt/gosys/My Project/Application.myapp
+M	netsrc/kcrt/gosys/My Project/AssemblyInfo.vb
+M	netsrc/kcrt/gosys/My Project/Resources.Designer.vb
+M	netsrc/kcrt/gosys/My Project/Resources.resx
+M	netsrc/kcrt/gosys/My Project/Settings.Designer.vb
+M	netsrc/kcrt/gosys/My Project/Settings.settings
+M	netsrc/kcrt/gosys/ThreadHcopy.designer.vb
+M	netsrc/kcrt/gosys/ThreadHcopy.vb
+M	netsrc/kcrt/gosys/ThreadTimer.Designer.vb
+M	netsrc/kcrt/gosys/ThreadTimer.vb
+M	netsrc/kcrt/gosys/app.config
+M	netsrc/kcrt/gosys/gosys.vbproj
+M	netsrc/kcrt/gosys_NoLog/ApplicationEvents.vb
+M	netsrc/kcrt/gosys_NoLog/CCnfAfmmiinf.vb
+M	netsrc/kcrt/gosys_NoLog/CCnfAfsysCnf.vb
+M	netsrc/kcrt/gosys_NoLog/CCnfErrMsg.vb
+M	netsrc/kcrt/gosys_NoLog/CDateTimeString.vb
+M	netsrc/kcrt/gosys_NoLog/CEnvironment.vb
+M	netsrc/kcrt/gosys_NoLog/CMWInitDb.vb
+M	netsrc/kcrt/gosys_NoLog/CMWOpsConection.vb
+M	netsrc/kcrt/gosys_NoLog/CMWafstnname.vb
+M	netsrc/kcrt/gosys_NoLog/CMWafsys.vb
+M	netsrc/kcrt/gosys_NoLog/CMWausys.vb
+M	netsrc/kcrt/gosys_NoLog/CMWprtinf.vb
+M	netsrc/kcrt/gosys_NoLog/COpsSelect.vb
+M	netsrc/kcrt/gosys_NoLog/CSvrDrv.vb
+M	netsrc/kcrt/gosys_NoLog/CSysCnf.vb
+M	netsrc/kcrt/gosys_NoLog/CThreadManage.vb
+M	netsrc/kcrt/gosys_NoLog/ClsMwsBase.vb
+M	netsrc/kcrt/gosys_NoLog/FormBase.designer.vb
+M	netsrc/kcrt/gosys_NoLog/FormBase.vb
+M	netsrc/kcrt/gosys_NoLog/FormHed.designer.vb
+M	netsrc/kcrt/gosys_NoLog/FormHed.vb
+M	netsrc/kcrt/gosys_NoLog/FormMain.Designer.vb
+M	netsrc/kcrt/gosys_NoLog/FormMain.vb
+M	netsrc/kcrt/gosys_NoLog/FormMessageWin.designer.vb
+M	netsrc/kcrt/gosys_NoLog/FormMessageWin.vb
+M	netsrc/kcrt/gosys_NoLog/FormPicSave.Designer.vb
+M	netsrc/kcrt/gosys_NoLog/FormPicSave.vb
+M	netsrc/kcrt/gosys_NoLog/FormScreen.designer.vb
+M	netsrc/kcrt/gosys_NoLog/FormScreen.vb
+M	netsrc/kcrt/gosys_NoLog/ModlFunc.vb
+M	netsrc/kcrt/gosys_NoLog/Module1.vb
+M	netsrc/kcrt/gosys_NoLog/Module2.vb
+M	netsrc/kcrt/gosys_NoLog/Module3.vb
+M	netsrc/kcrt/gosys_NoLog/My Project/Application.Designer.vb
+M	netsrc/kcrt/gosys_NoLog/My Project/Application.myapp
+M	netsrc/kcrt/gosys_NoLog/My Project/AssemblyInfo.vb
+M	netsrc/kcrt/gosys_NoLog/My Project/Resources.Designer.vb
+M	netsrc/kcrt/gosys_NoLog/My Project/Resources.resx
+M	netsrc/kcrt/gosys_NoLog/My Project/Settings.Designer.vb
+M	netsrc/kcrt/gosys_NoLog/My Project/Settings.settings
+M	netsrc/kcrt/gosys_NoLog/ThreadHcopy.designer.vb
+M	netsrc/kcrt/gosys_NoLog/ThreadHcopy.vb
+M	netsrc/kcrt/gosys_NoLog/app.config
+M	netsrc/kcrt/gosys_NoLog/gosys.vbproj
+M	netsrc/mssgcrt/All_MssGcrt_Build/All_MssGcrt_Build.sln
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwBstras.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwCtlAsnList.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwCtlGrpList.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwGFMpbInf.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwGrpAsnList.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwGrpGrpList.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwKeisoTagAsnList.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwKikiTagAsnList.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwSetubiAsnList.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwTagVertion.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwTrdAsnList.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwTrdGrpList.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwTrdMssAsnList.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/CMwWebAsnList.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/ListViewItemComparer.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/Module1.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/MssCtlGmscrmCustom.vbproj
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/My Project/Application.Designer.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/My Project/Application.myapp
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/My Project/AssemblyInfo.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/My Project/Resources.Designer.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/My Project/Resources.resx
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/My Project/Settings.Designer.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/My Project/Settings.settings
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuCtl.designer.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuCtl.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuGrp.designer.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuGrp.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuItvNum.designer.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuItvNum.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuRemote.designer.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuRemote.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuTag.designer.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuTag.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuTrd.designer.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuTrd.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuUser.designer.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuUser.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuWeb.designer.vb
+M	netsrc/mssgcrt/MssCtlGmscrmCustom/OpsCtlSubMenuWeb.vb
+M	netsrc/mssgcrt/MssSubMnuInterFace/IOpsSubMnuInterface.vb
+M	netsrc/mssgcrt/MssSubMnuInterFace/MssSubMnuInterFace.vbproj
+M	netsrc/mssgcrt/MssSubMnuInterFace/My Project/Application.Designer.vb
+M	netsrc/mssgcrt/MssSubMnuInterFace/My Project/Application.myapp
+M	netsrc/mssgcrt/MssSubMnuInterFace/My Project/AssemblyInfo.vb
+M	netsrc/mssgcrt/MssSubMnuInterFace/My Project/Resources.Designer.vb
+M	netsrc/mssgcrt/MssSubMnuInterFace/My Project/Resources.resx
+M	netsrc/mssgcrt/MssSubMnuInterFace/My Project/Settings.Designer.vb
+M	netsrc/mssgcrt/MssSubMnuInterFace/My Project/Settings.settings
+M	netsrc/mssgcrt/gmscrm/CCnfAfmmiinf.vb
+M	netsrc/mssgcrt/gmscrm/CCnfAfsysCnf.vb
+M	netsrc/mssgcrt/gmscrm/CCnfErrMsg.vb
+M	netsrc/mssgcrt/gmscrm/CDateTimeString.vb
+M	netsrc/mssgcrt/gmscrm/CEnvironment.vb
+M	netsrc/mssgcrt/gmscrm/CMWBUkiisd.vb
+M	netsrc/mssgcrt/gmscrm/CMWFusenData.vb
+M	netsrc/mssgcrt/gmscrm/CMWGetAumscrn.vb
+M	netsrc/mssgcrt/gmscrm/CMWGetItvnm.vb
+M	netsrc/mssgcrt/gmscrm/CMWGetOpesw.vb
+M	netsrc/mssgcrt/gmscrm/CMWGetTimer.vb
+M	netsrc/mssgcrt/gmscrm/CMWGetUsrmnu.vb
+M	netsrc/mssgcrt/gmscrm/CMWInitDb.vb
+M	netsrc/mssgcrt/gmscrm/CMWJFopri.vb
+M	netsrc/mssgcrt/gmscrm/CMWJFopriCheck.vb
+M	netsrc/mssgcrt/gmscrm/CMWOpsConection.vb
+M	netsrc/mssgcrt/gmscrm/CMWOverView.vb
+M	netsrc/mssgcrt/gmscrm/CMWSetCrtinf.vb
+M	netsrc/mssgcrt/gmscrm/CMWSetTimer.vb
+M	netsrc/mssgcrt/gmscrm/CMWUserMenu.vb
+M	netsrc/mssgcrt/gmscrm/CMWVersionAlarm.vb
+M	netsrc/mssgcrt/gmscrm/CMWVersionGrp.vb
+M	netsrc/mssgcrt/gmscrm/CMWafstnname.vb
+M	netsrc/mssgcrt/gmscrm/CMWafsys.vb
+M	netsrc/mssgcrt/gmscrm/CMWaualmver.vb
+M	netsrc/mssgcrt/gmscrm/CMWausys.vb
+M	netsrc/mssgcrt/gmscrm/CMWjfnode.vb
+M	netsrc/mssgcrt/gmscrm/CMWprtinf.vb
+M	netsrc/mssgcrt/gmscrm/CMwUserKey.vb
+M	netsrc/mssgcrt/gmscrm/CMwgfkey.vb
+M	netsrc/mssgcrt/gmscrm/COpsSelect.vb
+M	netsrc/mssgcrt/gmscrm/CThreadManage.vb
+M	netsrc/mssgcrt/gmscrm/DialogColor.Designer.vb
+M	netsrc/mssgcrt/gmscrm/DialogColor.vb
+M	netsrc/mssgcrt/gmscrm/DialogFusen.designer.vb
+M	netsrc/mssgcrt/gmscrm/DialogFusen.vb
+M	netsrc/mssgcrt/gmscrm/FormAna.Designer.vb
+M	netsrc/mssgcrt/gmscrm/FormAna.vb
+M	netsrc/mssgcrt/gmscrm/FormBase.designer.vb
+M	netsrc/mssgcrt/gmscrm/FormBase.vb
+M	netsrc/mssgcrt/gmscrm/FormControlWin.designer.vb
+M	netsrc/mssgcrt/gmscrm/FormControlWin.vb
+M	netsrc/mssgcrt/gmscrm/FormDeg.Designer.vb
+M	netsrc/mssgcrt/gmscrm/FormDeg.vb
+M	netsrc/mssgcrt/gmscrm/FormFusen.designer.vb
+M	netsrc/mssgcrt/gmscrm/FormFusen.vb
+M	netsrc/mssgcrt/gmscrm/FormMessageCtlWin.Designer.vb
+M	netsrc/mssgcrt/gmscrm/FormMessageCtlWin.vb
+M	netsrc/mssgcrt/gmscrm/FormMessageDevErrWin.Designer.vb
+M	netsrc/mssgcrt/gmscrm/FormMessageDevErrWin.vb
+M	netsrc/mssgcrt/gmscrm/FormMessageWin.designer.vb
+M	netsrc/mssgcrt/gmscrm/FormMessageWin.vb
+M	netsrc/mssgcrt/gmscrm/FormScreen.Designer.vb
+M	netsrc/mssgcrt/gmscrm/FormScreen.vb
+M	netsrc/mssgcrt/gmscrm/FormSubmenus.designer.vb
+M	netsrc/mssgcrt/gmscrm/FormSubmenus.vb
+M	netsrc/mssgcrt/gmscrm/Module1.vb
+M	netsrc/mssgcrt/gmscrm/Module2.vb
+M	netsrc/mssgcrt/gmscrm/Module3.vb
+M	netsrc/mssgcrt/gmscrm/My Project/Application.Designer.vb
+M	netsrc/mssgcrt/gmscrm/My Project/Application.myapp
+M	netsrc/mssgcrt/gmscrm/My Project/AssemblyInfo.vb
+M	netsrc/mssgcrt/gmscrm/My Project/Resources.Designer.vb
+M	netsrc/mssgcrt/gmscrm/My Project/Resources.resx
+M	netsrc/mssgcrt/gmscrm/My Project/Settings.Designer.vb
+M	netsrc/mssgcrt/gmscrm/My Project/Settings.settings
+M	netsrc/mssgcrt/gmscrm/ThreadGrpRMOPSVersion.designer.vb
+M	netsrc/mssgcrt/gmscrm/ThreadGrpRMOPSVersion.vb
+M	netsrc/mssgcrt/gmscrm/ThreadGrpVersion.designer.vb
+M	netsrc/mssgcrt/gmscrm/ThreadGrpVersion.vb
+M	netsrc/mssgcrt/gmscrm/ThreadMWDSVSManager.Designer.vb
+M	netsrc/mssgcrt/gmscrm/ThreadMWDSVSManager.vb
+M	netsrc/mssgcrt/gmscrm/ThreadMWManager.designer.vb
+M	netsrc/mssgcrt/gmscrm/ThreadMWManager.vb
+M	netsrc/mssgcrt/gmscrm/ThreadMWRMOPSManager.designer.vb
+M	netsrc/mssgcrt/gmscrm/ThreadMWRMOPSManager.vb
+M	netsrc/mssgcrt/gmscrm/ThreadMain.Designer.vb
+M	netsrc/mssgcrt/gmscrm/ThreadMain.vb
+M	netsrc/mssgcrt/gmscrm/ThreadPok.Designer.vb
+M	netsrc/mssgcrt/gmscrm/ThreadPok.vb
+M	netsrc/mssgcrt/gmscrm/ThreadScreenManager.designer.vb
+M	netsrc/mssgcrt/gmscrm/ThreadScreenManager.vb
+M	netsrc/mssgcrt/gmscrm/ThreadTimer.designer.vb
+M	netsrc/mssgcrt/gmscrm/ThreadTimer.vb
+M	netsrc/mssgcrt/gmscrm/app.config
+M	netsrc/mssgcrt/gmscrm/gmscrm.vbproj
+M	netsrc/opsControl/MpbLib/My Project/Application.Designer.vb
+M	netsrc/opsControl/MpbLib/My Project/Application.myapp
+M	netsrc/opsControl/MpbLib/My Project/AssemblyInfo.vb
+M	netsrc/opsControl/MpbLib/My Project/Resources.Designer.vb
+M	netsrc/opsControl/MpbLib/My Project/Resources.resx
+M	netsrc/opsControl/MpbLib/My Project/Settings.Designer.vb
+M	netsrc/opsControl/MpbLib/My Project/Settings.settings
+M	netsrc/opsControl/MpbLib/OpsMpbLib.vbproj
+M	netsrc/opsControl/OpsClsRemServer/My Project/Application.Designer.vb
+M	netsrc/opsControl/OpsClsRemServer/My Project/Application.myapp
+M	netsrc/opsControl/OpsClsRemServer/My Project/AssemblyInfo.vb
+M	netsrc/opsControl/OpsClsRemServer/My Project/Resources.Designer.vb
+M	netsrc/opsControl/OpsClsRemServer/My Project/Resources.resx
+M	netsrc/opsControl/OpsClsRemServer/My Project/Settings.Designer.vb
+M	netsrc/opsControl/OpsClsRemServer/My Project/Settings.settings
+M	netsrc/opsControl/OpsClsRemServer/OpsClsRemServer.vbproj
+M	netsrc/opsControl/OpsClsRemServer/ServiceClass.vb
+M	netsrc/opsControl/OpsCtlColor/My Project/Application.Designer.vb
+M	netsrc/opsControl/OpsCtlColor/My Project/Application.myapp
+M	netsrc/opsControl/OpsCtlColor/My Project/Resources.Designer.vb
+M	netsrc/opsControl/OpsCtlColor/My Project/Resources.resx
+M	netsrc/opsControl/OpsCtlColor/My Project/Settings.Designer.vb
+M	netsrc/opsControl/OpsCtlColor/My Project/Settings.settings
+M	netsrc/opsControl/OpsCtlColor/OpsCtlColor.Designer.vb
+M	netsrc/opsControl/OpsCtlColor/OpsCtlColor.vb
+M	netsrc/opsControl/OpsCtlColor/OpsCtlColor.vbproj
+M	netsrc/opsControl/OpsCtlCustom/FormRefresh.designer.vb
+M	netsrc/opsControl/OpsCtlCustom/FormRefresh.vb
+M	netsrc/opsControl/OpsCtlCustom/ModlFunc.vb
+M	netsrc/opsControl/OpsCtlCustom/ModlSendKeys.vb
+M	netsrc/opsControl/OpsCtlCustom/My Project/Application.Designer.vb
+M	netsrc/opsControl/OpsCtlCustom/My Project/Application.myapp
+M	netsrc/opsControl/OpsCtlCustom/My Project/AssemblyInfo.vb
+M	netsrc/opsControl/OpsCtlCustom/My Project/Resources.Designer.vb
+M	netsrc/opsControl/OpsCtlCustom/My Project/Resources.resx
+M	netsrc/opsControl/OpsCtlCustom/My Project/Settings.Designer.vb
+M	netsrc/opsControl/OpsCtlCustom/My Project/Settings.settings
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlBeepOut.Designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlButton.designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlCustom.vbproj
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlErrlogEntry.Designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlErrlogEntry.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlKeyPad.Designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlKeyPad.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlKeyPadNum.Designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlKeyPadNum.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlLabel.designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlListView.designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlNumericUD.Designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlNumericUD.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlOpeLogEntry.Designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlOpeLogEntry.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlPanel.designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlSftky.designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlSftky.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlTable.Designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlTable.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlTextBoxNum.Designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlTextBoxNum.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlTime.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlTrackBar.designer.vb
+M	netsrc/opsControl/OpsCtlCustom/OpsCtlTrackBar.vb
+M	netsrc/opsControl/OpsCtlCustom2/OpsCtlCustom2.csproj
+M	netsrc/opsControl/OpsCtlCustom2/OpsCtlFileCopy.Designer.cs
+M	netsrc/opsControl/OpsCtlCustom2/OpsCtlFileCopy.cs
+M	netsrc/opsControl/OpsCtlCustom2/OpsCtlFtpFileCopy.Designer.cs
+M	netsrc/opsControl/OpsCtlCustom2/OpsCtlFtpFileCopy.cs
+M	netsrc/opsControl/OpsCtlCustom2/OpsCtlHedPanel.Designer.cs
+M	netsrc/opsControl/OpsCtlCustom2/OpsCtlHedPanel.cs
+M	netsrc/opsControl/OpsCtlFindWin/FormConfErr.designer.vb
+M	netsrc/opsControl/OpsCtlFindWin/FormFindMsg.Designer.vb
+M	netsrc/opsControl/OpsCtlFindWin/FormFindMsg.resx
+M	netsrc/opsControl/OpsCtlFindWin/FormFindMsg.vb
+M	netsrc/opsControl/OpsCtlFindWin/ModlCnfMsg.vb
+M	netsrc/opsControl/OpsCtlFindWin/ModlLib.vb
+M	netsrc/opsControl/OpsCtlFindWin/My Project/Application.Designer.vb
+M	netsrc/opsControl/OpsCtlFindWin/My Project/Application.myapp
+M	netsrc/opsControl/OpsCtlFindWin/My Project/AssemblyInfo.vb
+M	netsrc/opsControl/OpsCtlFindWin/My Project/Resources.Designer.vb
+M	netsrc/opsControl/OpsCtlFindWin/My Project/Resources.resx
+M	netsrc/opsControl/OpsCtlFindWin/My Project/Settings.Designer.vb
+M	netsrc/opsControl/OpsCtlFindWin/My Project/Settings.settings
+M	netsrc/opsControl/OpsCtlFindWin/OpsCtlFindWin.vbproj
+M	netsrc/opsControl/OpsCtlFudaGraph/FormFudaWin.Designer.vb
+M	netsrc/opsControl/OpsCtlFudaGraph/My Project/Application.Designer.vb
+M	netsrc/opsControl/OpsCtlFudaGraph/My Project/Application.myapp
+M	netsrc/opsControl/OpsCtlFudaGraph/My Project/AssemblyInfo.vb
+M	netsrc/opsControl/OpsCtlFudaGraph/My Project/Resources.Designer.vb
+M	netsrc/opsControl/OpsCtlFudaGraph/My Project/Resources.resx
+M	netsrc/opsControl/OpsCtlFudaGraph/My Project/Settings.Designer.vb
+M	netsrc/opsControl/OpsCtlFudaGraph/My Project/Settings.settings
+M	netsrc/opsControl/OpsCtlFudaGraph/OpsCtlFudaGraph.vbproj
+M	netsrc/opsControl/OpsCtlGrpComData/CGraphicComData.vb
+M	netsrc/opsControl/OpsCtlGrpComData/My Project/Application.Designer.vb
+M	netsrc/opsControl/OpsCtlGrpComData/My Project/Application.myapp
+M	netsrc/opsControl/OpsCtlGrpComData/My Project/AssemblyInfo.vb
+M	netsrc/opsControl/OpsCtlGrpComData/My Project/Resources.Designer.vb
+M	netsrc/opsControl/OpsCtlGrpComData/My Project/Resources.resx
+M	netsrc/opsControl/OpsCtlGrpComData/My Project/Settings.Designer.vb
+M	netsrc/opsControl/OpsCtlGrpComData/My Project/Settings.settings
+M	netsrc/opsControl/OpsCtlGrpComData/OpsCtlGrpComData.vbproj
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/FormConf.designer.vb
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/FormEdit.designer.vb
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/FormKesoConf.Designer.vb
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/FormKesoGuid.designer.vb
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/My Project/Application.Designer.vb
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/My Project/Application.myapp
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/My Project/AssemblyInfo.vb
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/My Project/Resources.Designer.vb
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/My Project/Resources.resx
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/My Project/Settings.Designer.vb
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/My Project/Settings.settings
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/OpsCtlKeiCtrlWin.vbproj
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/UctlMiniKeiWin.designer.vb
+M	netsrc/opsControl/OpsCtlKeiCtrlWin/UctlNormalKeiWin.designer.vb
+M	netsrc/opsControl/OpsCtlKeiGraph/My Project/Application.Designer.vb
+M	netsrc/opsControl/OpsCtlKeiGraph/My Project/Application.myapp
+M	netsrc/opsControl/OpsCtlKeiGraph/My Project/AssemblyInfo.vb
+M	netsrc/opsControl/OpsCtlKeiGraph/My Project/Resources.Designer.vb
+M	netsrc/opsControl/OpsCtlKeiGraph/My Project/Resources.resx
+M	netsrc/opsControl/OpsCtlKeiGraph/My Project/Settings.Designer.vb
+M	netsrc/opsControl/OpsCtlKeiGraph/My Project/Settings.settings
+M	netsrc/opsControl/OpsCtlKeiGraph/OpsCtlKeiGraph.vbproj
+M	netsrc/opsControl/OpsCtlKeiGraph/UctlKeiGraph.designer.vb
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/FormConf.designer.vb
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/FormConfErr.designer.vb
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/FormKanshi.Designer.vb
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/FormKanshi.vb
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/FormKikiConf.Designer.vb
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/FormKikiGuid.designer.vb
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/My Project/Application.Designer.vb
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/My Project/Application.myapp
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/My Project/AssemblyInfo.vb
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/My Project/Resources.Designer.vb
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/My Project/Resources.resx
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/My Project/Settings.Designer.vb
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/My Project/Settings.settings
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/OpsCtlKikiCtrlWin.vbproj
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/UctlMiniKikiWin.designer.vb
+M	netsrc/opsControl/OpsCtlKikiCtrlWin/UctlNormalKikiWin.designer.vb
+M	netsrc/opsControl/OpsLibCustom/OpsLibCustom.vcxproj
+M	netsrc/opsControl/OpsLibCustom/OpsLibCustom.vcxproj.filters
+M	netsrc/opsControl/OpsLibCustomWeb/OpsLibCustomWeb.vcxproj
+M	netsrc/opsControl/OpsLibCustomWeb/OpsLibCustomWeb.vcxproj.filters
+M	netsrc/opsControl/all_Control/all_Control.sln
+M	netsrc/opsControl/gcrthook/gcrthook.vcxproj
+M	netsrc/opsControl/gcrthook/gcrthook.vcxproj.filters
+M	netsrc/opsrmw/All_Build/All_Build/All_Build.sln
+M	netsrc/opsrmw/All_Build/OpsRmwBinaryConverter/OpsRmwBinaryConverter/ClsBinaryConverter.cs
+M	netsrc/opsrmw/All_Build/OpsRmwBinaryConverter/OpsRmwBinaryConverter/OpsRmwBinaryConverter.csproj
+M	netsrc/opsrmw/All_Build/OpsRmwBinaryConverter/OpsRmwBinaryConverter/Properties/AssemblyInfo.cs
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/ClsCom.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/ClsComControl.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/ClsComControlTCP.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/ClsComTCP.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/ClsRcvEventArgs.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/ClsReceiveState.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/IComHeader.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/IComObserver.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/IRcvObserver.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/My Project/Application.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/My Project/Application.myapp
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/My Project/AssemblyInfo.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/My Project/Resources.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/My Project/Resources.resx
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/My Project/Settings.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/My Project/Settings.settings
+M	netsrc/opsrmw/All_Build/OpsRmwComCtrl/OpsRmwComCtrl/OpsRmwComCtrl.vbproj
+M	netsrc/opsrmw/All_Build/OpsRmwComTrace/OpsRmwComTrace/Form_ORCT.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComTrace/OpsRmwComTrace/My Project/Application.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComTrace/OpsRmwComTrace/My Project/Application.myapp
+M	netsrc/opsrmw/All_Build/OpsRmwComTrace/OpsRmwComTrace/My Project/AssemblyInfo.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComTrace/OpsRmwComTrace/My Project/Resources.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComTrace/OpsRmwComTrace/My Project/Resources.resx
+M	netsrc/opsrmw/All_Build/OpsRmwComTrace/OpsRmwComTrace/My Project/Settings.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwComTrace/OpsRmwComTrace/My Project/Settings.settings
+M	netsrc/opsrmw/All_Build/OpsRmwComTrace/OpsRmwComTrace/OpsRmwComTrace.vbproj
+M	netsrc/opsrmw/All_Build/OpsRmwComTrace/OpsRmwComTrace/app.config
+M	netsrc/opsrmw/All_Build/OpsRmwDbAccess/OpsRmwDbAccess/ClsReqInformation.vb
+M	netsrc/opsrmw/All_Build/OpsRmwDbAccess/OpsRmwDbAccess/My Project/Application.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwDbAccess/OpsRmwDbAccess/My Project/Application.myapp
+M	netsrc/opsrmw/All_Build/OpsRmwDbAccess/OpsRmwDbAccess/My Project/AssemblyInfo.vb
+M	netsrc/opsrmw/All_Build/OpsRmwDbAccess/OpsRmwDbAccess/My Project/Resources.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwDbAccess/OpsRmwDbAccess/My Project/Resources.resx
+M	netsrc/opsrmw/All_Build/OpsRmwDbAccess/OpsRmwDbAccess/My Project/Settings.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwDbAccess/OpsRmwDbAccess/My Project/Settings.settings
+M	netsrc/opsrmw/All_Build/OpsRmwDbAccess/OpsRmwDbAccess/OpsRmwDbAccess.vbproj
+M	netsrc/opsrmw/All_Build/OpsRmwEventComOps/OpsRmwEventComOps/My Project/Application.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventComOps/OpsRmwEventComOps/My Project/Application.myapp
+M	netsrc/opsrmw/All_Build/OpsRmwEventComOps/OpsRmwEventComOps/My Project/AssemblyInfo.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventComOps/OpsRmwEventComOps/My Project/Resources.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventComOps/OpsRmwEventComOps/My Project/Resources.resx
+M	netsrc/opsrmw/All_Build/OpsRmwEventComOps/OpsRmwEventComOps/My Project/Settings.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventComOps/OpsRmwEventComOps/My Project/Settings.settings
+M	netsrc/opsrmw/All_Build/OpsRmwEventComOps/OpsRmwEventComOps/OpsRmwEventComOps.vbproj
+M	netsrc/opsrmw/All_Build/OpsRmwEventDeq/OpsRmwEventDeq/ClsDequeueBuff.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventDeq/OpsRmwEventDeq/ClsVariableDeqData.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventDeq/OpsRmwEventDeq/IDeqObserver.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventDeq/OpsRmwEventDeq/My Project/Application.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventDeq/OpsRmwEventDeq/My Project/Application.myapp
+M	netsrc/opsrmw/All_Build/OpsRmwEventDeq/OpsRmwEventDeq/My Project/AssemblyInfo.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventDeq/OpsRmwEventDeq/My Project/Resources.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventDeq/OpsRmwEventDeq/My Project/Resources.resx
+M	netsrc/opsrmw/All_Build/OpsRmwEventDeq/OpsRmwEventDeq/My Project/Settings.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventDeq/OpsRmwEventDeq/My Project/Settings.settings
+M	netsrc/opsrmw/All_Build/OpsRmwEventDeq/OpsRmwEventDeq/OpsRmwEventDeq.vbproj
+M	netsrc/opsrmw/All_Build/OpsRmwEventEnq/OpsRmwEventEnq/My Project/Application.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventEnq/OpsRmwEventEnq/My Project/Application.myapp
+M	netsrc/opsrmw/All_Build/OpsRmwEventEnq/OpsRmwEventEnq/My Project/AssemblyInfo.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventEnq/OpsRmwEventEnq/My Project/Resources.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventEnq/OpsRmwEventEnq/My Project/Resources.resx
+M	netsrc/opsrmw/All_Build/OpsRmwEventEnq/OpsRmwEventEnq/My Project/Settings.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwEventEnq/OpsRmwEventEnq/My Project/Settings.settings
+M	netsrc/opsrmw/All_Build/OpsRmwEventEnq/OpsRmwEventEnq/OpsRmwEventEnq.vbproj
+M	netsrc/opsrmw/All_Build/OpsRmwRemLib/OpsRmwRemLib/ClsRemServiceMonitor.vb
+M	netsrc/opsrmw/All_Build/OpsRmwRemLib/OpsRmwRemLib/ClsRemTracelog.vb
+M	netsrc/opsrmw/All_Build/OpsRmwRemLib/OpsRmwRemLib/ClsReqInf.vb
+M	netsrc/opsrmw/All_Build/OpsRmwRemLib/OpsRmwRemLib/ClsTraceData.vb
+M	netsrc/opsrmw/All_Build/OpsRmwRemLib/OpsRmwRemLib/My Project/Application.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwRemLib/OpsRmwRemLib/My Project/Application.myapp
+M	netsrc/opsrmw/All_Build/OpsRmwRemLib/OpsRmwRemLib/My Project/AssemblyInfo.vb
+M	netsrc/opsrmw/All_Build/OpsRmwRemLib/OpsRmwRemLib/My Project/Resources.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwRemLib/OpsRmwRemLib/My Project/Resources.resx
+M	netsrc/opsrmw/All_Build/OpsRmwRemLib/OpsRmwRemLib/My Project/Settings.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwRemLib/OpsRmwRemLib/My Project/Settings.settings
+M	netsrc/opsrmw/All_Build/OpsRmwRemLib/OpsRmwRemLib/OpsRmwRemLib.vbproj
+M	netsrc/opsrmw/All_Build/OpsRmwServiceMonitor/OpsRmwServiceMonitor/Form_ORSM.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwServiceMonitor/OpsRmwServiceMonitor/My Project/Application.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwServiceMonitor/OpsRmwServiceMonitor/My Project/Application.myapp
+M	netsrc/opsrmw/All_Build/OpsRmwServiceMonitor/OpsRmwServiceMonitor/My Project/AssemblyInfo.vb
+M	netsrc/opsrmw/All_Build/OpsRmwServiceMonitor/OpsRmwServiceMonitor/My Project/Resources.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwServiceMonitor/OpsRmwServiceMonitor/My Project/Resources.resx
+M	netsrc/opsrmw/All_Build/OpsRmwServiceMonitor/OpsRmwServiceMonitor/My Project/Settings.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwServiceMonitor/OpsRmwServiceMonitor/My Project/Settings.settings
+M	netsrc/opsrmw/All_Build/OpsRmwServiceMonitor/OpsRmwServiceMonitor/OpsRmwServiceMonitor.vbproj
+M	netsrc/opsrmw/All_Build/OpsRmwServiceMonitor/OpsRmwServiceMonitor/app.config
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsBasisInf.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsComHeader.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsComInf.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsCommonSvcCtrl.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsErrorlog.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsReceiveData.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsRequestManage.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsRunControl.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsServerControl.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsServiceCom.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsServiceControl.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsSvcComHeader.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsSvcThreadData.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/ClsSyncSvcInf.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/My Project/Application.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/My Project/Application.myapp
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/My Project/AssemblyInfo.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/My Project/Resources.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/My Project/Resources.resx
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/My Project/Settings.Designer.vb
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/My Project/Settings.settings
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/OpsRmwSvcCtrl.vbproj
+M	netsrc/opsrmw/All_Build/OpsRmwSvcCtrl/OpsRmwSvcCtrl/StuServiceInf.vb
+M	netsrc/opsrmw/OpsRmwServiceMediate/OpsRmwServiceMediate.sln
+M	netsrc/opsrmw/OpsRmwServiceMediate/OpsRmwServiceMediate/My Project/Application.Designer.vb
+M	netsrc/opsrmw/OpsRmwServiceMediate/OpsRmwServiceMediate/My Project/Application.myapp
+M	netsrc/opsrmw/OpsRmwServiceMediate/OpsRmwServiceMediate/My Project/AssemblyInfo.vb
+M	netsrc/opsrmw/OpsRmwServiceMediate/OpsRmwServiceMediate/My Project/Resources.Designer.vb
+M	netsrc/opsrmw/OpsRmwServiceMediate/OpsRmwServiceMediate/My Project/Resources.resx
+M	netsrc/opsrmw/OpsRmwServiceMediate/OpsRmwServiceMediate/My Project/Settings.Designer.vb
+M	netsrc/opsrmw/OpsRmwServiceMediate/OpsRmwServiceMediate/My Project/Settings.settings
+M	netsrc/opsrmw/OpsRmwServiceMediate/OpsRmwServiceMediate/OpsRmwServiceMediate.vbproj
+M	netsrc/opsrmw/RMW_Service/RMW_Service.sln
+M	netsrc/opsrmw/RMW_Service/RMW_Service/RMW_Service.vcxproj
+M	netsrc/opsrmw/RMW_Service/RMW_Service/RMW_Service.vcxproj.filters
+M	netsrc/opsrmw/include/mDef_RAMW.vb
+M	netsrc/scrControl/#All_Build/All_Build.sln
+M	netsrc/scrControl/#All_Build/All_Build.vbproj
+M	netsrc/scrControl/#All_Build/My Project/Application.Designer.vb
+M	netsrc/scrControl/#All_Build/My Project/Application.myapp
+M	netsrc/scrControl/#All_Build/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/#All_Build/My Project/Resources.Designer.vb
+M	netsrc/scrControl/#All_Build/My Project/Resources.resx
+M	netsrc/scrControl/#All_Build/My Project/Settings.Designer.vb
+M	netsrc/scrControl/#All_Build/My Project/Settings.settings
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/ClsDefine.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/ClsExcelObj.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/ClsMwsBase.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/ClsMwsF_Lib.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/ClsMwsHist.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/ClsMwsKiki.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/ClsMwsRep.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/ClsMwsSys.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/FormConfChg.designer.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/FormConfChg.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/FormPrint.designer.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/MdlConst.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/MdlFncDataChg1.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/MdlFncDataChgMsgEdt.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/MdlFncDataDsp1.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/MdlFncDataDsp2.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/MdlFncDataDsp3.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/MdlFncMain.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/MdlFncSoftKey.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/MdlLib.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/MdlMws.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/MdlStruct.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/My Project/Application.Designer.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/My Project/Application.myapp
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/My Project/Resources.Designer.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/My Project/Resources.resx
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/My Project/Settings.Designer.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/My Project/Settings.settings
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/OpsScrRepExcl.Designer.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/OpsScrRepExcl.sln
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/OpsScrRepExcl.vb
+M	netsrc/scrControl/#OpsScrRepExcl_V10.06/OpsScrRepExcl.vbproj
+M	netsrc/scrControl/OpsMssScrAssign/ClsCnfColor.vb
+M	netsrc/scrControl/OpsMssScrAssign/ClsDllData.vb
+M	netsrc/scrControl/OpsMssScrAssign/ClsMws.vb
+M	netsrc/scrControl/OpsMssScrAssign/ClsMwsClock.vb
+M	netsrc/scrControl/OpsMssScrAssign/ClsMwsColo.vb
+M	netsrc/scrControl/OpsMssScrAssign/ClsMwsGaid.vb
+M	netsrc/scrControl/OpsMssScrAssign/ClsMwsKans.vb
+M	netsrc/scrControl/OpsMssScrAssign/ClsMwsMess.vb
+M	netsrc/scrControl/OpsMssScrAssign/ClsMwsOpre.vb
+M	netsrc/scrControl/OpsMssScrAssign/ClsMwsRepo.vb
+M	netsrc/scrControl/OpsMssScrAssign/ClsMwsSys.vb
+M	netsrc/scrControl/OpsMssScrAssign/ClsMwsSyst.vb
+M	netsrc/scrControl/OpsMssScrAssign/ClsMwsWeb.vb
+M	netsrc/scrControl/OpsMssScrAssign/DialogColor.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/DialogColor.vb
+M	netsrc/scrControl/OpsMssScrAssign/Dialog_ASSERR.designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/Dialog_ASSERR.vb
+M	netsrc/scrControl/OpsMssScrAssign/Dialog_DELETE.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/Dialog_DELETE.vb
+M	netsrc/scrControl/OpsMssScrAssign/Dialog_PASTE.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/Dialog_PASTE.vb
+M	netsrc/scrControl/OpsMssScrAssign/Dialog_REDISP.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/Dialog_REDISP.vb
+M	netsrc/scrControl/OpsMssScrAssign/Dialog_SETASS.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/Dialog_SETASS.vb
+M	netsrc/scrControl/OpsMssScrAssign/Form_KeyPad.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/Form_KeyPad.vb
+M	netsrc/scrControl/OpsMssScrAssign/ModlDefine.vb
+M	netsrc/scrControl/OpsMssScrAssign/ModlFunc.vb
+M	netsrc/scrControl/OpsMssScrAssign/ModlMws.vb
+M	netsrc/scrControl/OpsMssScrAssign/ModlStruct.vb
+M	netsrc/scrControl/OpsMssScrAssign/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/My Project/Application.myapp
+M	netsrc/scrControl/OpsMssScrAssign/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsMssScrAssign/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/My Project/Resources.resx
+M	netsrc/scrControl/OpsMssScrAssign/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/My Project/Settings.settings
+M	netsrc/scrControl/OpsMssScrAssign/OpsMssScrAssign.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/OpsMssScrAssign.vb
+M	netsrc/scrControl/OpsMssScrAssign/OpsMssScrAssign.vbproj
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorGrf.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorGrf.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorKes.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorKes.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorKik.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorKik.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorKkz.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorKkz.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorOre.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorOre.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorSut.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorSut.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorSys.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorSys.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorTrd.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlColorTrd.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlMessaLbl.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlMessaLbl.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlOpeBase.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlOpeSw1.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlOpeSw1.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlOpeSw2.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlOpeSw2.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlOperListBase.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlOperYua1.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlOperYua1.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlOperYua2.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlOperYua2.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlRepkiKim.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlRepkiKim.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlSysteMel.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlSysteMel.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlSystePcs.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlSysteSet.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlSysteSet.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlSysteSyl.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlSysteSyl.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlTrdgReA.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlTrdgReA.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlTrdgRel.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlTrdgRel.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlTrdgShu.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlTrdgShu.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlWCGaA.designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UCtlWCGam.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UctlCtlTimSet.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UctlCtlVidNamAsn.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UctlCtlVidNamGrp.Designer.vb
+M	netsrc/scrControl/OpsMssScrAssign/UctlCtlVidNamGrp.vb
+M	netsrc/scrControl/OpsMssScrCtl/ClsDllDefine.vb
+M	netsrc/scrControl/OpsMssScrCtl/ClsDllLib.vb
+M	netsrc/scrControl/OpsMssScrCtl/ClsMwsBase.vb
+M	netsrc/scrControl/OpsMssScrCtl/ClsMwsData.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormConnect.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormConnect.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormDatLoad.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormDatLoad.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormDevRtn.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormDevRtn.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormGpsClock.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormGpsClock.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormHistCpy.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormHistCpy.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormHistMnt.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormHistMnt.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormHistMntList.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormHistMntList.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormHistMntRsrv.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormHistMntRsrv.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormMessage.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormMessage.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormModeChg.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormModeChg.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormNtpClock.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormOthrOps.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormOthrOps.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormPassWord.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormPassWord.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormPcs.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormPcs.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormPrinter.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormPrinter.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormSetTime.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormSetTime.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormSvrDev.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormSvrDev.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormVoiceLock.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormVoiceLock.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormVoiceTel.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormVoiceTel.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormWebTerm.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/FormWebTerm.vb
+M	netsrc/scrControl/OpsMssScrCtl/ModlConst.vb
+M	netsrc/scrControl/OpsMssScrCtl/ModlDefine.vb
+M	netsrc/scrControl/OpsMssScrCtl/ModlLib.vb
+M	netsrc/scrControl/OpsMssScrCtl/ModlStruct.vb
+M	netsrc/scrControl/OpsMssScrCtl/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/My Project/Application.myapp
+M	netsrc/scrControl/OpsMssScrCtl/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsMssScrCtl/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/My Project/Resources.resx
+M	netsrc/scrControl/OpsMssScrCtl/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/My Project/Settings.settings
+M	netsrc/scrControl/OpsMssScrCtl/OpsMssScrCtl.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/OpsMssScrCtl.vb
+M	netsrc/scrControl/OpsMssScrCtl/OpsMssScrCtl.vbproj
+M	netsrc/scrControl/OpsMssScrCtl/UctlDevSts.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/UctlDevSts.vb
+M	netsrc/scrControl/OpsMssScrCtl/UctlFuda.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/UctlFuda.vb
+M	netsrc/scrControl/OpsMssScrCtl/UctlFusen.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/UctlFusen.vb
+M	netsrc/scrControl/OpsMssScrCtl/UctlOnline.Designer.vb
+M	netsrc/scrControl/OpsMssScrCtl/UctlOnline.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/ClsOpsConection.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/FormConfErr.Designer.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/FormConfPrt.Designer.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/FormDayMsg.Designer.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/FormFindMsg.Designer.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/FormFindMsg.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/FormPrint.Designer.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/ModlCnfMsg.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/ModlLib.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/My Project/Application.myapp
+M	netsrc/scrControl/OpsMssScrMsgLst/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/My Project/Resources.resx
+M	netsrc/scrControl/OpsMssScrMsgLst/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/My Project/Settings.settings
+M	netsrc/scrControl/OpsMssScrMsgLst/OpsMssScrMsgLst.Designer.vb
+M	netsrc/scrControl/OpsMssScrMsgLst/OpsMssScrMsgLst.vbproj
+M	netsrc/scrControl/OpsMssScrScrc/ClsData.vb
+M	netsrc/scrControl/OpsMssScrScrc/FormAssCnf.Designer.vb
+M	netsrc/scrControl/OpsMssScrScrc/FormMessage.Designer.vb
+M	netsrc/scrControl/OpsMssScrScrc/ModlDefine.vb
+M	netsrc/scrControl/OpsMssScrScrc/ModlFunc.vb
+M	netsrc/scrControl/OpsMssScrScrc/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsMssScrScrc/My Project/Application.myapp
+M	netsrc/scrControl/OpsMssScrScrc/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsMssScrScrc/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsMssScrScrc/My Project/Resources.resx
+M	netsrc/scrControl/OpsMssScrScrc/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsMssScrScrc/My Project/Settings.settings
+M	netsrc/scrControl/OpsMssScrScrc/OpsMssScrScrc.Designer.vb
+M	netsrc/scrControl/OpsMssScrScrc/OpsMssScrScrc.vb
+M	netsrc/scrControl/OpsMssScrScrc/OpsMssScrScrc.vbproj
+M	netsrc/scrControl/OpsMssScrScrc/UctlFourComp.Designer.vb
+M	netsrc/scrControl/OpsMssScrScrc/UctlFourComp.vb
+M	netsrc/scrControl/OpsMssScrScrc/UctlOneComp.Designer.vb
+M	netsrc/scrControl/OpsMssScrScrc/UctlSixComp.Designer.vb
+M	netsrc/scrControl/OpsMssScrScrc/UctlSixComp.vb
+M	netsrc/scrControl/OpsMssScrScrc/yobi.vb
+M	netsrc/scrControl/OpsMssScrTrend/ClsDllLib.vb
+M	netsrc/scrControl/OpsMssScrTrend/ClsMwsBase.vb
+M	netsrc/scrControl/OpsMssScrTrend/ClsMwsData.vb
+M	netsrc/scrControl/OpsMssScrTrend/ClsOpsMss.vb
+M	netsrc/scrControl/OpsMssScrTrend/FormAssign.Designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/FormBase.Designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/FormMessage.Designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/FormMessage.vb
+M	netsrc/scrControl/OpsMssScrTrend/FormMssCtrl.Designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/FormPenSts.Designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/FormPeriod.designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/ModlDefine.vb
+M	netsrc/scrControl/OpsMssScrTrend/ModlLib.vb
+M	netsrc/scrControl/OpsMssScrTrend/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/My Project/Application.myapp
+M	netsrc/scrControl/OpsMssScrTrend/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsMssScrTrend/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/My Project/Resources.resx
+M	netsrc/scrControl/OpsMssScrTrend/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/My Project/Settings.settings
+M	netsrc/scrControl/OpsMssScrTrend/OpsMssScrTrend.Designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/OpsMssScrTrend.vb
+M	netsrc/scrControl/OpsMssScrTrend/OpsMssScrTrend.vbproj
+M	netsrc/scrControl/OpsMssScrTrend/UctlBase.Designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/UctlMssTrdGrph1.Designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/UctlMssTrdGrph2.Designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/UctlMssTrdGrph3.Designer.vb
+M	netsrc/scrControl/OpsMssScrTrend/UctlMssTrdWin.designer.vb
+M	netsrc/scrControl/OpsScrAlarm/FormAlarmConf.Designer.vb
+M	netsrc/scrControl/OpsScrAlarm/FormAlarmConf.vb
+M	netsrc/scrControl/OpsScrAlarm/FormDelAlm.Designer.vb
+M	netsrc/scrControl/OpsScrAlarm/ModlLib.vb
+M	netsrc/scrControl/OpsScrAlarm/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrAlarm/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrAlarm/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrAlarm/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrAlarm/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrAlarm/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrAlarm/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrAlarm/OpsScrAlarm.Designer.vb
+M	netsrc/scrControl/OpsScrAlarm/OpsScrAlarm.vb
+M	netsrc/scrControl/OpsScrAlarm/OpsScrAlarm.vbproj
+M	netsrc/scrControl/OpsScrAlmLst/ClsData.vb
+M	netsrc/scrControl/OpsScrAlmLst/ClsMwsBase.vb
+M	netsrc/scrControl/OpsScrAlmLst/ClsMwsData.vb
+M	netsrc/scrControl/OpsScrAlmLst/FormAssignWin.Designer.vb
+M	netsrc/scrControl/OpsScrAlmLst/FormConf.Designer.vb
+M	netsrc/scrControl/OpsScrAlmLst/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrAlmLst/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrAlmLst/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrAlmLst/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrAlmLst/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrAlmLst/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrAlmLst/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrAlmLst/OpsScrAlmLst.Designer.vb
+M	netsrc/scrControl/OpsScrAlmLst/OpsScrAlmLst.vb
+M	netsrc/scrControl/OpsScrAlmLst/OpsScrAlmLst.vbproj
+M	netsrc/scrControl/OpsScrAlmLst/UctrlAnalog.Designer.vb
+M	netsrc/scrControl/OpsScrAlmLst/UctrlAnalog.resx
+M	netsrc/scrControl/OpsScrAlmLst/UctrlAnalog.vb
+M	netsrc/scrControl/OpsScrBase/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrBase/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrBase/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrBase/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrBase/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrBase/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrBase/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrBase/OpsScrBase.vbproj
+M	netsrc/scrControl/OpsScrCtlWin/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrCtlWin/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrCtlWin/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrCtlWin/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrCtlWin/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrCtlWin/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrCtlWin/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrCtlWin/OpsScrCtlWin.Designer.vb
+M	netsrc/scrControl/OpsScrCtlWin/OpsScrCtlWin.vb
+M	netsrc/scrControl/OpsScrCtlWin/OpsScrCtlWin.vbproj
+M	netsrc/scrControl/OpsScrCtrlGrp/FormAsainWin.Designer.vb
+M	netsrc/scrControl/OpsScrCtrlGrp/FormConf.Designer.vb
+M	netsrc/scrControl/OpsScrCtrlGrp/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrCtrlGrp/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrCtrlGrp/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrCtrlGrp/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrCtrlGrp/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrCtrlGrp/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrCtrlGrp/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrCtrlGrp/OpsScrCtrlGrp.Designer.vb
+M	netsrc/scrControl/OpsScrCtrlGrp/OpsScrCtrlGrp.vb
+M	netsrc/scrControl/OpsScrCtrlGrp/OpsScrCtrlGrp.vbproj
+M	netsrc/scrControl/OpsScrCtrlGrp/UctrlTag08.Designer.vb
+M	netsrc/scrControl/OpsScrCtrlGrp/UctrlTag16.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/ClsDllData.vb
+M	netsrc/scrControl/OpsScrDatSav/ClsDsvsLib.vb
+M	netsrc/scrControl/OpsScrDatSav/ClsMedia.vb
+M	netsrc/scrControl/OpsScrDatSav/ClsMwsBase.vb
+M	netsrc/scrControl/OpsScrDatSav/ClsMwsSys.vb
+M	netsrc/scrControl/OpsScrDatSav/ClsOpsCtlTime.vb
+M	netsrc/scrControl/OpsScrDatSav/FormAsnLoad.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormAsnLoad.vb
+M	netsrc/scrControl/OpsScrDatSav/FormAsnSave.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormAsnSave.vb
+M	netsrc/scrControl/OpsScrDatSav/FormAsnSlct.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormAsnSlct.vb
+M	netsrc/scrControl/OpsScrDatSav/FormAutoLog.designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormAutoLog.vb
+M	netsrc/scrControl/OpsScrDatSav/FormAutoSave.designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormAutoSave.vb
+M	netsrc/scrControl/OpsScrDatSav/FormCsvLoad.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormCsvLoad.vb
+M	netsrc/scrControl/OpsScrDatSav/FormDiskFull.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormDiskFull.vb
+M	netsrc/scrControl/OpsScrDatSav/FormDrvChg.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormDrvChg.vb
+M	netsrc/scrControl/OpsScrDatSav/FormFileOprt.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormFileOprt.vb
+M	netsrc/scrControl/OpsScrDatSav/FormFileRen.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormFileRen.vb
+M	netsrc/scrControl/OpsScrDatSav/FormFormat.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormFormat.vb
+M	netsrc/scrControl/OpsScrDatSav/FormHisSave.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormHisSave.vb
+M	netsrc/scrControl/OpsScrDatSav/FormImgSave.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormImgSave.vb
+M	netsrc/scrControl/OpsScrDatSav/FormMdiaChgMsg.designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormMdiaChgMsg.vb
+M	netsrc/scrControl/OpsScrDatSav/FormMediaRemove.designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormMediaRemove.vb
+M	netsrc/scrControl/OpsScrDatSav/FormMessage.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormMessage.vb
+M	netsrc/scrControl/OpsScrDatSav/FormMsgLoad.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormMsgLoad.vb
+M	netsrc/scrControl/OpsScrDatSav/FormMsgSave.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormMsgSave.vb
+M	netsrc/scrControl/OpsScrDatSav/FormPassWord.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormPassWord.vb
+M	netsrc/scrControl/OpsScrDatSav/FormRepLoad.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormRepLoad.vb
+M	netsrc/scrControl/OpsScrDatSav/FormRepSave.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormRepSave.vb
+M	netsrc/scrControl/OpsScrDatSav/FormRplyLoad.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormRplySave.designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormRplySave.vb
+M	netsrc/scrControl/OpsScrDatSav/FormTrdLoad.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormTrdLoad.vb
+M	netsrc/scrControl/OpsScrDatSav/FormTrdSave.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormTrdSave.vb
+M	netsrc/scrControl/OpsScrDatSav/FormTrdSlct.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormTrdSlct.vb
+M	netsrc/scrControl/OpsScrDatSav/FormUSBRemove.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/FormUSBRemove.vb
+M	netsrc/scrControl/OpsScrDatSav/ModlConst.vb
+M	netsrc/scrControl/OpsScrDatSav/ModlCsv.vb
+M	netsrc/scrControl/OpsScrDatSav/ModlDefine.vb
+M	netsrc/scrControl/OpsScrDatSav/ModlFunc.vb
+M	netsrc/scrControl/OpsScrDatSav/ModlLib.vb
+M	netsrc/scrControl/OpsScrDatSav/ModlMedia.vb
+M	netsrc/scrControl/OpsScrDatSav/ModlMws.vb
+M	netsrc/scrControl/OpsScrDatSav/ModlStruct.vb
+M	netsrc/scrControl/OpsScrDatSav/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrDatSav/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrDatSav/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrDatSav/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrDatSav/OpsScrDatSav.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/OpsScrDatSav.vb
+M	netsrc/scrControl/OpsScrDatSav/OpsScrDatSav.vbproj
+M	netsrc/scrControl/OpsScrDatSav/UctlMenu.Designer.vb
+M	netsrc/scrControl/OpsScrDatSav/UctlMenu.vb
+M	netsrc/scrControl/OpsScrDatSav_dll/KillWind.vcxproj
+M	netsrc/scrControl/OpsScrDatSav_dll/KillWind.vcxproj.filters
+M	netsrc/scrControl/OpsScrDemand/ClsData.vb
+M	netsrc/scrControl/OpsScrDemand/FormEquival.Designer.vb
+M	netsrc/scrControl/OpsScrDemand/FormError.Designer.vb
+M	netsrc/scrControl/OpsScrDemand/FormError.vb
+M	netsrc/scrControl/OpsScrDemand/FormSetVal.Designer.vb
+M	netsrc/scrControl/OpsScrDemand/FormSetVal.vb
+M	netsrc/scrControl/OpsScrDemand/FormWatchStop.Designer.vb
+M	netsrc/scrControl/OpsScrDemand/FormWatchStop.vb
+M	netsrc/scrControl/OpsScrDemand/ModlDefine.vb
+M	netsrc/scrControl/OpsScrDemand/ModlFunc.vb
+M	netsrc/scrControl/OpsScrDemand/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrDemand/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrDemand/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrDemand/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrDemand/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrDemand/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrDemand/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrDemand/OpsScrDemand.Designer.vb
+M	netsrc/scrControl/OpsScrDemand/OpsScrDemand.vb
+M	netsrc/scrControl/OpsScrDemand/OpsScrDemand.vbproj
+M	netsrc/scrControl/OpsScrGraphCalc/DataClass/ClsGraphCalcData.vb
+M	netsrc/scrControl/OpsScrGraphCalc/ExtendControl/GraphViewBox.Designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/ExtendControl/NumericTextBox.Designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/ExtendControl/ScalePictureBox.Designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/ExtendControl/TblNumCtrl.Designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/ExtendControl/TblTagSl.Designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/ExtendControl/XScalePictureBox.Designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/ExtendControl/YScalePictureBox.Designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/Forms/FormConfirm.designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/Forms/FormConfirm.resx
+M	netsrc/scrControl/OpsScrGraphCalc/Forms/FormConfirm.vb
+M	netsrc/scrControl/OpsScrGraphCalc/Forms/FormEquival.designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/Forms/FormError.designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/Forms/FormError.vb
+M	netsrc/scrControl/OpsScrGraphCalc/Forms/FormSetVal.Designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/ModlDefine.vb
+M	netsrc/scrControl/OpsScrGraphCalc/ModlFunc.vb
+M	netsrc/scrControl/OpsScrGraphCalc/Mws/ClsMws.vb
+M	netsrc/scrControl/OpsScrGraphCalc/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrGraphCalc/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrGraphCalc/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrGraphCalc/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrGraphCalc/OpsScrGraphCalc.Designer.vb
+M	netsrc/scrControl/OpsScrGraphCalc/OpsScrGraphCalc.vb
+M	netsrc/scrControl/OpsScrGraphCalc/OpsScrGraphCalc.vbproj
+M	netsrc/scrControl/OpsScrGraphic/CMWAfmmiinf.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWAfsys.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWChkControl.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWGFlkfcty.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWGFlkgraph.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWGSsftkasn.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWGetAlarmConf.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWGetAniData.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWGetCtrlTagl.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWGetData.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWGetGDgraph.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWGetGDkeiso.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWGetRpyFileDetail.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWGetRpyFileList.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWJFopri.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWJFopriCheck.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWOneCtrl.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWRFcfg.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWReadRpyFile.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWReqRpyEnd.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWReqRpySave.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWRpyConChk.vb
+M	netsrc/scrControl/OpsScrGraphic/CMWUpdFileRead.vb
+M	netsrc/scrControl/OpsScrGraphic/CSousaken.vb
+M	netsrc/scrControl/OpsScrGraphic/ClsGraphicData.vb
+M	netsrc/scrControl/OpsScrGraphic/ClsGraphicLib.vb
+M	netsrc/scrControl/OpsScrGraphic/ClsGraphicNumSet.vb
+M	netsrc/scrControl/OpsScrGraphic/ClsGraphicSftKey.vb
+M	netsrc/scrControl/OpsScrGraphic/FormAlarmConf.Designer.vb
+M	netsrc/scrControl/OpsScrGraphic/FormAlarmConf.vb
+M	netsrc/scrControl/OpsScrGraphic/FormConfMsg.designer.vb
+M	netsrc/scrControl/OpsScrGraphic/FormConfMsg.vb
+M	netsrc/scrControl/OpsScrGraphic/FormCtrlConf.Designer.vb
+M	netsrc/scrControl/OpsScrGraphic/FormEdit.designer.vb
+M	netsrc/scrControl/OpsScrGraphic/FormKesoConf.designer.vb
+M	netsrc/scrControl/OpsScrGraphic/FormRpyConf.Designer.vb
+M	netsrc/scrControl/OpsScrGraphic/FormRpyDetail.designer.vb
+M	netsrc/scrControl/OpsScrGraphic/FormRpyDetail.vb
+M	netsrc/scrControl/OpsScrGraphic/FormRpyLoad.designer.vb
+M	netsrc/scrControl/OpsScrGraphic/FormRpyLoad.vb
+M	netsrc/scrControl/OpsScrGraphic/FormRpyStat.designer.vb
+M	netsrc/scrControl/OpsScrGraphic/FormRpyStat.vb
+M	netsrc/scrControl/OpsScrGraphic/Module1.vb
+M	netsrc/scrControl/OpsScrGraphic/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrGraphic/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrGraphic/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrGraphic/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrGraphic/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrGraphic/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrGraphic/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrGraphic/OpsScrGraphic.Designer.vb
+M	netsrc/scrControl/OpsScrGraphic/OpsScrGraphic.vb
+M	netsrc/scrControl/OpsScrGraphic/OpsScrGraphic.vbproj
+M	netsrc/scrControl/OpsScrGraphic/mGraphicInc.vb
+M	netsrc/scrControl/OpsScrGuidance/CEnvironment.vb
+M	netsrc/scrControl/OpsScrGuidance/CMwGuidAsnList.vb
+M	netsrc/scrControl/OpsScrGuidance/CWordobjct.vb
+M	netsrc/scrControl/OpsScrGuidance/DialogAskFileName.designer.vb
+M	netsrc/scrControl/OpsScrGuidance/DialogAskFileName.vb
+M	netsrc/scrControl/OpsScrGuidance/DialogAskMessage.designer.vb
+M	netsrc/scrControl/OpsScrGuidance/DialogAskMessage.vb
+M	netsrc/scrControl/OpsScrGuidance/DialogCopy.designer.vb
+M	netsrc/scrControl/OpsScrGuidance/DialogCopy.vb
+M	netsrc/scrControl/OpsScrGuidance/DialogDataGet.Designer.vb
+M	netsrc/scrControl/OpsScrGuidance/DialogDataGet.vb
+M	netsrc/scrControl/OpsScrGuidance/FormSoftkey.Designer.vb
+M	netsrc/scrControl/OpsScrGuidance/GuidanceDisp.Designer.vb
+M	netsrc/scrControl/OpsScrGuidance/GuidanceDisp.vb
+M	netsrc/scrControl/OpsScrGuidance/GuidanceEdit.Designer.vb
+M	netsrc/scrControl/OpsScrGuidance/GuidanceEdit.vb
+M	netsrc/scrControl/OpsScrGuidance/ModLib.vb
+M	netsrc/scrControl/OpsScrGuidance/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrGuidance/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrGuidance/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrGuidance/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrGuidance/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrGuidance/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrGuidance/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrGuidance/OpsScrGuidance.Designer.vb
+M	netsrc/scrControl/OpsScrGuidance/OpsScrGuidance.vb
+M	netsrc/scrControl/OpsScrGuidance/OpsScrGuidance.vbproj
+M	netsrc/scrControl/OpsScrMsgLst/FormConfErr.Designer.vb
+M	netsrc/scrControl/OpsScrMsgLst/FormConfPrt.Designer.vb
+M	netsrc/scrControl/OpsScrMsgLst/FormDayMsg.Designer.vb
+M	netsrc/scrControl/OpsScrMsgLst/FormFindMsg.Designer.vb
+M	netsrc/scrControl/OpsScrMsgLst/FormFindMsg.vb
+M	netsrc/scrControl/OpsScrMsgLst/FormFindingMsg.designer.vb
+M	netsrc/scrControl/OpsScrMsgLst/FormPrint.Designer.vb
+M	netsrc/scrControl/OpsScrMsgLst/ModlCnfMsg.vb
+M	netsrc/scrControl/OpsScrMsgLst/ModlLib.vb
+M	netsrc/scrControl/OpsScrMsgLst/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrMsgLst/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrMsgLst/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrMsgLst/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrMsgLst/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrMsgLst/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrMsgLst/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrMsgLst/OpsScrMsgLst.Designer.vb
+M	netsrc/scrControl/OpsScrMsgLst/OpsScrMsgLst.vb
+M	netsrc/scrControl/OpsScrMsgLst/OpsScrMsgLst.vbproj
+M	netsrc/scrControl/OpsScrPcsMon/ClsData.vb
+M	netsrc/scrControl/OpsScrPcsMon/FormAddress.Designer.vb
+M	netsrc/scrControl/OpsScrPcsMon/FormInputnum.Designer.vb
+M	netsrc/scrControl/OpsScrPcsMon/FormMessage.Designer.vb
+M	netsrc/scrControl/OpsScrPcsMon/FormPassword.Designer.vb
+M	netsrc/scrControl/OpsScrPcsMon/FormProgBar.Designer.vb
+M	netsrc/scrControl/OpsScrPcsMon/ModlDefine.vb
+M	netsrc/scrControl/OpsScrPcsMon/ModlFunc.vb
+M	netsrc/scrControl/OpsScrPcsMon/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrPcsMon/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrPcsMon/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrPcsMon/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrPcsMon/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrPcsMon/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrPcsMon/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrPcsMon/OpsScrPcsMon.Designer.vb
+M	netsrc/scrControl/OpsScrPcsMon/OpsScrPcsMon.vb
+M	netsrc/scrControl/OpsScrPcsMon/OpsScrPcsMon.vbproj
+M	netsrc/scrControl/OpsScrPcsMon/UctlErrorMon.Designer.vb
+M	netsrc/scrControl/OpsScrPcsMon/UctlHistoryMon.Designer.vb
+M	netsrc/scrControl/OpsScrPcsMon/UctlMemoryMon.Designer.vb
+M	netsrc/scrControl/OpsScrPcsMon/UctlPcsMon.Designer.vb
+M	netsrc/scrControl/OpsScrPcsMon/UctlRunMon.Designer.vb
+M	netsrc/scrControl/OpsScrRepExcl/ClsDefine.vb
+M	netsrc/scrControl/OpsScrRepExcl/ClsExcelObj.vb
+M	netsrc/scrControl/OpsScrRepExcl/ClsMwsBase.vb
+M	netsrc/scrControl/OpsScrRepExcl/ClsMwsF_Lib.vb
+M	netsrc/scrControl/OpsScrRepExcl/ClsMwsHist.vb
+M	netsrc/scrControl/OpsScrRepExcl/ClsMwsKiki.vb
+M	netsrc/scrControl/OpsScrRepExcl/ClsMwsRep.vb
+M	netsrc/scrControl/OpsScrRepExcl/ClsMwsSys.vb
+M	netsrc/scrControl/OpsScrRepExcl/FormConfChg.designer.vb
+M	netsrc/scrControl/OpsScrRepExcl/FormConfChg.vb
+M	netsrc/scrControl/OpsScrRepExcl/FormPrint.designer.vb
+M	netsrc/scrControl/OpsScrRepExcl/FormSoftkey.Designer.vb
+M	netsrc/scrControl/OpsScrRepExcl/MdlConst.vb
+M	netsrc/scrControl/OpsScrRepExcl/MdlFncDataChg1.vb
+M	netsrc/scrControl/OpsScrRepExcl/MdlFncDataChgMsgEdt.vb
+M	netsrc/scrControl/OpsScrRepExcl/MdlFncDataDsp1.vb
+M	netsrc/scrControl/OpsScrRepExcl/MdlFncDataDsp2.vb
+M	netsrc/scrControl/OpsScrRepExcl/MdlFncDataDsp3.vb
+M	netsrc/scrControl/OpsScrRepExcl/MdlFncMain.vb
+M	netsrc/scrControl/OpsScrRepExcl/MdlFncSoftKey.vb
+M	netsrc/scrControl/OpsScrRepExcl/MdlLib.vb
+M	netsrc/scrControl/OpsScrRepExcl/MdlMws.vb
+M	netsrc/scrControl/OpsScrRepExcl/MdlStruct.vb
+M	netsrc/scrControl/OpsScrRepExcl/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrRepExcl/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrRepExcl/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrRepExcl/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrRepExcl/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrRepExcl/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrRepExcl/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrRepExcl/OpsScrRepExcl.Designer.vb
+M	netsrc/scrControl/OpsScrRepExcl/OpsScrRepExcl.vb
+M	netsrc/scrControl/OpsScrRepExcl/OpsScrRepExcl.vbproj
+M	netsrc/scrControl/OpsScrRepMenu/FormConfChg.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormConfChg.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormDspData.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormDspData.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormEdtSht.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormEdtSht.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormGrpPrt.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormGrpPrt.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormSetGrp.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormSetGrp.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormSetTime.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormSetTime.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormShtDsp.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormShtDsp.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormShtPrt.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/FormShtPrt.vb
+M	netsrc/scrControl/OpsScrRepMenu/MdlRepConst.vb
+M	netsrc/scrControl/OpsScrRepMenu/MdlRepDefine.vb
+M	netsrc/scrControl/OpsScrRepMenu/MdlRepFunc.vb
+M	netsrc/scrControl/OpsScrRepMenu/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrRepMenu/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrRepMenu/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrRepMenu/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrRepMenu/OpsScrRepMenu.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/OpsScrRepMenu.vb
+M	netsrc/scrControl/OpsScrRepMenu/OpsScrRepMenu.vbproj
+M	netsrc/scrControl/OpsScrRepMenu/UctlDay.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/UctlDay.vb
+M	netsrc/scrControl/OpsScrRepMenu/UctlMenu.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/UctlMenu.vb
+M	netsrc/scrControl/OpsScrRepMenu/UctlMonth.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/UctlMonth.vb
+M	netsrc/scrControl/OpsScrRepMenu/UctlYear.Designer.vb
+M	netsrc/scrControl/OpsScrRepMenu/UctlYear.vb
+M	netsrc/scrControl/OpsScrSysMnt/ClsDllDefine.vb
+M	netsrc/scrControl/OpsScrSysMnt/ClsDllLib.vb
+M	netsrc/scrControl/OpsScrSysMnt/ClsMwsBase.vb
+M	netsrc/scrControl/OpsScrSysMnt/ClsMwsData.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormConnect.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormConnect.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormDatLoad.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormDatLoad.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormDevRtn.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormDevRtn.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormGpsClock.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormGpsClock.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormHistCpy.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormHistCpy.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormHistMnt.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormHistMnt.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormHistMntList.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormHistMntList.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormHistMntRsrv.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormHistMntRsrv.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormMediaRemove.designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormMediaRemove.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormMessage.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormMessage.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormModeChg.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormModeChg.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormNtpClock.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormOthrOps.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormOthrOps.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormOthrOpsADA.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormOthrOpsADA.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormPassWord.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormPassWord.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormPcs.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormPcs.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormPcsADA.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormPcsADA.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormPrinter.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormPrinter.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormSetTime.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormSetTime.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormSvrDev.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormSvrDev.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormUSBRemove.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormUSBRemove.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormVoiceLock.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormVoiceLock.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormVoiceTel.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormVoiceTel.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormWebTerm.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/FormWebTerm.vb
+M	netsrc/scrControl/OpsScrSysMnt/ModlConst.vb
+M	netsrc/scrControl/OpsScrSysMnt/ModlDefine.vb
+M	netsrc/scrControl/OpsScrSysMnt/ModlFunc.vb
+M	netsrc/scrControl/OpsScrSysMnt/ModlLib.vb
+M	netsrc/scrControl/OpsScrSysMnt/ModlStruct.vb
+M	netsrc/scrControl/OpsScrSysMnt/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrSysMnt/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrSysMnt/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrSysMnt/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrSysMnt/OpsScrSysMnt.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/OpsScrSysMnt.vb
+M	netsrc/scrControl/OpsScrSysMnt/OpsScrSysMnt.vbproj
+M	netsrc/scrControl/OpsScrSysMnt/UctlDevSts.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/UctlDevSts.vb
+M	netsrc/scrControl/OpsScrSysMnt/UctlFuda.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/UctlFusen.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/UctlFusen.vb
+M	netsrc/scrControl/OpsScrSysMnt/UctlOnline.Designer.vb
+M	netsrc/scrControl/OpsScrSysMnt/UctlOnline.vb
+M	netsrc/scrControl/OpsScrTimSch/ClsData.vb
+M	netsrc/scrControl/OpsScrTimSch/FormConfPtn1.Designer.vb
+M	netsrc/scrControl/OpsScrTimSch/FormConfPtn2.Designer.vb
+M	netsrc/scrControl/OpsScrTimSch/FormEquival.designer.vb
+M	netsrc/scrControl/OpsScrTimSch/FormError.designer.vb
+M	netsrc/scrControl/OpsScrTimSch/FormError.vb
+M	netsrc/scrControl/OpsScrTimSch/FormSetVal1.Designer.vb
+M	netsrc/scrControl/OpsScrTimSch/FormSetVal2.Designer.vb
+M	netsrc/scrControl/OpsScrTimSch/FormTable.Designer.vb
+M	netsrc/scrControl/OpsScrTimSch/FormTimSchStop.designer.vb
+M	netsrc/scrControl/OpsScrTimSch/FormTimSchStop.vb
+M	netsrc/scrControl/OpsScrTimSch/FormWeekPtn.Designer.vb
+M	netsrc/scrControl/OpsScrTimSch/ModlDefine.vb
+M	netsrc/scrControl/OpsScrTimSch/ModlFunc.vb
+M	netsrc/scrControl/OpsScrTimSch/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrTimSch/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrTimSch/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrTimSch/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrTimSch/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrTimSch/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrTimSch/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrTimSch/OpsScrTimSch.Designer.vb
+M	netsrc/scrControl/OpsScrTimSch/OpsScrTimSch.vb
+M	netsrc/scrControl/OpsScrTimSch/OpsScrTimSch.vbproj
+M	netsrc/scrControl/OpsScrTimSch/UctlNumSet.Designer.vb
+M	netsrc/scrControl/OpsScrTimSch/UctlNumSet.vb
+M	netsrc/scrControl/OpsScrTimSch/UctlOprtSet.Designer.vb
+M	netsrc/scrControl/OpsScrTimSch/UctlOprtSet.vb
+M	netsrc/scrControl/OpsScrTrend/ClsDllLib.vb
+M	netsrc/scrControl/OpsScrTrend/ClsMwsBase.vb
+M	netsrc/scrControl/OpsScrTrend/ClsMwsData.vb
+M	netsrc/scrControl/OpsScrTrend/ClsOpsMss.vb
+M	netsrc/scrControl/OpsScrTrend/DialogColor.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/DialogColor.vb
+M	netsrc/scrControl/OpsScrTrend/FormAssign.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/FormBase.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/FormChoPeriod.designer.vb
+M	netsrc/scrControl/OpsScrTrend/FormCompare2Days.designer.vb
+M	netsrc/scrControl/OpsScrTrend/FormGuideLine.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/FormMessage.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/FormMessage.vb
+M	netsrc/scrControl/OpsScrTrend/FormPenSts.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/FormPeriod.designer.vb
+M	netsrc/scrControl/OpsScrTrend/ModlDefine.vb
+M	netsrc/scrControl/OpsScrTrend/ModlLib.vb
+M	netsrc/scrControl/OpsScrTrend/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrTrend/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrTrend/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrTrend/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrTrend/OpsScrTrend.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/OpsScrTrend.vb
+M	netsrc/scrControl/OpsScrTrend/OpsScrTrend.vbproj
+M	netsrc/scrControl/OpsScrTrend/UctlBase.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlChouhyou.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlCmprL8B0.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlGrphL1B7.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlGrphL4B4.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlGrphL8B0.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlInfoL0B8.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlInfoL1B7.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlInfoL4B4.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlInfoL8B0.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlSmplL1B7.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlSmplL4B4.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlSmplL8B0.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlTrdPoint.Designer.vb
+M	netsrc/scrControl/OpsScrTrend/UctlTrdWindow.designer.vb
+M	netsrc/scrControl/OpsScrTuning/ClsData.vb
+M	netsrc/scrControl/OpsScrTuning/FormCheck.Designer.vb
+M	netsrc/scrControl/OpsScrTuning/FormEditData.Designer.vb
+M	netsrc/scrControl/OpsScrTuning/FormError.Designer.vb
+M	netsrc/scrControl/OpsScrTuning/FormError.vb
+M	netsrc/scrControl/OpsScrTuning/FormSelBtn.Designer.vb
+M	netsrc/scrControl/OpsScrTuning/FormSelPen.Designer.vb
+M	netsrc/scrControl/OpsScrTuning/ModlDefine.vb
+M	netsrc/scrControl/OpsScrTuning/ModlFunc.vb
+M	netsrc/scrControl/OpsScrTuning/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrTuning/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrTuning/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrTuning/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrTuning/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrTuning/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrTuning/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrTuning/OpsScrTuning.Designer.vb
+M	netsrc/scrControl/OpsScrTuning/OpsScrTuning.vb
+M	netsrc/scrControl/OpsScrTuning/OpsScrTuning.vbproj
+M	netsrc/scrControl/OpsScrUtility/CMWOpsConection.vb
+M	netsrc/scrControl/OpsScrUtility/ClsCnfColor.vb
+M	netsrc/scrControl/OpsScrUtility/ClsDllData.vb
+M	netsrc/scrControl/OpsScrUtility/ClsMws.vb
+M	netsrc/scrControl/OpsScrUtility/ClsMwsAsnCpy.vb
+M	netsrc/scrControl/OpsScrUtility/ClsMwsColo.vb
+M	netsrc/scrControl/OpsScrUtility/ClsMwsEmail.vb
+M	netsrc/scrControl/OpsScrUtility/ClsMwsGaid.vb
+M	netsrc/scrControl/OpsScrUtility/ClsMwsKans.vb
+M	netsrc/scrControl/OpsScrUtility/ClsMwsMess.vb
+M	netsrc/scrControl/OpsScrUtility/ClsMwsOpre.vb
+M	netsrc/scrControl/OpsScrUtility/ClsMwsRepo.vb
+M	netsrc/scrControl/OpsScrUtility/ClsMwsRply.vb
+M	netsrc/scrControl/OpsScrUtility/ClsMwsSys.vb
+M	netsrc/scrControl/OpsScrUtility/ClsMwsSyst.vb
+M	netsrc/scrControl/OpsScrUtility/ClsMwsWeb.vb
+M	netsrc/scrControl/OpsScrUtility/DialogColor.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/DialogColor.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_ASSCONF.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_ASSCONF.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_ASSERR.designer.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_ASSERR.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_ASSNOSAV.designer.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_ASSNOSAV.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_DELETE.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_DELETE.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_PASTE.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_PASTE.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_REDISP.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_REDISP.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_SETASS.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_SETASS.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_SETASS2.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_SETASS2.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_TELCONF.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Dialog_TELCONF.vb
+M	netsrc/scrControl/OpsScrUtility/Form_EkesotagD.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_EkesotagD.vb
+M	netsrc/scrControl/OpsScrUtility/Form_EkikitagD.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_EkikitagD.vb
+M	netsrc/scrControl/OpsScrUtility/Form_EmailRpt.designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_EmailRpt.vb
+M	netsrc/scrControl/OpsScrUtility/Form_EmailSend.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_EmailSend.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KesotagD.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KesotagD.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KesotagDDsvs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KesotagDDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KesotagG.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KesotagGDsvs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KesotagM.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KesotagM.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KesotagMDsvs.designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KesotagMDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KeyPad.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KeyPad.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagD.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagD.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagDDsvs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagDDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagG.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagG.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagGDsvs.designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagGDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagM.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagM.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagMDsvs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagMDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagT.designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_KikitagT.vb
+M	netsrc/scrControl/OpsScrUtility/Form_MsgSerInf.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_Onmelistw.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_Onmelistw.vb
+M	netsrc/scrControl/OpsScrUtility/Form_OnmelistwDsvs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_OnmelistwDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/Form_Onmesetw.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_Onmesetw.vb
+M	netsrc/scrControl/OpsScrUtility/Form_OnmesetwDsvs.designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_OnmesetwDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/Form_PassWord.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_PassWord.vb
+M	netsrc/scrControl/OpsScrUtility/Form_ReName.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_ReName.vb
+M	netsrc/scrControl/OpsScrUtility/Form_Sfkasin.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_Sfkasin.vb
+M	netsrc/scrControl/OpsScrUtility/Form_TelInf.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_TelInf.vb
+M	netsrc/scrControl/OpsScrUtility/Form_TelOneS.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_TelOneS.vb
+M	netsrc/scrControl/OpsScrUtility/Form_TelTest.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_TelTest.vb
+M	netsrc/scrControl/OpsScrUtility/Form_TelView.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_TelView.vb
+M	netsrc/scrControl/OpsScrUtility/Form_UsrCtfEdit.designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_UsrLogoutEdit.designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_UsrMnuCol.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_WebEditUser.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_WebEditUser.vb
+M	netsrc/scrControl/OpsScrUtility/Form_Youserkey.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/Form_Youserkey.vb
+M	netsrc/scrControl/OpsScrUtility/ModlDefine.vb
+M	netsrc/scrControl/OpsScrUtility/ModlFunc.vb
+M	netsrc/scrControl/OpsScrUtility/ModlMws.vb
+M	netsrc/scrControl/OpsScrUtility/ModlStruct.vb
+M	netsrc/scrControl/OpsScrUtility/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrUtility/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrUtility/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrUtility/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrUtility/OpsScrUtility.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/OpsScrUtility.vb
+M	netsrc/scrControl/OpsScrUtility/OpsScrUtility.vbproj
+M	netsrc/scrControl/OpsScrUtility/UCtlAlmlst.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlAlmlst.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlAlmlstA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlAlmlstA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlCalendar.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlCntgGaA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlCntgGaA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlCntgGam.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlCntgGam.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlCntgGrA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlCntgGrA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlCntgGrp.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlCntgGrp.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorArm.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorArm.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorChu.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorChu.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorCnt.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorCnt.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorDmd.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorDmd.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorGrf.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorGrf.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorHad.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorHad.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorHad2.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorHad2.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorKes.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorKes.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorKik.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorKik.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorObi.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorObi.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorOre.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorOre.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorSut.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorSut.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorSys.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorSys.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorTco.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorTco.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorTso.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorTso.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorTsu.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorTsu.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorYou.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlColorYou.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlDemdGaA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlDemdGaA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlDemdGam.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlDemdGam.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailConnMessaSet.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailConnMessaSet.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailDlc.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailDlc.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailLeb.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailLeb.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailMlc.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailMlc.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailPlc.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailPlc.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailRpt.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailRpt.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailRptA.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailSend.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailSend.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailSendReceiveCycleSet.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailSendReceiveCycleSet.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailSlc.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailSlc.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailSlitDateSet2.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailSlitDateSet2.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailTransmissionTime.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailTransmissionTime.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlEmailTransmissionTimeSet2.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlGaidsTag.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlGaidsTag.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlGaidsTagDsvs.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlGaidsTagDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlGraphGrA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlGraphGrA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlGraphGrp.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlGraphGrp.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlGraphsfk.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlGraphsfk.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlKanrpRpA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlKanrpRpA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlKanrpRpo.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlKanrpRpo.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlKanrpRps.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlKanrpRps.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMacinCop.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMacinCop.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaChs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaChs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaChsDsvs.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaChsDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaDlc.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaDlc.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaDlcDsvs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaDlcDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaJis.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaJis.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaJisDsvs.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaJisDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaKob.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaKob.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaKobDsvs.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaKobDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaLbl.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaLbl.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaLblDsvs.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaLblDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaLeb.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaLeb.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaLebDsvs.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaLebDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaMai.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaMai.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaMaiDsvs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaMaiDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaMlc.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaMlc.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaMlcDsvs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaMlcDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaPlc.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaPlc.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaPlcDsvs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaPlcDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaSlc.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaSlc.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaSlcDsvs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaSlcDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaTag.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaTag.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaTagDsvs.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlMessaTagDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlOpeFcty.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlOpeFcty.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlOperYua1.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlOperYua1.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlOperYua2.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlOperYua2.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlOperYuk1.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlOperYuk1.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlOperYuk2.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlOperYuk2.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlOperYums.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlOperYums.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlPresetAsn.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlPresetTbA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlRepkiKim.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlRepkiKim.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlRplyRpA.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlRplyRpl.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlSysteMel.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlSysteMel.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlSystePcs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlSystePrl.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlSystePrl.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlSysteSet.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlSysteSet.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlSysteSyl.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlSysteSyl.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTelComMsg.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTelInfSet.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTelInfSet.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTelOneMsg.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTelOneMsg.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTelTag.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTelTag.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTelTimeA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTelTimeS.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTimeSoA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTimeSoA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTimeSos.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTimeSos.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTimeSuA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTimeSuA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTimeSut.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTimeSut.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgChA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgChA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgCho.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgCho.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgGrA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgGrA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgGrp.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgGrp.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgHsA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgHsA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgHst.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgHst.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgLnA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgLnA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgLng.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgLng.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgReA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgReA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgRel.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgRel.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShu.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShu.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShuDsvs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShuDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShuLL.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShuLL.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShuLLDsvs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShuLLDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShuSL.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShuSL.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShuSLDsvs.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlTrdgShuSLDsvs.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlUsrCtf.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlUsrGrA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlUsrGrA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlUsrGrp.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlUsrGrp.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlWCGaA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlWCGam.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlWebAlarmLvl.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlWebAlarmLvl.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlWebUserAdm.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlWebUserAdm.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlWebUsrGrA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlWebUsrGrA.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlWebUsrGrp.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtlWebUsrGrp.vb
+M	netsrc/scrControl/OpsScrUtility/UCtrlGraphCalc/UCtlGraphCalc.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtrlGraphCalc/UCtlGraphCalc.vb
+M	netsrc/scrControl/OpsScrUtility/UCtrlGraphCalc/UCtlGraphCalcA.Designer.vb
+M	netsrc/scrControl/OpsScrUtility/UCtrlGraphCalc/UCtlGraphCalcA.vb
+M	netsrc/scrControl/OpsScrUtility/UctlColorGclc/UCtlColorGclc.designer.vb
+M	netsrc/scrControl/OpsScrUtility/UctlColorGclc/UCtlColorGclc.vb
+M	netsrc/scrControl/OpsScrWebCamera/ClsData.vb
+M	netsrc/scrControl/OpsScrWebCamera/ClsDllDefine.vb
+M	netsrc/scrControl/OpsScrWebCamera/ClsDllLib.vb
+M	netsrc/scrControl/OpsScrWebCamera/ClsMwsBase.vb
+M	netsrc/scrControl/OpsScrWebCamera/ClsMwsData.vb
+M	netsrc/scrControl/OpsScrWebCamera/DialogColor.designer.vb
+M	netsrc/scrControl/OpsScrWebCamera/DialogColor.vb
+M	netsrc/scrControl/OpsScrWebCamera/Dialog_ASSCONF.designer.vb
+M	netsrc/scrControl/OpsScrWebCamera/FormConfErr.designer.vb
+M	netsrc/scrControl/OpsScrWebCamera/FormOverLayLabel.Designer.vb
+M	netsrc/scrControl/OpsScrWebCamera/FormOverLayLabel.vb
+M	netsrc/scrControl/OpsScrWebCamera/FormOverLaySet.designer.vb
+M	netsrc/scrControl/OpsScrWebCamera/FormOverLaySet.vb
+M	netsrc/scrControl/OpsScrWebCamera/ModlConst.vb
+M	netsrc/scrControl/OpsScrWebCamera/ModlDefine.vb
+M	netsrc/scrControl/OpsScrWebCamera/ModlLib.vb
+M	netsrc/scrControl/OpsScrWebCamera/ModlStruct.vb
+M	netsrc/scrControl/OpsScrWebCamera/My Project/Application.Designer.vb
+M	netsrc/scrControl/OpsScrWebCamera/My Project/Application.myapp
+M	netsrc/scrControl/OpsScrWebCamera/My Project/AssemblyInfo.vb
+M	netsrc/scrControl/OpsScrWebCamera/My Project/Resources.Designer.vb
+M	netsrc/scrControl/OpsScrWebCamera/My Project/Resources.resx
+M	netsrc/scrControl/OpsScrWebCamera/My Project/Settings.Designer.vb
+M	netsrc/scrControl/OpsScrWebCamera/My Project/Settings.settings
+M	netsrc/scrControl/OpsScrWebCamera/OpsScrWebCamera.Designer.vb
+M	netsrc/scrControl/OpsScrWebCamera/OpsScrWebCamera.vbproj
+M	netsrc/scrControlMws/All_Build/All_Build.sln
+M	netsrc/scrControlMws/All_Build/All_Build.vcxproj
+M	netsrc/scrControlMws/All_Build/All_Build.vcxproj.filters
+M	netsrc/scrControlMws/F_usb_eject/F_usb_eject.vcxproj
+M	netsrc/scrControlMws/OpsMssScrAssignMws/OpsMssScrAssignMws.vcxproj
+M	netsrc/scrControlMws/OpsMssScrAssignMws/OpsMssScrAssignMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsMssScrScrcMws/OpsMssScrScrcMws.vcxproj
+M	netsrc/scrControlMws/OpsMssScrScrcMws/OpsMssScrScrcMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrAlarmMws/OpsScrAlarmMws.vcxproj
+M	netsrc/scrControlMws/OpsScrAlarmMws/OpsScrAlarmMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrAlmLstMws/OpsScrAlmLstMws.vcxproj
+M	netsrc/scrControlMws/OpsScrCtrlGrpMws/OpsScrCtrlGrpMws.vcxproj
+M	netsrc/scrControlMws/OpsScrCtrlGrpMws/OpsScrCtrlGrpMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrDatSavMws/OpsScrDatSavMws.vcxproj
+M	netsrc/scrControlMws/OpsScrDatSavMws/OpsScrDatSavMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrDemandMws/OpsScrDemandMws/OpsScrDemandMws.vcxproj
+M	netsrc/scrControlMws/OpsScrDemandMws/OpsScrDemandMws/OpsScrDemandMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrGraphCalcMws/OpsScrGraphCalcMws.vcxproj
+M	netsrc/scrControlMws/OpsScrGraphCalcMws/OpsScrGraphCalcMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrGraphicMws/OpsScrGraphicMws.vcxproj
+M	netsrc/scrControlMws/OpsScrGraphicMws/OpsScrGraphicMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrMsgLstMws/OpsScrMsgLstMws.vcxproj
+M	netsrc/scrControlMws/OpsScrMsgLstMws/OpsScrMsgLstMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrPcsMonMws/OpsScrPcsMonMws.vcxproj
+M	netsrc/scrControlMws/OpsScrPcsMonMws/OpsScrPcsMonMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrRepExclMws/OpsScrRepExclMws.vcxproj
+M	netsrc/scrControlMws/OpsScrRepExclMws/OpsScrRepExclMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrRepMenuMws/OpsScrRepMenuMws.vcxproj
+M	netsrc/scrControlMws/OpsScrRepMenuMws/OpsScrRepMenuMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrSysMntMws/OpsScrSysMntMws.vcxproj
+M	netsrc/scrControlMws/OpsScrSysMntMws/OpsScrSysMntMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrTimSchMws/OpsScrTimSchMws/OpsScrTimSchMws.cpp
+M	netsrc/scrControlMws/OpsScrTimSchMws/OpsScrTimSchMws/OpsScrTimSchMws.vcxproj
+M	netsrc/scrControlMws/OpsScrTimSchMws/OpsScrTimSchMws/OpsScrTimSchMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrTrendMws/OpsScrTrendMws.vcxproj
+M	netsrc/scrControlMws/OpsScrTrendMws/OpsScrTrendMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrTuningMws/OpsScrTuningMws/OpsScrTuningMws.cpp
+M	netsrc/scrControlMws/OpsScrTuningMws/OpsScrTuningMws/OpsScrTuningMws.vcxproj
+M	netsrc/scrControlMws/OpsScrTuningMws/OpsScrTuningMws/OpsScrTuningMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrUtilityMws/OpsScrUtilityMws.vcxproj
+M	netsrc/scrControlMws/OpsScrUtilityMws/OpsScrUtilityMws.vcxproj.filters
+M	netsrc/scrControlMws/OpsScrWebCameraMws/OpsScrWebCameraMws.vcxproj
+M	netsrc/scrControlMws/OpsScrWebCameraMws/OpsScrWebCameraMws.vcxproj.filters
+M	netsrc/tool/MssSrcTest/Form1.Designer.vb
+M	netsrc/tool/MssSrcTest/Form2.Designer.vb
+M	netsrc/tool/MssSrcTest/Form2.vb
+M	netsrc/tool/MssSrcTest/Module1.vb
+M	netsrc/tool/MssSrcTest/MssSrcTest.vbproj
+M	netsrc/tool/MssSrcTest/My Project/Application.Designer.vb
+M	netsrc/tool/MssSrcTest/My Project/Application.myapp
+M	netsrc/tool/MssSrcTest/My Project/AssemblyInfo.vb
+M	netsrc/tool/MssSrcTest/My Project/Resources.Designer.vb
+M	netsrc/tool/MssSrcTest/My Project/Resources.resx
+M	netsrc/tool/MssSrcTest/My Project/Settings.Designer.vb
+M	netsrc/tool/MssSrcTest/My Project/Settings.settings
+M	netsrc/tool/MssSrcTest/Settings.vb
+M	netsrc/tool/MssSrcTest/app.config
+M	netsrc/tool/SrcTest/Form1.Designer.vb
+M	netsrc/tool/SrcTest/Form2.Designer.vb
+M	netsrc/tool/SrcTest/Form2.vb
+M	netsrc/tool/SrcTest/Module1.vb
+M	netsrc/tool/SrcTest/My Project/Application.Designer.vb
+M	netsrc/tool/SrcTest/My Project/Application.myapp
+M	netsrc/tool/SrcTest/My Project/AssemblyInfo.vb
+M	netsrc/tool/SrcTest/My Project/Resources.Designer.vb
+M	netsrc/tool/SrcTest/My Project/Resources.resx
+M	netsrc/tool/SrcTest/My Project/Settings.Designer.vb
+M	netsrc/tool/SrcTest/My Project/Settings.settings
+M	netsrc/tool/SrcTest/Settings.vb
+M	netsrc/tool/SrcTest/SrcTest.vbproj
+M	netsrc/tool/SrcTest/app.config
+M	src/NX_MW/dfstat/dfstat.vcxproj
+M	src/NX_MW/dfstat/dfstat.vcxproj.filters
+M	src/NX_MW/libdl/libdl.vcxproj
+M	src/NX_MW/libdl/libdl.vcxproj.filters
+M	src/NX_MW/nxinit/nxinit.vcxproj
+M	src/NX_MW/nxinit/nxinit.vcxproj.filters
+M	src/NX_MW/nxshutdown/nxshutdown.vcxproj
+M	src/NX_MW/nxshutdown/nxshutdown.vcxproj.filters
+M	src/NX_MW/nxstat/nxstat.vcxproj
+M	src/NX_MW/nxstat/nxstat.vcxproj.filters
+M	src/NX_MW/opsnexus/opsnexus.vcxproj
+M	src/NX_MW/opsnexus/opsnexus.vcxproj.filters
+M	src/ada/mo11rv/mo11rv.vcxproj
+M	src/ada/mo11sd/mo11sd.vcxproj
+M	src/ada/moerrv/moerrv.vcxproj
+M	src/ada/mofirv/mofirv.vcxproj
+M	src/ada/moioct/moioct.vcxproj
+M	src/ada/mosyse/mosyse.vcxproj
+M	src/ens/#EnsCtlGraphic_3.0b/EnsCtlGraphic/EnsCtlGraphic.vbproj
+M	src/ens/#EnsCtlGraphic_3.0b/EnsCtlGraphic/LegraphData.vb
+M	src/ens/#EnsCtlGraphic_3.0b/EnsCtlGraphic/My Project/Application.Designer.vb
+M	src/ens/#EnsCtlGraphic_3.0b/EnsCtlGraphic/My Project/Application.myapp
+M	src/ens/#EnsCtlGraphic_3.0b/EnsCtlGraphic/My Project/AssemblyInfo.vb
+M	src/ens/#EnsCtlGraphic_3.0b/EnsCtlGraphic/My Project/Resources.Designer.vb
+M	src/ens/#EnsCtlGraphic_3.0b/EnsCtlGraphic/My Project/Resources.resx
+M	src/ens/#EnsCtlGraphic_3.0b/EnsCtlGraphic/My Project/Settings.Designer.vb
+M	src/ens/#EnsCtlGraphic_3.0b/EnsCtlGraphic/My Project/Settings.settings
+M	src/ens/#EnsCtlGraphic_3.0b/EnsCtlGraphic/frmPtnEnt.Designer.vb
+M	src/ens/#EnsCtlGraphic_3.0b/EnsCtlGraphic/frmPtnEnt.vb
+M	src/ens/#EnsCtlGraphic_3.0b/EnsCtlGraphic/frmSelectSymbol.designer.vb
+M	src/ens/#GmsDraw_3.0b/GmsColorSelectForm.Designer.cs
+M	src/ens/#GmsDraw_3.0b/GmsDraw.csproj
+M	src/ens/#GmsDraw_3.0b/GradientFillForm.Designer.cs
+M	src/ens/#GmsDraw_3.0b/LeGmsDrawDef.cs
+M	src/ens/#GmsDraw_3.0b/LeGmsDrawModule.cs
+M	src/ens/#GmsDraw_3.0b/Strings.Designer.cs
+M	src/ens/#GmsDraw_3.0b/Strings.ja.resx
+M	src/ens/#GmsDraw_3.0b/Strings.resx
+M	src/ens/#GmsDraw_3.0b/TextEditForm.Designer.cs
+M	src/ens/#GmsDraw_3.0b/frmCheckFgDatas.Designer.cs
+M	src/ens/#GmsDraw_3.0b/frmCheckFgDatas.cs
+M	src/ens/#GmsDraw_3.0b/frmFgDef.cs
+M	src/ens/#GmsDraw_3.0b/frmFgDef.designer.cs
+M	src/ens/#GmsDraw_3.0b/frmSelectColor.cs
+M	src/ens/#GmsDraw_3.0b/frmSelectColor.designer.cs
+M	src/ens/#GmsDraw_3.0b/frmSelectPattern.cs
+M	src/ens/#GmsDraw_3.0b/frmSelectPattern.designer.cs
+M	src/ens/#GmsDraw_3.0b/frmSelectTag.cs
+M	src/ens/#GmsDraw_3.0b/frmSelectTag.designer.cs
+M	src/ens/#GmsDraw_3.0b/frmSelectText.cs
+M	src/ens/#GmsDraw_3.0b/frmSelectText.designer.cs
+M	src/ens/#Legrph_3.0b/Legrph/LegraphClass.vb
+M	src/ens/#Legrph_3.0b/Legrph/LegraphData.vb
+M	src/ens/#Legrph_3.0b/Legrph/LegraphSub.vb
+M	src/ens/#Legrph_3.0b/Legrph/Legrph.vbproj
+M	src/ens/#Legrph_3.0b/Legrph/My Project/Application.Designer.vb
+M	src/ens/#Legrph_3.0b/Legrph/My Project/Application.myapp
+M	src/ens/#Legrph_3.0b/Legrph/My Project/AssemblyInfo.vb
+M	src/ens/#Legrph_3.0b/Legrph/My Project/Resources.Designer.vb
+M	src/ens/#Legrph_3.0b/Legrph/My Project/Resources.resx
+M	src/ens/#Legrph_3.0b/Legrph/My Project/Settings.Designer.vb
+M	src/ens/#Legrph_3.0b/Legrph/My Project/Settings.settings
+M	src/ens/#Legrph_3.0b/Legrph/frmGraphDef.Designer.vb
+M	src/ens/#Legrph_3.0b/Legrph/frmGraphMenu.Designer.vb
+M	src/ens/#Legrph_3.0b/Legrph/frmGraphMenu.vb
+M	src/ens/#Legrph_3.0b/Legrph/frmGraphSaveDlg.Designer.vb
+M	src/ens/#Legrph_3.0b/Legrph/frmGraphSaveDlg.vb
+M	src/ens/#Legrph_3.0b/Legrph/frmGraphSymbolEnt.Designer.vb
+M	src/ens/#Legrph_3.0b/Legrph/frmGraphSymbolEnt.vb
+M	src/ens/#Legrph_3.0b/Legrph/frmGraphSymbolList.Designer.vb
+M	src/ens/#Legrph_3.0b/Legrph/frmGraphSymbolList.vb
+M	src/ens/Dll/Lesysd_dll/Lesysd_dll.vcxproj
+M	src/ens/Dll/Lesysd_dll/Lesysd_dll.vcxproj.filters
+M	src/ens/Dll/ledats_dll/ledats_dll.vcxproj
+M	src/ens/Dll/ledats_dll/ledats_dll.vcxproj.filters
+M	src/ens/Dll/ledocm_dll/ledocm_dll.vcxproj
+M	src/ens/Dll/ledocm_dll/ledocm_dll.vcxproj.filters
+M	src/ens/Dll/leload_dll/leload_dll.vcxproj
+M	src/ens/Dll/leload_dll/leload_dll.vcxproj.filters
+M	src/ens/Dll/lelogf_dll/lelogf_dll.vcxproj
+M	src/ens/Dll/lelogf_dll/lelogf_dll.vcxproj.filters
+M	src/ens/Dll/letagd_dll/letagd_dll.vcxproj
+M	src/ens/Dll/letagd_dll/letagd_dll.vcxproj.filters
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/EnsCtlGraphic.vbproj
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/LegraphData.vb
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/My Project/Application.Designer.vb
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/My Project/Application.myapp
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/My Project/AssemblyInfo.vb
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/My Project/Resources.Designer.vb
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/My Project/Resources.resx
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/My Project/Settings.Designer.vb
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/My Project/Settings.settings
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/frmPasswd.Designer.vb
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/frmPasswd.vb
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/frmPtnEnt.Designer.vb
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/frmPtnEnt.vb
+M	src/ens/EnsCtlGraphic/EnsCtlGraphic/frmSelectSymbol.designer.vb
+M	src/ens/EnsLibGraphic/EnsLibGraphic/EnsLibGraphic.vbproj
+M	src/ens/EnsLibGraphic/EnsLibGraphic/LibComClass.vb
+M	src/ens/EnsLibGraphic/EnsLibGraphic/LibComModule.vb
+M	src/ens/EnsLibGraphic/EnsLibGraphic/My Project/Application.Designer.vb
+M	src/ens/EnsLibGraphic/EnsLibGraphic/My Project/Application.myapp
+M	src/ens/EnsLibGraphic/EnsLibGraphic/My Project/AssemblyInfo.vb
+M	src/ens/EnsLibGraphic/EnsLibGraphic/My Project/Resources.Designer.vb
+M	src/ens/EnsLibGraphic/EnsLibGraphic/My Project/Resources.resx
+M	src/ens/EnsLibGraphic/EnsLibGraphic/My Project/Settings.Designer.vb
+M	src/ens/EnsLibGraphic/EnsLibGraphic/My Project/Settings.settings
+M	src/ens/EnsLibOpsInclude/EnsLibOpsInclude/EnsLibOpsInclude.vbproj
+M	src/ens/EnsLibOpsInclude/EnsLibOpsInclude/My Project/Application.Designer.vb
+M	src/ens/EnsLibOpsInclude/EnsLibOpsInclude/My Project/Application.myapp
+M	src/ens/EnsLibOpsInclude/EnsLibOpsInclude/My Project/AssemblyInfo.vb
+M	src/ens/EnsLibOpsInclude/EnsLibOpsInclude/My Project/Resources.Designer.vb
+M	src/ens/EnsLibOpsInclude/EnsLibOpsInclude/My Project/Resources.resx
+M	src/ens/EnsLibOpsInclude/EnsLibOpsInclude/My Project/Settings.Designer.vb
+M	src/ens/EnsLibOpsInclude/EnsLibOpsInclude/My Project/Settings.settings
+M	src/ens/GmsDraw/GmsColorSelectForm.Designer.cs
+M	src/ens/GmsDraw/GmsDraw.csproj
+M	src/ens/GmsDraw/GmsDraw.csproj.user
+M	src/ens/GmsDraw/GradientFillForm.Designer.cs
+M	src/ens/GmsDraw/LeGmsDrawDef.cs
+M	src/ens/GmsDraw/LeGmsDrawModule.cs
+M	src/ens/GmsDraw/Strings.Designer.cs
+M	src/ens/GmsDraw/Strings.ja.resx
+M	src/ens/GmsDraw/TextEditForm.Designer.cs
+M	src/ens/GmsDraw/frmCheckFgDatas.Designer.cs
+M	src/ens/GmsDraw/frmCheckFgDatas.cs
+M	src/ens/GmsDraw/frmFgDef.cs
+M	src/ens/GmsDraw/frmFgDef.cs.bak
+M	src/ens/GmsDraw/frmFgDef.designer.cs
+M	src/ens/GmsDraw/frmSelectColor.cs
+M	src/ens/GmsDraw/frmSelectColor.designer.cs
+M	src/ens/GmsDraw/frmSelectPattern.cs
+M	src/ens/GmsDraw/frmSelectPattern.designer.cs
+M	src/ens/GmsDraw/frmSelectTag.cs
+M	src/ens/GmsDraw/frmSelectTag.designer.cs
+M	src/ens/GmsDraw/frmSelectText.cs
+M	src/ens/GmsDraw/frmSelectText.designer.cs
+M	src/ens/GmsDrawTest/GmsDrawTest.csproj
+M	src/ens/GmsDrawTest/Program.cs
+M	src/ens/GmsDrawTest/Properties/AssemblyInfo.cs
+M	src/ens/GmsDrawTest/Properties/Resources.Designer.cs
+M	src/ens/GmsDrawTest/Properties/Resources.resx
+M	src/ens/GmsDrawTest/Properties/Settings.Designer.cs
+M	src/ens/GmsDrawTest/Properties/Settings.settings
+M	src/ens/GmsDrawTest/main.Designer.cs
+M	src/ens/GmsDrawTest/main.cs
+M	src/ens/GmsDrawTest_Dll/EnsPos.Designer.vb
+M	src/ens/GmsDrawTest_Dll/EnsPos.vb
+M	src/ens/GmsDrawTest_Dll/GmsDrawCnv.Designer.vb
+M	src/ens/GmsDrawTest_Dll/GmsDrawCnv.vb
+M	src/ens/GmsDrawTest_Dll/GmsDrawDat.vb
+M	src/ens/GmsDrawTest_Dll/GmsDrawInc.vb
+M	src/ens/GmsDrawTest_Dll/GmsDrawTestMain.Designer.vb
+M	src/ens/GmsDrawTest_Dll/GmsDrawTestMain.vb
+M	src/ens/GmsDrawTest_Dll/GmsDrawTest_dll.vbproj
+M	src/ens/GmsDrawTest_Dll/GmsTagDat.vb
+M	src/ens/GmsDrawTest_Dll/Module1.vb
+M	src/ens/GmsDrawTest_Dll/My Project/Application.Designer.vb
+M	src/ens/GmsDrawTest_Dll/My Project/Application.myapp
+M	src/ens/GmsDrawTest_Dll/My Project/AssemblyInfo.vb
+M	src/ens/GmsDrawTest_Dll/My Project/Resources.Designer.vb
+M	src/ens/GmsDrawTest_Dll/My Project/Resources.resx
+M	src/ens/GmsDrawTest_Dll/My Project/Settings.Designer.vb
+M	src/ens/GmsDrawTest_Dll/My Project/Settings.settings
+M	src/ens/GmsDrawTest_Dll/mGraphicInc.vb
+M	src/ens/LEGRPH_DLL/LEGRPH_DLL.vcxproj
+M	src/ens/LEGRPH_DLL/LEGRPH_DLL.vcxproj.filters
+M	src/ens/LeDats/FrmLedats.resX
+M	src/ens/LeDats/LeDats.sln
+M	src/ens/LeDats/LeDats.vbproj
+M	src/ens/LeDats/My Project/Application.Designer.vb
+M	src/ens/LeGmsCnv/FormGmsCnv.Designer.vb
+M	src/ens/LeGmsCnv/LeGmsCnv.vbproj
+M	src/ens/LeGmsCnv/My Project/Application.Designer.vb
+M	src/ens/LeGmsCnv/My Project/Application.myapp
+M	src/ens/LeGmsCnv/My Project/AssemblyInfo.vb
+M	src/ens/LeGmsCnv/My Project/Resources.Designer.vb
+M	src/ens/LeGmsCnv/My Project/Resources.resx
+M	src/ens/LeGmsCnv/My Project/Settings.Designer.vb
+M	src/ens/LeGmsCnv/My Project/Settings.settings
+M	src/ens/LeGmsCnv_Dll/LeGmsCnv_Dll.vcxproj
+M	src/ens/LeGmsCnv_Dll/LeGmsCnv_Dll.vcxproj.filters
+M	src/ens/LeGmsDraw_Dll/LeGmsDraw_Dll.vcxproj
+M	src/ens/LeGmsDraw_Dll/LeGmsDraw_Dll.vcxproj.filters
+M	src/ens/Ledoce/FormGrphView.Designer.vb
+M	src/ens/Ledoce/Ledoce.sln
+M	src/ens/Ledoce/Ledoce.vbproj
+M	src/ens/Ledoce/LedoceCom.vb
+M	src/ens/Ledoce/LedoceGrphDoc.vb
+M	src/ens/Ledoce/LedoceGrphDocKesoFg.vb
+M	src/ens/Ledoce/LedoceGrphDocKikiFg.vb
+M	src/ens/Ledoce/LedoceGrphDocOtherFg.vb
+M	src/ens/Ledoce/LedoceLib.vb
+M	src/ens/Ledoce/LedoceMain.vb
+M	src/ens/Ledoce/My Project/Application.Designer.vb
+M	src/ens/Ledoce/My Project/Application.myapp
+M	src/ens/Ledoce/My Project/AssemblyInfo.vb
+M	src/ens/Ledoce/My Project/Resources.Designer.vb
+M	src/ens/Ledoce/My Project/Resources.resx
+M	src/ens/Ledoce/My Project/Settings.Designer.vb
+M	src/ens/Ledoce/My Project/Settings.settings
+M	src/ens/Ledocm/FormBgProc.Designer.vb
+M	src/ens/Ledocm/FormBgProc.vb
+M	src/ens/Ledocm/FormBpagPrint.Designer.vb
+M	src/ens/Ledocm/FormBpagPrint.vb
+M	src/ens/Ledocm/FormConfirm.Designer.vb
+M	src/ens/Ledocm/FormConfirm.vb
+M	src/ens/Ledocm/FormGNoSelect.Designer.vb
+M	src/ens/Ledocm/FormGNoSelect.vb
+M	src/ens/Ledocm/FormGrphPrint.Designer.vb
+M	src/ens/Ledocm/FormGrphPrint.vb
+M	src/ens/Ledocm/FormInfo.Designer.vb
+M	src/ens/Ledocm/FormInfo.vb
+M	src/ens/Ledocm/FormMenu.Designer.vb
+M	src/ens/Ledocm/FormNaibuCalcPrint.Designer.vb
+M	src/ens/Ledocm/FormNaibuCalcPrint.vb
+M	src/ens/Ledocm/FormNaibuTagPrint.Designer.vb
+M	src/ens/Ledocm/FormNaibuTagPrint.vb
+M	src/ens/Ledocm/FormPcsTagPrint.Designer.vb
+M	src/ens/Ledocm/FormPcsTagPrint.vb
+M	src/ens/Ledocm/Ledocm.vbproj
+M	src/ens/Ledocm/LedocmBgProc.vb
+M	src/ens/Ledocm/LedocmCom.vb
+M	src/ens/Ledocm/LedocmLib.vb
+M	src/ens/Ledocm/LedocmMain.vb
+M	src/ens/Ledocm/My Project/Application.Designer.vb
+M	src/ens/Ledocm/My Project/Application.myapp
+M	src/ens/Ledocm/My Project/AssemblyInfo.vb
+M	src/ens/Ledocm/My Project/Resources.Designer.vb
+M	src/ens/Ledocm/My Project/Resources.resx
+M	src/ens/Ledocm/My Project/Settings.Designer.vb
+M	src/ens/Ledocm/My Project/Settings.settings
+M	src/ens/Legrph/Legrph/LegraphClass.vb
+M	src/ens/Legrph/Legrph/LegraphData.vb
+M	src/ens/Legrph/Legrph/LegraphSub.vb
+M	src/ens/Legrph/Legrph/Legrph.vbproj
+M	src/ens/Legrph/Legrph/My Project/Application.Designer.vb
+M	src/ens/Legrph/Legrph/My Project/Application.myapp
+M	src/ens/Legrph/Legrph/My Project/AssemblyInfo.vb
+M	src/ens/Legrph/Legrph/My Project/Resources.Designer.vb
+M	src/ens/Legrph/Legrph/My Project/Resources.resx
+M	src/ens/Legrph/Legrph/My Project/Settings.Designer.vb
+M	src/ens/Legrph/Legrph/My Project/Settings.settings
+M	src/ens/Legrph/Legrph/frmGraphDef.Designer.vb
+M	src/ens/Legrph/Legrph/frmGraphMenu.Designer.vb
+M	src/ens/Legrph/Legrph/frmGraphMenu.vb
+M	src/ens/Legrph/Legrph/frmGraphSaveDlg.Designer.vb
+M	src/ens/Legrph/Legrph/frmGraphSaveDlg.vb
+M	src/ens/Legrph/Legrph/frmGraphSymbolEnt.Designer.vb
+M	src/ens/Legrph/Legrph/frmGraphSymbolEnt.vb
+M	src/ens/Legrph/Legrph/frmGraphSymbolList.Designer.vb
+M	src/ens/Legrph/Legrph/frmGraphSymbolList.vb
+M	src/ens/Legrph/Legrph/frmMssGraphDef.Designer.vb
+M	src/ens/Legrph/Legrph/frmMssGraphDef.vb
+M	src/ens/Lekansi/Lekansi/FormMain.Designer.vb
+M	src/ens/Lekansi/Lekansi/Lekansi.vbproj
+M	src/ens/Lekansi/Lekansi/My Project/Application.Designer.vb
+M	src/ens/Lekansi/Lekansi/My Project/Application.myapp
+M	src/ens/Lekansi/Lekansi/My Project/AssemblyInfo.vb
+M	src/ens/Lekansi/Lekansi/My Project/Resources.Designer.vb
+M	src/ens/Lekansi/Lekansi/My Project/Resources.resx
+M	src/ens/Lekansi/Lekansi/My Project/Settings.Designer.vb
+M	src/ens/Lekansi/Lekansi/My Project/Settings.settings
+M	src/ens/Leload/FormDataCopy.Designer.vb
+M	src/ens/Leload/FormDataCopy.vb
+M	src/ens/Leload/FormDataMenu.Designer.vb
+M	src/ens/Leload/FormEnsLoad.Designer.vb
+M	src/ens/Leload/FormEnsLoad.vb
+M	src/ens/Leload/FormNowLoadDataChoice.Designer.vb
+M	src/ens/Leload/FormNowLoadDataChoice.vb
+M	src/ens/Leload/FormUseDataChoice.Designer.vb
+M	src/ens/Leload/FormUseDataChoice.vb
+M	src/ens/Leload/FormUseDataChoiceOne.Designer.vb
+M	src/ens/Leload/FormUseDataChoiceOne.vb
+M	src/ens/Leload/FormUseDataChoiceRetro.Designer.vb
+M	src/ens/Leload/FormUseDataChoiceRetro.vb
+M	src/ens/Leload/Leload.vbproj
+M	src/ens/Leload/LeloadDllDef.vb
+M	src/ens/Leload/LeloadLib.vb
+M	src/ens/Leload/LeloadMain.vb
+M	src/ens/Leload/My Project/Application.Designer.vb
+M	src/ens/Leload/My Project/Application.myapp
+M	src/ens/Leload/My Project/AssemblyInfo.vb
+M	src/ens/Leload/My Project/Resources.Designer.vb
+M	src/ens/Leload/My Project/Resources.resx
+M	src/ens/Leload/My Project/Settings.Designer.vb
+M	src/ens/Leload/My Project/Settings.settings
+M	src/ens/Lelogf/Lelogf/FormConfirmation.Designer.vb
+M	src/ens/Lelogf/Lelogf/FormEnd.Designer.vb
+M	src/ens/Lelogf/Lelogf/FormMain.Designer.vb
+M	src/ens/Lelogf/Lelogf/FormState.Designer.vb
+M	src/ens/Lelogf/Lelogf/Lelogf.vbproj
+M	src/ens/Lelogf/Lelogf/My Project/Application.Designer.vb
+M	src/ens/Lelogf/Lelogf/My Project/Application.myapp
+M	src/ens/Lelogf/Lelogf/My Project/AssemblyInfo.vb
+M	src/ens/Lelogf/Lelogf/My Project/Resources.Designer.vb
+M	src/ens/Lelogf/Lelogf/My Project/Resources.resx
+M	src/ens/Lelogf/Lelogf/My Project/Settings.Designer.vb
+M	src/ens/Lelogf/Lelogf/My Project/Settings.settings
+M	src/ens/Lemenu/Lemenu.vbproj
+M	src/ens/Lemenu/menu.resX
+M	src/ens/Lemenu/paswd.resX
+M	src/ens/Lemenu_Dll/Lemenu_Dll.vcxproj
+M	src/ens/Lemenu_Dll/Lemenu_Dll.vcxproj.filters
+M	src/ens/Lesysd/Lesysd/FormDendef.Designer.vb
+M	src/ens/Lesysd/Lesysd/FormKs1.Designer.vb
+M	src/ens/Lesysd/Lesysd/FormKsdef.Designer.vb
+M	src/ens/Lesysd/Lesysd/FormLc1.Designer.vb
+M	src/ens/Lesysd/Lesysd/FormLcdef.Designer.vb
+M	src/ens/Lesysd/Lesysd/FormMain.Designer.vb
+M	src/ens/Lesysd/Lesysd/Lesysd.vbproj
+M	src/ens/Lesysd/Lesysd/My Project/Application.Designer.vb
+M	src/ens/Lesysd/Lesysd/My Project/Application.myapp
+M	src/ens/Lesysd/Lesysd/My Project/AssemblyInfo.vb
+M	src/ens/Lesysd/Lesysd/My Project/Resources.Designer.vb
+M	src/ens/Lesysd/Lesysd/My Project/Resources.resx
+M	src/ens/Lesysd/Lesysd/My Project/Settings.Designer.vb
+M	src/ens/Lesysd/Lesysd/My Project/Settings.settings
+M	src/ens/Letagd/Letagd/FrmDefCalc.Designer.vb
+M	src/ens/Letagd/Letagd/FrmDefCalc.vb
+M	src/ens/Letagd/Letagd/FrmDefExtDO.Designer.vb
+M	src/ens/Letagd/Letagd/FrmDefExtDO.vb
+M	src/ens/Letagd/Letagd/FrmDefHstDat.Designer.vb
+M	src/ens/Letagd/Letagd/FrmDefHstDat.vb
+M	src/ens/Letagd/Letagd/FrmDefName.Designer.vb
+M	src/ens/Letagd/Letagd/FrmDefName.vb
+M	src/ens/Letagd/Letagd/FrmDefNibKeso.Designer.vb
+M	src/ens/Letagd/Letagd/FrmDefNibKeso.vb
+M	src/ens/Letagd/Letagd/FrmDefNibKiki.Designer.vb
+M	src/ens/Letagd/Letagd/FrmDefNibKiki.vb
+M	src/ens/Letagd/Letagd/FrmDefPCSKeso.Designer.vb
+M	src/ens/Letagd/Letagd/FrmDefPCSKeso.vb
+M	src/ens/Letagd/Letagd/FrmDefPCSKiki.Designer.vb
+M	src/ens/Letagd/Letagd/FrmDefPCSKiki.vb
+M	src/ens/Letagd/Letagd/FrmFctyLst.Designer.vb
+M	src/ens/Letagd/Letagd/FrmFctyLst.vb
+M	src/ens/Letagd/Letagd/FrmMain.Designer.vb
+M	src/ens/Letagd/Letagd/FrmMain.vb
+M	src/ens/Letagd/Letagd/FrmNaibuTagSel.Designer.vb
+M	src/ens/Letagd/Letagd/FrmNaibuTagSel.vb
+M	src/ens/Letagd/Letagd/FrmNmUseLst.Designer.vb
+M	src/ens/Letagd/Letagd/FrmNmUseLst.vb
+M	src/ens/Letagd/Letagd/FrmOK.Designer.vb
+M	src/ens/Letagd/Letagd/FrmOK.vb
+M	src/ens/Letagd/Letagd/FrmPCSTagSel.Designer.vb
+M	src/ens/Letagd/Letagd/FrmPCSTagSel.vb
+M	src/ens/Letagd/Letagd/FrmSelStn.Designer.vb
+M	src/ens/Letagd/Letagd/FrmSelStn.vb
+M	src/ens/Letagd/Letagd/FrmTagLst.Designer.vb
+M	src/ens/Letagd/Letagd/FrmTagLst.vb
+M	src/ens/Letagd/Letagd/FrmUnitNmLst.Designer.vb
+M	src/ens/Letagd/Letagd/FrmUnitNmLst.vb
+M	src/ens/Letagd/Letagd/FrmYesNo.Designer.vb
+M	src/ens/Letagd/Letagd/FrmYesNo.vb
+M	src/ens/Letagd/Letagd/FrmYesNoCan.Designer.vb
+M	src/ens/Letagd/Letagd/FrmYesNoCan.vb
+M	src/ens/Letagd/Letagd/Letagd.vbproj
+M	src/ens/Letagd/Letagd/LetagdCom.vb
+M	src/ens/Letagd/Letagd/LetagdFnc.vb
+M	src/ens/Letagd/Letagd/LetagdLib.vb
+M	src/ens/Letagd/Letagd/My Project/Application.Designer.vb
+M	src/ens/Letagd/Letagd/My Project/Application.myapp
+M	src/ens/Letagd/Letagd/My Project/AssemblyInfo.vb
+M	src/ens/Letagd/Letagd/My Project/Resources.Designer.vb
+M	src/ens/Letagd/Letagd/My Project/Resources.resx
+M	src/ens/Letagd/Letagd/My Project/Settings.Designer.vb
+M	src/ens/Letagd/Letagd/My Project/Settings.settings
+M	src/gen/Genset/Genset.vcxproj
+M	src/gen/Genset/Genset.vcxproj.filters
+M	src/gen/rf_dll/rf_dll.vcxproj
+M	src/gen/rf_dll/rf_dll.vcxproj.filters
+M	src/his/dobnkcom/dobnkcom.vcxproj
+M	src/his/dobnkcom/dobnkcom.vcxproj.filters
+M	src/his/dobnkcomt/dobnkcomt.vcxproj
+M	src/his/dobnkcomt/dobnkcomt.vcxproj.filters
+M	src/his/dohstg/dohstg.vcxproj
+M	src/his/domdcl/domdcl.vcxproj
+M	src/his/dountn/dountn.vcxproj
+M	src/his/dountn/dountn.vcxproj.filters
+M	src/his/dountn/dountn/dountn.vcxproj
+M	src/his/dountn/dountn/dountn.vcxproj.filters
+M	src/kcrt/gosRepBind/App.config
+M	src/kcrt/gosRepBind/ClsDllData.vb
+M	src/kcrt/gosRepBind/ModlConst.vb
+M	src/kcrt/gosRepBind/ModlMedia.vb
+M	src/kcrt/gosRepBind/Module1.vb
+M	src/kcrt/gosRepBind/My Project/Application.Designer.vb
+M	src/kcrt/gosRepBind/My Project/Application.myapp
+M	src/kcrt/gosRepBind/My Project/AssemblyInfo.vb
+M	src/kcrt/gosRepBind/My Project/Resources.Designer.vb
+M	src/kcrt/gosRepBind/My Project/Resources.resx
+M	src/kcrt/gosRepBind/My Project/Settings.Designer.vb
+M	src/kcrt/gosRepBind/My Project/Settings.settings
+M	src/kcrt/gosRepBind/gosRepBind.vbproj
+M	src/kcrt/gosav/gosav.vcxproj
+M	src/kcrt/gosav/gosav.vcxproj.filters
+M	src/lib/F_applog/F_applog.vcxproj
+M	src/lib/calc/calc_vb.vcxproj
+M	src/lib/calc/calclib.vcxproj
+M	src/lib/enslib/enslib.vcxproj
+M	src/lib/enslib/enslib.vcxproj.filters
+M	src/lib/hlib/hstlib.vcxproj
+M	src/lib/initdb/ini_CF_msgf.c
+M	src/lib/initdb/initdb.vcxproj
+M	src/lib/vc/lib.vcxproj
+M	src/lib/vc/vb.vcxproj
+M	src/lib/vc/vb.vcxproj.filters
+M	src/lnk/CgwFtpDll/CgwFtpDll.vcxproj
+M	src/lnk/CgwFtpDll/CgwFtpDll.vcxproj.filters
+M	src/lnk/FtpDll/FtpDll.vcxproj
+M	src/lnk/FtpDll/FtpDll.vcxproj.filters
+M	src/lnk/I-NET/jocfms.vcxproj
+M	src/lnk/I-NET/jodsrv.vcxproj
+M	src/lnk/I-NET/joofmc.vcxproj
+M	src/lnk/I-NET/joofms.vcxproj
+M	src/lnk/I-NET/joorcv.vcxproj
+M	src/lnk/I-NET/joosnd.vcxproj
+M	src/lnk/I-NET/joquec.vcxproj
+M	src/lnk/I-NET/joques.vcxproj
+M	src/lnk/joadcr/joadcr.vcxproj
+M	src/lnk/joallr/joallr.vcxproj
+M	src/lnk/johubsts/johubsts.vcxproj
+M	src/lnk/joothr/joothr.vcxproj
+M	src/lnk/jopccmd/jopccmd.vcxproj
+M	src/lnk/joprtr/joprtr.vcxproj
+M	src/lnk/jorecv/jorecv.vcxproj
+M	src/lnk/jorepfl/jorepfl.vcxproj
+M	src/lnk/josend/josend.vcxproj
+M	src/lnk/jowtmo/jowtmo.vcxproj
+M	src/mail/hoelib/hoelib.vcxproj
+M	src/mail/hoemle/hoemle.vcxproj
+M	src/mail/hoemls/hoemls.vcxproj
+M	src/mail/hoemlsDLL/Properties/AssemblyInfo.cs
+M	src/mail/hoemlsDLL/hoemlsDLL.csproj
+M	src/mail/hoerpt/hoerpt.vcxproj
+M	src/mail/hoerpt/hoerpt.vcxproj.filters
+M	src/mail/hoeval/hoeval.vcxproj
+M	src/mail/hoeval/hoeval.vcxproj.filters
+M	src/meas/Bodemd/Bodemd.vcxproj
+M	src/meas/Bodemd/bodemd09.c
+M	src/meas/Botsch/Botsch.vcxproj
+M	src/meas/Botsch/Botsch.vcxproj.filters
+M	src/meas/bobans/bobans.vcxproj
+M	src/meas/bocalc/bocalc.vcxproj
+M	src/meas/bocalc/clib210.c
+M	src/meas/bogclc/bogclc.vcxproj
+M	src/meas/bogclc/bogclc.vcxproj.filters
+M	src/meas/bogclc_log/UnitTest.vcxproj
+M	src/meas/bogclc_log/UnitTest.vcxproj.filters
+M	src/meas/bogclc_log/bogclc.vcxproj
+M	src/meas/bogclc_log/bogclc.vcxproj.filters
+M	src/meas/bokijh/bokijh.vcxproj
+M	src/meas/bomesh/bomesh.vcxproj
+M	src/meas/bomess/bomess.vcxproj
+M	src/meas/boresp/boresp.vcxproj
+M	src/msg/cmmsgc/cmmsgc.vcxproj
+M	src/msg/cmmsge/cmmsge.vcxproj
+M	src/msg/cmmsge/cmmsge.vcxproj.filters
+M	src/msg/coalm/coalm.vcxproj
+M	src/msg/coalm/coalm.vcxproj.filters
+M	src/msg/comsgc/comsgc.vcxproj
+M	src/msg/comsgc/comsgc.vcxproj.filters
+M	src/msg/comsge/comsge.vcxproj
+M	src/msg/comsge/comsge.vcxproj.filters
+M	src/msg/coprnt/coprnt.vcxproj
+M	src/msg/coprnt/coprnt.vcxproj.filters
+M	src/msg/cotalk/cotalk.vcxproj
+M	src/msg/cotalk/cotalk.vcxproj.filters
+M	src/rep/DLL/doexce_dll/doexce_dll.vcxproj
+M	src/rep/DLL/doexce_dll/doexce_dll.vcxproj.filters
+M	src/rep/doprct/doprct.vcxproj
+M	src/rply/roacum/roacum.vcxproj
+M	src/rply/roacum/roacum.vcxproj.filters
+M	src/rply/rodtct/rodtct.vcxproj
+M	src/rply/rodtct/rodtct.vcxproj.filters
+M	src/rply/rolib/rolib.vcxproj
+M	src/rply/rolib/rolib.vcxproj.filters
+M	src/rply/rosav/rosav.vcxproj
+M	src/rply/rosav/rosav.vcxproj.filters
+M	src/rply/rply.sln
+M	src/sys/M5ARasDll/M5ARasDll.cpp
+M	src/sys/M5ARasDll/M5ARasDll.h
+M	src/sys/M5ARasDll/M5ARasDll.vcxproj
+M	src/sys/M5ARasDll/M5ARasDll.vcxproj.filters
+M	src/sys/OPS5000MSG/OPS9000MSG.sln
+M	src/sys/OPS5000MSG/OPS9000MSG.vcxproj
+M	src/sys/OPS5000MSG/OPS9000MSG.vcxproj.filters
+M	src/sys/aoalm/aoalm.vcxproj
+M	src/sys/aoalm/aoalm.vcxproj.filters
+M	src/sys/aocpue/aocpue.vcxproj
+M	src/sys/aocpue/aocpue.vcxproj.filters
+M	src/sys/aoctrllg/aoctrllg.vcxproj
+M	src/sys/aoctrllg/aoctrllg.vcxproj.filters
+M	src/sys/aodbbu/aodbbu.vcxproj
+M	src/sys/aodi64/aodi64.vcxproj
+M	src/sys/aodi64/aodi64.vcxproj.filters
+M	src/sys/aoerlg/aoerlg.vcxproj
+M	src/sys/aogtime/aogtime.vcxproj
+M	src/sys/aogtime/aogtime.vcxproj.filters
+M	src/sys/aomngr/aomngr.vcxproj
+M	src/sys/aomngr/aomngr.vcxproj.filters
+M	src/sys/aomsctl/aomsctl.vcxproj
+M	src/sys/aomsctl/aomsctl.vcxproj.filters
+M	src/sys/aomsctl2/aomsctl2.vcxproj
+M	src/sys/aomsctl2/aomsctl2.vcxproj.filters
+M	src/sys/aontime/aontime.vcxproj
+M	src/sys/aontime/aontime.vcxproj.filters
+M	src/sys/aoope/aoope.vcxproj
+M	src/sys/aoope/aoope.vcxproj.filters
+M	src/sys/aopioi/aopioi.sln
+M	src/sys/aopioi/aopioi.vcxproj
+M	src/sys/aopioi/aopioi.vcxproj.filters
+M	src/sys/aoprer/aoprer.vcxproj
+M	src/sys/aosche/aosche.vcxproj
+M	src/sys/aoserr/aoserr.vcxproj
+M	src/sys/aoserr/aoserr.vcxproj.filters
+M	src/sys/aosysi/aosysi.vcxproj
+M	src/sys/aosysi/aosysi.vcxproj.filters
+M	src/sys/aotime/aotime.vcxproj
+M	src/sys/aoupser/aoupser.vcxproj
+M	src/sys/aoupser/aoupser.vcxproj.filters
+M	src/tool/#retro/ops9kexternal/Common/Constants.cs
+M	src/tool/#retro/ops9kexternal/Common/ExcelHelper.cs
+M	src/tool/#retro/ops9kexternal/Common/Properties/AssemblyInfo.cs
+M	src/tool/#retro/ops9kexternal/Common/Utility.cs
+M	src/tool/#retro/ops9kexternal/Common/ops9kexternal_Common.csproj
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/App.config
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/MessageConvert/FileMessageData/T_aefile.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/MessageConvert/FileMessageManager/CU_msve.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/MessageConvert/FileMessageManager/T_CU_msrc.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/MessageConvert/FileMessageManager/T_CU_msve.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/MessageConvert/FileMessageManager/T_CU_msvepoint.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/MessageConvert/MessageCSV.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/Program.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/Properties/AssemblyInfo.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/Properties/Resources.Designer.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/Properties/Resources.resx
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/Properties/Settings.Designer.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/Properties/Settings.settings
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/Historical Trend assignment/BS_trash.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/Historical Trend assignment/T_BS_trash.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/Historical Trend assignment/T_BS_trash_part.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/Historical Trend bank/BU_trhis.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/Historical Trend bank/T_BU_trhis.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/Historical Trend bank/T_BU_trhis_dsts.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/Historical Trend bank/T_BU_trhis_hed.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/OPSBDfcty/BD_fcty.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/OPSBDfcty/T_BD_fcty.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/OPSBDkeso/BD_keso.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/OPSBDkeso/T_BD_keso.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/OPSBDkeso/T_BD_keso_keki.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/OPSBDkiki/BD_kiki.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/OPSBDkiki/T_BD_kiki.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/OPSBDkiki/T_BD_kiki_keki.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/OPSBDunit/BD_unit.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/OPSBDunit/T_BD_unit.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS6000/TrendGraph.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/Analysis_Trend_Assignment/T_BS_trasl.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/Analysis_Trend_Assignment/T_BS_trasl_part.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/Analysis_Trend_Bank/T_BU_trlng.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/Analysis_Trend_Bank/T_BU_trlng_hed.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/Historical Trend Assignment/T_BS_trash .cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/Historical Trend Assignment/T_BS_trash_part .cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/Historical Trend Bank/T_BU_trhis.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/Historical Trend Bank/T_BU_trhis_hed.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/OPSBDkiki/T_BD_KIKI_KEIKI .cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/OPSBDkiki/T_BD_kiki .cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/OPSBDkiki/T_STATION_kiki.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/OPSDBkeso/T_BD_KESO.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/OPSDBkeso/T_BD_KESO_KEIKI.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataClass/OPSDBkeso/T_STATION_keso.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataProvider/ConvertToExcel.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/TrendConvert/OPS9000/DataProvider/ReadFile.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/frmMain.Designer.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/frmMain.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/frmMain.resx
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/frmProgressBar.Designer.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/frmProgressBar.cs
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/frmProgressBar.resx
+M	src/tool/#retro/ops9kexternal/ExternalDataConvert/ops9kexternal_Main.csproj
+M	src/tool/#retro/ops9kexternal/Logs/Logger.cs
+M	src/tool/#retro/ops9kexternal/Logs/Properties/AssemblyInfo.cs
+M	src/tool/#retro/ops9kexternal/Logs/ops9kexternal_Logs.csproj
+M	src/tool/#retro/ops9kgra1st/ListGraphForm.resx
+M	src/tool/#retro/ops9kgra1st/MainForm.resx
+M	src/tool/#retro/ops9kgra1st/StructDef.h
+M	src/tool/#retro/ops9kgra1st/ops9kgra1st.vcxproj
+M	src/tool/#retro/ops9kgra1st/ops9kgra1st.vcxproj.filters
+M	src/tool/#retro/ops9khstbnk/Common/Constants.cs
+M	src/tool/#retro/ops9khstbnk/Common/Properties/AssemblyInfo.cs
+M	src/tool/#retro/ops9khstbnk/Common/Utility.cs
+M	src/tool/#retro/ops9khstbnk/Common/ops9khstbnk_Common.csproj
+M	src/tool/#retro/ops9khstbnk/Logs/Logger.cs
+M	src/tool/#retro/ops9khstbnk/Logs/Properties/AssemblyInfo.cs
+M	src/tool/#retro/ops9khstbnk/Logs/ops9khstbnk_Logs.csproj
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/DayBulk/OPS5000Day.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/DayBulk/OPS5000_T_HSTDB_DAT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/DayBulk/OPS5000_T_HSTDB_HED.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/DayBulk/OPS5000_T_HSTDB_HISTORY.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/DayBulk/OPS5000_T_HSTDB_IDX.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/DayBulk/OPS5000_T_HSTDB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/DayBulk/OPS5000_T_HSTDB_PART.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/DayComment/OPS5000_DayComment.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/DayComment/OPS5000_T_CHODB_DAY.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/DayComment/OPS5000_T_CHODB_KIJ.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/DayComment/OPS5000_T_CHODB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/HourBulk/OPS5000Hour.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/HourBulk/OPS5000_T_HSTHB_DAT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/HourBulk/OPS5000_T_HSTHB_HED.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/HourBulk/OPS5000_T_HSTHB_IDX.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/HourBulk/OPS5000_T_HSTHB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/HourBulk/OPS5000_T_HSTMB_PART.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/MonthBulk/OPS5000_Month.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/MonthBulk/OPS5000_T_HSTMB_DAT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/MonthBulk/OPS5000_T_HSTMB_HED.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/MonthBulk/OPS5000_T_HSTMB_HISTORY.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/MonthBulk/OPS5000_T_HSTMB_IDX.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/MonthBulk/OPS5000_T_HSTMB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/MonthBulk/OPS5000_T_HSTMB_PART.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/MonthComment/OPS5000_T_CHOMB_KIJ.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/MonthComment/OPS5000_T_CHOMB_MTH.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/MonthComment/OPS6000_T_CHOMB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/OPSBD/OPS5000_T_BD_KESO_KEIKI.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/OPSBD/OPS5000_T_DD_TPT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/OPSBD/OPS5000_T_STATION.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/YearBulk/OPS5000_T_HSTYB_DAT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/YearBulk/OPS5000_T_HSTYB_HED.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/YearBulk/OPS5000_T_HSTYB_IDX.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/YearBulk/OPS5000_T_HSTYB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/YearBulk/OPS5000_T_HSTYB_PART.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/5000/YearBulk/OPS5000_Year.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/DayBulk/OPS6000Day.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/DayBulk/OPS6000_T_HSTDB_HED.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/DayBulk/OPS6000_T_HSTDB_HISTORY.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/DayBulk/OPS6000_T_HSTDB_IDX.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/DayBulk/OPS6000_T_HSTDB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/DayBulk/OPS6000_T_HSTDB_PART.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/DayBulk/OPS6000_T_HSTHB_DAT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/DayComment/OPS6000_DayComment.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/DayComment/OPS6000_T_CHODB_DAY.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/DayComment/OPS6000_T_CHODB_KIJ.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/DayComment/OPS6000_T_CHODB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/HourBulk/OPS6000Hour.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/HourBulk/OPS6000_T_HSTHB_DAT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/HourBulk/OPS6000_T_HSTHB_HED.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/HourBulk/OPS6000_T_HSTHB_IDX.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/HourBulk/OPS6000_T_HSTHB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/HourBulk/OPS6000_T_HSTHB_PART.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/MonthBulk/OPS6000_Month.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/MonthBulk/OPS6000_T_HSTMB_DAT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/MonthBulk/OPS6000_T_HSTMB_HED.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/MonthBulk/OPS6000_T_HSTMB_HISTORY.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/MonthBulk/OPS6000_T_HSTMB_IDX.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/MonthBulk/OPS6000_T_HSTMB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/MonthBulk/OPS6000_T_HSTMB_PART.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/MonthComment/OPS6000_MonthComment.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/MonthComment/OPS6000_T_CHOMB_KIJ.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/MonthComment/OPS6000_T_CHOMB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/MonthComment/OPS6000_T_CHOMB_MTH.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/OPSBD/OPS6000_T_BD_KESO_KEIKI.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/OPSBD/OPS6000_T_STATION.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/YearBulk/OPS6000_T_HSTYB_DAT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/YearBulk/OPS6000_T_HSTYB_HED.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/YearBulk/OPS6000_T_HSTYB_IDX.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/YearBulk/OPS6000_T_HSTYB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/YearBulk/OPS6000_T_HSTYB_PART.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/YearBulk/OPS6000_Year.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/YearComment/OPS6000_T_CHOYB.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/YearComment/OPS6000_T_CHOYB_KIJ.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/YearComment/OPS6000_T_CHOYB_YEA.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/6000/YearComment/OPS6000_YearComment.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/DayBulk/OPS9000Day.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/DayBulk/OPS9000_T_HSTDB_DAT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/DayBulk/OPS9000_T_HSTDB_HED.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/DayBulk/OPS9000_T_HSTDB_HISTORY.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/DayBulk/OPS9000_T_HSTDB_IDX.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/DayBulk/OPS9000_T_HSTDB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/DayBulk/OPS9000_T_HSTDB_PART.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/DayComment/OPS9000_DayComment.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/DayComment/OPS9000_T_CHODB_DAY.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/DayComment/OPS9000_T_CHODB_KIJ.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/DayComment/OPS9000_T_CHODB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/HourBulk/OPS9000Hour.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/HourBulk/OPS9000_T_HSTHB_DAT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/HourBulk/OPS9000_T_HSTHB_HED.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/HourBulk/OPS9000_T_HSTHB_IDX.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/HourBulk/OPS9000_T_HSTHB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/HourBulk/OPS9000_T_HSTHB_PART.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/MonthBulk/OPS9000_Month.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/MonthBulk/OPS9000_T_HSTMB_DAT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/MonthBulk/OPS9000_T_HSTMB_HED.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/MonthBulk/OPS9000_T_HSTMB_HISTORY.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/MonthBulk/OPS9000_T_HSTMB_IDX.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/MonthBulk/OPS9000_T_HSTMB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/MonthBulk/OPS9000_T_HSTMB_PART.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/MonthComment/OPS9000_MonthComment.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/MonthComment/OPS9000_T_CHOMB_KIJ.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/MonthComment/OPS9000_T_CHOMB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/MonthComment/OPS9000_T_CHOMB_MTH.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/OPSBD/OPS9000_T_BD_KESO_KEIKI.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/OPSBD/OPS9000_T_DD_TPT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/OPSBD/OPS9000_T_STATION.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/YearBulk/OPS9000_T_HSTYB_DAT.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/YearBulk/OPS9000_T_HSTYB_HED.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/YearBulk/OPS9000_T_HSTYB_IDX.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/YearBulk/OPS9000_T_HSTYB_MEN.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/YearBulk/OPS9000_T_HSTYB_PART.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/YearBulk/OPS9000_Year.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/YearComment/OPS9000_T_CHOYB.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/YearComment/OPS9000_T_CHOYB_KIJ.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/YearComment/OPS9000_T_CHOYB_YEA.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/9000/YearComment/OPS9000_YearComment.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/App.config
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/Common/DSVSCommentDataItem.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/Common/DSVSCommon.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/Common/DSVSDataBulkItem.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/Common/DSVSDataCommentItem.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/Common/DSVSUnitBulkData.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/Common/OPSBDCommon.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/Common/OPSCommon.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/DSVS/DayDataBulkCsv.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/DSVS/DayDataCommentCsv.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/DSVS/HourDataBulkCsv.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/DSVS/MonthDataBulkCsv.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/DSVS/MonthDataCommentCsv.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/DSVS/YearDataBulkCsv.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/DSVS/YearDataCommentCsv.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/Program.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/Properties/AssemblyInfo.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/Properties/Resources.Designer.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/Properties/Resources.resx
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/Properties/Settings.Designer.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/Properties/Settings.settings
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/frmMain.Designer.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/frmMain.cs
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/frmMain.resx
+M	src/tool/#retro/ops9khstbnk/OPS5000Retrofit/ops9khstbnk_Main.csproj
+M	src/tool/#sysdcnv/sysdcnv.sln
+M	src/tool/#sysdcnv/sysdcnv.vcxproj
+M	src/tool/#sysdcnv/sysdcnv.vcxproj.filters
+M	src/tool/AdaRas/AdaRas.vcxproj
+M	src/tool/AddinReg/AddinReg.sln
+M	src/tool/AddinReg/AddinReg.vbproj
+M	src/tool/AddinReg/Form1.Designer.vb
+M	src/tool/AddinReg/My Project/Application.Designer.vb
+M	src/tool/AddinReg/My Project/Application.myapp
+M	src/tool/AddinReg/My Project/Resources.Designer.vb
+M	src/tool/AddinReg/My Project/Resources.resx
+M	src/tool/AddinReg/My Project/Settings.Designer.vb
+M	src/tool/AddinReg/My Project/Settings.settings
+M	src/tool/AddinReg/app.config
+M	src/tool/All_Demo_Build/All_Demo_Build.sln
+M	src/tool/All_Demo_Build/joallr/joallr_demo.vcxproj
+M	src/tool/All_Demo_Build/joallr/joallr_demo.vcxproj.filters
+M	src/tool/All_Demo_Build/joprtr/joprtr_demo.vcxproj
+M	src/tool/All_Demo_Build/joprtr/joprtr_demo.vcxproj.filters
+M	src/tool/All_Demo_Build/jorecv/jorecv_demo.vcxproj
+M	src/tool/All_Demo_Build/jorecv/jorecv_demo.vcxproj.filters
+M	src/tool/All_Demo_Build/josend/josend_demo.vcxproj
+M	src/tool/AltTab/AltTab.csproj
+M	src/tool/AltTab/Dat_Ctrl.cs
+M	src/tool/AltTab/Program.cs
+M	src/tool/AltTab/Properties/AssemblyInfo.cs
+M	src/tool/AltTab/Properties/Resources.Designer.cs
+M	src/tool/AltTab/Properties/Resources.resx
+M	src/tool/AltTab/Properties/Settings.Designer.cs
+M	src/tool/AltTab/Properties/Settings.settings
+M	src/tool/AltTab/ShowWinForm.Designer.cs
+M	src/tool/AltTab/ShowWinForm.cs
+M	src/tool/AltTab/main.Designer.cs
+M	src/tool/AltTab/main.cs
+M	src/tool/AltTab_Dll/AltTab_Dll.vcxproj
+M	src/tool/AltTab_Dll/AltTab_Dll.vcxproj.filters
+M	src/tool/ChkAdaDat/ChkAdaDat.vcxproj
+M	src/tool/ConvertTo64/ConvertTo64.vcxproj
+M	src/tool/ConvertTo64/include/_old/lib_m5aras.h
+M	src/tool/DataRestore/RefForm.resX
+M	src/tool/DataRestore/restore.vbproj
+M	src/tool/DataRestore/restore_frm.resX
+M	src/tool/Doe_Check_Dll/Doe_Check_Dll.vcxproj
+M	src/tool/Doe_Check_Dll/Doe_Check_Dll.vcxproj.filters
+M	src/tool/ErrorLog/ErrorLog.vcxproj
+M	src/tool/ErrorLog/ErrorLog.vcxproj.filters
+M	src/tool/FG_Delete/FG_Delete.vbproj
+M	src/tool/FG_Delete/GNoSelect.designer.vb
+M	src/tool/FG_Delete/GNoSelect.vb
+M	src/tool/FG_Delete/Module1.vb
+M	src/tool/FG_Delete/My Project/Application.Designer.vb
+M	src/tool/FG_Delete/My Project/Application.myapp
+M	src/tool/FG_Delete/My Project/AssemblyInfo.vb
+M	src/tool/FG_Delete/My Project/Resources.Designer.vb
+M	src/tool/FG_Delete/My Project/Resources.resx
+M	src/tool/FG_Delete/My Project/Settings.Designer.vb
+M	src/tool/FG_Delete/My Project/Settings.settings
+M	src/tool/FG_Delete/app.config
+M	src/tool/FG_Delete/main.Designer.vb
+M	src/tool/FG_Delete/main.vb
+M	src/tool/FG_Delete_Bg/DelForm.Designer.vb
+M	src/tool/FG_Delete_Bg/DelForm.vb
+M	src/tool/FG_Delete_Bg/FG_Delete_Bg.vbproj
+M	src/tool/FG_Delete_Bg/My Project/Application.Designer.vb
+M	src/tool/FG_Delete_Bg/My Project/Application.myapp
+M	src/tool/FG_Delete_Bg/My Project/AssemblyInfo.vb
+M	src/tool/FG_Delete_Bg/My Project/Resources.Designer.vb
+M	src/tool/FG_Delete_Bg/My Project/Resources.resx
+M	src/tool/FG_Delete_Bg/My Project/Settings.Designer.vb
+M	src/tool/FG_Delete_Bg/My Project/Settings.settings
+M	src/tool/FG_Delete_Bg/app.config
+M	src/tool/FG_Delete_Bg/main.vb
+M	src/tool/FusenTrdCnv/FusenTrdCnv.vcxproj
+M	src/tool/FusenTrdCnv/FusenTrdCnv.vcxproj.filters
+M	src/tool/GBreg/GBreg.vcxproj
+M	src/tool/GBreg/GBreg.vcxproj.filters
+M	src/tool/Get_Log/BarForm.Designer.cs
+M	src/tool/Get_Log/BarForm.cs
+M	src/tool/Get_Log/FileCtrl.cs
+M	src/tool/Get_Log/Get_Log.csproj
+M	src/tool/Get_Log/Program.cs
+M	src/tool/Get_Log/Properties/AssemblyInfo.cs
+M	src/tool/Get_Log/Properties/Resources.Designer.cs
+M	src/tool/Get_Log/Properties/Resources.resx
+M	src/tool/Get_Log/Properties/Settings.Designer.cs
+M	src/tool/Get_Log/Properties/Settings.settings
+M	src/tool/Get_Log/app.manifest
+M	src/tool/Get_Log/main.Designer.cs
+M	src/tool/Get_Log/main.cs
+M	src/tool/GoodMorning/GoodMorning.vcxproj
+M	src/tool/GoodNight/GoodNight.vcxproj
+M	src/tool/Graphic_Scan/FG_Form.Designer.cs
+M	src/tool/Graphic_Scan/FG_Form.cs
+M	src/tool/Graphic_Scan/Graphic_Scan.csproj
+M	src/tool/Graphic_Scan/Program.cs
+M	src/tool/Graphic_Scan/Properties/AssemblyInfo.cs
+M	src/tool/Graphic_Scan/Properties/Resources.Designer.cs
+M	src/tool/Graphic_Scan/Properties/Resources.resx
+M	src/tool/Graphic_Scan/Properties/Settings.Designer.cs
+M	src/tool/Graphic_Scan/Properties/Settings.settings
+M	src/tool/Graphic_Scan/Scan_Dat.cs
+M	src/tool/Graphic_Scan/Scan_From.Designer.cs
+M	src/tool/Graphic_Scan/Scan_From.cs
+M	src/tool/Graphic_Scan/Search_From.Designer.cs
+M	src/tool/Graphic_Scan/Search_From.cs
+M	src/tool/Graphic_Scan/Shousai_From.Designer.cs
+M	src/tool/Graphic_Scan/Shousai_From.cs
+M	src/tool/Graphic_Scan/app.config
+M	src/tool/Graphic_Scan/main.Designer.cs
+M	src/tool/Graphic_Scan/main.cs
+M	src/tool/Graphic_Scan_Dll/Graphic_Scan_Dll.vcxproj
+M	src/tool/Graphic_Scan_Dll/Graphic_Scan_Dll.vcxproj.filters
+M	src/tool/Hst_Change/Day_Pattern.Designer.vb
+M	src/tool/Hst_Change/Day_Pattern.vb
+M	src/tool/Hst_Change/Hour_Pattern.Designer.vb
+M	src/tool/Hst_Change/Hour_Pattern.vb
+M	src/tool/Hst_Change/HstDate.vb
+M	src/tool/Hst_Change/Hst_Change.vbproj
+M	src/tool/Hst_Change/Mon_Pattern.Designer.vb
+M	src/tool/Hst_Change/Mon_Pattern.vb
+M	src/tool/Hst_Change/My Project/Application.Designer.vb
+M	src/tool/Hst_Change/My Project/Application.myapp
+M	src/tool/Hst_Change/My Project/AssemblyInfo.vb
+M	src/tool/Hst_Change/My Project/Resources.Designer.vb
+M	src/tool/Hst_Change/My Project/Resources.resx
+M	src/tool/Hst_Change/My Project/Settings.Designer.vb
+M	src/tool/Hst_Change/My Project/Settings.settings
+M	src/tool/Hst_Change/SetteiForm.Designer.vb
+M	src/tool/Hst_Change/SetteiForm.vb
+M	src/tool/Hst_Change/Settei_Date.vb
+M	src/tool/Hst_Change/app.config
+M	src/tool/Hst_Change/main.Designer.vb
+M	src/tool/JPLC_Cnv/JPLC_Cnv.vcxproj
+M	src/tool/JPLC_Cnv/JPLC_Cnv.vcxproj.filters
+M	src/tool/JPLC_Ens/JPLC_Ens.vcxproj
+M	src/tool/JPLC_Ens/JPLC_Ens.vcxproj.filters
+M	src/tool/JPLC_Naibu/JPLC_Naibu.vcxproj
+M	src/tool/JPLC_Naibu/JPLC_Naibu.vcxproj.filters
+M	src/tool/MEMDUMP+/DBADD_Form.Designer.cs
+M	src/tool/MEMDUMP+/DBADD_Form.cs
+M	src/tool/MEMDUMP+/File_Ctrl.cs
+M	src/tool/MEMDUMP+/MEMDUMP+.csproj
+M	src/tool/MEMDUMP+/Map_Ctrl.cs
+M	src/tool/MEMDUMP+/Object_Dat.cs
+M	src/tool/MEMDUMP+/Program.cs
+M	src/tool/MEMDUMP+/Properties/AssemblyInfo.cs
+M	src/tool/MEMDUMP+/Properties/Resources.Designer.cs
+M	src/tool/MEMDUMP+/Properties/Resources.resx
+M	src/tool/MEMDUMP+/Properties/Settings.Designer.cs
+M	src/tool/MEMDUMP+/Properties/Settings.settings
+M	src/tool/MEMDUMP+/RecJp_Form.Designer.cs
+M	src/tool/MEMDUMP+/RecJp_Form.cs
+M	src/tool/MEMDUMP+/Set_Def.cs
+M	src/tool/MEMDUMP+/Setting_Form.Designer.cs
+M	src/tool/MEMDUMP+/Setting_Form.cs
+M	src/tool/MEMDUMP+/main.Designer.cs
+M	src/tool/MEMDUMP+/main.cs
+M	src/tool/MEMDUMP+_Dll/MEMDUMP+_Dll.vcxproj
+M	src/tool/MEMDUMP+_Dll/MEMDUMP+_Dll.vcxproj.filters
+M	src/tool/MEMDUMP/MEMDUMP/MEMDUMP.vbproj
+M	src/tool/MEMDUMP/MEMDUMP/MEMDUMP_Frm.Designer.vb
+M	src/tool/MEMDUMP/MEMDUMP/My Project/Application.Designer.vb
+M	src/tool/MEMDUMP/MEMDUMP/My Project/Application.myapp
+M	src/tool/MEMDUMP/MEMDUMP/My Project/AssemblyInfo.vb
+M	src/tool/MEMDUMP/MEMDUMP/My Project/Resources.Designer.vb
+M	src/tool/MEMDUMP/MEMDUMP/My Project/Resources.resx
+M	src/tool/MEMDUMP/MEMDUMP/My Project/Settings.Designer.vb
+M	src/tool/MEMDUMP/MEMDUMP/My Project/Settings.settings
+M	src/tool/NTP/NTPSMSG/NTPSMSG.vcxproj
+M	src/tool/NTP/NTPSMSG/NTPSMSG.vcxproj.filters
+M	src/tool/NTP/NTPcheck/NTPcheck.vcxproj
+M	src/tool/NTP/NTPcheck/NTPcheck.vcxproj.filters
+M	src/tool/NTP/NTPclient/NTPclient.vcxproj
+M	src/tool/NTP/NTPclient/NTPclient.vcxproj.filters
+M	src/tool/NTP/NTPclient2/NTPclient2.vcxproj
+M	src/tool/NTP/NTPclient2/NTPclient2.vcxproj.filters
+M	src/tool/NTP/NTPserver/NTPserver.vcxproj
+M	src/tool/NTP/NTPserver/NTPserver.vcxproj.filters
+M	src/tool/NTP/NTPtest/NTPtest.vcxproj
+M	src/tool/NTP/NTPtest/NTPtest.vcxproj.filters
+M	src/tool/NoAutoRun/NoAutoRun.vcxproj
+M	src/tool/NoAutoRun/NoAutoRun.vcxproj.filters
+M	src/tool/NodeDetect/NodeDetect.vcxproj
+M	src/tool/NodeDetect/NodeDetect.vcxproj.filters
+M	src/tool/OpsIncludeLib/My Project/Application.Designer.vb
+M	src/tool/OpsIncludeLib/My Project/Application.myapp
+M	src/tool/OpsIncludeLib/My Project/AssemblyInfo.vb
+M	src/tool/OpsIncludeLib/My Project/Resources.Designer.vb
+M	src/tool/OpsIncludeLib/My Project/Resources.resx
+M	src/tool/OpsIncludeLib/My Project/Settings.Designer.vb
+M	src/tool/OpsIncludeLib/My Project/Settings.settings
+M	src/tool/OpsIncludeLib/OpsIncludeLib.vbproj
+M	src/tool/OpsSelect/Form1.Designer.vb
+M	src/tool/OpsSelect/My Project/Application.Designer.vb
+M	src/tool/OpsSelect/My Project/Application.myapp
+M	src/tool/OpsSelect/My Project/AssemblyInfo.vb
+M	src/tool/OpsSelect/My Project/Resources.Designer.vb
+M	src/tool/OpsSelect/My Project/Resources.resx
+M	src/tool/OpsSelect/My Project/Settings.Designer.vb
+M	src/tool/OpsSelect/My Project/Settings.settings
+M	src/tool/OpsSelect/OpsSelect.vbproj
+M	src/tool/OpsSelect/app.config
+M	src/tool/PIOTool_64/PIOTool_64.vcxproj
+M	src/tool/PIOTool_64/PIOTool_64.vcxproj.filters
+M	src/tool/Pos/Form1.resX
+M	src/tool/Pos/Pos.sln
+M	src/tool/Pos/Pos.vbproj
+M	src/tool/Pos/anlg_win.resX
+M	src/tool/Pos/app.config
+M	src/tool/Pos/hyouji_win.resx
+M	src/tool/Pos/main_win.resx
+M	src/tool/Pos/test_win.resX
+M	src/tool/PosRand/Form1.resX
+M	src/tool/PosRand/Pos.sln
+M	src/tool/PosRand/PosRand.sln
+M	src/tool/PosRand/PosRand.vbproj
+M	src/tool/PosRand/anlg_win.resX
+M	src/tool/PosRand/hyouji_win.resx
+M	src/tool/PosRand/main_win.resx
+M	src/tool/ReturnDtop/My Project/Application.Designer.vb
+M	src/tool/ReturnDtop/My Project/Application.myapp
+M	src/tool/ReturnDtop/My Project/AssemblyInfo.vb
+M	src/tool/ReturnDtop/My Project/Resources.Designer.vb
+M	src/tool/ReturnDtop/My Project/Resources.resx
+M	src/tool/ReturnDtop/My Project/Settings.Designer.vb
+M	src/tool/ReturnDtop/My Project/Settings.settings
+M	src/tool/ReturnDtop/ReturnDtop.vbproj
+M	src/tool/ReturnDtop/app.config
+M	src/tool/ReturnDtop/main.Designer.vb
+M	src/tool/SL_Gms_Check/Check_Form.Designer.cs
+M	src/tool/SL_Gms_Check/Check_Form.cs
+M	src/tool/SL_Gms_Check/Program.cs
+M	src/tool/SL_Gms_Check/Properties/AssemblyInfo.cs
+M	src/tool/SL_Gms_Check/Properties/Resources.Designer.cs
+M	src/tool/SL_Gms_Check/Properties/Resources.resx
+M	src/tool/SL_Gms_Check/Properties/Settings.Designer.cs
+M	src/tool/SL_Gms_Check/Properties/Settings.settings
+M	src/tool/SL_Gms_Check/SL_Gms_Check.csproj
+M	src/tool/SL_Gms_Check/app.config
+M	src/tool/SL_Gms_Check/main.Designer.cs
+M	src/tool/SL_Gms_Check/main.cs
+M	src/tool/SNMPcheck/LastState.log
+M	src/tool/SimPOK/FormSimPOK.Designer.cs
+M	src/tool/SimPOK/Program.cs
+M	src/tool/SimPOK/Properties/AssemblyInfo.cs
+M	src/tool/SimPOK/Properties/Resources.Designer.cs
+M	src/tool/SimPOK/Properties/Resources.resx
+M	src/tool/SimPOK/Properties/Settings.Designer.cs
+M	src/tool/SimPOK/Properties/Settings.settings
+M	src/tool/SimPOK/SimPOK.csproj
+M	src/tool/SymCnv/SymCnv/My Project/Application.Designer.vb
+M	src/tool/SymCnv/SymCnv/My Project/Application.myapp
+M	src/tool/SymCnv/SymCnv/My Project/AssemblyInfo.vb
+M	src/tool/SymCnv/SymCnv/My Project/Resources.Designer.vb
+M	src/tool/SymCnv/SymCnv/My Project/Resources.resx
+M	src/tool/SymCnv/SymCnv/My Project/Settings.Designer.vb
+M	src/tool/SymCnv/SymCnv/My Project/Settings.settings
+M	src/tool/SymCnv/SymCnv/SymCnv.vbproj
+M	src/tool/SymCnv/SymCnv/SymCnvData.vb
+M	src/tool/SymCnv/SymCnv/SymCnvMain.Designer.vb
+M	src/tool/SymCnv/SymCnv/app.config
+M	src/tool/SysUpdate/SysUpdate.vcxproj
+M	src/tool/SysUpdate/SysUpdate.vcxproj.filters
+M	src/tool/SystemChecker/Check_Table.cs
+M	src/tool/SystemChecker/Def_dat.cs
+M	src/tool/SystemChecker/Program.cs
+M	src/tool/SystemChecker/Properties/AssemblyInfo.cs
+M	src/tool/SystemChecker/Properties/Resources.Designer.cs
+M	src/tool/SystemChecker/Properties/Resources.resx
+M	src/tool/SystemChecker/Properties/Settings.Designer.cs
+M	src/tool/SystemChecker/Properties/Settings.settings
+M	src/tool/SystemChecker/Reg_Ctrl.cs
+M	src/tool/SystemChecker/SystemChecker.csproj
+M	src/tool/SystemChecker/main.Designer.cs
+M	src/tool/SystemChecker/main.cs
+M	src/tool/TF_subjectset/TF_subjectset.vcxproj
+M	src/tool/TF_subjectset/TF_subjectset.vcxproj.filters
+M	src/tool/TF_valinfset/TF_valinfset.vcxproj
+M	src/tool/TF_valinfset/TF_valinfset.vcxproj.filters
+M	src/tool/Tar_wow/My Project/Application.Designer.vb
+M	src/tool/Tar_wow/My Project/Application.myapp
+M	src/tool/Tar_wow/My Project/AssemblyInfo.vb
+M	src/tool/Tar_wow/My Project/Resources.Designer.vb
+M	src/tool/Tar_wow/My Project/Resources.resx
+M	src/tool/Tar_wow/My Project/Settings.Designer.vb
+M	src/tool/Tar_wow/My Project/Settings.settings
+M	src/tool/Tar_wow/Tar_wow.vbproj
+M	src/tool/Tar_wow/app.config
+M	src/tool/TestRscLock/TestRscLock.vcxproj
+M	src/tool/TestRscLock/TestRscLock.vcxproj.filters
+M	src/tool/Touka_DB_Create/DB_Create.cs
+M	src/tool/Touka_DB_Create/Program.cs
+M	src/tool/Touka_DB_Create/Properties/AssemblyInfo.cs
+M	src/tool/Touka_DB_Create/Properties/Resources.Designer.cs
+M	src/tool/Touka_DB_Create/Properties/Resources.resx
+M	src/tool/Touka_DB_Create/Properties/Settings.Designer.cs
+M	src/tool/Touka_DB_Create/Properties/Settings.settings
+M	src/tool/Touka_DB_Create/Touka_DB_Create.csproj
+M	src/tool/Touka_DB_Create/main.Designer.cs
+M	src/tool/Touka_DB_Create/main.cs
+M	src/tool/Touka_DB_Create_Dll/Touka_DB_Create_Dll.vcxproj
+M	src/tool/Touka_DB_Create_Dll/Touka_DB_Create_Dll.vcxproj.filters
+M	src/tool/TrendAssign/MainForm.Designer.cs
+M	src/tool/TrendAssign/MainForm.cs
+M	src/tool/TrendAssign/Program.cs
+M	src/tool/TrendAssign/Properties/AssemblyInfo.cs
+M	src/tool/TrendAssign/Properties/Resources.Designer.cs
+M	src/tool/TrendAssign/Properties/Resources.resx
+M	src/tool/TrendAssign/Properties/Settings.Designer.cs
+M	src/tool/TrendAssign/Properties/Settings.settings
+M	src/tool/TrendAssign/TrendAssign.csproj
+M	src/tool/TrendAssign/app.config
+M	src/tool/TrendAssign_dll/TrendAssign_dll.vcxproj
+M	src/tool/TrendAssign_dll/TrendAssign_dll.vcxproj.filters
+M	src/tool/Ver_Ctrl/DspForm.Designer.cs
+M	src/tool/Ver_Ctrl/DspForm.cs
+M	src/tool/Ver_Ctrl/Program.cs
+M	src/tool/Ver_Ctrl/Properties/AssemblyInfo.cs
+M	src/tool/Ver_Ctrl/Properties/Resources.Designer.cs
+M	src/tool/Ver_Ctrl/Properties/Resources.resx
+M	src/tool/Ver_Ctrl/Properties/Settings.Designer.cs
+M	src/tool/Ver_Ctrl/Properties/Settings.settings
+M	src/tool/Ver_Ctrl/Ver_Ctrl.csproj
+M	src/tool/Ver_Ctrl/Ver_Dat.cs
+M	src/tool/Ver_Ctrl/main.Designer.cs
+M	src/tool/Ver_Ctrl/main.cs
+M	src/tool/almchk/almchk.vcxproj
+M	src/tool/almchk/almchk.vcxproj.filters
+M	src/tool/asncpy/Form1.resX
+M	src/tool/asncpy/_UpgradeReport.htm
+M	src/tool/asncpy/app.config
+M	src/tool/asncpy/asncpy.sln
+M	src/tool/asncpy/asncpy.vbproj
+M	src/tool/asncpy_dll/asncpydll.vcxproj
+M	src/tool/asncpy_dll/asncpydll.vcxproj.filters
+M	src/tool/bnkcre/bnkcre.vcxproj
+M	src/tool/calc_dsp/calc_dsp.vcxproj
+M	src/tool/calc_dsp/calc_dsp.vcxproj.filters
+M	src/tool/calc_num/calc_num.vcxproj
+M	src/tool/calc_num/calc_num.vcxproj.filters
+M	src/tool/common/common.vcxproj
+M	src/tool/common/common.vcxproj.filters
+M	src/tool/ctrltool/Form1.Designer.vb
+M	src/tool/ctrltool/My Project/Application.Designer.vb
+M	src/tool/ctrltool/My Project/Application.myapp
+M	src/tool/ctrltool/My Project/Resources.Designer.vb
+M	src/tool/ctrltool/My Project/Resources.resx
+M	src/tool/ctrltool/My Project/Settings.Designer.vb
+M	src/tool/ctrltool/My Project/Settings.settings
+M	src/tool/ctrltool/app.config
+M	src/tool/ctrltool/ctrltool.vb
+M	src/tool/ctrltool/ctrltool.vbproj
+M	src/tool/dll/Memdump/Memdump_dll.vcxproj
+M	src/tool/dll/ShQue/ShQue.vcxproj
+M	src/tool/dll/ctrltool_dll/ctrltool_dll.vcxproj
+M	src/tool/dll/erlgdsp/erlgdsp.vcxproj
+M	src/tool/dll/grareptool/grareptool.sln
+M	src/tool/dll/grareptool/grareptool_dll.sln
+M	src/tool/dll/grareptool/grareptool_dll.vcxproj
+M	src/tool/dll/pos/pos_dll.vcxproj
+M	src/tool/dll/quetool/quetool.vcxproj
+M	src/tool/emldb_imp/emldb_imp.vcxproj
+M	src/tool/emldb_imp/emldb_imp.vcxproj.filters
+M	src/tool/enq/enq.vcxproj
+M	src/tool/errdsp+/DameRog_Form.Designer.cs
+M	src/tool/errdsp+/DameRog_Form.cs
+M	src/tool/errdsp+/ErrDsp_Settei.cs
+M	src/tool/errdsp+/Err_Dat.cs
+M	src/tool/errdsp+/FileCtrl.cs
+M	src/tool/errdsp+/Okiniiri_Add_Form.Designer.cs
+M	src/tool/errdsp+/Okiniiri_Add_Form.cs
+M	src/tool/errdsp+/Program.cs
+M	src/tool/errdsp+/Properties/AssemblyInfo.cs
+M	src/tool/errdsp+/Properties/Resources.Designer.cs
+M	src/tool/errdsp+/Properties/Resources.resx
+M	src/tool/errdsp+/Properties/Settings.Designer.cs
+M	src/tool/errdsp+/Properties/Settings.settings
+M	src/tool/errdsp+/SearchForm.Designer.cs
+M	src/tool/errdsp+/SearchForm.cs
+M	src/tool/errdsp+/SetteiForm.Designer.cs
+M	src/tool/errdsp+/SetteiForm.cs
+M	src/tool/errdsp+/errdsp+.csproj
+M	src/tool/errdsp+/main.Designer.cs
+M	src/tool/errdsp+/main.cs
+M	src/tool/errdsp+/shousai.Designer.cs
+M	src/tool/errdsp+/shousai.cs
+M	src/tool/evtlog/evtlog.vcxproj
+M	src/tool/evtlog/evtlog.vcxproj.filters
+M	src/tool/evtlog/evtlog2.vcxproj
+M	src/tool/evtlog/evtlog2.vcxproj.filters
+M	src/tool/filcre/filcre.vcxproj
+M	src/tool/fuda_set/fuda_set.vcxproj
+M	src/tool/fuda_set/fuda_set.vcxproj.filters
+M	src/tool/grareptool/Form1.Designer.vb
+M	src/tool/grareptool/Module1.vb
+M	src/tool/grareptool/My Project/Application.Designer.vb
+M	src/tool/grareptool/My Project/Application.myapp
+M	src/tool/grareptool/My Project/Resources.Designer.vb
+M	src/tool/grareptool/My Project/Resources.resx
+M	src/tool/grareptool/My Project/Settings.Designer.vb
+M	src/tool/grareptool/My Project/Settings.settings
+M	src/tool/grareptool/grareptool.vbproj
+M	src/tool/hstatst/hstatst.vcxproj
+M	src/tool/hstchk/hstchk.vcxproj
+M	src/tool/hstdel/hstdel.vcxproj
+M	src/tool/hstdel/hstdel.vcxproj.filters
+M	src/tool/hstmove/hstmove.vcxproj
+M	src/tool/hstmove/hstmove.vcxproj.filters
+M	src/tool/hstsav/hstsav.vcxproj
+M	src/tool/hstsav/hstsav.vcxproj.filters
+M	src/tool/htrdbnkacc/htrdbnkacc.vcxproj
+M	src/tool/htrdbnkacc/htrdbnkacc.vcxproj.filters
+M	src/tool/htrdbnkcopy/htrdbnkcopy.vcxproj
+M	src/tool/htrdbnkcopy/htrdbnkcopy.vcxproj.filters
+M	src/tool/jotesttool/jotesttool.vcxproj
+M	src/tool/jotesttool/jotesttool.vcxproj.filters
+M	src/tool/kill/kill.vcxproj
+M	src/tool/logon/logon.vcxproj
+M	src/tool/mifcre/mifcre.vcxproj
+M	src/tool/mifcre/mifcre.vcxproj.filters
+M	src/tool/mpb_set/mpb_set.vcxproj
+M	src/tool/mpb_set/mpb_set.vcxproj.filters
+M	src/tool/mssctl/mssctl.vcxproj
+M	src/tool/mssctl/mssctl.vcxproj.filters
+M	src/tool/mssctl2/mssctl2.vcxproj
+M	src/tool/mssctl2/mssctl2.vcxproj.filters
+M	src/tool/mssctlans2/mssctlans2.vcxproj
+M	src/tool/mssctlans2/mssctlans2.vcxproj.filters
+M	src/tool/pasttool/pasttool.vcxproj
+M	src/tool/pasttool/pasttool.vcxproj.filters
+M	src/tool/prninf/prninf.vcxproj
+M	src/tool/prninf/prninf.vcxproj.filters
+M	src/tool/quetool/deqvb/_UpgradeReport.htm
+M	src/tool/quetool/deqvb/app.config
+M	src/tool/quetool/deqvb/deq_vb_frm.resx
+M	src/tool/quetool/deqvb/deqvb.log
+M	src/tool/quetool/deqvb/deqvb.vbproj
+M	src/tool/quetool/deqvb/enq_vb_frm.resx
+M	src/tool/quetool/enqvb/_UpgradeReport.htm
+M	src/tool/quetool/enqvb/app.config
+M	src/tool/quetool/enqvb/deq_vb_frm.Designer.vb
+M	src/tool/quetool/enqvb/deq_vb_frm.vb
+M	src/tool/quetool/enqvb/enq_vb_frm.resx
+M	src/tool/quetool/enqvb/enqvb.log
+M	src/tool/quetool/enqvb/enqvb.vbproj
+M	src/tool/regedt/regedt.vcxproj
+M	src/tool/regedt/regedt.vcxproj.filters
+M	src/tool/retro_asn/retro_asn.vcxproj
+M	src/tool/retro_asn/retro_asn.vcxproj.filters
+M	src/tool/showQue/app.config
+M	src/tool/showQue/frmShQue.Designer.vb
+M	src/tool/showQue/frmShQue.vb
+M	src/tool/showQue/frmTaskSlct.Designer.vb
+M	src/tool/showQue/frmTaskSlct.vb
+M	src/tool/showQue/showQue.vbproj
+M	src/tool/slotread/slotread.vcxproj
+M	src/tool/slotread/slotread.vcxproj.filters
+M	src/tool/taguty/Form1.resx
+M	src/tool/taguty/Form3.resx
+M	src/tool/taguty/Form4.resx
+M	src/tool/taguty/Form5.resx
+M	src/tool/taguty/Form6.resx
+M	src/tool/taguty/My Project/Application.Designer.vb
+M	src/tool/taguty/My Project/Settings.Designer.vb
+M	src/tool/taguty/My Project/Settings.settings
+M	src/tool/taguty/app.config
+M	src/tool/taguty/taguty.log
+M	src/tool/taguty/taguty.vbproj
+M	src/tool/tmachk/tmachk.vcxproj
+M	src/tool/tmachk/tmachk.vcxproj.filters
+M	src/tool/tptchk/tptchk.vcxproj
+M	src/tool/tptchk/tptchk.vcxproj.filters
+M	src/tool/tras_datacopy/tras_datacopy.vcxproj
+M	src/tool/tras_datacopy/tras_datacopy.vcxproj.filters
+M	src/tool/trdgrp_datacopy/trdgrp_datacopy.vcxproj
+M	src/tool/trdmov/trdmov.vcxproj
+M	src/tool/trduty/trduty.vcxproj
+M	src/tool/trduty/trduty.vcxproj.filters
+M	src/tool/trnchk/trnchk.vcxproj
+M	src/trd/bmtrdr/bmtrdr.c
+M	src/trd/bmtrdr/bmtrdr.vcxproj
+M	src/trd/bmtrdr/bmtrdr.vcxproj.filters
+M	src/trd/bmtrdrs/bmtrdrs.vcxproj
+M	src/trd/bmtrdrs/bmtrdrs.vcxproj.filters
+M	src/trd/botrdh/botrdh.c
+M	src/trd/botrdh/botrdh.vcxproj
+M	src/trd/botrdh/botrdh.vcxproj.filters
+M	src/trd/botrdl/botrdl.vcxproj
+M	src/trd/botrdl/botrdl.vcxproj.filters
+M	src/trd/botrdls/botrdls.vcxproj
+M	src/trd/botrdls/botrdls.vcxproj.filters
+M	src/trd/botrdr/botrdr.c
+M	src/trd/botrdr/botrdr.vcxproj
+M	src/trd/botrdr/botrdr.vcxproj.filters
+M	src/trd/botrdrs/botrdrs.vcxproj
+M	src/trd/botrdrs/botrdrs.vcxproj.filters
+M	src/utly/lemmeq/lemmeq.vcxproj
+M	src/utly/lemmeq/lemmeq.vcxproj.filters
+M	src/utly/lmmmeq/lmmmeq.vcxproj
+M	src/utly/lmmmeq/lmmmeq.vcxproj.filters
+M	src/voice/hovntf/hovntf.vcxproj
+M	src/voice/hovntf/hovntf.vcxproj.filters
+M	自動ビルド/01.auto_build_start_copy.bat
+M	自動ビルド/01.auto_build_start_debug.bat
+Restoring 3346 files...
+Done
+4

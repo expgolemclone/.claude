@@ -1,0 +1,150 @@
+#Requires AutoHotkey v2.0
+
+; ============================================================
+; espanso match/vscode-open.yml から移行
+; VSCode でフォルダ/ファイルを開くショートカット集
+; ============================================================
+
+#Hotstring *
+
+; ============================================================
+; ヘルパー関数
+; ============================================================
+
+OpenInVSCode(path) {
+    Run('"' EnvGet("LOCALAPPDATA") '\Programs\Microsoft VS Code\bin\code.cmd" "' path '"',, "Hide")
+}
+
+; ============================================================
+; Desktop 直下
+; ============================================================
+
+:*::des:: {
+    OpenInVSCode(A_Desktop)
+}
+
+:*::memo:: {
+    OpenInVSCode(A_Desktop "\memo")
+}
+
+:*::too:: {
+    OpenInVSCode(A_Desktop "\tool")
+}
+
+; ============================================================
+; Desktop\stock
+; ============================================================
+
+:*::sto:: {
+    OpenInVSCode(A_Desktop "\stock")
+}
+
+:*::land:: {
+    OpenInVSCode(A_Desktop "\stock\property\land_value_research")
+}
+
+; ============================================================
+; Desktop\local
+; ============================================================
+
+:*::loc:: {
+    OpenInVSCode(A_Desktop "\local")
+}
+
+:*::play:: {
+    OpenInVSCode(A_Desktop "\local\playwright")
+}
+
+; ============================================================
+; Desktop\refactoring
+; ============================================================
+
+:*::refm:: {
+    OpenInVSCode(A_Desktop "\refactoring")
+}
+
+:*::refu:: {
+    OpenInVSCode(A_Desktop "\refactoring\ops5k_x64_utf-8_safefunc")
+}
+
+:*::refset:: {
+    OpenInVSCode(A_Desktop "\refactoring\OpsSetupForWin10_x64")
+}
+
+; ============================================================
+; Desktop\restart
+; ============================================================
+
+:*::res:: {
+    OpenInVSCode(A_Desktop "\restart")
+}
+
+; ============================================================
+; D:\ ドライブ
+; ============================================================
+
+:*::d\:: {
+    OpenInVSCode("D:\")
+}
+
+:*::dref:: {
+    OpenInVSCode("D:\refactoring")
+}
+
+:*::mei:: {
+    OpenInVSCode("D:\meisvy_line")
+}
+
+; ============================================================
+; E:\ ドライブ
+; ============================================================
+
+:*::tool:: {
+    OpenInVSCode("E:\work\18.セットアップ(M5A Win10x64)\tool")
+}
+
+:*::scr:: {
+    OpenInVSCode("E:\archive\screenshot")
+}
+
+; ============================================================
+; 設定・ツール
+; ============================================================
+
+; :esp は削除 (espanso 廃止のため)
+
+:*::.codex:: {
+    OpenInVSCode(EnvGet("USERPROFILE") "\.codex")
+}
+
+:*::.claude:: {
+    OpenInVSCode(EnvGet("USERPROFILE") "\.claude")
+}
+
+:*::ahk:: {
+    OpenInVSCode("C:\Users\0000250059\Documents\AutoHotkey\test.ahk")
+}
+
+; ============================================================
+; Windows Startup フォルダ
+; ============================================================
+
+:*::stav:: {
+    OpenInVSCode(EnvGet("USERPROFILE") "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\startup")
+}
+
+:*::stae:: {
+    SendInput("shell:startup{Enter}")
+}
+
+; ============================================================
+; 業務 (日報)
+; ============================================================
+
+:*::rep:: {
+    y := FormatTime(, "yyyy")
+    m := FormatTime(, "M")
+    d := FormatTime(, "yyyy-MM-dd")
+    path := "C:\MEIDEN\Box\DA\システム管理課\K-教育訓練\新入社員教育など\20250804_教育資料（藤田充人）\daily_repport\" y "\" m "\" d ".md"
+    OpenInVSCode(path)
+}
