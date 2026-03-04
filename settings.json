@@ -23,7 +23,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"C:/Users/0000250059/.claude/hooks/reload-ahk.sh\""
+            "command": "node \"C:/Users/0000250059/.claude/hooks/reload-ahk.js\""
           }
         ]
       }
