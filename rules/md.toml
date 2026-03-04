@@ -2,9 +2,6 @@
 style = "atx"                    # # を使用、アンダーラインスタイルは不可
 blank_lines_around = true        # 見出しの前後に空行を入れる
 
-[code_block]
-style = "fenced"                 # フェンス記法で言語識別子を付与（```python, ```bash 等）
-
 [list]
 unordered_marker = "-"           # * は避ける
 

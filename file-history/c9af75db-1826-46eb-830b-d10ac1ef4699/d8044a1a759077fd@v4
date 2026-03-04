@@ -1,3 +1,0 @@
-@echo off
-rem PowerShell スクリプトを実行するラッパー
-powershell -ExecutionPolicy Bypass -File "%~dp0open_urls.ps1"

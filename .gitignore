@@ -1,1 +1,25 @@
-plugins/marketplaces/claude-plugins-official
+# Whitelist approach: ignore everything, then allow specific files
+*
+
+# Allow .gitignore itself
+!.gitignore
+
+# Settings
+!settings.json
+
+# Hooks (custom scripts)
+!hooks/
+!hooks/**
+
+# Rules (per-language coding rules)
+!rules/
+!rules/**
+
+# Scripts
+!scripts/
+!scripts/**
+
+# Plugins (config only)
+!plugins/
+!plugins/blocklist.json
+!plugins/known_marketplaces.json

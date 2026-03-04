@@ -1,6 +1,27 @@
 #!/bin/bash
 INPUT=$(cat)
 
+RULES_CONTENT=""
+
+# Bash ツールで git コマンド実行時 → git.toml を注入
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
+if [[ -n "$COMMAND" && "$COMMAND" =~ ^[[:space:]]*(git[[:space:]]) ]]; then
+  GIT_RULES="$HOME/.claude/rules/git.toml"
+  if [[ -s "$GIT_RULES" ]]; then
+    RULES_CONTENT=$(cat "$GIT_RULES")
+  fi
+  if [[ -n "$RULES_CONTENT" ]]; then
+    jq -n --arg ctx "$RULES_CONTENT" '{
+      hookSpecificOutput: {
+        hookEventName: "PreToolUse",
+        additionalContext: $ctx
+      }
+    }'
+  fi
+  exit 0
+fi
+
+# Edit/Write ツール → 拡張子ベースのルール注入
 FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // .tool_input.path // empty')
 
 if [[ -z "$FILE_PATH" ]]; then

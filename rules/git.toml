@@ -1,4 +1,3 @@
 [commit]
-one_logical_change = true        # 1コミット = 1論理的変更（巨大コミットを避ける）
-user_writes_message = true       # コミットメッセージはユーザに必ず入力させる
-no_force_push_main = true        # force push は main/master ブランチに対して行わない
+one_logical_change = true        # 1コミット = 1論理的変更
+no_co_authored_by = true         # Co-Authored-By を付与しない

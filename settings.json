@@ -1,16 +1,29 @@
 {
   "permissions": {
-    "defaultMode": "bypassPermissions",
-    "deny": ["Task"]
+    "deny": [
+      "Task"
+    ],
+    "defaultMode": "bypassPermissions"
   },
   "hooks": {
     "PreToolUse": [
+      {
+        "matcher": "Edit|Write|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/0000250059/.claude/hooks/inject-rules.js\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
       {
         "matcher": "Edit|Write",
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"$HOME/.claude/hooks/inject-rules.sh\""
+            "command": "bash \"C:/Users/0000250059/.claude/hooks/reload-ahk.sh\""
           }
         ]
       }
