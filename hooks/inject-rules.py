@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+"""PreToolUse hook: inject rules/*.toml based on file extension or git command."""
+
+import json
+import os
+import re
+import sys
+
+RULES_DIR = os.path.join(os.path.expanduser("~"), ".claude", "rules")
+
+
+def read_rule(filename: str) -> str:
+    try:
+        with open(os.path.join(RULES_DIR, filename)) as f:
+            return f.read().strip()
+    except OSError:
+        return ""
+
+
+def output(ctx: str) -> None:
+    json.dump(
+        {"hookSpecificOutput": {"hookEventName": "PreToolUse", "additionalContext": ctx}},
+        sys.stdout,
+    )
+
+
+def main() -> None:
+    data = json.load(sys.stdin)
+    tool_input = data.get("tool_input", {})
+
+    # Bash tool: git command -> inject git.toml
+    command = tool_input.get("command", "")
+    if command and re.match(r"\s*git\s", command):
+        rules = read_rule("git.toml")
+        if rules:
+            output(rules)
+        return
+
+    # Edit/Write tool: file extension -> inject {ext}.toml
+    file_path = tool_input.get("file_path") or tool_input.get("path", "")
+    if not file_path:
+        return
+
+    ext = os.path.splitext(file_path)[1].lstrip(".").lower()
+    if not ext:
+        return
+
+    rules = read_rule(ext + ".toml")
+
+    # .md -> also inject mmd.toml
+    if ext == "md":
+        mmd = read_rule("mmd.toml")
+        if mmd:
+            rules = rules + "\n\n" + mmd if rules else mmd
+
+    if rules:
+        output(rules)
+
+
+if __name__ == "__main__":
+    main()

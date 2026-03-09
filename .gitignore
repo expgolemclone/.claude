@@ -4,8 +4,8 @@
 # Allow .gitignore itself
 !.gitignore
 
-# Settings
-!settings.json
+# Setup script (generates OS-specific settings.json)
+!setup.sh
 
 # Hooks (custom scripts)
 !hooks/
