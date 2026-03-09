@@ -29,7 +29,7 @@ def main() -> None:
         return
 
     # Fetch open issues via gh CLI
-    raw = run(cwd, "gh", "issue", "list", "--state", "open", "--limit", "10", "--json", "number,title")
+    raw = run(cwd, "gh", "issue", "list", "--state", "open", "--sort", "created", "--order", "asc", "--limit", "1", "--json", "number,title")
     if not raw:
         return
 
@@ -37,11 +37,11 @@ def main() -> None:
     if not issues:
         return
 
-    lines = "\n".join(f"  #{i['number']}: {i['title']}" for i in issues)
+    issue = issues[0]
     json.dump(
         {
             "decision": "block",
-            "reason": f"Open issues found:\n{lines}\n\nこれらのissueを実装しますか？",
+            "reason": f"Open issue found:\n  #{issue['number']}: {issue['title']}\n\nこのissueを実装しますか？",
         },
         sys.stdout,
     )
