@@ -29,9 +29,12 @@ process.stdin.on("end", async () => {
 });
 
 function shouldActivate(command) {
-  if (!command.includes("nixos-rebuild")) return false;
-  // WSL invocation or direct sudo nixos-rebuild (inside WSL)
-  return command.includes("wsl") || /sudo\s+nixos-rebuild/.test(command);
+  const trimmed = command.trim();
+  // WSL invocation: command starts with 'wsl' and includes nixos-rebuild
+  if (/^wsl\s/i.test(trimmed) && trimmed.includes("nixos-rebuild")) return true;
+  // Direct sudo nixos-rebuild (at start or after shell operators)
+  if (/(?:^|[;&|]\s*)sudo\s+nixos-rebuild/.test(trimmed)) return true;
+  return false;
 }
 
 async function handlePre() {
