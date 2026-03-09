@@ -1,3 +1,4 @@
 [commit]
 one_logical_change = true        # 1コミット = 1論理的変更
 no_co_authored_by = true         # Co-Authored-By を付与しない
+no_force_add = true              # git add -f / --force を使用しない

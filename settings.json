@@ -25,6 +25,15 @@
             "command": "node \"C:/Users/0000250059/.claude/hooks/wsl-proxy.js\" pre"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/0000250059/.claude/hooks/block-git-force-add.js\""
+          }
+        ]
       }
     ],
     "PostToolUse": [
