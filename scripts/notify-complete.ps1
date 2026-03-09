@@ -103,6 +103,16 @@ $okButton.Add_Click({ $window.Close() })
 $window.Add_Loaded({
     $sb = $window.FindResource("FadeIn")
     $sb.Begin($window)
+    $window.Activate()
+    $okButton.Focus()
+
+    $timer = New-Object System.Windows.Threading.DispatcherTimer
+    $timer.Interval = [TimeSpan]::FromSeconds(5)
+    $timer.Add_Tick({
+        $timer.Stop()
+        $window.Close()
+    })
+    $timer.Start()
 })
 
 $window.Add_MouseLeftButtonDown({ $window.DragMove() })
