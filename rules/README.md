@@ -8,9 +8,9 @@
 
 ```
 .claude\rules\
-├── cs.md      # C# 規約
-├── c.md       # C 規約
-├── md.md      # Markdown 規約
+├── cs.toml      # C# 規約
+├── c.toml       # C 規約
+├── md.toml      # Markdown 規約
 └── ...
 ```
 
@@ -22,22 +22,6 @@
 
 ### 仕組み（参考）
 
-PostToolUse hookにより、Claudeがファイルを編集した際に対象の拡張子を判定し、該当するルールファイルの内容をコンテキストに自動注入しています。CLAUDE.md 本体のサイズを抑えつつ、必要なルールだけが適用される構成です。
+PreToolUse hookにより、Claudeがファイルを編集した際に対象の拡張子を判定し、該当するルールファイルの内容をコンテキストに自動注入しています。CLAUDE.md 本体のサイズを抑えつつ、必要なルールだけが適用される構成です。
 
 以上。不明点があれば聞いてください。
-
----
-## 条件付きコンテキスト注入をhookで実現
-PreToolUse hookで特定拡張子のファイル編集を検知したら、hookの出力（stdout）で追加のルールやプロンプトを返す。hookのstdoutはClaudeへのフィードバックとして渡されます。
-
-```bash
-#!/bin/bash
-INPUT=$(cat)
-FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // .tool_input.path // empty')
-
-if [[ "$FILE_PATH" == *.cs ]]; then
-  cat .claude/rules/csharp-rules.md
-elif [[ "$FILE_PATH" == *.rs ]]; then
-  cat .claude/rules/rust-rules.md
-fi
-```
