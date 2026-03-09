@@ -1,13 +1,16 @@
-const fs = require("fs");
-
 let raw = "";
 process.stdin.on("data", (c) => (raw += c));
 process.stdin.on("end", () => {
   const input = JSON.parse(raw);
   const command = (input.tool_input || {}).command || "";
 
-  // git add に -f / --force が含まれるかチェック
-  if (/\bgit\s+add\b/.test(command) && /\s(-f|--force)\b/.test(command)) {
+  // 引用符内の文字列を除去して、実際のコマンド部分のみを検査する
+  // (コミットメッセージ等に含まれる "git add -f" での誤検知を防止)
+  const stripped = command
+    .replace(/"[^"]*"/g, '""')
+    .replace(/'[^']*'/g, "''");
+
+  if (/\bgit\s+add\b/.test(stripped) && /\s(-f|--force)\b/.test(stripped)) {
     console.log(
       JSON.stringify({
         decision: "block",
