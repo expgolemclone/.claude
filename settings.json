@@ -1,7 +1,8 @@
 {
   "permissions": {
     "deny": [
-      "Task"
+      "Task",
+      "Agent"
     ],
     "defaultMode": "bypassPermissions"
   },
@@ -15,15 +16,24 @@
             "command": "node \"C:/Users/0000250059/.claude/hooks/inject-rules.js\""
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"C:/Users/0000250059/.claude/hooks/wsl-proxy.js\" pre"
+          }
+        ]
       }
     ],
     "PostToolUse": [
       {
-        "matcher": "Edit|Write",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/0000250059/.claude/hooks/reload-ahk.js\""
+            "command": "node \"C:/Users/0000250059/.claude/hooks/wsl-proxy.js\" post"
           }
         ]
       }
@@ -40,5 +50,6 @@
       }
     ]
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "effortLevel": "high"
 }
