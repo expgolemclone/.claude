@@ -33,7 +33,10 @@ def main() -> None:
     if not raw:
         return
 
-    issues = json.loads(raw)
+    try:
+        issues = json.loads(raw)
+    except (json.JSONDecodeError, ValueError):
+        return
     if not issues:
         return
 
