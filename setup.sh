@@ -38,20 +38,20 @@ case "$(uname -s)" in
       {
         "matcher": "Edit|Write",
         "hooks": [
-          { "type": "command", "command": "${CLAUDE_HOME}/hooks/post-edit-nixconfig.sh", "timeout": 5 }
+          { "type": "command", "command": "python3 ${CLAUDE_HOME}/hooks/post-edit-nixconfig.py", "timeout": 5 }
         ]
       },
       {
         "matcher": "Bash",
         "hooks": [
-          { "type": "command", "command": "${CLAUDE_HOME}/hooks/post-bash-nixrebuild.sh", "timeout": 5 }
+          { "type": "command", "command": "python3 ${CLAUDE_HOME}/hooks/post-bash-nixrebuild.py", "timeout": 5 }
         ]
       }
     ],
     "Stop": [
       {
         "hooks": [
-          { "type": "command", "command": "${CLAUDE_HOME}/hooks/stop-git-check.sh", "timeout": 15 }
+          { "type": "command", "command": "python3 ${CLAUDE_HOME}/hooks/stop-git-check.py", "timeout": 15 }
         ]
       }
     ]
@@ -76,14 +76,14 @@ EOF
       {
         "matcher": "Edit|Write|Bash",
         "hooks": [
-          { "type": "command", "command": "node \"${CLAUDE_HOME}/hooks/inject-rules.js\"" }
+          { "type": "command", "command": "python3 \"${CLAUDE_HOME}/hooks/inject-rules.py\"" }
         ]
       },
       {
         "matcher": "Bash",
         "hooks": [
-          { "type": "command", "command": "node \"${CLAUDE_HOME}/hooks/wsl-proxy.js\" pre" },
-          { "type": "command", "command": "node \"${CLAUDE_HOME}/hooks/block-git-force-add.js\"" }
+          { "type": "command", "command": "python3 \"${CLAUDE_HOME}/hooks/wsl-proxy.py\" pre" },
+          { "type": "command", "command": "python3 \"${CLAUDE_HOME}/hooks/block-git-force-add.py\"" }
         ]
       }
     ],
@@ -91,7 +91,7 @@ EOF
       {
         "matcher": "Bash",
         "hooks": [
-          { "type": "command", "command": "node \"${CLAUDE_HOME}/hooks/wsl-proxy.js\" post" }
+          { "type": "command", "command": "python3 \"${CLAUDE_HOME}/hooks/wsl-proxy.py\" post" }
         ]
       }
     ],
