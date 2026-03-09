@@ -38,7 +38,8 @@ case "$(uname -s)" in
       {
         "matcher": "Edit|Write",
         "hooks": [
-          { "type": "command", "command": "python3 ${CLAUDE_HOME}/hooks/post-edit-nixconfig.py", "timeout": 5 }
+          { "type": "command", "command": "python3 ${CLAUDE_HOME}/hooks/post-edit-nixconfig.py", "timeout": 5 },
+          { "type": "command", "command": "python3 ${CLAUDE_HOME}/hooks/enforce-python-hooks.py" }
         ]
       },
       {
@@ -51,7 +52,8 @@ case "$(uname -s)" in
     "Stop": [
       {
         "hooks": [
-          { "type": "command", "command": "python3 ${CLAUDE_HOME}/hooks/stop-git-check.py", "timeout": 15 }
+          { "type": "command", "command": "python3 ${CLAUDE_HOME}/hooks/stop-git-check.py", "timeout": 15 },
+          { "type": "command", "command": "python3 ${CLAUDE_HOME}/hooks/stop-git-issues.py", "timeout": 15 }
         ]
       }
     ]
@@ -89,6 +91,14 @@ EOF
     ],
     "PostToolUse": [
       {
+        "matcher": "Edit|Write",
+        "hooks": [
+          { "type": "command", "command": "python3 \"${CLAUDE_HOME}/hooks/reload-ahk.py\"" },
+          { "type": "command", "command": "python3 \"${CLAUDE_HOME}/hooks/check-hotstring-conflicts.py\"" },
+          { "type": "command", "command": "python3 \"${CLAUDE_HOME}/hooks/enforce-python-hooks.py\"" }
+        ]
+      },
+      {
         "matcher": "Bash",
         "hooks": [
           { "type": "command", "command": "python3 \"${CLAUDE_HOME}/hooks/wsl-proxy.py\" post" }
@@ -99,6 +109,8 @@ EOF
       {
         "matcher": "",
         "hooks": [
+          { "type": "command", "command": "python3 \"${CLAUDE_HOME}/hooks/stop-git-check.py\"", "timeout": 15 },
+          { "type": "command", "command": "python3 \"${CLAUDE_HOME}/hooks/stop-git-issues.py\"", "timeout": 15 },
           { "type": "command", "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File \"${CLAUDE_HOME_BS}\\scripts\\notify-complete.ps1\"" }
         ]
       }
