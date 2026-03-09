@@ -11,6 +11,7 @@
 # Hooks (custom scripts)
 !hooks/
 !hooks/**
+hooks/__pycache__/
 
 # Rules (per-language coding rules)
 !rules/
