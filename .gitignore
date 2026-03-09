@@ -21,7 +21,3 @@ hooks/__pycache__/
 !scripts/
 !scripts/**
 
-# Plugins (config only)
-!plugins/
-!plugins/blocklist.json
-!plugins/known_marketplaces.json
