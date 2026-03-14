@@ -71,6 +71,11 @@
         "hooks": [
           {
             "type": "command",
+            "command": "python3 /home/exp/.claude/hooks/stop-nix-rebuild.py",
+            "timeout": 300
+          },
+          {
+            "type": "command",
             "command": "python3 /home/exp/.claude/hooks/stop-git-check.py",
             "timeout": 15
           },
