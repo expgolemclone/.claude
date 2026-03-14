@@ -27,8 +27,8 @@ def main() -> None:
         with open(transcript_path) as f:
             lines = f.readlines()
 
-        # 最後のユーザーメッセージ行を探す
-        # トランスクリプト形式: entry["type"] == "user" がユーザーメッセージ
+        # Find the last user message line in the transcript
+        # Transcript format: entry["type"] == "user" marks a user message
         last_user_idx = -1
         for i in range(len(lines) - 1, -1, -1):
             try:
@@ -42,9 +42,9 @@ def main() -> None:
         if last_user_idx < 0:
             return
 
-        # ユーザーメッセージ以降のツール使用をチェック
-        # ツール使用は entry["message"]["content"][] 内の
-        # {"type": "tool_use", "name": "ToolName"} として記録される
+        # Check for tool usage after the last user message
+        # Tool usage is recorded as {"type": "tool_use", "name": "ToolName"}
+        # within entry["message"]["content"][]
         for line in lines[last_user_idx + 1 :]:
             try:
                 entry = json.loads(line)
@@ -72,10 +72,10 @@ def main() -> None:
         {
             "decision": "block",
             "reason": (
-                "この回答には一次情報による検証が含まれていません。\n"
-                "知識ベースの質問に回答している場合は、WebSearch または WebFetch で"
-                "一次情報を確認してから回答してください。\n"
-                "コーディングタスクへの応答であれば、そのまま終了して問題ありません。"
+                "This response lacks primary source verification.\n"
+                "If answering a knowledge-based question, verify with WebSearch or "
+                "WebFetch before responding.\n"
+                "If responding to a coding task, you may proceed without verification."
             ),
         },
         sys.stdout,
