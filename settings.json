@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "deny": ["Agent"]
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|Bash",
+        "hooks": [
+          { "type": "command", "command": "python3 /home/exp/.claude/hooks/inject-rules.py" }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "python3 /home/exp/.claude/hooks/block-git-force-add.py" },
+          { "type": "command", "command": "python3 /home/exp/.claude/hooks/block-git-commit-keywords.py" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          { "type": "command", "command": "python3 /home/exp/.claude/hooks/post-edit-nixconfig.py", "timeout": 5 },
+          { "type": "command", "command": "python3 /home/exp/.claude/hooks/enforce-python-hooks.py" }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "python3 /home/exp/.claude/hooks/post-bash-nixrebuild.py", "timeout": 5 }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "python3 /home/exp/.claude/hooks/stop-git-check.py", "timeout": 15 },
+          { "type": "command", "command": "python3 /home/exp/.claude/hooks/stop-git-issues.py", "timeout": 15 },
+          { "type": "command", "command": "python3 /home/exp/.claude/hooks/stop-hallucination-check.py", "timeout": 15 }
+        ]
+      }
+    ]
+  }
+}

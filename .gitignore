@@ -7,6 +7,7 @@
 # Setup script (generates OS-specific settings.json)
 !setup.sh
 !CLAUDE.md
+!settings.json
 
 # Hooks (custom scripts)
 !hooks/
