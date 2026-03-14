@@ -29,7 +29,7 @@ def build_linux_config():
 
     return {
         "permissions": {
-            "defaultMode": "bypassPermissions",
+            "defaultMode": "plan",
             "deny": ["Agent"],
         },
         "skipDangerousModePermissionPrompt": True,
