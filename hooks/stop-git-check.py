@@ -21,6 +21,9 @@ def main() -> None:
     if data.get("stop_hook_active"):
         return
 
+    if data.get("permission_mode") == "plan":
+        return
+
     cwd = data.get("cwd", "")
 
     # Check if we're in a git repository
