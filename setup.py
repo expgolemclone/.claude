@@ -38,6 +38,9 @@ def build_linux_config():
                 {"matcher": "Edit|Write|Bash", "hooks": [
                     py("inject-rules.py"),
                 ]},
+                {"matcher": "Edit|Write", "hooks": [
+                    py("block-settings-direct-edit.py"),
+                ]},
                 {"matcher": "Bash", "hooks": [
                     py("block-git-force-add.py"),
                     py("block-git-commit-keywords.py"),
@@ -84,6 +87,9 @@ def build_windows_config():
             "PreToolUse": [
                 {"matcher": "Edit|Write|Bash", "hooks": [
                     py("inject-rules.py"),
+                ]},
+                {"matcher": "Edit|Write", "hooks": [
+                    py("block-settings-direct-edit.py"),
                 ]},
                 {"matcher": "Bash", "hooks": [
                     py("wsl-proxy.py", "pre"),

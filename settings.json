@@ -18,6 +18,15 @@
         ]
       },
       {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/exp/.claude/hooks/block-settings-direct-edit.py"
+          }
+        ]
+      },
+      {
         "matcher": "Bash",
         "hooks": [
           {
