@@ -5,7 +5,7 @@
 !.gitignore
 
 # Setup script (generates OS-specific settings.json)
-!setup.sh
+!setup.py
 !CLAUDE.md
 !settings.json
 
