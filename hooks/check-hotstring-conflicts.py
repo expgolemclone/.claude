@@ -5,7 +5,7 @@ import re
 import sys
 from pathlib import Path
 
-HOTSTRINGS_DIR = Path("C:/Users/0000250059/Documents/AutoHotkey/hotstrings")
+HOTSTRINGS_DIR = Path.home() / "Documents" / "AutoHotkey" / "hotstrings"
 HOTSTRING_RE = re.compile(r"^:\*?:(.+?)::", re.MULTILINE)
 
 

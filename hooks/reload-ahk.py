@@ -2,12 +2,12 @@
 """PostToolUse hook (Edit|Write): reload AutoHotkey after .ahk file edits."""
 
 import json
-import os
 import subprocess
 import sys
+from pathlib import Path
 
-AHK_DIR = r"C:\Users\0000250059\Documents\AutoHotkey"
-AHK_EXE = os.path.join(AHK_DIR, ".tools", "AutoHotkey-v2", "AutoHotkey64.exe")
+AHK_DIR = Path.home() / "Documents" / "AutoHotkey"
+AHK_EXE = AHK_DIR / ".tools" / "AutoHotkey-v2" / "AutoHotkey64.exe"
 
 
 def main() -> None:
@@ -29,15 +29,14 @@ def main() -> None:
 
     # Restart all launcher scripts
     try:
-        files = [f for f in os.listdir(AHK_DIR) if f.endswith("-launcher.ahk")]
+        launchers = [f for f in AHK_DIR.iterdir() if f.name.endswith("-launcher.ahk")]
     except OSError:
         return
 
-    for f in files:
-        script = os.path.join(AHK_DIR, f)
+    for script in launchers:
         try:
             subprocess.Popen(
-                [AHK_EXE, script],
+                [str(AHK_EXE), str(script)],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 start_new_session=True,
