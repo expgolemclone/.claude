@@ -5,7 +5,6 @@ prohibited = ["pyenv", "conda", "pipenv", "poetry"]
 [project_config]
 format = "pyproject.toml"  # PEP 621
 prohibited_formats = ["setup.py", "setup.cfg"]
-requires_python_upper_bound = true  # 例: ">=3.11,<3.13"
 wildcard_version = false
 
 [dependencies]
