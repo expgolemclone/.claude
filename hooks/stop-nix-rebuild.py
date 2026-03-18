@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stop hook: auto commit, push, and rebuild when nix-config was modified."""
+"""Stop hook: rebuild NixOS when nix-config was modified."""
 
 import json
 import subprocess
@@ -23,25 +23,16 @@ def main() -> None:
     if not FLAG.exists():
         return
 
+    # tree が dirty なら rebuild しない（stop-git-check.py に任せる）
+    result = run("git", "status", "--porcelain")
+    if result.stdout.strip():
+        return
+
     errors: list[str] = []
 
-    # git add + commit
-    run("git", "add", "-A")
-    result = run("git", "commit", "-m", "nix: update config")
-    if result.returncode != 0 and "nothing to commit" not in result.stdout:
-        errors.append(f"git commit failed:\n{result.stderr}")
-
-    # git push
-    if not errors:
-        result = run("git", "push")
-        if result.returncode != 0:
-            errors.append(f"git push failed:\n{result.stderr}")
-
-    # nixos-rebuild
-    if not errors:
-        result = run("sudo", "nixos-rebuild", "switch", "--flake", f"{NIX_CONFIG}#nixos")
-        if result.returncode != 0:
-            errors.append(f"nixos-rebuild failed:\n{result.stderr}")
+    result = run("sudo", "nixos-rebuild", "switch", "--flake", f"{NIX_CONFIG}#nixos")
+    if result.returncode != 0:
+        errors.append(f"nixos-rebuild failed:\n{result.stderr}")
 
     if errors:
         json.dump(

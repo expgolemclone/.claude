@@ -1,11 +1,10 @@
 {
   "permissions": {
-    "defaultMode": "bypassPermissions",
     "deny": [
       "Agent"
-    ]
+    ],
+    "defaultMode": "bypassPermissions"
   },
-  "skipDangerousModePermissionPrompt": true,
   "hooks": {
     "PreToolUse": [
       {
@@ -71,13 +70,13 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/stop-nix-rebuild.py",
-            "timeout": 300
+            "command": "python3 /home/exp/.claude/hooks/stop-git-check.py",
+            "timeout": 15
           },
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/stop-git-check.py",
-            "timeout": 15
+            "command": "python3 /home/exp/.claude/hooks/stop-nix-rebuild.py",
+            "timeout": 300
           },
           {
             "type": "command",
@@ -92,5 +91,7 @@
         ]
       }
     ]
-  }
+  },
+  "effortLevel": "high",
+  "skipDangerousModePermissionPrompt": true
 }

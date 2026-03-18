@@ -57,8 +57,8 @@ def build_linux_config():
             ],
             "Stop": [
                 {"hooks": [
-                    py("stop-nix-rebuild.py", timeout=300),
                     py("stop-git-check.py", timeout=15),
+                    py("stop-nix-rebuild.py", timeout=300),
                     py("stop-git-issues.py", timeout=15),
                     py("stop-hallucination-check.py", timeout=15),
                 ]},
