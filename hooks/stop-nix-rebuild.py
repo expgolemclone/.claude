@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Stop hook: rebuild NixOS when nix-config was modified."""
+"""Stop hook: rebuild NixOS when nix-config HEAD has changed since last rebuild."""
 
 import json
 import subprocess
 import sys
 from pathlib import Path
 
-FLAG = Path("/tmp/.nix-config-dirty")
+HASH_FILE = Path("/tmp/.nix-config-last-rebuild-hash")
 NIX_CONFIG = Path.home() / "nix-config"
 
 
@@ -17,10 +17,7 @@ def run(*args: str, cwd: Path = NIX_CONFIG) -> subprocess.CompletedProcess[str]:
 def main() -> None:
     data = json.load(sys.stdin)
 
-    if data.get("stop_hook_active") or data.get("permission_mode") == "plan":
-        return
-
-    if not FLAG.exists():
+    if data.get("permission_mode") == "plan":
         return
 
     # tree が dirty なら rebuild しない（stop-git-check.py に任せる）
@@ -28,19 +25,25 @@ def main() -> None:
     if result.stdout.strip():
         return
 
-    errors: list[str] = []
+    # 現在の HEAD ハッシュを取得
+    result = run("git", "rev-parse", "HEAD")
+    if result.returncode != 0:
+        return
+    current_hash = result.stdout.strip()
+
+    # 前回リビルド時のハッシュと比較
+    last_hash = HASH_FILE.read_text().strip() if HASH_FILE.exists() else ""
+    if current_hash == last_hash:
+        return
 
     result = run("sudo", "nixos-rebuild", "switch", "--flake", f"{NIX_CONFIG}#nixos")
     if result.returncode != 0:
-        errors.append(f"nixos-rebuild failed:\n{result.stderr}")
-
-    if errors:
         json.dump(
-            {"decision": "block", "reason": "\n".join(errors)},
+            {"decision": "block", "reason": f"nixos-rebuild failed:\n{result.stderr}"},
             sys.stdout,
         )
     else:
-        FLAG.unlink(missing_ok=True)
+        HASH_FILE.write_text(current_hash)
 
 
 if __name__ == "__main__":

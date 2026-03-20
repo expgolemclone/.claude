@@ -48,7 +48,6 @@ def build_linux_config():
             ],
             "PostToolUse": [
                 {"matcher": "Edit|Write", "hooks": [
-                    py("post-edit-nixconfig.py", timeout=5),
                     py("enforce-python-hooks.py"),
                 ]},
                 {"matcher": "Bash", "hooks": [
