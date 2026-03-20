@@ -1,10 +1,11 @@
 {
   "permissions": {
+    "defaultMode": "bypassPermissions",
     "deny": [
       "Agent"
-    ],
-    "defaultMode": "bypassPermissions"
+    ]
   },
+  "skipDangerousModePermissionPrompt": true,
   "hooks": {
     "PreToolUse": [
       {
@@ -43,11 +44,6 @@
       {
         "matcher": "Edit|Write",
         "hooks": [
-          {
-            "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/post-edit-nixconfig.py",
-            "timeout": 5
-          },
           {
             "type": "command",
             "command": "python3 /home/exp/.claude/hooks/enforce-python-hooks.py"
@@ -91,7 +87,5 @@
         ]
       }
     ]
-  },
-  "effortLevel": "high",
-  "skipDangerousModePermissionPrompt": true
+  }
 }
