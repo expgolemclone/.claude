@@ -36,30 +36,30 @@ def build_linux_config():
         "hooks": {
             "PreToolUse": [
                 {"matcher": "Edit|Write|Bash", "hooks": [
-                    py("inject-rules.py"),
+                    py("inject-extension-rules-toml.py"),
                 ]},
                 {"matcher": "Edit|Write", "hooks": [
-                    py("block-settings-direct-edit.py"),
+                    py("block-settings-json-direct-edit.py"),
                 ]},
                 {"matcher": "Bash", "hooks": [
-                    py("block-git-force-add.py"),
-                    py("block-git-commit-keywords.py"),
+                    py("block-git-add-force-staging.py"),
+                    py("block-git-commit-prohibited-keywords.py"),
                 ]},
             ],
             "PostToolUse": [
                 {"matcher": "Edit|Write", "hooks": [
-                    py("enforce-python-hooks.py"),
+                    py("block-non-python-hook-scripts.py"),
                 ]},
                 {"matcher": "Bash", "hooks": [
-                    py("post-bash-nixrebuild.py", timeout=5),
+                    py("post-nixos-rebuild-verify-result.py", timeout=5),
                 ]},
             ],
             "Stop": [
                 {"hooks": [
-                    py("stop-git-check.py", timeout=15),
-                    py("stop-nix-rebuild.py", timeout=300),
-                    py("stop-git-issues.py", timeout=15),
-                    py("stop-hallucination-check.py", timeout=15),
+                    py("stop-require-git-commit-and-push.py", timeout=15),
+                    py("stop-nixos-rebuild-on-config-change.py", timeout=300),
+                    py("stop-suggest-open-github-issues.py", timeout=15),
+                    py("stop-require-source-verification.py", timeout=15),
                 ]},
             ],
         },
@@ -86,21 +86,21 @@ def build_windows_config():
         "hooks": {
             "PreToolUse": [
                 {"matcher": "Edit|Write|Bash", "hooks": [
-                    py("inject-rules.py"),
+                    py("inject-extension-rules-toml.py"),
                 ]},
                 {"matcher": "Edit|Write", "hooks": [
-                    py("block-settings-direct-edit.py"),
+                    py("block-settings-json-direct-edit.py"),
                 ]},
                 {"matcher": "Bash", "hooks": [
                     py("wsl-proxy.py", "pre"),
-                    py("block-git-force-add.py"),
+                    py("block-git-add-force-staging.py"),
                 ]},
             ],
             "PostToolUse": [
                 {"matcher": "Edit|Write", "hooks": [
                     py("reload-ahk.py"),
                     py("check-hotstring-conflicts.py"),
-                    py("enforce-python-hooks.py"),
+                    py("block-non-python-hook-scripts.py"),
                 ]},
                 {"matcher": "Bash", "hooks": [
                     py("wsl-proxy.py", "post"),
@@ -108,8 +108,8 @@ def build_windows_config():
             ],
             "Stop": [
                 {"matcher": "", "hooks": [
-                    py("stop-git-check.py", timeout=15),
-                    py("stop-git-issues.py", timeout=15),
+                    py("stop-require-git-commit-and-push.py", timeout=15),
+                    py("stop-suggest-open-github-issues.py", timeout=15),
                     hook(
                         f'pwsh -NoProfile -ExecutionPolicy Bypass'
                         f' -File "{claude_home_bs}\\scripts\\notify-complete.ps1"'
