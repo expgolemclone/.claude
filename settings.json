@@ -1,9 +1,7 @@
 {
   "permissions": {
     "defaultMode": "bypassPermissions",
-    "deny": [
-      "Agent"
-    ]
+    "deny": ["Agent"]
   },
   "skipDangerousModePermissionPrompt": true,
   "hooks": {
@@ -13,7 +11,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/inject-rules.py"
+            "command": "python3 /home/exp/.claude/hooks/inject-extension-rules-toml.py"
           }
         ]
       },
@@ -22,7 +20,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/block-settings-direct-edit.py"
+            "command": "python3 /home/exp/.claude/hooks/block-settings-json-direct-edit.py"
           }
         ]
       },
@@ -31,11 +29,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/block-git-force-add.py"
+            "command": "python3 /home/exp/.claude/hooks/block-git-add-force-staging.py"
           },
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/block-git-commit-keywords.py"
+            "command": "python3 /home/exp/.claude/hooks/block-git-commit-prohibited-keywords.py"
           }
         ]
       }
@@ -46,7 +44,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/enforce-python-hooks.py"
+            "command": "python3 /home/exp/.claude/hooks/block-non-python-hook-scripts.py"
           }
         ]
       },
@@ -55,7 +53,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/post-bash-nixrebuild.py",
+            "command": "python3 /home/exp/.claude/hooks/post-nixos-rebuild-verify-result.py",
             "timeout": 5
           }
         ]
@@ -66,22 +64,22 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/stop-git-check.py",
+            "command": "python3 /home/exp/.claude/hooks/stop-require-git-commit-and-push.py",
             "timeout": 15
           },
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/stop-nix-rebuild.py",
+            "command": "python3 /home/exp/.claude/hooks/stop-nixos-rebuild-on-config-change.py",
             "timeout": 300
           },
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/stop-git-issues.py",
+            "command": "python3 /home/exp/.claude/hooks/stop-suggest-open-github-issues.py",
             "timeout": 15
           },
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/stop-hallucination-check.py",
+            "command": "python3 /home/exp/.claude/hooks/stop-require-source-verification.py",
             "timeout": 15
           }
         ]
