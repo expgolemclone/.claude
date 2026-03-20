@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Tests for stop-git-issues.py hook."""
+"""Tests for stop-suggest-open-github-issues.py hook."""
 
 import json
 import subprocess
 import sys
 
-HOOK = "/home/exp/.claude/hooks/stop-git-issues.py"
+HOOK = "/home/exp/.claude/hooks/stop-suggest-open-github-issues.py"
 
 
 def run_hook(data: dict) -> dict | None:

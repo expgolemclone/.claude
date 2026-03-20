@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Tests for inject-rules.py hook."""
+"""Tests for inject-extension-rules-toml.py hook."""
 
 import json
 import subprocess
 import sys
 
-HOOK = "/home/exp/.claude/hooks/inject-rules.py"
+HOOK = "/home/exp/.claude/hooks/inject-extension-rules-toml.py"
 
 
 def run_hook(tool_input: dict) -> dict | None:

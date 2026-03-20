@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Tests for block-settings-direct-edit.py hook."""
+"""Tests for block-non-python-hook-scripts.py hook."""
 
 import json
 import subprocess
 import sys
 
-HOOK = "/home/exp/.claude/hooks/block-settings-direct-edit.py"
+HOOK = "/home/exp/.claude/hooks/block-non-python-hook-scripts.py"
 
 
 def run_hook(tool_input: dict) -> dict | None:
@@ -35,36 +35,51 @@ def test(name: str, tool_input: dict, *, should_block: bool) -> bool:
 def main() -> None:
     results: list[bool] = []
 
-    print("--- should block ---")
+    print("--- should block (non-Python in hooks/) ---")
     results.append(test(
-        "direct path to settings.json",
-        {"file_path": "/home/exp/.claude/settings.json"},
+        ".sh in hooks/",
+        {"file_path": "/home/exp/.claude/hooks/myhook.sh"},
         should_block=True,
     ))
     results.append(test(
-        "path with ~ expanded to settings.json",
-        {"file_path": "/home/exp/.claude/settings.json"},
+        ".js in hooks/",
+        {"file_path": "/home/exp/.claude/hooks/myhook.js"},
+        should_block=True,
+    ))
+    results.append(test(
+        ".ts in hooks/",
+        {"file_path": "/home/exp/.claude/hooks/myhook.ts"},
+        should_block=True,
+    ))
+    results.append(test(
+        ".bash in hooks/",
+        {"file_path": "/home/exp/.claude/hooks/myhook.bash"},
+        should_block=True,
+    ))
+    results.append(test(
+        ".rb in hooks/",
+        {"file_path": "/home/exp/.claude/hooks/myhook.rb"},
         should_block=True,
     ))
 
     print("\n--- should allow ---")
     results.append(test(
-        "other json file",
-        {"file_path": "/home/exp/.claude/other.json"},
+        ".py in hooks/",
+        {"file_path": "/home/exp/.claude/hooks/myhook.py"},
         should_block=False,
     ))
     results.append(test(
-        "settings.json in different directory",
-        {"file_path": "/home/exp/project/settings.json"},
+        ".sh outside hooks/",
+        {"file_path": "/home/exp/project/script.sh"},
         should_block=False,
     ))
     results.append(test(
-        "empty file_path",
-        {"file_path": ""},
+        ".toml in hooks/ (not in blocked list)",
+        {"file_path": "/home/exp/.claude/hooks/config.toml"},
         should_block=False,
     ))
     results.append(test(
-        "no file_path key",
+        "no file_path",
         {},
         should_block=False,
     ))

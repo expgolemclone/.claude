@@ -18,6 +18,11 @@ hooks/__pycache__/
 !rules/
 !rules/**
 
+# Tests
+!tests/
+!tests/**
+tests/__pycache__/
+
 # Scripts
 !scripts/
 !scripts/**

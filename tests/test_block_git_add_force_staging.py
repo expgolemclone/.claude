@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Tests for enforce-python-hooks.py hook."""
+"""Tests for block-git-add-force-staging.py hook."""
 
 import json
 import subprocess
 import sys
 
-HOOK = "/home/exp/.claude/hooks/enforce-python-hooks.py"
+HOOK = "/home/exp/.claude/hooks/block-git-add-force-staging.py"
 
 
-def run_hook(tool_input: dict) -> dict | None:
-    payload = json.dumps({"tool_input": tool_input})
+def run_hook(command: str) -> dict | None:
+    payload = json.dumps({"tool_input": {"command": command}})
     result = subprocess.run(
         [sys.executable, HOOK],
         input=payload,
@@ -21,8 +21,8 @@ def run_hook(tool_input: dict) -> dict | None:
     return None
 
 
-def test(name: str, tool_input: dict, *, should_block: bool) -> bool:
-    result = run_hook(tool_input)
+def test(name: str, command: str, *, should_block: bool) -> bool:
+    result = run_hook(command)
     blocked = result is not None and result.get("decision") == "block"
     ok = blocked == should_block
     status = "PASS" if ok else "FAIL"
@@ -35,52 +35,42 @@ def test(name: str, tool_input: dict, *, should_block: bool) -> bool:
 def main() -> None:
     results: list[bool] = []
 
-    print("--- should block (non-Python in hooks/) ---")
+    print("--- should block ---")
     results.append(test(
-        ".sh in hooks/",
-        {"file_path": "/home/exp/.claude/hooks/myhook.sh"},
+        "git add -f",
+        "git add -f .",
         should_block=True,
     ))
     results.append(test(
-        ".js in hooks/",
-        {"file_path": "/home/exp/.claude/hooks/myhook.js"},
+        "git add --force",
+        "git add --force somefile.txt",
         should_block=True,
     ))
     results.append(test(
-        ".ts in hooks/",
-        {"file_path": "/home/exp/.claude/hooks/myhook.ts"},
-        should_block=True,
-    ))
-    results.append(test(
-        ".bash in hooks/",
-        {"file_path": "/home/exp/.claude/hooks/myhook.bash"},
-        should_block=True,
-    ))
-    results.append(test(
-        ".rb in hooks/",
-        {"file_path": "/home/exp/.claude/hooks/myhook.rb"},
+        "git add -f with path",
+        "git add -f node_modules/",
         should_block=True,
     ))
 
     print("\n--- should allow ---")
     results.append(test(
-        ".py in hooks/",
-        {"file_path": "/home/exp/.claude/hooks/myhook.py"},
+        "normal git add",
+        "git add .",
         should_block=False,
     ))
     results.append(test(
-        ".sh outside hooks/",
-        {"file_path": "/home/exp/project/script.sh"},
+        "git add specific file",
+        "git add main.py",
         should_block=False,
     ))
     results.append(test(
-        ".toml in hooks/ (not in blocked list)",
-        {"file_path": "/home/exp/.claude/hooks/config.toml"},
+        "not a git command",
+        "echo hello",
         should_block=False,
     ))
     results.append(test(
-        "no file_path",
-        {},
+        "-f inside quotes (not real flag)",
+        'git commit -m "add -f feature flag"',
         should_block=False,
     ))
 

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Tests for post-bash-nixrebuild.py hook."""
+"""Tests for post-nixos-rebuild-verify-result.py hook."""
 
 import json
 import subprocess
 import sys
 
-HOOK = "/home/exp/.claude/hooks/post-bash-nixrebuild.py"
+HOOK = "/home/exp/.claude/hooks/post-nixos-rebuild-verify-result.py"
 
 
 def run_hook(command: str, tool_response: str = "") -> dict | None:

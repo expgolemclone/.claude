@@ -108,14 +108,14 @@ def main():
     )))
 
     print("\n--- cross-check ---")
-    results.append(test("Both configs have inject-rules.py", lambda: check_both_have_hook(
-        linux, windows, "inject-rules.py",
+    results.append(test("Both configs have inject-extension-rules-toml.py", lambda: check_both_have_hook(
+        linux, windows, "inject-extension-rules-toml.py",
     )))
-    results.append(test("Both configs have block-git-force-add.py", lambda: check_both_have_hook(
-        linux, windows, "block-git-force-add.py",
+    results.append(test("Both configs have block-git-add-force-staging.py", lambda: check_both_have_hook(
+        linux, windows, "block-git-add-force-staging.py",
     )))
-    results.append(test("Both configs have enforce-python-hooks.py", lambda: check_both_have_hook(
-        linux, windows, "enforce-python-hooks.py",
+    results.append(test("Both configs have block-non-python-hook-scripts.py", lambda: check_both_have_hook(
+        linux, windows, "block-non-python-hook-scripts.py",
     )))
 
     passed = sum(results)

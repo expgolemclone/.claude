@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests for stop-hallucination-check.py hook."""
+"""Tests for stop-require-source-verification.py hook."""
 
 import json
 import os
@@ -7,7 +7,7 @@ import subprocess
 import sys
 import tempfile
 
-HOOK = "/home/exp/.claude/hooks/stop-hallucination-check.py"
+HOOK = "/home/exp/.claude/hooks/stop-require-source-verification.py"
 
 
 def run_hook(data: dict) -> dict | None:

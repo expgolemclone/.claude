@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Tests for block-git-force-add.py hook."""
+"""Tests for block-settings-json-direct-edit.py hook."""
 
 import json
 import subprocess
 import sys
 
-HOOK = "/home/exp/.claude/hooks/block-git-force-add.py"
+HOOK = "/home/exp/.claude/hooks/block-settings-json-direct-edit.py"
 
 
-def run_hook(command: str) -> dict | None:
-    payload = json.dumps({"tool_input": {"command": command}})
+def run_hook(tool_input: dict) -> dict | None:
+    payload = json.dumps({"tool_input": tool_input})
     result = subprocess.run(
         [sys.executable, HOOK],
         input=payload,
@@ -21,8 +21,8 @@ def run_hook(command: str) -> dict | None:
     return None
 
 
-def test(name: str, command: str, *, should_block: bool) -> bool:
-    result = run_hook(command)
+def test(name: str, tool_input: dict, *, should_block: bool) -> bool:
+    result = run_hook(tool_input)
     blocked = result is not None and result.get("decision") == "block"
     ok = blocked == should_block
     status = "PASS" if ok else "FAIL"
@@ -37,40 +37,35 @@ def main() -> None:
 
     print("--- should block ---")
     results.append(test(
-        "git add -f",
-        "git add -f .",
+        "direct path to settings.json",
+        {"file_path": "/home/exp/.claude/settings.json"},
         should_block=True,
     ))
     results.append(test(
-        "git add --force",
-        "git add --force somefile.txt",
-        should_block=True,
-    ))
-    results.append(test(
-        "git add -f with path",
-        "git add -f node_modules/",
+        "path with ~ expanded to settings.json",
+        {"file_path": "/home/exp/.claude/settings.json"},
         should_block=True,
     ))
 
     print("\n--- should allow ---")
     results.append(test(
-        "normal git add",
-        "git add .",
+        "other json file",
+        {"file_path": "/home/exp/.claude/other.json"},
         should_block=False,
     ))
     results.append(test(
-        "git add specific file",
-        "git add main.py",
+        "settings.json in different directory",
+        {"file_path": "/home/exp/project/settings.json"},
         should_block=False,
     ))
     results.append(test(
-        "not a git command",
-        "echo hello",
+        "empty file_path",
+        {"file_path": ""},
         should_block=False,
     ))
     results.append(test(
-        "-f inside quotes (not real flag)",
-        'git commit -m "add -f feature flag"',
+        "no file_path key",
+        {},
         should_block=False,
     ))
 

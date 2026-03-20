@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Tests for block-git-commit-keywords.py hook."""
+"""Tests for block-git-commit-prohibited-keywords.py hook."""
 
 import json
 import subprocess
 import sys
 
-HOOK = "/home/exp/.claude/hooks/block-git-commit-keywords.py"
+HOOK = "/home/exp/.claude/hooks/block-git-commit-prohibited-keywords.py"
 
 
 def run_hook(command: str) -> dict | None:
