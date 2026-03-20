@@ -33,6 +33,8 @@ def build_linux_config():
             "deny": ["Agent"],
         },
         "skipDangerousModePermissionPrompt": True,
+        "model": "claude-opus-4-6",
+        "effortLevel": "max",
         "hooks": {
             "PreToolUse": [
                 {"matcher": "Edit|Write|Bash", "hooks": [

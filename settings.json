@@ -1,9 +1,13 @@
 {
   "permissions": {
     "defaultMode": "bypassPermissions",
-    "deny": ["Agent"]
+    "deny": [
+      "Agent"
+    ]
   },
   "skipDangerousModePermissionPrompt": true,
+  "model": "claude-opus-4-6",
+  "effortLevel": "max",
   "hooks": {
     "PreToolUse": [
       {
