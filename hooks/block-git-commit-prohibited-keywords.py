@@ -20,7 +20,7 @@ def main() -> None:
             json.dump(
                 {
                     "decision": "block",
-                    "reason": f"commit メッセージに '{keyword}' を含めることは禁止されています。",
+                    "reason": f"commit メッセージに '{keyword}' を含めることは禁止されています。git add と git commit は別コマンドで実行してください。",
                 },
                 sys.stdout,
             )
