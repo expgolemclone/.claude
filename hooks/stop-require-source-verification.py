@@ -27,25 +27,31 @@ def main() -> None:
         with open(transcript_path) as f:
             lines = f.readlines()
 
-        # Find the last user message line in the transcript
-        # Transcript format: entry["type"] == "user" marks a user message
-        last_user_idx = -1
+        # Find the last *real* user message (not a tool_result relay).
+        # Tool results appear as user entries whose content is all tool_result blocks.
+        last_real_user_idx = -1
         for i in range(len(lines) - 1, -1, -1):
             try:
                 entry = json.loads(lines[i])
-                if entry.get("type") == "user":
-                    last_user_idx = i
-                    break
             except json.JSONDecodeError:
                 continue
+            if entry.get("type") != "user":
+                continue
+            content = entry.get("message", {}).get("content", [])
+            if isinstance(content, list) and all(
+                isinstance(b, dict) and b.get("type") == "tool_result"
+                for b in content
+                if isinstance(b, dict)
+            ):
+                continue
+            last_real_user_idx = i
+            break
 
-        if last_user_idx < 0:
+        if last_real_user_idx < 0:
             return
 
-        # Check for tool usage after the last user message
-        # Tool usage is recorded as {"type": "tool_use", "name": "ToolName"}
-        # within entry["message"]["content"][]
-        for line in lines[last_user_idx + 1 :]:
+        # Check for tool_use in assistant messages after the last real user message
+        for line in lines[last_real_user_idx + 1 :]:
             try:
                 entry = json.loads(line)
             except json.JSONDecodeError:
