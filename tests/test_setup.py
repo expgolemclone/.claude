@@ -74,8 +74,8 @@ def main():
     results.append(test("Windows config structure", lambda: validate_config(windows, "Windows")))
 
     print("\n--- linux specifics ---")
-    results.append(test("Linux has no effortLevel", lambda: (
-        assert_true("effortLevel" not in linux, "Linux should not have effortLevel")
+    results.append(test("Linux has effortLevel", lambda: (
+        assert_eq(linux.get("effortLevel"), "max")
     )))
     results.append(test("Linux deny list", lambda: (
         assert_eq(linux["permissions"]["deny"], ["Agent"])

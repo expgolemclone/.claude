@@ -52,15 +52,11 @@ def build_linux_config():
                 {"matcher": "Edit|Write", "hooks": [
                     py("block-non-python-hook-scripts.py"),
                 ]},
-                {"matcher": "Bash", "hooks": [
-                    py("post-nixos-rebuild-verify-result.py", timeout=5),
-                ]},
             ],
             "Stop": [
                 {"hooks": [
                     py("stop-require-git-commit-and-push.py", timeout=15),
                     py("stop-nixos-rebuild-on-config-change.py", timeout=300),
-                    py("stop-suggest-open-github-issues.py", timeout=15),
                     py("stop-require-source-verification.py", timeout=15),
                 ]},
             ],
@@ -111,7 +107,6 @@ def build_windows_config():
             "Stop": [
                 {"matcher": "", "hooks": [
                     py("stop-require-git-commit-and-push.py", timeout=15),
-                    py("stop-suggest-open-github-issues.py", timeout=15),
                     hook(
                         f'pwsh -NoProfile -ExecutionPolicy Bypass'
                         f' -File "{claude_home_bs}\\scripts\\notify-complete.ps1"'

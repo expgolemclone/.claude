@@ -51,16 +51,6 @@
             "command": "python3 /home/exp/.claude/hooks/block-non-python-hook-scripts.py"
           }
         ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/post-nixos-rebuild-verify-result.py",
-            "timeout": 5
-          }
-        ]
       }
     ],
     "Stop": [
@@ -75,11 +65,6 @@
             "type": "command",
             "command": "python3 /home/exp/.claude/hooks/stop-nixos-rebuild-on-config-change.py",
             "timeout": 300
-          },
-          {
-            "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/stop-suggest-open-github-issues.py",
-            "timeout": 15
           },
           {
             "type": "command",
