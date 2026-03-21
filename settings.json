@@ -1,13 +1,10 @@
 {
   "permissions": {
-    "defaultMode": "bypassPermissions",
     "deny": [
       "Agent"
-    ]
+    ],
+    "defaultMode": "bypassPermissions"
   },
-  "skipDangerousModePermissionPrompt": true,
-  "model": "claude-opus-4-6",
-  "effortLevel": "max",
   "hooks": {
     "PreToolUse": [
       {
@@ -25,6 +22,10 @@
           {
             "type": "command",
             "command": "python3 /home/exp/.claude/hooks/block-settings-json-direct-edit.py"
+          },
+          {
+            "type": "command",
+            "command": "python3 /home/exp/.claude/hooks/block-protected-nix-config.py"
           }
         ]
       },
@@ -38,11 +39,28 @@
           {
             "type": "command",
             "command": "python3 /home/exp/.claude/hooks/block-git-commit-prohibited-keywords.py"
+          },
+          {
+            "type": "command",
+            "command": "python3 /home/exp/.claude/hooks/block-git-commit-protected-changes.py"
+          },
+          {
+            "type": "command",
+            "command": "python3 /home/exp/.claude/hooks/block-nixos-rebuild-protected-changes.py"
           }
         ]
       }
     ],
     "PostToolUse": [
+      {
+        "matcher": "Edit|Write|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/exp/.claude/hooks/post-verify-protected-nix-config.py"
+          }
+        ]
+      },
       {
         "matcher": "Edit|Write",
         "hooks": [
@@ -74,5 +92,6 @@
         ]
       }
     ]
-  }
+  },
+  "skipDangerousModePermissionPrompt": true
 }
