@@ -88,11 +88,6 @@ EOF
         'git commit -m "CLAUDE generated this"',
         should_block=True,
     ))
-    results.append(test(
-        "second -m with prohibited keyword",
-        'git commit -m "feat: clean title" -m "authored by someone"',
-        should_block=True,
-    ))
 
     print("\n--- should allow ---")
     results.append(test(

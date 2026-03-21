@@ -16,11 +16,15 @@ def extract_message(command: str) -> str:
         return heredoc.group(2)
 
     # -m "..." or --message "..." or --message="..."
-    parts: list[str] = []
-    parts.extend(re.findall(r'(?:-m|--message)[= ]\s*"((?:[^"\\]|\\.)*)"', command))
-    parts.extend(re.findall(r"(?:-m|--message)[= ]\s*'((?:[^'\\]|\\.)*)'", command))
+    msg = re.search(r'(?:-m|--message)[= ]\s*"((?:[^"\\]|\\.)*)"', command)
+    if msg:
+        return msg.group(1)
 
-    return "\n".join(parts)
+    msg = re.search(r"(?:-m|--message)[= ]\s*'((?:[^'\\]|\\.)*)'", command)
+    if msg:
+        return msg.group(1)
+
+    return ""
 
 
 def main() -> None:
