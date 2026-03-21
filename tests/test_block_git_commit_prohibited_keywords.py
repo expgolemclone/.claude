@@ -115,6 +115,16 @@ EOF
 )"''',
         should_block=False,
     ))
+    results.append(test(
+        "filename contains anthropic (not in message)",
+        'git add anthropic_config.py && git commit -m "fix: update config"',
+        should_block=False,
+    ))
+    results.append(test(
+        "filename contains claude (not in message)",
+        'git commit -m "refactor: rename module" -- claude_utils.py',
+        should_block=False,
+    ))
 
     passed = sum(results)
     total = len(results)
