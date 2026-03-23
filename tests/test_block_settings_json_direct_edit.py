@@ -4,8 +4,12 @@
 import json
 import subprocess
 import sys
+from pathlib import Path
 
-HOOK = "/home/exp/.claude/hooks/block-settings-json-direct-edit.py"
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from config import HOOKS_DIR, SETTINGS_JSON
+
+HOOK = str(HOOKS_DIR / "block-settings-json-direct-edit.py")
 
 
 def run_hook(tool_input: dict) -> dict | None:
@@ -35,27 +39,29 @@ def test(name: str, tool_input: dict, *, should_block: bool) -> bool:
 def main() -> None:
     results: list[bool] = []
 
+    settings_path = str(SETTINGS_JSON)
+
     print("--- should block ---")
     results.append(test(
         "direct path to settings.json",
-        {"file_path": "/home/exp/.claude/settings.json"},
+        {"file_path": settings_path},
         should_block=True,
     ))
     results.append(test(
-        "path with ~ expanded to settings.json",
-        {"file_path": "/home/exp/.claude/settings.json"},
+        "path with forward slashes to settings.json",
+        {"file_path": settings_path.replace("\\", "/")},
         should_block=True,
     ))
 
     print("\n--- should allow ---")
     results.append(test(
         "other json file",
-        {"file_path": "/home/exp/.claude/other.json"},
+        {"file_path": str(SETTINGS_JSON.parent / "other.json")},
         should_block=False,
     ))
     results.append(test(
         "settings.json in different directory",
-        {"file_path": "/home/exp/project/settings.json"},
+        {"file_path": "/tmp/project/settings.json"},
         should_block=False,
     ))
     results.append(test(

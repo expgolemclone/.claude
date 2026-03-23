@@ -4,8 +4,13 @@
 import json
 import subprocess
 import sys
+import tempfile
+from pathlib import Path
 
-HOOK = "/home/exp/.claude/hooks/stop-require-git-commit-and-push.py"
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from config import HOOKS_DIR
+
+HOOK = str(HOOKS_DIR / "stop-require-git-commit-and-push.py")
 
 
 def run_hook(data: dict) -> dict | None:
@@ -37,15 +42,18 @@ def test(name: str, data: dict, *, should_block: bool) -> bool:
 def main() -> None:
     results: list[bool] = []
 
+    repo_dir = str(HOOKS_DIR)
+    non_git_dir = tempfile.gettempdir()
+
     print("--- early return conditions ---")
     results.append(test(
         "stop_hook_active -> skip",
-        {"stop_hook_active": True, "cwd": "/home/exp/.claude/hooks"},
+        {"stop_hook_active": True, "cwd": repo_dir},
         should_block=False,
     ))
     results.append(test(
         "permission_mode=plan -> skip",
-        {"permission_mode": "plan", "cwd": "/home/exp/.claude/hooks"},
+        {"permission_mode": "plan", "cwd": repo_dir},
         should_block=False,
     ))
 
@@ -53,14 +61,14 @@ def main() -> None:
     # This test runs in the current repo which has uncommitted changes per git status
     results.append(test(
         "cwd with uncommitted changes -> block",
-        {"cwd": "/home/exp/.claude/hooks"},
+        {"cwd": repo_dir},
         should_block=True,
     ))
 
     print("\n--- not a git repo ---")
     results.append(test(
-        "cwd=/tmp (not a git repo) -> skip",
-        {"cwd": "/tmp"},
+        "cwd=tempdir (not a git repo) -> skip",
+        {"cwd": non_git_dir},
         should_block=False,
     ))
 

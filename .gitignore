@@ -4,9 +4,10 @@
 # Allow .gitignore itself
 !.gitignore
 
-# Setup script (generates OS-specific settings.json)
+# Setup script and config
 !setup.py
-!settings.json
+!config.py
+settings.json
 
 # Hooks (custom scripts)
 !hooks/

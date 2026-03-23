@@ -6,8 +6,12 @@ import os
 import subprocess
 import sys
 import tempfile
+from pathlib import Path
 
-HOOK = "/home/exp/.claude/hooks/stop-require-source-verification.py"
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from config import HOOKS_DIR
+
+HOOK = str(HOOKS_DIR / "stop-require-source-verification.py")
 
 
 def run_hook(data: dict) -> dict | None:
