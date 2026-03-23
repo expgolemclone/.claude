@@ -156,6 +156,23 @@ class TestCrossCheck:
     def test_both_have_block_non_python_hooks(self, linux, windows):
         check_both_have_hook(linux, windows, "block-non-python-hook-scripts.py")
 
+    def test_shared_hooks_present_in_both(self, linux, windows):
+        """OS-agnostic hooks must be registered in both configs."""
+        OS_SPECIFIC = {
+            "block-protected-nix-config.py",
+            "block-git-commit-protected-changes.py",
+            "block-nixos-rebuild-protected-changes.py",
+            "post-verify-protected-nix-config.py",
+            "stop-nixos-rebuild-on-config-change.py",
+            "notify-complete.ps1",
+        }
+        linux_scripts = set(all_hook_scripts(linux)) - OS_SPECIFIC
+        windows_scripts = set(all_hook_scripts(windows)) - OS_SPECIFIC
+        only_linux = linux_scripts - windows_scripts
+        only_windows = windows_scripts - linux_scripts
+        assert not only_linux, f"Registered in Linux only: {only_linux}"
+        assert not only_windows, f"Registered in Windows only: {only_windows}"
+
 
 # ---------------------------------------------------------------------------
 # Hook file existence

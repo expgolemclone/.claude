@@ -96,6 +96,7 @@ def build_windows_config():
                 ]},
                 {"matcher": "Bash", "hooks": [
                     py("block-git-add-force-staging.py"),
+                    py("block-git-commit-prohibited-keywords.py"),
                 ]},
             ],
             "PostToolUse": [
@@ -106,6 +107,7 @@ def build_windows_config():
             "Stop": [
                 {"matcher": "", "hooks": [
                     py("stop-require-git-commit-and-push.py", timeout=15),
+                    py("stop-require-source-verification.py", timeout=15),
                     hook(
                         f'pwsh -NoProfile -ExecutionPolicy Bypass'
                         f' -File "{claude_home_bs}\\scripts\\notify-complete.ps1"'
