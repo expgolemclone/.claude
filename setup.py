@@ -95,18 +95,12 @@ def build_windows_config():
                     py("block-settings-json-direct-edit.py"),
                 ]},
                 {"matcher": "Bash", "hooks": [
-                    py("wsl-proxy.py", "pre"),
                     py("block-git-add-force-staging.py"),
                 ]},
             ],
             "PostToolUse": [
                 {"matcher": "Edit|Write", "hooks": [
-                    py("reload-ahk.py"),
-                    py("check-hotstring-conflicts.py"),
                     py("block-non-python-hook-scripts.py"),
-                ]},
-                {"matcher": "Bash", "hooks": [
-                    py("wsl-proxy.py", "post"),
                 ]},
             ],
             "Stop": [
