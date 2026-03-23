@@ -8,11 +8,11 @@ import sys
 BLOCKED_KEYWORDS = ["authored", "claude", "anthropic"]
 
 
-def extract_message(command: str) -> str:
-    """Extract the commit message portion after ``git commit -m``."""
-    match = re.search(r"\bgit\s+commit\b.*?\s-m\s+", command)
+def extract_commit_portion(command: str) -> str:
+    """Extract the portion of the command starting from ``git commit``."""
+    match = re.search(r"\bgit\s+commit\b", command)
     if match:
-        return command[match.end():]
+        return command[match.start():]
     return ""
 
 
@@ -20,15 +20,12 @@ def main() -> None:
     data = json.load(sys.stdin)
     command = data.get("tool_input", {}).get("command", "")
 
-    if not re.search(r"\bgit\s+commit\b", command):
-        return
-
-    message = extract_message(command)
-    if not message:
+    commit_part = extract_commit_portion(command)
+    if not commit_part:
         return
 
     for keyword in BLOCKED_KEYWORDS:
-        if re.search(keyword, message, re.IGNORECASE):
+        if re.search(keyword, commit_part, re.IGNORECASE):
             json.dump(
                 {
                     "decision": "block",
