@@ -1,5 +1,7 @@
 """Tests for block-git-commit-prohibited-keywords.py hook."""
 
+import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -7,13 +9,54 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from config import HOOKS_DIR
-from tests.conftest import run_hook_process
 
 HOOK = str(HOOKS_DIR / "block-git-commit-prohibited-keywords.py")
 
 
-def run_hook(command: str) -> dict | None:
-    return run_hook_process(HOOK, {"tool_input": {"command": command}})
+def run_hook(command: str, cwd: str | None = None) -> dict | None:
+    """Run the hook, optionally overriding the working directory."""
+    payload = {"tool_input": {"command": command}}
+    result = subprocess.run(
+        [sys.executable, HOOK],
+        input=json.dumps(payload),
+        capture_output=True,
+        text=True,
+        cwd=cwd,
+    )
+    if result.stdout.strip():
+        return json.loads(result.stdout)
+    return None
+
+
+def _git(cwd: Path, *args: str) -> None:
+    subprocess.run(["git", *args], cwd=cwd, capture_output=True, check=True)
+
+
+@pytest.fixture()
+def clean_repo(tmp_path: Path) -> Path:
+    """Git repo with only clean commits."""
+    _git(tmp_path, "init")
+    _git(tmp_path, "config", "user.email", "test@test.com")
+    _git(tmp_path, "config", "user.name", "Test")
+    (tmp_path / "a.txt").write_text("hello")
+    _git(tmp_path, "add", ".")
+    _git(tmp_path, "commit", "-m", "feat: initial commit")
+    return tmp_path
+
+
+@pytest.fixture()
+def tainted_repo(tmp_path: Path) -> Path:
+    """Git repo with a commit containing a prohibited keyword."""
+    _git(tmp_path, "init")
+    _git(tmp_path, "config", "user.email", "test@test.com")
+    _git(tmp_path, "config", "user.name", "Test")
+    (tmp_path / "a.txt").write_text("hello")
+    _git(tmp_path, "add", ".")
+    _git(tmp_path, "commit", "-m", "feat: add claude integration")
+    (tmp_path / "b.txt").write_text("world")
+    _git(tmp_path, "add", ".")
+    _git(tmp_path, "commit", "-m", "fix: clean follow-up")
+    return tmp_path
 
 
 # ---------------------------------------------------------------------------
@@ -103,3 +146,37 @@ Added missing hooks to setup.py.
 EOF
 )"'''
         assert run_hook(cmd) is None
+
+
+# ---------------------------------------------------------------------------
+# git push: should block when log contains keywords
+# ---------------------------------------------------------------------------
+
+class TestPushBlock:
+    def test_push_blocks_when_log_has_keyword(self, tainted_repo):
+        result = run_hook("git push", cwd=str(tainted_repo))
+        assert result is not None
+        assert result["decision"] == "block"
+
+    def test_push_blocks_with_origin_main(self, tainted_repo):
+        result = run_hook("git push origin main", cwd=str(tainted_repo))
+        assert result is not None
+        assert result["decision"] == "block"
+
+    def test_push_reason_shows_offending_hash(self, tainted_repo):
+        result = run_hook("git push", cwd=str(tainted_repo))
+        assert "claude" in result["reason"].lower()
+
+
+# ---------------------------------------------------------------------------
+# git push: should allow when log is clean
+# ---------------------------------------------------------------------------
+
+class TestPushAllow:
+    def test_push_allows_clean_repo(self, clean_repo):
+        result = run_hook("git push", cwd=str(clean_repo))
+        assert result is None
+
+    def test_push_allows_clean_repo_with_remote(self, clean_repo):
+        result = run_hook("git push origin main", cwd=str(clean_repo))
+        assert result is None
