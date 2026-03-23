@@ -1,6 +1,7 @@
 [toolchain]
 required = "uv"
 prohibited = ["pyenv", "conda", "pipenv", "poetry"]
+requires_python = ">=3.13"              # Python 3.13 以上を対象
 
 [project_config]
 format = "pyproject.toml"  # PEP 621
@@ -28,6 +29,10 @@ break_system_packages_in_prod = false
 [paths]
 centralized_config = "config.py"       # パス定数は config.py に集約
 hardcoded_paths_prohibited = true      # 各モジュールでのパスハードコード禁止
+
+[testing]
+framework = "pytest"                    # unittest / nose は使用しない
+runner = "uv run pytest"               # venv 経由で実行
 
 [prohibited]
 conda_pip_mixed = true

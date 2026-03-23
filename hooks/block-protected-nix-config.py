@@ -6,14 +6,8 @@ import re
 import sys
 from pathlib import Path
 
-PROTECTED_PATTERNS = [
-    r"sysusers\.enable",
-    r"userborn\.enable",
-    r"mutableUsers",
-    r"initialPassword",
-    r"hashedPassword",
-    r"password\s*=",
-]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from nix_protected import PROTECTED_PATTERNS
 
 CONFIG_FILENAME = "configuration.nix"
 
