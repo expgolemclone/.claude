@@ -90,3 +90,16 @@ Added user authentication flow.
 EOF
 )"'''
         assert run_hook(cmd) is None
+
+    def test_keyword_in_cd_path_not_message(self):
+        cmd = 'cd "C:/Users/user/.claude" && git commit -m "fix: normal commit"'
+        assert run_hook(cmd) is None
+
+    def test_keyword_in_cd_path_with_heredoc(self):
+        cmd = '''cd "/home/user/.claude" && git commit -m "$(cat <<'EOF'
+feat: add hook registration
+
+Added missing hooks to setup.py.
+EOF
+)"'''
+        assert run_hook(cmd) is None
