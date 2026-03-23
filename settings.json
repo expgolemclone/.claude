@@ -12,7 +12,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/inject-extension-rules-toml.py"
+            "command": "python3 hooks/inject-extension-rules-toml.py"
           }
         ]
       },
@@ -21,11 +21,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/block-settings-json-direct-edit.py"
+            "command": "python3 hooks/block-settings-json-direct-edit.py"
           },
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/block-protected-nix-config.py"
+            "command": "python3 hooks/block-protected-nix-config.py"
           }
         ]
       },
@@ -34,19 +34,19 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/block-git-add-force-staging.py"
+            "command": "python3 hooks/block-git-add-force-staging.py"
           },
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/block-git-commit-prohibited-keywords.py"
+            "command": "python3 hooks/block-git-commit-prohibited-keywords.py"
           },
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/block-git-commit-protected-changes.py"
+            "command": "python3 hooks/block-git-commit-protected-changes.py"
           },
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/block-nixos-rebuild-protected-changes.py"
+            "command": "python3 hooks/block-nixos-rebuild-protected-changes.py"
           }
         ]
       }
@@ -57,7 +57,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/post-verify-protected-nix-config.py"
+            "command": "python3 hooks/post-verify-protected-nix-config.py"
           }
         ]
       },
@@ -66,7 +66,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/block-non-python-hook-scripts.py"
+            "command": "python3 hooks/block-non-python-hook-scripts.py"
           }
         ]
       }
@@ -76,17 +76,17 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/stop-require-git-commit-and-push.py",
+            "command": "python3 hooks/stop-require-git-commit-and-push.py",
             "timeout": 15
           },
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/stop-nixos-rebuild-on-config-change.py",
+            "command": "python3 hooks/stop-nixos-rebuild-on-config-change.py",
             "timeout": 300
           },
           {
             "type": "command",
-            "command": "python3 /home/exp/.claude/hooks/stop-require-source-verification.py",
+            "command": "python3 hooks/stop-require-source-verification.py",
             "timeout": 15
           }
         ]
