@@ -1,101 +1,61 @@
-#!/usr/bin/env python3
 """Tests for block-non-python-hook-scripts.py hook."""
 
-import json
-import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from config import HOOKS_DIR
+from tests.conftest import run_hook_process
 
 HOOK = str(HOOKS_DIR / "block-non-python-hook-scripts.py")
+HOOKS_DIR_POSIX = str(HOOKS_DIR).replace("\\", "/")
 
 
 def run_hook(tool_input: dict) -> dict | None:
-    payload = json.dumps({"tool_input": tool_input})
-    result = subprocess.run(
-        [sys.executable, HOOK],
-        input=payload,
-        capture_output=True,
-        text=True,
-    )
-    if result.stdout.strip():
-        return json.loads(result.stdout)
-    return None
+    return run_hook_process(HOOK, {"tool_input": tool_input})
 
 
-def test(name: str, tool_input: dict, *, should_block: bool) -> bool:
-    result = run_hook(tool_input)
-    blocked = result is not None and result.get("decision") == "block"
-    ok = blocked == should_block
-    status = "PASS" if ok else "FAIL"
-    print(f"  [{status}] {name}")
-    if not ok:
-        print(f"         expected={'block' if should_block else 'allow'}, got={'block' if blocked else 'allow'}")
-    return ok
+# ---------------------------------------------------------------------------
+# Should block (non-Python in hooks/)
+# ---------------------------------------------------------------------------
+
+class TestBlock:
+    def test_sh_in_hooks(self):
+        result = run_hook({"file_path": f"{HOOKS_DIR_POSIX}/myhook.sh"})
+        assert result["decision"] == "block"
+
+    def test_js_in_hooks(self):
+        result = run_hook({"file_path": f"{HOOKS_DIR_POSIX}/myhook.js"})
+        assert result["decision"] == "block"
+
+    def test_ts_in_hooks(self):
+        result = run_hook({"file_path": f"{HOOKS_DIR_POSIX}/myhook.ts"})
+        assert result["decision"] == "block"
+
+    def test_bash_in_hooks(self):
+        result = run_hook({"file_path": f"{HOOKS_DIR_POSIX}/myhook.bash"})
+        assert result["decision"] == "block"
+
+    def test_rb_in_hooks(self):
+        result = run_hook({"file_path": f"{HOOKS_DIR_POSIX}/myhook.rb"})
+        assert result["decision"] == "block"
 
 
-def main() -> None:
-    results: list[bool] = []
+# ---------------------------------------------------------------------------
+# Should allow
+# ---------------------------------------------------------------------------
 
-    hooks_dir = str(HOOKS_DIR).replace("\\", "/")
+class TestAllow:
+    def test_py_in_hooks(self):
+        assert run_hook({"file_path": f"{HOOKS_DIR_POSIX}/myhook.py"}) is None
 
-    print("--- should block (non-Python in hooks/) ---")
-    results.append(test(
-        ".sh in hooks/",
-        {"file_path": f"{hooks_dir}/myhook.sh"},
-        should_block=True,
-    ))
-    results.append(test(
-        ".js in hooks/",
-        {"file_path": f"{hooks_dir}/myhook.js"},
-        should_block=True,
-    ))
-    results.append(test(
-        ".ts in hooks/",
-        {"file_path": f"{hooks_dir}/myhook.ts"},
-        should_block=True,
-    ))
-    results.append(test(
-        ".bash in hooks/",
-        {"file_path": f"{hooks_dir}/myhook.bash"},
-        should_block=True,
-    ))
-    results.append(test(
-        ".rb in hooks/",
-        {"file_path": f"{hooks_dir}/myhook.rb"},
-        should_block=True,
-    ))
+    def test_sh_outside_hooks(self):
+        assert run_hook({"file_path": "/tmp/project/script.sh"}) is None
 
-    print("\n--- should allow ---")
-    results.append(test(
-        ".py in hooks/",
-        {"file_path": f"{hooks_dir}/myhook.py"},
-        should_block=False,
-    ))
-    results.append(test(
-        ".sh outside hooks/",
-        {"file_path": "/tmp/project/script.sh"},
-        should_block=False,
-    ))
-    results.append(test(
-        ".toml in hooks/ (not in blocked list)",
-        {"file_path": f"{hooks_dir}/config.toml"},
-        should_block=False,
-    ))
-    results.append(test(
-        "no file_path",
-        {},
-        should_block=False,
-    ))
+    def test_toml_in_hooks(self):
+        assert run_hook({"file_path": f"{HOOKS_DIR_POSIX}/config.toml"}) is None
 
-    passed = sum(results)
-    total = len(results)
-    print(f"\n{'=' * 30}")
-    print(f"Results: {passed}/{total} passed")
-    sys.exit(0 if all(results) else 1)
-
-
-if __name__ == "__main__":
-    main()
+    def test_no_file_path(self):
+        assert run_hook({}) is None

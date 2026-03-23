@@ -1,4 +1,4 @@
-"""Centralized path constants for the .claude project."""
+"""Path constants for the test infrastructure. Not imported by hooks."""
 
 from pathlib import Path
 

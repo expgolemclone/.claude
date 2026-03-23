@@ -1,89 +1,52 @@
-#!/usr/bin/env python3
 """Tests for block-git-add-force-staging.py hook."""
 
-import json
-import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from config import HOOKS_DIR
+from tests.conftest import run_hook_process
 
 HOOK = str(HOOKS_DIR / "block-git-add-force-staging.py")
 
 
 def run_hook(command: str) -> dict | None:
-    payload = json.dumps({"tool_input": {"command": command}})
-    result = subprocess.run(
-        [sys.executable, HOOK],
-        input=payload,
-        capture_output=True,
-        text=True,
-    )
-    if result.stdout.strip():
-        return json.loads(result.stdout)
-    return None
+    return run_hook_process(HOOK, {"tool_input": {"command": command}})
 
 
-def test(name: str, command: str, *, should_block: bool) -> bool:
-    result = run_hook(command)
-    blocked = result is not None and result.get("decision") == "block"
-    ok = blocked == should_block
-    status = "PASS" if ok else "FAIL"
-    print(f"  [{status}] {name}")
-    if not ok:
-        print(f"         expected={'block' if should_block else 'allow'}, got={'block' if blocked else 'allow'}")
-    return ok
+# ---------------------------------------------------------------------------
+# Should block
+# ---------------------------------------------------------------------------
+
+class TestBlock:
+    def test_git_add_f(self):
+        result = run_hook("git add -f .")
+        assert result["decision"] == "block"
+
+    def test_git_add_force(self):
+        result = run_hook("git add --force somefile.txt")
+        assert result["decision"] == "block"
+
+    def test_git_add_f_with_path(self):
+        result = run_hook("git add -f node_modules/")
+        assert result["decision"] == "block"
 
 
-def main() -> None:
-    results: list[bool] = []
+# ---------------------------------------------------------------------------
+# Should allow
+# ---------------------------------------------------------------------------
 
-    print("--- should block ---")
-    results.append(test(
-        "git add -f",
-        "git add -f .",
-        should_block=True,
-    ))
-    results.append(test(
-        "git add --force",
-        "git add --force somefile.txt",
-        should_block=True,
-    ))
-    results.append(test(
-        "git add -f with path",
-        "git add -f node_modules/",
-        should_block=True,
-    ))
+class TestAllow:
+    def test_normal_git_add(self):
+        assert run_hook("git add .") is None
 
-    print("\n--- should allow ---")
-    results.append(test(
-        "normal git add",
-        "git add .",
-        should_block=False,
-    ))
-    results.append(test(
-        "git add specific file",
-        "git add main.py",
-        should_block=False,
-    ))
-    results.append(test(
-        "not a git command",
-        "echo hello",
-        should_block=False,
-    ))
-    results.append(test(
-        "-f inside quotes (not real flag)",
-        'git commit -m "add -f feature flag"',
-        should_block=False,
-    ))
+    def test_git_add_specific_file(self):
+        assert run_hook("git add main.py") is None
 
-    passed = sum(results)
-    total = len(results)
-    print(f"\n{'=' * 30}")
-    print(f"Results: {passed}/{total} passed")
-    sys.exit(0 if all(results) else 1)
+    def test_not_a_git_command(self):
+        assert run_hook("echo hello") is None
 
-
-if __name__ == "__main__":
-    main()
+    def test_f_inside_quotes(self):
+        assert run_hook('git commit -m "add -f feature flag"') is None

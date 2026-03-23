@@ -37,6 +37,7 @@ inline_duplication_prohibited = true   # 同一ロジックの複数箇所への
 [testing]
 framework = "pytest"                    # unittest / nose は使用しない
 runner = "uv run pytest"               # venv 経由で実行
+run_after_edit = true                  # テスト編集後は実際に実行して結果を確認する
 
 [prohibited]
 conda_pip_mixed = true

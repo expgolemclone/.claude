@@ -1,131 +1,92 @@
-#!/usr/bin/env python3
 """Tests for block-git-commit-prohibited-keywords.py hook."""
 
-import json
-import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from config import HOOKS_DIR
+from tests.conftest import run_hook_process
 
 HOOK = str(HOOKS_DIR / "block-git-commit-prohibited-keywords.py")
 
 
 def run_hook(command: str) -> dict | None:
-    payload = json.dumps({"tool_input": {"command": command}})
-    result = subprocess.run(
-        [sys.executable, HOOK],
-        input=payload,
-        capture_output=True,
-        text=True,
-    )
-    if result.stdout.strip():
-        return json.loads(result.stdout)
-    return None
+    return run_hook_process(HOOK, {"tool_input": {"command": command}})
 
 
-def test(name: str, command: str, *, should_block: bool) -> bool:
-    result = run_hook(command)
-    blocked = result is not None and result.get("decision") == "block"
-    ok = blocked == should_block
-    status = "PASS" if ok else "FAIL"
-    print(f"  [{status}] {name}")
-    if not ok:
-        print(f"         expected={'block' if should_block else 'allow'}, got={'block' if blocked else 'allow'}")
-        if result:
-            print(f"         reason: {result.get('reason')}")
-    return ok
+# ---------------------------------------------------------------------------
+# Should block
+# ---------------------------------------------------------------------------
 
+class TestBlock:
+    def test_m_with_co_authored_by(self):
+        result = run_hook('git commit -m "feat: add feature\n\nCo-Authored-By: Someone"')
+        assert result["decision"] == "block"
 
-def main() -> None:
-    results: list[bool] = []
+    def test_m_with_claude(self):
+        result = run_hook('git commit -m "fix: claude integration"')
+        assert result["decision"] == "block"
 
-    print("--- should block ---")
-    results.append(test(
-        "-m with Co-Authored-By",
-        'git commit -m "feat: add feature\n\nCo-Authored-By: Someone"',
-        should_block=True,
-    ))
-    results.append(test(
-        "-m with claude",
-        'git commit -m "fix: claude integration"',
-        should_block=True,
-    ))
-    results.append(test(
-        "-m with Anthropic (uppercase)",
-        'git commit -m "docs: update Anthropic SDK usage"',
-        should_block=True,
-    ))
-    results.append(test(
-        "HEREDOC with authored in body",
-        '''git commit -m "$(cat <<'EOF'
+    def test_m_with_anthropic_uppercase(self):
+        result = run_hook('git commit -m "docs: update Anthropic SDK usage"')
+        assert result["decision"] == "block"
+
+    def test_heredoc_with_authored_in_body(self):
+        cmd = '''git commit -m "$(cat <<'EOF'
 feat: add new feature
 
 Co-Authored-By: User <user@example.com>
 EOF
-)"''',
-        should_block=True,
-    ))
-    results.append(test(
-        "HEREDOC with claude in body",
-        '''git commit -m "$(cat <<'EOF'
+)"'''
+        result = run_hook(cmd)
+        assert result["decision"] == "block"
+
+    def test_heredoc_with_claude_in_body(self):
+        cmd = '''git commit -m "$(cat <<'EOF'
 feat: add feature
 
 Generated with Claude Code
 EOF
-)"''',
-        should_block=True,
-    ))
-    results.append(test(
-        "HEREDOC with anthropic in body",
-        '''git commit -m "$(cat <<'EOF'
+)"'''
+        result = run_hook(cmd)
+        assert result["decision"] == "block"
+
+    def test_heredoc_with_anthropic_in_body(self):
+        cmd = '''git commit -m "$(cat <<'EOF'
 chore: update deps
 
 noreply@anthropic.com
 EOF
-)"''',
-        should_block=True,
-    ))
-    results.append(test(
-        "case insensitive: CLAUDE",
-        'git commit -m "CLAUDE generated this"',
-        should_block=True,
-    ))
+)"'''
+        result = run_hook(cmd)
+        assert result["decision"] == "block"
 
-    print("\n--- should allow ---")
-    results.append(test(
-        "normal commit",
-        'git commit -m "fix: resolve null pointer bug"',
-        should_block=False,
-    ))
-    results.append(test(
-        "not a git commit command",
-        'echo "authored by claude at anthropic"',
-        should_block=False,
-    ))
-    results.append(test(
-        "git add (not commit)",
-        'git add -A',
-        should_block=False,
-    ))
-    results.append(test(
-        "HEREDOC without keywords",
-        '''git commit -m "$(cat <<'EOF'
+    def test_case_insensitive_claude(self):
+        result = run_hook('git commit -m "CLAUDE generated this"')
+        assert result["decision"] == "block"
+
+
+# ---------------------------------------------------------------------------
+# Should allow
+# ---------------------------------------------------------------------------
+
+class TestAllow:
+    def test_normal_commit(self):
+        assert run_hook('git commit -m "fix: resolve null pointer bug"') is None
+
+    def test_not_a_git_commit(self):
+        assert run_hook('echo "authored by claude at anthropic"') is None
+
+    def test_git_add(self):
+        assert run_hook("git add -A") is None
+
+    def test_heredoc_without_keywords(self):
+        cmd = '''git commit -m "$(cat <<'EOF'
 feat: add login page
 
 Added user authentication flow.
 EOF
-)"''',
-        should_block=False,
-    ))
-
-    passed = sum(results)
-    total = len(results)
-    print(f"\n{'=' * 30}")
-    print(f"Results: {passed}/{total} passed")
-    sys.exit(0 if all(results) else 1)
-
-
-if __name__ == "__main__":
-    main()
+)"'''
+        assert run_hook(cmd) is None

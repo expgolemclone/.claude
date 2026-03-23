@@ -1,86 +1,48 @@
-#!/usr/bin/env python3
 """Tests for block-settings-json-direct-edit.py hook."""
 
-import json
-import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from config import HOOKS_DIR, SETTINGS_JSON
+from tests.conftest import run_hook_process
 
 HOOK = str(HOOKS_DIR / "block-settings-json-direct-edit.py")
 
 
 def run_hook(tool_input: dict) -> dict | None:
-    payload = json.dumps({"tool_input": tool_input})
-    result = subprocess.run(
-        [sys.executable, HOOK],
-        input=payload,
-        capture_output=True,
-        text=True,
-    )
-    if result.stdout.strip():
-        return json.loads(result.stdout)
-    return None
+    return run_hook_process(HOOK, {"tool_input": tool_input})
 
 
-def test(name: str, tool_input: dict, *, should_block: bool) -> bool:
-    result = run_hook(tool_input)
-    blocked = result is not None and result.get("decision") == "block"
-    ok = blocked == should_block
-    status = "PASS" if ok else "FAIL"
-    print(f"  [{status}] {name}")
-    if not ok:
-        print(f"         expected={'block' if should_block else 'allow'}, got={'block' if blocked else 'allow'}")
-    return ok
+# ---------------------------------------------------------------------------
+# Should block
+# ---------------------------------------------------------------------------
+
+class TestBlock:
+    def test_direct_path(self):
+        result = run_hook({"file_path": str(SETTINGS_JSON)})
+        assert result["decision"] == "block"
+
+    def test_forward_slashes(self):
+        result = run_hook({"file_path": str(SETTINGS_JSON).replace("\\", "/")})
+        assert result["decision"] == "block"
 
 
-def main() -> None:
-    results: list[bool] = []
+# ---------------------------------------------------------------------------
+# Should allow
+# ---------------------------------------------------------------------------
 
-    settings_path = str(SETTINGS_JSON)
+class TestAllow:
+    def test_other_json_file(self):
+        assert run_hook({"file_path": str(SETTINGS_JSON.parent / "other.json")}) is None
 
-    print("--- should block ---")
-    results.append(test(
-        "direct path to settings.json",
-        {"file_path": settings_path},
-        should_block=True,
-    ))
-    results.append(test(
-        "path with forward slashes to settings.json",
-        {"file_path": settings_path.replace("\\", "/")},
-        should_block=True,
-    ))
+    def test_settings_json_different_dir(self):
+        assert run_hook({"file_path": "/tmp/project/settings.json"}) is None
 
-    print("\n--- should allow ---")
-    results.append(test(
-        "other json file",
-        {"file_path": str(SETTINGS_JSON.parent / "other.json")},
-        should_block=False,
-    ))
-    results.append(test(
-        "settings.json in different directory",
-        {"file_path": "/tmp/project/settings.json"},
-        should_block=False,
-    ))
-    results.append(test(
-        "empty file_path",
-        {"file_path": ""},
-        should_block=False,
-    ))
-    results.append(test(
-        "no file_path key",
-        {},
-        should_block=False,
-    ))
+    def test_empty_file_path(self):
+        assert run_hook({"file_path": ""}) is None
 
-    passed = sum(results)
-    total = len(results)
-    print(f"\n{'=' * 30}")
-    print(f"Results: {passed}/{total} passed")
-    sys.exit(0 if all(results) else 1)
-
-
-if __name__ == "__main__":
-    main()
+    def test_no_file_path_key(self):
+        assert run_hook({}) is None

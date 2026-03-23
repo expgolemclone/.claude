@@ -1,111 +1,71 @@
-#!/usr/bin/env python3
 """Tests for inject-extension-rules-toml.py hook."""
 
-import json
-import subprocess
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from config import HOOKS_DIR
+from tests.conftest import run_hook_process
 
 HOOK = str(HOOKS_DIR / "inject-extension-rules-toml.py")
 
 
 def run_hook(tool_input: dict) -> dict | None:
-    payload = json.dumps({"tool_input": tool_input})
-    result = subprocess.run(
-        [sys.executable, HOOK],
-        input=payload,
-        capture_output=True,
-        text=True,
-    )
-    if result.stdout.strip():
-        return json.loads(result.stdout)
-    return None
+    return run_hook_process(HOOK, {"tool_input": tool_input})
 
 
-def test(name: str, tool_input: dict, *, should_inject: bool) -> bool:
-    result = run_hook(tool_input)
-    injected = result is not None and "additionalContext" in result.get("hookSpecificOutput", {})
-    ok = injected == should_inject
-    status = "PASS" if ok else "FAIL"
-    print(f"  [{status}] {name}")
-    if not ok:
-        print(f"         expected={'inject' if should_inject else 'none'}, got={'inject' if injected else 'none'}")
-    return ok
+def is_injected(result: dict | None) -> bool:
+    return result is not None and "additionalContext" in result.get("hookSpecificOutput", {})
 
 
-def main() -> None:
-    results: list[bool] = []
+# ---------------------------------------------------------------------------
+# Edit/Write: file extension rules
+# ---------------------------------------------------------------------------
 
-    print("--- Edit/Write: file extension rules ---")
-    results.append(test(
-        ".py file injects py.toml",
-        {"file_path": "/home/exp/project/main.py"},
-        should_inject=True,
-    ))
-    results.append(test(
-        ".md file injects md.toml (+ mmd.toml)",
-        {"file_path": "/home/exp/docs/README.md"},
-        should_inject=True,
-    ))
-    results.append(test(
-        ".rs file injects rs.toml",
-        {"file_path": "/home/exp/project/main.rs"},
-        should_inject=True,
-    ))
-    results.append(test(
-        ".cs file -> no injection (cs.toml is empty)",
-        {"file_path": "/home/exp/project/Program.cs"},
-        should_inject=False,
-    ))
+class TestFileExtension:
+    def test_py_injects(self):
+        assert is_injected(run_hook({"file_path": "/home/exp/project/main.py"}))
 
-    print("\n--- Edit/Write: no injection ---")
-    results.append(test(
-        "no extension -> no injection",
-        {"file_path": "/home/exp/project/Makefile"},
-        should_inject=False,
-    ))
-    results.append(test(
-        "unknown extension -> no injection",
-        {"file_path": "/home/exp/project/data.xyz"},
-        should_inject=False,
-    ))
-    results.append(test(
-        "empty file_path -> no injection",
-        {"file_path": ""},
-        should_inject=False,
-    ))
-    results.append(test(
-        "no file_path key -> no injection",
-        {"command": "echo hello"},
-        should_inject=False,
-    ))
+    def test_md_injects(self):
+        assert is_injected(run_hook({"file_path": "/home/exp/docs/README.md"}))
 
-    print("\n--- Bash: git command rules ---")
-    results.append(test(
-        "git commit injects git.toml",
-        {"command": "git commit -m 'test'"},
-        should_inject=True,
-    ))
-    results.append(test(
-        "git push injects git.toml",
-        {"command": "git push origin main"},
-        should_inject=True,
-    ))
-    results.append(test(
-        "non-git command -> no injection",
-        {"command": "echo hello"},
-        should_inject=False,
-    ))
+    def test_rs_injects(self):
+        assert is_injected(run_hook({"file_path": "/home/exp/project/main.rs"}))
 
-    passed = sum(results)
-    total = len(results)
-    print(f"\n{'=' * 30}")
-    print(f"Results: {passed}/{total} passed")
-    sys.exit(0 if all(results) else 1)
+    def test_cs_no_injection(self):
+        assert not is_injected(run_hook({"file_path": "/home/exp/project/Program.cs"}))
 
 
-if __name__ == "__main__":
-    main()
+# ---------------------------------------------------------------------------
+# Edit/Write: no injection
+# ---------------------------------------------------------------------------
+
+class TestNoInjection:
+    def test_no_extension(self):
+        assert not is_injected(run_hook({"file_path": "/home/exp/project/Makefile"}))
+
+    def test_unknown_extension(self):
+        assert not is_injected(run_hook({"file_path": "/home/exp/project/data.xyz"}))
+
+    def test_empty_file_path(self):
+        assert not is_injected(run_hook({"file_path": ""}))
+
+    def test_no_file_path_key(self):
+        assert not is_injected(run_hook({"command": "echo hello"}))
+
+
+# ---------------------------------------------------------------------------
+# Bash: git command rules
+# ---------------------------------------------------------------------------
+
+class TestGitCommand:
+    def test_git_commit_injects(self):
+        assert is_injected(run_hook({"command": "git commit -m 'test'"}))
+
+    def test_git_push_injects(self):
+        assert is_injected(run_hook({"command": "git push origin main"}))
+
+    def test_non_git_no_injection(self):
+        assert not is_injected(run_hook({"command": "echo hello"}))
