@@ -9,9 +9,8 @@ msg = sys.stdin.read()
 # Remove Co-Authored-By lines and any preceding blank lines
 msg = re.sub(r"\n+Co-Authored-By:[^\n]*", "", msg, flags=re.IGNORECASE)
 
-# Remove standalone AI-related keyword references
-msg = re.sub(r"\bClaude\b", "assistant", msg)
-msg = re.sub(r"\bAI\b", "assistant", msg)
+# Remove standalone prohibited keyword references and clean up spacing
+msg = re.sub(r"\b(Claude|AI|assistant)\s*", "", msg, flags=re.IGNORECASE)
 
 # Replace CLAUDE.md filename references
 msg = msg.replace("CLAUDE.md", "instructions file")

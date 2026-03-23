@@ -114,6 +114,7 @@ EOF
         "ai", "llm", "gemini", "openai", "foundation",
         "copilot", "gpt", "chatgpt", "bard",
         "codeium", "cursor", "tabnine", "cody", "devin",
+        "agent", "assistant", "auth", "エージェント",
     ])
     def test_all_keywords_blocked(self, keyword):
         result = run_hook(f'git commit -m "feat: use {keyword} for generation"')
@@ -157,10 +158,13 @@ EOF
         assert run_hook(cmd) is None
 
     @pytest.mark.parametrize("msg", [
-        "fix: maintain backward compatibility",  # contains "ai" substring
-        "feat: add wait logic for retries",       # contains "ai" substring
-        "fix: certain edge cases",                # contains "ai" substring
-        "feat: update training data pipeline",    # contains "ai" substring
+        "fix: maintain backward compatibility",    # contains "ai" substring
+        "feat: add wait logic for retries",        # contains "ai" substring
+        "fix: certain edge cases",                 # contains "ai" substring
+        "feat: update training data pipeline",     # contains "ai" substring
+        "feat: add user authentication flow",      # contains "auth" substring
+        "fix: authorization header parsing",       # contains "auth" substring
+        "feat: reagent pattern for state mgmt",    # contains "agent" substring
     ])
     def test_word_boundary_no_false_positive(self, msg):
         assert run_hook(f'git commit -m "{msg}"') is None

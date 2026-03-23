@@ -11,6 +11,7 @@ BLOCKED_KEYWORDS = [
     "ai", "llm", "gemini", "openai",
     "foundation", "copilot", "gpt", "chatgpt",
     "bard", "codeium", "cursor", "tabnine", "cody", "devin",
+    "agent", "assistant", "auth", "エージェント",
 ]
 
 
