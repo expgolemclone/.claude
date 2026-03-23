@@ -110,6 +110,15 @@ EOF
         result = run_hook('git commit -m "CLAUDE generated this"')
         assert result["decision"] == "block"
 
+    @pytest.mark.parametrize("keyword", [
+        "ai", "llm", "gemini", "openai", "foundation",
+        "copilot", "gpt", "chatgpt", "bard",
+        "codeium", "cursor", "tabnine", "cody", "devin",
+    ])
+    def test_all_keywords_blocked(self, keyword):
+        result = run_hook(f'git commit -m "feat: use {keyword} for generation"')
+        assert result is not None and result["decision"] == "block", keyword
+
 
 # ---------------------------------------------------------------------------
 # Should allow
@@ -146,6 +155,15 @@ Added missing hooks to setup.py.
 EOF
 )"'''
         assert run_hook(cmd) is None
+
+    @pytest.mark.parametrize("msg", [
+        "fix: maintain backward compatibility",  # contains "ai" substring
+        "feat: add wait logic for retries",       # contains "ai" substring
+        "fix: certain edge cases",                # contains "ai" substring
+        "feat: update training data pipeline",    # contains "ai" substring
+    ])
+    def test_word_boundary_no_false_positive(self, msg):
+        assert run_hook(f'git commit -m "{msg}"') is None
 
 
 # ---------------------------------------------------------------------------

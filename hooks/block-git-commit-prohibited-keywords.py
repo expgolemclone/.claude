@@ -6,7 +6,17 @@ import re
 import subprocess
 import sys
 
-BLOCKED_KEYWORDS = ["authored", "claude", "anthropic"]
+BLOCKED_KEYWORDS = [
+    "authored", "claude", "anthropic",
+    "ai", "llm", "gemini", "openai",
+    "foundation", "copilot", "gpt", "chatgpt",
+    "bard", "codeium", "cursor", "tabnine", "cody", "devin",
+]
+
+
+def _keyword_pattern(keyword: str) -> re.Pattern[str]:
+    """Compile a word-boundary regex for a keyword."""
+    return re.compile(rf"\b{re.escape(keyword)}\b", re.IGNORECASE)
 
 
 def extract_commit_portion(command: str) -> str:
@@ -23,9 +33,10 @@ def find_tainted_commits() -> list[tuple[str, str, str]]:
     Returns list of (short_hash, subject, keyword) tuples.
     """
     results: list[tuple[str, str, str]] = []
+    seen: set[tuple[str, str]] = set()
     for keyword in BLOCKED_KEYWORDS:
         proc = subprocess.run(
-            ["git", "log", "--all", f"--grep={keyword}", "-i",
+            ["git", "log", "--all", f"--grep=\\b{keyword}\\b", "-i", "-P",
              "--format=%h %s"],
             capture_output=True, text=True,
         )
@@ -35,7 +46,10 @@ def find_tainted_commits() -> list[tuple[str, str, str]]:
             parts = line.split(" ", 1)
             short_hash = parts[0]
             subject = parts[1] if len(parts) > 1 else ""
-            results.append((short_hash, subject, keyword))
+            key = (short_hash, keyword)
+            if key not in seen:
+                seen.add(key)
+                results.append((short_hash, subject, keyword))
     return results
 
 
@@ -46,7 +60,7 @@ def check_commit(command: str) -> None:
         return
 
     for keyword in BLOCKED_KEYWORDS:
-        if re.search(keyword, commit_part, re.IGNORECASE):
+        if _keyword_pattern(keyword).search(commit_part):
             json.dump(
                 {
                     "decision": "block",
