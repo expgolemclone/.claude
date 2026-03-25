@@ -48,7 +48,7 @@ def main() -> None:
         json.dump(
             {
                 "decision": "block",
-                "reason": issues + "Commit and push all changes before finishing.",
+                "reason": issues + "Run the code and verify it works, then commit and push all changes.",
             },
             sys.stdout,
         )
