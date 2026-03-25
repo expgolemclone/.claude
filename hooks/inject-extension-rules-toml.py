@@ -45,6 +45,9 @@ def main() -> None:
     if not ext:
         return
 
+    # 共通ルールを常に注入
+    common = read_rule("common.toml")
+
     rules = read_rule(ext + ".toml")
 
     # .md -> also inject mmd.toml
@@ -52,6 +55,10 @@ def main() -> None:
         mmd = read_rule("mmd.toml")
         if mmd:
             rules = rules + "\n\n" + mmd if rules else mmd
+
+    # common + extension-specific を結合
+    if common:
+        rules = common + "\n\n" + rules if rules else common
 
     if rules:
         output(rules)
