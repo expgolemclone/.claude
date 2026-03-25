@@ -5,6 +5,7 @@ no_force_add = true              # git add -f / --force を使用しない
 separate_add_commit = true       # git add と git commit は別コマンドで実行する（keyword hookがコマンド全体を検査するため）
 message_in_japanese = true       # コミットメッセージは日本語で記述する
 subject_only = true              # コミットメッセージは subject のみ（body は書かない）
+verify_before_commit = true      # コミット前に必ず実際に動かして動作確認を行う
 
 [gitignore]
 whitelist = true                 # .gitignore はホワイトリスト方式にする（デフォルト全無視 + 許可するものだけ ! で追加）
