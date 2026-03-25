@@ -6,7 +6,7 @@
 
 # Setup script and config
 !setup.py
-!config.py
+!pyproject.toml
 settings.json
 
 # Hooks (custom scripts)

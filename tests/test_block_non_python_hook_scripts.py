@@ -1,13 +1,8 @@
 """Tests for block-non-python-hook-scripts.py hook."""
 
-import sys
-from pathlib import Path
-
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from config import HOOKS_DIR
-from tests.conftest import run_hook_process
+from tests.conftest import HOOKS_DIR, run_hook_process
 
 HOOK = str(HOOKS_DIR / "block-non-python-hook-scripts.py")
 HOOKS_DIR_POSIX = str(HOOKS_DIR).replace("\\", "/")

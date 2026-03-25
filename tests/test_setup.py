@@ -1,14 +1,12 @@
 """Tests for setup.py: verify both OS configs generate valid settings.json."""
 
 import json
-import sys
 from pathlib import Path
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from config import HOOKS_DIR
 from setup import build_linux_config, build_windows_config
+from tests.conftest import HOOKS_DIR
 
 
 # ---------------------------------------------------------------------------

@@ -9,8 +9,7 @@ from unittest import mock
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from config import HOOKS_DIR
+from tests.conftest import HOOKS_DIR
 
 sys.path.insert(0, str(HOOKS_DIR))
 mod = importlib.import_module("block-nixos-rebuild-protected-changes")

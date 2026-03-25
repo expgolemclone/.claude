@@ -1,13 +1,8 @@
 """Tests for block-settings-json-direct-edit.py hook."""
 
-import sys
-from pathlib import Path
-
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from config import HOOKS_DIR, SETTINGS_JSON
-from tests.conftest import run_hook_process
+from tests.conftest import HOOKS_DIR, SETTINGS_JSON, run_hook_process
 
 HOOK = str(HOOKS_DIR / "block-settings-json-direct-edit.py")
 
