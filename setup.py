@@ -33,7 +33,6 @@ def build_linux_config():
             "deny": ["Agent"],
         },
         "skipDangerousModePermissionPrompt": True,
-        "model": "claude-opus-4-6",
         "hooks": {
             "PreToolUse": [
                 {"matcher": "Edit|Write|Bash", "hooks": [
@@ -85,7 +84,7 @@ def build_windows_config():
             "defaultMode": "bypassPermissions",
         },
         "skipDangerousModePermissionPrompt": True,
-        "effortLevel": "high",
+        "effortLevel": "max",
         "hooks": {
             "PreToolUse": [
                 {"matcher": "Edit|Write|Bash", "hooks": [

@@ -105,8 +105,8 @@ class TestStructure:
 # ---------------------------------------------------------------------------
 
 class TestLinux:
-    def test_has_model(self, linux):
-        assert linux.get("model") == "claude-opus-4-6"
+    def test_no_model(self, linux):
+        assert "model" not in linux
 
     def test_deny_list(self, linux):
         assert linux["permissions"]["deny"] == ["Agent"]
@@ -123,7 +123,7 @@ class TestLinux:
 
 class TestWindows:
     def test_has_effort_level(self, windows):
-        assert windows.get("effortLevel") == "high"
+        assert windows.get("effortLevel") == "max"
 
     def test_deny_list(self, windows):
         assert windows["permissions"]["deny"] == ["Task", "Agent"]
