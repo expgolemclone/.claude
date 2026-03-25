@@ -103,6 +103,7 @@ def build_windows_config():
                 {"matcher": "Edit|Write", "hooks": [
                     py("block-non-python-hook-scripts.py"),
                     py("post-cargo-clippy-on-rs-edit.py", timeout=120),
+                    py("check-hotstring-conflicts.py"),
                 ]},
             ],
             "Stop": [

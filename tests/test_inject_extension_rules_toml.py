@@ -34,8 +34,12 @@ class TestFileExtension:
     def test_rs_injects(self):
         assert is_injected(run_hook({"file_path": "/home/exp/project/main.rs"}))
 
-    def test_cs_no_injection(self):
-        assert not is_injected(run_hook({"file_path": "/home/exp/project/Program.cs"}))
+    def test_cs_injects_common_only(self):
+        result = run_hook({"file_path": "/home/exp/project/Program.cs"})
+        assert is_injected(result)
+        ctx = result["hookSpecificOutput"]["additionalContext"]
+        assert "centralized_config" in ctx
+        assert "[toolchain]" not in ctx
 
 
 # ---------------------------------------------------------------------------
@@ -46,8 +50,11 @@ class TestNoInjection:
     def test_no_extension(self):
         assert not is_injected(run_hook({"file_path": "/home/exp/project/Makefile"}))
 
-    def test_unknown_extension(self):
-        assert not is_injected(run_hook({"file_path": "/home/exp/project/data.xyz"}))
+    def test_unknown_extension_injects_common_only(self):
+        result = run_hook({"file_path": "/home/exp/project/data.xyz"})
+        assert is_injected(result)
+        ctx = result["hookSpecificOutput"]["additionalContext"]
+        assert "centralized_config" in ctx
 
     def test_empty_file_path(self):
         assert not is_injected(run_hook({"file_path": ""}))

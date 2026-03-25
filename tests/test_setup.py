@@ -164,6 +164,7 @@ class TestCrossCheck:
             "block-nixos-rebuild-protected-changes.py",
             "post-verify-protected-nix-config.py",
             "stop-nixos-rebuild-on-config-change.py",
+            "check-hotstring-conflicts.py",
             "notify-complete.ps1",
         }
         linux_scripts = set(all_hook_scripts(linux)) - OS_SPECIFIC
