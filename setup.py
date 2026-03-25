@@ -85,7 +85,6 @@ def build_windows_config():
             "defaultMode": "bypassPermissions",
         },
         "skipDangerousModePermissionPrompt": True,
-        "effortLevel": "max",
         "hooks": {
             "PreToolUse": [
                 {"matcher": "Edit|Write|Bash", "hooks": [

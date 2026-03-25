@@ -120,8 +120,8 @@ class TestLinux:
 # ---------------------------------------------------------------------------
 
 class TestWindows:
-    def test_has_effort_level(self, windows):
-        assert windows.get("effortLevel") == "max"
+    def test_no_effort_level(self, windows):
+        assert "effortLevel" not in windows
 
     def test_deny_list(self, windows):
         assert windows["permissions"]["deny"] == ["Task", "Agent"]
