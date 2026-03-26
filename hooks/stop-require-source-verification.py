@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Stop hook: warn when responding without primary source verification."""
+"""Stop hook: block when responding without WebSearch/WebFetch verification."""
 
 import json
 import sys
 
-MIN_RESPONSE_LENGTH = 200
+SEARCH_TOOLS = {"WebSearch", "WebFetch"}
 
 
 def main() -> None:
@@ -13,22 +13,17 @@ def main() -> None:
     if data.get("stop_hook_active"):
         return
 
-    last_msg = data.get("last_assistant_message", "")
-    if len(last_msg) < MIN_RESPONSE_LENGTH:
-        return
-
     transcript_path = data.get("transcript_path", "")
     if not transcript_path:
         return
 
-    used_any_tool = False
+    used_search = False
 
     try:
         with open(transcript_path) as f:
             lines = f.readlines()
 
         # Find the last *real* user message (not a tool_result relay).
-        # Tool results appear as user entries whose content is all tool_result blocks.
         last_real_user_idx = -1
         for i in range(len(lines) - 1, -1, -1):
             try:
@@ -50,7 +45,7 @@ def main() -> None:
         if last_real_user_idx < 0:
             return
 
-        # Check for tool_use in assistant messages after the last real user message
+        # Check for WebSearch/WebFetch tool_use after the last real user message
         for line in lines[last_real_user_idx + 1 :]:
             try:
                 entry = json.loads(line)
@@ -62,16 +57,20 @@ def main() -> None:
                 continue
 
             for block in content:
-                if isinstance(block, dict) and block.get("type") == "tool_use":
-                    used_any_tool = True
+                if (
+                    isinstance(block, dict)
+                    and block.get("type") == "tool_use"
+                    and block.get("name") in SEARCH_TOOLS
+                ):
+                    used_search = True
                     break
-            if used_any_tool:
+            if used_search:
                 break
 
     except (OSError, json.JSONDecodeError):
         return
 
-    if used_any_tool:
+    if used_search:
         return
 
     json.dump(
