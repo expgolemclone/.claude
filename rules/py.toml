@@ -26,9 +26,6 @@ system_python_install = false
 break_system_packages_in_ci = false
 break_system_packages_in_prod = false
 
-[paths]
-centralized_config = "tests/conftest.py"  # テスト用パス定数は conftest.py に集約
-
 [testing]
 framework = "pytest"                    # unittest / nose は使用しない
 runner = "uv run pytest"               # venv 経由で実行
