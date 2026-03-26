@@ -33,7 +33,7 @@ class TestFileExtension:
         result = run_hook({"file_path": "/home/exp/project/Program.cs"})
         assert is_injected(result)
         ctx = result["hookSpecificOutput"]["additionalContext"]
-        assert "centralized_config" in ctx
+        assert "hardcoded_paths_prohibited" in ctx
         assert "[toolchain]" not in ctx
 
 
@@ -49,7 +49,7 @@ class TestNoInjection:
         result = run_hook({"file_path": "/home/exp/project/data.xyz"})
         assert is_injected(result)
         ctx = result["hookSpecificOutput"]["additionalContext"]
-        assert "centralized_config" in ctx
+        assert "hardcoded_paths_prohibited" in ctx
 
     def test_empty_file_path(self):
         assert not is_injected(run_hook({"file_path": ""}))

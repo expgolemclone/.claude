@@ -85,11 +85,6 @@ class TestEarlyReturns:
         result = run_main(make_stdin(str(tp), "a" * 300, stop_hook_active=True))
         assert result == ""
 
-    def test_2_short_response(self, tmp_path):
-        tp = write_transcript(tmp_path, [make_user_text(), make_assistant_text("short")])
-        result = run_main(make_stdin(str(tp), last_assistant_message="a" * 199))
-        assert result == ""
-
     def test_3_empty_transcript_path(self):
         result = run_main(make_stdin(transcript_path="", last_assistant_message="a" * 250))
         assert result == ""
@@ -105,16 +100,28 @@ class TestEarlyReturns:
 # ---------------------------------------------------------------------------
 
 class TestTranscriptParsing:
-    def test_5_tool_use_basic(self, tmp_path):
+    def test_5_web_search_allows(self, tmp_path):
         entries = [
             make_user_text(),
-            make_assistant_tool_use(),
+            make_assistant_tool_use("WebSearch"),
             make_user_tool_result(),
             make_assistant_text("a" * 300),
         ]
         tp = write_transcript(tmp_path, entries)
         result = run_main(make_stdin(str(tp), "a" * 300))
         assert result == ""
+
+    def test_5b_non_search_tool_blocks(self, tmp_path):
+        entries = [
+            make_user_text(),
+            make_assistant_tool_use("Read"),
+            make_user_tool_result(),
+            make_assistant_text("a" * 300),
+        ]
+        tp = write_transcript(tmp_path, entries)
+        result = run_main(make_stdin(str(tp), "a" * 300))
+        parsed = json.loads(result)
+        assert parsed["decision"] == "block"
 
     def test_6_no_tool_use_blocks(self, tmp_path):
         entries = [
@@ -126,12 +133,12 @@ class TestTranscriptParsing:
         parsed = json.loads(result)
         assert parsed["decision"] == "block"
 
-    def test_7_multiple_tool_uses(self, tmp_path):
+    def test_7_multiple_search_tools(self, tmp_path):
         entries = [
             make_user_text(),
-            make_assistant_tool_use("Read", "tu_1"),
+            make_assistant_tool_use("WebSearch", "tu_1"),
             make_user_tool_result("tu_1"),
-            make_assistant_tool_use("Grep", "tu_2"),
+            make_assistant_tool_use("WebFetch", "tu_2"),
             make_user_tool_result("tu_2"),
             make_assistant_text("a" * 300),
         ]
@@ -143,7 +150,7 @@ class TestTranscriptParsing:
         """tool_result-only user entries should be skipped; find the real user before them."""
         entries = [
             make_user_text("real question"),
-            make_assistant_tool_use("Read", "tu_1"),
+            make_assistant_tool_use("WebSearch", "tu_1"),
             make_user_tool_result("tu_1"),
             make_assistant_text("a" * 300),
         ]
@@ -200,7 +207,7 @@ class TestEdgeCases:
         entries = [
             make_user_text(),
             make_progress(),
-            make_assistant_tool_use(),
+            make_assistant_tool_use("WebSearch"),
             make_progress(),
             make_user_tool_result(),
             make_assistant_text("a" * 300),
@@ -208,17 +215,6 @@ class TestEdgeCases:
         tp = write_transcript(tmp_path, entries)
         result = run_main(make_stdin(str(tp), "a" * 300))
         assert result == ""
-
-    def test_13_exactly_200_chars_blocks(self, tmp_path):
-        msg = "a" * 200
-        entries = [
-            make_user_text(),
-            make_assistant_text(msg),
-        ]
-        tp = write_transcript(tmp_path, entries)
-        result = run_main(make_stdin(str(tp), msg))
-        parsed = json.loads(result)
-        assert parsed["decision"] == "block"
 
     def test_14_transcript_file_not_found(self):
         result = run_main(make_stdin("/nonexistent/path/transcript.jsonl", "a" * 300))
