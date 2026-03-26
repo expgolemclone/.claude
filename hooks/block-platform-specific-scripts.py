@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """PreToolUse hook (Edit|Write): block platform-specific script creation.
 
-.sh/.bash  → Windows非対応のためブロック
-.ps1/.bat/.cmd → Linux非対応のためブロック
+.sh/.bash/.zsh/.csh/.tcsh/.fish/.ksh → Windows非対応のためブロック
+.ps1/.psm1/.psd1/.bat/.cmd/.vbs/.vbe/.wsf/.wsh → Linux非対応のためブロック
 いずれも .py への変更を促す。
 """
 
@@ -10,8 +10,8 @@ import json
 import os
 import sys
 
-UNIX_ONLY_EXTENSIONS = {".sh", ".bash"}
-WINDOWS_ONLY_EXTENSIONS = {".ps1", ".bat", ".cmd"}
+UNIX_ONLY_EXTENSIONS = {".sh", ".bash", ".zsh", ".csh", ".tcsh", ".fish", ".ksh"}
+WINDOWS_ONLY_EXTENSIONS = {".ps1", ".psm1", ".psd1", ".bat", ".cmd", ".vbs", ".vbe", ".wsf", ".wsh"}
 
 
 def main() -> None:

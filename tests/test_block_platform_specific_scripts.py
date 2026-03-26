@@ -12,15 +12,11 @@ def run_hook(tool_input: dict) -> dict | None:
 
 
 class TestBlockUnixOnly:
-    """Unix-only extensions (.sh, .bash) should be blocked with Windows warning."""
+    """Unix-only extensions should be blocked with Windows warning."""
 
-    def test_sh(self):
-        result = run_hook({"file_path": "/tmp/project/deploy.sh"})
-        assert result["decision"] == "block"
-        assert "Windows" in result["reason"]
-
-    def test_bash(self):
-        result = run_hook({"file_path": "/home/user/setup.bash"})
+    @pytest.mark.parametrize("ext", [".sh", ".bash", ".zsh", ".csh", ".tcsh", ".fish", ".ksh"])
+    def test_unix_extensions(self, ext):
+        result = run_hook({"file_path": f"/tmp/project/script{ext}"})
         assert result["decision"] == "block"
         assert "Windows" in result["reason"]
 
@@ -31,20 +27,11 @@ class TestBlockUnixOnly:
 
 
 class TestBlockWindowsOnly:
-    """Windows-only extensions (.ps1, .bat, .cmd) should be blocked with Linux warning."""
+    """Windows-only extensions should be blocked with Linux warning."""
 
-    def test_ps1(self):
-        result = run_hook({"file_path": "C:/Users/me/script.ps1"})
-        assert result["decision"] == "block"
-        assert "Linux" in result["reason"]
-
-    def test_bat(self):
-        result = run_hook({"file_path": "C:/scripts/run.bat"})
-        assert result["decision"] == "block"
-        assert "Linux" in result["reason"]
-
-    def test_cmd(self):
-        result = run_hook({"file_path": "C:/scripts/build.cmd"})
+    @pytest.mark.parametrize("ext", [".ps1", ".psm1", ".psd1", ".bat", ".cmd", ".vbs", ".vbe", ".wsf", ".wsh"])
+    def test_windows_extensions(self, ext):
+        result = run_hook({"file_path": f"C:/scripts/script{ext}"})
         assert result["decision"] == "block"
         assert "Linux" in result["reason"]
 
