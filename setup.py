@@ -41,6 +41,7 @@ def build_linux_config():
                 {"matcher": "Edit|Write", "hooks": [
                     py("block-settings-json-direct-edit.py"),
                     py("block-protected-nix-config.py"),
+                    py("block-platform-specific-scripts.py"),
                 ]},
                 {"matcher": "Bash", "hooks": [
                     py("block-git-add-force-staging.py"),
@@ -92,6 +93,7 @@ def build_windows_config():
                 ]},
                 {"matcher": "Edit|Write", "hooks": [
                     py("block-settings-json-direct-edit.py"),
+                    py("block-platform-specific-scripts.py"),
                 ]},
                 {"matcher": "Bash", "hooks": [
                     py("block-git-add-force-staging.py"),
