@@ -48,6 +48,7 @@ def build_linux_config():
                 {"matcher": "Bash", "hooks": [
                     py("block-git-add-force-staging.py"),
                     py("block-git-commit-prohibited-keywords.py"),
+                    py("block-commit-without-verification.py"),
                     py("block-git-commit-protected-changes.py"),
                     py("block-nixos-rebuild-protected-changes.py"),
                 ]},
@@ -102,6 +103,7 @@ def build_windows_config():
                 {"matcher": "Bash", "hooks": [
                     py("block-git-add-force-staging.py"),
                     py("block-git-commit-prohibited-keywords.py"),
+                    py("block-commit-without-verification.py"),
                 ]},
             ],
             "PostToolUse": [
