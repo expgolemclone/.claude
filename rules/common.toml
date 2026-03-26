@@ -1,7 +1,6 @@
-[paths]
-centralized_config = true           # パス定数はプロジェクトの設定ファイルに集約
-hardcoded_paths_prohibited = true   # 各モジュールでのパスハードコード禁止
-
 [code_organization]
 extract_shared_logic = true            # 共通処理は専用モジュールに切り出す
 inline_duplication_prohibited = true   # 同一ロジックの複数箇所へのコピペ禁止
+
+[paths]
+hardcoded_paths_prohibited = true      # 絶対パスのハードコード禁止（py/go/rs対象）

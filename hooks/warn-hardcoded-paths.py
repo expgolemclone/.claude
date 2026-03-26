@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PostToolUse hook (Edit|Write): warn when .py files contain hardcoded absolute paths.
+"""PostToolUse hook (Edit|Write): warn when .py/.go/.rs files contain hardcoded absolute paths.
 
 rules/common.toml の hardcoded_paths_prohibited = true を実行時に検証する。
 ハードコードされた絶対パスを検出したら stop で警告し、パス定数の集約を促す。
@@ -16,23 +16,38 @@ _UNIX_PREFIXES = ("/home/", "/usr/", "/etc/", "/var/", "/opt/", "/tmp/")
 # Windowsドライブレター（C:\, D:/, etc.）
 _WIN_DRIVE_RE = re.compile(r"[A-Za-z]:[/\\]")
 
-# 除外パターン
+# 対象拡張子
+_TARGET_EXTENSIONS = (".py", ".go", ".rs")
+
+# 言語別除外パターン
 _SHEBANG_RE = re.compile(r"^#!")
-_COMMENT_RE = re.compile(r"^\s*#")
-_IMPORT_RE = re.compile(r"^\s*(import|from)\s+")
-_DYNAMIC_PATH_RE = re.compile(r"__file__|Path\s*\(\s*__file__\s*\)")
+
+_EXCLUDE_PATTERNS: dict[str, list[re.Pattern[str]]] = {
+    ".py": [
+        re.compile(r"^\s*#"),                          # コメント
+        re.compile(r"^\s*(import|from)\s+"),            # import
+        re.compile(r"__file__|Path\s*\(\s*__file__\s*\)"),  # 動的パス
+    ],
+    ".go": [
+        re.compile(r"^\s*//"),                          # コメント
+        re.compile(r'^\s*import\s'),                    # import
+        re.compile(r"os\.Getenv|filepath\."),           # 動的パス
+    ],
+    ".rs": [
+        re.compile(r"^\s*//"),                          # コメント
+        re.compile(r"^\s*(use|mod)\s+"),                # use/mod
+        re.compile(r"env::var|env!|std::env"),          # 動的パス
+    ],
+}
 
 
-def _is_excluded_line(line: str) -> bool:
+def _is_excluded_line(line: str, ext: str) -> bool:
     """除外すべき行かどうかを判定する。"""
     if _SHEBANG_RE.match(line):
         return True
-    if _COMMENT_RE.match(line):
-        return True
-    if _IMPORT_RE.match(line):
-        return True
-    if _DYNAMIC_PATH_RE.search(line):
-        return True
+    for pattern in _EXCLUDE_PATTERNS.get(ext, []):
+        if pattern.search(line):
+            return True
     return False
 
 
@@ -54,11 +69,12 @@ def scan_file(file_path: str) -> list[tuple[int, str, str]]:
     Returns:
         list of (line_number, line_content, detected_path)
     """
+    ext = os.path.splitext(file_path)[1]
     results: list[tuple[int, str, str]] = []
     try:
         with open(file_path, encoding="utf-8") as f:
             for i, line in enumerate(f, start=1):
-                if _is_excluded_line(line):
+                if _is_excluded_line(line, ext):
                     continue
                 path = _has_hardcoded_path(line)
                 if path:
@@ -73,7 +89,7 @@ def main() -> None:
     tool_input = data.get("tool_input", {})
     file_path = tool_input.get("file_path", "") or tool_input.get("path", "")
 
-    if not file_path.endswith(".py"):
+    if not file_path.endswith(_TARGET_EXTENSIONS):
         return
 
     hits = scan_file(file_path)
