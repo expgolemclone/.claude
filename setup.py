@@ -60,6 +60,7 @@ def build_linux_config():
                 {"matcher": "Edit|Write", "hooks": [
                     py("block-non-python-hook-scripts.py"),
                     py("post-cargo-clippy-on-rs-edit.py", timeout=120),
+                    py("warn-hardcoded-paths.py"),
                 ]},
             ],
             "Stop": [
@@ -111,6 +112,7 @@ def build_windows_config():
                     py("block-non-python-hook-scripts.py"),
                     py("post-cargo-clippy-on-rs-edit.py", timeout=120),
                     py("check-hotstring-conflicts.py"),
+                    py("warn-hardcoded-paths.py"),
                 ]},
             ],
             "Stop": [
