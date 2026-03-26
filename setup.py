@@ -41,6 +41,8 @@ def build_linux_config():
                 {"matcher": "Edit|Write", "hooks": [
                     py("block-settings-json-direct-edit.py"),
                     py("block-protected-nix-config.py"),
+                ]},
+                {"matcher": "Write|Bash", "hooks": [
                     py("block-platform-specific-scripts.py"),
                 ]},
                 {"matcher": "Bash", "hooks": [
@@ -93,6 +95,8 @@ def build_windows_config():
                 ]},
                 {"matcher": "Edit|Write", "hooks": [
                     py("block-settings-json-direct-edit.py"),
+                ]},
+                {"matcher": "Write|Bash", "hooks": [
                     py("block-platform-specific-scripts.py"),
                 ]},
                 {"matcher": "Bash", "hooks": [
