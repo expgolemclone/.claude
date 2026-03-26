@@ -2,8 +2,12 @@
 """PreToolUse hook: block git commit if code hasn't been executed since last file edit."""
 
 import json
+import os
 import re
 import sys
+
+# 検証対象とする拡張子（実行可能なコードファイルのみ）
+_CODE_EXTENSIONS = {".py", ".go", ".rs", ".c", ".cpp", ".cc"}
 
 # コード実行として認めるパターン（ホワイトリスト）
 _EXEC_PATTERNS = [
@@ -51,6 +55,16 @@ def _looks_like_git_commit(command: str) -> bool:
     return False
 
 
+def _cmd_references_file(cmd: str, file_path: str) -> bool:
+    """コマンド文字列が指定ファイルを参照しているか判定."""
+    if file_path in cmd:
+        return True
+    basename = file_path.rsplit("/", 1)[-1]
+    if basename and basename in cmd:
+        return True
+    return False
+
+
 def _block(reason: str) -> None:
     json.dump({"decision": "block", "reason": reason}, sys.stdout)
 
@@ -74,8 +88,8 @@ def main() -> None:
         _block("トランスクリプトが読み取れないため、コード実行の検証ができません。")
         return
 
-    last_edit_seq = -1
-    last_run_seq = -1
+    edited_files: dict[str, int] = {}  # {file_path: last_edit_seq}
+    verified: set[str] = set()
     seq = 0
 
     for line in lines:
@@ -96,18 +110,24 @@ def main() -> None:
             inp = block.get("input", {})
 
             if name in ("Edit", "Write"):
-                last_edit_seq = seq
+                fp = inp.get("file_path", "") or inp.get("path", "")
+                if fp and os.path.splitext(fp)[1] in _CODE_EXTENSIONS:
+                    edited_files[fp] = seq
             elif name == "Bash":
                 cmd = inp.get("command", "")
                 if is_code_execution(cmd):
-                    last_run_seq = seq
+                    for fp, edit_seq in edited_files.items():
+                        if edit_seq < seq and _cmd_references_file(cmd, fp):
+                            verified.add(fp)
             seq += 1
 
-    if last_edit_seq >= 0 and last_run_seq <= last_edit_seq:
+    unverified = set(edited_files) - verified
+    if unverified:
+        listing = "\n".join(f"  - {f}" for f in sorted(unverified))
         _block(
-            "コミット前にコードを実行して動作確認を行ってください。\n"
-            "Edit/Write 後にコード実行（uv run/go run/cargo run/./binary）が確認できません。\n"
-            "pytest 等のテストフレームワークはコード実行に含まれません。"
+            "コミット前に編集したコードをそれぞれ実行して動作確認を行ってください。\n"
+            f"以下のファイルの実行が確認できません:\n{listing}\n"
+            "コード実行コマンドにファイルパスまたはファイル名を含めてください。"
         )
 
 
