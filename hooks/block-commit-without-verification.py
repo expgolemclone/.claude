@@ -74,10 +74,31 @@ _SUGGESTED_CMD: dict[str, str] = {
     ".cc": "g++ {path} -o a.out && ./a.out",
 }
 
+# テスト実行として認めるパターン（テストファイルに対してのみ有効）
+_TEST_EXEC_PATTERNS = [
+    re.compile(r"\buv\s+run\s+(pytest|py\.test)\b"),
+    re.compile(r"\buv\s+run\s+.*-m\s+(pytest|unittest)\b"),
+    re.compile(r"\bgo\s+test\b"),
+    re.compile(r"\bcargo\s+test\b"),
+]
+
+
+def _is_test_file(file_path: str) -> bool:
+    """テストファイルかどうかを判定."""
+    basename = os.path.basename(file_path)
+    return basename.startswith("test_") or basename.endswith("_test.py")
+
+
+def _is_test_execution(cmd: str) -> bool:
+    """テストフレームワーク経由の実行かどうかを判定."""
+    return any(p.search(cmd) for p in _TEST_EXEC_PATTERNS)
+
 
 def _suggest_command(file_path: str) -> str:
-    """拡張子に応じた実行コマンド例を返す."""
+    """拡張子・ファイル種別に応じた実行コマンド例を返す."""
     ext = os.path.splitext(file_path)[1]
+    if ext == ".py" and _is_test_file(file_path):
+        return f"uv run pytest {file_path}"
     template = _SUGGESTED_CMD.get(ext, "")
     return template.format(path=file_path) if template else file_path
 
@@ -135,6 +156,10 @@ def main() -> None:
                 if is_code_execution(cmd):
                     for fp, edit_seq in edited_files.items():
                         if edit_seq < seq and _cmd_references_file(cmd, fp):
+                            verified.add(fp)
+                elif _is_test_execution(cmd):
+                    for fp, edit_seq in edited_files.items():
+                        if edit_seq < seq and _is_test_file(fp) and _cmd_references_file(cmd, fp):
                             verified.add(fp)
             seq += 1
 

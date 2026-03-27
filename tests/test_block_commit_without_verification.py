@@ -17,6 +17,8 @@ is_code_execution = mod.is_code_execution
 _looks_like_git_commit = mod._looks_like_git_commit
 _cmd_references_file = mod._cmd_references_file
 _suggest_command = mod._suggest_command
+_is_test_file = mod._is_test_file
+_is_test_execution = mod._is_test_execution
 main = mod.main
 
 
@@ -132,9 +134,54 @@ class TestCmdReferencesFile:
 # _suggest_command
 # ---------------------------------------------------------------------------
 
+class TestIsTestFile:
+    def test_test_prefix(self):
+        assert _is_test_file("/src/tests/test_app.py") is True
+
+    def test_test_suffix(self):
+        assert _is_test_file("/src/app_test.py") is True
+
+    def test_regular_file(self):
+        assert _is_test_file("/src/app.py") is False
+
+    def test_conftest(self):
+        assert _is_test_file("/src/tests/conftest.py") is False
+
+
+# ---------------------------------------------------------------------------
+# _is_test_execution
+# ---------------------------------------------------------------------------
+
+class TestIsTestExecution:
+    def test_uv_run_pytest(self):
+        assert _is_test_execution("uv run pytest tests/") is True
+
+    def test_uv_run_python_m_pytest(self):
+        assert _is_test_execution("uv run python3 -m pytest tests/") is True
+
+    def test_go_test(self):
+        assert _is_test_execution("go test ./...") is True
+
+    def test_cargo_test(self):
+        assert _is_test_execution("cargo test") is True
+
+    def test_uv_run_app(self):
+        assert _is_test_execution("uv run python3 app.py") is False
+
+    def test_ls(self):
+        assert _is_test_execution("ls -la") is False
+
+
+# ---------------------------------------------------------------------------
+# _suggest_command
+# ---------------------------------------------------------------------------
+
 class TestSuggestCommand:
     def test_python(self):
         assert _suggest_command("/src/app.py") == "uv run python3 /src/app.py"
+
+    def test_python_test_file(self):
+        assert _suggest_command("/src/tests/test_app.py") == "uv run pytest /src/tests/test_app.py"
 
     def test_go(self):
         assert _suggest_command("/src/main.go") == "go run /src/main.go"
@@ -167,6 +214,17 @@ class TestBlockMessageSuggestion:
         result = run_main(payload)
         parsed = json.loads(result)
         assert "uv run python3 /src/app.py" in parsed["reason"]
+
+    def test_test_file_suggestion_in_message(self, tmp_path):
+        entries = [make_entry([make_edit_block("/src/tests/test_app.py")])]
+        tp = write_transcript(tmp_path, entries)
+        payload = {
+            "tool_input": {"command": "git commit -m 'test: add tests'"},
+            "transcript_path": str(tp),
+        }
+        result = run_main(payload)
+        parsed = json.loads(result)
+        assert "uv run pytest /src/tests/test_app.py" in parsed["reason"]
 
     def test_go_suggestion_in_message(self, tmp_path):
         entries = [make_entry([make_edit_block("/src/main.go")])]
@@ -255,6 +313,33 @@ class TestAllow:
         }
         result = run_main(payload)
         assert result == ""
+
+    def test_test_file_edit_then_pytest(self, tmp_path):
+        entries = [
+            make_entry([make_edit_block("/src/tests/test_app.py")]),
+            make_entry([make_bash_block("uv run pytest /src/tests/test_app.py")]),
+        ]
+        tp = write_transcript(tmp_path, entries)
+        payload = {
+            "tool_input": {"command": "git commit -m 'test: add tests'"},
+            "transcript_path": str(tp),
+        }
+        result = run_main(payload)
+        assert result == ""
+
+    def test_pytest_does_not_verify_non_test_file(self, tmp_path):
+        entries = [
+            make_entry([make_edit_block("/src/app.py")]),
+            make_entry([make_bash_block("uv run pytest /src/app.py")]),
+        ]
+        tp = write_transcript(tmp_path, entries)
+        payload = {
+            "tool_input": {"command": "git commit -m 'feat: add app'"},
+            "transcript_path": str(tp),
+        }
+        result = run_main(payload)
+        parsed = json.loads(result)
+        assert parsed["decision"] == "block"
 
     def test_no_edits_in_transcript(self, tmp_path):
         entries = [
