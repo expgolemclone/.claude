@@ -16,6 +16,7 @@ mod = importlib.import_module("block-commit-without-verification")
 is_code_execution = mod.is_code_execution
 _looks_like_git_commit = mod._looks_like_git_commit
 _cmd_references_file = mod._cmd_references_file
+_suggest_command = mod._suggest_command
 main = mod.main
 
 
@@ -125,6 +126,58 @@ class TestCmdReferencesFile:
 
     def test_no_match(self):
         assert _cmd_references_file("uv run other.py", "/home/user/app.py") is False
+
+
+# ---------------------------------------------------------------------------
+# _suggest_command
+# ---------------------------------------------------------------------------
+
+class TestSuggestCommand:
+    def test_python(self):
+        assert _suggest_command("/src/app.py") == "uv run python3 /src/app.py"
+
+    def test_go(self):
+        assert _suggest_command("/src/main.go") == "go run /src/main.go"
+
+    def test_rust(self):
+        assert _suggest_command("/src/main.rs") == "cargo run"
+
+    def test_c(self):
+        assert _suggest_command("/src/app.c") == "gcc /src/app.c -o a.out && ./a.out"
+
+    def test_cpp(self):
+        assert _suggest_command("/src/app.cpp") == "g++ /src/app.cpp -o a.out && ./a.out"
+
+    def test_cc(self):
+        assert _suggest_command("/src/app.cc") == "g++ /src/app.cc -o a.out && ./a.out"
+
+
+# ---------------------------------------------------------------------------
+# main — block message contains suggested commands
+# ---------------------------------------------------------------------------
+
+class TestBlockMessageSuggestion:
+    def test_python_suggestion_in_message(self, tmp_path):
+        entries = [make_entry([make_edit_block("/src/app.py")])]
+        tp = write_transcript(tmp_path, entries)
+        payload = {
+            "tool_input": {"command": "git commit -m 'feat: add app'"},
+            "transcript_path": str(tp),
+        }
+        result = run_main(payload)
+        parsed = json.loads(result)
+        assert "uv run python3 /src/app.py" in parsed["reason"]
+
+    def test_go_suggestion_in_message(self, tmp_path):
+        entries = [make_entry([make_edit_block("/src/main.go")])]
+        tp = write_transcript(tmp_path, entries)
+        payload = {
+            "tool_input": {"command": "git commit -m 'feat: add main'"},
+            "transcript_path": str(tp),
+        }
+        result = run_main(payload)
+        parsed = json.loads(result)
+        assert "go run /src/main.go" in parsed["reason"]
 
 
 # ---------------------------------------------------------------------------

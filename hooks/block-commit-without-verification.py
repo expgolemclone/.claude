@@ -65,6 +65,23 @@ def _cmd_references_file(cmd: str, file_path: str) -> bool:
     return False
 
 
+_SUGGESTED_CMD: dict[str, str] = {
+    ".py": "uv run python3 {path}",
+    ".go": "go run {path}",
+    ".rs": "cargo run",
+    ".c": "gcc {path} -o a.out && ./a.out",
+    ".cpp": "g++ {path} -o a.out && ./a.out",
+    ".cc": "g++ {path} -o a.out && ./a.out",
+}
+
+
+def _suggest_command(file_path: str) -> str:
+    """拡張子に応じた実行コマンド例を返す."""
+    ext = os.path.splitext(file_path)[1]
+    template = _SUGGESTED_CMD.get(ext, "")
+    return template.format(path=file_path) if template else file_path
+
+
 def _block(reason: str) -> None:
     json.dump({"decision": "block", "reason": reason}, sys.stdout)
 
@@ -123,11 +140,12 @@ def main() -> None:
 
     unverified = set(edited_files) - verified
     if unverified:
-        listing = "\n".join(f"  - {f}" for f in sorted(unverified))
+        listing = "\n".join(
+            f"  - {f} → {_suggest_command(f)}" for f in sorted(unverified)
+        )
         _block(
             "コミット前に編集したコードをそれぞれ実行して動作確認を行ってください。\n"
-            f"以下のファイルの実行が確認できません:\n{listing}\n"
-            "コード実行コマンドにファイルパスまたはファイル名を含めてください。"
+            f"以下のファイルの実行が確認できません:\n{listing}"
         )
 
 
