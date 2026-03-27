@@ -70,8 +70,12 @@ def make_failure_result(args=None, stdout="", stderr="error: something wrong\n",
 # ---------------------------------------------------------------------------
 
 class TestIsCodeExecution:
-    def test_uv_run(self):
-        assert is_code_execution("uv run app.py") is True
+    # --- マッチするケース ---
+    def test_uv_run_python3(self):
+        assert is_code_execution("uv run python3 app.py") is True
+
+    def test_uv_run_python(self):
+        assert is_code_execution("uv run python app.py") is True
 
     def test_go_run(self):
         assert is_code_execution("go run main.go") is True
@@ -82,29 +86,40 @@ class TestIsCodeExecution:
     def test_dot_slash_binary(self):
         assert is_code_execution("./build/app") is True
 
-    def test_uv_run_pytest_excluded(self):
-        assert is_code_execution("uv run pytest") is False
-
-    def test_cargo_test_excluded(self):
-        assert is_code_execution("cargo test") is False
-
-    def test_cargo_clippy_excluded(self):
-        assert is_code_execution("cargo clippy") is False
-
+    # --- 除外パターン ---
     def test_uv_run_python_c_excluded(self):
         assert is_code_execution('uv run python3 -c "print(1)"') is False
 
-    def test_no_match(self):
-        assert is_code_execution("ls -la") is False
+    def test_uv_run_python_m_pytest_excluded(self):
+        assert is_code_execution("uv run python3 -m pytest tests/") is False
 
-    def test_go_test_excluded(self):
+    # --- _EXEC_PATTERNS にマッチしない ---
+    def test_uv_run_ruff_not_matched(self):
+        assert is_code_execution("uv run ruff check file.py") is False
+
+    def test_uv_run_mypy_not_matched(self):
+        assert is_code_execution("uv run mypy file.py") is False
+
+    def test_uv_run_black_not_matched(self):
+        assert is_code_execution("uv run black file.py") is False
+
+    def test_uv_run_pytest_not_matched(self):
+        assert is_code_execution("uv run pytest") is False
+
+    def test_uv_run_echo_not_matched(self):
+        assert is_code_execution("uv run echo hello") is False
+
+    def test_cargo_test_not_matched(self):
+        assert is_code_execution("cargo test") is False
+
+    def test_cargo_clippy_not_matched(self):
+        assert is_code_execution("cargo clippy") is False
+
+    def test_go_test_not_matched(self):
         assert is_code_execution("go test ./...") is False
 
-    def test_cargo_bench_excluded(self):
-        assert is_code_execution("cargo bench") is False
-
-    def test_uv_run_echo_excluded(self):
-        assert is_code_execution("uv run echo hello") is False
+    def test_no_match(self):
+        assert is_code_execution("ls -la") is False
 
 
 # ---------------------------------------------------------------------------
@@ -321,7 +336,7 @@ class TestAllow:
     def test_edit_then_execute(self, tmp_path):
         entries = [
             make_entry([make_edit_block("/src/app.py")]),
-            make_entry([make_bash_block("uv run /src/app.py")]),
+            make_entry([make_bash_block("uv run python3 /src/app.py")]),
         ]
         tp = write_transcript(tmp_path, entries)
         payload = {

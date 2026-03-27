@@ -24,24 +24,17 @@ _SKIP_DIR_NAMES = {"hooks"}
 
 # コード実行として認めるパターン（ホワイトリスト）
 _EXEC_PATTERNS = [
-    re.compile(r"\buv\s+run\b"),       # uv run (Python)
-    re.compile(r"\bgo\s+run\b"),       # go run
-    re.compile(r"\bcargo\s+run\b"),    # cargo run
-    re.compile(r"\./[\w./-]+"),        # ./binary (C/C++ compiled)
+    re.compile(r"\buv\s+run\s+python3?\b"),  # uv run python / uv run python3
+    re.compile(r"\bgo\s+run\b"),              # go run
+    re.compile(r"\bcargo\s+run\b"),           # cargo run
+    re.compile(r"\./\w[\w./-]*"),              # ./binary (C/C++ compiled)
 ]
 
-# テストフレームワーク等の除外パターン
+# 上記にマッチしても実行とみなさない除外パターン
 _EXCLUDE_PATTERNS = [
-    re.compile(r"\buv\s+run\s+(pytest|py\.test)\b"),
-    re.compile(r"\buv\s+run\s+.*-m\s+(pytest|unittest)\b"),
-    re.compile(r"\bgo\s+test\b"),
-    re.compile(r"\bcargo\s+(test|clippy|check|bench)\b"),
-    # インライン実行（実質検証なし）
-    re.compile(r"\buv\s+run\s+python3?\s+-c\b"),
-    # no-op コマンド
-    re.compile(r"\buv\s+run\s+(true|false|echo|cat|ls|pwd|:|which|type)\b"),
-    # ./trivial
-    re.compile(r"\./?(true|false|echo)\b"),
+    re.compile(r"\buv\s+run\s+python3?\s+-c\b"),                      # インライン実行
+    re.compile(r"\buv\s+run\s+python3?\s+-m\s+(pytest|unittest)\b"),  # テストフレームワーク
+    re.compile(r"\./?(true|false|echo)\b"),                            # trivial
 ]
 
 # テスト実行として認めるパターン（テストファイルに対してのみ有効）
