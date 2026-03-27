@@ -3,7 +3,6 @@
 
 import json
 import platform
-import shutil
 import sys
 from pathlib import Path
 
@@ -138,11 +137,6 @@ def main():
     else:
         print(f"Unsupported OS: {system}", file=sys.stderr)
         sys.exit(1)
-
-    if TARGET.exists():
-        backup = TARGET.with_suffix(".json.bak")
-        shutil.copy2(TARGET, backup)
-        print(f"Backed up: {TARGET} -> {backup}")
 
     TARGET.write_text(json.dumps(config, indent=2) + "\n")
     print(f"Generated: {TARGET}")
