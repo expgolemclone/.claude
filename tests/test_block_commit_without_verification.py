@@ -456,6 +456,23 @@ class TestAutoExecution:
         result = run_main(payload)
         assert result == ""
 
+    def test_cached_failure_still_blocks(self, tmp_path):
+        """キャッシュ済みでもエラーがあれば2回目もblockする."""
+        entries = [make_entry([make_edit_block("/src/app.py")])]
+        tp = write_transcript(tmp_path, entries)
+        payload = {
+            "tool_input": {"command": "git commit -m 'feat: add app'"},
+            "transcript_path": str(tp),
+        }
+        # 1回目: 実行失敗→block
+        with mock.patch("subprocess.run", return_value=make_failure_result()):
+            run_main(payload)
+        # 2回目: キャッシュヒットだがエラーなのでblock
+        result = run_main(payload)
+        parsed = json.loads(result)
+        assert parsed["decision"] == "block"
+        assert "FAILED" in parsed["reason"]
+
     def test_re_edit_invalidates_cache(self, tmp_path):
         """コード再編集でキャッシュが無効化され再実行される."""
         entries_v1 = [make_entry([make_edit_block("/src/app.py")])]

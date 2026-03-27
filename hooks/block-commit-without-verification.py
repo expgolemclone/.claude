@@ -304,7 +304,20 @@ def main() -> None:
         need_exec.add(fp)
 
     if not need_exec:
-        return  # 全てキャッシュ済み → approve
+        # キャッシュ済みでもエラーがあればblock
+        cached_failures = [
+            (fp, cache[fp].get("output", ""))
+            for fp in unverified
+            if cache.get(fp, {}).get("exit_code", 0) != 0
+        ]
+        if cached_failures:
+            listing = "\n".join(
+                f"  [FAILED] {fp}\n" + "\n".join(f"    {l}" for l in out.splitlines())
+                for fp, out in sorted(cached_failures)
+            )
+            _block(f"前回の実行でエラーがあります。コードを修正してください:\n{listing}")
+            return
+        return  # 全てキャッシュ済み・全成功 → approve
 
     # 並列実行
     with concurrent.futures.ThreadPoolExecutor() as executor:
