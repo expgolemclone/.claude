@@ -3,6 +3,7 @@
 import importlib
 import io
 import json
+import subprocess
 import sys
 from pathlib import Path
 from unittest import mock
@@ -16,9 +17,13 @@ mod = importlib.import_module("block-commit-without-verification")
 is_code_execution = mod.is_code_execution
 _looks_like_git_commit = mod._looks_like_git_commit
 _cmd_references_file = mod._cmd_references_file
-_suggest_command = mod._suggest_command
 _is_test_file = mod._is_test_file
 _is_test_execution = mod._is_test_execution
+_build_exec_plan = mod._build_exec_plan
+_execute_file = mod._execute_file
+_load_cache = mod._load_cache
+_save_cache = mod._save_cache
+_format_results = mod._format_results
 main = mod.main
 
 
@@ -50,6 +55,14 @@ def run_main(stdin_data: dict) -> str:
         with mock.patch("sys.stdout", out):
             main()
         return out.getvalue()
+
+
+def make_success_result(args=None, stdout="ok\n", stderr=""):
+    return subprocess.CompletedProcess(args=args or [], returncode=0, stdout=stdout, stderr=stderr)
+
+
+def make_failure_result(args=None, stdout="", stderr="error: something wrong\n", returncode=1):
+    return subprocess.CompletedProcess(args=args or [], returncode=returncode, stdout=stdout, stderr=stderr)
 
 
 # ---------------------------------------------------------------------------
@@ -131,7 +144,7 @@ class TestCmdReferencesFile:
 
 
 # ---------------------------------------------------------------------------
-# _suggest_command
+# _is_test_file / _is_test_execution
 # ---------------------------------------------------------------------------
 
 class TestIsTestFile:
@@ -147,10 +160,6 @@ class TestIsTestFile:
     def test_conftest(self):
         assert _is_test_file("/src/tests/conftest.py") is False
 
-
-# ---------------------------------------------------------------------------
-# _is_test_execution
-# ---------------------------------------------------------------------------
 
 class TestIsTestExecution:
     def test_uv_run_pytest(self):
@@ -173,106 +182,126 @@ class TestIsTestExecution:
 
 
 # ---------------------------------------------------------------------------
-# _suggest_command
+# _build_exec_plan
 # ---------------------------------------------------------------------------
 
-class TestSuggestCommand:
+class TestBuildExecPlan:
     def test_python(self):
-        assert _suggest_command("/src/app.py") == "uv run python3 /src/app.py"
+        plan = _build_exec_plan("/src/app.py")
+        assert plan.steps == [["uv", "run", "python3", "/src/app.py"]]
+        assert plan.tmp_file is None
 
-    def test_python_test_file(self):
-        assert _suggest_command("/src/tests/test_app.py") == "uv run pytest /src/tests/test_app.py"
+    def test_python_test(self):
+        plan = _build_exec_plan("/src/tests/test_app.py")
+        assert plan.steps == [["uv", "run", "pytest", "/src/tests/test_app.py"]]
 
     def test_go(self):
-        assert _suggest_command("/src/main.go") == "go run /src/main.go"
+        plan = _build_exec_plan("/src/main.go")
+        assert plan.steps == [["go", "run", "/src/main.go"]]
 
-    def test_rust(self):
-        assert _suggest_command("/src/main.rs") == "cargo run"
+    def test_rust(self, tmp_path):
+        (tmp_path / "Cargo.toml").touch()
+        rs_file = str(tmp_path / "src" / "main.rs")
+        plan = _build_exec_plan(rs_file)
+        assert plan.steps == [["cargo", "run"]]
+        assert plan.cwd == str(tmp_path)
 
     def test_c(self):
-        assert _suggest_command("/src/app.c") == "gcc /src/app.c -o a.out && ./a.out"
+        plan = _build_exec_plan("/src/app.c")
+        assert len(plan.steps) == 2
+        assert plan.steps[0][0] == "gcc"
+        assert plan.tmp_file is not None
 
     def test_cpp(self):
-        assert _suggest_command("/src/app.cpp") == "g++ /src/app.cpp -o a.out && ./a.out"
+        plan = _build_exec_plan("/src/app.cpp")
+        assert plan.steps[0][0] == "g++"
 
-    def test_cc(self):
-        assert _suggest_command("/src/app.cc") == "g++ /src/app.cc -o a.out && ./a.out"
-
-
-# ---------------------------------------------------------------------------
-# main — block message contains suggested commands
-# ---------------------------------------------------------------------------
-
-class TestBlockMessageSuggestion:
-    def test_python_suggestion_in_message(self, tmp_path):
-        entries = [make_entry([make_edit_block("/src/app.py")])]
-        tp = write_transcript(tmp_path, entries)
-        payload = {
-            "tool_input": {"command": "git commit -m 'feat: add app'"},
-            "transcript_path": str(tp),
-        }
-        result = run_main(payload)
-        parsed = json.loads(result)
-        assert "uv run python3 /src/app.py" in parsed["reason"]
-
-    def test_test_file_suggestion_in_message(self, tmp_path):
-        entries = [make_entry([make_edit_block("/src/tests/test_app.py")])]
-        tp = write_transcript(tmp_path, entries)
-        payload = {
-            "tool_input": {"command": "git commit -m 'test: add tests'"},
-            "transcript_path": str(tp),
-        }
-        result = run_main(payload)
-        parsed = json.loads(result)
-        assert "uv run pytest /src/tests/test_app.py" in parsed["reason"]
-
-    def test_go_suggestion_in_message(self, tmp_path):
-        entries = [make_entry([make_edit_block("/src/main.go")])]
-        tp = write_transcript(tmp_path, entries)
-        payload = {
-            "tool_input": {"command": "git commit -m 'feat: add main'"},
-            "transcript_path": str(tp),
-        }
-        result = run_main(payload)
-        parsed = json.loads(result)
-        assert "go run /src/main.go" in parsed["reason"]
+    def test_unknown_ext(self):
+        plan = _build_exec_plan("/src/readme.md")
+        assert plan.steps == []
 
 
 # ---------------------------------------------------------------------------
-# main — block cases
+# _execute_file
 # ---------------------------------------------------------------------------
 
-class TestBlock:
-    def test_edit_without_execution(self, tmp_path):
-        entries = [
-            make_entry([make_edit_block("/src/app.py")]),
-        ]
-        tp = write_transcript(tmp_path, entries)
-        payload = {
-            "tool_input": {"command": "git commit -m 'feat: add app'"},
-            "transcript_path": str(tp),
-        }
-        result = run_main(payload)
-        parsed = json.loads(result)
-        assert parsed["decision"] == "block"
+class TestExecuteFile:
+    def test_success(self):
+        with mock.patch("subprocess.run", return_value=make_success_result()):
+            fp, code, output = _execute_file("/src/app.py")
+        assert fp == "/src/app.py"
+        assert code == 0
+        assert "ok" in output
 
-    def test_empty_transcript_path(self):
-        payload = {
-            "tool_input": {"command": "git commit -m 'x'"},
-            "transcript_path": "",
-        }
-        result = run_main(payload)
-        parsed = json.loads(result)
-        assert parsed["decision"] == "block"
+    def test_failure(self):
+        with mock.patch("subprocess.run", return_value=make_failure_result()):
+            fp, code, output = _execute_file("/src/app.py")
+        assert code == 1
+        assert "error" in output
 
-    def test_unreadable_transcript(self):
-        payload = {
-            "tool_input": {"command": "git commit -m 'x'"},
-            "transcript_path": "/nonexistent/path/transcript.jsonl",
-        }
-        result = run_main(payload)
-        parsed = json.loads(result)
-        assert parsed["decision"] == "block"
+    def test_timeout(self):
+        with mock.patch("subprocess.run", side_effect=subprocess.TimeoutExpired("cmd", 30)):
+            fp, code, output = _execute_file("/src/app.py")
+        assert code == 1
+        assert "timeout" in output
+
+    def test_command_not_found(self):
+        err = FileNotFoundError()
+        err.filename = "uv"
+        with mock.patch("subprocess.run", side_effect=err):
+            fp, code, output = _execute_file("/src/app.py")
+        assert code == 1
+        assert "uv" in output
+
+    def test_no_steps(self):
+        fp, code, output = _execute_file("/src/readme.md")
+        assert code == 0
+        assert output == ""
+
+
+# ---------------------------------------------------------------------------
+# Cache
+# ---------------------------------------------------------------------------
+
+class TestCache:
+    def test_load_missing(self, tmp_path):
+        tp = str(tmp_path / "transcript.jsonl")
+        assert _load_cache(tp) == {}
+
+    def test_save_and_load(self, tmp_path):
+        tp = str(tmp_path / "transcript.jsonl")
+        results = [("/src/app.py", 0, "ok")]
+        edited = {"/src/app.py": 5}
+        _save_cache(tp, {}, results, edited)
+        cache = _load_cache(tp)
+        assert cache["/src/app.py"]["edit_seq"] == 5
+        assert cache["/src/app.py"]["exit_code"] == 0
+
+    def test_load_corrupt(self, tmp_path):
+        cache_file = tmp_path / "verification-cache.json"
+        cache_file.write_text("not json")
+        tp = str(tmp_path / "transcript.jsonl")
+        assert _load_cache(tp) == {}
+
+
+# ---------------------------------------------------------------------------
+# _format_results
+# ---------------------------------------------------------------------------
+
+class TestFormatResults:
+    def test_success_format(self):
+        text = _format_results([("/src/app.py", 0, "hello")])
+        assert "[OK]" in text
+        assert "hello" in text
+
+    def test_failure_format(self):
+        text = _format_results([("/src/app.py", 1, "error msg")])
+        assert "FAILED" in text
+        assert "exit 1" in text
+
+    def test_no_output(self):
+        text = _format_results([("/src/app.py", 0, "")])
+        assert "(no output)" in text
 
 
 # ---------------------------------------------------------------------------
@@ -337,9 +366,23 @@ class TestAllow:
             "tool_input": {"command": "git commit -m 'feat: add app'"},
             "transcript_path": str(tp),
         }
-        result = run_main(payload)
+        with mock.patch("subprocess.run", return_value=make_success_result()):
+            result = run_main(payload)
         parsed = json.loads(result)
         assert parsed["decision"] == "block"
+
+    def test_hooks_dir_excluded(self, tmp_path):
+        """hooks/ディレクトリのファイルは検証対象外."""
+        entries = [
+            make_entry([make_edit_block("/home/user/.claude/hooks/my-hook.py")]),
+        ]
+        tp = write_transcript(tmp_path, entries)
+        payload = {
+            "tool_input": {"command": "git commit -m 'feat: hook'"},
+            "transcript_path": str(tp),
+        }
+        result = run_main(payload)
+        assert result == ""
 
     def test_no_edits_in_transcript(self, tmp_path):
         entries = [
@@ -352,3 +395,132 @@ class TestAllow:
         }
         result = run_main(payload)
         assert result == ""
+
+
+# ---------------------------------------------------------------------------
+# main — block cases
+# ---------------------------------------------------------------------------
+
+class TestBlock:
+    def test_empty_transcript_path(self):
+        payload = {
+            "tool_input": {"command": "git commit -m 'x'"},
+            "transcript_path": "",
+        }
+        result = run_main(payload)
+        parsed = json.loads(result)
+        assert parsed["decision"] == "block"
+
+    def test_unreadable_transcript(self):
+        payload = {
+            "tool_input": {"command": "git commit -m 'x'"},
+            "transcript_path": "/nonexistent/path/transcript.jsonl",
+        }
+        result = run_main(payload)
+        parsed = json.loads(result)
+        assert parsed["decision"] == "block"
+
+
+# ---------------------------------------------------------------------------
+# main — auto-execution flow
+# ---------------------------------------------------------------------------
+
+class TestAutoExecution:
+    def test_first_attempt_runs_and_blocks(self, tmp_path):
+        """初回commitで自動実行し、結果付きでblockする."""
+        entries = [make_entry([make_edit_block("/src/app.py")])]
+        tp = write_transcript(tmp_path, entries)
+        payload = {
+            "tool_input": {"command": "git commit -m 'feat: add app'"},
+            "transcript_path": str(tp),
+        }
+        with mock.patch("subprocess.run", return_value=make_success_result()):
+            result = run_main(payload)
+        parsed = json.loads(result)
+        assert parsed["decision"] == "block"
+        assert "コード検証結果" in parsed["reason"]
+        assert "[OK]" in parsed["reason"]
+
+    def test_second_attempt_cache_hit_approves(self, tmp_path):
+        """2回目のcommitでキャッシュヒットしapproveする."""
+        entries = [make_entry([make_edit_block("/src/app.py")])]
+        tp = write_transcript(tmp_path, entries)
+        payload = {
+            "tool_input": {"command": "git commit -m 'feat: add app'"},
+            "transcript_path": str(tp),
+        }
+        # 1回目: 実行してblock
+        with mock.patch("subprocess.run", return_value=make_success_result()):
+            run_main(payload)
+        # 2回目: キャッシュヒットでapprove
+        result = run_main(payload)
+        assert result == ""
+
+    def test_re_edit_invalidates_cache(self, tmp_path):
+        """コード再編集でキャッシュが無効化され再実行される."""
+        entries_v1 = [make_entry([make_edit_block("/src/app.py")])]
+        tp = write_transcript(tmp_path, entries_v1)
+        payload = {
+            "tool_input": {"command": "git commit -m 'feat: add app'"},
+            "transcript_path": str(tp),
+        }
+        # 1回目: 実行
+        with mock.patch("subprocess.run", return_value=make_success_result()):
+            run_main(payload)
+        # ファイル再編集（新しいエントリ追加でedit_seqが変わる）
+        entries_v2 = [
+            make_entry([make_edit_block("/src/app.py")]),
+            make_entry([make_bash_block("echo hello")]),
+            make_entry([make_edit_block("/src/app.py")]),  # 再編集
+        ]
+        write_transcript(tmp_path, entries_v2)
+        # 2回目: キャッシュ無効→再実行→block
+        with mock.patch("subprocess.run", return_value=make_success_result()):
+            result = run_main(payload)
+        parsed = json.loads(result)
+        assert parsed["decision"] == "block"
+
+    def test_failure_shows_error(self, tmp_path):
+        """実行失敗時にエラー出力がblockメッセージに含まれる."""
+        entries = [make_entry([make_edit_block("/src/app.py")])]
+        tp = write_transcript(tmp_path, entries)
+        payload = {
+            "tool_input": {"command": "git commit -m 'feat: add app'"},
+            "transcript_path": str(tp),
+        }
+        with mock.patch("subprocess.run", return_value=make_failure_result()):
+            result = run_main(payload)
+        parsed = json.loads(result)
+        assert parsed["decision"] == "block"
+        assert "FAILED" in parsed["reason"]
+        assert "error" in parsed["reason"]
+
+    def test_timeout_shows_in_output(self, tmp_path):
+        """タイムアウト時にblockメッセージに表示される."""
+        entries = [make_entry([make_edit_block("/src/app.py")])]
+        tp = write_transcript(tmp_path, entries)
+        payload = {
+            "tool_input": {"command": "git commit -m 'feat: add app'"},
+            "transcript_path": str(tp),
+        }
+        with mock.patch("subprocess.run", side_effect=subprocess.TimeoutExpired("cmd", 30)):
+            result = run_main(payload)
+        parsed = json.loads(result)
+        assert parsed["decision"] == "block"
+        assert "timeout" in parsed["reason"]
+
+    def test_command_not_found(self, tmp_path):
+        """コマンド未発見時にblockメッセージに表示される."""
+        entries = [make_entry([make_edit_block("/src/app.py")])]
+        tp = write_transcript(tmp_path, entries)
+        payload = {
+            "tool_input": {"command": "git commit -m 'feat: add app'"},
+            "transcript_path": str(tp),
+        }
+        err = FileNotFoundError()
+        err.filename = "uv"
+        with mock.patch("subprocess.run", side_effect=err):
+            result = run_main(payload)
+        parsed = json.loads(result)
+        assert parsed["decision"] == "block"
+        assert "uv" in parsed["reason"]

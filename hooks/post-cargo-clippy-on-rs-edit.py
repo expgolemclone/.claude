@@ -6,17 +6,7 @@ import os
 import subprocess
 import sys
 
-
-def find_cargo_root(start: str) -> str | None:
-    """Walk up from start to find directory containing Cargo.toml."""
-    d = os.path.abspath(start)
-    while True:
-        if os.path.isfile(os.path.join(d, "Cargo.toml")):
-            return d
-        parent = os.path.dirname(d)
-        if parent == d:
-            return None
-        d = parent
+from project_root import find_project_root
 
 
 def main() -> None:
@@ -27,7 +17,7 @@ def main() -> None:
     if not file_path or not file_path.endswith(".rs"):
         return
 
-    project_root = find_cargo_root(os.path.dirname(file_path))
+    project_root = find_project_root(os.path.dirname(file_path))
     if not project_root:
         return
 

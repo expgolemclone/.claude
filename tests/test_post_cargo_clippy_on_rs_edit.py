@@ -14,7 +14,6 @@ from tests.conftest import HOOKS_DIR
 
 sys.path.insert(0, str(HOOKS_DIR))
 mod = importlib.import_module("post-cargo-clippy-on-rs-edit")
-find_cargo_root = mod.find_cargo_root
 main = mod.main
 
 
@@ -28,27 +27,6 @@ def run_main(stdin_data: dict) -> str:
         with mock.patch("sys.stdout", out):
             main()
         return out.getvalue()
-
-
-# ---------------------------------------------------------------------------
-# find_cargo_root
-# ---------------------------------------------------------------------------
-
-class TestFindCargoRoot:
-    def test_cargo_toml_in_same_dir(self, tmp_path):
-        (tmp_path / "Cargo.toml").touch()
-        assert find_cargo_root(str(tmp_path)) == str(tmp_path)
-
-    def test_cargo_toml_in_parent(self, tmp_path):
-        (tmp_path / "Cargo.toml").touch()
-        sub = tmp_path / "src"
-        sub.mkdir()
-        assert find_cargo_root(str(sub)) == str(tmp_path)
-
-    def test_no_cargo_toml(self, tmp_path):
-        sub = tmp_path / "isolated"
-        sub.mkdir()
-        assert find_cargo_root(str(sub)) is None
 
 
 # ---------------------------------------------------------------------------
