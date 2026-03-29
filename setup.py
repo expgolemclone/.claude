@@ -31,6 +31,8 @@ def build_linux_config():
             "defaultMode": "bypassPermissions",
             "deny": ["Agent"],
         },
+        "language": "ja",
+        "voiceEnabled": True,
         "skipDangerousModePermissionPrompt": True,
         "hooks": {
             "PreToolUse": [
