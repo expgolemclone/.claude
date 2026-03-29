@@ -17,6 +17,13 @@ def hook(command, timeout=None):
     return h
 
 
+def build_common_config():
+    return {
+        "effortLevel": "max",
+        "skipDangerousModePermissionPrompt": True,
+    }
+
+
 def build_linux_config():
     h = str(Path.home() / ".claude")
 
@@ -27,13 +34,13 @@ def build_linux_config():
         return hook(cmd, timeout)
 
     return {
+        **build_common_config(),
         "permissions": {
             "defaultMode": "bypassPermissions",
             "deny": ["Agent"],
         },
         "language": "ja",
         "voiceEnabled": True,
-        "skipDangerousModePermissionPrompt": True,
         "hooks": {
             "PreToolUse": [
                 {"matcher": "Edit|Write|Bash", "hooks": [
@@ -86,11 +93,11 @@ def build_windows_config():
         return hook(cmd, timeout)
 
     return {
+        **build_common_config(),
         "permissions": {
             "deny": ["Task", "Agent"],
             "defaultMode": "bypassPermissions",
         },
-        "skipDangerousModePermissionPrompt": True,
         "hooks": {
             "PreToolUse": [
                 {"matcher": "Edit|Write|Bash", "hooks": [

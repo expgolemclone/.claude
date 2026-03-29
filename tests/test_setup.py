@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from setup import build_linux_config, build_windows_config
+from setup import build_common_config, build_linux_config, build_windows_config
 from tests.conftest import HOOKS_DIR
 
 
@@ -120,8 +120,8 @@ class TestLinux:
 # ---------------------------------------------------------------------------
 
 class TestWindows:
-    def test_no_effort_level(self, windows):
-        assert "effortLevel" not in windows
+    def test_effort_level_max(self, windows):
+        assert windows["effortLevel"] == "max"
 
     def test_deny_list(self, windows):
         assert windows["permissions"]["deny"] == ["Task", "Agent"]
@@ -153,6 +153,12 @@ class TestCrossCheck:
 
     def test_both_have_block_non_python_hooks(self, linux, windows):
         check_both_have_hook(linux, windows, "block-non-python-hook-scripts.py")
+
+    def test_common_config_included(self, linux, windows):
+        common = build_common_config()
+        for key, value in common.items():
+            assert linux[key] == value, f"Linux missing common key {key}"
+            assert windows[key] == value, f"Windows missing common key {key}"
 
     def test_shared_hooks_present_in_both(self, linux, windows):
         """OS-agnostic hooks must be registered in both configs."""
