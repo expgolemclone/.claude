@@ -19,6 +19,7 @@ def hook(command, timeout=None):
 
 def build_common_config():
     return {
+        "model": "opus",
         "effortLevel": "max",
         "skipDangerousModePermissionPrompt": True,
     }

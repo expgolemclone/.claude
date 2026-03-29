@@ -103,8 +103,6 @@ class TestStructure:
 # ---------------------------------------------------------------------------
 
 class TestLinux:
-    def test_no_model(self, linux):
-        assert "model" not in linux
 
     def test_deny_list(self, linux):
         assert linux["permissions"]["deny"] == ["Agent"]
