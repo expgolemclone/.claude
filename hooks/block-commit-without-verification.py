@@ -6,6 +6,7 @@ with the output for review. On second attempt (cache hit), approves.
 """
 
 import concurrent.futures
+import hashlib
 import json
 import os
 import re
@@ -26,6 +27,7 @@ _SKIP_DIR_NAMES = {"hooks"}
 _EXEC_PATTERNS = [
     re.compile(r"\buv\s+run\s+python3?\b"),  # uv run python / uv run python3
     re.compile(r"\bgo\s+run\b"),              # go run
+    re.compile(r"\bgo\s+build\b"),            # go build
     re.compile(r"\bcargo\s+run\b"),           # cargo run
     re.compile(r"\./\w[\w./-]*"),              # ./binary (C/C++ compiled)
 ]
@@ -81,8 +83,11 @@ def _cmd_references_file(cmd: str, file_path: str) -> bool:
     """コマンド文字列が指定ファイルを参照しているか判定."""
     if file_path in cmd:
         return True
-    basename = file_path.rsplit("/", 1)[-1]
-    if basename and basename in cmd:
+    basename = file_path.replace("\\", "/").rsplit("/", 1)[-1]
+    if basename and re.search(rf"(?:^|\s|[\"']){re.escape(basename)}(?:\s|[\"']|$)", cmd):
+        return True
+    # Go: ./... はプロジェクト全パッケージを対象とするため、全 .go ファイルに一致
+    if file_path.endswith(".go") and "./..." in cmd:
         return True
     return False
 
@@ -105,10 +110,11 @@ def _build_exec_plan(file_path: str) -> ExecPlan:
     if ext == ".py":
         if _is_test_file(file_path):
             return ExecPlan([["uv", "run", "pytest", file_path]], None, None)
-        return ExecPlan([["uv", "run", "python3", file_path]], None, None)
+        return ExecPlan([["uv", "run", "python", file_path]], None, None)
 
     if ext == ".go":
-        return ExecPlan([["go", "run", file_path]], None, None)
+        cwd = find_project_root(os.path.dirname(file_path), "go.mod")
+        return ExecPlan([["go", "build", "./..."]], None, cwd)
 
     if ext == ".rs":
         cwd = find_project_root(os.path.dirname(file_path), "Cargo.toml")
@@ -116,11 +122,31 @@ def _build_exec_plan(file_path: str) -> ExecPlan:
 
     if ext in (".c", ".cpp", ".cc"):
         suffix = ".exe" if sys.platform == "win32" else ""
-        tmp = tempfile.mktemp(suffix=suffix)
+        fd, tmp = tempfile.mkstemp(suffix=suffix)
+        os.close(fd)
         compiler = "gcc" if ext == ".c" else "g++"
         return ExecPlan([[compiler, file_path, "-o", tmp], [tmp]], tmp, None)
 
     return ExecPlan([], None, None)
+
+
+def _refreshed_env() -> dict[str, str] | None:
+    """Windows: レジストリからシステムPATHを読み取り、現在の環境に合成して返す."""
+    if sys.platform != "win32":
+        return None
+    try:
+        import winreg
+
+        with winreg.OpenKey(
+            winreg.HKEY_LOCAL_MACHINE,
+            r"SYSTEM\CurrentControlSet\Control\Session Manager\Environment",
+        ) as key:
+            machine_path = winreg.QueryValueEx(key, "Path")[0]
+        env = os.environ.copy()
+        env["PATH"] = machine_path + ";" + env.get("PATH", "")
+        return env
+    except (ImportError, OSError):
+        return None
 
 
 def _execute_file(file_path: str) -> tuple[str, int, str]:
@@ -129,6 +155,7 @@ def _execute_file(file_path: str) -> tuple[str, int, str]:
     if not plan.steps:
         return file_path, 0, ""
 
+    env = _refreshed_env()
     combined: list[str] = []
     exit_code = 0
     try:
@@ -140,6 +167,7 @@ def _execute_file(file_path: str) -> tuple[str, int, str]:
                     text=True,
                     timeout=_EXEC_TIMEOUT,
                     cwd=plan.cwd,
+                    env=env,
                 )
             except subprocess.TimeoutExpired:
                 combined.append(f"[timeout: {_EXEC_TIMEOUT}s]")
@@ -166,6 +194,15 @@ def _execute_file(file_path: str) -> tuple[str, int, str]:
 # Cache
 # ---------------------------------------------------------------------------
 
+def _file_hash(path: str) -> str:
+    """ファイル内容のSHA256ハッシュを返す。読めない場合は空文字."""
+    try:
+        with open(path, "rb") as f:
+            return hashlib.sha256(f.read()).hexdigest()
+    except OSError:
+        return ""
+
+
 def _cache_path(transcript_path: str) -> str:
     return os.path.join(os.path.dirname(transcript_path), "verification-cache.json")
 
@@ -183,11 +220,10 @@ def _save_cache(
     transcript_path: str,
     cache: dict,
     results: list[tuple[str, int, str]],
-    edited_files: dict[str, int],
 ) -> None:
     for fp, exit_code, output in results:
         cache[fp] = {
-            "edit_seq": edited_files.get(fp, -1),
+            "file_hash": _file_hash(fp),
             "exit_code": exit_code,
             "output": output,
         }
@@ -287,12 +323,12 @@ def main() -> None:
     if not unverified:
         return
 
-    # キャッシュ確認: 前回実行済みでedit_seqが同じならスキップ
+    # キャッシュ確認: ファイルハッシュが一致すればスキップ
     cache = _load_cache(transcript_path)
     need_exec: set[str] = set()
     for fp in unverified:
         cached = cache.get(fp)
-        if cached and cached.get("edit_seq") == edited_files[fp]:
+        if cached and cached.get("file_hash") == _file_hash(fp):
             continue
         need_exec.add(fp)
 
@@ -317,7 +353,7 @@ def main() -> None:
         futures = [executor.submit(_execute_file, fp) for fp in sorted(need_exec)]
         results = [f.result() for f in concurrent.futures.as_completed(futures)]
 
-    _save_cache(transcript_path, cache, results, edited_files)
+    _save_cache(transcript_path, cache, results)
 
     listing = _format_results(results)
     _block(f"コード検証結果を確認してください:\n{listing}")

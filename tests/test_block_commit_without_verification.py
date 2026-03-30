@@ -21,6 +21,7 @@ _is_test_file = mod._is_test_file
 _is_test_execution = mod._is_test_execution
 _build_exec_plan = mod._build_exec_plan
 _execute_file = mod._execute_file
+_file_hash = mod._file_hash
 _load_cache = mod._load_cache
 _save_cache = mod._save_cache
 _format_results = mod._format_results
@@ -203,7 +204,7 @@ class TestIsTestExecution:
 class TestBuildExecPlan:
     def test_python(self):
         plan = _build_exec_plan("/src/app.py")
-        assert plan.steps == [["uv", "run", "python3", "/src/app.py"]]
+        assert plan.steps == [["uv", "run", "python", "/src/app.py"]]
         assert plan.tmp_file is None
 
     def test_python_test(self):
@@ -212,7 +213,7 @@ class TestBuildExecPlan:
 
     def test_go(self):
         plan = _build_exec_plan("/src/main.go")
-        assert plan.steps == [["go", "run", "/src/main.go"]]
+        assert plan.steps == [["go", "build", "./..."]]
 
     def test_rust(self, tmp_path):
         (tmp_path / "Cargo.toml").touch()
@@ -285,12 +286,14 @@ class TestCache:
 
     def test_save_and_load(self, tmp_path):
         tp = str(tmp_path / "transcript.jsonl")
-        results = [("/src/app.py", 0, "ok")]
-        edited = {"/src/app.py": 5}
-        _save_cache(tp, {}, results, edited)
+        src = tmp_path / "src" / "app.py"
+        src.parent.mkdir(parents=True)
+        src.write_text("print('hello')")
+        results = [(str(src), 0, "ok")]
+        _save_cache(tp, {}, results)
         cache = _load_cache(tp)
-        assert cache["/src/app.py"]["edit_seq"] == 5
-        assert cache["/src/app.py"]["exit_code"] == 0
+        assert cache[str(src)]["file_hash"] == _file_hash(str(src))
+        assert cache[str(src)]["exit_code"] == 0
 
     def test_load_corrupt(self, tmp_path):
         cache_file = tmp_path / "verification-cache.json"
@@ -458,7 +461,10 @@ class TestAutoExecution:
 
     def test_second_attempt_cache_hit_approves(self, tmp_path):
         """2回目のcommitでキャッシュヒットしapproveする."""
-        entries = [make_entry([make_edit_block("/src/app.py")])]
+        src = tmp_path / "src" / "app.py"
+        src.parent.mkdir(parents=True)
+        src.write_text("print('hello')")
+        entries = [make_entry([make_edit_block(str(src))])]
         tp = write_transcript(tmp_path, entries)
         payload = {
             "tool_input": {"command": "git commit -m 'feat: add app'"},
@@ -473,7 +479,10 @@ class TestAutoExecution:
 
     def test_cached_failure_still_blocks(self, tmp_path):
         """キャッシュ済みでもエラーがあれば2回目もblockする."""
-        entries = [make_entry([make_edit_block("/src/app.py")])]
+        src = tmp_path / "src" / "app.py"
+        src.parent.mkdir(parents=True)
+        src.write_text("print('hello')")
+        entries = [make_entry([make_edit_block(str(src))])]
         tp = write_transcript(tmp_path, entries)
         payload = {
             "tool_input": {"command": "git commit -m 'feat: add app'"},
@@ -489,9 +498,12 @@ class TestAutoExecution:
         assert "FAILED" in parsed["reason"]
 
     def test_re_edit_invalidates_cache(self, tmp_path):
-        """コード再編集でキャッシュが無効化され再実行される."""
-        entries_v1 = [make_entry([make_edit_block("/src/app.py")])]
-        tp = write_transcript(tmp_path, entries_v1)
+        """ファイル内容変更でキャッシュが無効化され再実行される."""
+        src = tmp_path / "src" / "app.py"
+        src.parent.mkdir(parents=True)
+        src.write_text("print('v1')")
+        entries = [make_entry([make_edit_block(str(src))])]
+        tp = write_transcript(tmp_path, entries)
         payload = {
             "tool_input": {"command": "git commit -m 'feat: add app'"},
             "transcript_path": str(tp),
@@ -499,13 +511,8 @@ class TestAutoExecution:
         # 1回目: 実行
         with mock.patch("subprocess.run", return_value=make_success_result()):
             run_main(payload)
-        # ファイル再編集（新しいエントリ追加でedit_seqが変わる）
-        entries_v2 = [
-            make_entry([make_edit_block("/src/app.py")]),
-            make_entry([make_bash_block("echo hello")]),
-            make_entry([make_edit_block("/src/app.py")]),  # 再編集
-        ]
-        write_transcript(tmp_path, entries_v2)
+        # ファイル内容を変更→ハッシュが変わりキャッシュ無効
+        src.write_text("print('v2')")
         # 2回目: キャッシュ無効→再実行→block
         with mock.patch("subprocess.run", return_value=make_success_result()):
             result = run_main(payload)
