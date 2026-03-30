@@ -7,13 +7,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-# Reuse the same check functions from the rebuild hook
-sys.path.insert(0, str(Path(__file__).parent))
-from importlib import import_module
-
-_rebuild_mod = import_module("block-nixos-rebuild-protected-changes")
-check_config_diff = _rebuild_mod.check_config_diff
-check_mkforce_override = _rebuild_mod.check_mkforce_override
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from nix_protected import check_config_diff, check_mkforce_override
 
 NIX_CONFIG = Path.home() / "nix-config"
 

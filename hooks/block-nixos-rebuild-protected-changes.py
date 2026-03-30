@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from nix_protected import PROTECTED_PATTERNS
+from nix_protected import check_config_diff, check_mkforce_override
 
 NIX_CONFIG = Path.home() / "nix-config"
 
@@ -23,38 +23,6 @@ def get_diff(cwd: Path) -> str:
         if result.returncode == 0:
             parts.append(result.stdout)
     return "\n".join(parts)
-
-
-def check_config_diff(diff_text: str) -> str | None:
-    in_config_file = False
-    for line in diff_text.splitlines():
-        if line.startswith("diff --git"):
-            in_config_file = "configuration.nix" in line
-            continue
-        if not in_config_file:
-            continue
-        if not (line.startswith("+") or line.startswith("-")):
-            continue
-        if line.startswith("+++") or line.startswith("---"):
-            continue
-        for pattern in PROTECTED_PATTERNS:
-            if re.search(pattern, line):
-                return f"configuration.nix の保護対象行が変更されています: {pattern}\n変更行: {line.strip()}"
-    return None
-
-
-def check_mkforce_override(diff_text: str) -> str | None:
-    for line in diff_text.splitlines():
-        if not line.startswith("+"):
-            continue
-        if line.startswith("+++"):
-            continue
-        if "mkForce" not in line:
-            continue
-        for pattern in PROTECTED_PATTERNS:
-            if re.search(pattern, line):
-                return f"mkForce で保護対象の設定を上書きしようとしています: {line.strip()}"
-    return None
 
 
 def main() -> None:
