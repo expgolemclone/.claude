@@ -56,10 +56,8 @@ def _has_hardcoded_path(line: str) -> str | None:
     for prefix in _UNIX_PREFIXES:
         if prefix in line:
             return prefix
-    if _WIN_DRIVE_RE.search(line):
-        match = _WIN_DRIVE_RE.search(line)
-        if match:
-            return match.group()
+    if match := _WIN_DRIVE_RE.search(line):
+        return match.group()
     return None
 
 
