@@ -11,7 +11,7 @@ BLOCKED_KEYWORDS = [
     "ai", "llm", "gemini", "openai",
     "foundation", "copilot", "gpt", "chatgpt",
     "bard", "codeium", "cursor", "tabnine", "cody", "devin",
-    "agent", "assistant", "auth", "エージェント",
+    "agent", "assistant", "エージェント",
 ]
 
 
@@ -33,24 +33,29 @@ def find_tainted_commits() -> list[tuple[str, str, str]]:
 
     Returns list of (short_hash, subject, keyword) tuples.
     """
+    combined = "|".join(re.escape(kw) for kw in BLOCKED_KEYWORDS)
+    pattern = re.compile(rf"\b({combined})\b", re.IGNORECASE)
+
+    proc = subprocess.run(
+        ["git", "log", "--all", f"--grep=\\b({combined})\\b", "-i", "-P",
+         "--format=%h %s"],
+        capture_output=True, text=True,
+    )
+    if proc.returncode != 0 or not proc.stdout.strip():
+        return []
+
     results: list[tuple[str, str, str]] = []
-    seen: set[tuple[str, str]] = set()
-    for keyword in BLOCKED_KEYWORDS:
-        proc = subprocess.run(
-            ["git", "log", "--all", f"--grep=\\b{keyword}\\b", "-i", "-P",
-             "--format=%h %s"],
-            capture_output=True, text=True,
-        )
-        if proc.returncode != 0 or not proc.stdout.strip():
+    seen: set[str] = set()
+    for line in proc.stdout.strip().splitlines():
+        parts = line.split(" ", 1)
+        short_hash = parts[0]
+        if short_hash in seen:
             continue
-        for line in proc.stdout.strip().splitlines():
-            parts = line.split(" ", 1)
-            short_hash = parts[0]
-            subject = parts[1] if len(parts) > 1 else ""
-            key = (short_hash, keyword)
-            if key not in seen:
-                seen.add(key)
-                results.append((short_hash, subject, keyword))
+        seen.add(short_hash)
+        subject = parts[1] if len(parts) > 1 else ""
+        m = pattern.search(subject)
+        keyword = m.group(1) if m else "?"
+        results.append((short_hash, subject, keyword))
     return results
 
 
