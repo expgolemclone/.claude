@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """PostToolUse hook (Edit|Write): warn when .py/.go/.rs files contain hardcoded absolute paths.
 
-rules/common.toml の hardcoded_paths_prohibited = true を実行時に検証する。
+config/common.toml の hardcoded_paths_prohibited = true を実行時に検証する。
 ハードコードされた絶対パスを検出したら stop で警告し、パス定数の集約を促す。
 """
 
@@ -104,7 +104,7 @@ def main() -> None:
             "reason": (
                 "ハードコードされた絶対パスが検出されました。\n"
                 f"{lines_info}\n"
-                "パス定数は設定ファイルに集約してください（rules/common.toml: hardcoded_paths_prohibited）。"
+                "パス定数は設定ファイルに集約してください（config/common.toml: hardcoded_paths_prohibited）。"
             ),
         },
         sys.stdout,

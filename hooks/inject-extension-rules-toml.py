@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
-"""PreToolUse hook: inject rules/*.toml based on file extension or git command."""
+"""PreToolUse hook: inject config/*.toml based on file extension or git command."""
 
 import json
 import os
 import re
 import sys
 
-RULES_DIR = os.path.join(os.path.expanduser("~"), ".claude", "rules")
+CONFIG_DIR = os.path.join(os.path.expanduser("~"), ".claude", "config")
 
 
-def read_rule(filename: str) -> str:
+def read_config(filename: str) -> str:
     try:
-        with open(os.path.join(RULES_DIR, filename)) as f:
+        with open(os.path.join(CONFIG_DIR, filename)) as f:
             return f.read().strip()
     except OSError:
         return ""
@@ -31,7 +31,7 @@ def main() -> None:
     # Bash tool: git command -> inject git.toml
     command = tool_input.get("command", "")
     if command and re.match(r"\s*git\s", command):
-        rules = read_rule("git.toml")
+        rules = read_config("git.toml")
         if rules:
             output(rules)
         return
@@ -46,13 +46,13 @@ def main() -> None:
         return
 
     # 共通ルールを常に注入
-    common = read_rule("common.toml")
+    common = read_config("common.toml")
 
-    rules = read_rule(ext + ".toml")
+    rules = read_config(ext + ".toml")
 
     # .md -> also inject mmd.toml
     if ext == "md":
-        mmd = read_rule("mmd.toml")
+        mmd = read_config("mmd.toml")
         if mmd:
             rules = rules + "\n\n" + mmd if rules else mmd
 

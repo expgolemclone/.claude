@@ -14,9 +14,9 @@ settings.json
 !hooks/**
 hooks/__pycache__/
 
-# Rules (per-language coding rules)
-!rules/
-!rules/**
+# Config (per-language coding rules & settings)
+!config/
+!config/**
 
 # Tests
 !tests/
