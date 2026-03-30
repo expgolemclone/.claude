@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PostToolUse hook (Edit|Write): block non-Python scripts in hooks/ directory."""
+"""PreToolUse hook (Edit|Write): block non-Python scripts in hooks/ directory."""
 
 import json
 import os

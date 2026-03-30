@@ -48,6 +48,7 @@ def build_linux_config():
                 {"matcher": "Edit|Write", "hooks": [
                     py("block-settings-json-direct-edit.py"),
                     py("block-protected-nix-config.py"),
+                    py("block-non-python-hook-scripts.py"),
                 ]},
                 {"matcher": "Write|Bash", "hooks": [
                     py("block-platform-specific-scripts.py"),
@@ -65,7 +66,6 @@ def build_linux_config():
                     py("post-verify-protected-nix-config.py"),
                 ]},
                 {"matcher": "Edit|Write", "hooks": [
-                    py("block-non-python-hook-scripts.py"),
                     py("post-cargo-clippy-on-rs-edit.py", timeout=120),
                     py("warn-hardcoded-paths.py"),
                 ]},
@@ -94,7 +94,7 @@ def build_windows_config():
     return {
         **build_common_config(),
         "permissions": {
-            "deny": ["Task", "Agent"],
+            "deny": ["Agent"],
             "defaultMode": "bypassPermissions",
         },
         "hooks": {
@@ -104,6 +104,7 @@ def build_windows_config():
                 ]},
                 {"matcher": "Edit|Write", "hooks": [
                     py("block-settings-json-direct-edit.py"),
+                    py("block-non-python-hook-scripts.py"),
                 ]},
                 {"matcher": "Write|Bash", "hooks": [
                     py("block-platform-specific-scripts.py"),
@@ -116,7 +117,6 @@ def build_windows_config():
             ],
             "PostToolUse": [
                 {"matcher": "Edit|Write", "hooks": [
-                    py("block-non-python-hook-scripts.py"),
                     py("post-cargo-clippy-on-rs-edit.py", timeout=120),
                     py("check-hotstring-conflicts.py"),
                     py("warn-hardcoded-paths.py"),
