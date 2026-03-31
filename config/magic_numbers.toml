@@ -1,0 +1,2 @@
+[python_linters]
+timeout_seconds = 120

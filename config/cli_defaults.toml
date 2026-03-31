@@ -1,0 +1,13 @@
+[python_linters]
+python_warning_flag = "error"
+runner = ["uv", "run"]
+
+[python_linters.tools.mypy]
+module = "mypy"
+
+[python_linters.tools.ruff]
+command = ["nix", "run", "nixpkgs#ruff", "--"]
+args = ["check"]
+
+[python_linters.tools.pylint]
+module = "pylint"

@@ -23,7 +23,7 @@ def find_ahk_files(root: Path) -> list[Path]:
 
 def extract_hotstrings(file_path: Path) -> list[tuple[str, str, int]]:
     """Return list of (trigger, file_path_str, line_number)."""
-    results = []
+    results: list[tuple[str, str, int]] = []
     try:
         content = file_path.read_text(encoding="utf-8")
     except Exception:

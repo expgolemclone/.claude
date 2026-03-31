@@ -72,6 +72,7 @@ def build_linux_config():
             ],
             "Stop": [
                 {"hooks": [
+                    py("stop-lint-edited-python.py", timeout=300),
                     py("stop-require-git-commit-and-push.py", timeout=15),
                     py("stop-nixos-rebuild-on-config-change.py", timeout=300),
                     py("stop-require-source-verification.py", timeout=15),

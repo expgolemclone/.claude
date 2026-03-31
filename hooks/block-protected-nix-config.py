@@ -37,8 +37,8 @@ def check_edit(tool_input: dict) -> str | None:
         return None
 
     for pattern in old_matches:
-        old_lines = [l for l in old_string.splitlines() if re.search(pattern, l)]
-        new_lines = [l for l in new_string.splitlines() if re.search(pattern, l)]
+        old_lines = [ln for ln in old_string.splitlines() if re.search(pattern, ln)]
+        new_lines = [ln for ln in new_string.splitlines() if re.search(pattern, ln)]
         if old_lines != new_lines:
             return f"保護対象の設定行を変更しようとしています: {pattern}"
 
@@ -58,8 +58,8 @@ def check_write(tool_input: dict) -> str | None:
     new_content = tool_input.get("content", "")
 
     for pattern in PROTECTED_PATTERNS:
-        current_lines = [l.strip() for l in current_content.splitlines() if re.search(pattern, l)]
-        new_lines = [l.strip() for l in new_content.splitlines() if re.search(pattern, l)]
+        current_lines = [ln.strip() for ln in current_content.splitlines() if re.search(pattern, ln)]
+        new_lines = [ln.strip() for ln in new_content.splitlines() if re.search(pattern, ln)]
         if current_lines and current_lines != new_lines:
             return f"保護対象の設定行が変更または削除されます: {pattern}"
 

@@ -2,7 +2,6 @@
 """PostToolUse hook: verify protected lines in configuration.nix haven't changed."""
 
 import hashlib
-import json
 import re
 import sys
 from pathlib import Path
