@@ -1,21 +1,15 @@
 #!/usr/bin/env python3
-"""PreToolUse hook: auto-execute unverified code before git commit.
+"""PreToolUse hook: block git commit until all edited code files are executed.
 
-On first commit attempt, runs all unverified scripts in parallel and blocks
-with the output for review. On second attempt (cache hit), approves.
+Scans the transcript for Edit/Write and Bash tool_use entries.
+Edited code files must have a corresponding execution command in the
+transcript before a commit is allowed.
 """
 
-import concurrent.futures
-import hashlib
 import json
 import os
 import re
-import subprocess
 import sys
-import tempfile
-from typing import NamedTuple
-
-from project_root import find_project_root
 
 # 検証対象とする拡張子（実行可能なコードファイルのみ）
 _CODE_EXTENSIONS = {".py", ".go", ".rs", ".c", ".cpp", ".cc"}
@@ -46,14 +40,6 @@ _TEST_EXEC_PATTERNS = [
     re.compile(r"\bgo\s+test\b"),
     re.compile(r"\bcargo\s+test\b"),
 ]
-
-_EXEC_TIMEOUT = 30
-
-
-class ExecPlan(NamedTuple):
-    steps: list[list[str]]
-    tmp_file: str | None
-    cwd: str | None
 
 
 def is_code_execution(cmd: str) -> bool:
@@ -103,163 +89,6 @@ def _is_test_execution(cmd: str) -> bool:
     return any(p.search(cmd) for p in _TEST_EXEC_PATTERNS)
 
 
-def _build_exec_plan(file_path: str) -> ExecPlan:
-    """拡張子・ファイル種別に応じた実行プランを構築."""
-    ext = os.path.splitext(file_path)[1]
-
-    if ext == ".py":
-        if _is_test_file(file_path):
-            return ExecPlan([["uv", "run", "pytest", file_path]], None, None)
-        return ExecPlan([["uv", "run", "python", file_path]], None, None)
-
-    if ext == ".go":
-        cwd = find_project_root(os.path.dirname(file_path), "go.mod")
-        return ExecPlan([["go", "build", "./..."]], None, cwd)
-
-    if ext == ".rs":
-        cwd = find_project_root(os.path.dirname(file_path), "Cargo.toml")
-        return ExecPlan([["cargo", "run"]], None, cwd)
-
-    if ext in (".c", ".cpp", ".cc"):
-        suffix = ".exe" if sys.platform == "win32" else ""
-        fd, tmp = tempfile.mkstemp(suffix=suffix)
-        os.close(fd)
-        compiler = "gcc" if ext == ".c" else "g++"
-        return ExecPlan([[compiler, file_path, "-o", tmp], [tmp]], tmp, None)
-
-    return ExecPlan([], None, None)
-
-
-def _refreshed_env() -> dict[str, str] | None:
-    """Windows: レジストリからシステムPATHを読み取り、現在の環境に合成して返す."""
-    if sys.platform != "win32":
-        return None
-    try:
-        import winreg
-
-        with winreg.OpenKey(
-            winreg.HKEY_LOCAL_MACHINE,
-            r"SYSTEM\CurrentControlSet\Control\Session Manager\Environment",
-        ) as key:
-            machine_path = winreg.QueryValueEx(key, "Path")[0]
-        env = os.environ.copy()
-        env["PATH"] = machine_path + ";" + env.get("PATH", "")
-        return env
-    except (ImportError, OSError):
-        return None
-
-
-def _execute_file(file_path: str) -> tuple[str, int, str]:
-    """ファイルを実行して (file_path, exit_code, combined_output) を返す."""
-    plan = _build_exec_plan(file_path)
-    if not plan.steps:
-        return file_path, 0, ""
-
-    env = _refreshed_env()
-    combined: list[str] = []
-    exit_code = 0
-    try:
-        for step in plan.steps:
-            try:
-                result = subprocess.run(
-                    step,
-                    capture_output=True,
-                    text=True,
-                    timeout=_EXEC_TIMEOUT,
-                    cwd=plan.cwd,
-                    env=env,
-                )
-            except subprocess.TimeoutExpired:
-                combined.append(f"[timeout: {_EXEC_TIMEOUT}s]")
-                return file_path, 1, "\n".join(combined)
-            except FileNotFoundError as e:
-                combined.append(f"[command not found: {e.filename}]")
-                return file_path, 1, "\n".join(combined)
-
-            if result.stdout.strip():
-                combined.append(result.stdout.strip())
-            if result.stderr.strip():
-                combined.append(result.stderr.strip())
-            if result.returncode != 0:
-                exit_code = result.returncode
-                break
-    finally:
-        if plan.tmp_file and os.path.exists(plan.tmp_file):
-            os.unlink(plan.tmp_file)
-
-    return file_path, exit_code, "\n".join(combined)
-
-
-# ---------------------------------------------------------------------------
-# Cache
-# ---------------------------------------------------------------------------
-
-def _file_hash(path: str) -> str:
-    """ファイル内容のSHA256ハッシュを返す。読めない場合は空文字."""
-    try:
-        with open(path, "rb") as f:
-            return hashlib.sha256(f.read()).hexdigest()
-    except OSError:
-        return ""
-
-
-def _cache_path(transcript_path: str) -> str:
-    return os.path.join(os.path.dirname(transcript_path), "verification-cache.json")
-
-
-def _load_cache(transcript_path: str) -> dict:
-    path = _cache_path(transcript_path)
-    try:
-        with open(path) as f:
-            return json.load(f)
-    except (OSError, json.JSONDecodeError):
-        return {}
-
-
-def _save_cache(
-    transcript_path: str,
-    cache: dict,
-    results: list[tuple[str, int, str]],
-) -> None:
-    for fp, exit_code, output in results:
-        cache[fp] = {
-            "file_hash": _file_hash(fp),
-            "exit_code": exit_code,
-            "output": output,
-        }
-    path = _cache_path(transcript_path)
-    try:
-        with open(path, "w") as f:
-            json.dump(cache, f)
-    except OSError:
-        pass
-
-
-# ---------------------------------------------------------------------------
-# Output
-# ---------------------------------------------------------------------------
-
-def _block(reason: str) -> None:
-    json.dump({"decision": "block", "reason": reason}, sys.stdout)
-
-
-def _format_results(results: list[tuple[str, int, str]]) -> str:
-    parts: list[str] = []
-    for fp, exit_code, output in sorted(results):
-        status = "OK" if exit_code == 0 else f"FAILED (exit {exit_code})"
-        header = f"  [{status}] {fp}"
-        if output:
-            indented = "\n".join(f"    {line}" for line in output.splitlines())
-            parts.append(f"{header}\n{indented}")
-        else:
-            parts.append(f"{header}\n    (no output)")
-    return "\n".join(parts)
-
-
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
-
 def main() -> None:
     data = json.load(sys.stdin)
     command = data.get("tool_input", {}).get("command", "")
@@ -269,14 +98,20 @@ def main() -> None:
 
     transcript_path = data.get("transcript_path", "")
     if not transcript_path:
-        _block("transcript_path が取得できないため、コード実行の検証ができません。")
+        json.dump(
+            {"decision": "block", "reason": "transcript_path が取得できないため、コード実行の検証ができません。"},
+            sys.stdout,
+        )
         return
 
     try:
         with open(transcript_path) as f:
             lines = f.readlines()
     except OSError:
-        _block("トランスクリプトが読み取れないため、コード実行の検証ができません。")
+        json.dump(
+            {"decision": "block", "reason": "トランスクリプトが読み取れないため、コード実行の検証ができません。"},
+            sys.stdout,
+        )
         return
 
     edited_files: dict[str, int] = {}  # {file_path: last_edit_seq}
@@ -319,44 +154,23 @@ def main() -> None:
                             verified.add(fp)
             seq += 1
 
-    unverified = set(edited_files) - verified
+    unverified = sorted(set(edited_files) - verified)
     if not unverified:
         return
 
-    # キャッシュ確認: ファイルハッシュが一致すればスキップ
-    cache = _load_cache(transcript_path)
-    need_exec: set[str] = set()
-    for fp in unverified:
-        cached = cache.get(fp)
-        if cached and cached.get("file_hash") == _file_hash(fp):
-            continue
-        need_exec.add(fp)
-
-    if not need_exec:
-        # キャッシュ済みでもエラーがあればblock
-        cached_failures = [
-            (fp, cache[fp].get("output", ""))
-            for fp in unverified
-            if cache.get(fp, {}).get("exit_code", 0) != 0
-        ]
-        if cached_failures:
-            listing = "\n".join(
-                f"  [FAILED] {fp}\n" + "\n".join(f"    {l}" for l in out.splitlines())
-                for fp, out in sorted(cached_failures)
-            )
-            _block(f"前回の実行でエラーがあります。コードを修正してください:\n{listing}")
-            return
-        return  # 全てキャッシュ済み・全成功 → approve
-
-    # 並列実行
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        futures = [executor.submit(_execute_file, fp) for fp in sorted(need_exec)]
-        results = [f.result() for f in concurrent.futures.as_completed(futures)]
-
-    _save_cache(transcript_path, cache, results)
-
-    listing = _format_results(results)
-    _block(f"コード検証結果を確認してください:\n{listing}")
+    listing = "\n".join(f"  - {fp}" for fp in unverified)
+    json.dump(
+        {
+            "decision": "block",
+            "reason": (
+                "以下のファイルがまだ実行されていません。コミット前に実行してください:\n"
+                f"{listing}\n\n"
+                "ソースファイルは直接実行（例: uv run python <file>）、"
+                "テストファイルはテスト実行（例: uv run pytest <file>）で検証してください。"
+            ),
+        },
+        sys.stdout,
+    )
 
 
 if __name__ == "__main__":
