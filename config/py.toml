@@ -34,5 +34,3 @@ run_after_edit = true                  # テスト編集後は実際に実行し
 [prohibited]
 conda_pip_mixed = true
 dynamic_version_in_setup_py = true
-inline_magic_numbers = true           # コード中のマジックナンバー直書き禁止 → config/magic_numbers.toml
-inline_dependency_paths = true        # 依存パスの直書き禁止 → config/path.toml

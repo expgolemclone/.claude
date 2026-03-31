@@ -104,7 +104,7 @@ def main() -> None:
             "reason": (
                 "ハードコードされた絶対パスが検出されました。\n"
                 f"{lines_info}\n"
-                "パス定数は設定ファイルに集約してください（config/common.toml: hardcoded_paths_prohibited）。"
+                "パス定数は設定ファイルに集約してください（config/common.toml: no_hardcoded_paths）。"
             ),
         },
         sys.stdout,

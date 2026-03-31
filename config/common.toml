@@ -1,14 +1,14 @@
 [code_organization]
 extract_shared_logic = true            # 共通処理は専用モジュールに切り出す
-inline_duplication_prohibited = true   # 同一ロジックの複数箇所へのコピペ禁止
+no_inline_duplication = true           # 同一ロジックの複数箇所へのコピペ禁止
 review_folder_structure = true         # フォルダ構成は常に見直し、意味論的に整合させる
-root_dumping_prohibited = true         # ルートディレクトリに何でも置く構成を禁止
+no_root_dumping = true                 # ルートディレクトリに何でも置く構成を禁止
 magic_numbers_in_toml = true          # マジックナンバーは config/magic_numbers.toml で一元管理
 dependency_paths_in_toml = true       # 依存パスは config/path.toml で一元管理
 cli_defaults_in_toml = true           # CLIオプションのデフォルト値は config/cli_defaults.toml で一元管理
 
 [paths]
-hardcoded_paths_prohibited = true      # 絶対パスのハードコード禁止（py/go/rs対象）
+no_hardcoded_paths = true              # 絶対パスのハードコード禁止（py/go/rs対象）
 
 [cache]
 hash_based_invalidation = true        # キャッシュは対象ファイルのハッシュ値を保存し、変更時に破棄する
