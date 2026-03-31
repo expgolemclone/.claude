@@ -1,2 +1,6 @@
 [toolchain]
 required = "cargo"
+
+[python_binding]
+framework = "pyo3"
+build_tool = "maturin"
