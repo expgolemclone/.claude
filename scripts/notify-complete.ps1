@@ -1,3 +1,5 @@
+$AutoCloseSeconds = 2
+
 Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase
 
 [xml]$xaml = @'
@@ -107,9 +109,10 @@ $window.Add_Loaded({
     $okButton.Focus()
 
     $timer = New-Object System.Windows.Threading.DispatcherTimer
-    $timer.Interval = [TimeSpan]::FromSeconds(5)
+    $timer.Interval = [TimeSpan]::FromSeconds($AutoCloseSeconds)
     $timer.Add_Tick({
-        $timer.Stop()
+        param($sender)
+        $sender.Stop()
         $window.Close()
     })
     $timer.Start()
