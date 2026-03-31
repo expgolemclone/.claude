@@ -4,7 +4,6 @@ no_inline_duplication = true           # 同一ロジックの複数箇所への
 review_folder_structure = true         # フォルダ構成は常に見直し、意味論的に整合させる
 no_root_dumping = true                 # ルートディレクトリに何でも置く構成を禁止
 magic_numbers_in_toml = true          # マジックナンバーは config/magic_numbers.toml で一元管理
-dependency_paths_in_toml = true       # 依存パスは config/path.toml で一元管理
 cli_defaults_in_toml = true           # CLIオプションのデフォルト値は config/cli_defaults.toml で一元管理
 
 [paths]
