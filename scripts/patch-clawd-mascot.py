@@ -18,31 +18,48 @@ BIN_OLD = b"rgb(215,119,87)"
 BIN_NEW = b"rgb(000,000,00)"
 
 
-def find_target() -> Path | None:
-    """OS に応じて cli.js または claude.exe のパスを返す."""
+def _candidates() -> list[Path]:
+    """OS ごとの候補パスを優先度順で返す."""
+    home = Path.home()
     system = platform.system()
 
-    if system == "Linux":
-        # NixOS: /nix/store 配下は読み取り専用 → overlay で対応
-        cli = Path.home() / ".local/share/claude/app/cli.js"
-        if cli.exists():
-            if "/nix/store/" in str(cli.resolve()):
-                print(
-                    "NixOS 環境です。overlay の postPatch で対応してください。",
-                    file=sys.stderr,
-                )
-                return None
-            return cli
+    if system == "Windows":
+        return [
+            home / ".local/bin/claude.exe",
+            *_managed_versions(home / "AppData/Roaming/Claude/claude-code"),
+        ]
 
-    elif system == "Windows":
-        # マネージドインストール: %APPDATA%/Claude/claude-code/<version>/claude.exe
-        base = Path.home() / "AppData/Roaming/Claude/claude-code"
-        if base.is_dir():
-            versions = sorted(base.iterdir(), reverse=True)
-            for v in versions:
-                exe = v / "claude.exe"
-                if exe.is_file():
-                    return exe
+    # Linux
+    return [
+        home / ".local/share/claude/app/cli.js",
+        home / ".local/bin/claude",
+    ]
+
+
+def _managed_versions(base: Path) -> list[Path]:
+    """マネージドインストールの全バージョンを降順で返す."""
+    if not base.is_dir():
+        return []
+    return [
+        v / "claude.exe"
+        for v in sorted(base.iterdir(), reverse=True)
+        if (v / "claude.exe").is_file()
+    ]
+
+
+def find_target() -> Path | None:
+    """OS に応じて cli.js または claude.exe のパスを返す."""
+    for path in _candidates():
+        if not path.exists():
+            continue
+        # NixOS: /nix/store 配下は読み取り専用 → overlay で対応
+        if "/nix/store/" in str(path.resolve()):
+            print(
+                "NixOS 環境です。overlay の postPatch で対応してください。",
+                file=sys.stderr,
+            )
+            return None
+        return path
 
     return None
 
@@ -80,9 +97,29 @@ def patch_binary(path: Path) -> bool:
 
     count = data.count(BIN_OLD)
     patched = data.replace(BIN_OLD, BIN_NEW)
-    path.write_bytes(patched)
+    _write_binary(path, patched)
     print(f"パッチ適用: {count} 箇所を置換しました。")
     return True
+
+
+def _write_binary(path: Path, data: bytes) -> None:
+    """バイナリを書き込む。実行中exeはリネーム経由で回避する."""
+    try:
+        path.write_bytes(data)
+    except PermissionError:
+        # Windows: 実行中のexeは書き込み不可だがリネームは可能
+        tmp = path.with_suffix(path.suffix + ".tmp")
+        tmp.write_bytes(data)
+        old = path.with_suffix(path.suffix + ".old")
+        # 前回の .old が実行中プロセスにロックされている場合があるため無視
+        try:
+            old.unlink(missing_ok=True)
+        except PermissionError:
+            pass
+        path.rename(old)
+        tmp.rename(path)
+        # .old は実行中プロセスが掴んでいるため削除せず残す
+        print("(実行中のため、リネーム経由で置換しました)")
 
 
 def backup(path: Path) -> Path:
@@ -99,7 +136,7 @@ def restore(path: Path) -> bool:
     if not bak.exists():
         print(f"バックアップが見つかりません: {bak}", file=sys.stderr)
         return False
-    shutil.copy2(bak, path)
+    _write_binary(path, bak.read_bytes())
     print(f"復元しました: {bak} → {path}")
     return True
 
