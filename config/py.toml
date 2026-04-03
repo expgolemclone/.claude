@@ -8,18 +8,21 @@ prohibited_formats = ["setup.py", "setup.cfg"]
 wildcard_version = false
 
 [dependencies]
-upper_bound_required = true         # 例: "httpx>=0.27,<1"
 prefer_pure_python_or_rust = true   # C拡張は代替がない場合のみ
 c_extension_requires_wheel = true   # wheel未提供のPython/OS組み合わせはサポート外
 manual_requirements_txt = false     # 手書き禁止、uv pip compile で生成
 
 [lockfile]
 tool = "uv lock"
-commit_to_repo = true
-install_without_lock = false
 
 [venv]
 always_required = true
 
 [testing]
 framework = "pytest"                    # unittest / nose は使用しない
+
+[typing]
+prefer_typed_dict = true                # dict / Mapping よりも TypedDict を推奨する
+
+[style]
+implement_dunder_methods = true         # 関連する特殊メソッド（__repr__、__str__ 等）を実装する
