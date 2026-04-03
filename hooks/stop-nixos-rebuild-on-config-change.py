@@ -4,9 +4,10 @@
 import json
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
-HASH_FILE = Path("/tmp/.nix-config-last-rebuild-hash")
+HASH_FILE = Path(tempfile.gettempdir()) / ".nix-config-last-rebuild-hash"
 NIX_CONFIG = Path.home() / "nix-config"
 
 

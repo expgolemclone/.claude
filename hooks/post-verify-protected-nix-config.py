@@ -5,13 +5,14 @@ import hashlib
 import json
 import re
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from nix_protected import PROTECTED_PATTERNS
 
 CONFIG_PATH = Path.home() / "nix-config" / "hosts" / "nixos" / "configuration.nix"
-HASH_FILE = Path("/tmp/.nix-config-protected-hash")
+HASH_FILE = Path(tempfile.gettempdir()) / ".nix-config-protected-hash"
 
 
 def extract_protected_lines(content: str) -> list[str]:

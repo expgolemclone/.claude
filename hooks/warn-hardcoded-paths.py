@@ -14,7 +14,8 @@ import sys
 _UNIX_PREFIXES = ("/home/", "/usr/", "/etc/", "/var/", "/opt/", "/tmp/")
 
 # Windowsドライブレター（C:\, D:/, etc.）
-_WIN_DRIVE_RE = re.compile(r"[A-Za-z]:[/\\]")
+_WIN_DRIVE_RE = re.compile(r"(?<![a-zA-Z0-9])[A-Za-z]:[/\\]")
+_ESCAPE_SEQ_RE = re.compile(r"[a-zA-Z]:\\[ntr]")
 
 # 対象拡張子
 _TARGET_EXTENSIONS = (".py", ".go", ".rs")
@@ -57,6 +58,8 @@ def _has_hardcoded_path(line: str) -> str | None:
         if prefix in line:
             return prefix
     if match := _WIN_DRIVE_RE.search(line):
+        if _ESCAPE_SEQ_RE.search(line[match.start():match.start() + 4]):
+            return None
         return match.group()
     return None
 
@@ -88,6 +91,10 @@ def main() -> None:
     file_path = tool_input.get("file_path", "") or tool_input.get("path", "")
 
     if not file_path.endswith(_TARGET_EXTENSIONS):
+        return
+
+    basename: str = os.path.basename(file_path)
+    if "/tests/" in file_path or basename == "warn-hardcoded-paths.py":
         return
 
     hits = scan_file(file_path)
