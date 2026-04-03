@@ -7,6 +7,7 @@ import sys
 
 _COMMENT_RE = re.compile(r"^\s*#")
 _DEF_RE = re.compile(r"^\s*(?:async\s+)?def\s+(\w+)\s*\(([^)]*)\)\s*(->.*)?:")
+_DEF_HEAD_RE = re.compile(r"^\s*(?:async\s+)?def\s+(\w+)\s*\(")
 _SELF_CLS_RE = re.compile(r"^(self|cls)$")
 _RETURN_EXEMPT = {"__init__", "__new__"}
 
@@ -59,25 +60,48 @@ def _check_param(param: str, missing: list[str]) -> None:
         missing.append(name)
 
 
+def _check_def(func_name: str, params_str: str, return_annotation: str | None) -> str | None:
+    missing: list[str] = _params_missing_annotation(params_str)
+    if missing:
+        return f"関数 `{func_name}` の引数 {', '.join(missing)} に型アノテーションがありません。"
+    if not return_annotation and func_name not in _RETURN_EXEMPT:
+        return f"関数 `{func_name}` に戻り値の型アノテーション（-> ...）がありません。"
+    return None
+
+
 def _check_python(text: str) -> str | None:
-    for line in text.splitlines():
+    lines: list[str] = text.splitlines()
+    i: int = 0
+    while i < len(lines):
+        line: str = lines[i]
         if _COMMENT_RE.match(line):
+            i += 1
             continue
 
         m = _DEF_RE.match(line)
-        if not m:
+        if m:
+            err: str | None = _check_def(m.group(1), m.group(2), m.group(3))
+            if err:
+                return err
+            i += 1
             continue
 
-        func_name = m.group(1)
-        params_str = m.group(2)
-        return_annotation = m.group(3)
+        head = _DEF_HEAD_RE.match(line)
+        if head:
+            combined: str = line
+            depth: int = line.count("(") - line.count(")")
+            while depth > 0 and i + 1 < len(lines):
+                i += 1
+                combined += " " + lines[i].strip()
+                depth += lines[i].count("(") - lines[i].count(")")
 
-        missing = _params_missing_annotation(params_str)
-        if missing:
-            return f"関数 `{func_name}` の引数 {', '.join(missing)} に型アノテーションがありません。"
+            m = _DEF_RE.match(combined)
+            if m:
+                err = _check_def(m.group(1), m.group(2), m.group(3))
+                if err:
+                    return err
 
-        if not return_annotation and func_name not in _RETURN_EXEMPT:
-            return f"関数 `{func_name}` に戻り値の型アノテーション（-> ...）がありません。"
+        i += 1
 
     return None
 
