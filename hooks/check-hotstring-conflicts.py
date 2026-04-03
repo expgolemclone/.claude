@@ -7,7 +7,7 @@ import re
 import sys
 from pathlib import Path
 
-AHK_PROJECT_DIR = Path("C:/Users/0000250059/Documents/AutoHotkey")
+AHK_PROJECT_DIR = Path.home() / "Documents" / "AutoHotkey"
 EXCLUDE_DIRS = {".tools", ".git", ".log"}
 HOTSTRING_RE = re.compile(r"^:([^:]*):(.+?)::", re.MULTILINE)
 
