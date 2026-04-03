@@ -1,6 +1,7 @@
 """Tests for post-verify-protected-nix-config.py hook."""
 
 import importlib
+import json
 import sys
 from pathlib import Path
 from unittest import mock
@@ -130,12 +131,12 @@ class TestNoChange:
 # ---------------------------------------------------------------------------
 
 class TestChangeDetected:
-    def test_8_blocks_when_value_changed(self, tmp_path):
-        cfg = tmp_path / "configuration.nix"
-        hash_file = tmp_path / "hash"
+    def test_8_blocks_when_value_changed(self, tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+        cfg: Path = tmp_path / "configuration.nix"
+        hash_file: Path = tmp_path / "hash"
 
         cfg.write_text(GOOD_CONFIG)
-        lines = extract_protected_lines(GOOD_CONFIG)
+        lines: list[str] = extract_protected_lines(GOOD_CONFIG)
         hash_file.write_text(compute_hash(lines))
 
         cfg.write_text(CHANGED_CONFIG)
@@ -143,16 +144,18 @@ class TestChangeDetected:
         with mock.patch.object(mod, "CONFIG_PATH", cfg), \
              mock.patch.object(mod, "HASH_FILE", hash_file), \
              mock.patch("sys.stdin.read", return_value="{}"):
-            with pytest.raises(SystemExit) as exc_info:
-                main()
-            assert exc_info.value.code == 2
+            main()
 
-    def test_9_blocks_when_line_removed(self, tmp_path):
-        cfg = tmp_path / "configuration.nix"
-        hash_file = tmp_path / "hash"
+        result: dict[str, str] = json.loads(capsys.readouterr().out)
+        assert result["decision"] == "block"
+        assert "保護対象行が変更されました" in result["reason"]
+
+    def test_9_blocks_when_line_removed(self, tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+        cfg: Path = tmp_path / "configuration.nix"
+        hash_file: Path = tmp_path / "hash"
 
         cfg.write_text(GOOD_CONFIG)
-        lines = extract_protected_lines(GOOD_CONFIG)
+        lines: list[str] = extract_protected_lines(GOOD_CONFIG)
         hash_file.write_text(compute_hash(lines))
 
         cfg.write_text(REMOVED_LINE_CONFIG)
@@ -160,9 +163,11 @@ class TestChangeDetected:
         with mock.patch.object(mod, "CONFIG_PATH", cfg), \
              mock.patch.object(mod, "HASH_FILE", hash_file), \
              mock.patch("sys.stdin.read", return_value="{}"):
-            with pytest.raises(SystemExit) as exc_info:
-                main()
-            assert exc_info.value.code == 2
+            main()
+
+        result: dict[str, str] = json.loads(capsys.readouterr().out)
+        assert result["decision"] == "block"
+        assert "保護対象行が変更されました" in result["reason"]
 
 
 # ---------------------------------------------------------------------------

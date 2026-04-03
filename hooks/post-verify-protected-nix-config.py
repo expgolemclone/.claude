@@ -2,6 +2,7 @@
 """PostToolUse hook: verify protected lines in configuration.nix haven't changed."""
 
 import hashlib
+import json
 import re
 import sys
 from pathlib import Path
@@ -45,13 +46,17 @@ def main() -> None:
     if current_hash == saved_hash:
         return
 
-    print(
-        f"configuration.nix の保護対象行が変更されました。\n"
-        f"変更を元に戻してください: git checkout hosts/nixos/configuration.nix\n"
-        f"保護行: {current_lines}",
-        file=sys.stderr,
+    json.dump(
+        {
+            "decision": "block",
+            "reason": (
+                f"configuration.nix の保護対象行が変更されました。\n"
+                f"変更を元に戻してください: git checkout hosts/nixos/configuration.nix\n"
+                f"保護行: {current_lines}"
+            ),
+        },
+        sys.stdout,
     )
-    sys.exit(2)
 
 
 if __name__ == "__main__":
