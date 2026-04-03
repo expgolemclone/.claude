@@ -13,7 +13,8 @@ def main() -> None:
     tool_input = data.get("tool_input", {})
     file_path = tool_input.get("file_path", "") or tool_input.get("path", "")
 
-    if "/.claude/hooks/" not in file_path:
+    normalized = file_path.replace("\\", "/")
+    if "/.claude/hooks/" not in normalized and ".claude/hooks/" not in normalized:
         return
 
     ext = os.path.splitext(file_path)[1].lower()
