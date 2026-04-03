@@ -149,3 +149,90 @@ class TestMultiLineAllow:
             "file_path": "/tmp/example.py",
             "new_string": code,
         }) is None
+
+
+# ---------------------------------------------------------------------------
+# Bug fixes: regression tests
+# ---------------------------------------------------------------------------
+
+
+class TestPositionalOnlyMarker:
+    """Bug 1: `/` marker must not be flagged as missing annotation."""
+
+    def test_slash_marker_single_line(self) -> None:
+        assert run_hook({
+            "file_path": "/tmp/example.py",
+            "new_string": "def foo(a: int, /, b: int) -> None:\n    pass",
+        }) is None
+
+    def test_slash_marker_multi_line(self) -> None:
+        code = (
+            "def foo(\n"
+            "    a: int,\n"
+            "    /,\n"
+            "    b: int,\n"
+            ") -> None:\n"
+            "    pass\n"
+        )
+        assert run_hook({
+            "file_path": "/tmp/example.py",
+            "new_string": code,
+        }) is None
+
+
+class TestDefaultWithParens:
+    """Bug 2: nested parens in defaults must not skip the entire function."""
+
+    def test_tuple_default_missing_annotation(self) -> None:
+        result = run_hook({
+            "file_path": "/tmp/example.py",
+            "new_string": "def foo(bar=(1, 2)) -> None:\n    pass",
+        })
+        assert result is not None
+        assert result["decision"] == "block"
+
+    def test_multi_line_tuple_default_missing_annotation(self) -> None:
+        code = (
+            "def foo(\n"
+            "    bar=(1, 2),\n"
+            ") -> None:\n"
+            "    pass\n"
+        )
+        result = run_hook({
+            "file_path": "/tmp/example.py",
+            "new_string": code,
+        })
+        assert result is not None
+        assert result["decision"] == "block"
+
+    def test_tuple_default_with_annotation(self) -> None:
+        assert run_hook({
+            "file_path": "/tmp/example.py",
+            "new_string": "def foo(bar: tuple[int, ...] = (1, 2)) -> None:\n    pass",
+        }) is None
+
+
+class TestDefaultWithColon:
+    """Bug 3: colon inside default value must not be mistaken for annotation."""
+
+    def test_dict_default_missing_annotation(self) -> None:
+        result = run_hook({
+            "file_path": "/tmp/example.py",
+            "new_string": 'def foo(bar={"a": 1}) -> None:\n    pass',
+        })
+        assert result is not None
+        assert result["decision"] == "block"
+
+    def test_string_colon_default_missing_annotation(self) -> None:
+        result = run_hook({
+            "file_path": "/tmp/example.py",
+            "new_string": 'def foo(sep=":") -> None:\n    pass',
+        })
+        assert result is not None
+        assert result["decision"] == "block"
+
+    def test_dict_default_with_annotation(self) -> None:
+        assert run_hook({
+            "file_path": "/tmp/example.py",
+            "new_string": 'def foo(bar: dict[str, int] = {"a": 1}) -> None:\n    pass',
+        }) is None
