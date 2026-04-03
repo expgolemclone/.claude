@@ -13,7 +13,7 @@ _PY_IMPORT_ANY_RE = re.compile(r"from\s+typing\b.*\bAny\b")
 _PY_QUALIFIED_ANY_RE = re.compile(r"\btyping\.Any\b")
 _PY_BARE_ANY_RE = re.compile(r"\bAny\b")
 _PY_COMMENT_RE = re.compile(r"^\s*#")
-_PY_FALSE_POSITIVE_RE = re.compile(r"\bany\s*\(", re.IGNORECASE)
+_PY_FALSE_POSITIVE_RE = re.compile(r"\bany\s*\(")
 
 
 def _check_python(text: str) -> bool:

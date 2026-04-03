@@ -30,7 +30,7 @@ def main() -> None:
 
     # Bash tool: git command -> inject git.toml
     command = tool_input.get("command", "")
-    if command and re.match(r"\s*git\s", command):
+    if command and re.search(r"(?:^|(?:&&|\|\||[;|`]|\$\()\s*)git\s", command):
         rules = read_config("git.toml")
         if rules:
             output(rules)

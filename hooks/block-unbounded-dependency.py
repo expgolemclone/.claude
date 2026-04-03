@@ -6,15 +6,7 @@ import os
 import re
 import sys
 
-# >=X.Y のみ（後に , や < が続かない）
-_PYPROJECT_UNBOUNDED_RE = re.compile(r""">=[^,"'<]*['"\s,\]]""")
-# ~= と ^ は暗黙の上限があるので許可
-_PYPROJECT_BOUNDED_RE = re.compile(r"[~^=<]")
-
 _CARGO_WILDCARD_RE = re.compile(r"""['"](\s*\*\s*)['"]""")
-_CARGO_UNBOUNDED_RE = re.compile(r""">=[^"'<]*['"]""")
-
-_PKG_JSON_UNBOUNDED_RE = re.compile(r"""["']>=\s*[\d][^"'<]*["']""")
 
 _FILE_CHECKERS: dict[str, str] = {
     "pyproject.toml": "pyproject",
@@ -54,9 +46,6 @@ def _check_package_json(content: str) -> bool:
             if re.search(r""">=\s*[\d]""", stripped):
                 return True
     return False
-
-
-_DISPATCH: dict[str, tuple[type[object] | None, ...]] = {}
 
 
 def main() -> None:

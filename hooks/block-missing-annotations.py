@@ -45,7 +45,7 @@ def _check_param(param: str, missing: list[str]) -> None:
             name = param.lstrip("*").split("=")[0].split(":")[0].strip()
             if name and ":" not in param:
                 missing.append(param)
-        elif param.startswith("*") and not param == "*":
+        elif param.startswith("*") and param != "*":
             name = param.lstrip("*").split("=")[0].split(":")[0].strip()
             if name and ":" not in param:
                 missing.append(param)
