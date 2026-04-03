@@ -53,6 +53,8 @@ def build_linux_config():
                     py("block-setup-py-cfg.py"),
                     py("block-manual-requirements-txt.py"),
                     py("block-wildcard-versions.py"),
+                    py("block-missing-annotations.py"),
+                    py("block-unbounded-dependency.py"),
                 ]},
                 {"matcher": "Write|Bash", "hooks": [
                     py("block-platform-specific-scripts.py"),
@@ -64,6 +66,7 @@ def build_linux_config():
                     py("block-git-commit-protected-changes.py"),
                     py("block-nixos-rebuild-protected-changes.py"),
                     py("block-prohibited-python-toolchains.py"),
+                    py("block-install-without-lock.py"),
                 ]},
             ],
             "PostToolUse": [
@@ -115,6 +118,8 @@ def build_windows_config():
                     py("block-setup-py-cfg.py"),
                     py("block-manual-requirements-txt.py"),
                     py("block-wildcard-versions.py"),
+                    py("block-missing-annotations.py"),
+                    py("block-unbounded-dependency.py"),
                 ]},
                 {"matcher": "Write|Bash", "hooks": [
                     py("block-platform-specific-scripts.py"),
@@ -124,6 +129,7 @@ def build_windows_config():
                     py("block-git-commit-prohibited-keywords.py"),
                     py("block-commit-without-verification.py", timeout=120),
                     py("block-prohibited-python-toolchains.py"),
+                    py("block-install-without-lock.py"),
                 ]},
             ],
             "PostToolUse": [

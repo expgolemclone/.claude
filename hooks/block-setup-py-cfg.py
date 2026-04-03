@@ -16,6 +16,10 @@ def main() -> None:
     if not file_path:
         return
 
+    # Claude Code設定ジェネレーター（~/.claude/setup.py）は対象外
+    if os.path.join(".claude", "") in file_path:
+        return
+
     basename = os.path.basename(file_path)
     if basename in PROHIBITED_NAMES:
         json.dump(
