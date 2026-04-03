@@ -1,16 +1,12 @@
 [toolchain]
 required = "uv"
-prohibited = ["pyenv", "conda", "pipenv", "poetry"]
 
 [project_config]
 format = "pyproject.toml"  # PEP 621
-prohibited_formats = ["setup.py", "setup.cfg"]
-wildcard_version = false
 
 [dependencies]
 prefer_pure_python_or_rust = true   # C拡張は代替がない場合のみ
 c_extension_requires_wheel = true   # wheel未提供のPython/OS組み合わせはサポート外
-manual_requirements_txt = false     # 手書き禁止、uv pip compile で生成
 
 [lockfile]
 tool = "uv lock"

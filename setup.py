@@ -50,6 +50,9 @@ def build_linux_config():
                     py("block-protected-nix-config.py"),
                     py("block-non-python-hook-scripts.py"),
                     py("block-any-type.py"),
+                    py("block-setup-py-cfg.py"),
+                    py("block-manual-requirements-txt.py"),
+                    py("block-wildcard-versions.py"),
                 ]},
                 {"matcher": "Write|Bash", "hooks": [
                     py("block-platform-specific-scripts.py"),
@@ -60,6 +63,7 @@ def build_linux_config():
                     py("block-commit-without-verification.py", timeout=120),
                     py("block-git-commit-protected-changes.py"),
                     py("block-nixos-rebuild-protected-changes.py"),
+                    py("block-prohibited-python-toolchains.py"),
                 ]},
             ],
             "PostToolUse": [
@@ -108,6 +112,9 @@ def build_windows_config():
                     py("block-settings-json-direct-edit.py"),
                     py("block-non-python-hook-scripts.py"),
                     py("block-any-type.py"),
+                    py("block-setup-py-cfg.py"),
+                    py("block-manual-requirements-txt.py"),
+                    py("block-wildcard-versions.py"),
                 ]},
                 {"matcher": "Write|Bash", "hooks": [
                     py("block-platform-specific-scripts.py"),
@@ -116,6 +123,7 @@ def build_windows_config():
                     py("block-git-add-force-staging.py"),
                     py("block-git-commit-prohibited-keywords.py"),
                     py("block-commit-without-verification.py", timeout=120),
+                    py("block-prohibited-python-toolchains.py"),
                 ]},
             ],
             "PostToolUse": [
