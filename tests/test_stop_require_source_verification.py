@@ -111,7 +111,8 @@ class TestTranscriptParsing:
         result = run_main(make_stdin(str(tp), "a" * 300))
         assert result == ""
 
-    def test_5b_non_search_tool_blocks(self, tmp_path):
+    def test_5b_coding_tool_allows(self, tmp_path: Path) -> None:
+        """Coding tools (Read, Edit, Bash, etc.) indicate a coding task — no block."""
         entries = [
             make_user_text(),
             make_assistant_tool_use("Read"),
@@ -120,8 +121,32 @@ class TestTranscriptParsing:
         ]
         tp = write_transcript(tmp_path, entries)
         result = run_main(make_stdin(str(tp), "a" * 300))
+        assert result == ""
+
+    def test_5c_non_coding_non_search_tool_blocks(self, tmp_path: Path) -> None:
+        """Tools that are neither search nor coding should still block."""
+        entries = [
+            make_user_text(),
+            make_assistant_tool_use("SomeOtherTool"),
+            make_user_tool_result(),
+            make_assistant_text("a" * 300),
+        ]
+        tp = write_transcript(tmp_path, entries)
+        result = run_main(make_stdin(str(tp), "a" * 300))
         parsed = json.loads(result)
         assert parsed["decision"] == "block"
+
+    @pytest.mark.parametrize("tool", ["Edit", "Write", "Bash", "Grep", "Glob", "NotebookEdit"])
+    def test_5d_each_coding_tool_allows(self, tmp_path: Path, tool: str) -> None:
+        entries = [
+            make_user_text(),
+            make_assistant_tool_use(tool),
+            make_user_tool_result(),
+            make_assistant_text("a" * 300),
+        ]
+        tp = write_transcript(tmp_path, entries)
+        result = run_main(make_stdin(str(tp), "a" * 300))
+        assert result == ""
 
     def test_6_no_tool_use_blocks(self, tmp_path):
         entries = [

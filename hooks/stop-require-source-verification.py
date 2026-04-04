@@ -5,6 +5,7 @@ import json
 import sys
 
 SEARCH_TOOLS = {"WebSearch", "WebFetch"}
+CODING_TOOLS = {"Edit", "Write", "Bash", "Read", "Grep", "Glob", "NotebookEdit"}
 
 
 def main() -> None:
@@ -18,6 +19,7 @@ def main() -> None:
         return
 
     used_search = False
+    used_coding_tool = False
 
     try:
         with open(transcript_path) as f:
@@ -57,20 +59,19 @@ def main() -> None:
                 continue
 
             for block in content:
-                if (
-                    isinstance(block, dict)
-                    and block.get("type") == "tool_use"
-                    and block.get("name") in SEARCH_TOOLS
-                ):
-                    used_search = True
-                    break
+                if isinstance(block, dict) and block.get("type") == "tool_use":
+                    tool_name: str = block.get("name", "")
+                    if tool_name in SEARCH_TOOLS:
+                        used_search = True
+                    if tool_name in CODING_TOOLS:
+                        used_coding_tool = True
             if used_search:
                 break
 
     except (OSError, json.JSONDecodeError):
         return
 
-    if used_search:
+    if used_search or used_coding_tool:
         return
 
     json.dump(
