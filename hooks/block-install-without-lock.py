@@ -46,22 +46,6 @@ def _strip_quotes(command: str) -> str:
     return re.sub(r"'[^']*'", "''", result)
 
 
-def _has_package_args(command: str, install_keyword: str) -> bool:
-    """Check if command has package name arguments after install keyword."""
-    idx = command.find(install_keyword)
-    if idx < 0:
-        return False
-    after = command[idx + len(install_keyword):]
-    tokens = after.split()
-    for token in tokens:
-        if token.startswith("-"):
-            continue
-        if token in ("&&", "||", ";", "|"):
-            break
-        return True
-    return False
-
-
 def main() -> None:
     data = json.load(sys.stdin)
     command: str = data.get("tool_input", {}).get("command", "")

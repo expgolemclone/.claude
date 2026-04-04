@@ -32,8 +32,14 @@ def check_config_diff(diff_text: str) -> str | None:
 
 
 def check_mkforce_override(diff_text: str) -> str | None:
-    """diff 中の mkForce による保護対象の上書きを検出."""
+    """diff 中の configuration.nix 内の mkForce による保護対象の上書きを検出."""
+    in_config_file = False
     for line in diff_text.splitlines():
+        if line.startswith("diff --git"):
+            in_config_file = "configuration.nix" in line
+            continue
+        if not in_config_file:
+            continue
         if not line.startswith("+"):
             continue
         if line.startswith("+++"):

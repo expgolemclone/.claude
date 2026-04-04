@@ -61,6 +61,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    # PostToolUse receives JSON on stdin but we don't need it
-    sys.stdin.read()
+    json.load(sys.stdin)
     main()

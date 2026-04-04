@@ -76,6 +76,7 @@ def build_linux_config():
                 {"matcher": "Edit|Write", "hooks": [
                     py("post-cargo-clippy-on-rs-edit.py", timeout=120),
                     py("warn-hardcoded-paths.py"),
+                    py("check-hotstring-conflicts.py"),
                 ]},
             ],
             "Stop": [
