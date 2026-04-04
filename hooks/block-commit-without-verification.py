@@ -81,7 +81,17 @@ def _cmd_references_file(cmd: str, file_path: str) -> bool:
 def _is_test_file(file_path: str) -> bool:
     """テストファイルかどうかを判定."""
     basename = os.path.basename(file_path)
-    return basename.startswith("test_") or basename.endswith("_test.py")
+    ext = os.path.splitext(basename)[1]
+    # Python: test_*.py, *_test.py
+    if basename.startswith("test_") or basename.endswith("_test.py"):
+        return True
+    # Go: *_test.go
+    if basename.endswith("_test.go"):
+        return True
+    # C/C++: test_*.(c|cpp|cc)
+    if basename.startswith("test_") and ext in (".c", ".cpp", ".cc"):
+        return True
+    return False
 
 
 def _is_test_execution(cmd: str) -> bool:

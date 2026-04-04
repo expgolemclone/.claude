@@ -20,6 +20,8 @@ def _check_pyproject(content: str) -> bool:
         stripped = line.strip()
         if stripped.startswith("#"):
             continue
+        if "requires-python" in stripped:
+            continue
         if ">=" in stripped and "<" not in stripped and "~=" not in stripped:
             if re.search(r""">=\s*[\d]""", stripped):
                 return True

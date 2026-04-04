@@ -36,8 +36,14 @@ def find_tainted_commits() -> list[tuple[str, str, str]]:
     combined = "|".join(re.escape(kw) for kw in BLOCKED_KEYWORDS)
     pattern = re.compile(rf"\b({combined})\b", re.IGNORECASE)
 
+    upstream_check = subprocess.run(
+        ["git", "rev-parse", "--abbrev-ref", "@{upstream}"],
+        capture_output=True, text=True,
+    )
+    rev_range = ["@{upstream}..HEAD"] if upstream_check.returncode == 0 else ["--all"]
+
     proc = subprocess.run(
-        ["git", "log", "--all", f"--grep=\\b({combined})\\b", "-i", "-P",
+        ["git", "log", *rev_range, f"--grep=\\b({combined})\\b", "-i", "-P",
          "--format=%h %s"],
         capture_output=True, text=True,
     )
@@ -54,7 +60,15 @@ def find_tainted_commits() -> list[tuple[str, str, str]]:
         seen.add(short_hash)
         subject = parts[1] if len(parts) > 1 else ""
         m = pattern.search(subject)
-        keyword = m.group(1) if m else "?"
+        if m:
+            keyword = m.group(1)
+        else:
+            full = subprocess.run(
+                ["git", "log", "-1", "--format=%B", short_hash],
+                capture_output=True, text=True,
+            )
+            bm = pattern.search(full.stdout) if full.returncode == 0 else None
+            keyword = bm.group(1) if bm else "?"
         results.append((short_hash, subject, keyword))
     return results
 
