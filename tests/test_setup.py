@@ -166,6 +166,8 @@ class TestCrossCheck:
             "block-nixos-rebuild-protected-changes.py",
             "post-verify-protected-nix-config.py",
             "stop-nixos-rebuild-on-config-change.py",
+            "stop-lint-edited-python.py",
+            "stop-warn-chrome-tabs.py",
             "check-hotstring-conflicts.py",
             "notify-complete.ps1",
         }

@@ -10,26 +10,31 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 TARGET = SCRIPT_DIR / "settings.json"
 
 
-def hook(command, timeout=None):
-    h = {"type": "command", "command": command}
+def hook(command: str, timeout: int | None = None) -> dict[str, object]:
+    h: dict[str, object] = {"type": "command", "command": command}
     if timeout is not None:
         h["timeout"] = timeout
     return h
 
 
-def build_common_config():
+def build_common_config() -> dict[str, object]:
     return {
         "skipDangerousModePermissionPrompt": True,
     }
 
 
-def build_linux_config():
-    h = str(Path.home() / ".claude")
+def build_linux_config() -> dict[str, object]:
+    h: str = str(Path.home() / ".claude")
+    projects: str = str(Path.home() / "projects")
 
-    def py(script, *args, timeout=None):
-        cmd = f"python3 {h}/hooks/{script}"
+    def py(script: str, *args: str, timeout: int | None = None) -> dict[str, object]:
+        cmd: str = f"python3 {h}/hooks/{script}"
         if args:
             cmd += " " + " ".join(args)
+        return hook(cmd, timeout)
+
+    def project_py(project: str, script: str, *, timeout: int | None = None) -> dict[str, object]:
+        cmd: str = f"python3 {projects}/{project}/hooks/{script}"
         return hook(cmd, timeout)
 
     return {
@@ -76,6 +81,7 @@ def build_linux_config():
                 {"matcher": "Edit|Write", "hooks": [
                     py("post-cargo-clippy-on-rs-edit.py", timeout=120),
                     py("warn-hardcoded-paths.py"),
+                    py("block-literal-argparse-defaults.py"),
                     py("check-hotstring-conflicts.py"),
                 ]},
             ],
@@ -85,26 +91,28 @@ def build_linux_config():
                     py("stop-require-git-commit-and-push.py", timeout=15),
                     py("stop-nixos-rebuild-on-config-change.py", timeout=300),
                     py("stop-require-source-verification.py", timeout=15),
+                    py("stop-warn-chrome-tabs.py", timeout=15),
                 ]},
             ],
         },
     }
 
 
-def build_windows_config():
-    claude_home = (Path.home() / ".claude").as_posix()
-    claude_home_bs = str(Path.home() / ".claude")
+def build_windows_config() -> dict[str, object]:
+    claude_home: str = (Path.home() / ".claude").as_posix()
+    claude_home_bs: str = str(Path.home() / ".claude")
 
-    def py(script, *args, timeout=None):
-        cmd = f'python3 "{claude_home}/hooks/{script}"'
+    def py(script: str, *args: str, timeout: int | None = None) -> dict[str, object]:
+        cmd: str = f'python3 "{claude_home}/hooks/{script}"'
         if args:
             cmd += " " + " ".join(args)
         return hook(cmd, timeout)
 
     return {
         **build_common_config(),
+        "effortLevel": "max",
         "permissions": {
-            "deny": ["Agent"],
+            "deny": ["Task", "Agent"],
             "defaultMode": "bypassPermissions",
         },
         "hooks": {
@@ -138,6 +146,7 @@ def build_windows_config():
                     py("post-cargo-clippy-on-rs-edit.py", timeout=120),
                     py("check-hotstring-conflicts.py"),
                     py("warn-hardcoded-paths.py"),
+                    py("block-literal-argparse-defaults.py"),
                 ]},
             ],
             "Stop": [
@@ -152,9 +161,7 @@ def build_windows_config():
             ],
         },
     }
-
-
-def main():
+def main() -> None:
     system = platform.system()
     if system == "Linux":
         config = build_linux_config()
