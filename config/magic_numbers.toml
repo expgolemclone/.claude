@@ -1,2 +1,12 @@
 [python_linters]
 timeout_seconds = 120
+
+[structural_clone_hook]
+min_stmt_count = 3
+min_ast_node_count = 25
+shortlist_size = 8
+max_report_items = 3
+min_vector_similarity = 0.60
+min_au_similarity = 0.82
+min_stmt_ratio = 0.60
+idf_floor = 1.0
