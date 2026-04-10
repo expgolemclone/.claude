@@ -1,13 +1,7 @@
 [code_organization]
 extract_shared_logic = true            # 共通処理は専用モジュールに切り出す
-no_inline_duplication = true           # 同一ロジックの複数箇所へのコピペ禁止
 review_folder_structure = true         # フォルダ構成は常に見直し、意味論的に整合させる
 no_root_dumping = true                 # ルートディレクトリに何でも置く構成を禁止
-magic_numbers_in_config = true        # マジックナンバー（数値リテラル）は設定ファイルまたは名前付き定数で一元管理
-cli_defaults_in_toml = true           # CLIオプションのデフォルト値は config/cli_defaults.toml で一元管理
-
-[paths]
-no_hardcoded_paths = true              # 絶対パスのハードコード禁止（py/go/rs対象）
 
 [style]
 self_documenting = true                # 自己文書化されたコードを書く
@@ -19,11 +13,9 @@ structure = "arrange-act-assert"        # テストは Arrange-Act-Assert 構造
 
 [lockfile]
 commit_to_repo = true                   # lockfileはリポジトリにコミットする
-install_without_lock = false            # lockfileなしのインストールを禁止
 
 [cache]
 hash_based_invalidation = true        # キャッシュは対象ファイルのハッシュ値を保存し、変更時に破棄する
 
 [scrape]
-tracked_files_pure_logic_only = true  # ハッシュ追跡対象ファイルにはscrape logicのみ配置し、scrape結果へのinput, output, parse等の無関係なコードを混在させない
 scrape_folder_managed = true          # scrape logicはscrapeフォルダで管理する
