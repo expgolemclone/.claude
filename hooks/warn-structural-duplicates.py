@@ -14,7 +14,7 @@ from structural_clone_core import (
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-MAGIC_NUMBERS_PATH = PROJECT_ROOT / "config" / "magic_numbers.toml"
+CONFIG_PATH = PROJECT_ROOT / "config" / "magic_numbers.toml"
 
 
 def main() -> None:
@@ -33,7 +33,7 @@ def main() -> None:
     if repo_root is None:
         return
 
-    config = load_config(MAGIC_NUMBERS_PATH)
+    config = load_config(CONFIG_PATH)
     result = detect_structural_duplicates(repo_root, current_file, config)
     if result is None:
         return

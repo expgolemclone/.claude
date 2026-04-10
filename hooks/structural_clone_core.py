@@ -6,8 +6,8 @@ import ast
 import hashlib
 import json
 import math
-import os
 import subprocess
+import tempfile
 import tomllib
 from dataclasses import dataclass
 from pathlib import Path
@@ -152,10 +152,16 @@ def build_cache_payload(
 
 
 def save_cache(path: Path, payload: StructuralCloneCache) -> None:
-    """Persist cache to disk."""
+    """Persist cache to disk atomically via temp-file + rename."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2, sort_keys=True)
+    fd, tmp_path = tempfile.mkstemp(dir=path.parent, suffix=".tmp")
+    try:
+        with open(fd, "w", encoding="utf-8") as f:
+            json.dump(payload, f, indent=2, sort_keys=True)
+        Path(tmp_path).replace(path)
+    except BaseException:
+        Path(tmp_path).unlink(missing_ok=True)
+        raise
 
 
 def load_cache(path: Path) -> StructuralCloneCache:
@@ -556,7 +562,7 @@ def collect_records(
     repo_root: Path,
     current_file: Path,
     cache_path: Path,
-) -> tuple[list[FunctionRecord], StructuralCloneCache]:
+) -> tuple[list[FunctionRecord], dict[str, list[FunctionRecord]]]:
     """Collect function records from the repo, reusing cache when possible."""
     cached = load_cache(cache_path)
     if cached["schema_version"] != CACHE_SCHEMA_VERSION or cached["repo_root"] != str(repo_root):
@@ -574,12 +580,7 @@ def collect_records(
         records_by_file[key] = records
         all_records.extend(records)
 
-    payload = build_cache_payload(
-        schema_version=CACHE_SCHEMA_VERSION,
-        repo_root=str(repo_root),
-        records_by_file=records_by_file,
-    )
-    return all_records, payload
+    return all_records, records_by_file
 
 
 def eligible_records(records: list[FunctionRecord], config: StructuralCloneConfig) -> list[FunctionRecord]:
@@ -602,7 +603,12 @@ def detect_structural_duplicates(
         return None
 
     cache_path = cache_path_for_repo(repo_root)
-    all_records, payload = collect_records(repo_root, current_file, cache_path)
+    all_records, records_by_file = collect_records(repo_root, current_file, cache_path)
+    payload = build_cache_payload(
+        schema_version=CACHE_SCHEMA_VERSION,
+        repo_root=str(repo_root),
+        records_by_file=records_by_file,
+    )
     save_cache(cache_path, payload)
 
     all_eligible = eligible_records(all_records, config)
@@ -611,7 +617,7 @@ def detect_structural_duplicates(
         return [], payload
 
     term_idf = compute_term_idf(all_eligible, config.idf_floor)
-    label_weights = compute_label_weights(all_eligible, config.idf_floor)
+    label_weights = compute_label_weights(term_idf)
 
     matches: list[MatchResult] = []
     for source in current_records:
@@ -663,9 +669,8 @@ def compute_term_idf(records: list[FunctionRecord], idf_floor: float) -> dict[st
     }
 
 
-def compute_label_weights(records: list[FunctionRecord], idf_floor: float) -> dict[str, float]:
-    """Compute IDF weights per normalized node label."""
-    term_idf = compute_term_idf(records, idf_floor)
+def compute_label_weights(term_idf: dict[str, float]) -> dict[str, float]:
+    """Extract node-label IDF weights from a pre-computed term IDF map."""
     label_weights: dict[str, float] = {}
     for term, weight in term_idf.items():
         if term.startswith("node:"):
@@ -776,7 +781,11 @@ def weighted_substitution_cost(
     right: NormalizedNode,
     label_weights: Mapping[str, float],
 ) -> float:
-    """Return the weighted placeholder cost between two trees."""
+    """Return the weighted placeholder cost between two trees.
+
+    Children are compared positionally, so a single inserted or deleted
+    statement can cause all subsequent siblings to mismatch.
+    """
     if left["label"] != right["label"] or len(left["children"]) != len(right["children"]):
         return weighted_tree_size(left, label_weights) + weighted_tree_size(right, label_weights)
 
@@ -791,4 +800,4 @@ def relative_path(path: str, repo_root: Path) -> str:
     try:
         return str(Path(path).resolve().relative_to(repo_root))
     except ValueError:
-        return os.path.basename(path)
+        return Path(path).name
