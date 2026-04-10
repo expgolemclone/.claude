@@ -82,8 +82,9 @@ def build_linux_config() -> dict[str, object]:
                     py("post-cargo-clippy-on-rs-edit.py", timeout=120),
                     py("warn-hardcoded-paths.py"),
                     py("warn-structural-duplicates.py"),
-                    py("block-literal-argparse-defaults.py"),
+                    py("block-magic-numbers.py"),
                     py("check-hotstring-conflicts.py"),
+                    py("block-worker-in-tracked-datasource.py"),
                 ]},
             ],
             "Stop": [
@@ -148,7 +149,8 @@ def build_windows_config() -> dict[str, object]:
                     py("check-hotstring-conflicts.py"),
                     py("warn-hardcoded-paths.py"),
                     py("warn-structural-duplicates.py"),
-                    py("block-literal-argparse-defaults.py"),
+                    py("block-magic-numbers.py"),
+                    py("block-worker-in-tracked-datasource.py"),
                 ]},
             ],
             "Stop": [
