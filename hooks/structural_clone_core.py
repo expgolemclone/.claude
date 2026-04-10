@@ -835,6 +835,14 @@ def _children_cost(
     return cost
 
 
+def _labels_match(a: str, b: str) -> bool:
+    """Check whether two labels should be aligned in LCS.
+
+    Matches on exact equality or same base AST type.
+    """
+    return a == b or _label_base_type(a) == _label_base_type(b)
+
+
 def _lcs_alignment(
     left: list[NormalizedNode],
     right: list[NormalizedNode],
@@ -844,7 +852,7 @@ def _lcs_alignment(
     dp: list[list[int]] = [[0] * (m + 1) for _ in range(n + 1)]
     for i in range(n - 1, -1, -1):
         for j in range(m - 1, -1, -1):
-            if left[i]["label"] == right[j]["label"]:
+            if _labels_match(left[i]["label"], right[j]["label"]):
                 dp[i][j] = dp[i + 1][j + 1] + 1
             else:
                 dp[i][j] = max(dp[i + 1][j], dp[i][j + 1])
@@ -852,7 +860,7 @@ def _lcs_alignment(
     result: list[tuple[NormalizedNode | None, NormalizedNode | None]] = []
     i, j = 0, 0
     while i < n and j < m:
-        if left[i]["label"] == right[j]["label"]:
+        if _labels_match(left[i]["label"], right[j]["label"]):
             result.append((left[i], right[j]))
             i += 1
             j += 1

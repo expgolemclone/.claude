@@ -333,6 +333,37 @@ def collect_recursive(items: list[object], predicate: object, acc: list[object] 
 """,
         expected_match=False,
     ),
+    # ---- TP: keyword-arg clone with differing kw names and count (LCS + base-type) ----
+    TestCase(
+        label="kwarg_clone_lcs_basetype",
+        category="TP",
+        source_code="""\
+def create_user_report(db: object, config: object) -> object:
+    data = db.query(config.query)
+    return generate(
+        data,
+        title=config.title,
+        author=config.author,
+        style=config.style,
+        fmt=config.fmt,
+        lang=config.lang,
+    )
+""",
+        candidate_code="""\
+def create_team_report(db: object, config: object) -> object:
+    data = db.query(config.query)
+    return generate(
+        data,
+        title=config.title,
+        reviewer=config.reviewer,
+        style=config.style,
+        fmt=config.fmt,
+        lang=config.lang,
+        priority=config.priority,
+    )
+""",
+        expected_match=True,
+    ),
 ]
 
 
