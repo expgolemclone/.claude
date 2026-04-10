@@ -379,7 +379,7 @@ def normalize_function(node: ast.FunctionDef | ast.AsyncFunctionDef) -> Normaliz
     """Normalize one function subtree."""
     children = [normalize_node(node.args)]
     children.extend(normalize_node(stmt) for stmt in _body_without_docstring(node.body))
-    label = "AsyncFunctionDef" if isinstance(node, ast.AsyncFunctionDef) else "FunctionDef"
+    label = "FunctionDef"
     return {"label": label, "children": children}
 
 
@@ -783,16 +783,68 @@ def weighted_substitution_cost(
 ) -> float:
     """Return the weighted placeholder cost between two trees.
 
-    Children are compared positionally, so a single inserted or deleted
-    statement can cause all subsequent siblings to mismatch.
+    When children counts differ, LCS alignment matches shared structure
+    before computing cost, so a single insertion does not cascade.
     """
-    if left["label"] != right["label"] or len(left["children"]) != len(right["children"]):
+    if left["label"] != right["label"]:
         return weighted_tree_size(left, label_weights) + weighted_tree_size(right, label_weights)
 
-    return sum(
-        weighted_substitution_cost(left_child, right_child, label_weights)
-        for left_child, right_child in zip(left["children"], right["children"], strict=True)
-    )
+    left_children = left["children"]
+    right_children = right["children"]
+
+    if len(left_children) == len(right_children):
+        return sum(
+            weighted_substitution_cost(lc, rc, label_weights)
+            for lc, rc in zip(left_children, right_children, strict=True)
+        )
+
+    aligned = _lcs_alignment(left_children, right_children)
+    cost = 0.0
+    for lc, rc in aligned:
+        if lc is not None and rc is not None:
+            cost += weighted_substitution_cost(lc, rc, label_weights)
+        elif lc is not None:
+            cost += weighted_tree_size(lc, label_weights)
+        else:
+            assert rc is not None
+            cost += weighted_tree_size(rc, label_weights)
+    return cost
+
+
+def _lcs_alignment(
+    left: list[NormalizedNode],
+    right: list[NormalizedNode],
+) -> list[tuple[NormalizedNode | None, NormalizedNode | None]]:
+    """Align two child lists via LCS on node labels, returning matched and unmatched pairs."""
+    n, m = len(left), len(right)
+    dp: list[list[int]] = [[0] * (m + 1) for _ in range(n + 1)]
+    for i in range(n - 1, -1, -1):
+        for j in range(m - 1, -1, -1):
+            if left[i]["label"] == right[j]["label"]:
+                dp[i][j] = dp[i + 1][j + 1] + 1
+            else:
+                dp[i][j] = max(dp[i + 1][j], dp[i][j + 1])
+
+    result: list[tuple[NormalizedNode | None, NormalizedNode | None]] = []
+    i, j = 0, 0
+    while i < n and j < m:
+        if left[i]["label"] == right[j]["label"]:
+            result.append((left[i], right[j]))
+            i += 1
+            j += 1
+        elif dp[i + 1][j] >= dp[i][j + 1]:
+            result.append((left[i], None))
+            i += 1
+        else:
+            result.append((None, right[j]))
+            j += 1
+    while i < n:
+        result.append((left[i], None))
+        i += 1
+    while j < m:
+        result.append((None, right[j]))
+        j += 1
+    return result
 
 
 def relative_path(path: str, repo_root: Path) -> str:
