@@ -2,7 +2,7 @@
 timeout_seconds = 120
 
 [structural_clone_hook]
-min_stmt_count = 3
+min_stmt_count = 1
 min_ast_node_count = 25
 shortlist_size = 8
 max_report_items = 3

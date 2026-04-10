@@ -26,7 +26,7 @@ from structural_clone_core import (
 )
 
 CONFIG = StructuralCloneConfig(
-    min_stmt_count=3,
+    min_stmt_count=1,
     min_ast_node_count=25,
     shortlist_size=8,
     max_report_items=3,
@@ -195,6 +195,34 @@ def create_summary(settings: object, database: object) -> object:
     cleaned = sanitize(raw)
     aggregated = aggregate(cleaned, settings.group_by)
     return render(aggregated)
+""",
+        expected_match=True,
+    ),
+    # ---- TP: for-loop clone (few top-level stmts, many AST nodes) ----
+    TestCase(
+        label="forloop_clone",
+        category="TP",
+        source_code="""\
+def validate_https(entries: list[str], keys: list[str]) -> None:
+    for entry in entries:
+        result = check_https(0, entry)
+        assert_is_instance(result, list)
+        assert_equal(len(result), 1)
+        msg = result[0]
+        expected = format_error(entry, kind='https')
+        assert_is_instance(msg, str)
+        assert_equal(msg, expected)
+""",
+        candidate_code="""\
+def validate_cors(entries: list[str], keys: list[str]) -> None:
+    for entry in entries:
+        result = check_cors(0, entry)
+        assert_is_instance(result, list)
+        assert_equal(len(result), 1)
+        msg = result[0]
+        expected = format_error(entry, kind='cors')
+        assert_is_instance(msg, str)
+        assert_equal(msg, expected)
 """,
         expected_match=True,
     ),

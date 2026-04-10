@@ -16,7 +16,7 @@ mod = importlib.import_module("block-git-commit-protected-changes")
 main = mod.main
 
 # Reuse diff fixtures from rebuild hook tests
-from test_block_nixos_rebuild_protected_changes import (
+from tests.test_block_nixos_rebuild_protected_changes import (
     DIFF_MKFORCE_OVERRIDE,
     DIFF_PASSWORD_REMOVED,
     DIFF_SAFE_CHANGE,
