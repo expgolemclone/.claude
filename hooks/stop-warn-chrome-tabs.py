@@ -6,6 +6,8 @@ import subprocess
 import sys
 
 TAB_THRESHOLD: int = 3
+# Chrome spawns an internal renderer (new-tab page etc.) at startup
+_INTERNAL_RENDERER_OVERHEAD: int = 1
 
 
 def count_chrome_tabs() -> int:
@@ -17,7 +19,13 @@ def count_chrome_tabs() -> int:
     )
     if result.returncode != 0:
         return 0
-    return len(result.stdout.strip().splitlines())
+    lines = result.stdout.strip().splitlines()
+    tab_lines = [
+        line
+        for line in lines
+        if "--extension-process" not in line and "pgrep" not in line
+    ]
+    return max(0, len(tab_lines) - _INTERNAL_RENDERER_OVERHEAD)
 
 
 def main() -> None:

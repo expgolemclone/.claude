@@ -75,11 +75,85 @@ class TestCountChromeTabs:
 
         assert tab_count == 0
 
-    def test_counts_renderer_lines(self) -> None:
+    def test_counts_renderer_lines_with_overhead_subtracted(self) -> None:
+        """3 renderers minus 1 internal overhead = 2 tabs."""
         fake_result = subprocess.CompletedProcess(
             args=[],
             returncode=0,
-            stdout="123 chrome --type=renderer\n456 chrome --type=renderer\n",
+            stdout=(
+                "100 chrome --type=renderer\n"
+                "200 chrome --type=renderer\n"
+                "300 chrome --type=renderer\n"
+            ),
+            stderr="",
+        )
+
+        with mock.patch("subprocess.run", return_value=fake_result):
+            tab_count = mod.count_chrome_tabs()
+
+        assert tab_count == 2
+
+    def test_does_not_go_negative(self) -> None:
+        """Single internal renderer should return 0, not -1."""
+        fake_result = subprocess.CompletedProcess(
+            args=[],
+            returncode=0,
+            stdout="100 chrome --type=renderer\n",
+            stderr="",
+        )
+
+        with mock.patch("subprocess.run", return_value=fake_result):
+            tab_count = mod.count_chrome_tabs()
+
+        assert tab_count == 0
+
+    def test_excludes_extension_process(self) -> None:
+        """3 renderers - 1 extension - 1 overhead = 1 tab."""
+        fake_result = subprocess.CompletedProcess(
+            args=[],
+            returncode=0,
+            stdout=(
+                "100 chrome --type=renderer --renderer-client-id=5\n"
+                "200 chrome --type=renderer --extension-process --renderer-client-id=8\n"
+                "300 chrome --type=renderer --renderer-client-id=32\n"
+            ),
+            stderr="",
+        )
+
+        with mock.patch("subprocess.run", return_value=fake_result):
+            tab_count = mod.count_chrome_tabs()
+
+        assert tab_count == 1
+
+    def test_excludes_pgrep_shell_wrapper(self) -> None:
+        """2 renderers - 1 pgrep - 1 overhead = 0 tabs."""
+        fake_result = subprocess.CompletedProcess(
+            args=[],
+            returncode=0,
+            stdout=(
+                "100 chrome --type=renderer\n"
+                "999 zsh -c pgrep -af 'chrome.*--type=renderer'\n"
+            ),
+            stderr="",
+        )
+
+        with mock.patch("subprocess.run", return_value=fake_result):
+            tab_count = mod.count_chrome_tabs()
+
+        assert tab_count == 0
+
+    def test_excludes_both_extension_and_pgrep(self) -> None:
+        """5 renderers - 1 extension - 1 pgrep - 1 overhead = 2 tabs."""
+        fake_result = subprocess.CompletedProcess(
+            args=[],
+            returncode=0,
+            stdout=(
+                "100 chrome --type=renderer --renderer-client-id=5\n"
+                "200 chrome --type=renderer --renderer-client-id=32\n"
+                "300 chrome --type=renderer --renderer-client-id=34\n"
+                "400 chrome --type=renderer --extension-process --renderer-client-id=8\n"
+                "999 zsh -c pgrep -af 'chrome.*--type=renderer'\n"
+            ),
             stderr="",
         )
 
