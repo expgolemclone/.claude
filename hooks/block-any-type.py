@@ -2,87 +2,11 @@
 """PreToolUse hook (Edit|Write): block Any type usage in Python, Go, and Rust files."""
 
 import json
-import re
 import sys
-from typing import Callable
+from pathlib import Path
 
-# ---------------------------------------------------------------------------
-# Python patterns
-# ---------------------------------------------------------------------------
-_PY_IMPORT_ANY_RE = re.compile(r"from\s+typing\b.*\bAny\b")
-_PY_QUALIFIED_ANY_RE = re.compile(r"\btyping\.Any\b")
-_PY_BARE_ANY_RE = re.compile(r"\bAny\b")
-_PY_COMMENT_RE = re.compile(r"^\s*#")
-_PY_STRING_RE = re.compile(r'"(?:[^"\\]|\\.)*"|' + r"'(?:[^'\\]|\\.)*'")
-
-
-def _check_python(text: str) -> bool:
-    for line in text.splitlines():
-        if _PY_COMMENT_RE.match(line):
-            continue
-        stripped = _PY_STRING_RE.sub('""', line)
-        if _PY_IMPORT_ANY_RE.search(stripped):
-            return True
-        if _PY_QUALIFIED_ANY_RE.search(stripped):
-            return True
-        if _PY_BARE_ANY_RE.search(stripped):
-            return True
-    return False
-
-
-# ---------------------------------------------------------------------------
-# Go patterns
-# ---------------------------------------------------------------------------
-_GO_COMMENT_RE = re.compile(r"^\s*//")
-_GO_IMPORT_RE = re.compile(r"^\s*import\s")
-_GO_INTERFACE_EMPTY_RE = re.compile(r"\binterface\s*\{\s*\}")
-_GO_ANY_TYPE_RE = re.compile(r"\bany\b")
-_GO_STRING_RE = re.compile(r'"(?:[^"\\]|\\.)*"|`[^`]*`')
-
-
-def _check_go(text: str) -> bool:
-    for line in text.splitlines():
-        if _GO_COMMENT_RE.match(line):
-            continue
-        if _GO_IMPORT_RE.match(line):
-            continue
-        stripped = _GO_STRING_RE.sub('""', line)
-        if _GO_INTERFACE_EMPTY_RE.search(stripped):
-            return True
-        if _GO_ANY_TYPE_RE.search(stripped):
-            return True
-    return False
-
-
-# ---------------------------------------------------------------------------
-# Rust patterns
-# ---------------------------------------------------------------------------
-_RS_COMMENT_RE = re.compile(r"^\s*//")
-_RS_USE_ANY_RE = re.compile(r"\buse\s+std::any::Any\b")
-_RS_DYN_ANY_RE = re.compile(r"\bdyn\s+Any\b")
-_RS_STRING_RE = re.compile(r'"(?:[^"\\]|\\.)*"')
-
-
-def _check_rust(text: str) -> bool:
-    for line in text.splitlines():
-        if _RS_COMMENT_RE.match(line):
-            continue
-        stripped = _RS_STRING_RE.sub('""', line)
-        if _RS_USE_ANY_RE.search(stripped):
-            return True
-        if _RS_DYN_ANY_RE.search(stripped):
-            return True
-    return False
-
-
-# ---------------------------------------------------------------------------
-# Dispatch
-# ---------------------------------------------------------------------------
-_CHECKERS: dict[str, tuple[Callable[[str], bool], str]] = {
-    ".py": (_check_python, "具体的な型、Protocol、TypeVar、またはジェネリクスで置き換えてください。"),
-    ".go": (_check_go, "ジェネリクス（型パラメータ）または具体的なインターフェースで置き換えてください。"),
-    ".rs": (_check_rust, "具体的なトレイト境界またはジェネリクスで置き換えてください。"),
-}
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from any_type_core import CHECKERS
 
 
 def main() -> None:
@@ -92,7 +16,7 @@ def main() -> None:
     file_path: str = tool_input.get("file_path", "") or tool_input.get("path", "")
 
     ext = ""
-    for e in _CHECKERS:
+    for e in CHECKERS:
         if file_path.endswith(e):
             ext = e
             break
@@ -109,7 +33,7 @@ def main() -> None:
     if not content:
         return
 
-    checker, suggestion = _CHECKERS[ext]
+    checker, suggestion = CHECKERS[ext]
     if checker(content):
         json.dump(
             {
