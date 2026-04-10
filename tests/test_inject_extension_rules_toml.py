@@ -20,20 +20,20 @@ def is_injected(result: dict | None) -> bool:
 # ---------------------------------------------------------------------------
 
 class TestFileExtension:
-    def test_py_injects(self):
+    def test_py_injects(self) -> None:
         assert is_injected(run_hook({"file_path": "/home/exp/project/main.py"}))
 
-    def test_md_injects(self):
+    def test_md_injects(self) -> None:
         assert is_injected(run_hook({"file_path": "/home/exp/docs/README.md"}))
 
-    def test_rs_injects(self):
+    def test_rs_injects(self) -> None:
         assert is_injected(run_hook({"file_path": "/home/exp/project/main.rs"}))
 
-    def test_cs_injects_common_only(self):
+    def test_cs_injects_common_only(self) -> None:
         result = run_hook({"file_path": "/home/exp/project/Program.cs"})
         assert is_injected(result)
         ctx = result["hookSpecificOutput"]["additionalContext"]
-        assert "hardcoded_paths_prohibited" in ctx
+        assert "extract_shared_logic" in ctx
         assert "[toolchain]" not in ctx
 
 
@@ -42,19 +42,19 @@ class TestFileExtension:
 # ---------------------------------------------------------------------------
 
 class TestNoInjection:
-    def test_no_extension(self):
+    def test_no_extension(self) -> None:
         assert not is_injected(run_hook({"file_path": "/home/exp/project/Makefile"}))
 
-    def test_unknown_extension_injects_common_only(self):
+    def test_unknown_extension_injects_common_only(self) -> None:
         result = run_hook({"file_path": "/home/exp/project/data.xyz"})
         assert is_injected(result)
         ctx = result["hookSpecificOutput"]["additionalContext"]
-        assert "hardcoded_paths_prohibited" in ctx
+        assert "extract_shared_logic" in ctx
 
-    def test_empty_file_path(self):
+    def test_empty_file_path(self) -> None:
         assert not is_injected(run_hook({"file_path": ""}))
 
-    def test_no_file_path_key(self):
+    def test_no_file_path_key(self) -> None:
         assert not is_injected(run_hook({"command": "echo hello"}))
 
 
@@ -63,11 +63,11 @@ class TestNoInjection:
 # ---------------------------------------------------------------------------
 
 class TestGitCommand:
-    def test_git_commit_injects(self):
+    def test_git_commit_injects(self) -> None:
         assert is_injected(run_hook({"command": "git commit -m 'test'"}))
 
-    def test_git_push_injects(self):
+    def test_git_push_injects(self) -> None:
         assert is_injected(run_hook({"command": "git push origin main"}))
 
-    def test_non_git_no_injection(self):
+    def test_non_git_no_injection(self) -> None:
         assert not is_injected(run_hook({"command": "echo hello"}))

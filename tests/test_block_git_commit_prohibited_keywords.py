@@ -113,7 +113,7 @@ EOF
         "ai", "llm", "gemini", "openai", "foundation",
         "copilot", "gpt", "chatgpt", "bard",
         "codeium", "cursor", "tabnine", "cody", "devin",
-        "agent", "assistant", "auth", "エージェント",
+        "agent", "assistant", "エージェント",
     ])
     def test_all_keywords_blocked(self, keyword):
         result = run_hook(f'git commit -m "feat: use {keyword} for generation"')

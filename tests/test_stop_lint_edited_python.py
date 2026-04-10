@@ -139,6 +139,8 @@ class TestLinterExecution:
 
 class TestBuildCommands:
     def test_module_mode(self) -> None:
+        test_file = Path("/tmp/test.py")
+        expected_path = str(test_file)
         cli_cfg = {
             "python_linters": {
                 "python_warning_flag": "error",
@@ -150,22 +152,23 @@ class TestBuildCommands:
                 },
             }
         }
-        files = [Path("/tmp/test.py")]
-        commands = mod.build_commands(files, cli_cfg)
+        commands = mod.build_commands([test_file], cli_cfg)
 
         assert len(commands) == 3
 
         _, mypy_cmd = commands[0]
         assert mypy_cmd == [
-            "uv", "run", "python3", "-W", "error", "-m", "mypy", "/tmp/test.py"
+            "uv", "run", "python3", "-W", "error", "-m", "mypy", expected_path
         ]
 
         _, ruff_cmd = commands[1]
         assert ruff_cmd == [
-            "uv", "run", "python3", "-W", "error", "-m", "ruff", "check", "/tmp/test.py"
+            "uv", "run", "python3", "-W", "error", "-m", "ruff", "check", expected_path
         ]
 
     def test_command_mode(self) -> None:
+        test_file = Path("/tmp/test.py")
+        expected_path = str(test_file)
         cli_cfg = {
             "python_linters": {
                 "python_warning_flag": "error",
@@ -177,12 +180,11 @@ class TestBuildCommands:
                 },
             }
         }
-        files = [Path("/tmp/test.py")]
-        commands = mod.build_commands(files, cli_cfg)
+        commands = mod.build_commands([test_file], cli_cfg)
 
         _, ruff_cmd = commands[1]
         assert ruff_cmd == [
-            "nix", "run", "nixpkgs#ruff", "--", "check", "/tmp/test.py"
+            "nix", "run", "nixpkgs#ruff", "--", "check", expected_path
         ]
 
         # module tools still use runner + python3 -W error -m

@@ -83,10 +83,10 @@ diff --git a/home/home.nix b/home/home.nix
 """
 
 DIFF_MKFORCE_OVERRIDE = """\
-diff --git a/modules/evil.nix b/modules/evil.nix
---- /dev/null
-+++ b/modules/evil.nix
-@@ -0,0 +1,3 @@
+diff --git a/hosts/nixos/configuration.nix b/hosts/nixos/configuration.nix
+--- a/hosts/nixos/configuration.nix
++++ b/hosts/nixos/configuration.nix
+@@ -156,6 +156,9 @@
 +{ lib, ... }: {
 +  systemd.sysusers.enable = lib.mkForce true;
 +}
