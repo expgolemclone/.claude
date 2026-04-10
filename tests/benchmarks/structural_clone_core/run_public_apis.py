@@ -31,7 +31,7 @@ REPO_DIR = Path(__file__).resolve().parent / "public-apis"
 
 CONFIG = StructuralCloneConfig(
     min_stmt_count=1,
-    min_ast_node_count=25,
+    min_ast_node_count=20,
     shortlist_size=8,
     max_report_items=50,
     min_vector_similarity=0.60,

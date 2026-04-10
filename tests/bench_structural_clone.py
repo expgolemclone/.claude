@@ -27,7 +27,7 @@ from structural_clone_core import (
 
 CONFIG = StructuralCloneConfig(
     min_stmt_count=1,
-    min_ast_node_count=25,
+    min_ast_node_count=20,
     shortlist_size=8,
     max_report_items=3,
     min_vector_similarity=0.60,
