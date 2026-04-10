@@ -11,11 +11,11 @@ from pathlib import Path
 TEXT_OLD = 'color:"clawd_body"'
 TEXT_NEW = 'color:"clawd_background"'
 
-# claude.exe (バイナリ) 用の同一バイト長置換ペア
-# rgb(215,119,87) = オレンジ (15 bytes)
-# rgb(000,000,00) = 黒       (15 bytes)
-BIN_OLD = b"rgb(215,119,87)"
-BIN_NEW = b"rgb(000,000,00)"
+# claude.exe (バイナリ) 用の同一バイト長置換ペア [(old, new), ...]
+BIN_PAIRS = [
+    (b"rgb(215,119,87)", b"rgb(000,000,00)"),                          # RGB テーマ (15B)
+    (b'clawd_body:"ansi:redBright"', b'clawd_body:"rgb(00,00,000)"'),  # ANSI テーマ (27B)
+]
 
 
 def _candidates() -> list[Path]:
@@ -87,18 +87,24 @@ def patch_binary(path: Path) -> bool:
     """claude.exe をバイナリ置換でパッチする."""
     data = path.read_bytes()
 
-    if BIN_NEW in data and BIN_OLD not in data:
+    pending = [(old, new) for old, new in BIN_PAIRS if old in data]
+    done = [new for old, new in BIN_PAIRS if old not in data and new in data]
+
+    if not pending and len(done) == len(BIN_PAIRS):
         print("既にパッチ済みです。")
         return True
 
-    if BIN_OLD not in data:
-        print(f"置換対象が見つかりません: {BIN_OLD!r}", file=sys.stderr)
+    if not pending:
+        print("置換対象が見つかりません。", file=sys.stderr)
         return False
 
-    count = data.count(BIN_OLD)
-    patched = data.replace(BIN_OLD, BIN_NEW)
-    _write_binary(path, patched)
-    print(f"パッチ適用: {count} 箇所を置換しました。")
+    total = 0
+    for old, new in pending:
+        total += data.count(old)
+        data = data.replace(old, new)
+
+    _write_binary(path, data)
+    print(f"パッチ適用: {total} 箇所を置換しました。")
     return True
 
 
@@ -165,7 +171,9 @@ def main() -> None:
         already = TEXT_NEW in content and TEXT_OLD not in content
     else:
         data = target.read_bytes()
-        already = BIN_NEW in data and BIN_OLD not in data
+        already = all(
+            old not in data and new in data for old, new in BIN_PAIRS
+        )
 
     if already:
         print("既にパッチ済みです。")
