@@ -22,6 +22,7 @@ hooks/__pycache__/
 !tests/
 !tests/**
 tests/__pycache__/
+tests/benchmarks/**/public-apis/
 
 # Scripts
 !scripts/
