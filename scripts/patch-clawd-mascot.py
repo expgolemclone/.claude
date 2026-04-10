@@ -27,6 +27,7 @@ def _candidates() -> list[Path]:
         return [
             home / ".local/bin/claude.exe",
             *_managed_versions(home / "AppData/Roaming/Claude/claude-code"),
+            home / "AppData/Roaming/npm/node_modules/@anthropic-ai/claude-code/cli.js",
         ]
 
     # Linux
@@ -47,8 +48,9 @@ def _managed_versions(base: Path) -> list[Path]:
     ]
 
 
-def find_target() -> Path | None:
-    """OS に応じて cli.js または claude.exe のパスを返す."""
+def find_targets() -> list[Path]:
+    """OS に応じて存在する全インストールパスを返す."""
+    targets: list[Path] = []
     for path in _candidates():
         if not path.exists():
             continue
@@ -58,10 +60,9 @@ def find_target() -> Path | None:
                 "NixOS 環境です。overlay の postPatch で対応してください。",
                 file=sys.stderr,
             )
-            return None
-        return path
-
-    return None
+            continue
+        targets.append(path)
+    return targets
 
 
 def patch_text(path: Path) -> bool:
@@ -147,21 +148,12 @@ def restore(path: Path) -> bool:
     return True
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Clawdマスコット非表示パッチ")
-    parser.add_argument("--restore", action="store_true", help="バックアップから復元")
-    args = parser.parse_args()
-
-    target = find_target()
-    if target is None:
-        print("Claude Code のインストールが見つかりません。", file=sys.stderr)
-        sys.exit(1)
-
+def _patch_one(target: Path, *, do_restore: bool) -> bool:
+    """1つのインストールをパッチまたは復元する."""
     print(f"対象: {target}")
 
-    if args.restore:
-        ok = restore(target)
-        sys.exit(0 if ok else 1)
+    if do_restore:
+        return restore(target)
 
     is_text = target.suffix == ".js"
 
@@ -177,15 +169,26 @@ def main() -> None:
 
     if already:
         print("既にパッチ済みです。")
-        sys.exit(0)
+        return True
 
     backup(target)
 
     if is_text:
-        ok = patch_text(target)
-    else:
-        ok = patch_binary(target)
+        return patch_text(target)
+    return patch_binary(target)
 
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Clawdマスコット非表示パッチ")
+    parser.add_argument("--restore", action="store_true", help="バックアップから復元")
+    args = parser.parse_args()
+
+    targets = find_targets()
+    if not targets:
+        print("Claude Code のインストールが見つかりません。", file=sys.stderr)
+        sys.exit(1)
+
+    ok = all(_patch_one(t, do_restore=args.restore) for t in targets)
     sys.exit(0 if ok else 1)
 
 
