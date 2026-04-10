@@ -22,8 +22,12 @@ def main() -> None:
     if not cwd:
         return
 
+    skip_dirs = {".venv", "node_modules", "__pycache__", "site-packages", "marketplaces"}
+
     violations: list[str] = []
     for py_file in sorted(Path(cwd).rglob("*.py")):
+        if skip_dirs & set(py_file.parts):
+            continue
         try:
             text = py_file.read_text(encoding="utf-8", errors="replace")
         except OSError:
