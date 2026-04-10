@@ -776,6 +776,16 @@ def weighted_tree_size(node: NormalizedNode, label_weights: Mapping[str, float])
     return weight + sum(weighted_tree_size(child, label_weights) for child in node["children"])
 
 
+def _label_base_type(label: str) -> str:
+    """Extract base AST type from a qualified label.
+
+    ``"Call[foo]"`` → ``"Call"``, ``"BinOp[Add]"`` → ``"BinOp"``,
+    ``"Name"`` → ``"Name"`` (unchanged for unqualified labels).
+    """
+    bracket = label.find("[")
+    return label[:bracket] if bracket >= 0 else label
+
+
 def weighted_substitution_cost(
     left: NormalizedNode,
     right: NormalizedNode,
@@ -785,13 +795,27 @@ def weighted_substitution_cost(
 
     When children counts differ, LCS alignment matches shared structure
     before computing cost, so a single insertion does not cascade.
+
+    When labels differ but share the same base AST type (e.g.
+    ``Call[foo]`` vs ``Call[bar]``), a soft penalty is applied: only
+    the label mismatch is penalised while children are still compared.
     """
-    if left["label"] != right["label"]:
-        return weighted_tree_size(left, label_weights) + weighted_tree_size(right, label_weights)
+    if left["label"] == right["label"]:
+        return _children_cost(left["children"], right["children"], label_weights)
 
-    left_children = left["children"]
-    right_children = right["children"]
+    if _label_base_type(left["label"]) == _label_base_type(right["label"]):
+        label_cost = label_weights.get(left["label"], 1.0) + label_weights.get(right["label"], 1.0)
+        return label_cost + _children_cost(left["children"], right["children"], label_weights)
 
+    return weighted_tree_size(left, label_weights) + weighted_tree_size(right, label_weights)
+
+
+def _children_cost(
+    left_children: list[NormalizedNode],
+    right_children: list[NormalizedNode],
+    label_weights: Mapping[str, float],
+) -> float:
+    """Compare two child lists, using pairwise or LCS alignment."""
     if len(left_children) == len(right_children):
         return sum(
             weighted_substitution_cost(lc, rc, label_weights)
