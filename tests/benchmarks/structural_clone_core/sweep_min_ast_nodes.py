@@ -1,7 +1,7 @@
 """Controlled experiment: sweep min_ast_node_count to find the optimal threshold.
 
-Measures both synthetic and public-apis benchmarks across a range of values,
-then reports Precision/Recall/F1 and ground-truth hit rates.
+Measures synthetic benchmarks and real-world repos (public-apis, youtube-dl) across
+a range of values, then reports Precision/Recall/F1 and ground-truth hit rates.
 
 Run:  uv run python tests/benchmarks/structural_clone_core/sweep_min_ast_nodes.py
 """
@@ -35,7 +35,8 @@ from structural_clone_core import (
 )
 from bench_structural_clone import CASES, evaluate_pair
 
-REPO_DIR = Path(__file__).resolve().parent / "public-apis"
+PUBLIC_APIS_DIR = Path(__file__).resolve().parent / "public-apis"
+YOUTUBE_DL_DIR = Path(__file__).resolve().parent / "youtube-dl"
 
 SWEEP_VALUES = [15, 18, 20, 22, 24, 25, 28, 30]
 
@@ -50,10 +51,18 @@ BASE_CONFIG = StructuralCloneConfig(
     idf_floor=1.0,
 )
 
-GROUND_TRUTH_PAIRS: list[tuple[str, str]] = [
+PUBLIC_APIS_GROUND_TRUTH: list[tuple[str, str]] = [
     ("test_check_https_with_valid_https", "test_check_cors_with_valid_cors"),
     ("test_check_https_with_invalid_https", "test_check_cors_with_invalid_cors"),
     ("test_check_title_with_correct_title", "test_check_description_with_correct_description"),
+]
+
+YOUTUBE_DL_GROUND_TRUTH: list[tuple[str, str]] = [
+    ("TestMultipleSocks.test_proxy_http", "TestMultipleSocks.test_proxy_https"),
+    ("CBSSportsBaseIE._real_extract", "FreespeechIE._real_extract"),
+    ("MaoriTVIE._real_extract", "TheStarIE._real_extract"),
+    ("InfoExtractor._parse_xml", "InfoExtractor._parse_json"),
+    ("shift_rows", "shift_rows_inv"),
 ]
 
 
@@ -120,7 +129,7 @@ def run_synthetic(config: StructuralCloneConfig) -> SyntheticResult:
     return SyntheticResult(node_count=config.min_ast_node_count, tp=tp, fp=fp, tn=tn, fn=fn)
 
 
-# --- public-apis benchmark ---
+# --- Repo benchmark ---
 
 
 def find_python_files(repo: Path) -> list[Path]:
@@ -190,10 +199,10 @@ def qualname_match(qualname: str, pattern: str) -> bool:
     return qualname.endswith(pattern) or qualname == pattern
 
 
-def is_ground_truth(match: MatchResult) -> bool:
+def is_ground_truth(match: MatchResult, ground_truth: list[tuple[str, str]]) -> bool:
     src_q = match["source"]["qualname"]
     cand_q = match["candidate"]["qualname"]
-    for left, right in GROUND_TRUTH_PAIRS:
+    for left, right in ground_truth:
         if (qualname_match(src_q, left) and qualname_match(cand_q, right)) or (
             qualname_match(src_q, right) and qualname_match(cand_q, left)
         ):
@@ -202,7 +211,8 @@ def is_ground_truth(match: MatchResult) -> bool:
 
 
 @dataclass(frozen=True)
-class PublicApisResult:
+class RepoResult:
+    name: str
     node_count: int
     eligible_count: int
     total_pairs: int
@@ -211,31 +221,47 @@ class PublicApisResult:
     new_pairs: list[MatchResult]
 
 
-def run_public_apis(
+def run_repo(
+    name: str,
     all_records: list[FunctionRecord],
+    ground_truth: list[tuple[str, str]],
     config: StructuralCloneConfig,
-) -> PublicApisResult:
+) -> RepoResult:
     all_eligible = eligible_records(all_records, config)
     matches = detect_all_pairs(all_eligible, config)
 
-    gt_hits = sum(1 for m in matches if is_ground_truth(m))
-    new_pairs = [m for m in matches if not is_ground_truth(m)]
+    gt_hits = sum(1 for m in matches if is_ground_truth(m, ground_truth))
+    new_pairs = [m for m in matches if not is_ground_truth(m, ground_truth)]
 
-    return PublicApisResult(
+    return RepoResult(
+        name=name,
         node_count=config.min_ast_node_count,
         eligible_count=len(all_eligible),
         total_pairs=len(matches),
         gt_hits=gt_hits,
-        gt_total=len(GROUND_TRUTH_PAIRS),
+        gt_total=len(ground_truth),
         new_pairs=new_pairs,
     )
 
 
-def relative(path: str) -> str:
+def relative(path: str, repo_dir: Path) -> str:
     try:
-        return str(Path(path).relative_to(REPO_DIR))
+        return str(Path(path).relative_to(repo_dir))
     except ValueError:
         return Path(path).name
+
+
+@dataclass(frozen=True)
+class RepoSpec:
+    name: str
+    directory: Path
+    ground_truth: list[tuple[str, str]]
+
+
+REPOS: list[RepoSpec] = [
+    RepoSpec("public-apis", PUBLIC_APIS_DIR, PUBLIC_APIS_GROUND_TRUTH),
+    RepoSpec("youtube-dl", YOUTUBE_DL_DIR, YOUTUBE_DL_GROUND_TRUTH),
+]
 
 
 def main() -> None:
@@ -243,19 +269,25 @@ def main() -> None:
     print(f"Values: {SWEEP_VALUES}")
     print()
 
-    # Pre-parse public-apis once (parsing is threshold-independent)
-    files = find_python_files(REPO_DIR)
-    all_records = collect_all_records(files)
-    print(f"public-apis: {len(files)} files, {len(all_records)} functions parsed")
+    synthetic_results: list[SyntheticResult] = []
+    repo_records: dict[str, list[FunctionRecord]] = {}
+
+    for spec in REPOS:
+        files = find_python_files(spec.directory)
+        records = collect_all_records(files)
+        repo_records[spec.name] = records
+        print(f"{spec.name}: {len(files)} files, {len(records)} functions parsed")
     print()
 
-    synthetic_results: list[SyntheticResult] = []
-    public_results: list[PublicApisResult] = []
+    repo_results: dict[str, list[RepoResult]] = {spec.name: [] for spec in REPOS}
 
     for node_count in SWEEP_VALUES:
         config = config_with_node_count(node_count)
         synthetic_results.append(run_synthetic(config))
-        public_results.append(run_public_apis(all_records, config))
+        for spec in REPOS:
+            repo_results[spec.name].append(
+                run_repo(spec.name, repo_records[spec.name], spec.ground_truth, config)
+            )
 
     # --- Synthetic table ---
     print("--- Synthetic Benchmark ---")
@@ -264,41 +296,47 @@ def main() -> None:
         print(f"{r.node_count:>5}  {r.tp:>2}  {r.fp:>2}  {r.tn:>2}  {r.fn:>2}  {r.precision:>6.3f}  {r.recall:>6.3f}  {r.f1:>6.3f}")
     print()
 
-    # --- public-apis table ---
-    print("--- public-apis Benchmark ---")
-    print(f"{'nodes':>5}  {'Eligible':>8}  {'Pairs':>5}  {'GT-Hit':>6}  {'GT-Miss':>7}  {'New':>3}")
-    for r in public_results:
-        gt_miss = r.gt_total - r.gt_hits
-        print(
-            f"{r.node_count:>5}  {r.eligible_count:>8}  {r.total_pairs:>5}  "
-            f"{r.gt_hits}/{r.gt_total:>3}    {gt_miss:>5}  {len(r.new_pairs):>3}"
-        )
-    print()
+    # --- Per-repo tables ---
+    for spec in REPOS:
+        results = repo_results[spec.name]
+        print(f"--- {spec.name} Benchmark ---")
+        print(f"{'nodes':>5}  {'Eligible':>8}  {'Pairs':>5}  {'GT-Hit':>6}  {'GT-Miss':>7}  {'New':>3}")
+        for r in results:
+            gt_miss = r.gt_total - r.gt_hits
+            print(
+                f"{r.node_count:>5}  {r.eligible_count:>8}  {r.total_pairs:>5}  "
+                f"{r.gt_hits}/{r.gt_total:>3}    {gt_miss:>5}  {len(r.new_pairs):>3}"
+            )
+        print()
 
     # --- New pairs detail ---
-    all_new: dict[int, list[MatchResult]] = {}
-    for r in public_results:
-        if r.new_pairs:
-            all_new[r.node_count] = r.new_pairs
+    for spec in REPOS:
+        all_new: dict[int, list[MatchResult]] = {}
+        for r in repo_results[spec.name]:
+            if r.new_pairs:
+                all_new[r.node_count] = r.new_pairs
 
-    if all_new:
-        print("--- New pairs at each threshold (FP candidates) ---")
-        for node_count, pairs in sorted(all_new.items()):
-            for m in pairs:
-                src = f"{relative(m['source']['path'])}:{m['source']['lineno']} {m['source']['qualname']}"
-                cand = f"{relative(m['candidate']['path'])}:{m['candidate']['lineno']} {m['candidate']['qualname']}"
-                print(
-                    f"  nodes={node_count}: {src}  ~  {cand}"
-                    f"  (vec={m['vector_similarity']:.3f}, au={m['au_similarity']:.3f})"
-                )
-        print()
+        if all_new:
+            print(f"--- New pairs: {spec.name} (FP candidates) ---")
+            for node_count, pairs in sorted(all_new.items()):
+                for m in pairs:
+                    src = f"{relative(m['source']['path'], spec.directory)}:{m['source']['lineno']} {m['source']['qualname']}"
+                    cand = f"{relative(m['candidate']['path'], spec.directory)}:{m['candidate']['lineno']} {m['candidate']['qualname']}"
+                    print(
+                        f"  nodes={node_count}: {src}  ~  {cand}"
+                        f"  (vec={m['vector_similarity']:.3f}, au={m['au_similarity']:.3f})"
+                    )
+            print()
 
     # --- Recommendation ---
     best = None
-    for sr, pr in zip(synthetic_results, public_results):
+    for i, sr in enumerate(synthetic_results):
         if sr.fp > 0:
             continue
-        score = sr.f1 + (pr.gt_hits / pr.gt_total if pr.gt_total > 0 else 0.0) - len(pr.new_pairs) * 0.1
+        score = sr.f1
+        for spec in REPOS:
+            r = repo_results[spec.name][i]
+            score += (r.gt_hits / r.gt_total if r.gt_total > 0 else 0.0) - len(r.new_pairs) * 0.1
         if best is None or score > best[1]:
             best = (sr.node_count, score)
 

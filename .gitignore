@@ -23,6 +23,7 @@ hooks/__pycache__/
 !tests/**
 tests/__pycache__/
 tests/benchmarks/**/public-apis/
+tests/benchmarks/**/youtube-dl/
 
 # Scripts
 !scripts/
