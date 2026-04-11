@@ -16,3 +16,6 @@ commit_to_repo = true                   # lockfileはリポジトリにコミッ
 
 [scrape]
 scrape_folder_managed = true          # scrape logicはscrapeフォルダで管理する
+workers = 1                           # 並列数はデフォルトで1
+interval = "1.0s"                     # リクエスト間隔はデフォルトで1.0s
+proxy = "direct"                      # デフォルトは --proxy=direct (プロキシ経由しない)
