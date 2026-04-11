@@ -3,6 +3,7 @@
 
 # Allow .gitignore itself
 !.gitignore
+!.gitattributes
 
 # Setup script and config
 !setup.py
@@ -18,6 +19,10 @@ hooks/__pycache__/
 !config/
 !config/**
 
+# Data
+!data/
+!data/scrape.db
+
 # Tests
 !tests/
 !tests/**
@@ -28,4 +33,3 @@ tests/benchmarks/**/youtube-dl/
 # Scripts
 !scripts/
 !scripts/**
-
