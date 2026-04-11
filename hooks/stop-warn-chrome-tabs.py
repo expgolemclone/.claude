@@ -1,31 +1,64 @@
 #!/usr/bin/env python3
-"""Stop hook: warn when Google Chrome has 3+ tabs open (memory pressure)."""
+"""Stop hook: warn when Google Chrome is under memory pressure.
+
+Counts Chrome windows via Hyprland and sums renderer RSS via /proc,
+because renderer-process count diverges from actual tab count due to
+site isolation, spare renderers, and out-of-process iframes.
+"""
 
 import json
 import subprocess
 import sys
 
-TAB_THRESHOLD: int = 3
-# Chrome spawns an internal renderer (new-tab page etc.) at startup
-_INTERNAL_RENDERER_OVERHEAD: int = 1
+WINDOW_THRESHOLD: int = 3
+RSS_THRESHOLD_MB: int = 2048
 
 
-def count_chrome_tabs() -> int:
-    """Count Chrome renderer processes as a proxy for open tabs."""
+def count_chrome_windows() -> int:
+    """Count top-level Chrome windows reported by Hyprland."""
     result = subprocess.run(
-        ["pgrep", "-af", "chrome.*--type=renderer"],
+        ["hyprctl", "clients", "-j"],
         capture_output=True,
         text=True,
     )
     if result.returncode != 0:
         return 0
-    lines = result.stdout.strip().splitlines()
-    tab_lines = [
-        line
-        for line in lines
-        if "--extension-process" not in line and "pgrep" not in line
-    ]
-    return max(0, len(tab_lines) - _INTERNAL_RENDERER_OVERHEAD)
+    try:
+        clients = json.loads(result.stdout)
+    except json.JSONDecodeError:
+        return 0
+    return sum(
+        1
+        for c in clients
+        if "chrome" in (c.get("class") or "").lower()
+        or "chrome" in (c.get("initialClass") or "").lower()
+    )
+
+
+def sum_chrome_renderer_rss_mb() -> int:
+    """Sum RSS (MB) of all Chrome renderer processes, including spares."""
+    pgrep = subprocess.run(
+        ["pgrep", "-f", "chrome.*--type=renderer"],
+        capture_output=True,
+        text=True,
+    )
+    if pgrep.returncode != 0:
+        return 0
+    pids = [p for p in pgrep.stdout.split() if p.isdigit()]
+    if not pids:
+        return 0
+    total_kb = 0
+    for pid in pids:
+        try:
+            with open(f"/proc/{pid}/status") as f:
+                for line in f:
+                    if line.startswith("VmRSS:"):
+                        total_kb += int(line.split()[1])
+                        break
+        except (FileNotFoundError, PermissionError, ValueError):
+            # Process died between pgrep and read, or is inaccessible.
+            continue
+    return total_kb // 1024
 
 
 def main() -> None:
@@ -37,16 +70,30 @@ def main() -> None:
     if data.get("permission_mode") == "plan":
         return
 
-    tab_count = count_chrome_tabs()
-    if tab_count < TAB_THRESHOLD:
+    window_count = count_chrome_windows()
+    rss_mb = sum_chrome_renderer_rss_mb()
+
+    window_over = window_count >= WINDOW_THRESHOLD
+    rss_over = rss_mb >= RSS_THRESHOLD_MB
+
+    if not window_over and not rss_over:
         return
+
+    reasons = []
+    if window_over:
+        reasons.append(
+            f"Chrome ウィンドウが {window_count} 個開いています（上限 {WINDOW_THRESHOLD}）"
+        )
+    if rss_over:
+        reasons.append(
+            f"Chrome renderer の合計メモリが {rss_mb} MB です（上限 {RSS_THRESHOLD_MB} MB）"
+        )
 
     json.dump(
         {
             "decision": "block",
             "reason": (
-                f"Chrome のタブが {tab_count} 個開いています（上限 {TAB_THRESHOLD}）。\n"
-                "メモリ節約のため不要なタブを閉じてください。"
+                "\n".join(reasons) + "\nメモリ節約のため不要なタブ・ウィンドウを閉じてください。"
             ),
         },
         sys.stdout,
