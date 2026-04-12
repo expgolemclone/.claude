@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""PostToolUse hook (Edit|Write): block fallback patterns in Python files.
+"""PostToolUse hook (Edit|Write): warn about fallback patterns in Python files.
 
 Per-project configuration is read from ``config/scan_fallbacks.toml``
 relative to the current working directory.  If the config file does not
 exist the hook is silently skipped (project has not opted in).
+
+Informational only (stderr).  Enforcement of no_bare_except /
+no_silent_swallow is handled by stop-scan-error-handling.py.
 """
 
 import json
@@ -51,15 +54,11 @@ def main() -> None:
         return
 
     details = "\n".join(f"  {f}" for f in findings)
-    json.dump(
-        {
-            "decision": "stop",
-            "reason": (
-                f"fallback パターンが検出されました:\n{details}\n"
-                "fallback は禁止です。fail-fast に書き直してください。"
-            ),
-        },
-        sys.stdout,
+    print(
+        f"[info] fallback パターンが検出されました:\n{details}\n"
+        "fail_fast ルールに基づき文脈判断してください。"
+        "正当な用途（optional dependency, 設定のデフォルト値等）は問題ありません。",
+        file=sys.stderr,
     )
 
 
