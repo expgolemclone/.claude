@@ -10,6 +10,11 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 TARGET = SCRIPT_DIR / "settings.json"
 
 
+def read_api_key() -> str:
+    env_file = SCRIPT_DIR / ".env"
+    return env_file.read_text().strip()
+
+
 def hook(command: str, timeout: int | None = None) -> dict[str, object]:
     h: dict[str, object] = {"type": "command", "command": command}
     if timeout is not None:
@@ -20,6 +25,12 @@ def hook(command: str, timeout: int | None = None) -> dict[str, object]:
 def build_common_config() -> dict[str, object]:
     return {
         "skipDangerousModePermissionPrompt": True,
+        "env": {
+            "ANTHROPIC_AUTH_TOKEN": read_api_key(),
+            "ANTHROPIC_BASE_URL": "https://api.z.ai/api/anthropic",
+            "ANTHROPIC_MODEL": "glm-5.1",
+            "API_TIMEOUT_MS": "3000000",
+        },
     }
 
 
