@@ -14,7 +14,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from error_handling_core import check_python
 
 _SKIP_DIRS: frozenset[str] = frozenset({
-    ".venv", "node_modules", "__pycache__", "site-packages", "marketplaces",
+    ".venv", "node_modules", "__pycache__", "site-packages",
+    "marketplaces", "benchmarks", "scripts",
 })
 
 
