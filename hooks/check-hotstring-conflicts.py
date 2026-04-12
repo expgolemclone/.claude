@@ -26,7 +26,7 @@ def extract_hotstrings(file_path: Path) -> list[tuple[str, str, int]]:
     results: list[tuple[str, str, int]] = []
     try:
         content = file_path.read_text(encoding="utf-8")
-    except Exception:
+    except OSError:
         return results
     for i, line in enumerate(content.splitlines(), 1):
         m = HOTSTRING_RE.match(line.strip())
