@@ -4,9 +4,9 @@
 Files under scrape/ directories must respect the minimum request interval
 defined in config/common.toml [scrape.manners].  This hook checks:
 
-- TOML files: ``interval`` key must exist and be >= 1.0s
-- Python files: ``time.sleep()`` / ``asyncio.sleep()`` values must be >= 1.0
-- Python files: HTTP calls without any sleep >= 1.0 in the file are blocked
+- TOML: ``interval`` key must exist and be >= 1.0s
+- Python: AST-based sleep value check
+- Rust / JS / TS / Dart: regex-based sleep value + HTTP call check
 """
 
 import ast
@@ -18,16 +18,82 @@ import tomllib
 
 _MIN_INTERVAL = 1.0
 
-_NOQA_TAG = "# noqa: scrape-interval"
+_NOQA_RE = re.compile(r"(?:#|//)\s*noqa:\s*scrape-interval")
 
-# HTTP call patterns that indicate network requests
-_HTTP_CALL_RE = re.compile(
+
+# -- Language definitions for regex-based checks --
+
+_SleepPattern = tuple[re.Pattern[str], int, str]  # (regex, capture group, "s"|"ms")
+
+
+class _LangDef:
+    __slots__ = ("http_re", "sleep_patterns")
+
+    def __init__(
+        self,
+        http_re: re.Pattern[str],
+        sleep_patterns: list[_SleepPattern],
+    ) -> None:
+        self.http_re = http_re
+        self.sleep_patterns = sleep_patterns
+
+
+_PYTHON_HTTP_RE = re.compile(
     r"\b(?:requests|httpx|session|client)\."
     r"(?:get|post|put|patch|delete|head|options|request|send)\b"
     r"|\baiohttp\.ClientSession\b"
     r"|\bpage\.goto\b"
     r"|\burllib\.request\.urlopen\b"
 )
+
+_RUST = _LangDef(
+    http_re=re.compile(
+        r"\breqwest::(?:get|Client)\b"
+        r"|\bclient\.(?:get|post|put|patch|delete|head|request)\("
+        r"|\.send\(\)\.await\b"
+        r"|\bhyper::Client\b"
+        r"|\bsurf::(?:get|post|put|delete)\b"
+    ),
+    sleep_patterns=[
+        (re.compile(r"Duration::from_secs\(\s*(\d+)"), 1, "s"),
+        (re.compile(r"Duration::from_secs_f(?:32|64)\(\s*([\d.]+)"), 1, "s"),
+        (re.compile(r"Duration::from_millis\(\s*(\d+)"), 1, "ms"),
+    ],
+)
+
+_JS_TS = _LangDef(
+    http_re=re.compile(
+        r"\bfetch\("
+        r"|\baxios\.(?:get|post|put|patch|delete|head|request)\("
+        r"|\bgot\("
+        r"|\bpage\.goto\("
+        r"|\bky\.(?:get|post|put|patch|delete|head)\("
+    ),
+    sleep_patterns=[
+        (re.compile(r"setTimeout\([^,]+,\s*(\d+)"), 1, "ms"),
+        (re.compile(r"(?:sleep|delay)\(\s*(\d+)"), 1, "ms"),
+        (re.compile(r"waitForTimeout\(\s*(\d+)"), 1, "ms"),
+    ],
+)
+
+_DART = _LangDef(
+    http_re=re.compile(
+        r"\bhttp\.(?:get|post|put|patch|delete|head|read)\("
+        r"|\bclient\.(?:get|post|put|patch|delete|head|send)\("
+        r"|\bDio\(\)"
+    ),
+    sleep_patterns=[
+        (re.compile(r"Duration\(\s*seconds:\s*(\d+)"), 1, "s"),
+        (re.compile(r"Duration\(\s*milliseconds:\s*(\d+)"), 1, "ms"),
+    ],
+)
+
+_EXT_TO_LANG: dict[str, _LangDef] = {
+    ".rs": _RUST,
+    ".js": _JS_TS,
+    ".ts": _JS_TS,
+    ".dart": _DART,
+}
 
 
 def _is_scrape_file(file_path: str) -> bool:
@@ -111,6 +177,89 @@ def _resolve_interval(value: object) -> float | None:
     return None
 
 
+# -- Regex-based checks (Rust / JS / TS / Dart) --
+
+
+def _check_regex_lang(file_path: str, lang: _LangDef) -> str | None:
+    """Check a source file using regex patterns.  Returns reason or None."""
+    with open(file_path, encoding="utf-8") as f:
+        source = f.read()
+
+    lines = source.splitlines()
+    basename = os.path.basename(file_path)
+
+    low_sleeps = _find_low_sleeps_regex(lines, lang.sleep_patterns)
+    if low_sleeps:
+        details = "\n".join(f"  L{ln}: {text}" for ln, text in low_sleeps)
+        return (
+            f"{basename}: sleep/delay の値が {_MIN_INTERVAL}s 未満です。\n"
+            f"{details}\n"
+            f"リクエスト間隔を {_MIN_INTERVAL}s 以上にしてください "
+            f"(// noqa: scrape-interval で除外可)。"
+        )
+
+    has_http = _has_http_regex(lines, lang.http_re)
+    if has_http and not _has_adequate_sleep_regex(lines, lang.sleep_patterns):
+        return (
+            f"{basename}: HTTP呼び出しがありますが "
+            f"sleep >= {_MIN_INTERVAL}s が見つかりません。\n"
+            f"リクエスト間隔を確保する sleep/delay を追加してください "
+            f"(// noqa: scrape-interval で除外可)。"
+        )
+
+    return None
+
+
+def _find_low_sleeps_regex(
+    lines: list[str], patterns: list[_SleepPattern]
+) -> list[tuple[int, str]]:
+    """Return (lineno, matched_text) for sleep calls below threshold."""
+    violations: list[tuple[int, str]] = []
+    for lineno, line in enumerate(lines, 1):
+        if _NOQA_RE.search(line):
+            continue
+        for pat, group, unit in patterns:
+            m = pat.search(line)
+            if m is None:
+                continue
+            try:
+                value = float(m.group(group))
+            except (ValueError, IndexError):
+                continue
+            seconds = value / 1000.0 if unit == "ms" else value
+            if seconds < _MIN_INTERVAL:
+                violations.append((lineno, line.strip()))
+                break
+    return violations
+
+
+def _has_http_regex(lines: list[str], http_re: re.Pattern[str]) -> bool:
+    for line in lines:
+        if _NOQA_RE.search(line):
+            continue
+        if http_re.search(line):
+            return True
+    return False
+
+
+def _has_adequate_sleep_regex(
+    lines: list[str], patterns: list[_SleepPattern]
+) -> bool:
+    for line in lines:
+        for pat, group, unit in patterns:
+            m = pat.search(line)
+            if m is None:
+                continue
+            try:
+                value = float(m.group(group))
+            except (ValueError, IndexError):
+                continue
+            seconds = value / 1000.0 if unit == "ms" else value
+            if seconds >= _MIN_INTERVAL:
+                return True
+    return False
+
+
 # -- Python checks --
 
 
@@ -131,7 +280,7 @@ def _check_python(file_path: str) -> str | None:
             f"{os.path.basename(file_path)}: sleep の値が {_MIN_INTERVAL}s 未満です。\n"
             f"{details}\n"
             f"リクエスト間隔を {_MIN_INTERVAL}s 以上にしてください "
-            f"({_NOQA_TAG} で除外可)。"
+            f"(# noqa: scrape-interval で除外可)。"
         )
 
     # Check 2: HTTP calls present but no adequate sleep anywhere
@@ -141,7 +290,7 @@ def _check_python(file_path: str) -> str | None:
             f"{os.path.basename(file_path)}: HTTP呼び出しがありますが "
             f"sleep >= {_MIN_INTERVAL}s が見つかりません。\n"
             f"リクエスト間隔を確保する sleep を追加してください "
-            f"({_NOQA_TAG} で除外可)。"
+            f"(# noqa: scrape-interval で除外可)。"
         )
 
     return None
@@ -174,7 +323,7 @@ def _find_low_sleep_calls(
         if value >= _MIN_INTERVAL:
             continue
         line = lines[node.lineno - 1]
-        if _NOQA_TAG in line:
+        if _NOQA_RE.search(line):
             continue
         violations.append((node.lineno, func_name, value))
 
@@ -194,9 +343,9 @@ def _get_sleep_func_name(func: ast.expr) -> str | None:
 def _has_http_calls(source: str, lines: list[str]) -> bool:
     """Return True if the source contains HTTP request patterns."""
     for line in lines:
-        if _NOQA_TAG in line:
+        if _NOQA_RE.search(line):
             continue
-        if _HTTP_CALL_RE.search(line):
+        if _PYTHON_HTTP_RE.search(line):
             return True
     return False
 
@@ -239,10 +388,13 @@ def main() -> None:
         return
 
     reason: str | None = None
-    if file_path.endswith(".toml"):
+    ext = os.path.splitext(file_path)[1]
+    if ext == ".toml":
         reason = _check_toml(file_path)
-    elif file_path.endswith(".py"):
+    elif ext == ".py":
         reason = _check_python(file_path)
+    elif ext in _EXT_TO_LANG:
+        reason = _check_regex_lang(file_path, _EXT_TO_LANG[ext])
 
     if reason:
         json.dump({"decision": "block", "reason": reason}, sys.stdout)
