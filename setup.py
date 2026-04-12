@@ -85,6 +85,7 @@ def build_linux_config() -> dict[str, object]:
                     py("block-magic-numbers.py"),
                     py("check-hotstring-conflicts.py"),
                     py("block-worker-in-tracked-datasource.py"),
+                    py("post-scan-fallbacks.py"),
                 ]},
             ],
             "Stop": [
@@ -152,6 +153,7 @@ def build_windows_config() -> dict[str, object]:
                     py("warn-structural-duplicates.py"),
                     py("block-magic-numbers.py"),
                     py("block-worker-in-tracked-datasource.py"),
+                    py("post-scan-fallbacks.py"),
                 ]},
             ],
             "Stop": [
