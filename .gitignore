@@ -33,3 +33,5 @@ tests/benchmarks/**/youtube-dl/
 # Scripts
 !scripts/
 !scripts/**
+scripts/__pycache__/
+scripts/result
