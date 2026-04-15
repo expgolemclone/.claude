@@ -83,6 +83,7 @@ def build_linux_config() -> dict[str, object]:
                     py("block-nixos-rebuild-protected-changes.py"),
                     py("block-prohibited-python-toolchains.py"),
                     py("block-install-without-lock.py"),
+                    py("block-pycache-staging.py"),
                 ]},
             ],
             "PostToolUse": [
@@ -108,6 +109,7 @@ def build_linux_config() -> dict[str, object]:
                     py("stop-require-source-verification.py", timeout=15),
                     py("stop-scan-error-handling.py", timeout=15),
                     py("stop-scan-any-type.py", timeout=15),
+                    py("stop-scan-pycache-tracked.py", timeout=15),
                     py("stop-warn-chrome-tabs.py", timeout=15),
                 ]},
             ],
@@ -156,6 +158,7 @@ def build_windows_config() -> dict[str, object]:
                     py("block-commit-without-verification.py", timeout=120),
                     py("block-prohibited-python-toolchains.py"),
                     py("block-install-without-lock.py"),
+                    py("block-pycache-staging.py"),
                 ]},
             ],
             "PostToolUse": [
@@ -176,6 +179,7 @@ def build_windows_config() -> dict[str, object]:
                     py("stop-require-source-verification.py", timeout=15),
                     py("stop-scan-error-handling.py", timeout=15),
                     py("stop-scan-any-type.py", timeout=15),
+                    py("stop-scan-pycache-tracked.py", timeout=15),
                     hook(
                         f'pwsh -NoProfile -ExecutionPolicy Bypass'
                         f' -File "{claude_home_bs}\\scripts\\notify-complete.ps1"'
