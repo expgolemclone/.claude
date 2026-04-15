@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 _FULLWIDTH_PUNCTUATION = re.compile(
-    r'[。\、，；：！？「」『』【】〈〉《》〔〕（）]'
+    r'[。\、，；：！？「」『』【】〈〉《》〔〕（）……——·〜～"'']'
 )
 _NOQA_MARKER = "# noqa: fullwidth-punctuation"
 _SKIP_DIRS = frozenset({
