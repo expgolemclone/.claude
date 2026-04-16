@@ -25,6 +25,7 @@ def hook(command: str, timeout: int | None = None) -> dict[str, object]:
 def build_common_config() -> dict[str, object]:
     return {
         "skipDangerousModePermissionPrompt": True,
+        "effortLevel": "max",
         "env": {
             "ANTHROPIC_AUTH_TOKEN": read_api_key(),
             "ANTHROPIC_BASE_URL": "https://api.z.ai/api/anthropic",
@@ -142,7 +143,6 @@ def build_windows_config(common: dict[str, object] | None = None) -> dict[str, o
 
     return {
         **common,
-        "effortLevel": "max",
         "permissions": {
             "deny": ["Task", "Agent"],
             "defaultMode": "bypassPermissions",

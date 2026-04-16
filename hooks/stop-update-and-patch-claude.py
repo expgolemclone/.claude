@@ -14,7 +14,7 @@ def _update_claude_code() -> str | None:
     """npm で claude-code を最新版にアップデートし、出力を返す（変更なしは None）."""
     cmd = ["npm", "install", "-g", "@anthropic-ai/claude-code@latest"]
 
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=90, shell=True, errors="replace")
     if result.returncode != 0:
         return f"update failed: {result.stderr.strip()}"
 
@@ -29,6 +29,7 @@ def _patch_mascot() -> str | None:
         capture_output=True,
         text=True,
         timeout=10,
+        errors="replace",
     )
     output = result.stdout.strip()
     return output if NOTIFY_MARKER in output else None

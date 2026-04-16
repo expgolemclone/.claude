@@ -15,7 +15,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 TARGET = SCRIPT_DIR / "settings.json"
 
 CLAUDE_COMMON: dict[str, object] = {
-    "model": "claude-opus-4-6",
+    "model": "claude-opus-4-7",
+    "effortLevel": "xhigh",
     "skipDangerousModePermissionPrompt": True,
 }
 
