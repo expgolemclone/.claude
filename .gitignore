@@ -7,7 +7,7 @@
 
 # Python files and config
 !*.py
-!pyproject.toml
+!*.toml
 !uv.lock
 !keybindings.json
 settings.json
