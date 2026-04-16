@@ -34,6 +34,7 @@ def _candidates() -> list[Path]:
     return [
         home / ".local/share/claude/app/cli.js",
         home / ".local/bin/claude",
+        home / ".npm-global/lib/node_modules/@anthropic-ai/claude-code/cli.js",
     ]
 
 
