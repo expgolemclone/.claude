@@ -19,6 +19,7 @@ def hook(command: str, timeout: int | None = None) -> dict[str, object]:
 
 def build_common_config() -> dict[str, object]:
     return {
+        "model": "claude-opus-4-6",
         "skipDangerousModePermissionPrompt": True,
     }
 
