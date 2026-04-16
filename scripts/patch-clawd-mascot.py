@@ -8,13 +8,23 @@ import sys
 from pathlib import Path
 
 # cli.js (テキスト) 用の置換ペア
-TEXT_OLD = 'color:"clawd_body"'
-TEXT_NEW = 'color:"clawd_background"'
+TEXT_PAIRS = [
+    ('color:"clawd_body"', 'color:"clawd_background"'),
+    ('backgroundColor:"clawd_body"', 'backgroundColor:"clawd_background"'),
+    # claude 色トークン（ブランドオレンジ）→ 黒
+    ('claude:"rgb(215,119,87)"', 'claude:"rgb(0,0,0)"'),
+    ('claude:"rgb(255,153,51)"', 'claude:"rgb(0,0,0)"'),
+    ('claude:"ansi:redBright"', 'claude:"ansi:black"'),
+    # bypass permissions 表示色 → 水色
+    ('color:"error",external:"bypassPermissions"', 'color:"cyan",external:"bypassPermissions"'),
+]
 
 # claude.exe (バイナリ) 用の同一バイト長置換ペア [(old, new), ...]
 BIN_PAIRS = [
-    (b"rgb(215,119,87)", b"rgb(000,000,00)"),                          # RGB テーマ (15B)
-    (b'clawd_body:"ansi:redBright"', b'clawd_body:"rgb(00,00,000)"'),  # ANSI テーマ (27B)
+    (b"rgb(215,119,87)", b"rgb(000,000,00)"),                          # clawd_body / claude RGB (15B)
+    (b"rgb(255,153,51)", b"rgb(000,000,00)"),                          # claude RGB variant 2 (15B)
+    (b'clawd_body:"ansi:redBright"', b'clawd_body:"rgb(00,00,000)"'),  # clawd_body ANSI (27B)
+    (b'claude:"ansi:redBright"', b'claude:"rgb(00,00,000)"'),          # claude ANSI (23B)
 ]
 
 
@@ -70,18 +80,24 @@ def patch_text(path: Path) -> bool:
     """cli.js をテキスト置換でパッチする."""
     content = path.read_text(encoding="utf-8")
 
-    if TEXT_NEW in content and TEXT_OLD not in content:
+    pending = [(old, new) for old, new in TEXT_PAIRS if old in content]
+    done = [new for old, new in TEXT_PAIRS if old not in content and new in content]
+
+    if not pending and len(done) == len(TEXT_PAIRS):
         print("既にパッチ済みです。")
         return True
 
-    if TEXT_OLD not in content:
-        print(f"置換対象が見つかりません: {TEXT_OLD}", file=sys.stderr)
+    if not pending:
+        print("置換対象が見つかりません。", file=sys.stderr)
         return False
 
-    count = content.count(TEXT_OLD)
-    patched = content.replace(TEXT_OLD, TEXT_NEW)
-    path.write_text(patched, encoding="utf-8")
-    print(f"パッチ適用: {count} 箇所を置換しました。")
+    total = 0
+    for old, new in pending:
+        total += content.count(old)
+        content = content.replace(old, new)
+
+    path.write_text(content, encoding="utf-8")
+    print(f"パッチ適用: {total} 箇所を置換しました。")
     return True
 
 
@@ -161,7 +177,9 @@ def _patch_one(target: Path, *, do_restore: bool) -> bool:
     # 冪等チェック: 既にパッチ済みならバックアップ不要
     if is_text:
         content = target.read_text(encoding="utf-8")
-        already = TEXT_NEW in content and TEXT_OLD not in content
+        already = all(
+            old not in content and new in content for old, new in TEXT_PAIRS
+        )
     else:
         data = target.read_bytes()
         already = all(
