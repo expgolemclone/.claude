@@ -7,6 +7,7 @@
 
 # Setup script and config
 !setup.py
+!setup_claude.py
 !pyproject.toml
 settings.json
 
