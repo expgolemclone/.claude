@@ -22,7 +22,7 @@ def main() -> None:
     used_coding_tool = False
 
     try:
-        with open(transcript_path) as f:
+        with open(transcript_path, encoding="utf-8") as f:
             lines = f.readlines()
 
         # Find the last *real* user message (not a tool_result relay).
