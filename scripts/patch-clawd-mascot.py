@@ -20,6 +20,10 @@ TEXT_PAIRS = [
     ('{bold:!0},q6)', '{bold:!0,color:"clawd_background"},q6)'),
     # フィードタイトル (Tips / Recent activity 等) を背景色と同化
     ('bold:!0,color:"claude"},Y)', 'bold:!0,color:"clawd_background"},Y)'),
+    # フィード本文・フッター・空メッセージを背景色と同化
+    ('createElement(T,null,Z5(P.text,D))', 'createElement(T,{color:"clawd_background"},Z5(P.text,D))'),
+    ('createElement(T,{dimColor:!0,italic:!0},Z5(O,z))', 'createElement(T,{color:"clawd_background"},Z5(O,z))'),
+    ('createElement(T,{dimColor:!0},Z5(w,z))', 'createElement(T,{color:"clawd_background"},Z5(w,z))'),
     # bypass permissions 表示色 → 水色
     ('color:"error",external:"bypassPermissions"', 'color:"cyan",external:"bypassPermissions"'),
 ]
