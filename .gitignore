@@ -5,6 +5,9 @@
 !.gitignore
 !.gitattributes
 
+# Documentation
+!ARCHITECTURE.md
+
 # Python files and config
 !*.py
 !*.toml
