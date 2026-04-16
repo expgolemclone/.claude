@@ -5,10 +5,11 @@
 !.gitignore
 !.gitattributes
 
-# Setup script and config
-!setup.py
-!setup_claude.py
+# Python files and config
+!*.py
 !pyproject.toml
+!uv.lock
+!keybindings.json
 settings.json
 
 # Hooks (custom scripts)
