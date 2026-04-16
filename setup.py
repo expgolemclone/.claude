@@ -87,6 +87,9 @@ def build_linux_config() -> dict[str, object]:
                 ]},
             ],
             "PostToolUse": [
+                {"matcher": "Bash", "hooks": [
+                    py("post-auto-setup.py"),
+                ]},
                 {"matcher": "Edit|Write|Bash", "hooks": [
                     py("post-verify-protected-nix-config.py"),
                 ]},
@@ -162,6 +165,9 @@ def build_windows_config() -> dict[str, object]:
                 ]},
             ],
             "PostToolUse": [
+                {"matcher": "Bash", "hooks": [
+                    py("post-auto-setup.py"),
+                ]},
                 {"matcher": "Edit|Write", "hooks": [
                     py("post-cargo-clippy-on-rs-edit.py", timeout=120),
                     py("check-hotstring-conflicts.py"),
