@@ -51,15 +51,7 @@ def main() -> None:
         messages.append(f"[patch] {patch_msg}")
 
     if messages:
-        json.dump(
-            {
-                "hookSpecificOutput": {
-                    "hookEventName": "Stop",
-                    "additionalContext": "\n".join(messages),
-                }
-            },
-            sys.stdout,
-        )
+        json.dump({"systemMessage": "\n".join(messages)}, sys.stdout)
 
 
 if __name__ == "__main__":
