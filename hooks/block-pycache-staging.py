@@ -11,6 +11,17 @@ import subprocess
 import sys
 
 
+def _is_git_repo(cwd: str) -> bool:
+    """Return True if cwd is inside a git working tree."""
+    result = subprocess.run(
+        ["git", "rev-parse", "--is-inside-work-tree"],
+        capture_output=True,
+        text=True,
+        cwd=cwd,
+    )
+    return result.returncode == 0
+
+
 def _strip_quotes(command: str) -> str:
     """Remove quoted strings to avoid false positives from commit messages."""
     stripped = re.sub(r'"[^"]*"', '""', command)
@@ -37,18 +48,19 @@ def _is_bulk_add(stripped: str) -> bool:
     return False
 
 
-def _has_untracked_pycache() -> bool:
+def _has_untracked_pycache(cwd: str) -> bool:
     """Check if untracked __pycache__ files exist that would be staged."""
     result = subprocess.run(
         ["git", "ls-files", "-o", "--directory",
          "--", "*__pycache__*", "**/__pycache__/**"],
         capture_output=True,
         text=True,
+        cwd=cwd,
     )
-    return bool(result.stdout.strip())
+    return result.returncode == 0 and bool(result.stdout.strip())
 
 
-def _check_git_add(command: str, stripped: str) -> None:
+def _check_git_add(command: str, stripped: str, cwd: str) -> None:
     """Block git add that targets __pycache__ files."""
     if _is_pycache_path(stripped):
         json.dump(
@@ -63,7 +75,7 @@ def _check_git_add(command: str, stripped: str) -> None:
         )
         return
 
-    if _is_bulk_add(stripped) and _has_untracked_pycache():
+    if _is_bulk_add(stripped) and _has_untracked_pycache(cwd):
         json.dump(
             {
                 "decision": "block",
@@ -77,12 +89,13 @@ def _check_git_add(command: str, stripped: str) -> None:
         )
 
 
-def _check_git_commit() -> None:
+def _check_git_commit(cwd: str) -> None:
     """Block git commit when staged files include __pycache__ (safety net)."""
     result = subprocess.run(
         ["git", "diff", "--cached", "--name-only"],
         capture_output=True,
         text=True,
+        cwd=cwd,
     )
     if result.returncode != 0:
         return
@@ -108,13 +121,17 @@ def _check_git_commit() -> None:
 
 def main() -> None:
     data = json.load(sys.stdin)
+    cwd = data.get("cwd", "")
+    if not cwd or not _is_git_repo(cwd):
+        return
+
     command = data.get("tool_input", {}).get("command", "")
     stripped = _strip_quotes(command)
 
     if re.search(r"\bgit\s+add\b", stripped):
-        _check_git_add(command, stripped)
+        _check_git_add(command, stripped, cwd)
     elif re.search(r"\bgit\s+commit\b", stripped):
-        _check_git_commit()
+        _check_git_commit(cwd)
 
 
 if __name__ == "__main__":
