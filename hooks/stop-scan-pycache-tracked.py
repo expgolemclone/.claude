@@ -14,6 +14,10 @@ from pathlib import Path
 
 def _get_tracked_pycache(cwd: str) -> list[str]:
     """Return tracked file paths containing __pycache__ or ending in .pyc."""
+    # ディレクトリが存在しない場合は空リストを返す
+    if not Path(cwd).exists():
+        return []
+
     result = subprocess.run(
         ["git", "ls-files", "--", "*__pycache__*", "**/__pycache__/**", "*.pyc"],
         capture_output=True,
@@ -27,6 +31,10 @@ def _get_tracked_pycache(cwd: str) -> list[str]:
 
 def _check_gitignore(cwd: str) -> bool:
     """Return True if .gitignore contains a __pycache__ rule."""
+    # ディレクトリが存在しない場合は False を返す
+    if not Path(cwd).exists():
+        return False
+
     gitignore = Path(cwd) / ".gitignore"
     if not gitignore.is_file():
         return False
