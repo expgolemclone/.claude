@@ -1,0 +1,79 @@
+# Claude Code 設定リポジトリ構造
+
+このリポジトリは Claude Code の設定とフックスクリプトを管理する。
+
+## 設定生成スクリプト
+
+### `setup.py`
+メインの設定生成スクリプト。OS 毎のフック構成を定義し、`settings.json` を生成する。
+
+- **入力**: `.env` から API キー等を読み取り
+- **出力**: `settings.json`
+- **使用モデル**: `glm-5.1` (z.ai 経由)
+
+```python
+build_common_config()      # 共通設定（環境変数等）
+build_linux_config()        # Linux 用フック構成
+build_windows_config()      # Windows 用フック構成
+```
+
+`build_*_config()` は `common` 引数を受け取り、外部から設定を上書き可能。
+
+### `setup_claude.py`
+ネイティブ Claude Opus (`claude-opus-4-6`) 用の設定生成スクリプト。
+
+`setup.py` からフック構成をインポートし、モデル設定のみ差し替える薄いラッパー。
+
+```python
+from setup import build_linux_config, build_windows_config
+
+CLAUDE_COMMON = {
+    "model": "claude-opus-4-6",
+    "skipDangerousModePermissionPrompt": True,
+}
+
+config = build_linux_config(common=CLAUDE_COMMON)  # または build_windows_config
+```
+
+**設計方針**: フック構成の変更は `setup.py` のみ行えばよい。
+
+## ディレクトリ構成
+
+```
+.claude/
+├── hooks/          # フックスクリプト (PreToolUse/PostToolUse/Stop)
+├── scripts/        # ユーティリティスクリプト
+├── tests/          # フックのテスト
+├── config/         # 設定ファイル
+└── projects/       # プロジェクト固有の設定
+```
+
+### `hooks/`
+Claude Code の各ツール実行前後に動作する検証・補助スクリプト。
+
+命名規則:
+- `block-*.py`    : 操作をブロック
+- `warn-*.py`     : 警告を表示
+- `post-*.py`     : ツール実行後の処理
+- `stop-*.py`     : セッション終了時の処理
+- `inject-*.py`   : 設定注入
+
+### `scripts/`
+通知スクリプト等のユーティリティ。
+
+## 依存関係
+
+```
+setup_claude.py ──import──> setup.py
+                      │
+                      └──> .env (API キー等)
+```
+
+`setup_claude.py` は `.env` を参照しないため、API キーなしで実行可能。
+
+## 開発フロー
+
+1. フック追加・変更: `setup.py` の `build_*_config()` を修正
+2. 動作確認: `python3 setup.py` または `python3 setup_claude.py`
+3. テスト: `pytest tests/`
+4. コミット & プッシュ

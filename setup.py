@@ -34,7 +34,9 @@ def build_common_config() -> dict[str, object]:
     }
 
 
-def build_linux_config() -> dict[str, object]:
+def build_linux_config(common: dict[str, object] | None = None) -> dict[str, object]:
+    if common is None:
+        common = build_common_config()
     h: str = str(Path.home() / ".claude")
     projects: str = str(Path.home() / "projects")
 
@@ -49,7 +51,7 @@ def build_linux_config() -> dict[str, object]:
         return hook(cmd, timeout)
 
     return {
-        **build_common_config(),
+        **common,
         "permissions": {
             "defaultMode": "bypassPermissions",
             "deny": ["Agent"],
@@ -123,7 +125,9 @@ def build_linux_config() -> dict[str, object]:
     }
 
 
-def build_windows_config() -> dict[str, object]:
+def build_windows_config(common: dict[str, object] | None = None) -> dict[str, object]:
+    if common is None:
+        common = build_common_config()
     claude_home: str = (Path.home() / ".claude").as_posix()
     claude_home_bs: str = str(Path.home() / ".claude")
 
@@ -134,7 +138,7 @@ def build_windows_config() -> dict[str, object]:
         return hook(cmd, timeout)
 
     return {
-        **build_common_config(),
+        **common,
         "effortLevel": "max",
         "permissions": {
             "deny": ["Task", "Agent"],
