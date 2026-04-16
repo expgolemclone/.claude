@@ -58,6 +58,8 @@ def build_linux_config(common: dict[str, object] | None = None) -> dict[str, obj
         },
         "language": "ja",
         "voiceEnabled": True,
+        "spinnerTipsEnabled": False,
+        "prefersReducedMotion": True,
         "hooks": {
             "PreToolUse": [
                 {"matcher": "Edit|Write|Bash", "hooks": [
@@ -145,6 +147,8 @@ def build_windows_config(common: dict[str, object] | None = None) -> dict[str, o
             "deny": ["Task", "Agent"],
             "defaultMode": "bypassPermissions",
         },
+        "spinnerTipsEnabled": False,
+        "prefersReducedMotion": True,
         "hooks": {
             "PreToolUse": [
                 {"matcher": "Edit|Write|Bash", "hooks": [
