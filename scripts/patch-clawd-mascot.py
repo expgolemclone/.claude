@@ -15,6 +15,8 @@ TEXT_PAIRS = [
     ('claude:"rgb(215,119,87)"', 'claude:"rgb(0,0,0)"'),
     ('claude:"rgb(255,153,51)"', 'claude:"rgb(0,0,0)"'),
     ('claude:"ansi:redBright"', 'claude:"ansi:black"'),
+    # バナータイトル「Claude Code」を背景色と同化
+    ('{bold:!0},"Claude Code")', '{bold:!0,color:"background"},"Claude Code")'),
     # bypass permissions 表示色 → 水色
     ('color:"error",external:"bypassPermissions"', 'color:"cyan",external:"bypassPermissions"'),
 ]
