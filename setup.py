@@ -119,7 +119,7 @@ def build_linux_config(common: dict[str, object] | None = None) -> dict[str, obj
                     py("stop-scan-pycache-tracked.py", timeout=15),
                     py("stop-warn-chrome-tabs.py", timeout=15),
                     py("stop-prompt-architecture-md.py", timeout=15),
-                    py("stop-patch-clawd-mascot.py", timeout=15),
+                    py("stop-update-and-patch-claude.py", timeout=120),
                 ]},
             ],
         },
@@ -197,7 +197,7 @@ def build_windows_config(common: dict[str, object] | None = None) -> dict[str, o
                     py("stop-scan-any-type.py", timeout=15),
                     py("stop-scan-pycache-tracked.py", timeout=15),
                     py("stop-prompt-architecture-md.py", timeout=15),
-                    py("stop-patch-clawd-mascot.py", timeout=15),
+                    py("stop-update-and-patch-claude.py", timeout=120),
                     hook(
                         f'pwsh -NoProfile -ExecutionPolicy Bypass'
                         f' -File "{claude_home_bs}\\scripts\\notify-complete.ps1"'
