@@ -144,6 +144,7 @@ def build_windows_config(common: dict[str, object] | None = None) -> dict[str, o
     return {
         **common,
         "permissions": {
+            "allow": ["Edit", "Write", "Read", "Bash", "Grep", "Glob"],
             "deny": ["Task", "Agent"],
             "defaultMode": "bypassPermissions",
         },
