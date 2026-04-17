@@ -23,7 +23,7 @@ def main() -> None:
         json.dump(
             {
                 "decision": "block",
-                "reason": "settings.json は setup.py から生成されます。setup.py を編集してから `python3 ~/.claude/setup.py` を実行してください。",
+                "reason": "settings.json は setup.py から生成されます。`uv run python setup.py`",
             },
             sys.stdout,
         )
