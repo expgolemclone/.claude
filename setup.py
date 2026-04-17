@@ -88,7 +88,6 @@ def build_linux_config(common: dict[str, object] | None = None) -> dict[str, obj
                     py("block-nixos-rebuild-protected-changes.py"),
                     py("block-prohibited-python-toolchains.py"),
                     py("block-install-without-lock.py"),
-                    py("block-pycache-staging.py"),
                 ]},
             ],
             "PostToolUse": [
@@ -174,7 +173,6 @@ def build_windows_config(common: dict[str, object] | None = None) -> dict[str, o
                     py("block-commit-without-verification.py", timeout=120),
                     py("block-prohibited-python-toolchains.py"),
                     py("block-install-without-lock.py"),
-                    py("block-pycache-staging.py"),
                 ]},
             ],
             "PostToolUse": [
