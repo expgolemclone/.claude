@@ -46,6 +46,7 @@ config = build_linux_config(common=CLAUDE_COMMON)  # または build_windows_con
 ├── scripts/        # ユーティリティスクリプト
 ├── tests/          # フックのテスト
 ├── config/         # 設定ファイル
+├── plans/          # plan mode の一時プランファイル置き場
 └── projects/       # プロジェクト固有の設定
 ```
 
