@@ -28,7 +28,7 @@ def _patch_mascot() -> str | None:
         [sys.executable, str(PATCH_SCRIPT)],
         capture_output=True,
         text=True,
-        timeout=10,
+        timeout=120,
         errors="replace",
     )
     output = result.stdout.strip()

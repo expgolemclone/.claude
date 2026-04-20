@@ -36,6 +36,71 @@ BIN_PAIRS = [
     (b'claude:"ansi:redBright"', b'claude:"rgb(00,00,000)"'),          # claude ANSI (23B)
 ]
 
+# 現行 Windows の claude.exe bundle 向け追加置換
+WINDOWS_BIN_PAIRS = [
+    # bypass permissions 表示色 → 水色（空白で長さを合わせる）
+    (
+        b'color:"error",external:"bypassPermissions"',
+        b'color:"cyan", external:"bypassPermissions"',
+    ),
+    # フィードタイトル (Tips / Recent activity 等) を黒化
+    (
+        b'A3.createElement(v,{bold:!0,color:"claude"},_)',
+        b'A3.createElement(v,{bold:!0,color:"black" },_)',
+    ),
+    # Welcome back ヘッダは色属性を持たないため、描画文字列自体を空にする
+    (b'let UH=Me8(q);if(', b'let UH=""    ;if('),
+    (b'let DH=Me8(q),OH=', b'let DH=""    ,OH='),
+]
+
+
+def _binary_pairs_for_target(path: Path) -> list[tuple[bytes, bytes]]:
+    """対象ファイルに応じたバイナリ置換ペアを返す."""
+    pairs = list(BIN_PAIRS)
+    if path.suffix.lower() == ".exe":
+        pairs.extend(WINDOWS_BIN_PAIRS)
+
+    for old, new in pairs:
+        if len(old) != len(new):
+            raise ValueError(f"binary patch must keep byte length: {old!r} -> {new!r}")
+
+    return pairs
+
+
+def _dedupe_paths(paths: list[Path]) -> list[Path]:
+    """同一パスを順序を保って一度だけ返す."""
+    seen: set[Path] = set()
+    unique: list[Path] = []
+    for path in paths:
+        key = path.resolve(strict=False)
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(path)
+    return unique
+
+
+def _windows_npm_candidates(home: Path) -> list[Path]:
+    """Windows の npm グローバル配下にある Claude Code 候補を返す."""
+    anthropic_root = home / "AppData/Roaming/npm/node_modules/@anthropic-ai"
+    stable_root = anthropic_root / "claude-code"
+
+    candidates = [
+        stable_root / "bin/claude.exe",
+        stable_root / "node_modules/@anthropic-ai/claude-code-win32-x64/claude.exe",
+        stable_root / "node_modules/@anthropic-ai/claude-code-win32-arm64/claude.exe",
+    ]
+
+    if anthropic_root.is_dir():
+        for pattern in (
+            ".claude-code-*/bin/claude.exe",
+            ".claude-code-*/node_modules/@anthropic-ai/claude-code-win32-x64/claude.exe",
+            ".claude-code-*/node_modules/@anthropic-ai/claude-code-win32-arm64/claude.exe",
+        ):
+            candidates.extend(sorted(anthropic_root.glob(pattern), reverse=True))
+
+    return _dedupe_paths(candidates)
+
 
 def _candidates() -> list[Path]:
     """OS ごとの候補パスを優先度順で返す."""
@@ -43,11 +108,12 @@ def _candidates() -> list[Path]:
     system = platform.system()
 
     if system == "Windows":
-        return [
+        return _dedupe_paths([
             home / ".local/bin/claude.exe",
             *_managed_versions(home / "AppData/Roaming/Claude/claude-code"),
+            *_windows_npm_candidates(home),
             home / "AppData/Roaming/npm/node_modules/@anthropic-ai/claude-code/cli.js",
-        ]
+        ])
 
     # Linux
     return [
@@ -71,7 +137,7 @@ def _managed_versions(base: Path) -> list[Path]:
 def find_targets() -> list[Path]:
     """OS に応じて存在する全インストールパスを返す."""
     targets: list[Path] = []
-    for path in _candidates():
+    for path in _dedupe_paths(_candidates()):
         if not path.exists():
             continue
         # NixOS: /nix/store 配下は読み取り専用 → overlay で対応
@@ -113,11 +179,12 @@ def patch_text(path: Path) -> bool:
 def patch_binary(path: Path) -> bool:
     """claude.exe をバイナリ置換でパッチする."""
     data = path.read_bytes()
+    pairs = _binary_pairs_for_target(path)
 
-    pending = [(old, new) for old, new in BIN_PAIRS if old in data]
-    done = [new for old, new in BIN_PAIRS if old not in data and new in data]
+    pending = [(old, new) for old, new in pairs if old in data]
+    done = [new for old, new in pairs if old not in data and new in data]
 
-    if not pending and len(done) == len(BIN_PAIRS):
+    if not pending and len(done) == len(pairs):
         print("既にパッチ済みです。")
         return True
 
@@ -191,8 +258,9 @@ def _patch_one(target: Path, *, do_restore: bool) -> bool:
         )
     else:
         data = target.read_bytes()
+        pairs = _binary_pairs_for_target(target)
         already = all(
-            old not in data and new in data for old, new in BIN_PAIRS
+            old not in data and new in data for old, new in pairs
         )
 
     if already:
