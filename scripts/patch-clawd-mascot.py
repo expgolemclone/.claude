@@ -215,7 +215,7 @@ def _write_binary(path: Path, data: bytes) -> None:
         try:
             old.unlink(missing_ok=True)
         except PermissionError:
-            pass
+            print(f"警告: {old} の削除をスキップ（ロック中）")
         path.rename(old)
         tmp.rename(path)
         # .old は実行中プロセスが掴んでいるため削除せず残す
