@@ -6,14 +6,13 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from git_utils import git_tracked_files
+
 _FULLWIDTH_PUNCTUATION = re.compile(
     r'[。\、，；：！？「」『』【】〈〉《》〔〕（）……——·〜～"'']'
 )
 _NOQA_MARKER = "# noqa: fullwidth-punctuation"
-_SKIP_DIRS = frozenset({
-    ".venv", "node_modules", "__pycache__", "site-packages",
-    ".git", ".claude", "dist", "build",
-})
 
 
 def _check_file(path: Path) -> list[str]:
@@ -47,10 +46,8 @@ def main() -> None:
         return
 
     all_violations: list[str] = []
-    for file_path in sorted(Path(cwd).rglob("*")):
+    for file_path in sorted(git_tracked_files(Path(cwd))):
         if not file_path.is_file():
-            continue
-        if _SKIP_DIRS & set(file_path.parts):
             continue
 
         all_violations.extend(_check_file(file_path))

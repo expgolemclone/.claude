@@ -7,28 +7,12 @@ Enforces two mechanically checkable rules from config/common.toml:
 """
 
 import json
-import subprocess
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from error_handling_core import check_python
-
-
-def _git_tracked_py_files(root: Path) -> set[Path]:
-    try:
-        result = subprocess.run(
-            ["git", "ls-files", "--", "*.py"],
-            capture_output=True,
-            text=True,
-            cwd=root,
-            timeout=10,
-        )
-    except (OSError, subprocess.TimeoutExpired):
-        return set()
-    if result.returncode != 0:
-        return set()
-    return {root / line for line in result.stdout.splitlines() if line}
+from git_utils import git_tracked_py_files
 
 
 def main() -> None:
@@ -45,7 +29,7 @@ def main() -> None:
         return
 
     hooks_dir = Path.home() / ".claude" / "hooks"
-    tracked = _git_tracked_py_files(Path(cwd))
+    tracked = git_tracked_py_files(Path(cwd))
 
     all_violations: list[str] = []
     for py_file in sorted(tracked):
