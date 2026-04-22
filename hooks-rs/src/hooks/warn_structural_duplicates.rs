@@ -2,13 +2,19 @@ use crate::git::git_tracked_files;
 use crate::input::HookInput;
 use crate::output::stop;
 use crate::project_root::find_git_root;
-use crate::python_ast::{LineIndex, call_name, parse_suite};
+use crate::python_ast::{LineIndex, parse_suite};
 use rustpython_parser::ast;
 use std::cmp::Ordering;
 use std::collections::{HashMap, HashSet};
 use std::fs;
 use std::path::{Path, PathBuf};
 use toml::Value;
+
+#[derive(Clone)]
+struct NormalizedNode {
+    label: String,
+    children: Vec<NormalizedNode>,
+}
 
 #[derive(Clone)]
 struct Config {
@@ -28,8 +34,9 @@ struct FunctionRecord {
     qualname: String,
     line: usize,
     stmt_count: usize,
-    labels: Vec<String>,
+    ast_node_count: usize,
     vector: HashMap<String, f64>,
+    normalized_tree: NormalizedNode,
 }
 
 struct FunctionContext<'a> {
@@ -44,6 +51,8 @@ struct MatchResult {
     vector_similarity: f64,
     au_similarity: f64,
 }
+
+// -- entry point --
 
 pub fn run(input: &HookInput) {
     let file_path = input.tool_input.file_path_resolved();
@@ -91,6 +100,8 @@ pub fn run(input: &HookInput) {
     ));
 }
 
+// -- config --
+
 fn load_config() -> Option<Config> {
     let path = std::env::current_dir()
         .ok()?
@@ -125,6 +136,8 @@ fn read_f64(section: &toml::map::Map<String, Value>, key: &str) -> Option<f64> {
         .or_else(|| value.as_integer().map(|v| v as f64))
 }
 
+// -- core detection --
+
 fn detect_structural_duplicates(
     repo_root: &Path,
     current_file: &Path,
@@ -144,7 +157,7 @@ fn detect_structural_duplicates(
         .into_iter()
         .filter(|record| {
             record.stmt_count >= config.min_stmt_count
-                && record.labels.len() >= config.min_ast_node_count
+                && record.ast_node_count >= config.min_ast_node_count
         })
         .collect::<Vec<_>>();
     let current_paths = current_records
@@ -173,6 +186,8 @@ fn detect_structural_duplicates(
     }
 
     let term_idf = compute_term_idf(&eligible, config.idf_floor);
+    let label_weights = compute_label_weights(&term_idf);
+
     let mut matches = Vec::new();
     for source in &current_eligible {
         let mut shortlist = eligible
@@ -188,7 +203,11 @@ fn detect_structural_duplicates(
         shortlist.truncate(config.shortlist_size);
 
         for (candidate, vector_similarity) in shortlist {
-            let au_similarity = sequence_similarity(&source.labels, &candidate.labels);
+            let au_similarity = anti_unification_similarity(
+                &source.normalized_tree,
+                &candidate.normalized_tree,
+                &label_weights,
+            );
             if au_similarity >= config.min_au_similarity {
                 matches.push(MatchResult {
                     source: source.clone(),
@@ -214,6 +233,8 @@ fn detect_structural_duplicates(
     matches.truncate(config.max_report_items);
     matches
 }
+
+// -- record parsing --
 
 fn parse_records(path: &Path) -> Vec<FunctionRecord> {
     let Ok(source) = fs::read_to_string(path) else {
@@ -272,9 +293,11 @@ fn collect_functions(
                 collect_functions(&node.body, path, index, stack, records);
                 collect_functions(&node.orelse, path, index, stack, records);
             }
-            ast::Stmt::With(node) => collect_functions(&node.body, path, index, stack, records),
+            ast::Stmt::With(node) => {
+                collect_functions(&node.body, path, index, stack, records);
+            }
             ast::Stmt::AsyncWith(node) => {
-                collect_functions(&node.body, path, index, stack, records)
+                collect_functions(&node.body, path, index, stack, records);
             }
             ast::Stmt::Try(node) => {
                 collect_functions(&node.body, path, index, stack, records);
@@ -312,12 +335,8 @@ fn collect_function(
     stmt: &ast::Stmt,
     records: &mut Vec<FunctionRecord>,
 ) {
-    let mut labels = vec!["FunctionDef".to_string()];
-    append_arguments(args, &mut labels);
-    for stmt in body_without_docstring(body) {
-        append_stmt(stmt, &mut labels);
-    }
-    let vector = build_vector(&labels);
+    let tree = normalize_function(args, body);
+    let vector = build_vector(&tree);
     let qualname = if ctx.stack.is_empty() {
         name.to_string()
     } else {
@@ -328,9 +347,69 @@ fn collect_function(
         qualname,
         line: ctx.index.line_for(stmt),
         stmt_count: body_without_docstring(body).len(),
-        labels,
+        ast_node_count: tree_node_count(&tree),
         vector,
+        normalized_tree: tree,
     });
+}
+
+// -- normalization (tree-based, matching Python's structural_clone_core) --
+
+fn normalize_function(args: &ast::Arguments, body: &[ast::Stmt]) -> NormalizedNode {
+    let label = "FunctionDef".to_string();
+    let mut children = vec![normalize_arguments(args)];
+    children.extend(
+        body_without_docstring(body)
+            .iter()
+            .map(normalize_stmt),
+    );
+    NormalizedNode { label, children }
+}
+
+fn normalize_arguments(args: &ast::Arguments) -> NormalizedNode {
+    let label = "arguments".to_string();
+    let mut children: Vec<NormalizedNode> = Vec::new();
+
+    // posonlyargs + args
+    for arg in args.posonlyargs.iter().chain(&args.args) {
+        children.push(normalize_arg_data(&arg.def));
+    }
+    // vararg
+    if let Some(arg) = &args.vararg {
+        children.push(normalize_arg_data(arg));
+    }
+    // kwonlyargs
+    for arg in &args.kwonlyargs {
+        children.push(normalize_arg_data(&arg.def));
+    }
+    // defaults (from positional args, in order)
+    for arg in args.posonlyargs.iter().chain(&args.args) {
+        if let Some(default) = &arg.default {
+            children.push(normalize_expr(default));
+        }
+    }
+    // kw_defaults (from kwonlyargs)
+    for arg in &args.kwonlyargs {
+        if let Some(default) = &arg.default {
+            children.push(normalize_expr(default));
+        }
+    }
+    // kwarg
+    if let Some(arg) = &args.kwarg {
+        children.push(normalize_arg_data(arg));
+    }
+
+    NormalizedNode { label, children }
+}
+
+fn normalize_arg_data(arg: &ast::Arg) -> NormalizedNode {
+    let label = "arg".to_string();
+    let children = arg
+        .annotation
+        .as_ref()
+        .map(|ann| vec![normalize_expr(ann)])
+        .unwrap_or_default();
+    NormalizedNode { label, children }
 }
 
 fn body_without_docstring(body: &[ast::Stmt]) -> &[ast::Stmt] {
@@ -349,263 +428,437 @@ fn body_without_docstring(body: &[ast::Stmt]) -> &[ast::Stmt] {
     }
 }
 
-fn append_arguments(args: &ast::Arguments, labels: &mut Vec<String>) {
-    labels.push("arguments".to_string());
-    for arg in args
-        .posonlyargs
-        .iter()
-        .chain(&args.args)
-        .chain(&args.kwonlyargs)
-    {
-        labels.push("arg".to_string());
-        if let Some(default) = &arg.default {
-            append_expr(default, labels);
-        }
-    }
-    if args.vararg.is_some() {
-        labels.push("arg".to_string());
-    }
-    if args.kwarg.is_some() {
-        labels.push("arg".to_string());
-    }
-}
-
-fn append_stmt(stmt: &ast::Stmt, labels: &mut Vec<String>) {
-    labels.push(stmt_label(stmt).to_string());
-    match stmt {
+fn normalize_stmt(stmt: &ast::Stmt) -> NormalizedNode {
+    let label = stmt_label(stmt);
+    let children = match stmt {
         ast::Stmt::FunctionDef(node) => {
-            append_arguments(&node.args, labels);
-            for stmt in body_without_docstring(&node.body) {
-                append_stmt(stmt, labels);
-            }
+            let mut ch = vec![normalize_arguments(&node.args)];
+            ch.extend(
+                body_without_docstring(&node.body)
+                    .iter()
+                    .map(normalize_stmt),
+            );
+            ch
         }
         ast::Stmt::AsyncFunctionDef(node) => {
-            append_arguments(&node.args, labels);
-            for stmt in body_without_docstring(&node.body) {
-                append_stmt(stmt, labels);
-            }
+            let mut ch = vec![normalize_arguments(&node.args)];
+            ch.extend(
+                body_without_docstring(&node.body)
+                    .iter()
+                    .map(normalize_stmt),
+            );
+            ch
         }
         ast::Stmt::ClassDef(node) => {
-            for stmt in &node.body {
-                append_stmt(stmt, labels);
-            }
+            let mut ch: Vec<NormalizedNode> = node
+                .bases
+                .iter()
+                .map(normalize_expr)
+                .collect();
+            ch.extend(node.keywords.iter().map(normalize_keyword));
+            ch.extend(node.decorator_list.iter().map(normalize_expr));
+            ch.extend(node.body.iter().map(normalize_stmt));
+            ch
         }
-        ast::Stmt::Return(node) => {
-            if let Some(expr) = &node.value {
-                append_expr(expr, labels);
-            }
-        }
+        ast::Stmt::Return(node) => node
+            .value
+            .as_ref()
+            .map(|e| vec![normalize_expr(e)])
+            .unwrap_or_default(),
+        ast::Stmt::Delete(node) => node
+            .targets
+            .iter()
+            .map(normalize_expr)
+            .collect(),
         ast::Stmt::Assign(node) => {
-            for target in &node.targets {
-                append_expr(target, labels);
-            }
-            append_expr(&node.value, labels);
+            let mut ch: Vec<NormalizedNode> = node
+                .targets
+                .iter()
+                .map(normalize_expr)
+                .collect();
+            ch.push(normalize_expr(&node.value));
+            ch
+        }
+        ast::Stmt::TypeAlias(node) => {
+            vec![normalize_expr(&node.name), normalize_expr(&node.value)]
         }
         ast::Stmt::AugAssign(node) => {
-            append_expr(&node.target, labels);
-            append_expr(&node.value, labels);
+            vec![
+                normalize_expr(&node.target),
+                normalize_expr(&node.value),
+            ]
         }
         ast::Stmt::AnnAssign(node) => {
-            append_expr(&node.target, labels);
-            if let Some(expr) = &node.value {
-                append_expr(expr, labels);
+            let mut ch = vec![
+                normalize_expr(&node.target),
+                normalize_expr(&node.annotation),
+            ];
+            if let Some(value) = &node.value {
+                ch.push(normalize_expr(value));
             }
+            ch
         }
         ast::Stmt::For(node) => {
-            append_expr(&node.target, labels);
-            append_expr(&node.iter, labels);
-            append_stmts(&node.body, labels);
-            append_stmts(&node.orelse, labels);
+            let mut ch = vec![
+                normalize_expr(&node.target),
+                normalize_expr(&node.iter),
+            ];
+            ch.extend(node.body.iter().map(normalize_stmt));
+            ch.extend(node.orelse.iter().map(normalize_stmt));
+            ch
         }
         ast::Stmt::AsyncFor(node) => {
-            append_expr(&node.target, labels);
-            append_expr(&node.iter, labels);
-            append_stmts(&node.body, labels);
-            append_stmts(&node.orelse, labels);
+            let mut ch = vec![
+                normalize_expr(&node.target),
+                normalize_expr(&node.iter),
+            ];
+            ch.extend(node.body.iter().map(normalize_stmt));
+            ch.extend(node.orelse.iter().map(normalize_stmt));
+            ch
         }
         ast::Stmt::While(node) => {
-            append_expr(&node.test, labels);
-            append_stmts(&node.body, labels);
-            append_stmts(&node.orelse, labels);
+            let mut ch = vec![normalize_expr(&node.test)];
+            ch.extend(node.body.iter().map(normalize_stmt));
+            ch.extend(node.orelse.iter().map(normalize_stmt));
+            ch
         }
         ast::Stmt::If(node) => {
-            append_expr(&node.test, labels);
-            append_stmts(&node.body, labels);
-            append_stmts(&node.orelse, labels);
+            let mut ch = vec![normalize_expr(&node.test)];
+            ch.extend(node.body.iter().map(normalize_stmt));
+            ch.extend(node.orelse.iter().map(normalize_stmt));
+            ch
         }
         ast::Stmt::With(node) => {
-            for item in &node.items {
-                append_expr(&item.context_expr, labels);
-            }
-            append_stmts(&node.body, labels);
+            let mut ch: Vec<NormalizedNode> = node
+                .items
+                .iter()
+                .map(normalize_with_item)
+                .collect();
+            ch.extend(node.body.iter().map(normalize_stmt));
+            ch
         }
         ast::Stmt::AsyncWith(node) => {
-            for item in &node.items {
-                append_expr(&item.context_expr, labels);
-            }
-            append_stmts(&node.body, labels);
+            let mut ch: Vec<NormalizedNode> = node
+                .items
+                .iter()
+                .map(normalize_with_item)
+                .collect();
+            ch.extend(node.body.iter().map(normalize_stmt));
+            ch
+        }
+        ast::Stmt::Match(node) => {
+            let mut ch = vec![normalize_expr(&node.subject)];
+            ch.extend(node.cases.iter().map(normalize_match_case));
+            ch
         }
         ast::Stmt::Raise(node) => {
-            if let Some(expr) = &node.exc {
-                append_expr(expr, labels);
+            let mut ch = Vec::new();
+            if let Some(exc) = &node.exc {
+                ch.push(normalize_expr(exc));
             }
+            if let Some(cause) = &node.cause {
+                ch.push(normalize_expr(cause));
+            }
+            ch
         }
         ast::Stmt::Try(node) => {
-            append_stmts(&node.body, labels);
+            let mut ch: Vec<NormalizedNode> = node
+                .body
+                .iter()
+                .map(normalize_stmt)
+                .collect();
             for handler in &node.handlers {
-                let ast::ExceptHandler::ExceptHandler(handler) = handler;
-                labels.push("ExceptHandler".to_string());
-                append_stmts(&handler.body, labels);
+                let ast::ExceptHandler::ExceptHandler(h) = handler;
+                ch.push(normalize_except_handler(h));
             }
-            append_stmts(&node.orelse, labels);
-            append_stmts(&node.finalbody, labels);
+            ch.extend(node.orelse.iter().map(normalize_stmt));
+            ch.extend(node.finalbody.iter().map(normalize_stmt));
+            ch
         }
         ast::Stmt::TryStar(node) => {
-            append_stmts(&node.body, labels);
+            let mut ch: Vec<NormalizedNode> = node
+                .body
+                .iter()
+                .map(normalize_stmt)
+                .collect();
             for handler in &node.handlers {
-                let ast::ExceptHandler::ExceptHandler(handler) = handler;
-                labels.push("ExceptHandler".to_string());
-                append_stmts(&handler.body, labels);
+                let ast::ExceptHandler::ExceptHandler(h) = handler;
+                ch.push(normalize_except_handler(h));
             }
-            append_stmts(&node.orelse, labels);
-            append_stmts(&node.finalbody, labels);
+            ch.extend(node.orelse.iter().map(normalize_stmt));
+            ch.extend(node.finalbody.iter().map(normalize_stmt));
+            ch
         }
-        ast::Stmt::Assert(node) => append_expr(&node.test, labels),
-        ast::Stmt::Expr(node) => append_expr(&node.value, labels),
-        ast::Stmt::Match(node) => {
-            append_expr(&node.subject, labels);
-            for case in &node.cases {
-                if let Some(guard) = &case.guard {
-                    append_expr(guard, labels);
-                }
-                append_stmts(&case.body, labels);
+        ast::Stmt::Assert(node) => {
+            let mut ch = vec![normalize_expr(&node.test)];
+            if let Some(msg) = &node.msg {
+                ch.push(normalize_expr(msg));
             }
+            ch
         }
-        ast::Stmt::Delete(_)
-        | ast::Stmt::TypeAlias(_)
-        | ast::Stmt::Import(_)
+        ast::Stmt::Expr(node) => vec![normalize_expr(&node.value)],
+        ast::Stmt::Import(_)
         | ast::Stmt::ImportFrom(_)
         | ast::Stmt::Global(_)
         | ast::Stmt::Nonlocal(_)
         | ast::Stmt::Pass(_)
         | ast::Stmt::Break(_)
-        | ast::Stmt::Continue(_) => {}
+        | ast::Stmt::Continue(_) => Vec::new(),
+    };
+    NormalizedNode {
+        label: label.to_string(),
+        children,
     }
 }
 
-fn append_stmts(stmts: &[ast::Stmt], labels: &mut Vec<String>) {
-    for stmt in stmts {
-        append_stmt(stmt, labels);
-    }
-}
-
-fn append_expr(expr: &ast::Expr, labels: &mut Vec<String>) {
-    labels.push(expr_label(expr));
-    match expr {
-        ast::Expr::BoolOp(node) => {
-            for expr in &node.values {
-                append_expr(expr, labels);
-            }
-        }
+fn normalize_expr(expr: &ast::Expr) -> NormalizedNode {
+    let label = expr_label(expr);
+    let children = match expr {
+        ast::Expr::BoolOp(node) => node.values.iter().map(normalize_expr).collect(),
         ast::Expr::NamedExpr(node) => {
-            append_expr(&node.target, labels);
-            append_expr(&node.value, labels);
+            vec![
+                normalize_expr(&node.target),
+                normalize_expr(&node.value),
+            ]
         }
         ast::Expr::BinOp(node) => {
-            append_expr(&node.left, labels);
-            append_expr(&node.right, labels);
+            vec![
+                normalize_expr(&node.left),
+                normalize_expr(&node.right),
+            ]
         }
-        ast::Expr::UnaryOp(node) => append_expr(&node.operand, labels),
+        ast::Expr::UnaryOp(node) => vec![normalize_expr(&node.operand)],
         ast::Expr::Lambda(node) => {
-            append_arguments(&node.args, labels);
-            append_expr(&node.body, labels);
+            vec![normalize_arguments(&node.args), normalize_expr(&node.body)]
         }
         ast::Expr::IfExp(node) => {
-            append_expr(&node.test, labels);
-            append_expr(&node.body, labels);
-            append_expr(&node.orelse, labels);
+            vec![
+                normalize_expr(&node.test),
+                normalize_expr(&node.body),
+                normalize_expr(&node.orelse),
+            ]
         }
         ast::Expr::Dict(node) => {
-            for expr in node.keys.iter().flatten() {
-                append_expr(expr, labels);
-            }
-            for expr in &node.values {
-                append_expr(expr, labels);
-            }
+            let mut ch: Vec<NormalizedNode> = node
+                .keys
+                .iter()
+                .flatten()
+                .map(normalize_expr)
+                .collect();
+            ch.extend(node.values.iter().map(normalize_expr));
+            ch
         }
-        ast::Expr::Set(node) => {
-            for expr in &node.elts {
-                append_expr(expr, labels);
-            }
+        ast::Expr::Set(node) => node.elts.iter().map(normalize_expr).collect(),
+        ast::Expr::ListComp(node) => {
+            let mut ch = vec![normalize_expr(&node.elt)];
+            ch.extend(
+                node.generators
+                    .iter()
+                    .map(normalize_comprehension),
+            );
+            ch
         }
-        ast::Expr::ListComp(node) => append_expr(&node.elt, labels),
-        ast::Expr::SetComp(node) => append_expr(&node.elt, labels),
+        ast::Expr::SetComp(node) => {
+            let mut ch = vec![normalize_expr(&node.elt)];
+            ch.extend(
+                node.generators
+                    .iter()
+                    .map(normalize_comprehension),
+            );
+            ch
+        }
         ast::Expr::DictComp(node) => {
-            append_expr(&node.key, labels);
-            append_expr(&node.value, labels);
+            let mut ch = vec![
+                normalize_expr(&node.key),
+                normalize_expr(&node.value),
+            ];
+            ch.extend(
+                node.generators
+                    .iter()
+                    .map(normalize_comprehension),
+            );
+            ch
         }
-        ast::Expr::GeneratorExp(node) => append_expr(&node.elt, labels),
-        ast::Expr::Await(node) => append_expr(&node.value, labels),
-        ast::Expr::Yield(node) => {
-            if let Some(expr) = &node.value {
-                append_expr(expr, labels);
-            }
+        ast::Expr::GeneratorExp(node) => {
+            let mut ch = vec![normalize_expr(&node.elt)];
+            ch.extend(
+                node.generators
+                    .iter()
+                    .map(normalize_comprehension),
+            );
+            ch
         }
-        ast::Expr::YieldFrom(node) => append_expr(&node.value, labels),
+        ast::Expr::Await(node) => vec![normalize_expr(&node.value)],
+        ast::Expr::Yield(node) => node
+            .value
+            .as_ref()
+            .map(|e| vec![normalize_expr(e)])
+            .unwrap_or_default(),
+        ast::Expr::YieldFrom(node) => vec![normalize_expr(&node.value)],
         ast::Expr::Compare(node) => {
-            append_expr(&node.left, labels);
-            for expr in &node.comparators {
-                append_expr(expr, labels);
-            }
+            let mut ch = vec![normalize_expr(&node.left)];
+            ch.extend(node.comparators.iter().map(normalize_expr));
+            ch
         }
         ast::Expr::Call(node) => {
-            for expr in &node.args {
-                append_expr(expr, labels);
-            }
-            for keyword in &node.keywords {
-                labels.push(format!(
-                    "kw[{}]",
-                    keyword.arg.as_ref().map_or("**", |arg| arg.as_str())
-                ));
-                append_expr(&keyword.value, labels);
-            }
+            let mut ch: Vec<NormalizedNode> = node.args.iter().map(normalize_expr).collect();
+            ch.extend(node.keywords.iter().map(normalize_keyword));
+            ch
         }
-        ast::Expr::FormattedValue(node) => append_expr(&node.value, labels),
-        ast::Expr::JoinedStr(node) => {
-            for expr in &node.values {
-                append_expr(expr, labels);
+        ast::Expr::FormattedValue(node) => {
+            let mut ch = vec![normalize_expr(&node.value)];
+            if let Some(spec) = &node.format_spec {
+                ch.push(normalize_expr(spec));
             }
+            ch
         }
-        ast::Expr::Attribute(node) => append_expr(&node.value, labels),
+        ast::Expr::JoinedStr(node) => node.values.iter().map(normalize_expr).collect(),
+        ast::Expr::Attribute(node) => vec![normalize_expr(&node.value)],
         ast::Expr::Subscript(node) => {
-            append_expr(&node.value, labels);
-            append_expr(&node.slice, labels);
+            vec![
+                normalize_expr(&node.value),
+                normalize_expr(&node.slice),
+            ]
         }
-        ast::Expr::Starred(node) => append_expr(&node.value, labels),
-        ast::Expr::List(node) => {
-            for expr in &node.elts {
-                append_expr(expr, labels);
-            }
-        }
-        ast::Expr::Tuple(node) => {
-            for expr in &node.elts {
-                append_expr(expr, labels);
-            }
-        }
+        ast::Expr::Starred(node) => vec![normalize_expr(&node.value)],
+        ast::Expr::List(node) => node.elts.iter().map(normalize_expr).collect(),
+        ast::Expr::Tuple(node) => node.elts.iter().map(normalize_expr).collect(),
         ast::Expr::Slice(node) => {
-            if let Some(expr) = &node.lower {
-                append_expr(expr, labels);
+            let mut ch = Vec::new();
+            if let Some(lower) = &node.lower {
+                ch.push(normalize_expr(lower));
             }
-            if let Some(expr) = &node.upper {
-                append_expr(expr, labels);
+            if let Some(upper) = &node.upper {
+                ch.push(normalize_expr(upper));
             }
-            if let Some(expr) = &node.step {
-                append_expr(expr, labels);
+            if let Some(step) = &node.step {
+                ch.push(normalize_expr(step));
             }
+            ch
         }
-        ast::Expr::Constant(_) | ast::Expr::Name(_) => {}
+        ast::Expr::Constant(_) | ast::Expr::Name(_) => Vec::new(),
+    };
+    NormalizedNode { label, children }
+}
+
+fn normalize_keyword(kw: &ast::Keyword) -> NormalizedNode {
+    let label = format!(
+        "kw[{}]",
+        kw.arg
+            .as_ref()
+            .map_or("**", |arg| arg.as_str())
+    );
+    NormalizedNode {
+        label,
+        children: vec![normalize_expr(&kw.value)],
     }
 }
+
+fn normalize_with_item(item: &ast::WithItem) -> NormalizedNode {
+    let label = "withitem".to_string();
+    let mut children = vec![normalize_expr(&item.context_expr)];
+    if let Some(vars) = &item.optional_vars {
+        children.push(normalize_expr(vars));
+    }
+    NormalizedNode { label, children }
+}
+
+fn normalize_comprehension(comp: &ast::Comprehension) -> NormalizedNode {
+    let label = "comprehension".to_string();
+    let mut children = vec![
+        normalize_expr(&comp.target),
+        normalize_expr(&comp.iter),
+    ];
+    children.extend(comp.ifs.iter().map(normalize_expr));
+    NormalizedNode { label, children }
+}
+
+fn normalize_except_handler(handler: &ast::ExceptHandlerExceptHandler) -> NormalizedNode {
+    let label = "ExceptHandler".to_string();
+    let mut children = Vec::new();
+    if let Some(type_) = &handler.type_ {
+        children.push(normalize_expr(type_));
+    }
+    children.extend(handler.body.iter().map(normalize_stmt));
+    NormalizedNode { label, children }
+}
+
+fn normalize_match_case(case: &ast::MatchCase) -> NormalizedNode {
+    let label = "match_case".to_string();
+    let mut children = vec![normalize_pattern(&case.pattern)];
+    if let Some(guard) = &case.guard {
+        children.push(normalize_expr(guard));
+    }
+    children.extend(case.body.iter().map(normalize_stmt));
+    NormalizedNode { label, children }
+}
+
+fn normalize_pattern(pattern: &ast::Pattern) -> NormalizedNode {
+    match pattern {
+        ast::Pattern::MatchValue(node) => NormalizedNode {
+            label: "MatchValue".to_string(),
+            children: vec![normalize_expr(&node.value)],
+        },
+        ast::Pattern::MatchSingleton(_) => NormalizedNode {
+            label: "MatchSingleton".to_string(),
+            children: vec![],
+        },
+        ast::Pattern::MatchSequence(node) => NormalizedNode {
+            label: "MatchSequence".to_string(),
+            children: node
+                .patterns
+                .iter()
+                .map(normalize_pattern)
+                .collect(),
+        },
+        ast::Pattern::MatchMapping(node) => {
+            let mut children: Vec<NormalizedNode> = node
+                .keys
+                .iter()
+                .map(normalize_expr)
+                .collect();
+            children.extend(node.patterns.iter().map(normalize_pattern));
+            NormalizedNode {
+                label: "MatchMapping".to_string(),
+                children,
+            }
+        }
+        ast::Pattern::MatchClass(node) => {
+            let mut children = vec![normalize_expr(&node.cls)];
+            children.extend(node.patterns.iter().map(normalize_pattern));
+            children.extend(node.kwd_patterns.iter().map(normalize_pattern));
+            NormalizedNode {
+                label: "MatchClass".to_string(),
+                children,
+            }
+        }
+        ast::Pattern::MatchStar(_) => NormalizedNode {
+            label: "MatchStar".to_string(),
+            children: vec![],
+        },
+        ast::Pattern::MatchAs(node) => {
+            let children = node
+                .pattern
+                .as_ref()
+                .map(|p| vec![normalize_pattern(p)])
+                .unwrap_or_default();
+            NormalizedNode {
+                label: "MatchAs".to_string(),
+                children,
+            }
+        }
+        ast::Pattern::MatchOr(node) => NormalizedNode {
+            label: "MatchOr".to_string(),
+            children: node
+                .patterns
+                .iter()
+                .map(normalize_pattern)
+                .collect(),
+        },
+    }
+}
+
+// -- labels --
 
 fn stmt_label(stmt: &ast::Stmt) -> &'static str {
     match stmt {
@@ -644,7 +897,7 @@ fn expr_label(expr: &ast::Expr) -> String {
     match expr {
         ast::Expr::Name(_) => "Name".to_string(),
         ast::Expr::Attribute(node) => format!("Attr[{}]", node.attr),
-        ast::Expr::Call(node) => format!("Call[{}]", call_name(&node.func).unwrap_or("Expr")),
+        ast::Expr::Call(node) => format!("Call[{}]", call_target_label(&node.func)),
         ast::Expr::BinOp(node) => format!("BinOp[{:?}]", node.op),
         ast::Expr::BoolOp(node) => format!("BoolOp[{:?}]", node.op),
         ast::Expr::UnaryOp(node) => format!("UnaryOp[{:?}]", node.op),
@@ -679,6 +932,47 @@ fn expr_label(expr: &ast::Expr) -> String {
     }
 }
 
+fn call_target_label(func: &ast::Expr) -> String {
+    match func {
+        ast::Expr::Name(name) => name.id.to_string(),
+        ast::Expr::Attribute(attr) => attr.attr.to_string(),
+        ast::Expr::Lambda(_) => "lambda".to_string(),
+        _ => format!("{:?}", expr_variant_name(func)),
+    }
+}
+
+fn expr_variant_name(expr: &ast::Expr) -> &'static str {
+    match expr {
+        ast::Expr::BoolOp(_) => "BoolOp",
+        ast::Expr::NamedExpr(_) => "NamedExpr",
+        ast::Expr::BinOp(_) => "BinOp",
+        ast::Expr::UnaryOp(_) => "UnaryOp",
+        ast::Expr::Lambda(_) => "Lambda",
+        ast::Expr::IfExp(_) => "IfExp",
+        ast::Expr::Dict(_) => "Dict",
+        ast::Expr::Set(_) => "Set",
+        ast::Expr::ListComp(_) => "ListComp",
+        ast::Expr::SetComp(_) => "SetComp",
+        ast::Expr::DictComp(_) => "DictComp",
+        ast::Expr::GeneratorExp(_) => "GeneratorExp",
+        ast::Expr::Await(_) => "Await",
+        ast::Expr::Yield(_) => "Yield",
+        ast::Expr::YieldFrom(_) => "YieldFrom",
+        ast::Expr::Compare(_) => "Compare",
+        ast::Expr::Call(_) => "Call",
+        ast::Expr::FormattedValue(_) => "FormattedValue",
+        ast::Expr::JoinedStr(_) => "JoinedStr",
+        ast::Expr::Constant(_) => "Constant",
+        ast::Expr::Attribute(_) => "Attribute",
+        ast::Expr::Subscript(_) => "Subscript",
+        ast::Expr::Starred(_) => "Starred",
+        ast::Expr::Name(_) => "Name",
+        ast::Expr::List(_) => "List",
+        ast::Expr::Tuple(_) => "Tuple",
+        ast::Expr::Slice(_) => "Slice",
+    }
+}
+
 fn constant_label(value: &ast::Constant) -> &'static str {
     match value {
         ast::Constant::None => "Const[None]",
@@ -692,24 +986,173 @@ fn constant_label(value: &ast::Constant) -> &'static str {
     }
 }
 
-fn build_vector(labels: &[String]) -> HashMap<String, f64> {
+// -- vector building (parent→child edges, matching Python) --
+
+fn build_vector(node: &NormalizedNode) -> HashMap<String, f64> {
     let mut vector = HashMap::new();
-    for label in labels {
-        *vector.entry(format!("node:{label}")).or_insert(0.0) += 1.0;
-    }
-    for pair in labels.windows(2) {
-        *vector
-            .entry(format!("edge:{}->{}", pair[0], pair[1]))
-            .or_insert(0.0) += 1.0;
-    }
+    walk_vector(node, &mut vector);
     vector
 }
 
+fn walk_vector(node: &NormalizedNode, vector: &mut HashMap<String, f64>) {
+    let node_term = format!("node:{}", node.label);
+    *vector.entry(node_term).or_insert(0.0) += 1.0;
+    for child in &node.children {
+        let edge_term = format!("edge:{}->{}", node.label, child.label);
+        *vector.entry(edge_term).or_insert(0.0) += 1.0;
+        walk_vector(child, vector);
+    }
+}
+
+fn tree_node_count(node: &NormalizedNode) -> usize {
+    1 + node
+        .children
+        .iter()
+        .map(tree_node_count)
+        .sum::<usize>()
+}
+
+// -- anti-unification similarity (matching Python) --
+
+fn anti_unification_similarity(
+    left: &NormalizedNode,
+    right: &NormalizedNode,
+    label_weights: &HashMap<String, f64>,
+) -> f64 {
+    let total_size =
+        weighted_tree_size(left, label_weights) + weighted_tree_size(right, label_weights);
+    if total_size == 0.0 {
+        return 0.0;
+    }
+    let cost = weighted_substitution_cost(left, right, label_weights);
+    let similarity = 1.0 - (cost / total_size);
+    similarity.max(0.0)
+}
+
+fn compute_label_weights(term_idf: &HashMap<String, f64>) -> HashMap<String, f64> {
+    term_idf
+        .iter()
+        .filter(|(term, _)| term.starts_with("node:"))
+        .map(|(term, weight)| (term.strip_prefix("node:").unwrap_or(term).to_string(), *weight))
+        .collect()
+}
+
+fn weighted_tree_size(node: &NormalizedNode, weights: &HashMap<String, f64>) -> f64 {
+    let weight = weights.get(&node.label).copied().unwrap_or(1.0);
+    weight + node
+        .children
+        .iter()
+        .map(|child| weighted_tree_size(child, weights))
+        .sum::<f64>()
+}
+
+fn weighted_substitution_cost(
+    left: &NormalizedNode,
+    right: &NormalizedNode,
+    weights: &HashMap<String, f64>,
+) -> f64 {
+    if left.label == right.label {
+        return children_cost(&left.children, &right.children, weights);
+    }
+    if label_base(&left.label) == label_base(&right.label) {
+        let label_cost = weights.get(&left.label).copied().unwrap_or(1.0)
+            + weights.get(&right.label).copied().unwrap_or(1.0);
+        return label_cost + children_cost(&left.children, &right.children, weights);
+    }
+    weighted_tree_size(left, weights) + weighted_tree_size(right, weights)
+}
+
+fn children_cost(
+    left_children: &[NormalizedNode],
+    right_children: &[NormalizedNode],
+    weights: &HashMap<String, f64>,
+) -> f64 {
+    if left_children.len() == right_children.len() {
+        return left_children
+            .iter()
+            .zip(right_children.iter())
+            .map(|(lc, rc)| weighted_substitution_cost(lc, rc, weights))
+            .sum();
+    }
+    let aligned = lcs_alignment(left_children, right_children);
+    let mut cost = 0.0;
+    for (lc, rc) in aligned {
+        match (lc, rc) {
+            (Some(l), Some(r)) => {
+                cost += weighted_substitution_cost(l, r, weights);
+            }
+            (Some(l), None) => {
+                cost += weighted_tree_size(l, weights);
+            }
+            (None, Some(r)) => {
+                cost += weighted_tree_size(r, weights);
+            }
+            (None, None) => {}
+        }
+    }
+    cost
+}
+
+fn lcs_alignment<'a>(
+    left: &'a [NormalizedNode],
+    right: &'a [NormalizedNode],
+) -> Vec<(Option<&'a NormalizedNode>, Option<&'a NormalizedNode>)> {
+    let n = left.len();
+    let m = right.len();
+    let mut dp = vec![vec![0usize; m + 1]; n + 1];
+    for i in (0..n).rev() {
+        for j in (0..m).rev() {
+            dp[i][j] = if labels_match(&left[i].label, &right[j].label) {
+                dp[i + 1][j + 1] + 1
+            } else {
+                dp[i + 1][j].max(dp[i][j + 1])
+            };
+        }
+    }
+    let mut result = Vec::new();
+    let mut i = 0;
+    let mut j = 0;
+    while i < n && j < m {
+        if labels_match(&left[i].label, &right[j].label) {
+            result.push((Some(&left[i]), Some(&right[j])));
+            i += 1;
+            j += 1;
+        } else if dp[i + 1][j] >= dp[i][j + 1] {
+            result.push((Some(&left[i]), None));
+            i += 1;
+        } else {
+            result.push((None, Some(&right[j])));
+            j += 1;
+        }
+    }
+    while i < n {
+        result.push((Some(&left[i]), None));
+        i += 1;
+    }
+    while j < m {
+        result.push((None, Some(&right[j])));
+        j += 1;
+    }
+    result
+}
+
+fn labels_match(a: &str, b: &str) -> bool {
+    a == b || label_base(a) == label_base(b)
+}
+
+fn label_base(label: &str) -> &str {
+    label
+        .find('[')
+        .map_or(label, |idx| &label[..idx])
+}
+
+// -- IDF / cosine --
+
 fn compute_term_idf(records: &[FunctionRecord], idf_floor: f64) -> HashMap<String, f64> {
-    let mut doc_freq = HashMap::new();
+    let mut doc_freq: HashMap<String, usize> = HashMap::new();
     for record in records {
         for term in record.vector.keys() {
-            *doc_freq.entry(term.clone()).or_insert(0usize) += 1;
+            *doc_freq.entry(term.clone()).or_insert(0) += 1;
         }
     }
     let total_docs = records.len() as f64;
@@ -754,35 +1197,7 @@ fn cosine_similarity(
     dot / (left_norm.sqrt() * right_norm.sqrt())
 }
 
-fn sequence_similarity(left: &[String], right: &[String]) -> f64 {
-    if left.is_empty() || right.is_empty() {
-        return 0.0;
-    }
-    let lcs = lcs_len(left, right) as f64;
-    (2.0 * lcs) / (left.len() as f64 + right.len() as f64)
-}
-
-fn lcs_len(left: &[String], right: &[String]) -> usize {
-    let mut dp = vec![vec![0usize; right.len() + 1]; left.len() + 1];
-    for i in (0..left.len()).rev() {
-        for j in (0..right.len()).rev() {
-            dp[i][j] = if labels_match(&left[i], &right[j]) {
-                dp[i + 1][j + 1] + 1
-            } else {
-                dp[i + 1][j].max(dp[i][j + 1])
-            };
-        }
-    }
-    dp[0][0]
-}
-
-fn labels_match(left: &str, right: &str) -> bool {
-    left == right || label_base(left) == label_base(right)
-}
-
-fn label_base(label: &str) -> &str {
-    label.split_once('[').map_or(label, |(base, _)| base)
-}
+// -- helpers --
 
 fn list_python_files(repo_root: &Path, current_file: &Path) -> Vec<PathBuf> {
     let mut files = git_tracked_files(repo_root, &["*.py"]);
@@ -833,7 +1248,7 @@ fn relative_path(path: &Path, repo_root: &Path) -> String {
 
 #[cfg(test)]
 mod tests {
-    use super::{Config, detect_structural_duplicates, list_python_files};
+    use super::{Config, NormalizedNode, detect_structural_duplicates, list_python_files, tree_node_count};
     use std::path::Path;
     use std::process::Command;
     use tempfile::tempdir;
@@ -950,5 +1365,29 @@ mod tests {
 
         let matches = detect_structural_duplicates(repo.path(), &gamma, &test_config());
         assert!(matches.is_empty());
+    }
+
+    #[test]
+    fn tree_node_count_matches_expected() {
+        let tree = NormalizedNode {
+            label: "FunctionDef".to_string(),
+            children: vec![
+                NormalizedNode {
+                    label: "arguments".to_string(),
+                    children: vec![NormalizedNode {
+                        label: "arg".to_string(),
+                        children: vec![],
+                    }],
+                },
+                NormalizedNode {
+                    label: "Return".to_string(),
+                    children: vec![NormalizedNode {
+                        label: "Name".to_string(),
+                        children: vec![],
+                    }],
+                },
+            ],
+        };
+        assert_eq!(tree_node_count(&tree), 5);
     }
 }

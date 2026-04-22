@@ -196,7 +196,7 @@ def run_hook(runner: HookRunner, file_path: Path) -> FileRun:
         try:
             parsed = json.loads(stdout)
         except json.JSONDecodeError:
-            stop = False
+            print(f"  warning: json decode failed for {file_path}: {stdout[:80]}", file=sys.stderr)
         else:
             stop = parsed.get("decision") == "stop"
 

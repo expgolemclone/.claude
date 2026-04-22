@@ -78,6 +78,18 @@ Rust 実装の互換参照先として維持している。
 `stop-scan-*.py` は `git ls-files` で取得した管理下ファイルのみを検査対象とする。
 ファイル列挙には `git_utils.git_tracked_files()` / `git_utils.git_tracked_py_files()` を使用する。
 
+### `hooks/structural_clone_core.py`
+`warn-structural-duplicates.py` のコアロジック。ツリー構造 (`NormalizedNode`) に基づく
+AST 正規化 → ベクトル化 (親→子辺) → IDF 加重コサイン類似度 → ツリー反単一化 (AU) 類似度
+のパイプラインで構造重複関数を検出する。Rust 版 (`warn_structural_duplicates.rs`) は
+同一アルゴリズムを再現している。
+
+### `tests/benchmarks/structural_clone_core/`
+Python / Rust hook の end-to-end 比較ベンチマーク。
+
+- `compare_python_rust_hooks.py`: 同一 JSON 入力で両 hook を subprocess 実行し、
+  総時間・ms/file・stop 件数・判定差分を出力。`public-apis` (全件) と `youtube-dl` (均等サンプル/全件) に対応。
+
 ### `scripts/`
 通知スクリプト等のユーティリティ。`patch-clawd-mascot.py` は legacy 実装で、現在は
 Rust の `patch-clawd-mascot` subcommand が主系。
