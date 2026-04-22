@@ -20,6 +20,11 @@ settings.json
 !hooks/**
 hooks/__pycache__/
 
+# Rust hooks
+!hooks-rs/
+!hooks-rs/**
+hooks-rs/target/
+
 # Config (per-language coding rules & settings)
 !config/
 !config/**
