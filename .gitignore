@@ -41,6 +41,7 @@ tests/__pycache__/
 tests/**/__pycache__/
 tests/benchmarks/**/public-apis/
 tests/benchmarks/**/youtube-dl/
+tests/benchmarks/**/django/
 
 # Scripts
 !scripts/
