@@ -83,6 +83,11 @@ REPOS: dict[str, RepoSpec] = {
         directory=Path(__file__).resolve().parent / "youtube-dl",
         default_limit=25,
     ),
+    "django": RepoSpec(
+        name="django",
+        directory=Path(__file__).resolve().parent / "django",
+        default_limit=25,
+    ),
 }
 
 
