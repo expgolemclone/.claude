@@ -3,19 +3,31 @@ mod hooks;
 mod input;
 mod nix_protected;
 mod output;
+mod patch_clawd_mascot;
+mod process;
 mod project_root;
 mod python_ast;
+mod setup;
+mod setup_claude;
 mod transcript;
 
 fn main() {
-    let subcommand = std::env::args().nth(1).unwrap_or_default();
+    let args: Vec<String> = std::env::args().collect();
+    let subcommand = args.get(1).map(String::as_str).unwrap_or_default();
+
+    match subcommand {
+        "patch-clawd-mascot" => std::process::exit(patch_clawd_mascot::main(&args[2..])),
+        "setup" => std::process::exit(setup::main()),
+        "setup-claude" => std::process::exit(setup_claude::main()),
+        _ => {}
+    }
 
     let input = match input::read_input() {
         Ok(v) => v,
         Err(_) => return,
     };
 
-    match subcommand.as_str() {
+    match subcommand {
         "block-any-type" => hooks::block_any_type::run(&input),
         "block-commit-without-verification" => {
             hooks::block_commit_without_verification::run(&input)

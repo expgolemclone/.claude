@@ -4,9 +4,13 @@ use crate::input::HookInput;
 use crate::nix_protected::{check_config_diff, check_mkforce_override};
 use crate::output::{block, pass};
 
+fn is_git_commit_command(command: &str) -> bool {
+    Regex::new(r"\bgit\s+commit\b").unwrap().is_match(command)
+}
+
 pub fn run(input: &HookInput) {
     let command = &input.tool_input.command;
-    if !Regex::new(r"\bgit\s+commit\b").unwrap().is_match(command) {
+    if !is_git_commit_command(command) {
         return;
     }
 
@@ -34,4 +38,24 @@ pub fn run(input: &HookInput) {
         return;
     }
     pass();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::is_git_commit_command;
+
+    #[test]
+    fn detects_plain_git_commit() {
+        assert!(is_git_commit_command(r#"git commit -m "fix""#));
+    }
+
+    #[test]
+    fn detects_commit_after_other_command() {
+        assert!(is_git_commit_command(r#"git add . && git commit -m "fix""#));
+    }
+
+    #[test]
+    fn ignores_non_commit_command() {
+        assert!(!is_git_commit_command("git push"));
+    }
 }

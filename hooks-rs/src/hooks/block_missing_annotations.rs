@@ -198,3 +198,56 @@ pub fn run(input: &HookInput) {
         ));
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::check_python;
+
+    #[test]
+    fn blocks_missing_param_annotation() {
+        let result = check_python("def foo(bar) -> None:\n    pass");
+        assert!(result.is_some());
+    }
+
+    #[test]
+    fn blocks_missing_return_annotation() {
+        let result = check_python("def foo(bar: int):\n    pass");
+        assert!(result.is_some());
+    }
+
+    #[test]
+    fn allows_fully_annotated_function() {
+        assert_eq!(check_python("def foo(bar: int) -> None:\n    pass"), None);
+    }
+
+    #[test]
+    fn allows_init_without_return_annotation() {
+        assert_eq!(
+            check_python("def __init__(self, bar: int):\n    pass"),
+            None
+        );
+    }
+
+    #[test]
+    fn blocks_multiline_missing_param_annotation() {
+        let code = "def foo(\n    bar,\n    baz: str,\n) -> None:\n    pass\n";
+        assert!(check_python(code).is_some());
+    }
+
+    #[test]
+    fn allows_multiline_with_positional_only_marker() {
+        let code = "def foo(\n    a: int,\n    /,\n    b: int,\n) -> None:\n    pass\n";
+        assert_eq!(check_python(code), None);
+    }
+
+    #[test]
+    fn blocks_tuple_default_without_annotation() {
+        assert!(check_python("def foo(bar=(1, 2)) -> None:\n    pass").is_some());
+    }
+
+    #[test]
+    fn allows_dict_default_with_annotation() {
+        let code = "def foo(bar: dict[str, int] = {\"a\": 1}) -> None:\n    pass";
+        assert_eq!(check_python(code), None);
+    }
+}

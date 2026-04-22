@@ -2,6 +2,10 @@ use crate::git::run_git;
 use crate::input::HookInput;
 use crate::output::block;
 
+fn should_rebuild(status: &str, head_hash: &str, last_hash: &str) -> bool {
+    status.is_empty() && !head_hash.is_empty() && head_hash != last_hash
+}
+
 pub fn run(input: &HookInput) {
     if input.permission_mode == "plan" {
         return;
@@ -23,7 +27,7 @@ pub fn run(input: &HookInput) {
         .unwrap_or_default()
         .trim()
         .to_string();
-    if head_hash == last_hash {
+    if !should_rebuild(&status, &head_hash, &last_hash) {
         return;
     }
 
@@ -41,5 +45,30 @@ pub fn run(input: &HookInput) {
             block(&format!("nixos-rebuild failed:\n{stderr}"));
         }
         Err(_) => {}
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::should_rebuild;
+
+    #[test]
+    fn dirty_tree_skips_rebuild() {
+        assert!(!should_rebuild(" M file.nix", "new_hash", "old_hash"));
+    }
+
+    #[test]
+    fn missing_head_hash_skips_rebuild() {
+        assert!(!should_rebuild("", "", "old_hash"));
+    }
+
+    #[test]
+    fn unchanged_hash_skips_rebuild() {
+        assert!(!should_rebuild("", "same_hash", "same_hash"));
+    }
+
+    #[test]
+    fn clean_changed_head_triggers_rebuild() {
+        assert!(should_rebuild("", "new_hash", "old_hash"));
     }
 }

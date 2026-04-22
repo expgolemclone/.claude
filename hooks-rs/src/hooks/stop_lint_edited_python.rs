@@ -3,8 +3,10 @@ use sha2::{Digest, Sha256};
 use std::collections::HashMap;
 use std::io::{self, Write};
 use std::path::Path;
+use std::time::Duration;
 
 use crate::input::HookInput;
+use crate::process::{CommandError, combined_output, output_with_timeout};
 
 fn config_dir() -> std::path::PathBuf {
     home::home_dir()
@@ -172,6 +174,41 @@ fn build_commands(
     commands
 }
 
+fn run_commands(
+    commands: &[(&str, Vec<String>)],
+    project_root: &Path,
+    timeout: Duration,
+    timeout_label: &str,
+) -> Vec<String> {
+    let mut diagnostics = Vec::new();
+
+    for (name, cmd) in commands {
+        if cmd.is_empty() {
+            continue;
+        }
+
+        let mut command = std::process::Command::new(&cmd[0]);
+        command.args(&cmd[1..]).current_dir(project_root);
+
+        match output_with_timeout(&mut command, timeout) {
+            Ok(output) => {
+                let text = combined_output(&output);
+                if !output.status.success() && !text.is_empty() {
+                    diagnostics.push(format!("[{name}]\n{text}"));
+                }
+            }
+            Err(CommandError::TimedOut) => {
+                diagnostics.push(format!("[{name}] timed out after {timeout_label}"));
+            }
+            Err(CommandError::Io(_)) => {
+                diagnostics.push(format!("[{name}] runner not found"));
+            }
+        }
+    }
+
+    diagnostics
+}
+
 pub fn run(input: &HookInput) {
     if input.stop_hook_active {
         return;
@@ -191,6 +228,8 @@ pub fn run(input: &HookInput) {
         .and_then(|l| l.get("timeout_seconds"))
         .and_then(|v| v.as_integer())
         .unwrap_or(120) as u64;
+    let timeout_duration = Duration::from_secs(timeout);
+    let timeout_label = format!("{timeout}s");
 
     let cached = load_cache();
     let (files, current_hashes) = changed_files(&cached);
@@ -199,45 +238,142 @@ pub fn run(input: &HookInput) {
     }
 
     let commands = build_commands(&files, &cli_cfg);
-    let mut diagnostics = Vec::new();
-
     let project_root = home::home_dir().unwrap_or_default().join(".claude");
-
-    for (name, cmd) in commands {
-        let result = std::process::Command::new(&cmd[0])
-            .args(&cmd[1..])
-            .current_dir(&project_root)
-            .output();
-        match result {
-            Ok(o) => {
-                let stdout = String::from_utf8_lossy(&o.stdout).trim().to_string();
-                let stderr = String::from_utf8_lossy(&o.stderr).trim().to_string();
-                let output = if stdout.is_empty() {
-                    stderr
-                } else {
-                    if stderr.is_empty() {
-                        stdout
-                    } else {
-                        format!("{stdout}\n{stderr}")
-                    }
-                };
-                if !o.status.success() && !output.is_empty() {
-                    diagnostics.push(format!("[{name}]\n{output}"));
-                }
-            }
-            Err(e) if e.kind() == std::io::ErrorKind::TimedOut => {
-                diagnostics.push(format!("[{name}] timed out after {timeout}s"));
-            }
-            Err(_) => {
-                diagnostics.push(format!("[{name}] runner not found"));
-            }
-        }
-    }
+    let diagnostics = run_commands(&commands, &project_root, timeout_duration, &timeout_label);
 
     if !diagnostics.is_empty() {
         let msg = json!({"decision": "block", "reason": format!("Python lint errors detected:\n\n{}\n\nFix these issues.", diagnostics.join("\n\n"))});
         let _ = writeln!(io::stdout(), "{msg}");
     } else {
         save_cache(&current_hashes);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{build_commands, file_sha256, run_commands};
+    use std::path::PathBuf;
+    use std::time::Duration;
+    use tempfile::tempdir;
+
+    #[test]
+    fn timeout_is_reported_for_hung_linter() {
+        let commands = vec![(
+            "slow",
+            vec![
+                "python3".to_string(),
+                "-c".to_string(),
+                "import time; time.sleep(2)".to_string(),
+            ],
+        )];
+
+        let diagnostics = run_commands(
+            &commands,
+            tempdir().unwrap().path(),
+            Duration::from_millis(100),
+            "100ms",
+        );
+
+        assert_eq!(diagnostics, vec!["[slow] timed out after 100ms"]);
+    }
+
+    #[test]
+    fn build_commands_supports_module_mode() {
+        let test_file = PathBuf::from("/tmp/test.py");
+        let cli_cfg: toml::Value = toml::from_str(
+            r#"
+[python_linters]
+python_warning_flag = "error"
+runner = ["uv", "run"]
+
+[python_linters.tools.mypy]
+module = "mypy"
+
+[python_linters.tools.ruff]
+module = "ruff"
+args = ["check"]
+
+[python_linters.tools.pylint]
+module = "pylint"
+"#,
+        )
+        .unwrap();
+
+        let commands = build_commands(&[test_file.clone()], &cli_cfg);
+        assert_eq!(
+            commands[0].1,
+            vec![
+                "uv",
+                "run",
+                "python3",
+                "-W",
+                "error",
+                "-m",
+                "mypy",
+                test_file.to_string_lossy().as_ref()
+            ]
+        );
+        assert_eq!(
+            commands[1].1,
+            vec![
+                "uv",
+                "run",
+                "python3",
+                "-W",
+                "error",
+                "-m",
+                "ruff",
+                "check",
+                test_file.to_string_lossy().as_ref()
+            ]
+        );
+    }
+
+    #[test]
+    fn build_commands_supports_command_mode() {
+        let test_file = PathBuf::from("/tmp/test.py");
+        let cli_cfg: toml::Value = toml::from_str(
+            r#"
+[python_linters]
+python_warning_flag = "error"
+runner = ["uv", "run"]
+
+[python_linters.tools.mypy]
+module = "mypy"
+
+[python_linters.tools.ruff]
+command = ["nix", "run", "nixpkgs#ruff", "--"]
+args = ["check"]
+
+[python_linters.tools.pylint]
+module = "pylint"
+"#,
+        )
+        .unwrap();
+
+        let commands = build_commands(&[test_file.clone()], &cli_cfg);
+        assert_eq!(
+            commands[1].1,
+            vec![
+                "nix",
+                "run",
+                "nixpkgs#ruff",
+                "--",
+                "check",
+                test_file.to_string_lossy().as_ref()
+            ]
+        );
+    }
+
+    #[test]
+    fn file_sha256_changes_with_content() {
+        let dir = tempdir().unwrap();
+        let file = dir.path().join("a.py");
+        std::fs::write(&file, "a: int = 1\n").unwrap();
+        let before = file_sha256(&file);
+        std::fs::write(&file, "a: int = 2\n").unwrap();
+        let after = file_sha256(&file);
+
+        assert_ne!(before, after);
     }
 }

@@ -4,9 +4,13 @@ use crate::input::HookInput;
 use crate::nix_protected::{check_config_diff, check_mkforce_override};
 use crate::output::{block, pass};
 
+fn is_nixos_rebuild_command(command: &str) -> bool {
+    Regex::new(r"\bnixos-rebuild\b").unwrap().is_match(command)
+}
+
 pub fn run(input: &HookInput) {
     let command = &input.tool_input.command;
-    if !Regex::new(r"\bnixos-rebuild\b").unwrap().is_match(command) {
+    if !is_nixos_rebuild_command(command) {
         return;
     }
 
@@ -40,4 +44,24 @@ pub fn run(input: &HookInput) {
         return;
     }
     pass();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::is_nixos_rebuild_command;
+
+    #[test]
+    fn detects_nixos_rebuild_switch() {
+        assert!(is_nixos_rebuild_command("nixos-rebuild switch --flake ."));
+    }
+
+    #[test]
+    fn detects_sudo_nixos_rebuild() {
+        assert!(is_nixos_rebuild_command("sudo nixos-rebuild switch"));
+    }
+
+    #[test]
+    fn ignores_non_rebuild_command() {
+        assert!(!is_nixos_rebuild_command("git status"));
+    }
 }

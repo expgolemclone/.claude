@@ -130,3 +130,64 @@ pub fn run(input: &HookInput) {
     )});
     let _ = writeln!(io::stdout(), "{msg}");
 }
+
+#[cfg(test)]
+mod tests {
+    use super::{extract_hotstrings, find_ahk_files, find_prefix_conflicts};
+    use tempfile::tempdir;
+
+    #[test]
+    fn extracts_simple_hotstring() {
+        let dir = tempdir().unwrap();
+        let file = dir.path().join("test.ahk");
+        std::fs::write(&file, "::btw::by the way\n").unwrap();
+
+        let result = extract_hotstrings(&file);
+        assert_eq!(result.len(), 1);
+        assert_eq!(result[0].0, "btw");
+        assert_eq!(result[0].2, 1);
+    }
+
+    #[test]
+    fn returns_empty_for_non_hotstring_file() {
+        let dir = tempdir().unwrap();
+        let file = dir.path().join("test.ahk");
+        std::fs::write(&file, "; just a comment\nMsgBox Hello\n").unwrap();
+
+        assert!(extract_hotstrings(&file).is_empty());
+    }
+
+    #[test]
+    fn detects_prefix_conflict() {
+        let conflicts = find_prefix_conflicts(&[
+            ("ab".to_string(), "f1".to_string(), 1),
+            ("abc".to_string(), "f1".to_string(), 2),
+        ]);
+
+        assert_eq!(conflicts.len(), 1);
+        assert_eq!(conflicts[0].0.0, "ab");
+        assert_eq!(conflicts[0].1.0, "abc");
+    }
+
+    #[test]
+    fn identical_triggers_do_not_conflict() {
+        let conflicts = find_prefix_conflicts(&[
+            ("abc".to_string(), "f1".to_string(), 1),
+            ("abc".to_string(), "f2".to_string(), 2),
+        ]);
+
+        assert!(conflicts.is_empty());
+    }
+
+    #[test]
+    fn skips_excluded_directories_when_listing_files() {
+        let dir = tempdir().unwrap();
+        std::fs::create_dir(dir.path().join(".git")).unwrap();
+        std::fs::write(dir.path().join(".git").join("hidden.ahk"), "").unwrap();
+        std::fs::write(dir.path().join("visible.ahk"), "").unwrap();
+
+        let result = find_ahk_files(dir.path());
+        assert_eq!(result.len(), 1);
+        assert!(result[0].ends_with("visible.ahk"));
+    }
+}

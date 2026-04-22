@@ -830,3 +830,125 @@ fn relative_path(path: &Path, repo_root: &Path) -> String {
                 .to_string()
         })
 }
+
+#[cfg(test)]
+mod tests {
+    use super::{Config, detect_structural_duplicates, list_python_files};
+    use std::path::Path;
+    use std::process::Command;
+    use tempfile::tempdir;
+
+    fn git(cwd: &Path, args: &[&str]) {
+        let status = Command::new("git")
+            .args(args)
+            .current_dir(cwd)
+            .status()
+            .unwrap();
+        assert!(status.success(), "git {:?} failed", args);
+    }
+
+    fn test_config() -> Config {
+        Config {
+            min_stmt_count: 1,
+            min_ast_node_count: 20,
+            shortlist_size: 8,
+            max_report_items: 3,
+            min_vector_similarity: 0.60,
+            min_au_similarity: 0.82,
+            min_stmt_ratio: 0.60,
+            idf_floor: 1.0,
+        }
+    }
+
+    #[test]
+    fn list_python_files_includes_untracked_current_file() {
+        let repo = tempdir().unwrap();
+        git(repo.path(), &["init"]);
+        git(repo.path(), &["config", "user.email", "test@example.com"]);
+        git(repo.path(), &["config", "user.name", "Test"]);
+
+        let tracked = repo.path().join("tracked.py");
+        std::fs::write(&tracked, "def tracked() -> None:\n    pass\n").unwrap();
+        git(repo.path(), &["add", "."]);
+        git(repo.path(), &["commit", "-m", "init"]);
+
+        let current = repo.path().join("current.py");
+        std::fs::write(&current, "def current() -> None:\n    pass\n").unwrap();
+
+        let files = list_python_files(repo.path(), &current);
+        assert!(files.iter().any(|path| path.ends_with("current.py")));
+        assert!(files.iter().any(|path| path.ends_with("tracked.py")));
+    }
+
+    #[test]
+    fn detects_structural_duplicate_for_untracked_candidate() {
+        let repo = tempdir().unwrap();
+        git(repo.path(), &["init"]);
+        git(repo.path(), &["config", "user.email", "test@example.com"]);
+        git(repo.path(), &["config", "user.name", "Test"]);
+
+        let alpha = repo.path().join("alpha.py");
+        let beta = repo.path().join("beta.py");
+        std::fs::write(
+            &alpha,
+            "def _cmd_fetch_prices(args: object) -> None:\n    pool = _resolve_proxy_pool(args)\n    conn = get_connection()\n    tickers = args.ticker if args.ticker else get_all_tickers(conn)\n    dispatch_workers(tickers, pool, worker_fn=fetch_prices_worker, label='prices')\n",
+        )
+        .unwrap();
+        std::fs::write(
+            &beta,
+            "def _run_scrape_workers(args: object, worker_fn: object, label: str) -> None:\n    pool = _resolve_proxy_pool(args)\n    conn = get_connection()\n    tickers = args.ticker if args.ticker else get_all_tickers(conn)\n    dispatch_workers(tickers, pool, worker_fn=worker_fn, label=label)\n",
+        )
+        .unwrap();
+        git(repo.path(), &["add", "."]);
+        git(repo.path(), &["commit", "-m", "init"]);
+
+        let gamma = repo.path().join("gamma.py");
+        std::fs::write(
+            &gamma,
+            "def run_candidate(args: object, worker_fn: object, label: str) -> None:\n    pool = _resolve_proxy_pool(args)\n    conn = get_connection()\n    tickers = args.ticker if args.ticker else get_all_tickers(conn)\n    dispatch_workers(tickers, pool, worker_fn=worker_fn, label=label)\n",
+        )
+        .unwrap();
+
+        let matches = detect_structural_duplicates(repo.path(), &gamma, &test_config());
+        assert!(!matches.is_empty());
+        let rendered = format!(
+            "{} {}",
+            matches[0].source.qualname, matches[0].candidate.qualname
+        );
+        assert!(rendered.contains("run_candidate"));
+        assert!(rendered.contains("_run_scrape_workers"));
+    }
+
+    #[test]
+    fn small_function_is_ignored_under_default_thresholds() {
+        let repo = tempdir().unwrap();
+        git(repo.path(), &["init"]);
+        git(repo.path(), &["config", "user.email", "test@example.com"]);
+        git(repo.path(), &["config", "user.name", "Test"]);
+
+        let alpha = repo.path().join("alpha.py");
+        let beta = repo.path().join("beta.py");
+        std::fs::write(
+            &alpha,
+            "def one(value: int) -> int:\n    result = value + 1\n    return result\n",
+        )
+        .unwrap();
+        std::fs::write(
+            &beta,
+            "def two(value: int) -> int:\n    result = value + 1\n    return result\n",
+        )
+        .unwrap();
+        git(repo.path(), &["add", "."]);
+        git(repo.path(), &["commit", "-m", "init"]);
+
+        let gamma = repo.path().join("gamma.py");
+        std::fs::write(
+            &gamma,
+            "def three(value: int) -> int:\n    result = value + 1\n    return result\n",
+        )
+        .unwrap();
+
+        let matches = detect_structural_duplicates(repo.path(), &gamma, &test_config());
+        assert!(matches.is_empty());
+    }
+}

@@ -1,8 +1,10 @@
 use regex::Regex;
 use serde_json::json;
 use std::io::{self, Write};
+use std::time::Duration;
 
 use crate::input::HookInput;
+use crate::process::output_with_timeout;
 
 pub fn run(input: &HookInput) {
     let cwd = &input.cwd;
@@ -22,12 +24,15 @@ pub fn run(input: &HookInput) {
         return;
     }
 
-    let output = std::process::Command::new("uv")
-        .args(["run", "python", "setup.py"])
-        .current_dir(cwd)
-        .output();
+    let current_exe = match std::env::current_exe() {
+        Ok(path) => path,
+        Err(_) => return,
+    };
 
-    let output = match output {
+    let mut command = std::process::Command::new(current_exe);
+    command.arg("setup").current_dir(cwd);
+
+    let output = match output_with_timeout(&mut command, Duration::from_secs(30)) {
         Ok(o) => o,
         Err(_) => return,
     };

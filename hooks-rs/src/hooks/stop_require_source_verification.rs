@@ -15,20 +15,10 @@ const CODING_TOOLS: &[&str] = &[
     "NotebookEdit",
 ];
 
-pub fn run(input: &HookInput) {
-    if input.stop_hook_active {
-        return;
-    }
-
-    let transcript_path = &input.transcript_path;
-    if transcript_path.is_empty() {
-        return;
-    }
-
-    let entries = transcript::read_transcript(Path::new(transcript_path));
-    let last_user_idx = match transcript::find_last_real_user_idx(&entries) {
+fn should_block_entries(entries: &[serde_json::Value]) -> bool {
+    let last_user_idx = match transcript::find_last_real_user_idx(entries) {
         Some(i) => i,
-        None => return,
+        None => return false,
     };
 
     let mut used_search = false;
@@ -61,7 +51,21 @@ pub fn run(input: &HookInput) {
         }
     }
 
-    if used_search || used_coding_tool {
+    !(used_search || used_coding_tool)
+}
+
+pub fn run(input: &HookInput) {
+    if input.stop_hook_active {
+        return;
+    }
+
+    let transcript_path = &input.transcript_path;
+    if transcript_path.is_empty() {
+        return;
+    }
+
+    let entries = transcript::read_transcript(Path::new(transcript_path));
+    if !should_block_entries(&entries) {
         return;
     }
 
@@ -71,4 +75,50 @@ pub fn run(input: &HookInput) {
          WebFetch before responding.\n\
          If responding to a coding task, you may proceed without verification.",
     );
+}
+
+#[cfg(test)]
+mod tests {
+    use super::should_block_entries;
+    use serde_json::json;
+
+    #[test]
+    fn web_search_allows_response() {
+        let entries = vec![
+            json!({"type":"user","message":{"content":[{"type":"text","text":"Hello"}]}}),
+            json!({"type":"assistant","message":{"content":[{"type":"tool_use","name":"WebSearch"}]}}),
+        ];
+
+        assert!(!should_block_entries(&entries));
+    }
+
+    #[test]
+    fn coding_tool_allows_response() {
+        let entries = vec![
+            json!({"type":"user","message":{"content":[{"type":"text","text":"Hello"}]}}),
+            json!({"type":"assistant","message":{"content":[{"type":"tool_use","name":"Read"}]}}),
+        ];
+
+        assert!(!should_block_entries(&entries));
+    }
+
+    #[test]
+    fn unrelated_tool_still_blocks() {
+        let entries = vec![
+            json!({"type":"user","message":{"content":[{"type":"text","text":"Hello"}]}}),
+            json!({"type":"assistant","message":{"content":[{"type":"tool_use","name":"SomeOtherTool"}]}}),
+        ];
+
+        assert!(should_block_entries(&entries));
+    }
+
+    #[test]
+    fn no_tool_use_blocks() {
+        let entries = vec![
+            json!({"type":"user","message":{"content":[{"type":"text","text":"Hello"}]}}),
+            json!({"type":"assistant","message":{"content":[{"type":"text","text":"response"}]}}),
+        ];
+
+        assert!(should_block_entries(&entries));
+    }
 }

@@ -105,31 +105,12 @@ fn looks_like_git_commit(command: &str) -> bool {
             .unwrap_or(false)
 }
 
-pub fn run(input: &HookInput) {
-    let command = &input.tool_input.command;
-    if !looks_like_git_commit(command) {
-        return;
-    }
-
-    let transcript_path = &input.transcript_path;
-    if transcript_path.is_empty() {
-        block("transcript_path not available for verification");
-        return;
-    }
-
-    let entries = match transcript::read_transcript_checked(Path::new(transcript_path)) {
-        Ok(entries) => entries,
-        Err(_) => {
-            block("Cannot read transcript for verification");
-            return;
-        }
-    };
-
+fn unverified_files(entries: &[serde_json::Value]) -> Vec<String> {
     let mut edited_files: HashMap<String, usize> = HashMap::new();
     let mut verified: HashSet<String> = HashSet::new();
     let mut seq: usize = 0;
 
-    for entry in &entries {
+    for entry in entries {
         let content = match entry
             .get("message")
             .and_then(|m| m.get("content"))
@@ -153,24 +134,21 @@ pub fn run(input: &HookInput) {
                     .and_then(|v| v.as_str())
                     .unwrap_or("")
                     .to_string();
-                if fp.is_empty() {
-                    continue;
-                }
-                let ext = Path::new(&fp)
-                    .extension()
-                    .and_then(|e| e.to_str())
-                    .map(|e| format!(".{e}"))
-                    .unwrap_or_default();
-                if !CODE_EXTENSIONS.contains(&ext.as_str()) {
-                    continue;
-                }
-                let fp_norm = fp.replace('\\', "/");
-                let path_parts: HashSet<&str> = fp_norm.split('/').collect();
-                if SKIP_DIR_NAMES.iter().any(|d| path_parts.contains(d)) {
-                    continue;
-                }
-                if has_main_block(&fp) || is_test_file(&fp) {
-                    edited_files.insert(fp, seq);
+                if !fp.is_empty() {
+                    let ext = Path::new(&fp)
+                        .extension()
+                        .and_then(|e| e.to_str())
+                        .map(|e| format!(".{e}"))
+                        .unwrap_or_default();
+                    if CODE_EXTENSIONS.contains(&ext.as_str()) {
+                        let fp_norm = fp.replace('\\', "/");
+                        let path_parts: HashSet<&str> = fp_norm.split('/').collect();
+                        if !SKIP_DIR_NAMES.iter().any(|d| path_parts.contains(d))
+                            && (has_main_block(&fp) || is_test_file(&fp))
+                        {
+                            edited_files.insert(fp, seq);
+                        }
+                    }
                 }
             } else if name == "Bash" {
                 let cmd = inp
@@ -192,14 +170,41 @@ pub fn run(input: &HookInput) {
                     }
                 }
             }
+
+            seq += 1;
         }
-        seq += 1;
     }
 
-    let unverified: Vec<&String> = edited_files
+    let mut unverified: Vec<String> = edited_files
         .keys()
         .filter(|f| !verified.contains(*f))
+        .cloned()
         .collect();
+    unverified.sort();
+    unverified
+}
+
+pub fn run(input: &HookInput) {
+    let command = &input.tool_input.command;
+    if !looks_like_git_commit(command) {
+        return;
+    }
+
+    let transcript_path = &input.transcript_path;
+    if transcript_path.is_empty() {
+        block("transcript_path not available for verification");
+        return;
+    }
+
+    let entries = match transcript::read_transcript_checked(Path::new(transcript_path)) {
+        Ok(entries) => entries,
+        Err(_) => {
+            block("Cannot read transcript for verification");
+            return;
+        }
+    };
+
+    let unverified = unverified_files(&entries);
     if unverified.is_empty() {
         return;
     }
@@ -212,4 +217,69 @@ pub fn run(input: &HookInput) {
          上記のフルパスをそのまま指定できます。",
         listing.join("\n")
     ));
+}
+
+#[cfg(test)]
+mod tests {
+    use super::unverified_files;
+    use serde_json::json;
+    use tempfile::tempdir;
+
+    #[test]
+    fn edit_and_execution_in_same_entry_is_verified() {
+        let dir = tempdir().unwrap();
+        let file_path = dir.path().join("app.py");
+        std::fs::write(
+            &file_path,
+            "if __name__ == \"__main__\":\n    print(\"ok\")\n",
+        )
+        .unwrap();
+
+        let entries = vec![json!({
+            "message": {
+                "content": [
+                    {
+                        "type": "tool_use",
+                        "name": "Edit",
+                        "input": {"file_path": file_path.display().to_string()}
+                    },
+                    {
+                        "type": "tool_use",
+                        "name": "Bash",
+                        "input": {"command": format!("uv run python3 {}", file_path.display())}
+                    }
+                ]
+            }
+        })];
+
+        assert!(unverified_files(&entries).is_empty());
+    }
+
+    #[test]
+    fn unexecuted_file_is_reported() {
+        let dir = tempdir().unwrap();
+        let file_path = dir.path().join("app.py");
+        std::fs::write(
+            &file_path,
+            "if __name__ == \"__main__\":\n    print(\"ok\")\n",
+        )
+        .unwrap();
+
+        let entries = vec![json!({
+            "message": {
+                "content": [
+                    {
+                        "type": "tool_use",
+                        "name": "Edit",
+                        "input": {"file_path": file_path.display().to_string()}
+                    }
+                ]
+            }
+        })];
+
+        assert_eq!(
+            unverified_files(&entries),
+            vec![file_path.display().to_string()]
+        );
+    }
 }

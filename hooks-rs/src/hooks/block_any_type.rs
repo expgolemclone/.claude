@@ -114,3 +114,28 @@ fn check_rust(text: &str) -> bool {
     }
     false
 }
+
+#[cfg(test)]
+mod tests {
+    use super::{check_go, check_python, check_rust};
+
+    #[test]
+    fn python_any_import_is_detected() {
+        assert!(check_python("from typing import Any\nx: Any = 1\n"));
+    }
+
+    #[test]
+    fn python_comment_only_is_ignored() {
+        assert!(!check_python("# This uses Any\nx: int = 1\n"));
+    }
+
+    #[test]
+    fn go_any_is_detected() {
+        assert!(check_go("var x any\n"));
+    }
+
+    #[test]
+    fn rust_dyn_any_is_detected() {
+        assert!(check_rust("let x: Box<dyn Any> = todo!();\n"));
+    }
+}
