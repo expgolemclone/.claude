@@ -129,6 +129,7 @@ pub fn build_linux_config(common: Value, binary_path: &Path, _home: &Path) -> Va
                     "matcher": "Edit|Write",
                     "hooks": [
                         linux_hook(binary_path, "post-cargo-clippy-on-rs-edit", Some(120)),
+                        linux_hook(binary_path, "post-oxisym-scan", Some(120)),
                         linux_hook(binary_path, "warn-hardcoded-paths", None),
                         linux_hook(binary_path, "warn-structural-duplicates", None),
                         linux_hook(binary_path, "warn-gitignore-not-whitelist", None),
@@ -224,6 +225,7 @@ pub fn build_windows_config(common: Value, binary_path: &Path, home: &Path) -> V
                     "matcher": "Edit|Write",
                     "hooks": [
                         windows_hook(binary_path, "post-cargo-clippy-on-rs-edit", Some(120)),
+                        windows_hook(binary_path, "post-oxisym-scan", Some(120)),
                         windows_hook(binary_path, "check-hotstring-conflicts", None),
                         windows_hook(binary_path, "warn-hardcoded-paths", None),
                         windows_hook(binary_path, "warn-structural-duplicates", None),

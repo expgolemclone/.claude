@@ -22,6 +22,7 @@ pub mod check_hotstring_conflicts;
 pub mod inject_extension_rules_toml;
 pub mod post_auto_setup;
 pub mod post_cargo_clippy_on_rs_edit;
+pub mod post_oxisym_scan;
 pub mod post_scan_fallbacks;
 pub mod post_verify_protected_nix_config;
 pub mod stop_lint_edited_python;

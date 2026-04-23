@@ -99,6 +99,7 @@ def build_linux_config(common: dict[str, object] | None = None) -> dict[str, obj
                 ]},
                 {"matcher": "Edit|Write", "hooks": [
                     py("post-cargo-clippy-on-rs-edit.py", timeout=120),
+                    py("post-oxisym-scan.py", timeout=120),
                     py("warn-hardcoded-paths.py"),
                     py("warn-structural-duplicates.py"),
                     py("warn-gitignore-not-whitelist.py"),
@@ -179,6 +180,7 @@ def build_windows_config(common: dict[str, object] | None = None) -> dict[str, o
                 ]},
                 {"matcher": "Edit|Write", "hooks": [
                     py("post-cargo-clippy-on-rs-edit.py", timeout=120),
+                    py("post-oxisym-scan.py", timeout=120),
                     py("check-hotstring-conflicts.py"),
                     py("warn-hardcoded-paths.py"),
                     py("warn-structural-duplicates.py"),

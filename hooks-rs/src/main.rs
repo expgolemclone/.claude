@@ -64,6 +64,7 @@ fn main() {
         "inject-extension-rules-toml" => hooks::inject_extension_rules_toml::run(&input),
         "post-auto-setup" => hooks::post_auto_setup::run(&input),
         "post-cargo-clippy-on-rs-edit" => hooks::post_cargo_clippy_on_rs_edit::run(&input),
+        "post-oxisym-scan" => hooks::post_oxisym_scan::run(&input),
         "post-scan-fallbacks" => hooks::post_scan_fallbacks::run(&input),
         "post-verify-protected-nix-config" => hooks::post_verify_protected_nix_config::run(&input),
         "stop-lint-edited-python" => hooks::stop_lint_edited_python::run(&input),
