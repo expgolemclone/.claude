@@ -24,7 +24,9 @@ pub fn run(input: &HookInput) {
 
     let settings_path = home_dir().join(".claude").join("settings.json");
     if is_settings_json_edit(file_path, &settings_path) {
-        block("settings.json は setup.py から生成されます。`uv run python setup.py`");
+        block(
+            "settings.json は Rust setup コマンドから生成されます。`cargo run --manifest-path hooks-rs/Cargo.toml -- setup`",
+        );
         return;
     }
 

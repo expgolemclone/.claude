@@ -41,7 +41,7 @@ pub fn run(input: &HookInput) {
     let stderr = String::from_utf8_lossy(&output.stderr).trim().to_string();
     let text = if !stdout.is_empty() { stdout } else { stderr };
     if !text.is_empty() {
-        let msg = json!({"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": format!("[auto] setup.py executed:\n{text}")}});
+        let msg = json!({"hookSpecificOutput": {"hookEventName": "PostToolUse", "additionalContext": format!("[auto] claude-hooks setup executed:\n{text}")}});
         let _ = writeln!(io::stdout(), "{msg}");
     }
 }
