@@ -3,12 +3,10 @@
 
 # Allow .gitignore itself
 !.gitignore
-!.gitattributes
 
 # Documentation
 !ARCHITECTURE.md
 !CLAUDE.md
-!oxisym.md
 
 # Config
 !keybindings.json
