@@ -26,18 +26,8 @@ fn file_uses_any_type(text: &str) -> bool {
     false
 }
 
-pub fn run(input: &HookInput) {
-    if input.permission_mode == "plan" {
-        return;
-    }
-    let cwd = &input.cwd;
-    if cwd.is_empty() {
-        return;
-    }
-
-    let root = std::path::Path::new(cwd);
+fn collect_violations(root: &std::path::Path) -> Vec<String> {
     let mut violations: Vec<String> = Vec::new();
-
     for py_file in git_tracked_py_files(root) {
         let text = match std::fs::read_to_string(&py_file) {
             Ok(t) => t,
@@ -47,6 +37,19 @@ pub fn run(input: &HookInput) {
             violations.push(format!("{}", py_file.display()));
         }
     }
+    violations
+}
+
+pub fn run(input: &HookInput) {
+    if input.permission_mode == "plan" {
+        return;
+    }
+    let cwd = &input.cwd;
+    if cwd.is_empty() {
+        return;
+    }
+
+    let violations = collect_violations(std::path::Path::new(cwd));
 
     if !violations.is_empty() {
         let file_list = violations
@@ -78,5 +81,50 @@ mod tests {
     #[test]
     fn ignores_clean_python_file() {
         assert!(!file_uses_any_type("x: int = 1\n"));
+    }
+
+    #[test]
+    fn collect_violations_detects_any_in_tracked_file() {
+        use std::process::Command;
+        use tempfile::TempDir;
+
+        let repo = TempDir::new().unwrap();
+        let root = repo.path();
+
+        Command::new("git")
+            .args(["init"])
+            .current_dir(root)
+            .output()
+            .unwrap();
+        Command::new("git")
+            .args(["config", "user.email", "test@example.com"])
+            .current_dir(root)
+            .output()
+            .unwrap();
+        Command::new("git")
+            .args(["config", "user.name", "Test"])
+            .current_dir(root)
+            .output()
+            .unwrap();
+
+        let clean = root.join("clean.py");
+        std::fs::write(&clean, "x: int = 1\n").unwrap();
+        let dirty = root.join("dirty.py");
+        std::fs::write(&dirty, "from typing import Any\ny: Any = 1\n").unwrap();
+
+        Command::new("git")
+            .args(["add", "."])
+            .current_dir(root)
+            .output()
+            .unwrap();
+        Command::new("git")
+            .args(["commit", "-m", "init"])
+            .current_dir(root)
+            .output()
+            .unwrap();
+
+        let violations = super::collect_violations(root);
+        assert_eq!(violations.len(), 1);
+        assert!(violations[0].contains("dirty.py"));
     }
 }
