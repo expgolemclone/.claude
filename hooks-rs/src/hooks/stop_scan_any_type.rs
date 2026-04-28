@@ -27,9 +27,6 @@ fn file_uses_any_type(text: &str) -> bool {
 }
 
 pub fn run(input: &HookInput) {
-    if input.stop_hook_active {
-        return;
-    }
     if input.permission_mode == "plan" {
         return;
     }
