@@ -19,7 +19,6 @@ pub mod block_unbounded_dependency;
 pub mod block_wildcard_versions;
 pub mod block_worker_in_tracked_datasource;
 pub mod check_hotstring_conflicts;
-pub mod inject_extension_rules_toml;
 pub mod post_auto_setup;
 pub mod post_cargo_clippy_on_rs_edit;
 pub mod post_oxisym_scan;

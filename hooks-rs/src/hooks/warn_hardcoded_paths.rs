@@ -92,7 +92,7 @@ pub fn run(input: &HookInput) {
         detail.push_str(&format!("\n  ... 他 {} 件", hits.len() - 5));
     }
     stop(&format!(
-        "ハードコードされた絶対パスが検出されました。\n{detail}\nパス定数は設定ファイルに集約してください（config/common.toml: no_hardcoded_paths）。"
+        "ハードコードされた絶対パスが検出されました。\n{detail}\nパス定数は設定値や共通定数に集約してください（skills/repo-coding-standards/SKILL.md）。"
     ));
 }
 

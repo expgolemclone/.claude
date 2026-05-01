@@ -74,12 +74,6 @@ pub fn build_linux_config(common: Value, binary_path: &Path, _home: &Path) -> Va
         json!({
             "PreToolUse": [
                 {
-                    "matcher": "Edit|Write|Bash",
-                    "hooks": [
-                        linux_hook(binary_path, "inject-extension-rules-toml", None),
-                    ],
-                },
-                {
                     "matcher": "Edit|Write",
                     "hooks": [
                         linux_hook(binary_path, "block-settings-json-direct-edit", None),
@@ -178,12 +172,6 @@ pub fn build_windows_config(common: Value, binary_path: &Path, home: &Path) -> V
         "hooks".to_string(),
         json!({
             "PreToolUse": [
-                {
-                    "matcher": "Edit|Write|Bash",
-                    "hooks": [
-                        windows_hook(binary_path, "inject-extension-rules-toml", None),
-                    ],
-                },
                 {
                     "matcher": "Edit|Write",
                     "hooks": [
@@ -535,13 +523,6 @@ mod tests {
             .flat_map(|group| group["hooks"].as_array().unwrap())
             .any(|hook| hook["command"].as_str().unwrap().contains("pwsh"));
         assert!(has_pwsh, "Windows Stop should have pwsh notify-complete");
-    }
-
-    #[test]
-    fn both_have_inject_extension_rules() {
-        let linux = linux_config();
-        let windows = windows_config();
-        check_both_have_hook(&linux, &windows, "inject-extension-rules-toml");
     }
 
     #[test]

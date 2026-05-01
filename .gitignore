@@ -17,9 +17,13 @@ settings.json
 !hooks-rs/**
 hooks-rs/target/
 
-# Config (per-language coding rules & settings)
+# Config (runtime hook settings)
 !config/
 !config/**
+
+# Claude Code personal skills
+!skills/
+!skills/**
 
 # Data
 !data/
