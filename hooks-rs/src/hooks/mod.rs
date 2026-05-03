@@ -25,7 +25,6 @@ pub mod post_oxisym_scan;
 pub mod post_scan_fallbacks;
 pub mod post_verify_protected_nix_config;
 pub mod stop_lint_edited_python;
-pub mod stop_nixos_rebuild_on_config_change;
 pub mod stop_prompt_architecture_md;
 pub mod stop_require_git_commit_and_push;
 pub mod stop_require_source_verification;

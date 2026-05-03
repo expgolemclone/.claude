@@ -67,9 +67,6 @@ fn main() {
         "post-scan-fallbacks" => hooks::post_scan_fallbacks::run(&input),
         "post-verify-protected-nix-config" => hooks::post_verify_protected_nix_config::run(&input),
         "stop-lint-edited-python" => hooks::stop_lint_edited_python::run(&input),
-        "stop-nixos-rebuild-on-config-change" => {
-            hooks::stop_nixos_rebuild_on_config_change::run(&input)
-        }
         "stop-prompt-architecture-md" => hooks::stop_prompt_architecture_md::run(&input),
         "stop-require-git-commit-and-push" => hooks::stop_require_git_commit_and_push::run(&input),
         "stop-require-source-verification" => hooks::stop_require_source_verification::run(&input),

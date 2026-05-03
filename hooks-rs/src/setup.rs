@@ -140,7 +140,6 @@ pub fn build_linux_config(common: Value, binary_path: &Path, _home: &Path) -> Va
                     "hooks": [
                         linux_hook(binary_path, "stop-lint-edited-python", Some(300)),
                         linux_hook(binary_path, "stop-require-git-commit-and-push", Some(15)),
-                        linux_hook(binary_path, "stop-nixos-rebuild-on-config-change", Some(300)),
                         linux_hook(binary_path, "stop-require-source-verification", Some(15)),
                         linux_hook(binary_path, "stop-scan-error-handling", Some(15)),
                         linux_hook(binary_path, "stop-scan-any-type", Some(15)),
@@ -565,7 +564,6 @@ mod tests {
             "block-git-commit-protected-changes",
             "block-nixos-rebuild-protected-changes",
             "post-verify-protected-nix-config",
-            "stop-nixos-rebuild-on-config-change",
             "stop-lint-edited-python",
             "stop-warn-chrome-tabs",
             "check-hotstring-conflicts",
